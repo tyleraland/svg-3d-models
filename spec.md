@@ -324,6 +324,24 @@ It MUST retain source-model and resolved-model IDs, per-model diagnostics,
 issues and warnings, plus aggregate model/view/diagnostic counts. It MAY omit
 per-view evidence already available from the corresponding individual audit.
 
+`paper-rig/audit-manifest/1` is optional human-approved projected review
+evidence for one model. It records the canonical sampling matrix, normalized
+joint transforms, vector geometry, transformed surface/depth data, active
+contacts, semantic element fields, and compositing order. Numeric projection
+data and numeric SVG geometry tokens are canonicalized to `1e-9`; non-projected
+notes and source formatting MUST NOT affect it.
+
+Generating a manifest MUST NOT itself mark the output approved. Approval is a
+human/version-control decision made after inspecting the corresponding audit
+artifact. A comparison MUST report stable affected IDs and distinguish added or
+removed elements, semantic metadata, surface/depth, vector geometry,
+compositing, joint transforms, and contacts. A compatible difference is review
+evidence, not proof of invalid behavior, and MUST NOT fail by default. Tooling
+MAY offer an explicit fail-on-change policy once a project has deliberately
+adopted a baseline. Different model IDs, sampling matrices, canonicalization
+contracts, or manifest schema versions are incompatible and MUST NOT be compared
+as if they were equivalent views.
+
 Canonical review MUST sample multiple headings, elevations, clips, phases, and
 times. A single attractive default view is insufficient evidence of model
 correctness.

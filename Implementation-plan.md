@@ -166,11 +166,20 @@ Delivered in the first M2 slice:
 - a catalog-wide semantic-region diagnostic that rejects silent inferred
   appendage compositing on centerline body/head/neck joints while preserving
   explicit author intent;
+- schema-valid `paper-rig/audit-manifest/1` projected review evidence with
+  cross-runtime numeric canonicalization and source-ID-level change categories;
+- `rig manifest <model>` candidate generation plus `rig audit --against` JSON
+  and HTML comparisons, with incompatible baselines rejected and compatible
+  changes non-failing unless `--fail-on-change` is explicitly selected;
+- regressions proving non-projected notes do not create review churn and that
+  geometry and compositing edits identify affected semantic IDs without
+  declaring the reviewed change intrinsically wrong;
 - stable diagnostic codes and API/CLI/HTML regression coverage; and
 - successful visual QA of the harpy report layout.
 
-Next action: add change-focused semantic/approved-manifest diffs, then the
-plate/compositing/depth and contact overlays needed to diagnose those changes.
+Next action: add the plate/compositing/depth and contact overlays needed to
+diagnose manifest changes directly in the review artifact, then begin M2.5
+resolver provenance and source-level semantic diffs.
 
 Initial deterministic checks:
 

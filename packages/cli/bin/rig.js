@@ -6,6 +6,7 @@
 //   rig sheet <model> [--clip --time] [-o out.html]
 //   rig audit <model> [--json] [-o report.html]
 //   rig audit-all [--json] [-o report.json]
+//   rig manifest <model> [-o candidate.json]
 //   rig validate-sources [model]
 //   rig validate-all
 //   rig build-workbench [-o paper-rig-workbench.html]
@@ -15,6 +16,7 @@ import { runRender } from '../commands/render.js';
 import { runSheet } from '../commands/sheet.js';
 import { runAudit } from '../commands/audit.js';
 import { runAuditAll } from '../commands/audit-all.js';
+import { runManifest } from '../commands/manifest.js';
 import { runValidateSources } from '../commands/validate-sources.js';
 import { runValidateAll } from '../commands/validate-all.js';
 import { runBuildWorkbench } from '../commands/build-workbench.js';
@@ -26,7 +28,9 @@ const USAGE = `paper-rig CLI
       --clip <name> --time <0..1> --elevation <deg> --heading <deg> --stdout
   rig sheet <model> [--clip --time] [-o out.html] 8x4 heading/elevation contact sheet
   rig audit <model> [--json] [-o report.html]      deterministic 192-view audit
+      --against <manifest.json> [--fail-on-change]
   rig audit-all [--json] [-o report.json]          audit every model; warnings do not fail CI
+  rig manifest <model> [-o candidate.json]         emit canonical projected review evidence
   rig validate-sources [model] [--json]            validate authoring JSON and references
   rig validate-all                                validate every model in rigs/models/
   rig build-workbench [-o file.html]              regenerate the workbench demo
@@ -41,6 +45,7 @@ function main() {
     case 'sheet': return runSheet(rest);
     case 'audit': return runAudit(rest);
     case 'audit-all': return runAuditAll(rest);
+    case 'manifest': return runManifest(rest);
     case 'validate-sources': return runValidateSources(rest);
     case 'validate-all': return runValidateAll(rest);
     case 'build-workbench': return runBuildWorkbench(rest);

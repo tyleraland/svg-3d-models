@@ -4,8 +4,8 @@
 
 import { compilePackage, core, markup, projectScene } from '@paper-rig/compiler';
 
-const DEFAULT_HEADINGS = [0, 45, 90, 135, 180, 225, 270, 315];
-const DEFAULT_ELEVATIONS = [45, 60, 75];
+export const DEFAULT_AUDIT_HEADINGS = [0, 45, 90, 135, 180, 225, 270, 315];
+export const DEFAULT_AUDIT_ELEVATIONS = [45, 60, 75];
 const EXPECTED_GROUPS = [
   'ground shadow',
   'camera-far appendages',
@@ -142,8 +142,8 @@ export function motionDiagnostics(rig) {
 
 export function auditRig(rig, options = {}) {
   const pkg = compilePackage(rig);
-  const headings = [...(options.headings || DEFAULT_HEADINGS)];
-  const elevations = [...(options.elevations || DEFAULT_ELEVATIONS)];
+  const headings = [...(options.headings || DEFAULT_AUDIT_HEADINGS)];
+  const elevations = [...(options.elevations || DEFAULT_AUDIT_ELEVATIONS)];
   const poses = (options.poses || pkg.directionalBake.keyPoses).map((pose) => ({ ...pose }));
   const views = [];
 
@@ -269,6 +269,32 @@ const escapeHtml = (value) => String(value)
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;');
 
+function renderManifestComparison(diff) {
+  if (!diff) return '';
+  if (!diff.compatible) {
+    const reasons = diff.incompatibilities.map((item) => `<li><code>${escapeHtml(item.code)}</code> — ${escapeHtml(item.message)}</li>`).join('');
+    return `<section class="manifestComparison incompatible"><h2>Approved manifest comparison</h2><p><strong>INCOMPATIBLE</strong> — the current audit cannot be compared safely with this manifest.</p><ul>${reasons}</ul></section>`;
+  }
+  const summary = diff.summary;
+  const visibleChanges = diff.changes.slice(0, 64);
+  const rows = visibleChanges.map((change) => {
+    const ids = [...new Set([
+      ...change.addedElementIds,
+      ...change.removedElementIds,
+      ...change.semanticChangedElementIds,
+      ...change.projectionChangedElementIds,
+      ...change.geometryChangedElementIds,
+      ...change.compositingChangedElementIds,
+      ...change.jointTransformChangedIds,
+    ])];
+    return `<tr><td><code>${escapeHtml(change.viewId)}</code></td><td>${escapeHtml(change.categories.join(', '))}</td><td>${escapeHtml(ids.join(', ') || 'contact set')}</td></tr>`;
+  }).join('');
+  const remainder = diff.changes.length > visibleChanges.length
+    ? `<p>${diff.changes.length - visibleChanges.length} additional changed views are retained in the machine-readable report.</p>`
+    : '';
+  return `<section class="manifestComparison ${diff.status}"><h2>Approved manifest comparison</h2><p><strong>${diff.status.toUpperCase()}</strong> — ${summary.changedViewCount}/${summary.currentViewCount} views changed; ${summary.geometryChangeCount} vector, ${summary.compositingChangeCount} compositing, ${summary.jointTransformChangeCount} joint-transform, and ${summary.contactChangeCount} contact changes.</p>${rows ? `<table><thead><tr><td>View</td><td>Categories</td><td>Affected IDs</td></tr></thead><tbody>${rows}</tbody></table>` : ''}${remainder}</section>`;
+}
+
 export function renderAuditHtml(rig, report = auditRig(rig), options = {}) {
   const overlays = options.overlays ?? true;
   const diagnostics = report.diagnostics.map((item) => {
@@ -295,10 +321,11 @@ export function renderAuditHtml(rig, report = auditRig(rig), options = {}) {
     return `<section><h2>${escapeHtml(pose.id)} <small>${escapeHtml(pose.clip)} · t=${pose.t}</small></h2>${rows}</section>`;
   }).join('');
   const reportJson = JSON.stringify(report, null, 2).replaceAll('&', '\\u0026').replaceAll('<', '\\u003c');
+  const manifestComparison = renderManifestComparison(report.approvedManifestDiff);
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(rig.id)} paper-rig audit</title>
 <style>
-:root{color-scheme:dark}body{margin:20px;background:#24211d;color:#eee4cf;font:14px/1.4 system-ui,sans-serif}header{display:flex;align-items:end;justify-content:space-between;gap:20px}h1,h2,h3{margin:.5em 0}small{font-weight:400;opacity:.7}.status{padding:.35em .7em;border-radius:999px;background:${report.status === 'passed' ? '#285c43' : '#7d3434'};font-weight:700}table{width:100%;border-collapse:collapse;margin:16px 0 28px}td{padding:6px 8px;border-bottom:1px solid #494239}.pass td:first-child{color:#72d59b}.warn td:first-child{color:#f0c66f}.fail td:first-child{color:#ff8888}.view-row{display:grid;grid-template-columns:repeat(8,minmax(90px,1fr));gap:8px}figure{margin:0;text-align:center}svg{display:block;width:100%;background:#f6f0e3;border-radius:5px}figcaption{font-size:11px;opacity:.7;margin-top:2px}section{margin:32px 0}details{margin:30px 0}pre{overflow:auto;background:#171512;padding:12px;border-radius:6px}
+:root{color-scheme:dark}body{margin:20px;background:#24211d;color:#eee4cf;font:14px/1.4 system-ui,sans-serif}header{display:flex;align-items:end;justify-content:space-between;gap:20px}h1,h2,h3{margin:.5em 0}small{font-weight:400;opacity:.7}.status{padding:.35em .7em;border-radius:999px;background:${report.status === 'passed' ? '#285c43' : '#7d3434'};font-weight:700}table{width:100%;border-collapse:collapse;margin:16px 0 28px}td{padding:6px 8px;border-bottom:1px solid #494239}.pass td:first-child{color:#72d59b}.warn td:first-child{color:#f0c66f}.fail td:first-child{color:#ff8888}.manifestComparison{padding:1px 14px;border-left:4px solid #72d59b;background:#2b2823}.manifestComparison.changed{border-color:#f0c66f}.manifestComparison.incompatible{border-color:#ff8888}.view-row{display:grid;grid-template-columns:repeat(8,minmax(90px,1fr));gap:8px}figure{margin:0;text-align:center}svg{display:block;width:100%;background:#f6f0e3;border-radius:5px}figcaption{font-size:11px;opacity:.7;margin-top:2px}section{margin:32px 0}details{margin:30px 0}pre{overflow:auto;background:#171512;padding:12px;border-radius:6px}
 .paperPlate{fill:#d7c39c;stroke:#39362e;stroke-width:1.2;vector-effect:non-scaling-stroke}.plateShade{fill:#b99d73}.paperPlate[data-palette-role="shadow"]{fill:#9d927d}.coreOccluderCell,.jointGasket{fill:#d7c39c;stroke:#d7c39c;stroke-width:1.5;vector-effect:non-scaling-stroke}.faceEye{fill:#fffdf7;stroke:#39362e;stroke-width:.8}.faceNose,.wingMembrane{fill:#b99d73;stroke:#39362e;stroke-width:.8;stroke-linejoin:round}.boneLine{stroke:#567084;stroke-width:.35}.jointDot{fill:#fff;stroke:#567084;stroke-width:.25}.labelText{fill:#28231d;font-size:2px}.contactRing{fill:none;stroke:#5d8e62;stroke-width:.55}
-</style></head><body><header><div><h1>${escapeHtml(rig.id)} paper-rig audit</h1><div>${report.summary.viewCount} views · ${report.summary.jointCount} joints · ${report.summary.plateCount} plates · ${report.summary.clipCount} clips · ${report.summary.warningCount} warnings</div></div><div class="status">${report.status.toUpperCase()}</div></header><table><tbody>${diagnostics}</tbody></table>${sections}<details><summary>Machine-readable report</summary><pre>${escapeHtml(reportJson)}</pre></details></body></html>`;
+</style></head><body><header><div><h1>${escapeHtml(rig.id)} paper-rig audit</h1><div>${report.summary.viewCount} views · ${report.summary.jointCount} joints · ${report.summary.plateCount} plates · ${report.summary.clipCount} clips · ${report.summary.warningCount} warnings</div></div><div class="status">${report.status.toUpperCase()}</div></header><table><tbody>${diagnostics}</tbody></table>${manifestComparison}${sections}<details><summary>Machine-readable report</summary><pre>${escapeHtml(reportJson)}</pre></details></body></html>`;
 }

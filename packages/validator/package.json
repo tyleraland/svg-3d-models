@@ -6,7 +6,8 @@
   "exports": {
     ".": "./index.js",
     "./source": "./source.js",
-    "./audit": "./audit.js"
+    "./audit": "./audit.js",
+    "./audit-manifest": "./audit-manifest.js"
   },
   "dependencies": {
     "@paper-rig/compiler": "*",

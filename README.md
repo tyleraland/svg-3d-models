@@ -56,6 +56,15 @@ npx rig audit rabbit --json
 # Run the compact catalog audit used by CI; advisory warnings do not fail it
 npx rig audit-all --json -o paper-rig-audit.json
 
+# Generate projected review evidence (a candidate is not approved automatically)
+npx rig manifest rabbit -o rabbit-manifest-candidate.json
+
+# Compare an audit with a reviewed manifest; changes are reported, not failed
+npx rig audit rabbit --against approved/rabbit.json -o rabbit-audit.html
+
+# Optional CI policy after a project has explicitly approved that manifest
+npx rig audit rabbit --json --against approved/rabbit.json --fail-on-change
+
 # Regenerate the browser workbench from its sources
 npx rig build-workbench
 ```
@@ -122,6 +131,25 @@ references, timelines, transforms, contacts, rigid spans, and loop closure fail
 the command. Motion-quality observations such as limited whole-body attack
 participation are warnings and remain visible in JSON/HTML without changing the
 exit status.
+
+### Reviewing intentional projected changes
+
+`rig manifest <model>` captures the canonical 192-view projected contract at a
+numeric precision of `1e-9`: full joint transforms, vector geometry, surface and
+depth data, active contacts, semantic element classifications, and compositing
+order. It deliberately omits notes and other data that cannot affect the
+structured projection.
+
+Treat generated manifests as candidates. Inspect the corresponding audit HTML,
+then move or commit a candidate as an approved baseline only through an explicit
+review decision. `rig audit --against <file>` reports changed views and affected
+semantic IDs by category. A compatible change does not alter the audit exit code
+unless `--fail-on-change` is supplied; a mismatched model, sampling matrix, or
+schema is always reported as incompatible rather than compared misleadingly.
+
+No catalog baseline is approved merely because it matches today's output. This
+keeps historical mistakes from becoming silent correctness assertions while
+still making later, reviewed changes cheap to locate.
 
 ## Using the compiler from JavaScript
 

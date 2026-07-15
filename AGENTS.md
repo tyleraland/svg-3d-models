@@ -30,6 +30,8 @@ Dependency direction: `schema <- compiler <- validator`; `schema <- rigs`;
 rig validate rigs/models/rabbit.json          # resolve + compile + validate
 rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
 rig sheet rabbit                               # 8x4 heading/elevation contact sheet
+rig manifest rabbit -o rabbit-candidate.json  # canonical projected review evidence
+rig audit rabbit --against approved.json      # source-ID-level review diff
 rig validate-all                               # CI gate over rigs/models/
 rig build-workbench                            # regenerate paper-rig-workbench.html
 ```
