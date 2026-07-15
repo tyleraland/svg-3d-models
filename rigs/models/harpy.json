@@ -1,0 +1,135 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "harpy",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 620,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.28,
+          "poses": {},
+          "rotations": {
+            "nearHip": [
+              0,
+              -26,
+              0
+            ],
+            "nearKnee": [
+              0,
+              58,
+              0
+            ],
+            "farHip": [
+              0,
+              -26,
+              0
+            ],
+            "farKnee": [
+              0,
+              58,
+              0
+            ],
+            "leftWingRoot": [
+              34,
+              0,
+              -14
+            ],
+            "leftWingElbow": [
+              0,
+              0,
+              20
+            ],
+            "rightWingRoot": [
+              -34,
+              0,
+              14
+            ],
+            "rightWingElbow": [
+              0,
+              0,
+              -20
+            ]
+          }
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "nearHip": [
+              0,
+              -62,
+              0
+            ],
+            "nearKnee": [
+              0,
+              24,
+              0
+            ],
+            "farHip": [
+              0,
+              -62,
+              0
+            ],
+            "farKnee": [
+              0,
+              24,
+              0
+            ],
+            "leftWingRoot": [
+              -28,
+              0,
+              -24
+            ],
+            "leftWingElbow": [
+              0,
+              0,
+              12
+            ],
+            "rightWingRoot": [
+              28,
+              0,
+              24
+            ],
+            "rightWingElbow": [
+              0,
+              0,
+              -12
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [],
+      "events": [
+        {
+          "t": 0.18,
+          "name": "takeoff"
+        },
+        {
+          "t": 0.62,
+          "name": "double-kick-impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "contactIntervals": [],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "both legs lift and kick forward while paired arm-wings flap; all motion is joint-local rotation"
+    }
+  }
+}

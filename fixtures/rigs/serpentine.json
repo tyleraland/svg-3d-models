@@ -1,0 +1,901 @@
+{
+  "schema": "paper-rig/1",
+  "schemaVersion": "1.1.0",
+  "generatorVersion": "0.10.0",
+  "generator": "paper-rig-workbench/0.10.0",
+  "axes": {
+    "origin": "ground center between contacts",
+    "forward": "+x",
+    "lateral": "+y/left",
+    "up": "+z",
+    "units": "meters",
+    "transforms": "joint-local"
+  },
+  "spaces": [
+    "model",
+    "joint-local",
+    "posed-world",
+    "camera",
+    "token"
+  ],
+  "materials": {
+    "paperMain": "#d7c39c",
+    "paperShade": "#b99d73",
+    "paperLight": "#eadbb9",
+    "ink": "#39362e",
+    "shadow": "#9d927d",
+    "equipmentMetal": "#727b7a",
+    "equipmentLeather": "#735545"
+  },
+  "id": "serpentineBase",
+  "family": "serpentine",
+  "archetypes": [
+    "snake",
+    "worm",
+    "eel-like crawler"
+  ],
+  "heightMeters": 0.22,
+  "tokenScale": 36,
+  "tokenGroundY": 68,
+  "surfaceConvention": {
+    "outward": "+z",
+    "groundPlane": "z=0",
+    "canonicalModelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "camera": {
+    "type": "orthographic",
+    "direction": [
+      0,
+      0,
+      -1
+    ],
+    "elevation": 90,
+    "azimuth": 0,
+    "preset": "canonicalTop",
+    "orientation": "camera is above +Z and looks straight down -Z; +X points toward token top",
+    "framing": "fixed scale with ground origin at token [50,68]",
+    "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
+  },
+  "profile": {
+    "spine": "seven-segment chain",
+    "limbs": 0,
+    "locomotion": "lateral wave"
+  },
+  "joints": [
+    {
+      "id": "root",
+      "parent": null,
+      "bind": [
+        0,
+        0,
+        0
+      ],
+      "role": "root"
+    },
+    {
+      "id": "tailBase",
+      "parent": "root",
+      "bind": [
+        -0.72,
+        0,
+        0.1
+      ],
+      "role": "tail"
+    },
+    {
+      "id": "tailMid",
+      "parent": "tailBase",
+      "bind": [
+        0.28,
+        0.08,
+        0.01
+      ],
+      "role": "tail"
+    },
+    {
+      "id": "rearSpine",
+      "parent": "tailMid",
+      "bind": [
+        0.3,
+        -0.14,
+        0.01
+      ],
+      "role": "body"
+    },
+    {
+      "id": "middleSpine",
+      "parent": "rearSpine",
+      "bind": [
+        0.32,
+        0.14,
+        0.01
+      ],
+      "role": "body"
+    },
+    {
+      "id": "frontSpine",
+      "parent": "middleSpine",
+      "bind": [
+        0.32,
+        -0.12,
+        0.01
+      ],
+      "role": "body"
+    },
+    {
+      "id": "neck",
+      "parent": "frontSpine",
+      "bind": [
+        0.28,
+        0.08,
+        0.02
+      ],
+      "role": "neck"
+    },
+    {
+      "id": "head",
+      "parent": "neck",
+      "bind": [
+        0.28,
+        0,
+        0.04
+      ],
+      "role": "head"
+    },
+    {
+      "id": "snout",
+      "parent": "head",
+      "bind": [
+        0.18,
+        0,
+        -0.01
+      ],
+      "role": "head"
+    }
+  ],
+  "plates": [
+    {
+      "id": "castShadow",
+      "bone": "root",
+      "shape": "ellipse",
+      "size": [
+        1.62,
+        0.54
+      ],
+      "role": "shadow",
+      "attachment": "rigid",
+      "material": "shadow",
+      "zBias": -99
+    },
+    {
+      "id": "tailBasePlate",
+      "bone": "tailMid",
+      "shape": "bone",
+      "size": [
+        0.1
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 1,
+      "span": [
+        "tailBase",
+        "tailMid"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "tailMidPlate",
+      "bone": "rearSpine",
+      "shape": "bone",
+      "size": [
+        0.14
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 2,
+      "span": [
+        "tailMid",
+        "rearSpine"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "rearBodyPlate",
+      "bone": "middleSpine",
+      "shape": "bone",
+      "size": [
+        0.19
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3,
+      "span": [
+        "rearSpine",
+        "middleSpine"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "middleBodyPlate",
+      "bone": "frontSpine",
+      "shape": "bone",
+      "size": [
+        0.22
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.2,
+      "span": [
+        "middleSpine",
+        "frontSpine"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "frontBodyPlate",
+      "bone": "neck",
+      "shape": "bone",
+      "size": [
+        0.2
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.4,
+      "span": [
+        "frontSpine",
+        "neck"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "neckPlate",
+      "bone": "head",
+      "shape": "bone",
+      "size": [
+        0.17
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 4,
+      "span": [
+        "neck",
+        "head"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "headConnectorPlate",
+      "bone": "snout",
+      "shape": "bone",
+      "size": [
+        0.2
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 4.8,
+      "span": [
+        "head",
+        "snout"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "headPlate",
+      "bone": "head",
+      "shape": "ellipse",
+      "size": [
+        0.28,
+        0.34
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 5
+    },
+    {
+      "id": "snoutPlate",
+      "bone": "snout",
+      "shape": "ellipse",
+      "size": [
+        0.2,
+        0.23
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 5.1
+    }
+  ],
+  "anchors": [
+    {
+      "id": "headgearAnchor",
+      "bone": "head",
+      "offset": [
+        0,
+        0,
+        0.14
+      ],
+      "inheritScale": false,
+      "moduleType": "hat"
+    },
+    {
+      "id": "tailTipAnchor",
+      "bone": "tailBase",
+      "offset": [
+        -0.05,
+        0,
+        0
+      ],
+      "inheritScale": false,
+      "moduleType": "tail"
+    }
+  ],
+  "clips": {
+    "idleA": {
+      "base": "bind",
+      "duration": 1800,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {}
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "middleSpine": [
+              0,
+              0.03,
+              0.01
+            ],
+            "head": [
+              0,
+              -0.02,
+              0.01
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {}
+        }
+      ],
+      "contacts": [
+        "tailBase",
+        "tailMid",
+        "rearSpine",
+        "middleSpine",
+        "frontSpine"
+      ]
+    },
+    "walkA": {
+      "base": "idleA",
+      "duration": 900,
+      "easing": "linear",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              20
+            ],
+            "tailMid": [
+              0,
+              0,
+              -36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              -42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              36
+            ],
+            "neck": [
+              0,
+              0,
+              -24
+            ],
+            "head": [
+              0,
+              0,
+              12
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              -20
+            ],
+            "tailMid": [
+              0,
+              0,
+              36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              -42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              -36
+            ],
+            "neck": [
+              0,
+              0,
+              24
+            ],
+            "head": [
+              0,
+              0,
+              -12
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              20
+            ],
+            "tailMid": [
+              0,
+              0,
+              -36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              -42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              36
+            ],
+            "neck": [
+              0,
+              0,
+              -24
+            ],
+            "head": [
+              0,
+              0,
+              12
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "tailBase",
+            "tailMid",
+            "rearSpine",
+            "middleSpine",
+            "frontSpine"
+          ],
+          "from": 0,
+          "to": 1
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "wave-a"
+        },
+        {
+          "t": 0.5,
+          "name": "wave-b"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "alternating local Z rotations propagate a continuous lateral wave"
+    },
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "frontSpine": [
+              0,
+              0,
+              -22
+            ],
+            "neck": [
+              0,
+              0,
+              34
+            ],
+            "head": [
+              0,
+              0,
+              -12
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "tailBase",
+        "tailMid",
+        "rearSpine",
+        "middleSpine",
+        "frontSpine"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    },
+    "idle": {
+      "base": "bind",
+      "duration": 1800,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {}
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "middleSpine": [
+              0,
+              0.03,
+              0.01
+            ],
+            "head": [
+              0,
+              -0.02,
+              0.01
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {}
+        }
+      ],
+      "contacts": [
+        "tailBase",
+        "tailMid",
+        "rearSpine",
+        "middleSpine",
+        "frontSpine"
+      ],
+      "id": "idle",
+      "aliasOf": "idleA"
+    },
+    "walk": {
+      "base": "idle",
+      "duration": 900,
+      "easing": "linear",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              20
+            ],
+            "tailMid": [
+              0,
+              0,
+              -36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              -42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              36
+            ],
+            "neck": [
+              0,
+              0,
+              -24
+            ],
+            "head": [
+              0,
+              0,
+              12
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              -20
+            ],
+            "tailMid": [
+              0,
+              0,
+              36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              -42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              -36
+            ],
+            "neck": [
+              0,
+              0,
+              24
+            ],
+            "head": [
+              0,
+              0,
+              -12
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              20
+            ],
+            "tailMid": [
+              0,
+              0,
+              -36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              -42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              36
+            ],
+            "neck": [
+              0,
+              0,
+              -24
+            ],
+            "head": [
+              0,
+              0,
+              12
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "tailBase",
+            "tailMid",
+            "rearSpine",
+            "middleSpine",
+            "frontSpine"
+          ],
+          "from": 0,
+          "to": 1
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "wave-a"
+        },
+        {
+          "t": 0.5,
+          "name": "wave-b"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "alternating local Z rotations propagate a continuous lateral wave",
+      "id": "walk",
+      "aliasOf": "walkA"
+    },
+    "hit": {
+      "id": "hit",
+      "base": "idle",
+      "duration": 460,
+      "easing": "cubic-bezier(.2,.8,.3,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.35,
+          "poses": {
+            "root": [
+              -0.06,
+              0,
+              0
+            ]
+          },
+          "rotations": {}
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "tailBase",
+        "tailMid",
+        "rearSpine",
+        "middleSpine",
+        "frontSpine"
+      ],
+      "events": [
+        {
+          "t": 0.05,
+          "name": "hit-start"
+        },
+        {
+          "t": 0.35,
+          "name": "recoil"
+        },
+        {
+          "t": 0.82,
+          "name": "recover"
+        }
+      ]
+    },
+    "ko": {
+      "id": "ko",
+      "base": "bind",
+      "duration": 900,
+      "easing": "ease-in",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 1,
+          "poses": {
+            "root": [
+              0,
+              0.1,
+              0.04
+            ]
+          },
+          "rotations": {
+            "root": [
+              0,
+              72,
+              0
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "tailBase",
+            "tailMid",
+            "rearSpine",
+            "middleSpine",
+            "frontSpine"
+          ],
+          "from": 0,
+          "to": 0.05
+        }
+      ],
+      "events": [
+        {
+          "t": 0.5,
+          "name": "fall"
+        },
+        {
+          "t": 1,
+          "name": "down"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,451 @@
+{
+  "schema": "paper-rig/1",
+  "schemaVersion": "1.1.0",
+  "generatorVersion": "0.10.0",
+  "generator": "paper-rig-workbench/0.10.0",
+  "axes": {
+    "origin": "ground center between contacts",
+    "forward": "+x",
+    "lateral": "+y/left",
+    "up": "+z",
+    "units": "meters",
+    "transforms": "joint-local"
+  },
+  "spaces": [
+    "model",
+    "joint-local",
+    "posed-world",
+    "camera",
+    "token"
+  ],
+  "materials": {
+    "paperMain": "#d7c39c",
+    "paperShade": "#b99d73",
+    "paperLight": "#eadbb9",
+    "ink": "#39362e",
+    "shadow": "#9d927d",
+    "equipmentMetal": "#727b7a",
+    "equipmentLeather": "#735545"
+  },
+  "id": "uprightTentacleBase",
+  "family": "uprightTentacle",
+  "archetypes": [
+    "striking tentacle",
+    "plant tendril",
+    "kraken arm"
+  ],
+  "heightMeters": 1.48,
+  "tokenScale": 22,
+  "tokenGroundY": 78,
+  "surfaceConvention": {
+    "outward": "+z",
+    "groundPlane": "z=0",
+    "canonicalModelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "camera": {
+    "type": "orthographic",
+    "direction": [
+      0,
+      0,
+      -1
+    ],
+    "elevation": 90,
+    "azimuth": 0,
+    "preset": "canonicalTop",
+    "orientation": "camera is above +Z and looks straight down -Z; +X points toward token top",
+    "framing": "fixed scale with ground origin at token [50,78]",
+    "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
+  },
+  "profile": {
+    "silhouette": "grounded column rising in +Z, curling forward, then hanging down",
+    "segments": 4,
+    "attack": "forward lunge"
+  },
+  "joints": [
+    {
+      "id": "root",
+      "parent": null,
+      "bind": [
+        0,
+        0,
+        0
+      ],
+      "role": "root"
+    },
+    {
+      "id": "tentacleBase",
+      "parent": "root",
+      "bind": [
+        0,
+        0,
+        0.08
+      ],
+      "role": "tentacle"
+    },
+    {
+      "id": "tentacleLower",
+      "parent": "tentacleBase",
+      "bind": [
+        0,
+        0,
+        0.52
+      ],
+      "role": "tentacle",
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "limits": [
+        -55,
+        55
+      ]
+    },
+    {
+      "id": "tentacleCrest",
+      "parent": "tentacleLower",
+      "bind": [
+        0.06,
+        0,
+        0.48
+      ],
+      "role": "tentacle",
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "limits": [
+        -70,
+        70
+      ]
+    },
+    {
+      "id": "tentacleBend",
+      "parent": "tentacleCrest",
+      "bind": [
+        0.26,
+        0,
+        0.2
+      ],
+      "role": "tentacle",
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "limits": [
+        -95,
+        95
+      ]
+    },
+    {
+      "id": "tentacleTip",
+      "parent": "tentacleBend",
+      "bind": [
+        0.3,
+        0,
+        -0.42
+      ],
+      "role": "tentacle",
+      "ik": "tentacleStrikeChain"
+    }
+  ],
+  "plates": [
+    {
+      "id": "castShadow",
+      "bone": "root",
+      "shape": "ellipse",
+      "size": [
+        0.62,
+        0.48
+      ],
+      "role": "shadow",
+      "attachment": "rigid",
+      "material": "shadow",
+      "zBias": -99
+    },
+    {
+      "id": "baseMassPlate",
+      "bone": "tentacleBase",
+      "shape": "ellipse",
+      "size": [
+        0.42,
+        0.36
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 2
+    },
+    {
+      "id": "tentacleLowerPlate",
+      "bone": "tentacleLower",
+      "shape": "bone",
+      "size": [
+        0.32
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 2.5,
+      "span": [
+        "tentacleBase",
+        "tentacleLower"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "tentacleCrestPlate",
+      "bone": "tentacleCrest",
+      "shape": "bone",
+      "size": [
+        0.27
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3,
+      "span": [
+        "tentacleLower",
+        "tentacleCrest"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "tentacleBendPlate",
+      "bone": "tentacleBend",
+      "shape": "bone",
+      "size": [
+        0.22
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.4,
+      "span": [
+        "tentacleCrest",
+        "tentacleBend"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "tentacleHangingPlate",
+      "bone": "tentacleTip",
+      "shape": "taperedBone",
+      "size": [
+        0.18
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.6,
+      "span": [
+        "tentacleBend",
+        "tentacleTip"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "tentacleTipPlate",
+      "bone": "tentacleTip",
+      "shape": "ellipse",
+      "size": [
+        0.2,
+        0.17
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.8
+    }
+  ],
+  "anchors": [
+    {
+      "id": "tentacleTipAnchor",
+      "bone": "tentacleTip",
+      "offset": [
+        0.06,
+        0,
+        0
+      ],
+      "inheritScale": false
+    },
+    {
+      "id": "tentacleBaseAccessoryAnchor",
+      "bone": "tentacleBase",
+      "offset": [
+        0,
+        0,
+        0.1
+      ],
+      "inheritScale": false
+    }
+  ],
+  "clips": {
+    "idleA": {
+      "base": "bind",
+      "duration": 1800,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {}
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "tentacleCrest": [
+              0,
+              0.05,
+              0.02
+            ],
+            "tentacleBend": [
+              -0.02,
+              0.08,
+              -0.02
+            ],
+            "tentacleTip": [
+              -0.03,
+              0.1,
+              0.03
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {}
+        }
+      ],
+      "contacts": [
+        "root"
+      ]
+    },
+    "walkA": {
+      "base": "idleA",
+      "duration": 1200,
+      "easing": "linear",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {
+            "tentacleBend": [
+              0,
+              0.1,
+              0.02
+            ],
+            "tentacleTip": [
+              0.02,
+              0.16,
+              0.03
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "tentacleBend": [
+              0,
+              -0.1,
+              0.02
+            ],
+            "tentacleTip": [
+              0.02,
+              -0.16,
+              0.03
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {
+            "tentacleBend": [
+              0,
+              0.1,
+              0.02
+            ],
+            "tentacleTip": [
+              0.02,
+              0.16,
+              0.03
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "root"
+          ],
+          "from": 0,
+          "to": 1
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "sway-left"
+        },
+        {
+          "t": 0.5,
+          "name": "sway-right"
+        }
+      ]
+    },
+    "attack": {
+      "base": "idleA",
+      "duration": 640,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {
+            "tentacleCrest": [
+              0.16,
+              0,
+              0.04
+            ],
+            "tentacleBend": [
+              0.44,
+              0,
+              0.12
+            ],
+            "tentacleTip": [
+              0.72,
+              0,
+              0.24
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {}
+        }
+      ],
+      "contacts": [
+        "root"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ]
+    }
+  }
+}

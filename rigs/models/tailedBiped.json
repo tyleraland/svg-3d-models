@@ -1,0 +1,62 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "tailedBiped",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 620,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "nearShoulder": [
+              0,
+              -25,
+              -70
+            ],
+            "nearElbow": [
+              0,
+              10,
+              70
+            ],
+            "tailBase": [
+              0,
+              0,
+              12
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "nearFoot",
+        "farFoot"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.83,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

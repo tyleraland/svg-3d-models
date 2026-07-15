@@ -1,0 +1,458 @@
+{
+  "schema": "paper-rig/1",
+  "schemaVersion": "1.1.0",
+  "generatorVersion": "0.10.0",
+  "generator": "paper-rig-workbench/0.10.0",
+  "axes": {
+    "origin": "ground center between contacts",
+    "forward": "+x",
+    "lateral": "+y/left",
+    "up": "+z",
+    "units": "meters",
+    "transforms": "joint-local"
+  },
+  "spaces": [
+    "model",
+    "joint-local",
+    "posed-world",
+    "camera",
+    "token"
+  ],
+  "materials": {
+    "paperMain": "#d7c39c",
+    "paperShade": "#b99d73",
+    "paperLight": "#eadbb9",
+    "ink": "#39362e",
+    "shadow": "#9d927d",
+    "equipmentMetal": "#727b7a",
+    "equipmentLeather": "#735545"
+  },
+  "id": "blobBase",
+  "family": "blob",
+  "archetypes": [
+    "slime",
+    "mud elemental",
+    "egg",
+    "will-o-wisp",
+    "gelatinous cube",
+    "amoeba"
+  ],
+  "heightMeters": 0.68,
+  "tokenScale": 43,
+  "tokenGroundY": 72,
+  "surfaceConvention": {
+    "outward": "+z",
+    "groundPlane": "z=0",
+    "canonicalModelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "camera": {
+    "type": "orthographic",
+    "direction": [
+      0,
+      0,
+      -1
+    ],
+    "elevation": 90,
+    "azimuth": 0,
+    "preset": "canonicalTop",
+    "orientation": "camera is above +Z and looks straight down -Z; +X points toward token top",
+    "framing": "fixed scale with ground origin at token [50,72]",
+    "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
+  },
+  "profile": {
+    "baseNodes": [
+      1,
+      3
+    ],
+    "arms": "optional",
+    "silhouette": "stacked deformable mass"
+  },
+  "joints": [
+    {
+      "id": "root",
+      "parent": null,
+      "bind": [
+        0,
+        0,
+        0
+      ],
+      "role": "root"
+    },
+    {
+      "id": "baseMass",
+      "parent": "root",
+      "bind": [
+        -0.08,
+        0,
+        0.16
+      ],
+      "role": "body"
+    },
+    {
+      "id": "middleMass",
+      "parent": "baseMass",
+      "bind": [
+        0.12,
+        0,
+        0.22
+      ],
+      "role": "body"
+    },
+    {
+      "id": "topMass",
+      "parent": "middleMass",
+      "bind": [
+        0.12,
+        0,
+        0.22
+      ],
+      "role": "body"
+    },
+    {
+      "id": "nearArm",
+      "parent": "middleMass",
+      "bind": [
+        0.02,
+        0.27,
+        0.02
+      ],
+      "role": "limb",
+      "mirror": "farArm"
+    },
+    {
+      "id": "nearHand",
+      "parent": "nearArm",
+      "bind": [
+        0.08,
+        0.25,
+        -0.05
+      ],
+      "role": "limb",
+      "mirror": "farHand"
+    },
+    {
+      "id": "farArm",
+      "parent": "middleMass",
+      "bind": [
+        0.02,
+        -0.27,
+        0.02
+      ],
+      "role": "limb",
+      "mirror": "nearArm"
+    },
+    {
+      "id": "farHand",
+      "parent": "farArm",
+      "bind": [
+        0.08,
+        -0.25,
+        -0.05
+      ],
+      "role": "limb",
+      "mirror": "nearHand"
+    }
+  ],
+  "plates": [
+    {
+      "id": "castShadow",
+      "bone": "root",
+      "shape": "ellipse",
+      "size": [
+        0.86,
+        0.58
+      ],
+      "role": "shadow",
+      "attachment": "rigid",
+      "material": "shadow",
+      "zBias": -99
+    },
+    {
+      "id": "baseMassPlate",
+      "bone": "baseMass",
+      "shape": "ellipse",
+      "size": [
+        0.72,
+        0.62
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1
+    },
+    {
+      "id": "middleMassPlate",
+      "bone": "middleMass",
+      "shape": "ellipse",
+      "size": [
+        0.62,
+        0.56
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 2
+    },
+    {
+      "id": "topMassPlate",
+      "bone": "topMass",
+      "shape": "ellipse",
+      "size": [
+        0.44,
+        0.4
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3
+    },
+    {
+      "id": "nearArmPlate",
+      "bone": "nearHand",
+      "shape": "bone",
+      "size": [
+        0.16
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 2.2,
+      "span": [
+        "nearArm",
+        "nearHand"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "nearHandPlate",
+      "bone": "nearHand",
+      "shape": "ellipse",
+      "size": [
+        0.19,
+        0.17
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 2.3
+    },
+    {
+      "id": "farArmPlate",
+      "bone": "farHand",
+      "shape": "bone",
+      "size": [
+        0.16
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 2.2,
+      "span": [
+        "farArm",
+        "farHand"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "farHandPlate",
+      "bone": "farHand",
+      "shape": "ellipse",
+      "size": [
+        0.19,
+        0.17
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 2.3
+    }
+  ],
+  "anchors": [
+    {
+      "id": "crownAnchor",
+      "bone": "topMass",
+      "offset": [
+        0,
+        0,
+        0.18
+      ],
+      "inheritScale": false
+    },
+    {
+      "id": "nearGripAnchor",
+      "bone": "nearHand",
+      "offset": [
+        0.06,
+        0,
+        0
+      ],
+      "inheritScale": false
+    },
+    {
+      "id": "farGripAnchor",
+      "bone": "farHand",
+      "offset": [
+        0.06,
+        0,
+        0
+      ],
+      "inheritScale": false
+    }
+  ],
+  "clips": {
+    "idleA": {
+      "base": "bind",
+      "duration": 1800,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {}
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "topMass": [
+              -0.03,
+              0,
+              0.04
+            ],
+            "middleMass": [
+              0.02,
+              0,
+              -0.02
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {}
+        }
+      ],
+      "contacts": [
+        "root"
+      ]
+    },
+    "walkA": {
+      "base": "idleA",
+      "duration": 960,
+      "easing": "linear",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {
+            "baseMass": [
+              0.08,
+              0.03,
+              0
+            ],
+            "topMass": [
+              -0.05,
+              -0.04,
+              0.02
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "baseMass": [
+              -0.08,
+              -0.03,
+              0
+            ],
+            "topMass": [
+              0.05,
+              0.04,
+              0.02
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {
+            "baseMass": [
+              0.08,
+              0.03,
+              0
+            ],
+            "topMass": [
+              -0.05,
+              -0.04,
+              0.02
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "root"
+          ],
+          "from": 0,
+          "to": 1
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "squish-a"
+        },
+        {
+          "t": 0.5,
+          "name": "squish-b"
+        }
+      ]
+    },
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {
+            "nearHand": [
+              0.32,
+              -0.18,
+              0.06
+            ],
+            "middleMass": [
+              0.08,
+              0,
+              0.02
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {}
+        }
+      ],
+      "contacts": [
+        "root"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ]
+    }
+  }
+}

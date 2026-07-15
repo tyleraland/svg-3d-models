@@ -1,0 +1,13 @@
+{
+  "name": "@paper-rig/validator",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "dependencies": {
+    "@paper-rig/compiler": "*",
+    "@paper-rig/schema": "*"
+  }
+}

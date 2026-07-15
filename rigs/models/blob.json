@@ -1,0 +1,61 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "blob",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "nearArm": [
+              0,
+              0,
+              -48
+            ],
+            "nearHand": [
+              0,
+              0,
+              24
+            ],
+            "middleMass": [
+              0,
+              8,
+              0
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "root"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

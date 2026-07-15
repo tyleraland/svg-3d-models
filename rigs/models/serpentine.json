@@ -1,0 +1,221 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "serpentine",
+  "base": true,
+  "clips": {
+    "walkA": {
+      "base": "idleA",
+      "duration": 900,
+      "easing": "linear",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              20
+            ],
+            "tailMid": [
+              0,
+              0,
+              -36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              -42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              36
+            ],
+            "neck": [
+              0,
+              0,
+              -24
+            ],
+            "head": [
+              0,
+              0,
+              12
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              -20
+            ],
+            "tailMid": [
+              0,
+              0,
+              36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              -42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              -36
+            ],
+            "neck": [
+              0,
+              0,
+              24
+            ],
+            "head": [
+              0,
+              0,
+              -12
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              0,
+              20
+            ],
+            "tailMid": [
+              0,
+              0,
+              -36
+            ],
+            "rearSpine": [
+              0,
+              0,
+              42
+            ],
+            "middleSpine": [
+              0,
+              0,
+              -42
+            ],
+            "frontSpine": [
+              0,
+              0,
+              36
+            ],
+            "neck": [
+              0,
+              0,
+              -24
+            ],
+            "head": [
+              0,
+              0,
+              12
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "tailBase",
+            "tailMid",
+            "rearSpine",
+            "middleSpine",
+            "frontSpine"
+          ],
+          "from": 0,
+          "to": 1
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "wave-a"
+        },
+        {
+          "t": 0.5,
+          "name": "wave-b"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "alternating local Z rotations propagate a continuous lateral wave"
+    },
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "frontSpine": [
+              0,
+              0,
+              -22
+            ],
+            "neck": [
+              0,
+              0,
+              34
+            ],
+            "head": [
+              0,
+              0,
+              -12
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "tailBase",
+        "tailMid",
+        "rearSpine",
+        "middleSpine",
+        "frontSpine"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "centaur",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 720,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "leftShoulder": [
+              0,
+              -25,
+              -70
+            ],
+            "leftElbow": [
+              0,
+              10,
+              70
+            ],
+            "upperSpine": [
+              0,
+              0,
+              -6
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "nearFrontHoof",
+        "farFrontHoof",
+        "nearRearHoof",
+        "farRearHoof"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.8,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

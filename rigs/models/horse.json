@@ -1,0 +1,64 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "horse",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 720,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "neckBase": [
+              0,
+              28,
+              0
+            ],
+            "neckTip": [
+              0,
+              18,
+              0
+            ],
+            "head": [
+              0,
+              -10,
+              0
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "nearFrontHoof",
+        "farFrontHoof",
+        "nearRearHoof",
+        "farRearHoof"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.8,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

@@ -1,0 +1,1284 @@
+{
+  "schema": "paper-rig/1",
+  "schemaVersion": "1.1.0",
+  "generatorVersion": "0.10.0",
+  "generator": "paper-rig-workbench/0.10.0",
+  "axes": {
+    "origin": "ground center between contacts",
+    "forward": "+x",
+    "lateral": "+y/left",
+    "up": "+z",
+    "units": "meters",
+    "transforms": "joint-local"
+  },
+  "spaces": [
+    "model",
+    "joint-local",
+    "posed-world",
+    "camera",
+    "token"
+  ],
+  "materials": {
+    "paperMain": "#d7c39c",
+    "paperShade": "#b99d73",
+    "paperLight": "#eadbb9",
+    "ink": "#39362e",
+    "shadow": "#9d927d",
+    "equipmentMetal": "#727b7a",
+    "equipmentLeather": "#735545"
+  },
+  "id": "dragonBase",
+  "family": "dragon",
+  "archetypes": [
+    "western dragon",
+    "wyvern-like quadruped"
+  ],
+  "heightMeters": 0.82,
+  "tokenScale": 22,
+  "tokenGroundY": 68,
+  "surfaceConvention": {
+    "outward": "+z",
+    "groundPlane": "z=0",
+    "canonicalModelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "camera": {
+    "type": "orthographic",
+    "direction": [
+      0,
+      0,
+      -1
+    ],
+    "elevation": 90,
+    "azimuth": 0,
+    "preset": "canonicalTop",
+    "orientation": "camera is above +Z and looks straight down -Z; +X points toward token top",
+    "framing": "fixed scale with ground origin at token [50,68]",
+    "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
+  },
+  "profile": {
+    "base": "quadruped lizard",
+    "wings": "paired armature plus six-point resizable membranes",
+    "tail": "long articulated"
+  },
+  "joints": [
+    {
+      "id": "root",
+      "parent": null,
+      "bind": [
+        0,
+        0,
+        0
+      ],
+      "role": "root"
+    },
+    {
+      "id": "pelvis",
+      "parent": "root",
+      "bind": [
+        -0.28,
+        0,
+        0.24
+      ],
+      "role": "body"
+    },
+    {
+      "id": "chest",
+      "parent": "pelvis",
+      "bind": [
+        0.58,
+        0,
+        0.05
+      ],
+      "role": "body"
+    },
+    {
+      "id": "neck",
+      "parent": "chest",
+      "bind": [
+        0.24,
+        0,
+        0.02
+      ],
+      "role": "neck"
+    },
+    {
+      "id": "head",
+      "parent": "neck",
+      "bind": [
+        0.28,
+        0,
+        0.01
+      ],
+      "role": "head"
+    },
+    {
+      "id": "tailBase",
+      "parent": "pelvis",
+      "bind": [
+        -0.26,
+        0,
+        -0.01
+      ],
+      "role": "tail"
+    },
+    {
+      "id": "tailMid",
+      "parent": "tailBase",
+      "bind": [
+        -0.42,
+        0,
+        -0.03
+      ],
+      "role": "tail"
+    },
+    {
+      "id": "tailTip",
+      "parent": "tailMid",
+      "bind": [
+        -0.42,
+        0,
+        -0.04
+      ],
+      "role": "tail"
+    },
+    {
+      "id": "nearFrontShoulder",
+      "parent": "chest",
+      "bind": [
+        -0.04,
+        0.18,
+        -0.02
+      ],
+      "role": "limb",
+      "mirror": "farFrontShoulder"
+    },
+    {
+      "id": "nearFrontElbow",
+      "parent": "nearFrontShoulder",
+      "bind": [
+        -0.04,
+        0.28,
+        -0.1
+      ],
+      "role": "limb",
+      "mirror": "farFrontElbow",
+      "bendAxis": [
+        0,
+        0,
+        1
+      ],
+      "limits": [
+        0,
+        145
+      ]
+    },
+    {
+      "id": "nearFrontFoot",
+      "parent": "nearFrontElbow",
+      "bind": [
+        0.12,
+        0.22,
+        -0.11
+      ],
+      "role": "limb",
+      "mirror": "farFrontFoot",
+      "ik": "nearFrontLeg"
+    },
+    {
+      "id": "farFrontShoulder",
+      "parent": "chest",
+      "bind": [
+        -0.04,
+        -0.18,
+        -0.02
+      ],
+      "role": "limb",
+      "mirror": "nearFrontShoulder"
+    },
+    {
+      "id": "farFrontElbow",
+      "parent": "farFrontShoulder",
+      "bind": [
+        -0.04,
+        -0.28,
+        -0.1
+      ],
+      "role": "limb",
+      "mirror": "nearFrontElbow",
+      "bendAxis": [
+        0,
+        0,
+        -1
+      ],
+      "limits": [
+        0,
+        145
+      ]
+    },
+    {
+      "id": "farFrontFoot",
+      "parent": "farFrontElbow",
+      "bind": [
+        0.12,
+        -0.22,
+        -0.11
+      ],
+      "role": "limb",
+      "mirror": "nearFrontFoot",
+      "ik": "farFrontLeg"
+    },
+    {
+      "id": "nearRearHip",
+      "parent": "pelvis",
+      "bind": [
+        -0.03,
+        0.18,
+        -0.01
+      ],
+      "role": "limb",
+      "mirror": "farRearHip"
+    },
+    {
+      "id": "nearRearKnee",
+      "parent": "nearRearHip",
+      "bind": [
+        -0.08,
+        0.29,
+        -0.1
+      ],
+      "role": "limb",
+      "mirror": "farRearKnee",
+      "bendAxis": [
+        0,
+        0,
+        1
+      ],
+      "limits": [
+        0,
+        145
+      ]
+    },
+    {
+      "id": "nearRearFoot",
+      "parent": "nearRearKnee",
+      "bind": [
+        -0.12,
+        0.21,
+        -0.11
+      ],
+      "role": "limb",
+      "mirror": "farRearFoot",
+      "ik": "nearRearLeg"
+    },
+    {
+      "id": "farRearHip",
+      "parent": "pelvis",
+      "bind": [
+        -0.03,
+        -0.18,
+        -0.01
+      ],
+      "role": "limb",
+      "mirror": "nearRearHip"
+    },
+    {
+      "id": "farRearKnee",
+      "parent": "farRearHip",
+      "bind": [
+        -0.08,
+        -0.29,
+        -0.1
+      ],
+      "role": "limb",
+      "mirror": "nearRearKnee",
+      "bendAxis": [
+        0,
+        0,
+        -1
+      ],
+      "limits": [
+        0,
+        145
+      ]
+    },
+    {
+      "id": "farRearFoot",
+      "parent": "farRearKnee",
+      "bind": [
+        -0.12,
+        -0.21,
+        -0.11
+      ],
+      "role": "limb",
+      "mirror": "nearRearFoot",
+      "ik": "farRearLeg"
+    },
+    {
+      "id": "nearWingRoot",
+      "parent": "chest",
+      "bind": [
+        -0.08,
+        0.2,
+        0.22
+      ],
+      "role": "wing",
+      "mirror": "farWingRoot"
+    },
+    {
+      "id": "nearWingElbow",
+      "parent": "nearWingRoot",
+      "bind": [
+        -0.1,
+        0.26,
+        0.02
+      ],
+      "role": "wing",
+      "mirror": "farWingElbow",
+      "bendAxis": [
+        1,
+        0,
+        0
+      ],
+      "limits": [
+        -25,
+        120
+      ]
+    },
+    {
+      "id": "nearWingTip",
+      "parent": "nearWingElbow",
+      "bind": [
+        -0.14,
+        0.24,
+        -0.05
+      ],
+      "role": "wing",
+      "mirror": "farWingTip"
+    },
+    {
+      "id": "nearWingTrailingRoot",
+      "parent": "chest",
+      "bind": [
+        -0.3,
+        0.17,
+        0.1
+      ],
+      "role": "wingMembrane",
+      "mirror": "farWingTrailingRoot"
+    },
+    {
+      "id": "nearWingTrailingMid",
+      "parent": "nearWingElbow",
+      "bind": [
+        -0.28,
+        -0.12,
+        -0.08
+      ],
+      "role": "wingMembrane",
+      "mirror": "farWingTrailingMid"
+    },
+    {
+      "id": "nearWingTrailingTip",
+      "parent": "nearWingTip",
+      "bind": [
+        -0.16,
+        -0.1,
+        -0.02
+      ],
+      "role": "wingMembrane",
+      "mirror": "farWingTrailingTip"
+    },
+    {
+      "id": "farWingRoot",
+      "parent": "chest",
+      "bind": [
+        -0.08,
+        -0.2,
+        0.22
+      ],
+      "role": "wing",
+      "mirror": "nearWingRoot"
+    },
+    {
+      "id": "farWingElbow",
+      "parent": "farWingRoot",
+      "bind": [
+        -0.1,
+        -0.26,
+        0.02
+      ],
+      "role": "wing",
+      "mirror": "nearWingElbow",
+      "bendAxis": [
+        -1,
+        0,
+        0
+      ],
+      "limits": [
+        -25,
+        120
+      ]
+    },
+    {
+      "id": "farWingTip",
+      "parent": "farWingElbow",
+      "bind": [
+        -0.14,
+        -0.24,
+        -0.05
+      ],
+      "role": "wing",
+      "mirror": "nearWingTip"
+    },
+    {
+      "id": "farWingTrailingRoot",
+      "parent": "chest",
+      "bind": [
+        -0.3,
+        -0.17,
+        0.1
+      ],
+      "role": "wingMembrane",
+      "mirror": "nearWingTrailingRoot"
+    },
+    {
+      "id": "farWingTrailingMid",
+      "parent": "farWingElbow",
+      "bind": [
+        -0.28,
+        0.12,
+        -0.08
+      ],
+      "role": "wingMembrane",
+      "mirror": "nearWingTrailingMid"
+    },
+    {
+      "id": "farWingTrailingTip",
+      "parent": "farWingTip",
+      "bind": [
+        -0.16,
+        0.1,
+        -0.02
+      ],
+      "role": "wingMembrane",
+      "mirror": "nearWingTrailingTip"
+    }
+  ],
+  "plates": [
+    {
+      "id": "castShadow",
+      "bone": "root",
+      "shape": "ellipse",
+      "size": [
+        1.65,
+        1.15
+      ],
+      "role": "shadow",
+      "attachment": "rigid",
+      "material": "shadow",
+      "zBias": -99
+    },
+    {
+      "id": "torsoPlate",
+      "bone": "chest",
+      "shape": "bone",
+      "size": [
+        0.38
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3,
+      "span": [
+        "pelvis",
+        "chest"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "pelvisPlate",
+      "bone": "pelvis",
+      "shape": "ellipse",
+      "size": [
+        0.4,
+        0.36
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.1
+    },
+    {
+      "id": "neckPlate",
+      "bone": "neck",
+      "shape": "bone",
+      "size": [
+        0.25
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 4,
+      "span": [
+        "chest",
+        "neck"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "headConnectorPlate",
+      "bone": "head",
+      "shape": "bone",
+      "size": [
+        0.27
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 4.8,
+      "span": [
+        "neck",
+        "head"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "headPlate",
+      "bone": "head",
+      "shape": "ellipse",
+      "size": [
+        0.34,
+        0.38
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 5
+    },
+    {
+      "id": "tailBasePlate",
+      "bone": "tailBase",
+      "shape": "bone",
+      "size": [
+        0.24
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 2.5,
+      "span": [
+        "pelvis",
+        "tailBase"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "tailMidPlate",
+      "bone": "tailMid",
+      "shape": "bone",
+      "size": [
+        0.17
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 2,
+      "span": [
+        "tailBase",
+        "tailMid"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "tailTipPlate",
+      "bone": "tailTip",
+      "shape": "bone",
+      "size": [
+        0.1
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 1.8,
+      "span": [
+        "tailMid",
+        "tailTip"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "nearFrontUpperPlate",
+      "bone": "nearFrontElbow",
+      "shape": "bone",
+      "size": [
+        0.12
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1,
+      "span": [
+        "nearFrontShoulder",
+        "nearFrontElbow"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "nearFrontLowerPlate",
+      "bone": "nearFrontFoot",
+      "shape": "bone",
+      "size": [
+        0.1
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1.2,
+      "span": [
+        "nearFrontElbow",
+        "nearFrontFoot"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "nearFrontFootPlate",
+      "bone": "nearFrontFoot",
+      "shape": "ellipse",
+      "size": [
+        0.17,
+        0.11
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0
+    },
+    {
+      "id": "farFrontUpperPlate",
+      "bone": "farFrontElbow",
+      "shape": "bone",
+      "size": [
+        0.12
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1,
+      "span": [
+        "farFrontShoulder",
+        "farFrontElbow"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "farFrontLowerPlate",
+      "bone": "farFrontFoot",
+      "shape": "bone",
+      "size": [
+        0.1
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1.2,
+      "span": [
+        "farFrontElbow",
+        "farFrontFoot"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "farFrontFootPlate",
+      "bone": "farFrontFoot",
+      "shape": "ellipse",
+      "size": [
+        0.17,
+        0.11
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0
+    },
+    {
+      "id": "nearRearUpperPlate",
+      "bone": "nearRearKnee",
+      "shape": "bone",
+      "size": [
+        0.13
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1,
+      "span": [
+        "nearRearHip",
+        "nearRearKnee"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "nearRearLowerPlate",
+      "bone": "nearRearFoot",
+      "shape": "bone",
+      "size": [
+        0.1
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1.2,
+      "span": [
+        "nearRearKnee",
+        "nearRearFoot"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "nearRearFootPlate",
+      "bone": "nearRearFoot",
+      "shape": "ellipse",
+      "size": [
+        0.17,
+        0.11
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0
+    },
+    {
+      "id": "farRearUpperPlate",
+      "bone": "farRearKnee",
+      "shape": "bone",
+      "size": [
+        0.13
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1,
+      "span": [
+        "farRearHip",
+        "farRearKnee"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "farRearLowerPlate",
+      "bone": "farRearFoot",
+      "shape": "bone",
+      "size": [
+        0.1
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1.2,
+      "span": [
+        "farRearKnee",
+        "farRearFoot"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "farRearFootPlate",
+      "bone": "farRearFoot",
+      "shape": "ellipse",
+      "size": [
+        0.17,
+        0.11
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0
+    },
+    {
+      "id": "nearWingMembrane",
+      "bone": "nearWingRoot",
+      "shape": "polygon",
+      "size": [
+        0.1
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.7,
+      "points": [
+        "nearWingRoot",
+        "nearWingElbow",
+        "nearWingTip",
+        "nearWingTrailingTip",
+        "nearWingTrailingMid",
+        "nearWingTrailingRoot"
+      ]
+    },
+    {
+      "id": "farWingMembrane",
+      "bone": "farWingRoot",
+      "shape": "polygon",
+      "size": [
+        0.1
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.7,
+      "points": [
+        "farWingRoot",
+        "farWingTrailingRoot",
+        "farWingTrailingMid",
+        "farWingTrailingTip",
+        "farWingTip",
+        "farWingElbow"
+      ]
+    },
+    {
+      "id": "nearWingArmPlate",
+      "bone": "nearWingElbow",
+      "shape": "bone",
+      "size": [
+        0.18
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4.2,
+      "span": [
+        "nearWingRoot",
+        "nearWingElbow"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "nearWingForePlate",
+      "bone": "nearWingTip",
+      "shape": "bone",
+      "size": [
+        0.15
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4.1,
+      "span": [
+        "nearWingElbow",
+        "nearWingTip"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "nearWingTipPlate",
+      "bone": "nearWingTip",
+      "shape": "ellipse",
+      "size": [
+        0.16,
+        0.2
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4
+    },
+    {
+      "id": "farWingArmPlate",
+      "bone": "farWingElbow",
+      "shape": "bone",
+      "size": [
+        0.18
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4.2,
+      "span": [
+        "farWingRoot",
+        "farWingElbow"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "farWingForePlate",
+      "bone": "farWingTip",
+      "shape": "bone",
+      "size": [
+        0.15
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4.1,
+      "span": [
+        "farWingElbow",
+        "farWingTip"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "farWingTipPlate",
+      "bone": "farWingTip",
+      "shape": "ellipse",
+      "size": [
+        0.16,
+        0.2
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4
+    }
+  ],
+  "anchors": [
+    {
+      "id": "hornAnchor",
+      "bone": "head",
+      "offset": [
+        -0.03,
+        0,
+        0.18
+      ],
+      "inheritScale": false
+    },
+    {
+      "id": "riderAnchor",
+      "bone": "chest",
+      "offset": [
+        -0.1,
+        0,
+        0.3
+      ],
+      "inheritScale": false
+    },
+    {
+      "id": "nearWingTipAnchor",
+      "bone": "nearWingTip",
+      "offset": [
+        0,
+        0.05,
+        0
+      ],
+      "inheritScale": false
+    },
+    {
+      "id": "farWingTipAnchor",
+      "bone": "farWingTip",
+      "offset": [
+        0,
+        -0.05,
+        0
+      ],
+      "inheritScale": false
+    },
+    {
+      "id": "nearWingMembraneAnchor",
+      "bone": "nearWingTrailingMid",
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "inheritScale": false
+    },
+    {
+      "id": "farWingMembraneAnchor",
+      "bone": "farWingTrailingMid",
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "inheritScale": false
+    }
+  ],
+  "clips": {
+    "idleA": {
+      "base": "bind",
+      "duration": 1800,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {}
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "nearWingTip": [
+              0,
+              -0.03,
+              0.03
+            ],
+            "farWingTip": [
+              0,
+              0.03,
+              0.03
+            ],
+            "nearWingTrailingTip": [
+              0,
+              -0.02,
+              0.02
+            ],
+            "farWingTrailingTip": [
+              0,
+              0.02,
+              0.02
+            ],
+            "tailTip": [
+              0,
+              0.06,
+              0
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {}
+        }
+      ],
+      "contacts": [
+        "nearFrontFoot",
+        "farFrontFoot",
+        "nearRearFoot",
+        "farRearFoot"
+      ]
+    },
+    "walkA": {
+      "base": "idleA",
+      "duration": 960,
+      "easing": "linear",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {
+            "nearWingElbow": [
+              0,
+              0.18,
+              0.1
+            ],
+            "nearWingTip": [
+              0,
+              0.34,
+              0.14
+            ],
+            "nearWingTrailingMid": [
+              0,
+              0.1,
+              0.06
+            ],
+            "nearWingTrailingTip": [
+              0,
+              0.26,
+              0.1
+            ],
+            "farWingElbow": [
+              0,
+              -0.18,
+              0.1
+            ],
+            "farWingTip": [
+              0,
+              -0.34,
+              0.14
+            ],
+            "farWingTrailingMid": [
+              0,
+              -0.1,
+              0.06
+            ],
+            "farWingTrailingTip": [
+              0,
+              -0.26,
+              0.1
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "nearWingElbow": [
+              0,
+              -0.08,
+              -0.06
+            ],
+            "nearWingTip": [
+              0,
+              -0.14,
+              -0.08
+            ],
+            "nearWingTrailingMid": [
+              0,
+              -0.05,
+              -0.04
+            ],
+            "nearWingTrailingTip": [
+              0,
+              -0.1,
+              -0.06
+            ],
+            "farWingElbow": [
+              0,
+              0.08,
+              -0.06
+            ],
+            "farWingTip": [
+              0,
+              0.14,
+              -0.08
+            ],
+            "farWingTrailingMid": [
+              0,
+              0.05,
+              -0.04
+            ],
+            "farWingTrailingTip": [
+              0,
+              0.1,
+              -0.06
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {
+            "nearWingElbow": [
+              0,
+              0.18,
+              0.1
+            ],
+            "nearWingTip": [
+              0,
+              0.34,
+              0.14
+            ],
+            "nearWingTrailingMid": [
+              0,
+              0.1,
+              0.06
+            ],
+            "nearWingTrailingTip": [
+              0,
+              0.26,
+              0.1
+            ],
+            "farWingElbow": [
+              0,
+              -0.18,
+              0.1
+            ],
+            "farWingTip": [
+              0,
+              -0.34,
+              0.14
+            ],
+            "farWingTrailingMid": [
+              0,
+              -0.1,
+              0.06
+            ],
+            "farWingTrailingTip": [
+              0,
+              -0.26,
+              0.1
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "nearFrontFoot",
+            "farFrontFoot",
+            "nearRearFoot",
+            "farRearFoot"
+          ],
+          "from": 0,
+          "to": 1
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "wings-spread"
+        },
+        {
+          "t": 0.5,
+          "name": "wings-fold"
+        }
+      ]
+    },
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {
+            "head": [
+              0.28,
+              0,
+              0.04
+            ],
+            "neck": [
+              0.16,
+              0,
+              0.02
+            ],
+            "nearWingTip": [
+              0,
+              0.3,
+              0.12
+            ],
+            "nearWingTrailingTip": [
+              0,
+              0.22,
+              0.08
+            ],
+            "farWingTip": [
+              0,
+              -0.3,
+              0.12
+            ],
+            "farWingTrailingTip": [
+              0,
+              -0.22,
+              0.08
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {}
+        }
+      ],
+      "contacts": [
+        "nearFrontFoot",
+        "farFrontFoot",
+        "nearRearFoot",
+        "farRearFoot"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ]
+    }
+  }
+}

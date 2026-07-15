@@ -1,0 +1,64 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "bat",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "neck": [
+              0,
+              28,
+              0
+            ],
+            "head": [
+              0,
+              -10,
+              0
+            ],
+            "leftWingRoot": [
+              0,
+              0,
+              -14
+            ],
+            "rightWingRoot": [
+              0,
+              0,
+              14
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

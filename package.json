@@ -1,8 +1,25 @@
 {
-  "name": "svg-3d-models",
+  "name": "paper-rig",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "description": "Experiments and tools for SVG-based 3D model rigging and visualization.",
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "rigs"
+  ],
+  "bin": {
+    "rig": "packages/cli/bin/rig.js"
+  },
+  "scripts": {
+    "rig": "node packages/cli/bin/rig.js",
+    "validate-all": "node packages/cli/bin/rig.js validate-all",
+    "build-workbench": "node packages/cli/bin/rig.js build-workbench",
+    "capture-fixtures": "node scripts/capture-fixtures.mjs",
+    "test": "node --test",
+    "test:workbench": "node scripts/check-workbench-parity.mjs"
+  },
   "devDependencies": {
     "@playwright/test": "1.56.1"
   }

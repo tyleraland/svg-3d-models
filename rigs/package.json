@@ -1,0 +1,14 @@
+{
+  "name": "@paper-rig/rigs",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "resolve.js",
+  "exports": {
+    ".": "./resolve.js",
+    "./resolve": "./resolve.js",
+    "./normalize": "./normalize.js"
+  },
+  "dependencies": {
+    "@paper-rig/schema": "*"
+  }
+}

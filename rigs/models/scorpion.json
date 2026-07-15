@@ -1,0 +1,93 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "scorpion",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 610,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "tailBase": [
+              0,
+              55,
+              0
+            ],
+            "tailMid1": [
+              0,
+              35,
+              0
+            ],
+            "tailMid2": [
+              0,
+              -40,
+              0
+            ],
+            "tailCurl": [
+              0,
+              -50,
+              0
+            ],
+            "leftPincerShoulder": [
+              0,
+              0,
+              -32
+            ],
+            "leftPincerElbow": [
+              0,
+              0,
+              18
+            ],
+            "rightPincerShoulder": [
+              0,
+              0,
+              32
+            ],
+            "rightPincerElbow": [
+              0,
+              0,
+              -18
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "leftLeg1Foot",
+        "leftLeg2Foot",
+        "leftLeg3Foot",
+        "leftLeg4Foot",
+        "rightLeg1Foot",
+        "rightLeg2Foot",
+        "rightLeg3Foot",
+        "rightLeg4Foot"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

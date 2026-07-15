@@ -1,0 +1,3738 @@
+{
+  "schema": "paper-rig/1",
+  "schemaVersion": "1.1.0",
+  "generatorVersion": "0.10.0",
+  "modelId": "walkingBirdBase",
+  "stableModelId": "walkingBirdBase",
+  "family": "theropodAvianWalking",
+  "archetypes": [
+    "chicken",
+    "chocobo",
+    "giant walking owl"
+  ],
+  "profile": {
+    "stance": "biped digitigrade",
+    "wings": "folded",
+    "tail": "counterbalance"
+  },
+  "idPolicy": {
+    "stableAcrossRevisions": true,
+    "idsAreOpaqueTokens": true,
+    "absoluteSideFieldIsAuthoritative": true,
+    "legacyNearFarNamesAreNotCameraRelative": true
+  },
+  "coordinateConvention": {
+    "space": "model",
+    "units": "meters",
+    "forwardAxis": "+X",
+    "lateralLeftAxis": "+Y",
+    "upAxis": "+Z",
+    "groundPlane": "Z=0",
+    "origin": "centered between ground contacts",
+    "canonicalForward": [
+      1,
+      0,
+      0
+    ],
+    "groundAnchor": {
+      "jointId": "root",
+      "positionMeters": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "heightMeters": 0.92,
+  "scale": {
+    "metersPerModelUnit": 1,
+    "tokenUnitsPerMeter": 32,
+    "tokenBox": [
+      100,
+      100
+    ],
+    "tokenGroundPoint": [
+      50,
+      74
+    ]
+  },
+  "bounds": {
+    "space": "model",
+    "units": "meters",
+    "min": [
+      -0.96,
+      -0.61,
+      0
+    ],
+    "max": [
+      0.94,
+      0.61,
+      1.16
+    ],
+    "size": [
+      1.9,
+      1.22,
+      1.16
+    ],
+    "source": "bind hierarchy plus opaque plate envelopes",
+    "groundPlaneZ": 0
+  },
+  "paletteRoles": {
+    "base": "primary opaque paper",
+    "secondary": "secondary opaque paper",
+    "accent": "accent opaque paper",
+    "marking": "solid paint overlay",
+    "hoof": "hoof/paw/contact material",
+    "eye": "eye detail",
+    "equipment": "equipment plate",
+    "accessory": "modular attachment",
+    "shadow": "opaque ground shadow"
+  },
+  "opacityInvariant": {
+    "requiredOpacity": 1,
+    "gradientsAllowed": false,
+    "filtersAllowed": false,
+    "masksAllowed": false,
+    "partialOpacityAllowed": false,
+    "implicitBackgroundShadingAllowed": false,
+    "intentionalHolesMustBeDeclared": true
+  },
+  "geometryCapabilities": {
+    "primitives": [
+      "ellipse",
+      "capsule",
+      "tapered",
+      "roundedTip",
+      "disc"
+    ],
+    "jointSpans": [
+      "capsuleSpan",
+      "taperedSpan"
+    ],
+    "customClosedSvgPaths": true,
+    "customPathCoordinateSpace": "plate-local-normalized",
+    "jointPolygons": true
+  },
+  "joints": [
+    {
+      "id": "root",
+      "stableId": "root",
+      "parentId": null,
+      "localBindPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0,
+      "semanticRole": "root",
+      "helper": false,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": null
+    },
+    {
+      "id": "pelvis",
+      "stableId": "pelvis",
+      "parentId": "root",
+      "localBindPositionMeters": [
+        -0.12,
+        0,
+        0.55
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.5629,
+      "semanticRole": "body",
+      "helper": false,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "pelvisGasket"
+    },
+    {
+      "id": "chest",
+      "stableId": "chest",
+      "parentId": "pelvis",
+      "localBindPositionMeters": [
+        0.22,
+        0,
+        0.12
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2506,
+      "semanticRole": "body",
+      "helper": false,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "chestGasket"
+    },
+    {
+      "id": "neck",
+      "stableId": "neck",
+      "parentId": "chest",
+      "localBindPositionMeters": [
+        0.24,
+        0,
+        0.16
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2884,
+      "semanticRole": "neck",
+      "helper": false,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "neckGasket"
+    },
+    {
+      "id": "head",
+      "stableId": "head",
+      "parentId": "neck",
+      "localBindPositionMeters": [
+        0.18,
+        0,
+        0.07
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.1931,
+      "semanticRole": "head",
+      "helper": false,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "headGasket"
+    },
+    {
+      "id": "beak",
+      "stableId": "beak",
+      "parentId": "head",
+      "localBindPositionMeters": [
+        0.16,
+        0,
+        -0.03
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.1628,
+      "semanticRole": "head",
+      "helper": false,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "beakGasket"
+    },
+    {
+      "id": "tailBase",
+      "stableId": "tailBase",
+      "parentId": "pelvis",
+      "localBindPositionMeters": [
+        -0.24,
+        0,
+        0.02
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2408,
+      "semanticRole": "tail",
+      "helper": false,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "tailBaseGasket"
+    },
+    {
+      "id": "tailTip",
+      "stableId": "tailTip",
+      "parentId": "tailBase",
+      "localBindPositionMeters": [
+        -0.34,
+        0,
+        -0.08
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.3493,
+      "semanticRole": "tail",
+      "helper": false,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "tailTipGasket"
+    },
+    {
+      "id": "nearHip",
+      "stableId": "nearHip",
+      "parentId": "pelvis",
+      "localBindPositionMeters": [
+        0,
+        0.12,
+        -0.02
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.1217,
+      "semanticRole": "limb",
+      "helper": false,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "farHip",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "nearHipGasket"
+    },
+    {
+      "id": "nearKnee",
+      "stableId": "nearKnee",
+      "parentId": "nearHip",
+      "localBindPositionMeters": [
+        0.07,
+        0,
+        -0.28
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2886,
+      "semanticRole": "limb",
+      "helper": false,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "farKnee",
+      "diagonalCounterpartId": null,
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "rotationLimitsDegrees": [
+        0,
+        150
+      ],
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "nearKneeGasket"
+    },
+    {
+      "id": "nearFoot",
+      "stableId": "nearFoot",
+      "parentId": "nearKnee",
+      "localBindPositionMeters": [
+        -0.03,
+        0,
+        -0.27
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2717,
+      "semanticRole": "limb",
+      "helper": false,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "farFoot",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "nearFootGasket"
+    },
+    {
+      "id": "nearToe",
+      "stableId": "nearToe",
+      "parentId": "nearFoot",
+      "localBindPositionMeters": [
+        0.17,
+        0,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.17,
+      "semanticRole": "limb",
+      "helper": false,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "farToe",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": "nearLeg",
+      "groundContact": true,
+      "contactSurfaceOffsetMeters": -0.02,
+      "coverageGasketId": "nearToeGasket"
+    },
+    {
+      "id": "farHip",
+      "stableId": "farHip",
+      "parentId": "pelvis",
+      "localBindPositionMeters": [
+        0,
+        -0.12,
+        -0.02
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.1217,
+      "semanticRole": "limb",
+      "helper": false,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "nearHip",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "farHipGasket"
+    },
+    {
+      "id": "farKnee",
+      "stableId": "farKnee",
+      "parentId": "farHip",
+      "localBindPositionMeters": [
+        0.07,
+        0,
+        -0.28
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2886,
+      "semanticRole": "limb",
+      "helper": false,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "nearKnee",
+      "diagonalCounterpartId": null,
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "rotationLimitsDegrees": [
+        0,
+        150
+      ],
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "farKneeGasket"
+    },
+    {
+      "id": "farFoot",
+      "stableId": "farFoot",
+      "parentId": "farKnee",
+      "localBindPositionMeters": [
+        -0.03,
+        0,
+        -0.27
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2717,
+      "semanticRole": "limb",
+      "helper": false,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "nearFoot",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "farFootGasket"
+    },
+    {
+      "id": "farToe",
+      "stableId": "farToe",
+      "parentId": "farFoot",
+      "localBindPositionMeters": [
+        0.17,
+        0,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.17,
+      "semanticRole": "limb",
+      "helper": false,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "nearToe",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": "farLeg",
+      "groundContact": true,
+      "contactSurfaceOffsetMeters": -0.02,
+      "coverageGasketId": "farToeGasket"
+    },
+    {
+      "id": "nearWing",
+      "stableId": "nearWing",
+      "parentId": "chest",
+      "localBindPositionMeters": [
+        -0.02,
+        0.2,
+        0.02
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.202,
+      "semanticRole": "wing",
+      "helper": false,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "farWing",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "nearWingGasket"
+    },
+    {
+      "id": "nearWingTip",
+      "stableId": "nearWingTip",
+      "parentId": "nearWing",
+      "localBindPositionMeters": [
+        -0.16,
+        0.15,
+        -0.04
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2229,
+      "semanticRole": "wing",
+      "helper": false,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "farWingTip",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "nearWingTipGasket"
+    },
+    {
+      "id": "farWing",
+      "stableId": "farWing",
+      "parentId": "chest",
+      "localBindPositionMeters": [
+        -0.02,
+        -0.2,
+        0.02
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.202,
+      "semanticRole": "wing",
+      "helper": false,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "nearWing",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "farWingGasket"
+    },
+    {
+      "id": "farWingTip",
+      "stableId": "farWingTip",
+      "parentId": "farWing",
+      "localBindPositionMeters": [
+        -0.16,
+        -0.15,
+        -0.04
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.2229,
+      "semanticRole": "wing",
+      "helper": false,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": "nearWingTip",
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "farWingTipGasket"
+    }
+  ],
+  "groundContacts": [
+    "nearToe",
+    "farToe"
+  ],
+  "plates": [
+    {
+      "id": "castShadow",
+      "stableId": "castShadow",
+      "semanticRole": "shadow",
+      "bodyRegion": "groundShadow",
+      "side": "center",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "root"
+      },
+      "localGeometry": {
+        "type": "primitive",
+        "primitive": "ellipse",
+        "sizeMeters": [
+          0.78,
+          0.52
+        ]
+      },
+      "depthBias": -99,
+      "paletteRole": "shadow",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "ground shadow",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": false,
+      "lodTier": "major",
+      "lodMergeGroup": "groundShadow.center",
+      "mirrorPlateId": null,
+      "coverage": null
+    },
+    {
+      "id": "bodyPlate",
+      "stableId": "bodyPlate",
+      "semanticRole": "body",
+      "bodyRegion": "core",
+      "side": "center",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "pelvis",
+          "chest"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "pelvis",
+          "chest"
+        ],
+        "widthMeters": 0.52,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 3,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "core.center",
+      "mirrorPlateId": null,
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "pelvisPlate",
+      "stableId": "pelvisPlate",
+      "semanticRole": "body",
+      "bodyRegion": "core",
+      "side": "center",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "pelvis"
+      },
+      "localGeometry": {
+        "type": "primitive",
+        "primitive": "ellipse",
+        "sizeMeters": [
+          0.52,
+          0.46
+        ]
+      },
+      "depthBias": 3.1,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "core.center",
+      "mirrorPlateId": null,
+      "coverage": null
+    },
+    {
+      "id": "neckPlate",
+      "stableId": "neckPlate",
+      "semanticRole": "body",
+      "bodyRegion": "neck",
+      "side": "center",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "chest",
+          "neck"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "chest",
+          "neck"
+        ],
+        "widthMeters": 0.2,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 4,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "neck.center",
+      "mirrorPlateId": null,
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "headConnectorPlate",
+      "stableId": "headConnectorPlate",
+      "semanticRole": "body",
+      "bodyRegion": "head",
+      "side": "center",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "neck",
+          "head"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "neck",
+          "head"
+        ],
+        "widthMeters": 0.24,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 4.8,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "head.center",
+      "mirrorPlateId": null,
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "headPlate",
+      "stableId": "headPlate",
+      "semanticRole": "body",
+      "bodyRegion": "head",
+      "side": "center",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "head"
+      },
+      "localGeometry": {
+        "type": "primitive",
+        "primitive": "ellipse",
+        "sizeMeters": [
+          0.32,
+          0.36
+        ]
+      },
+      "depthBias": 5,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "head.center",
+      "mirrorPlateId": null,
+      "coverage": null
+    },
+    {
+      "id": "beakPlate",
+      "stableId": "beakPlate",
+      "semanticRole": "accent",
+      "bodyRegion": "head",
+      "side": "center",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "head",
+          "beak"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "head",
+          "beak"
+        ],
+        "widthMeters": 0.15,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 5.2,
+      "paletteRole": "secondary",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "head.center",
+      "mirrorPlateId": null,
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "tailPlate",
+      "stableId": "tailPlate",
+      "semanticRole": "accent",
+      "bodyRegion": "tail",
+      "side": "center",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "tailBase",
+          "tailTip"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "tailBase",
+          "tailTip"
+        ],
+        "widthMeters": 0.18,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 2,
+      "paletteRole": "secondary",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "tail.center",
+      "mirrorPlateId": null,
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "nearThighPlate",
+      "stableId": "nearThighPlate",
+      "semanticRole": "body",
+      "bodyRegion": "limb",
+      "side": "left",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "nearHip",
+          "nearKnee"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "nearHip",
+          "nearKnee"
+        ],
+        "widthMeters": 0.15,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 1,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true,
+      "silhouetteCritical": false,
+      "lodTier": "major",
+      "lodMergeGroup": "limb.left",
+      "mirrorPlateId": "farThighPlate",
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "nearShinPlate",
+      "stableId": "nearShinPlate",
+      "semanticRole": "body",
+      "bodyRegion": "limb",
+      "side": "left",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "nearKnee",
+          "nearFoot"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "nearKnee",
+          "nearFoot"
+        ],
+        "widthMeters": 0.11,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 1.1,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true,
+      "silhouetteCritical": false,
+      "lodTier": "major",
+      "lodMergeGroup": "limb.left",
+      "mirrorPlateId": "farShinPlate",
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "nearToePlate",
+      "stableId": "nearToePlate",
+      "semanticRole": "accent",
+      "bodyRegion": "hoof",
+      "side": "left",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "nearFoot",
+          "nearToe"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "nearFoot",
+          "nearToe"
+        ],
+        "widthMeters": 0.07,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 0,
+      "paletteRole": "hoof",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "hoof.left",
+      "mirrorPlateId": "farToePlate",
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "farThighPlate",
+      "stableId": "farThighPlate",
+      "semanticRole": "body",
+      "bodyRegion": "limb",
+      "side": "right",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "farHip",
+          "farKnee"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "farHip",
+          "farKnee"
+        ],
+        "widthMeters": 0.15,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 1,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true,
+      "silhouetteCritical": false,
+      "lodTier": "major",
+      "lodMergeGroup": "limb.right",
+      "mirrorPlateId": "nearThighPlate",
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "farShinPlate",
+      "stableId": "farShinPlate",
+      "semanticRole": "body",
+      "bodyRegion": "limb",
+      "side": "right",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "farKnee",
+          "farFoot"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "farKnee",
+          "farFoot"
+        ],
+        "widthMeters": 0.11,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 1.1,
+      "paletteRole": "base",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true,
+      "silhouetteCritical": false,
+      "lodTier": "major",
+      "lodMergeGroup": "limb.right",
+      "mirrorPlateId": "nearShinPlate",
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "farToePlate",
+      "stableId": "farToePlate",
+      "semanticRole": "accent",
+      "bodyRegion": "hoof",
+      "side": "right",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "farFoot",
+          "farToe"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "farFoot",
+          "farToe"
+        ],
+        "widthMeters": 0.07,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 0,
+      "paletteRole": "hoof",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "hoof.right",
+      "mirrorPlateId": "nearToePlate",
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "nearWingPlate",
+      "stableId": "nearWingPlate",
+      "semanticRole": "accent",
+      "bodyRegion": "wing",
+      "side": "left",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "nearWing",
+          "nearWingTip"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "nearWing",
+          "nearWingTip"
+        ],
+        "widthMeters": 0.22,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 3.8,
+      "paletteRole": "secondary",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true,
+      "silhouetteCritical": false,
+      "lodTier": "major",
+      "lodMergeGroup": "wing.left",
+      "mirrorPlateId": "farWingPlate",
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    },
+    {
+      "id": "farWingPlate",
+      "stableId": "farWingPlate",
+      "semanticRole": "accent",
+      "bodyRegion": "wing",
+      "side": "right",
+      "attachment": {
+        "type": "jointSpan",
+        "jointIds": [
+          "farWing",
+          "farWingTip"
+        ]
+      },
+      "localGeometry": {
+        "type": "capsuleSpan",
+        "jointIds": [
+          "farWing",
+          "farWingTip"
+        ],
+        "widthMeters": 0.22,
+        "overlapRatio": 1.18
+      },
+      "depthBias": 3.8,
+      "paletteRole": "secondary",
+      "opacity": 1,
+      "intentionalHoles": [],
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true,
+      "silhouetteCritical": false,
+      "lodTier": "major",
+      "lodMergeGroup": "wing.right",
+      "mirrorPlateId": "nearWingPlate",
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
+    }
+  ],
+  "gaskets": [
+    {
+      "id": "pelvisGasket",
+      "jointId": "pelvis",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "core",
+      "side": "center",
+      "diameterMeters": 0.32,
+      "paletteRole": "base",
+      "depthBias": 3.0500000000000003,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "core.center",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "pelvis",
+        "inheritsBone": "pelvis"
+      },
+      "stableId": "pelvisGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "pelvis"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.32
+      },
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
+    },
+    {
+      "id": "chestGasket",
+      "jointId": "chest",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "neck",
+      "side": "center",
+      "diameterMeters": 0.32,
+      "paletteRole": "base",
+      "depthBias": 3.95,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": true,
+      "lodTier": "detail",
+      "lodMergeGroup": "neck.center",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "chest",
+        "inheritsBone": "chest"
+      },
+      "stableId": "chestGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "chest"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.32
+      },
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
+    },
+    {
+      "id": "neckGasket",
+      "jointId": "neck",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "head",
+      "side": "center",
+      "diameterMeters": 0.2208,
+      "paletteRole": "base",
+      "depthBias": 4.75,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": true,
+      "lodTier": "detail",
+      "lodMergeGroup": "head.center",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "neck",
+        "inheritsBone": "neck"
+      },
+      "stableId": "neckGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "neck"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.2208
+      },
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
+    },
+    {
+      "id": "headGasket",
+      "jointId": "head",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "head",
+      "side": "center",
+      "diameterMeters": 0.2944,
+      "paletteRole": "secondary",
+      "depthBias": 5.15,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": true,
+      "lodTier": "detail",
+      "lodMergeGroup": "head.center",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "head",
+        "inheritsBone": "head"
+      },
+      "stableId": "headGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "head"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.2944
+      },
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
+    },
+    {
+      "id": "beakGasket",
+      "jointId": "beak",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "head",
+      "side": "center",
+      "diameterMeters": 0.138,
+      "paletteRole": "secondary",
+      "depthBias": 5.15,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": true,
+      "lodTier": "detail",
+      "lodMergeGroup": "head.center",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "beak",
+        "inheritsBone": "beak"
+      },
+      "stableId": "beakGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "beak"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.138
+      },
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
+    },
+    {
+      "id": "tailBaseGasket",
+      "jointId": "tailBase",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "tail",
+      "side": "center",
+      "diameterMeters": 0.1656,
+      "paletteRole": "secondary",
+      "depthBias": 1.95,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": true,
+      "lodTier": "detail",
+      "lodMergeGroup": "tail.center",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "tailBase",
+        "inheritsBone": "tailBase"
+      },
+      "stableId": "tailBaseGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "tailBase"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.1656
+      },
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": false
+    },
+    {
+      "id": "tailTipGasket",
+      "jointId": "tailTip",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "tail",
+      "side": "center",
+      "diameterMeters": 0.1656,
+      "paletteRole": "secondary",
+      "depthBias": 1.95,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": true,
+      "lodTier": "detail",
+      "lodMergeGroup": "tail.center",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "tailTip",
+        "inheritsBone": "tailTip"
+      },
+      "stableId": "tailTipGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "tailTip"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.1656
+      },
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": false
+    },
+    {
+      "id": "nearHipGasket",
+      "jointId": "nearHip",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "limb",
+      "side": "left",
+      "diameterMeters": 0.138,
+      "paletteRole": "base",
+      "depthBias": 0.95,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "limb.left",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "nearHip",
+        "inheritsBone": "nearHip"
+      },
+      "stableId": "nearHipGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "nearHip"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.138
+      },
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "nearKneeGasket",
+      "jointId": "nearKnee",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "limb",
+      "side": "left",
+      "diameterMeters": 0.138,
+      "paletteRole": "base",
+      "depthBias": 1.05,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "limb.left",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "nearKnee",
+        "inheritsBone": "nearKnee"
+      },
+      "stableId": "nearKneeGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "nearKnee"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.138
+      },
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "nearFootGasket",
+      "jointId": "nearFoot",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "limb",
+      "side": "left",
+      "diameterMeters": 0.1012,
+      "paletteRole": "base",
+      "depthBias": 1.05,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "limb.left",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "nearFoot",
+        "inheritsBone": "nearFoot"
+      },
+      "stableId": "nearFootGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "nearFoot"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.1012
+      },
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "nearToeGasket",
+      "jointId": "nearToe",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "hoof",
+      "side": "left",
+      "diameterMeters": 0.06440000000000001,
+      "paletteRole": "hoof",
+      "depthBias": -0.05,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": true,
+      "lodTier": "detail",
+      "lodMergeGroup": "hoof.left",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "nearToe",
+        "inheritsBone": "nearToe"
+      },
+      "stableId": "nearToeGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "nearToe"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.06440000000000001
+      },
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "farHipGasket",
+      "jointId": "farHip",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "limb",
+      "side": "right",
+      "diameterMeters": 0.138,
+      "paletteRole": "base",
+      "depthBias": 0.95,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "limb.right",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "farHip",
+        "inheritsBone": "farHip"
+      },
+      "stableId": "farHipGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "farHip"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.138
+      },
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "farKneeGasket",
+      "jointId": "farKnee",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "limb",
+      "side": "right",
+      "diameterMeters": 0.138,
+      "paletteRole": "base",
+      "depthBias": 1.05,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "limb.right",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "farKnee",
+        "inheritsBone": "farKnee"
+      },
+      "stableId": "farKneeGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "farKnee"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.138
+      },
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "farFootGasket",
+      "jointId": "farFoot",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "limb",
+      "side": "right",
+      "diameterMeters": 0.1012,
+      "paletteRole": "base",
+      "depthBias": 1.05,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "limb.right",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "farFoot",
+        "inheritsBone": "farFoot"
+      },
+      "stableId": "farFootGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "farFoot"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.1012
+      },
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "farToeGasket",
+      "jointId": "farToe",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "hoof",
+      "side": "right",
+      "diameterMeters": 0.06440000000000001,
+      "paletteRole": "hoof",
+      "depthBias": -0.05,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": true,
+      "lodTier": "detail",
+      "lodMergeGroup": "hoof.right",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "farToe",
+        "inheritsBone": "farToe"
+      },
+      "stableId": "farToeGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "farToe"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.06440000000000001
+      },
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "nearWingGasket",
+      "jointId": "nearWing",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "wing",
+      "side": "left",
+      "diameterMeters": 0.2024,
+      "paletteRole": "secondary",
+      "depthBias": 3.75,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "wing.left",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "nearWing",
+        "inheritsBone": "nearWing"
+      },
+      "stableId": "nearWingGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "nearWing"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.2024
+      },
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "nearWingTipGasket",
+      "jointId": "nearWingTip",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "wing",
+      "side": "left",
+      "diameterMeters": 0.2024,
+      "paletteRole": "secondary",
+      "depthBias": 3.75,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "wing.left",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "nearWingTip",
+        "inheritsBone": "nearWingTip"
+      },
+      "stableId": "nearWingTipGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "nearWingTip"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.2024
+      },
+      "compositingGroup": "camera-near appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "farWingGasket",
+      "jointId": "farWing",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "wing",
+      "side": "right",
+      "diameterMeters": 0.2024,
+      "paletteRole": "secondary",
+      "depthBias": 3.75,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "wing.right",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "farWing",
+        "inheritsBone": "farWing"
+      },
+      "stableId": "farWingGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "farWing"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.2024
+      },
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    },
+    {
+      "id": "farWingTipGasket",
+      "jointId": "farWingTip",
+      "semanticRole": "jointGasket",
+      "bodyRegion": "wing",
+      "side": "right",
+      "diameterMeters": 0.2024,
+      "paletteRole": "secondary",
+      "depthBias": 3.75,
+      "occlusionMode": "semantic-group",
+      "occlusionReferenceBoneId": null,
+      "opacity": 1,
+      "intentionalHoles": [],
+      "silhouetteCritical": false,
+      "lodTier": "detail",
+      "lodMergeGroup": "wing.right",
+      "coverage": {
+        "method": "opaque-gasket",
+        "jointId": "farWingTip",
+        "inheritsBone": "farWingTip"
+      },
+      "stableId": "farWingTipGasket",
+      "attachment": {
+        "type": "rigidBone",
+        "boneId": "farWingTip"
+      },
+      "localGeometry": {
+        "type": "circle",
+        "diameterMeters": 0.2024
+      },
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages",
+        "camera-near appendages"
+      ],
+      "headingSwapsNearFar": true
+    }
+  ],
+  "coreOccluder": {
+    "id": "coreOccluder",
+    "semanticRole": "opaqueCoreOccluder",
+    "geometry": {
+      "type": "opaqueUnion",
+      "memberPlateIds": [
+        "bodyPlate",
+        "pelvisPlate",
+        "neckPlate",
+        "headConnectorPlate",
+        "headPlate",
+        "beakPlate"
+      ],
+      "connectorGasketIds": [
+        "pelvisGasket",
+        "chestGasket",
+        "neckGasket",
+        "headGasket",
+        "beakGasket"
+      ],
+      "closure": "every member and connector is a closed opaque shape; connector gaskets bridge continuous core masses"
+    },
+    "memberPlateIds": [
+      "bodyPlate",
+      "pelvisPlate",
+      "neckPlate",
+      "headConnectorPlate",
+      "headPlate",
+      "beakPlate"
+    ],
+    "closed": true,
+    "paletteRole": "base",
+    "opacity": 1,
+    "intentionalHoles": [],
+    "depthBias": -0.1,
+    "compositingGroup": "opaque core occluder",
+    "sitsBehind": "core surface plates",
+    "sitsInFrontOf": "camera-far appendages",
+    "memberGasketIds": [
+      "pelvisGasket",
+      "chestGasket",
+      "neckGasket",
+      "headGasket",
+      "beakGasket"
+    ]
+  },
+  "compositingPolicy": {
+    "orderedGroups": [
+      "ground shadow",
+      "camera-far appendages",
+      "opaque core occluder",
+      "core surface plates",
+      "camera-near appendages",
+      "paint/details/accessories"
+    ],
+    "sortWithinGroup": "camera-relative depth, far-to-near, then stable ID",
+    "bilateralSwap": "absolute left/right plates are assigned near/far from projected camera depth at each heading"
+  },
+  "paintRegions": [
+    {
+      "id": "bellyColorRegion",
+      "owningPlateId": "bodyPlate",
+      "closedPath": "M -0.34 -0.36 C -0.08 -0.52 0.20 -0.48 0.35 -0.20 L 0.28 0.40 C 0.02 0.52 -0.24 0.46 -0.36 0.18 Z",
+      "coordinateSpace": "plate-local-normalized",
+      "paletteRole": "secondary",
+      "opacity": 1,
+      "transform": {
+        "translate": [
+          0,
+          0
+        ],
+        "rotateDegrees": 0,
+        "scale": [
+          1,
+          1
+        ]
+      },
+      "mirrorBehavior": "none",
+      "detailPriority": 1,
+      "lodTier": "detail",
+      "compileMode": "solid-overlay-clipped-to-owner",
+      "intentionalHoles": []
+    },
+    {
+      "id": "faceMarkingRegion",
+      "owningPlateId": "headConnectorPlate",
+      "closedPath": "M -0.30 -0.10 Q 0 -0.34 0.30 -0.10 Q 0 0.18 -0.30 -0.10 Z",
+      "coordinateSpace": "plate-local-normalized",
+      "paletteRole": "marking",
+      "opacity": 1,
+      "transform": {
+        "translate": [
+          0,
+          0
+        ],
+        "rotateDegrees": 0,
+        "scale": [
+          1,
+          1
+        ]
+      },
+      "mirrorBehavior": "bilateral",
+      "detailPriority": 2,
+      "lodTier": "micro",
+      "compileMode": "solid-overlay-clipped-to-owner",
+      "intentionalHoles": []
+    },
+    {
+      "id": "sockMarkingRegion",
+      "owningPlateId": "nearThighPlate",
+      "closedPath": "M -0.50 0 L 0.50 0 L 0.50 0.50 L -0.50 0.50 Z",
+      "coordinateSpace": "plate-local-normalized",
+      "paletteRole": "marking",
+      "opacity": 1,
+      "transform": {
+        "translate": [
+          0,
+          0
+        ],
+        "rotateDegrees": 0,
+        "scale": [
+          1,
+          1
+        ]
+      },
+      "mirrorBehavior": "copy-to-mirrored-owner",
+      "detailPriority": 3,
+      "lodTier": "micro",
+      "compileMode": "solid-overlay-clipped-to-owner",
+      "intentionalHoles": []
+    }
+  ],
+  "reusablePaintSets": {
+    "stripes": {
+      "coordinateSpace": "plate-local-normalized",
+      "closedPaths": [
+        "M -0.44 -0.50 L -0.20 -0.50 L 0.12 0.50 L -0.12 0.50 Z"
+      ],
+      "paletteRole": "marking"
+    },
+    "spots": {
+      "coordinateSpace": "plate-local-normalized",
+      "closedPaths": [
+        "M 0 -0.20 C 0.16 -0.20 0.22 -0.06 0.18 0.08 C 0.12 0.24 -0.14 0.22 -0.20 0.04 C -0.24 -0.10 -0.14 -0.20 0 -0.20 Z"
+      ],
+      "paletteRole": "marking"
+    },
+    "faceMarkings": {
+      "coordinateSpace": "plate-local-normalized",
+      "closedPaths": [
+        "M -0.34 -0.12 Q 0 -0.38 0.34 -0.12 Q 0 0.22 -0.34 -0.12 Z"
+      ],
+      "paletteRole": "marking"
+    },
+    "mane": {
+      "coordinateSpace": "plate-local-normalized",
+      "closedPaths": [
+        "M -0.50 -0.44 L 0 -0.56 L 0.50 -0.44 L 0.40 0.12 L 0 0.30 L -0.40 0.12 Z"
+      ],
+      "paletteRole": "secondary"
+    },
+    "scars": {
+      "coordinateSpace": "plate-local-normalized",
+      "closedPaths": [
+        "M -0.38 -0.06 L 0.34 -0.12 L 0.36 0.02 L -0.36 0.10 Z"
+      ],
+      "paletteRole": "marking"
+    }
+  },
+  "anchors": [
+    {
+      "id": "headgearAnchor",
+      "stableId": "headgearAnchor",
+      "boneId": "head",
+      "localPositionMeters": [
+        0,
+        0,
+        0.15
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "hat",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "saddleAnchor",
+      "stableId": "saddleAnchor",
+      "boneId": "chest",
+      "localPositionMeters": [
+        -0.08,
+        0,
+        0.24
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "saddle",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "beakTipAnchor",
+      "stableId": "beakTipAnchor",
+      "boneId": "beak",
+      "localPositionMeters": [
+        0.05,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "generic",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "standardHatAnchor",
+      "stableId": "standardHatAnchor",
+      "boneId": "head",
+      "localPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "hat",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "standardHelmetAnchor",
+      "stableId": "standardHelmetAnchor",
+      "boneId": "head",
+      "localPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "helmet",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "standardCollarAnchor",
+      "stableId": "standardCollarAnchor",
+      "boneId": "neck",
+      "localPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "collar",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "standardBackItemAnchor",
+      "stableId": "standardBackItemAnchor",
+      "boneId": "chest",
+      "localPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "backItem",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "standardSaddleAnchor",
+      "stableId": "standardSaddleAnchor",
+      "boneId": "chest",
+      "localPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "saddle",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "standardTailModuleAnchor",
+      "stableId": "standardTailModuleAnchor",
+      "boneId": "tailBase",
+      "localPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": null,
+      "moduleType": "tail",
+      "absoluteSide": "center",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "leftWingModuleAnchor",
+      "stableId": "leftWingModuleAnchor",
+      "boneId": "nearWing",
+      "localPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": "rightWingModuleAnchor",
+      "moduleType": "wing",
+      "absoluteSide": "left",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    },
+    {
+      "id": "rightWingModuleAnchor",
+      "stableId": "rightWingModuleAnchor",
+      "boneId": "farWing",
+      "localPositionMeters": [
+        0,
+        0,
+        0
+      ],
+      "localRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "forward": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "scaleBehavior": "preserve-local-aspect",
+      "mirroredCounterpartId": "leftWingModuleAnchor",
+      "moduleType": "wing",
+      "absoluteSide": "right",
+      "paletteRole": "accessory",
+      "opacity": 1,
+      "lodTier": "detail"
+    }
+  ],
+  "clips": {
+    "idleA": {
+      "id": "idleA",
+      "inherits": "bind",
+      "durationMs": 1800,
+      "loop": true,
+      "easing": "ease-in-out",
+      "boneLengthPolicy": "authoring-deltas",
+      "motionSemantics": "joint-local transforms",
+      "keyframes": [
+        {
+          "timeNormalized": 0,
+          "localTransforms": {}
+        },
+        {
+          "timeNormalized": 0.5,
+          "localTransforms": {
+            "head": {
+              "translationDeltaMeters": [
+                0,
+                0,
+                0.02
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tailTip": {
+              "translationDeltaMeters": [
+                0,
+                0.03,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "timeNormalized": 1,
+          "localTransforms": {}
+        }
+      ],
+      "contactIntervals": [
+        {
+          "jointIds": [
+            "nearToe",
+            "farToe"
+          ],
+          "fromNormalized": 0,
+          "toNormalized": 1
+        }
+      ],
+      "events": []
+    },
+    "walkA": {
+      "id": "walkA",
+      "inherits": "idleA",
+      "durationMs": 960,
+      "loop": true,
+      "easing": "linear",
+      "boneLengthPolicy": "authoring-deltas",
+      "motionSemantics": "joint-local transforms",
+      "keyframes": [
+        {
+          "timeNormalized": 0,
+          "localTransforms": {
+            "nearFoot": {
+              "translationDeltaMeters": [
+                0.16,
+                0,
+                0.07
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "nearToe": {
+              "translationDeltaMeters": [
+                0.08,
+                0,
+                0.05
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farFoot": {
+              "translationDeltaMeters": [
+                -0.12,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "nearWingTip": {
+              "translationDeltaMeters": [
+                -0.02,
+                -0.03,
+                0.02
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "timeNormalized": 0.5,
+          "localTransforms": {
+            "nearFoot": {
+              "translationDeltaMeters": [
+                -0.12,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farFoot": {
+              "translationDeltaMeters": [
+                0.16,
+                0,
+                0.07
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farToe": {
+              "translationDeltaMeters": [
+                0.08,
+                0,
+                0.05
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farWingTip": {
+              "translationDeltaMeters": [
+                -0.02,
+                0.03,
+                0.02
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "timeNormalized": 1,
+          "localTransforms": {
+            "nearFoot": {
+              "translationDeltaMeters": [
+                0.16,
+                0,
+                0.07
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "nearToe": {
+              "translationDeltaMeters": [
+                0.08,
+                0,
+                0.05
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farFoot": {
+              "translationDeltaMeters": [
+                -0.12,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "nearWingTip": {
+              "translationDeltaMeters": [
+                -0.02,
+                -0.03,
+                0.02
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "jointIds": [
+            "farToe"
+          ],
+          "fromNormalized": 0,
+          "toNormalized": 0.48
+        },
+        {
+          "jointIds": [
+            "nearToe"
+          ],
+          "fromNormalized": 0.5,
+          "toNormalized": 0.98
+        }
+      ],
+      "events": [
+        {
+          "name": "near-step",
+          "timeNormalized": 0
+        },
+        {
+          "name": "far-step",
+          "timeNormalized": 0.5
+        }
+      ]
+    },
+    "attack": {
+      "id": "attack",
+      "inherits": "idleA",
+      "durationMs": 680,
+      "loop": false,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation",
+      "keyframes": [
+        {
+          "timeNormalized": 0,
+          "localTransforms": {}
+        },
+        {
+          "timeNormalized": 0.62,
+          "localTransforms": {
+            "neck": {
+              "translationDeltaMeters": [
+                0,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                34,
+                0
+              ]
+            },
+            "head": {
+              "translationDeltaMeters": [
+                0,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                -14,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "timeNormalized": 1,
+          "localTransforms": {}
+        }
+      ],
+      "contactIntervals": [
+        {
+          "jointIds": [
+            "nearToe",
+            "farToe"
+          ],
+          "fromNormalized": 0,
+          "toNormalized": 1
+        }
+      ],
+      "events": [
+        {
+          "name": "impact",
+          "timeNormalized": 0.62
+        },
+        {
+          "name": "release",
+          "timeNormalized": 0.84
+        }
+      ]
+    },
+    "idle": {
+      "id": "idle",
+      "inherits": "bind",
+      "aliasOf": "idleA",
+      "durationMs": 1800,
+      "loop": true,
+      "easing": "ease-in-out",
+      "boneLengthPolicy": "authoring-deltas",
+      "motionSemantics": "joint-local transforms",
+      "keyframes": [
+        {
+          "timeNormalized": 0,
+          "localTransforms": {}
+        },
+        {
+          "timeNormalized": 0.5,
+          "localTransforms": {
+            "head": {
+              "translationDeltaMeters": [
+                0,
+                0,
+                0.02
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tailTip": {
+              "translationDeltaMeters": [
+                0,
+                0.03,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "timeNormalized": 1,
+          "localTransforms": {}
+        }
+      ],
+      "contactIntervals": [
+        {
+          "jointIds": [
+            "nearToe",
+            "farToe"
+          ],
+          "fromNormalized": 0,
+          "toNormalized": 1
+        }
+      ],
+      "events": []
+    },
+    "walk": {
+      "id": "walk",
+      "inherits": "idle",
+      "aliasOf": "walkA",
+      "durationMs": 960,
+      "loop": true,
+      "easing": "linear",
+      "boneLengthPolicy": "authoring-deltas",
+      "motionSemantics": "joint-local transforms",
+      "keyframes": [
+        {
+          "timeNormalized": 0,
+          "localTransforms": {
+            "nearFoot": {
+              "translationDeltaMeters": [
+                0.16,
+                0,
+                0.07
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "nearToe": {
+              "translationDeltaMeters": [
+                0.08,
+                0,
+                0.05
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farFoot": {
+              "translationDeltaMeters": [
+                -0.12,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "nearWingTip": {
+              "translationDeltaMeters": [
+                -0.02,
+                -0.03,
+                0.02
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "timeNormalized": 0.5,
+          "localTransforms": {
+            "nearFoot": {
+              "translationDeltaMeters": [
+                -0.12,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farFoot": {
+              "translationDeltaMeters": [
+                0.16,
+                0,
+                0.07
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farToe": {
+              "translationDeltaMeters": [
+                0.08,
+                0,
+                0.05
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farWingTip": {
+              "translationDeltaMeters": [
+                -0.02,
+                0.03,
+                0.02
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "timeNormalized": 1,
+          "localTransforms": {
+            "nearFoot": {
+              "translationDeltaMeters": [
+                0.16,
+                0,
+                0.07
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "nearToe": {
+              "translationDeltaMeters": [
+                0.08,
+                0,
+                0.05
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "farFoot": {
+              "translationDeltaMeters": [
+                -0.12,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            },
+            "nearWingTip": {
+              "translationDeltaMeters": [
+                -0.02,
+                -0.03,
+                0.02
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "jointIds": [
+            "farToe"
+          ],
+          "fromNormalized": 0,
+          "toNormalized": 0.48
+        },
+        {
+          "jointIds": [
+            "nearToe"
+          ],
+          "fromNormalized": 0.5,
+          "toNormalized": 0.98
+        }
+      ],
+      "events": [
+        {
+          "name": "near-step",
+          "timeNormalized": 0
+        },
+        {
+          "name": "far-step",
+          "timeNormalized": 0.5
+        }
+      ]
+    },
+    "hit": {
+      "id": "hit",
+      "inherits": "idle",
+      "durationMs": 460,
+      "loop": false,
+      "easing": "cubic-bezier(.2,.8,.3,1)",
+      "boneLengthPolicy": "authoring-deltas",
+      "motionSemantics": "joint-local transforms",
+      "keyframes": [
+        {
+          "timeNormalized": 0,
+          "localTransforms": {}
+        },
+        {
+          "timeNormalized": 0.35,
+          "localTransforms": {
+            "root": {
+              "translationDeltaMeters": [
+                -0.06,
+                0,
+                0
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "timeNormalized": 1,
+          "localTransforms": {}
+        }
+      ],
+      "contactIntervals": [
+        {
+          "jointIds": [
+            "nearToe",
+            "farToe"
+          ],
+          "fromNormalized": 0,
+          "toNormalized": 1
+        }
+      ],
+      "events": [
+        {
+          "name": "hit-start",
+          "timeNormalized": 0.05
+        },
+        {
+          "name": "recoil",
+          "timeNormalized": 0.35
+        },
+        {
+          "name": "recover",
+          "timeNormalized": 0.82
+        }
+      ]
+    },
+    "ko": {
+      "id": "ko",
+      "inherits": "bind",
+      "durationMs": 900,
+      "loop": false,
+      "easing": "ease-in",
+      "boneLengthPolicy": "authoring-deltas",
+      "motionSemantics": "joint-local transforms",
+      "keyframes": [
+        {
+          "timeNormalized": 0,
+          "localTransforms": {}
+        },
+        {
+          "timeNormalized": 1,
+          "localTransforms": {
+            "root": {
+              "translationDeltaMeters": [
+                0,
+                0.1,
+                0.04
+              ],
+              "rotationDeltaDegrees": [
+                0,
+                72,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "jointIds": [
+            "nearToe",
+            "farToe"
+          ],
+          "fromNormalized": 0,
+          "toNormalized": 0.05
+        }
+      ],
+      "events": [
+        {
+          "name": "fall",
+          "timeNormalized": 0.5
+        },
+        {
+          "name": "down",
+          "timeNormalized": 1
+        }
+      ]
+    }
+  },
+  "camera": {
+    "type": "orthographic",
+    "canonicalDirection": [
+      0,
+      0,
+      -1
+    ],
+    "canonicalElevationDegrees": 90,
+    "canonicalAzimuthDegrees": 0
+  },
+  "projectionRecipe": {
+    "inputSpace": "posed-world",
+    "rightCoordinate": "dot(position,camera.right)",
+    "upCoordinate": "dot(position,camera.up)",
+    "depthCoordinate": "dot(position,camera.forward)",
+    "tokenFit": "multiply by tokenUnitsPerMeter and offset by tokenGroundPoint",
+    "occlusion": "semantic group first, camera depth second",
+    "runtimeUiRequired": false
+  },
+  "directionalBake": {
+    "headingsDegrees": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "validationElevationsDegrees": [
+      30,
+      45,
+      60,
+      75
+    ],
+    "contactSheetElevationsDegrees": [
+      45,
+      60,
+      75
+    ],
+    "generatedYaw": true,
+    "manualSnapshotsRequired": false,
+    "keyPoses": [
+      {
+        "id": "bind",
+        "clip": "bind",
+        "t": 0
+      },
+      {
+        "id": "idleExtremeA",
+        "clip": "idle",
+        "t": 0
+      },
+      {
+        "id": "idleExtremeB",
+        "clip": "idle",
+        "t": 0.5
+      },
+      {
+        "id": "walkContactLeft",
+        "clip": "walk",
+        "t": 0
+      },
+      {
+        "id": "walkContactRight",
+        "clip": "walk",
+        "t": 0.5
+      },
+      {
+        "id": "attackImpact",
+        "clip": "attack",
+        "t": 0.62
+      },
+      {
+        "id": "hitRecoil",
+        "clip": "hit",
+        "t": 0.35
+      },
+      {
+        "id": "koDown",
+        "clip": "ko",
+        "t": 1
+      }
+    ]
+  },
+  "lod": {
+    "tiers": [
+      "silhouette",
+      "major",
+      "detail",
+      "micro"
+    ],
+    "mergeGroups": {
+      "groundShadow.center": [
+        "castShadow"
+      ],
+      "core.center": [
+        "bodyPlate",
+        "pelvisPlate",
+        "pelvisGasket"
+      ],
+      "neck.center": [
+        "neckPlate",
+        "chestGasket"
+      ],
+      "head.center": [
+        "headConnectorPlate",
+        "headPlate",
+        "beakPlate",
+        "neckGasket",
+        "headGasket",
+        "beakGasket"
+      ],
+      "tail.center": [
+        "tailPlate",
+        "tailBaseGasket",
+        "tailTipGasket"
+      ],
+      "limb.left": [
+        "nearThighPlate",
+        "nearShinPlate",
+        "nearHipGasket",
+        "nearKneeGasket",
+        "nearFootGasket"
+      ],
+      "hoof.left": [
+        "nearToePlate",
+        "nearToeGasket"
+      ],
+      "limb.right": [
+        "farThighPlate",
+        "farShinPlate",
+        "farHipGasket",
+        "farKneeGasket",
+        "farFootGasket"
+      ],
+      "hoof.right": [
+        "farToePlate",
+        "farToeGasket"
+      ],
+      "wing.left": [
+        "nearWingPlate",
+        "nearWingGasket",
+        "nearWingTipGasket"
+      ],
+      "wing.right": [
+        "farWingPlate",
+        "farWingGasket",
+        "farWingTipGasket"
+      ]
+    },
+    "far": {
+      "opaqueSilhouette": true,
+      "removeOrder": [
+        "micro",
+        "detail",
+        "major"
+      ],
+      "preserve": [
+        "nearToe",
+        "farToe",
+        "head",
+        "tailBase",
+        "bodyPlate",
+        "pelvisPlate",
+        "neckPlate",
+        "headConnectorPlate",
+        "headPlate",
+        "beakPlate",
+        "tailPlate",
+        "nearToePlate",
+        "farToePlate"
+      ],
+      "preserveFacing": true,
+      "preserveContacts": true
+    }
+  },
+  "asymmetry": {
+    "features": [],
+    "sideConvention": "absolute model left/right"
+  },
+  "authoringOverrides": {
+    "model": {
+      "move": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    "joints": {},
+    "proportions": {
+      "heightScale": 1,
+      "widthScale": 1
+    },
+    "previewCamera": {
+      "elevationDegrees": 90,
+      "azimuthDegrees": 0
+    }
+  },
+  "runtimeDependencies": [],
+  "standaloneDirectionalAssetSource": true,
+  "validation": {
+    "status": "passed",
+    "checks": [
+      {
+        "id": "stable-and-unique-ids",
+        "pass": true,
+        "detail": "joint, plate, gasket, anchor, and paint IDs"
+      },
+      {
+        "id": "single-parent-hierarchy",
+        "pass": true,
+        "detail": "all joints have roles and valid parents"
+      },
+      {
+        "id": "mirrored-counterparts",
+        "pass": true,
+        "detail": "declared mirrors resolve"
+      },
+      {
+        "id": "opaque-palette-plates",
+        "pass": true,
+        "detail": "all plates are opaque and role-colored"
+      },
+      {
+        "id": "closed-custom-paths",
+        "pass": true,
+        "detail": "custom paths end closed"
+      },
+      {
+        "id": "attached-geometry",
+        "pass": true,
+        "detail": "every plate attaches to valid joints"
+      },
+      {
+        "id": "opaque-core-occluder",
+        "pass": true,
+        "detail": "closed opaque core covers continuous masses"
+      },
+      {
+        "id": "joint-coverage",
+        "pass": true,
+        "detail": "connected visible joints use gaskets or declared overlap"
+      },
+      {
+        "id": "valid-anchors",
+        "pass": true,
+        "detail": "anchors include orientation and scale behavior"
+      },
+      {
+        "id": "ground-contacts",
+        "pass": true,
+        "detail": "contact joints are explicitly labeled"
+      },
+      {
+        "id": "required-clips",
+        "pass": true,
+        "detail": "canonical clips are present"
+      },
+      {
+        "id": "normalized-animation",
+        "pass": true,
+        "detail": "keyframes and contacts are normalized"
+      },
+      {
+        "id": "directional-projection",
+        "pass": true,
+        "detail": "eight headings and four validation elevations"
+      },
+      {
+        "id": "far-lod",
+        "pass": true,
+        "detail": "far LOD preserves identity and contacts"
+      },
+      {
+        "id": "core-connector-coverage",
+        "pass": true,
+        "detail": "dedicated core occluder includes closed torso, pelvis, chest, neck, and head connector gaskets"
+      },
+      {
+        "id": "animation-joint-references",
+        "pass": true,
+        "detail": "every exported local animation transform targets a joint in this package"
+      },
+      {
+        "id": "polygon-joint-references",
+        "pass": true,
+        "detail": "every membrane and joint polygon resolves entirely within this package"
+      },
+      {
+        "id": "attack-bone-length-invariant",
+        "pass": true,
+        "detail": "attack frames use joint rotations without child-joint translation, preserving bind bone lengths"
+      },
+      {
+        "id": "declared-bone-length-policies",
+        "pass": true,
+        "detail": "1 clip(s) declaring preserve keep every parent-child distance fixed across nine samples"
+      },
+      {
+        "id": "under-core-compositor-contract",
+        "pass": true,
+        "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+      }
+    ],
+    "issues": [],
+    "coverageSampling": {
+      "clipIds": [
+        "bind",
+        "idleA",
+        "walkA",
+        "attack",
+        "idle",
+        "walk",
+        "hit",
+        "ko"
+      ],
+      "normalizedTimes": [
+        0,
+        0.125,
+        0.25,
+        0.375,
+        0.5,
+        0.625,
+        0.75,
+        0.875,
+        1
+      ],
+      "headingsDegrees": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ],
+      "elevationsDegrees": [
+        30,
+        45,
+        60,
+        75
+      ],
+      "totalStructuralSamples": 2304
+    },
+    "acceptance": "background is permitted only outside the closed opaque silhouette or inside explicitly declared intentional holes",
+    "directionalViewCount": 2304,
+    "directionalChecks": [
+      {
+        "id": "all-directional-coordinates-finite",
+        "pass": true,
+        "detail": "2304 projections cover bind plus every clip across nine normalized times"
+      },
+      {
+        "id": "closed-core-at-every-view",
+        "pass": true,
+        "detail": "projected core occluder has a closed hull in every required view"
+      },
+      {
+        "id": "ground-contact-range",
+        "pass": true,
+        "detail": "active contact surfaces remain on Z=0 within 0.12m authoring tolerance"
+      },
+      {
+        "id": "semantic-compositor-order",
+        "pass": true,
+        "detail": "all six ordered compositing groups are emitted"
+      },
+      {
+        "id": "rendered-opacity-invariant",
+        "pass": true,
+        "detail": "clean asset markup contains no transparency, filters, masks, or gradients"
+      },
+      {
+        "id": "bilateral-heading-swap",
+        "pass": true,
+        "detail": "absolute left/right appendages exchange camera-near and camera-far groups when heading reverses"
+      }
+    ],
+    "acceptanceFlags": [
+      {
+        "id": "uncovered-joints",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "background-visible-through-anatomy",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "far-limbs-visible-through-core",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "non-opaque-fills",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "missing-palette-roles",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "unstable-or-duplicate-ids",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "missing-mirrored-counterparts",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "unattached-geometry",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "invalid-anchors",
+        "pass": true,
+        "flagged": false
+      },
+      {
+        "id": "ground-contact-violations",
+        "pass": true,
+        "flagged": false
+      }
+    ]
+  },
+  "generator": "paper-rig-workbench/0.10.0",
+  "solverRecipe": {
+    "hierarchy": "single-parent, parents precede children",
+    "transformSpace": "joint-local",
+    "rotationOrder": "XYZ local, composed parent-to-child",
+    "poseOrder": [
+      "bind",
+      "inherited clip",
+      "keyframe interpolation",
+      "authoring override"
+    ],
+    "translationUnits": "meters",
+    "rotationUnits": "degrees",
+    "easing": "clip-level easing applied between normalized keyframes",
+    "ik": "optional authoring metadata; directional bake may solve then bake transforms"
+  },
+  "attachmentContract": {
+    "geometry": "opaque rigid plates or closed custom paths",
+    "paletteRoleRequired": true,
+    "opacityRequired": 1,
+    "depthBiasRequired": true,
+    "lodMetadataRequired": true,
+    "intentionalHolesDefault": [],
+    "anchorsUseBoneLocalSpace": true
+  },
+  "paintContract": {
+    "closedSolidOverlaysOnly": true,
+    "transparentCutsAllowed": false,
+    "clipOrCompileIntoOwningPlate": true,
+    "ownerTransformInherited": true,
+    "paletteRoleRequired": true
+  },
+  "acceptanceCondition": "At every required heading, elevation, and key pose the creature compiles to one closed opaque silhouette; background is allowed only outside it or inside an explicitly declared intentional hole."
+}

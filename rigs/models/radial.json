@@ -1,0 +1,63 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "radial",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "tentacle0Base": [
+              0,
+              0,
+              -34
+            ],
+            "tentacle0Mid": [
+              0,
+              0,
+              22
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "tentacle0Tip",
+        "tentacle1Tip",
+        "tentacle2Tip",
+        "tentacle3Tip",
+        "tentacle4Tip",
+        "tentacle5Tip",
+        "tentacle6Tip",
+        "tentacle7Tip"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}
