@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { readFileSync, mkdtempSync } from 'node:fs';
+import { readFileSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -61,4 +61,24 @@ test('explain emits a stable machine-readable explanation', () => {
   assert.equal(explanation.status, 'found');
   assert.equal(explanation.fields.length, 3);
   assert.ok(explanation.fields.every((field) => field.origin.sourcePointer === '/clips/attack'));
+});
+
+test('diff links declarative source edits to stable-ID resolved effects', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'rig-diff-'));
+  const candidatePath = join(dir, 'rabbitCandidate.json');
+  const candidate = JSON.parse(readFileSync(join(ROOT, 'rigs/models/rabbit.json'), 'utf8'));
+  candidate.variant.plateTweaks.headPlate[0] = 0.4;
+  writeFileSync(candidatePath, `${JSON.stringify(candidate, null, 2)}\n`);
+
+  const diff = JSON.parse(run(['diff', 'rabbit', candidatePath, '--json']));
+  assert.equal(diff.schema, 'paper-rig/semantic-diff/1');
+  assert.equal(diff.status, 'changed');
+  assert.equal(diff.summary.sourceChangeCount, 1);
+  assert.equal(diff.summary.resolvedChangeCount, 1);
+  assert.equal(diff.sourceChanges[0].sourcePointer, '/variant/plateTweaks/headPlate/0');
+  assert.equal(diff.changes[0].targetPointer, '/plates/headPlate/size/0');
+
+  const human = run(['diff', 'rabbit', candidatePath]);
+  assert.match(human, /changed source \/variant\/plateTweaks\/headPlate\/0/);
+  assert.match(human, /changed plate:headPlate\.size\[0\]/);
 });

@@ -386,8 +386,50 @@ with optional dotted or bracketed field paths. A missing selector is an explicit
 `not-found` result. Explanation is read-only diagnostic evidence; it MUST NOT
 mutate source files or imply that the current value is visually correct.
 
+`paper-rig/semantic-diff/1` compares two valid declarative model sources after
+resolving each with provenance. It MUST list changed source leaves separately
+from changed resolved leaves and MUST address joints, plates, anchors, and clips
+by stable semantic ID. Each resolved change carries the origin on both sides;
+source and target pointers are linked only when an origin's declared source
+scope supports that relationship. Derived consequences without a direct source
+pointer MUST remain visible and explicitly unlinked rather than receiving a
+guessed cause.
+
+Compatible differences are review evidence and MUST NOT fail by default. A
+source edit with no resolved effect is `source-only`, not silently discarded.
+Different stable model IDs, resolved schema versions, missing sources, or
+mismatched provenance are incompatible. The diff is read-only and MUST NOT
+apply either source revision.
+
+`paper-rig/model-patch-1` is an authoring artifact, not a compiled consumer
+package. Its first supported operation is `append /clipPatches`. The operation
+value MUST name one existing clip, one exact existing normalized keyframe time,
+and at least one additive joint-local pose or rotation vector keyed by a stable
+joint ID. Patch generation and application MUST NOT mutate the source object or
+write a source file implicitly.
+
+The first version MUST reject rather than approximate:
+
+- global model transforms or preview-only proportion scaling;
+- edits sampled between declared keyframes;
+- unknown joints or clips; and
+- translation of the child endpoint of a rigid span.
+
+Source-clip patches MUST apply before canonical clip derivation so a patch to
+`idleA` or `walkA` can flow into its canonical alias. A patch that names a clip
+created by canonical derivation MUST apply afterward and MUST NOT silently
+rewrite its source clip. Multiple patch entries compose additively in declared
+order. Each resolved leaf written by a patch SHOULD retain the narrowest
+corresponding `/clipPatches/.../add/...` provenance pointer.
+
+The workbench MAY preview transforms more broadly than the copied patch applies,
+but MUST state that distinction, disable copying for unsupported state, and show
+the exact artifact before copying. Applying the artifact to repository source
+remains an explicit author or agent action followed by source validation and
+semantic review.
+
 The versioned JSON Schemas in `packages/schema/schemas/` are the machine
-contract for both documents.
+contract for provenance, explanations, semantic diffs, and model patches.
 
 ## 14. Author and agent rules
 

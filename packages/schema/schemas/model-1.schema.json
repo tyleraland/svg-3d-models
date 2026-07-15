@@ -54,6 +54,10 @@
       "propertyNames": { "$ref": "#/$defs/id" },
       "additionalProperties": { "$ref": "#/$defs/clip" }
     },
+    "clipPatches": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/clipPatch" }
+    },
     "attack": {
       "type": "object",
       "additionalProperties": false,
@@ -162,6 +166,31 @@
       "type": "object",
       "propertyNames": { "$ref": "#/$defs/id" },
       "additionalProperties": { "$ref": "#/$defs/vector3" }
+    },
+    "nonEmptyTransformMap": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "$ref": "#/$defs/vector3" }
+    },
+    "clipPatchAdd": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "poses": { "$ref": "#/$defs/nonEmptyTransformMap" },
+        "rotations": { "$ref": "#/$defs/nonEmptyTransformMap" }
+      }
+    },
+    "clipPatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clip", "t", "add"],
+      "properties": {
+        "clip": { "$ref": "#/$defs/id" },
+        "t": { "$ref": "#/$defs/time" },
+        "add": { "$ref": "#/$defs/clipPatchAdd" }
+      }
     },
     "frame": {
       "type": "object",

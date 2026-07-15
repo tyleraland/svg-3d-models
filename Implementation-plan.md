@@ -192,8 +192,8 @@ Exit criteria met:
 - Approved changes can be located by semantic ID without making historical
   output an implicit correctness assertion.
 
-Next action: continue M2.5 with resolver field provenance, then expose that data
-through `rig explain` and source-level semantic diffs.
+Next action: continue M2.5 with clip comparison ergonomics now that provenance,
+semantic diffs, and the first workbench-to-source patch path are in place.
 
 Candidate future hard checks—surface-facing plausibility, projected-bound
 stability, abrupt acceleration, and suspicious always-on-top behavior—remain
@@ -218,11 +218,15 @@ Implementation order:
 4. Add clip-phase/keyframe selection, previous/next onion skins, and a small set
    of simultaneous representative cameras.
 
-The projected manifest/diff surface is delivered. The first M2.5 slice now adds
-an opt-in, schema-valid provenance sidecar without changing normal resolution,
-attributes every final leaf across all 31 models, and exposes selector-scoped
-history through `rig explain`. Source-level semantic diffing is next and MUST
-build on this provenance rather than comparing opaque resolved JSON blobs.
+The projected manifest/diff surface is delivered. M2.5 now has an opt-in,
+schema-valid provenance sidecar without changing normal resolution, attributes
+every final leaf across all 31 models, exposes selector-scoped history through
+`rig explain`, and compares valid candidate model sources through a
+schema-valid, provenance-linked `rig diff`. The workbench can also emit a
+schema-valid additive local-transform patch for an exact existing keyframe. It
+refuses ambiguous preview states and never writes a source file. The remaining
+M2.5 slice is previous/next pose comparison and simultaneous representative
+cameras.
 
 Exit criteria:
 

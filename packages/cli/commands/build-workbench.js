@@ -13,7 +13,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from '../lib/args.js';
-import { loadModel } from '@paper-rig/rigs';
+import { loadModel, loadModelSource } from '@paper-rig/rigs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -36,9 +36,26 @@ function resolvedRigsSource() {
   return 'const rigs = ' + JSON.stringify(rigs) + ';';
 }
 
+// The editor's source-patch preview needs the thin declarative model alongside
+// the resolved rig. It is read-only browser data: source writes remain an
+// explicit maintainer/agent action outside the generated workbench.
+function modelSourcesSource() {
+  const modelSources = {};
+  for (const name of RIG_ORDER) modelSources[name] = loadModelSource(name);
+  return 'const modelSources = ' + JSON.stringify(modelSources) + ';';
+}
+
 // schema/index.js -> plain script: drop the `export ` on each declaration.
 function flattenSchema(src) {
   return src.replace(/^export\s+/gm, '');
+}
+
+// authoring-patch.js -> plain script: cloneData comes from the flattened schema;
+// remove its ESM import and public export markers.
+function flattenAuthoringPatch(src) {
+  return src
+    .replace(/^import\s.*$/gm, '')
+    .replace(/^export\s+/gm, '');
 }
 
 // compiler/core.js -> plain script: drop the schema import, drop the injected
@@ -61,10 +78,14 @@ export function runBuildWorkbench(argv) {
     '',
     '// ---- @paper-rig/schema ----',
     flattenSchema(read('packages/schema/index.js')),
+    '// ---- source-safe authoring patch generation ----',
+    flattenAuthoringPatch(read('rigs/authoring-patch.js')),
     '// ---- @paper-rig/compiler (pure pipeline + validation) ----',
     flattenCompiler(read('packages/compiler/core.js')),
     '// ---- creatures (resolved from rigs/models/*.json, injected as data) ----',
     resolvedRigsSource(),
+    '// ---- declarative model sources (read-only patch targets) ----',
+    modelSourcesSource(),
     '// ---- workbench DOM/UI ----',
     read('apps/workbench/ui.js'),
   ].join('\n');

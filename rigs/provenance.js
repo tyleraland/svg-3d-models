@@ -19,6 +19,7 @@ const pointer = (segments) => segments.length ? `/${segments.map(escapePointer).
 const pointerSegments = (value) => value.split('/').slice(1).map(unescapePointer);
 const cloneValue = (value) => value === undefined ? null : cloneData(value);
 const equal = (left, right) => JSON.stringify(left) === JSON.stringify(right);
+const sorted = (values) => [...values].sort((left, right) => left.localeCompare(right));
 
 function flattenLeaves(value) {
   const leaves = new Map();
@@ -35,6 +36,32 @@ function flattenLeaves(value) {
       const semantic = SEMANTIC_ARRAYS.has(segments.at(-1))
         && current.every((item) => item && typeof item === 'object' && typeof item.id === 'string');
       current.forEach((item, index) => visit(item, [...segments, semantic ? item.id : String(index)]));
+      return;
+    }
+    const entries = Object.entries(current).filter(([, child]) => child !== undefined);
+    if (!entries.length) {
+      leaves.set(pointer(segments), {});
+      return;
+    }
+    for (const [key, child] of entries) visit(child, [...segments, key]);
+  }
+  visit(value, []);
+  return leaves;
+}
+
+function flattenSourceLeaves(value) {
+  const leaves = new Map();
+  function visit(current, segments) {
+    if (current === null || typeof current !== 'object') {
+      leaves.set(pointer(segments), cloneValue(current));
+      return;
+    }
+    if (Array.isArray(current)) {
+      if (!current.length) {
+        leaves.set(pointer(segments), []);
+        return;
+      }
+      current.forEach((item, index) => visit(item, [...segments, String(index)]));
       return;
     }
     const entries = Object.entries(current).filter(([, child]) => child !== undefined);
@@ -190,5 +217,160 @@ export function explainProvenance(provenance, selector) {
       overwrittenFieldCount: fields.filter((field) => field.overwrittenWriteCount > 0).length,
     },
     fields,
+  };
+}
+
+function finalWritesByPointer(provenance) {
+  const finalWrites = new Map();
+  for (const write of provenance?.writes || []) finalWrites.set(write.targetPointer, write);
+  return finalWrites;
+}
+
+function relatedPointers(left, right) {
+  if (left == null || right == null) return false;
+  return left === right || left.startsWith(`${right}/`) || right.startsWith(`${left}/`);
+}
+
+function diffLeaves(baselineLeaves, candidateLeaves, pointerKey) {
+  const changes = [];
+  const pointers = sorted(new Set([...baselineLeaves.keys(), ...candidateLeaves.keys()]));
+  for (const valuePointer of pointers) {
+    const baselinePresent = baselineLeaves.has(valuePointer);
+    const candidatePresent = candidateLeaves.has(valuePointer);
+    const before = baselinePresent ? baselineLeaves.get(valuePointer) : null;
+    const after = candidatePresent ? candidateLeaves.get(valuePointer) : null;
+    if (baselinePresent && candidatePresent && equal(before, after)) continue;
+    changes.push({
+      kind: !baselinePresent ? 'added' : !candidatePresent ? 'removed' : 'changed',
+      [pointerKey]: valuePointer,
+      baselinePresent,
+      candidatePresent,
+      before: cloneValue(before),
+      after: cloneValue(after),
+    });
+  }
+  return changes;
+}
+
+function diffDescriptor(bundle) {
+  return {
+    sourceModelId: bundle?.provenance?.sourceModelId ?? null,
+    familyId: bundle?.provenance?.familyId ?? null,
+    resolvedModelId: bundle?.rig?.id ?? null,
+  };
+}
+
+function emptySemanticDiff(baseline, candidate, incompatibilities) {
+  return {
+    schema: 'paper-rig/semantic-diff/1',
+    schemaVersion: '1.0.0',
+    baseline: diffDescriptor(baseline),
+    candidate: diffDescriptor(candidate),
+    compatible: false,
+    status: 'incompatible',
+    summary: {
+      sourceChangeCount: 0,
+      resolvedChangeCount: 0,
+      addedLeafCount: 0,
+      removedLeafCount: 0,
+      changedLeafCount: 0,
+      affectedEntityCount: 0,
+      unlinkedSourceChangeCount: 0,
+      unlinkedResolvedChangeCount: 0,
+    },
+    incompatibilities,
+    sourceChanges: [],
+    changes: [],
+  };
+}
+
+// Compare two resolved model analyses. Each input is
+// { source, rig, provenance }, where provenance was captured while resolving
+// that source. The result links ordinary source JSON pointers to stable-ID rig
+// leaf pointers; it reports change without declaring either value correct.
+export function diffResolvedModels(baseline, candidate) {
+  const incompatibilities = [];
+  for (const [side, bundle] of [['baseline', baseline], ['candidate', candidate]]) {
+    if (!bundle?.source || typeof bundle.source !== 'object') {
+      incompatibilities.push({ code: `semantic-diff.${side}-source`, message: `${side} source is missing` });
+    }
+    if (bundle?.rig?.schema !== 'paper-rig/1') {
+      incompatibilities.push({ code: `semantic-diff.${side}-rig`, message: `${side} did not resolve to paper-rig/1` });
+    }
+    if (bundle?.provenance?.schema !== 'paper-rig/provenance/1') {
+      incompatibilities.push({ code: `semantic-diff.${side}-provenance`, message: `${side} provenance is missing or incompatible` });
+    } else if (bundle.provenance.resolvedModelId !== bundle?.rig?.id) {
+      incompatibilities.push({ code: `semantic-diff.${side}-provenance-model`, message: `${side} provenance does not describe its resolved rig` });
+    }
+  }
+  if (baseline?.rig?.schemaVersion !== candidate?.rig?.schemaVersion) {
+    incompatibilities.push({
+      code: 'semantic-diff.schema-version',
+      message: `resolved schema versions differ: ${baseline?.rig?.schemaVersion ?? 'missing'} vs ${candidate?.rig?.schemaVersion ?? 'missing'}`,
+    });
+  }
+  if (baseline?.rig?.id !== candidate?.rig?.id) {
+    incompatibilities.push({
+      code: 'semantic-diff.model-id',
+      message: `resolved model IDs differ: ${baseline?.rig?.id ?? 'missing'} vs ${candidate?.rig?.id ?? 'missing'}`,
+    });
+  }
+  if (incompatibilities.length) return emptySemanticDiff(baseline, candidate, incompatibilities);
+
+  const baselineLeaves = flattenLeaves(baseline.rig);
+  const candidateLeaves = flattenLeaves(candidate.rig);
+  const baselineWrites = finalWritesByPointer(baseline.provenance);
+  const candidateWrites = finalWritesByPointer(candidate.provenance);
+  const changes = diffLeaves(baselineLeaves, candidateLeaves, 'targetPointer').map((change) => {
+    const baselineWrite = baselineWrites.get(change.targetPointer);
+    const candidateWrite = candidateWrites.get(change.targetPointer);
+    return {
+      ...change,
+      target: (candidateWrite || baselineWrite)?.target || targetForPointer(change.targetPointer, candidate.rig.id),
+      baselineOrigin: baselineWrite?.origin || null,
+      candidateOrigin: candidateWrite?.origin || null,
+      relatedSourcePointers: [],
+    };
+  });
+
+  const sourceChanges = diffLeaves(
+    flattenSourceLeaves(baseline.source),
+    flattenSourceLeaves(candidate.source),
+    'sourcePointer',
+  ).map((change) => ({ ...change, affectedTargetPointers: [] }));
+
+  for (const sourceChange of sourceChanges) {
+    for (const change of changes) {
+      const origins = [change.baselineOrigin, change.candidateOrigin];
+      if (!origins.some((origin) => relatedPointers(sourceChange.sourcePointer, origin?.sourcePointer))) continue;
+      sourceChange.affectedTargetPointers.push(change.targetPointer);
+      change.relatedSourcePointers.push(sourceChange.sourcePointer);
+    }
+    sourceChange.affectedTargetPointers = sorted(new Set(sourceChange.affectedTargetPointers));
+  }
+  for (const change of changes) change.relatedSourcePointers = sorted(new Set(change.relatedSourcePointers));
+
+  const affectedEntities = new Set(changes.map((change) => `${change.target.kind}:${change.target.id}`));
+  const summary = {
+    sourceChangeCount: sourceChanges.length,
+    resolvedChangeCount: changes.length,
+    addedLeafCount: changes.filter((change) => change.kind === 'added').length,
+    removedLeafCount: changes.filter((change) => change.kind === 'removed').length,
+    changedLeafCount: changes.filter((change) => change.kind === 'changed').length,
+    affectedEntityCount: affectedEntities.size,
+    unlinkedSourceChangeCount: sourceChanges.filter((change) => !change.affectedTargetPointers.length).length,
+    unlinkedResolvedChangeCount: changes.filter((change) => !change.relatedSourcePointers.length).length,
+  };
+  return {
+    schema: 'paper-rig/semantic-diff/1',
+    schemaVersion: '1.0.0',
+    baseline: diffDescriptor(baseline),
+    candidate: diffDescriptor(candidate),
+    compatible: true,
+    status: changes.length ? 'changed' : sourceChanges.length ? 'source-only' : 'unchanged',
+    summary,
+    incompatibilities: [],
+    sourceChanges,
+    changes,
   };
 }

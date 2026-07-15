@@ -187,6 +187,37 @@ function overrideTargetChecks(model, family, resolvedRig) {
   for (const clip of Object.keys(model.clipEvents || {})) {
     checks.push(referenceCheck('model-clip-event-target', Boolean(clips[clip]), `clip event override targets ${clip}`));
   }
+  if (resolvedRig) {
+    const jointIds = new Set(resolvedRig.joints.map((joint) => joint.id));
+    const rigidChildren = new Set(resolvedRig.plates
+      .filter((plate) => plate.attachment === 'rigid' && plate.span?.length === 2)
+      .map((plate) => plate.span[1]));
+    for (const patch of model.clipPatches || []) {
+      const clip = clips[patch.clip];
+      checks.push(referenceCheck('model-clip-patch-target', Boolean(clip), `clip patch targets ${patch.clip}`));
+      checks.push(referenceCheck(
+        'model-clip-patch-keyframe',
+        Boolean(clip?.frames.some((frame) => Math.abs(frame.t - patch.t) <= 1e-9)),
+        `clip patch targets keyframe ${patch.clip}@${patch.t}`,
+      ));
+      const targets = [...Object.keys(patch.add.poses || {}), ...Object.keys(patch.add.rotations || {})];
+      checks.push(referenceCheck(
+        'model-clip-patch-joints',
+        targets.every((id) => jointIds.has(id)),
+        `clip patch joint IDs resolve: ${targets.join(', ')}`,
+      ));
+      const translatedRigidChildren = Object.entries(patch.add.poses || {})
+        .filter(([id, vector]) => rigidChildren.has(id) && vector.some((value) => Math.abs(value) > 1e-9))
+        .map(([id]) => id);
+      checks.push(referenceCheck(
+        'model-clip-patch-rigid-child-translation',
+        translatedRigidChildren.length === 0,
+        translatedRigidChildren.length
+          ? `clip patch translates rigid-span child joints: ${translatedRigidChildren.join(', ')}`
+          : 'clip patch does not translate rigid-span child joints',
+      ));
+    }
+  }
   return checks.length ? checks : [pass('model-override-targets', 'model declares no unmatched overrides')];
 }
 

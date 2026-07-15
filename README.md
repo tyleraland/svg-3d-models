@@ -71,6 +71,9 @@ npx rig explain rabbit plate:nearRearUpperPlate.size --history
 # Emit the same explanation as stable, schema-valid JSON
 npx rig explain horse clip:attack.frames[1].rotations.neckBase --json
 
+# Compare a valid candidate model source by its stable-ID resolved effects
+npx rig diff rabbit /tmp/rabbit-candidate.json --json
+
 # Regenerate the browser workbench from its sources
 npx rig build-workbench
 ```
@@ -156,6 +159,52 @@ default. `--history` also shows values superseded later in the ordered resolver
 pass. This is diagnostic evidence, not a mutation API: explaining a field never
 edits a model, and generated or suggested patches still require validation and
 review.
+
+`rig diff <baseline-model> <candidate-model>` validates and resolves two
+declarative sources, then reports ordinary source-pointer changes alongside the
+stable joint, plate, anchor, clip, or rig fields they affect. It distinguishes
+effective changes from `source-only` edits, rejects comparisons that silently
+change the stable model ID, and exits successfully for compatible differences;
+a difference is evidence to review, not an assertion that either revision is
+correct. `--json` emits the schema-valid `paper-rig/semantic-diff/1` document.
+
+The linkage is deliberately conservative. Direct model overrides and named
+recipe inputs point back to their changed source scope. Downstream values
+created by a derived-default operation remain identified as derived and are
+counted when no direct source pointer can be claimed; the tool does not invent a
+causal mapping merely to make every row look linked.
+
+### Copying a pose edit back to source
+
+The workbench's **Patch** tab turns a narrow, unambiguous editor experiment into
+a `paper-rig/model-patch-1` artifact. Select a joint, make a local transform
+edit, and select an existing keyframe with the keyframe buttons. When the patch
+is ready, **Copy source patch** emits an append operation for the model's
+`clipPatches` array. It never edits a repository file.
+
+The first round-trip intentionally supports only additive joint-local
+translation and rotation at an exact existing keyframe. It rejects global model
+transforms, preview-only height/width scaling, interpolated times, unknown joint
+IDs, and translation of a rigid-span child. These cases need a more specific
+authoring decision and are not guessed. Workbench overrides preview globally;
+the copied operation applies the same delta only to the named clip keyframe, so
+reset the preview after recording an edit.
+
+An agent can apply a copied artifact without mutating the original object:
+
+```js
+import { applyModelPatch, resolveModel } from '@paper-rig/rigs';
+
+const candidateSource = applyModelPatch(source, copiedPatch, {
+  sourceModelId: 'rabbit',
+});
+const candidateRig = resolveModel(candidateSource, family);
+```
+
+Validate the candidate source and use `rig diff` before committing it. Patches
+to source clips such as `idleA` or `walkA` run before canonical clip derivation;
+patches naming generated clips such as `idle` or `walk` apply only to that
+canonical clip. Multiple patches compose additively in source order.
 
 Audit diagnostics distinguish contract errors from review guidance. Invalid
 references, timelines, transforms, contacts, rigid spans, and loop closure fail

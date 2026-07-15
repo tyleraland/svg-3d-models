@@ -121,7 +121,58 @@ async function main() {
   const models = await regenerated.page.evaluate(() => Object.keys(rigs));
   const expected = packageSweep(models);
   const regen = await sweep(regenerated.page);
+  const patchUi = await regenerated.page.evaluate(() => {
+    state.model = 'rabbit';
+    state.modelTransforms.rabbit = defaultModelTransform('rabbit');
+    state.jointTransforms.rabbit = {};
+    state.height = 1;
+    state.width = 1;
+    updateModel();
+    const empty = {
+      status: currentSourcePatchInspection().status,
+      disabled: $('#copySourcePatch').disabled,
+    };
+    state.clip = 'attack';
+    state.t = 0.5;
+    state.jointTransforms.rabbit.neck = { move: [0, 0, 0], rot: [0, 10, 0] };
+    render();
+    const nonKeyframe = {
+      code: currentSourcePatchInspection().code,
+      disabled: $('#copySourcePatch').disabled,
+    };
+    state.t = 0.62;
+    render();
+    return {
+      empty,
+      nonKeyframe,
+      status: currentSourcePatchInspection().status,
+      disabled: $('#copySourcePatch').disabled,
+      patch: JSON.parse($('#patchText').textContent),
+    };
+  });
+  const browserErrors = [...regenerated.errors];
   await browser.close();
+
+  const patchReady = patchUi.empty.status === 'empty'
+    && patchUi.empty.disabled
+    && patchUi.nonKeyframe.code === 'not-a-keyframe'
+    && patchUi.nonKeyframe.disabled
+    && patchUi.status === 'ready'
+    && !patchUi.disabled
+    && patchUi.patch?.$schema === 'paper-rig/model-patch-1'
+    && patchUi.patch?.sourceModelId === 'rabbit'
+    && patchUi.patch?.operation?.value?.clip === 'attack'
+    && patchUi.patch?.operation?.value?.t === 0.62
+    && JSON.stringify(patchUi.patch?.operation?.value?.add?.rotations?.neck) === '[0,10,0]';
+  if (!patchReady) {
+    console.error('FAIL: workbench source-patch preview did not enforce the expected empty/non-keyframe/ready states');
+    console.error(JSON.stringify(patchUi, null, 2));
+    process.exit(1);
+  }
+  if (browserErrors.length) {
+    console.error('FAIL: regenerated workbench logged console errors during the sweep:\n' + browserErrors.join('\n'));
+    process.exit(1);
+  }
 
   if (expected.length !== regen.length) {
     console.error(`FAIL: sweep length ${expected.length} (packages) vs ${regen.length} (workbench)`);
@@ -142,6 +193,7 @@ async function main() {
   }
   if (mismatch) { console.error(`FAIL: ${mismatch}/${expected.length} outputs differ`); process.exit(1); }
   console.log(`workbench parity: ${expected.length}/${expected.length} package/browser outputs identical across all models, clips, times, cameras`);
+  console.log('workbench source-patch preview: empty, unsupported, and ready states passed');
   console.log('regenerated workbench matches the current package sources, with zero console errors.');
 }
 

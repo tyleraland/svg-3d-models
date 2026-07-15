@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:model-patch-1",
+  "title": "paper-rig declarative model source patch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "sourceModelId", "resolvedModelId", "kind", "context", "operation"],
+  "properties": {
+    "$schema": { "const": "paper-rig/model-patch-1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "sourceModelId": { "$ref": "#/$defs/id" },
+    "resolvedModelId": { "$ref": "#/$defs/id" },
+    "kind": { "const": "clip-keyframe" },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clipId", "timeNormalized", "keyframeIndex", "editedJointIds"],
+      "properties": {
+        "clipId": { "$ref": "#/$defs/id" },
+        "timeNormalized": { "$ref": "#/$defs/time" },
+        "keyframeIndex": { "type": "integer", "minimum": 0 },
+        "editedJointIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "path", "value"],
+      "properties": {
+        "op": { "const": "append" },
+        "path": { "const": "/clipPatches" },
+        "value": { "$ref": "#/$defs/clipPatch" }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "finiteNumber": { "type": "number" },
+    "time": { "type": "number", "minimum": 0, "maximum": 1 },
+    "vector3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/finiteNumber" }
+    },
+    "transformMap": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "$ref": "#/$defs/vector3" }
+    },
+    "clipPatchAdd": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "poses": { "$ref": "#/$defs/transformMap" },
+        "rotations": { "$ref": "#/$defs/transformMap" }
+      }
+    },
+    "clipPatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clip", "t", "add"],
+      "properties": {
+        "clip": { "$ref": "#/$defs/id" },
+        "t": { "$ref": "#/$defs/time" },
+        "add": { "$ref": "#/$defs/clipPatchAdd" }
+      }
+    }
+  }
+}

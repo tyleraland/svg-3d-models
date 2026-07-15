@@ -33,6 +33,7 @@ rig sheet rabbit                               # 8x4 heading/elevation contact s
 rig manifest rabbit -o rabbit-candidate.json  # canonical projected review evidence
 rig audit rabbit --against approved.json      # source-ID-level review diff
 rig explain rabbit plate:headPlate.size       # resolved field origin + history
+rig diff rabbit /tmp/rabbit-candidate.json    # source edits -> stable-ID effects
 rig validate-all                               # CI gate over rigs/models/
 rig build-workbench                            # regenerate paper-rig-workbench.html
 ```
@@ -52,6 +53,14 @@ the family bases and models from the original workbench is in
 Use `rig explain <model> <entity[.field]> --history` before searching resolver
 code when a resolved value is surprising. Provenance is an opt-in sidecar and
 does not alter normal `paper-rig/1` output.
+Use `rig diff <baseline-model> <candidate-model>` to review a valid declarative
+candidate by its stable-ID resolved effects; compatible differences are
+non-failing evidence and the command never writes source files.
+The workbench **Patch** tab can copy a `paper-rig/model-patch-1` artifact for
+additive joint-local edits at an exact existing keyframe. It deliberately rejects
+global/proportion/interpolated or rigid-child-translation edits. Apply the
+artifact explicitly with `applyModelPatch`, validate the candidate, and review
+it with `rig diff`; the workbench never writes model files.
 
 ## Tests
 
@@ -59,8 +68,8 @@ does not alter normal `paper-rig/1` output.
   renders identically to the original workbench, and each declarative model
   resolves byte-identical to its golden rig. No browser; runs in seconds.
 - `npm run test:workbench` — regenerates the workbench and asserts it is
-  behavior-identical to `fixtures/paper-rig-workbench.baseline.html` across all
-  models/clips/times/cameras (needs Chromium).
+  behavior-identical to the current package compiler across all
+  models/clips/times/cameras, including patch-preview UI states (needs Chromium).
 
 ## Regenerating fixtures / the HTML
 

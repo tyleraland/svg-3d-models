@@ -7,6 +7,7 @@
     ".": "./resolve.js",
     "./resolve": "./resolve.js",
     "./provenance": "./provenance.js",
+    "./authoring-patch": "./authoring-patch.js",
     "./normalize": "./normalize.js"
   },
   "dependencies": {

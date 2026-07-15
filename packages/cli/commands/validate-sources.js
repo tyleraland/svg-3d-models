@@ -4,7 +4,7 @@
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { loadFamily, loadModelSource } from '@paper-rig/rigs';
+import { loadFamily, loadModelSource, resolveModel } from '@paper-rig/rigs';
 import { validateSourcePair } from '@paper-rig/validator/source';
 import { parseArgs } from '../lib/args.js';
 
@@ -23,7 +23,10 @@ export function runValidateSources(argv) {
     try {
       const model = loadModelSource(target);
       const family = loadFamily(model.family);
-      const report = validateSourcePair(model, family);
+      const preliminary = validateSourcePair(model, family);
+      const report = preliminary.status === 'passed'
+        ? validateSourcePair(model, family, { resolvedRig: resolveModel(model, family) })
+        : preliminary;
       const name = target.endsWith('.json') ? target : target.replace(/\.json$/, '');
       results.push({ model: name, family: model.family, ...report });
       if (report.status !== 'passed') failed++;

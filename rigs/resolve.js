@@ -37,7 +37,12 @@ export function loadModelWithProvenance(name) {
   const sourceModelId = basename(name, '.json');
   return resolveModelWithProvenance(model, loadFamily(model.family), { sourceModelId });
 }
-export { explainProvenance, provenanceSelectorPrefix } from './provenance.js';
+export { diffResolvedModels, explainProvenance, provenanceSelectorPrefix } from './provenance.js';
+export {
+  applyModelPatch,
+  createClipKeyframePatch,
+  inspectClipKeyframePatch,
+} from './authoring-patch.js';
 
 const ADDONS = {
   pairedEars: (rig, a) => addPairedEars(rig, a),
@@ -101,6 +106,39 @@ function mutateWithProvenance(rig, tracker, descriptor, mutation) {
   const before = cloneData(rig);
   mutation();
   tracker.recordTransition(before, rig, descriptor);
+}
+
+function applyClipPatch(rig, patch) {
+  const clip = rig.clips[patch.clip];
+  if (!clip) throw new Error(`clip patch targets unknown clip ${patch.clip}`);
+  const frame = clip.frames.find((candidate) => Math.abs(candidate.t - patch.t) <= 1e-9);
+  if (!frame) throw new Error(`clip patch targets missing keyframe ${patch.clip}@${patch.t}`);
+  const jointIds = new Set(rig.joints.map((joint) => joint.id));
+  for (const field of ['poses', 'rotations']) {
+    for (const [jointId, delta] of Object.entries(patch.add[field] || {})) {
+      if (!jointIds.has(jointId)) throw new Error(`clip patch targets unknown joint ${jointId}`);
+      frame[field] ||= {};
+      const current = frame[field][jointId] || [0, 0, 0];
+      frame[field][jointId] = current.map((value, axis) => value + delta[axis]);
+    }
+  }
+}
+
+function applyTrackedClipPatches(rig, tracker, patches, indexes) {
+  for (const index of indexes) {
+    const patch = patches[index];
+    const frameIndex = rig.clips[patch.clip].frames
+      .findIndex((frame) => Math.abs(frame.t - patch.t) <= 1e-9);
+    const targetPrefix = `/clips/${patch.clip}/frames/${frameIndex}/`;
+    mutateWithProvenance(rig, tracker, {
+      operation: 'clips.keyframe-patch',
+      origin: (targetPointer) => {
+        if (!targetPointer.startsWith(targetPrefix)) return modelOverride(`/clipPatches/${index}`);
+        const fieldPointer = targetPointer.slice(targetPrefix.length);
+        return modelOverride(`/clipPatches/${index}/add/${fieldPointer}`);
+      },
+    }, () => applyClipPatch(rig, patch));
+  }
 }
 
 // Resolve `model` against its already-loaded `family` base. Steps run in the same
@@ -168,11 +206,27 @@ function resolveModelInternal(model, family, tracker) {
     origin: modelOverride('/gait'),
   }, () => rotationalGait(rig, model.gait.a, model.gait.b, { semantics: model.gait.semantics }));
 
+  // 7b. Patch source clips before canonical aliases are derived so edits to
+  // idleA/walkA flow into idle/walk. Patches for generated canonical clips run
+  // immediately after derivation below.
+  const clipPatches = model.clipPatches || [];
+  const preCanonicalClipIds = new Set(Object.keys(rig.clips));
+  const preCanonicalPatchIndexes = clipPatches
+    .map((patch, index) => preCanonicalClipIds.has(patch.clip) ? index : -1)
+    .filter((index) => index >= 0);
+  applyTrackedClipPatches(rig, tracker, clipPatches, preCanonicalPatchIndexes);
+
   // 8. Canonical clip derivation (idle/walk/hit/ko) — must follow attack + gait.
   mutateWithProvenance(rig, tracker, {
     operation: 'clips.ensure-canonical',
     origin: derivedDefault('ensureCanonicalClips'),
   }, () => ensureCanonicalClips(rig));
+
+  // 8b. Canonical-only patch targets (idle/walk/hit/ko).
+  const postCanonicalPatchIndexes = clipPatches
+    .map((patch, index) => preCanonicalClipIds.has(patch.clip) ? -1 : index)
+    .filter((index) => index >= 0);
+  applyTrackedClipPatches(rig, tracker, clipPatches, postCanonicalPatchIndexes);
 
   // 9. Default anchor module inference.
   mutateWithProvenance(rig, tracker, {
@@ -199,7 +253,7 @@ function resolveModelInternal(model, family, tracker) {
   for (const [index, o] of (model.plateOverrides || []).entries()) {
     mutateWithProvenance(rig, tracker, {
       operation: 'plates.field-override',
-      origin: modelOverride(`/plateOverrides/${index}/set`),
+      origin: modelOverride(`/plateOverrides/${index}`),
     }, () => {
       const re = o.match ? new RegExp(o.match) : null;
       for (const p of rig.plates) if (o.id ? p.id === o.id : re.test(p.id)) Object.assign(p, cloneData(o.set));
@@ -210,7 +264,7 @@ function resolveModelInternal(model, family, tracker) {
   for (const [index, o] of (model.anchorOverrides || []).entries()) {
     mutateWithProvenance(rig, tracker, {
       operation: 'anchors.field-override',
-      origin: modelOverride(`/anchorOverrides/${index}/set`),
+      origin: modelOverride(`/anchorOverrides/${index}`),
     }, () => {
       for (const a of rig.anchors) if (a.id === o.id) Object.assign(a, cloneData(o.set));
     });
