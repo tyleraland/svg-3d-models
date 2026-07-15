@@ -70,6 +70,12 @@ export function resolveModel(model, family) {
     rig.clips[clip].events = events.map((e) => ({ ...e }));
   }
 
+  // 5b. Full clip overrides (normalized attack/gait clips supplied as data). These
+  // replace the base's source clips before canonical derivation runs.
+  for (const [clip, def] of Object.entries(model.clips || {})) {
+    rig.clips[clip] = cloneData(def);
+  }
+
   // 6. Rotational attack clip.
   if (model.attack) setRotationalAttack(rig, model.attack.rotations, model.attack.opts || {});
 
@@ -89,6 +95,18 @@ export function resolveModel(model, family) {
       p.occlusionMode = o.mode;
       p.occlusionReference = occlusionReference(o.reference, p.id);
     }
+  }
+
+  // 11. General plate field overrides, matched by id or regex (covers tusk role +
+  // occlusion, under-core appendages, and any other post-normalization plate edit).
+  for (const o of model.plateOverrides || []) {
+    const re = o.match ? new RegExp(o.match) : null;
+    for (const p of rig.plates) if (o.id ? p.id === o.id : re.test(p.id)) Object.assign(p, cloneData(o.set));
+  }
+
+  // 12. Anchor field overrides (rare explicit module-type or metadata edits).
+  for (const o of model.anchorOverrides || []) {
+    for (const a of rig.anchors) if (a.id === o.id) Object.assign(a, cloneData(o.set));
   }
 
   return rig;

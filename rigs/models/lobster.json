@@ -1,0 +1,73 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "lobster",
+  "base": true,
+  "clips": {
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "leftClawShoulder": [
+              0,
+              0,
+              -36
+            ],
+            "leftClawElbow": [
+              0,
+              0,
+              20
+            ],
+            "rightClawShoulder": [
+              0,
+              0,
+              36
+            ],
+            "rightClawElbow": [
+              0,
+              0,
+              -20
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "leftLeg1Foot",
+        "leftLeg2Foot",
+        "leftLeg3Foot",
+        "leftLeg4Foot",
+        "rightLeg1Foot",
+        "rightLeg2Foot",
+        "rightLeg3Foot",
+        "rightLeg4Foot"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

@@ -9,7 +9,10 @@
 // Emits:
 //   apps/workbench/template.html   HTML shell with a <!--PAPER_RIG_BUNDLE--> slot
 //   apps/workbench/ui.js           DOM/UI code (render*, event bindings, state, ...)
-//   rigs/legacy/builders.js        the 29 creatures still built imperatively
+//
+// (The creature builders were also extracted here originally; every creature now
+// lives in rigs/models/*.json and build-workbench injects them as resolved data,
+// so builders.js is no longer emitted.)
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -34,22 +37,10 @@ writeFileSync(join(ROOT, 'apps/workbench/template.html'), template);
 // ---- bucket index ranges (see scripts/extract-packages.mjs for the full map) --
 const range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
 
-// Legacy creature builders: 7..153 and 156..164 (cloneData/groupBy at 154/155 are
-// in @paper-rig/schema; the pipeline units 165..282 are in the packages/UI).
-const BUILDERS = [...range(7, 153), ...range(156, 164)];
-
 // DOM/UI: shell tag, state, $ helpers, and every render/selection/event/init unit.
 const UI = [165, 166, 167, 168, 180, ...range(204, 218), 234, 235, 236, ...range(245, 250), ...range(252, 282)];
 
 const emit = (indices) => indices.map((i) => text(i)).join('\n');
-
-writeFileSync(join(ROOT, 'rigs/legacy/builders.js'),
-  '// Legacy creature builders, extracted verbatim from paper-rig-workbench.html.\n'
-  + '// A script fragment (NOT a standalone module): it is concatenated after the\n'
-  + '// schema + compiler bundle by `rig build-workbench`, and defines the global\n'
-  + '// `rigs` table the workbench UI drives. Creatures migrate out of here into\n'
-  + '// rigs/models/*.json over time.\n/* eslint-disable */\n'
-  + emit(BUILDERS) + '\n');
 
 writeFileSync(join(ROOT, 'apps/workbench/ui.js'),
   '// Workbench DOM/UI layer, extracted verbatim from paper-rig-workbench.html.\n'
@@ -57,4 +48,4 @@ writeFileSync(join(ROOT, 'apps/workbench/ui.js'),
   + '// `rig build-workbench`. Owns the mutable `state` the pure pipeline reads.\n/* eslint-disable */\n'
   + emit(UI) + '\n');
 
-console.log(`template.html, ui.js (${UI.length} units), builders.js (${BUILDERS.length} units) written`);
+console.log(`template.html, ui.js (${UI.length} units) written`);

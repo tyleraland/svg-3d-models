@@ -12,11 +12,10 @@ packages/schema/       paper-rig/1 constants (C), V, plate/joint primitives
 packages/compiler/     pure pipeline: posing, projection, SVG, package compilation
 packages/validator/    structural + directional checks (validate/isValid)
 packages/cli/          the `rig` command
-rigs/families/*.json   raw family bases (e.g. quadruped)
-rigs/models/*.json     one thin declarative model per creature
+rigs/families/*.json   raw (pre-normalization) family base per creature
+rigs/models/*.json     one thin declarative model per creature (all 31)
 rigs/resolve.js        resolveModel(): family + overrides -> rig, in one pass
 rigs/family-kit.js     family-preset + normalization operations
-rigs/legacy/builders.js  creatures not yet migrated to models/ (workbench-only)
 apps/workbench/        template.html + ui.js (DOM layer) + build reassembly
 fixtures/              golden oracle captured from the original monolith
 test/                  behavior-parity tests (node --test)
@@ -39,10 +38,14 @@ Run via `npx rig <cmd>` or `npm run rig -- <cmd>`.
 
 ## Authoring a creature
 
-A model references a family preset and declares overrides — proportions,
-plate/limb sizes, addons, clip events, attack/gait, occlusion. It never mutates a
-rig after the fact; `resolveModel` applies everything in one ordered pass. See
-`rigs/models/rabbit.json` for the full shape.
+A model references a family base and declares overrides — proportions, plate/limb
+sizes, addons, clip events, attack/gait, occlusion, plate/anchor field edits. It
+never mutates a rig after the fact; `resolveModel` applies everything in one
+ordered pass, then auto-derives canonical clips and infers anchor modules. See
+`rigs/models/rabbit.json` for the shared-family variant shape, and any other model
+(e.g. `horse.json`) for the own-base shape. The one-time migration that generated
+the family bases and models from the original workbench is in
+`scripts/gen-families.mjs` and `scripts/gen-models.mjs` (kept for provenance).
 
 ## Tests
 

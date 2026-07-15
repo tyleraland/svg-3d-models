@@ -1,0 +1,343 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "dragon",
+  "base": true,
+  "clips": {
+    "walkA": {
+      "base": "idleA",
+      "duration": 960,
+      "easing": "linear",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {
+            "nearWingElbow": [
+              0,
+              0.18,
+              0.1
+            ],
+            "nearWingTip": [
+              0,
+              0.34,
+              0.14
+            ],
+            "nearWingTrailingMid": [
+              0,
+              0.1,
+              0.06
+            ],
+            "nearWingTrailingTip": [
+              0,
+              0.26,
+              0.1
+            ],
+            "farWingElbow": [
+              0,
+              -0.18,
+              0.1
+            ],
+            "farWingTip": [
+              0,
+              -0.34,
+              0.14
+            ],
+            "farWingTrailingMid": [
+              0,
+              -0.1,
+              0.06
+            ],
+            "farWingTrailingTip": [
+              0,
+              -0.26,
+              0.1
+            ]
+          },
+          "rotations": {
+            "nearFrontShoulder": [
+              13,
+              0,
+              -20
+            ],
+            "nearFrontElbow": [
+              5,
+              0,
+              14
+            ],
+            "farRearHip": [
+              -13,
+              0,
+              20
+            ],
+            "farRearKnee": [
+              -5,
+              0,
+              -14
+            ],
+            "tailBase": [
+              0,
+              0,
+              10
+            ],
+            "tailMid": [
+              0,
+              0,
+              -18
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "nearWingElbow": [
+              0,
+              -0.08,
+              -0.06
+            ],
+            "nearWingTip": [
+              0,
+              -0.14,
+              -0.08
+            ],
+            "nearWingTrailingMid": [
+              0,
+              -0.05,
+              -0.04
+            ],
+            "nearWingTrailingTip": [
+              0,
+              -0.1,
+              -0.06
+            ],
+            "farWingElbow": [
+              0,
+              0.08,
+              -0.06
+            ],
+            "farWingTip": [
+              0,
+              0.14,
+              -0.08
+            ],
+            "farWingTrailingMid": [
+              0,
+              0.05,
+              -0.04
+            ],
+            "farWingTrailingTip": [
+              0,
+              0.1,
+              -0.06
+            ]
+          },
+          "rotations": {
+            "farFrontShoulder": [
+              -13,
+              0,
+              20
+            ],
+            "farFrontElbow": [
+              -5,
+              0,
+              -14
+            ],
+            "nearRearHip": [
+              13,
+              0,
+              -20
+            ],
+            "nearRearKnee": [
+              5,
+              0,
+              14
+            ],
+            "tailBase": [
+              0,
+              0,
+              -10
+            ],
+            "tailMid": [
+              0,
+              0,
+              18
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {
+            "nearWingElbow": [
+              0,
+              0.18,
+              0.1
+            ],
+            "nearWingTip": [
+              0,
+              0.34,
+              0.14
+            ],
+            "nearWingTrailingMid": [
+              0,
+              0.1,
+              0.06
+            ],
+            "nearWingTrailingTip": [
+              0,
+              0.26,
+              0.1
+            ],
+            "farWingElbow": [
+              0,
+              -0.18,
+              0.1
+            ],
+            "farWingTip": [
+              0,
+              -0.34,
+              0.14
+            ],
+            "farWingTrailingMid": [
+              0,
+              -0.1,
+              0.06
+            ],
+            "farWingTrailingTip": [
+              0,
+              -0.26,
+              0.1
+            ]
+          },
+          "rotations": {
+            "nearFrontShoulder": [
+              13,
+              0,
+              -20
+            ],
+            "nearFrontElbow": [
+              5,
+              0,
+              14
+            ],
+            "farRearHip": [
+              -13,
+              0,
+              20
+            ],
+            "farRearKnee": [
+              -5,
+              0,
+              -14
+            ],
+            "tailBase": [
+              0,
+              0,
+              10
+            ],
+            "tailMid": [
+              0,
+              0,
+              -18
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "farFrontFoot",
+            "nearRearFoot"
+          ],
+          "from": 0,
+          "to": 0.48
+        },
+        {
+          "ids": [
+            "nearFrontFoot",
+            "farRearFoot"
+          ],
+          "from": 0.5,
+          "to": 0.98
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "wings-spread"
+        },
+        {
+          "t": 0.5,
+          "name": "wings-fold"
+        }
+      ],
+      "boneLengthPolicy": "preserve-leg-and-tail-chains",
+      "motionSemantics": "lizard gait rotates full leg chains while wing controls retain their authored flap"
+    },
+    "attack": {
+      "base": "idleA",
+      "duration": 680,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "neck": [
+              0,
+              24,
+              0
+            ],
+            "head": [
+              0,
+              -10,
+              0
+            ],
+            "nearWingRoot": [
+              0,
+              0,
+              -18
+            ],
+            "farWingRoot": [
+              0,
+              0,
+              18
+            ],
+            "tailBase": [
+              0,
+              0,
+              10
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "nearFrontFoot",
+        "farFrontFoot",
+        "nearRearFoot",
+        "farRearFoot"
+      ],
+      "events": [
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "joint-local rotation; no child-bone translation"
+    }
+  }
+}

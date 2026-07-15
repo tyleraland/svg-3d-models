@@ -4,18 +4,37 @@
 //
 // The workbench must run from file:// (double-click), where `<script type=module
 // src>` is blocked by CORS, so the split ESM is re-flattened into the one classic
-// <script> it came from: schema + compiler pipeline (from the packages) + the
-// legacy creature builders + the DOM/UI layer, concatenated in dependency order
-// with import/export stripped and the injected render context folded back onto the
-// UI's live `state`.
+// <script> it came from: schema + compiler pipeline (from the packages) + every
+// creature resolved from its declarative model (injected as data) + the DOM/UI
+// layer, concatenated in dependency order with import/export stripped and the
+// injected render context folded back onto the UI's live `state`.
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from '../lib/args.js';
+import { loadModel } from '@paper-rig/rigs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
+
+// The workbench's model selector and `state` init key off `Object.keys(rigs)`, so
+// the rig table must preserve the original authoring order, not alphabetical.
+const RIG_ORDER = [
+  'horse', 'humanoid', 'tinyBiped', 'stoutBiped', 'tailedBiped', 'rhino', 'elephant',
+  'rabbit', 'leopard', 'wolf', 'greyhound', 'blob', 'quadruped', 'lizard', 'dragon',
+  'walkingBird', 'flyingBird', 'bug', 'ant', 'radial', 'serpentine', 'mimic', 'tentacle',
+  'scorpion', 'bat', 'crab', 'lobster', 'centaur', 'harpy', 'angel', 'spider',
+];
+
+// Resolve every declarative model to its rig and emit `const rigs = {...}` as data,
+// replacing the old imperative builders. Models are proven byte-identical to the
+// original rigs by test/resolver.test.mjs and the workbench parity gate.
+function resolvedRigsSource() {
+  const rigs = {};
+  for (const name of RIG_ORDER) rigs[name] = loadModel(name);
+  return 'const rigs = ' + JSON.stringify(rigs) + ';';
+}
 
 // schema/index.js -> plain script: drop the `export ` on each declaration.
 function flattenSchema(src) {
@@ -44,8 +63,8 @@ export function runBuildWorkbench(argv) {
     flattenSchema(read('packages/schema/index.js')),
     '// ---- @paper-rig/compiler (pure pipeline + validation) ----',
     flattenCompiler(read('packages/compiler/core.js')),
-    '// ---- creature builders (legacy; migrating to rigs/models/*.json) ----',
-    read('rigs/legacy/builders.js'),
+    '// ---- creatures (resolved from rigs/models/*.json, injected as data) ----',
+    resolvedRigsSource(),
     '// ---- workbench DOM/UI ----',
     read('apps/workbench/ui.js'),
   ].join('\n');
