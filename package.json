@@ -1,0 +1,9 @@
+{
+  "name": "svg-3d-models",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Experiments and tools for SVG-based 3D model rigging and visualization.",
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}
