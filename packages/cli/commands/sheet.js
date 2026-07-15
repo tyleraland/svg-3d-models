@@ -1,9 +1,9 @@
-// `rig sheet <model> [--clip idle --time 0] [-o out.html]` — render an 8-heading x
+// `rig sheet <model> [--attachments] [--clip idle --time 0] [-o out.html]` — render an 8-heading x
 // 4-elevation contact sheet of projected markup. Exits non-zero if any cell has a
 // non-finite coordinate (NaN/Infinity), which signals a broken projection.
 
 import { writeFileSync } from 'node:fs';
-import { loadModel } from '@paper-rig/rigs';
+import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
 import { markup } from '@paper-rig/compiler';
 import { parseArgs } from '../lib/args.js';
 
@@ -13,9 +13,9 @@ const ELEVATIONS = [30, 45, 60, 75];
 export function runSheet(argv) {
   const { positionals, flags } = parseArgs(argv, { o: 'out' });
   const target = positionals[0];
-  if (!target) { console.error('usage: rig sheet <model> [--clip --time] [-o out.html]'); return 2; }
+  if (!target) { console.error('usage: rig sheet <model> [--attachments] [--clip --time] [-o out.html]'); return 2; }
 
-  const rig = loadModel(target);
+  const rig = flags.attachments ? loadModelAssembly(target).rig : loadModel(target);
   const clip = flags.clip ?? 'idle';
   const time = flags.time !== undefined ? Number(flags.time) : 0;
 
@@ -36,11 +36,11 @@ svg{width:100%;background:#3a352c;border-radius:6px}figcaption{font-size:11px;op
 .paperPlate{fill:#d7c39c;stroke:#39362e;stroke-width:1.2;vector-effect:non-scaling-stroke}.plateShade{fill:#b99d73}
 .paperPlate[data-palette-role="shadow"]{fill:#9d927d}.coreOccluderCell,.jointGasket{fill:#d7c39c;stroke:#d7c39c;stroke-width:1.5;vector-effect:non-scaling-stroke}
 .faceEye{fill:#fffdf7;stroke:#39362e;stroke-width:.8}.faceNose,.wingMembrane{fill:#b99d73;stroke:#39362e;stroke-width:.8;stroke-linejoin:round}</style>
-<h1>${rig.id} — contact sheet (clip ${clip}, t ${time})</h1>${rows}`;
+<h1>${rig.id} — contact sheet${flags.attachments ? ' with attachments' : ''} (clip ${clip}, t ${time})</h1>${rows}`;
 
   const out = flags.out || `${rig.id}-contact-sheet.html`;
   writeFileSync(out, html);
-  console.log(`contact sheet for ${rig.id}: ${HEADINGS.length * ELEVATIONS.length} tiles -> ${out}`);
+  console.log(`contact sheet for ${rig.id}${flags.attachments ? ' with attachments' : ''}: ${HEADINGS.length * ELEVATIONS.length} tiles -> ${out}`);
   if (bad) { console.error(`${bad} tile(s) had non-finite coordinates`); return 1; }
   return 0;
 }

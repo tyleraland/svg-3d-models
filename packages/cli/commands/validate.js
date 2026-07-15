@@ -2,7 +2,13 @@
 // model. Prints a summary (or the full JSON report with --json) and exits 0 iff
 // every structural and directional check passes.
 
-import { loadFamily, loadModelSource, resolveModel } from '@paper-rig/rigs';
+import {
+  loadAttachmentModulesForModel,
+  loadFamily,
+  loadModelSource,
+  resolveModel,
+  resolveModelAssembly,
+} from '@paper-rig/rigs';
 import { validate } from '@paper-rig/validator';
 import { validateSourcePair } from '@paper-rig/validator/source';
 import { parseArgs } from '../lib/args.js';
@@ -14,7 +20,12 @@ export function runValidate(argv) {
 
   const model = loadModelSource(target);
   const family = loadFamily(model.family);
-  const sourceReport = validateSourcePair(model, family);
+  const preliminary = validateSourcePair(model, family);
+  const rig = preliminary.status === 'passed' ? resolveModel(model, family) : null;
+  const attachmentModules = preliminary.status === 'passed' ? loadAttachmentModulesForModel(model) : {};
+  const sourceReport = preliminary.status === 'passed'
+    ? validateSourcePair(model, family, { resolvedRig: rig, attachmentModules })
+    : preliminary;
   if (sourceReport.status !== 'passed') {
     if (flags.json) console.log(JSON.stringify({ model: target, source: sourceReport }, null, 2));
     else {
@@ -24,8 +35,10 @@ export function runValidate(argv) {
     return 1;
   }
 
-  const rig = resolveModel(model, family);
-  const report = validate(rig);
+  const validationRig = model.attachments?.length
+    ? resolveModelAssembly(model, family, { modules: attachmentModules }).rig
+    : rig;
+  const report = validate(validationRig);
 
   if (flags.json) {
     console.log(JSON.stringify({ model: rig.id, ...report }, null, 2));

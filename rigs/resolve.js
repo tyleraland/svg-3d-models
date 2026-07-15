@@ -12,6 +12,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { basename, dirname, join } from 'node:path';
 import { cloneData } from '@paper-rig/schema';
+import { resolveAttachmentAssembly } from '@paper-rig/attachments';
 import { createProvenanceTracker } from './provenance.js';
 import {
   quadrupedVariant, tuneQuadrupedLimbs, addMuzzle, addPairedEars,
@@ -19,6 +20,7 @@ import {
 } from './family-kit.js';
 
 const RIGS_DIR = dirname(fileURLToPath(import.meta.url));
+const MODULES_DIR = join(RIGS_DIR, 'modules');
 const readJSON = (p) => JSON.parse(readFileSync(p, 'utf8'));
 
 export function loadFamily(name) {
@@ -31,6 +33,21 @@ export function loadModelSource(name) {
 export function loadModel(name) {
   const model = loadModelSource(name);
   return resolveModel(model, loadFamily(model.family));
+}
+export function loadAttachmentModule(name) {
+  const path = name.endsWith('.json') ? name : join(MODULES_DIR, `${name}.json`);
+  return readJSON(path);
+}
+export function loadAttachmentModulesForModel(model) {
+  const moduleIds = [...new Set((model.attachments || []).map((instance) => instance.moduleId))];
+  return Object.fromEntries(moduleIds.map((id) => [id, loadAttachmentModule(id)]));
+}
+export function loadModelAssembly(name) {
+  const model = loadModelSource(name);
+  return resolveModelAssembly(model, loadFamily(model.family), {
+    sourceModelId: basename(name, '.json'),
+    modules: loadAttachmentModulesForModel(model),
+  });
 }
 export function loadModelWithProvenance(name) {
   const model = loadModelSource(name);
@@ -275,6 +292,15 @@ function resolveModelInternal(model, family, tracker) {
 
 export function resolveModel(model, family) {
   return resolveModelInternal(model, family, null);
+}
+
+export function resolveModelAssembly(model, family, { sourceModelId, modules = {} } = {}) {
+  return resolveAttachmentAssembly({
+    rig: resolveModel(model, family),
+    sourceModelId: sourceModelId || model.variant?.id || family.id,
+    instances: model.attachments || [],
+    modules,
+  });
 }
 
 export function resolveModelWithProvenance(model, family, options = {}) {

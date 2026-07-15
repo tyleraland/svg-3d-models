@@ -44,8 +44,11 @@ npx rig validate-all
 # Render a single pose to SVG
 npx rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
 
+# Render model-declared reusable modules as part of the pose
+npx rig render rabbit --attachments --clip walk --time .25 --elevation 60 --heading 0
+
 # Render the canonical heading/elevation contact sheet
-npx rig sheet rabbit
+npx rig sheet rabbit --attachments
 
 # Write a self-contained canonical-pose/multi-view review artifact
 npx rig audit rabbit -o rabbit-audit.html
@@ -84,11 +87,13 @@ The equivalent npm form is `npm run rig -- <command>`.
 
 ```text
 packages/schema/       paper-rig constants, primitives, and JSON Schemas
+packages/attachments/  pure typed-slot normalization and module assembly
 packages/compiler/     pure posing, projection, scene, SVG, and package compiler
 packages/validator/    raw-source, structural, and directional validation
 packages/cli/          the `rig` command
 rigs/families/*.json   raw reusable family bases
 rigs/models/*.json     one thin declarative model per creature
+rigs/modules/*.json    reusable source-native attachment modules
 rigs/resolve.js        family + overrides -> one normalized rig
 rigs/family-kit.js     family presets and normalization operations
 apps/workbench/        browser template, UI source, and build reassembly
@@ -98,9 +103,10 @@ test/                  Node behavior and regression tests
 spec/                  detailed versioned package references
 ```
 
-Dependency direction is `schema <- compiler <- validator`; `rigs` depends on
-schema, while the CLI and workbench depend on the full pipeline. Packages are
-plain ESM npm workspaces with no transpile or bundle step.
+Dependency direction is `schema <- compiler <- validator` and
+`schema <- attachments`; `rigs` depends on schema and attachments, while the
+CLI and workbench depend on the full pipeline. Packages are plain ESM npm
+workspaces with no transpile or bundle step.
 
 ## Authoring or changing a creature
 
@@ -134,6 +140,29 @@ A practical edit loop is:
 
 A family change can affect every model that inherits from it. Search model
 references and review representative variants before accepting new fixtures.
+
+### Authoring reusable attachments
+
+Reusable equipment and details live in `rigs/modules/` as strict
+`paper-rig/attachment-module-1` sources. A module declares compatible
+hierarchical slot types, an attachment frame, semantic palette roles, and
+module-local rig joints/plates. Model `attachments` entries select a module and
+slot and may provide a positive per-instance scale. Generated geometry IDs are
+stable and namespaced as `<instance>__<local-id>`.
+
+The 1.0 slice supports joint-owned slots and module-local joints/plates. Legacy
+anchors are normalized to typed slots—for example, `backItem` becomes
+`back.mount` and `weapon` becomes `hand.grip`. Compatibility is exact and source
+validation checks owner/module/slot references, occupancy, scale, target
+materials, palette roles, local geometry, and ID collisions. Do not bypass a
+rejection with model-specific world coordinates; either fix the declaration or
+extend the versioned contract.
+
+Attachments are intentionally opt-in while existing `paper-rig/1` consumers
+remain byte-compatible. `loadModel()` and ordinary renders omit a model's
+attachment declarations. Use `loadModelAssembly()` or `--attachments` when the
+assembled asset is wanted. The current proof attaches the same `travelPack`
+module to humanoid and rabbit `back.mount` slots at different scales.
 
 ### Explaining resolved fields
 
@@ -262,7 +291,7 @@ from the HTML.
 All core operations are synchronous, pure, and DOM-free once a rig is resolved.
 
 ```js
-import { loadModel } from '@paper-rig/rigs';
+import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
 import {
   compilePackage,
   projectScene,
@@ -284,6 +313,12 @@ const pkg = compilePackage(rig);
 
 // Compatibility API: world positions only.
 const positions = solve(rig, { clip: 'walk', time: 0.25 });
+
+// Opt-in module assembly; source model/module/base-rig objects are not mutated.
+const { rig: equippedRig, manifest: attachmentManifest } = loadModelAssembly('rabbit');
+const equippedScene = projectScene(equippedRig, {
+  clip: 'walk', time: 0.25, elevation: 60, heading: 0,
+});
 ```
 
 `projectScene()` is the intended long-term consumer boundary: an ordered,
@@ -296,8 +331,10 @@ current resolved package fields.
 
 A typical game asset pipeline should:
 
-1. select a model, clip/phase/time, heading, elevation, and semantic detail tier;
-2. request `projected-scene/1` from this repository's compiler;
+1. select a model and whether its declared module assembly is required, then
+   select clip/phase/time, heading, elevation, and semantic detail tier;
+2. request `projected-scene/1` from this repository's compiler and retain the
+   attachment manifest when assembly was requested;
 3. preserve source IDs while applying the game's palette and art treatment;
 4. simplify/quantize paths for the target screen size;
 5. deduplicate, pack, and version the resulting game assets;

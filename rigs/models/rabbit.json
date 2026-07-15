@@ -64,5 +64,13 @@
       "mode": "under-core",
       "reference": { "ifMatch": "Front", "then": "chest", "else": "pelvis" }
     }
+  ],
+  "attachments": [
+    {
+      "id": "travelPack",
+      "moduleId": "travelPack",
+      "slotId": "backAnchor",
+      "scale": 0.45
+    }
   ]
 }

@@ -2,6 +2,14 @@
   "$schema": "paper-rig/model-1",
   "family": "humanoid",
   "base": true,
+  "attachments": [
+    {
+      "id": "travelPack",
+      "moduleId": "travelPack",
+      "slotId": "backAnchor",
+      "scale": 1
+    }
+  ],
   "clips": {
     "attack": {
       "base": "idleA",

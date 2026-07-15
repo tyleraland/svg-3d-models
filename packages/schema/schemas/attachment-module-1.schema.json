@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:attachment-module-1",
+  "title": "paper-rig reusable attachment module",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "compatibleSlotTypes", "attachmentFrame", "paletteRoles", "geometry"],
+  "properties": {
+    "$schema": { "const": "paper-rig/attachment-module-1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "id": { "$ref": "#/$defs/id" },
+    "compatibleSlotTypes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/slotType" } },
+    "attachmentFrame": { "$ref": "#/$defs/frame" },
+    "paletteRoles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/slotType" } },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["joints", "plates"],
+      "properties": {
+        "joints": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/joint" } },
+        "plates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/plate" } }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "slotType": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)*$" },
+    "number": { "type": "number" },
+    "positiveNumber": { "type": "number", "exclusiveMinimum": 0 },
+    "vector3": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/number" } },
+    "size": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "$ref": "#/$defs/positiveNumber" } },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["positionMeters", "rotationXYZDegrees"],
+      "properties": {
+        "positionMeters": { "$ref": "#/$defs/vector3" },
+        "rotationXYZDegrees": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "surfaceFrame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normal", "tangent", "bitangent"],
+      "properties": {
+        "normal": { "$ref": "#/$defs/vector3" },
+        "tangent": { "$ref": "#/$defs/vector3" },
+        "bitangent": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "joint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "parent", "bind"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "parent": { "oneOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] },
+        "bind": { "$ref": "#/$defs/vector3" },
+        "role": { "type": "string", "minLength": 1 }
+      }
+    },
+    "plate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "bone", "shape", "size", "role", "bodyRegion", "attachment", "material", "paletteRole", "zBias"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "bone": { "$ref": "#/$defs/id" },
+        "shape": { "enum": ["ellipse", "bone", "taperedBone", "polygon", "disc", "roundedTip", "customPath", "capsule", "tapered"] },
+        "size": { "$ref": "#/$defs/size" },
+        "role": { "type": "string", "minLength": 1 },
+        "bodyRegion": { "const": "accessory" },
+        "attachment": { "const": "rigid" },
+        "material": { "$ref": "#/$defs/id" },
+        "paletteRole": { "$ref": "#/$defs/slotType" },
+        "zBias": { "$ref": "#/$defs/number" },
+        "span": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "$ref": "#/$defs/id" } },
+        "points": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/id" } },
+        "jointOverlap": { "$ref": "#/$defs/positiveNumber" },
+        "localPath": { "type": "string", "minLength": 1 },
+        "surfaceNormal": { "$ref": "#/$defs/vector3" },
+        "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" }
+      }
+    }
+  }
+}

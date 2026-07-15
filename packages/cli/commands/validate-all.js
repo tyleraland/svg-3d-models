@@ -4,7 +4,13 @@
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { loadFamily, loadModelSource, resolveModel } from '@paper-rig/rigs';
+import {
+  loadAttachmentModulesForModel,
+  loadFamily,
+  loadModelSource,
+  resolveModel,
+  resolveModelAssembly,
+} from '@paper-rig/rigs';
 import { validate } from '@paper-rig/validator';
 import { validateSourcePair } from '@paper-rig/validator/source';
 
@@ -20,15 +26,22 @@ export function runValidateAll() {
     try {
       const model = loadModelSource(name);
       const family = loadFamily(model.family);
-      const sourceReport = validateSourcePair(model, family);
+      const preliminary = validateSourcePair(model, family);
+      const rig = preliminary.status === 'passed' ? resolveModel(model, family) : null;
+      const attachmentModules = preliminary.status === 'passed' ? loadAttachmentModulesForModel(model) : {};
+      const sourceReport = preliminary.status === 'passed'
+        ? validateSourcePair(model, family, { resolvedRig: rig, attachmentModules })
+        : preliminary;
       if (sourceReport.status !== 'passed') {
         failed++;
         console.log(`✗ ${name.padEnd(18)} source  ${sourceReport.checks.length} checks, ${sourceReport.issues.length} issue${sourceReport.issues.length === 1 ? '' : 's'}`);
         for (const issue of sourceReport.issues) console.log(`    - ${issue.id}: ${issue.detail}`);
         continue;
       }
-      const rig = resolveModel(model, family);
-      const report = validate(rig);
+      const validationRig = model.attachments?.length
+        ? resolveModelAssembly(model, family, { sourceModelId: name, modules: attachmentModules }).rig
+        : rig;
+      const report = validate(validationRig);
       const issues = report.issues || [];
       const mark = report.status === 'passed' ? '✓' : '✗';
       if (report.status !== 'passed') failed++;

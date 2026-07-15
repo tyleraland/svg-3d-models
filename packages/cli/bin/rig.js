@@ -2,8 +2,8 @@
 // paper-rig CLI. Runs the pure pipeline headless — no browser, no workbench.
 //
 //   rig validate <model|path.json> [--json]
-//   rig render <model> [--clip --time --elevation --heading] [-o out.svg]
-//   rig sheet <model> [--clip --time] [-o out.html]
+//   rig render <model> [--attachments] [--clip --time --elevation --heading] [-o out.svg]
+//   rig sheet <model> [--attachments] [--clip --time] [-o out.html]
 //   rig audit <model> [--json] [-o report.html]
 //   rig audit-all [--json] [-o report.json]
 //   rig manifest <model> [-o candidate.json]
@@ -29,8 +29,9 @@ const USAGE = `paper-rig CLI
 
   rig validate <model|path.json> [--json]         validate one model
   rig render <model> [flags] [-o out.svg]         render a projected SVG
-      --clip <name> --time <0..1> --elevation <deg> --heading <deg> --stdout
-  rig sheet <model> [--clip --time] [-o out.html] 8x4 heading/elevation contact sheet
+      --attachments --clip <name> --time <0..1> --elevation <deg> --heading <deg> --stdout
+  rig sheet <model> [--attachments] [--clip --time] [-o out.html]
+                                                   8x4 heading/elevation contact sheet
   rig audit <model> [--json] [-o report.html]      deterministic 240-view audit
       --against <manifest.json> [--fail-on-change]
   rig audit-all [--json] [-o report.json]          audit every model; warnings do not fail CI

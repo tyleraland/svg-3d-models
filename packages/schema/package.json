@@ -15,6 +15,8 @@
     "./schemas/provenance-1.schema.json": "./schemas/provenance-1.schema.json",
     "./schemas/explanation-1.schema.json": "./schemas/explanation-1.schema.json",
     "./schemas/semantic-diff-1.schema.json": "./schemas/semantic-diff-1.schema.json",
-    "./schemas/model-patch-1.schema.json": "./schemas/model-patch-1.schema.json"
+    "./schemas/model-patch-1.schema.json": "./schemas/model-patch-1.schema.json",
+    "./schemas/attachment-module-1.schema.json": "./schemas/attachment-module-1.schema.json",
+    "./schemas/attachment-assembly-1.schema.json": "./schemas/attachment-assembly-1.schema.json"
   }
 }

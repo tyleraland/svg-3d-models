@@ -8,9 +8,11 @@
     "./source": "./source.js",
     "./audit": "./audit.js",
     "./audit-manifest": "./audit-manifest.js",
-    "./audit-overlay": "./audit-overlay.js"
+    "./audit-overlay": "./audit-overlay.js",
+    "./attachments": "./attachments.js"
   },
   "dependencies": {
+    "@paper-rig/attachments": "*",
     "@paper-rig/compiler": "*",
     "@paper-rig/schema": "*",
     "ajv": "8.20.0"

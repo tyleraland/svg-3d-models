@@ -47,7 +47,7 @@ runtime asset policy.
 | M1: semantic projection foundation | Complete | World/camera transforms, explicit surface frames, and `projected-scene/1` |
 | M2: automated audit and review artifact | Complete | JSON diagnostics, approved-manifest diffs, and inspectable multi-view HTML |
 | M2.5: authoring round-trip | Complete | Provenance, semantic diffs, source patches, and adjacent-pose/multi-camera review |
-| M3A: modular attachment foundation | Planned | Typed slots and reusable modules on local frames |
+| M3A: modular attachment foundation | In progress | Typed joint slots, reusable rig modules, assembly validation, and a two-family proof |
 | M4: composable motion system | Planned | Motion phases, recipes, richer body participation, and contact-aware checks |
 | M3B: appearance and paint | Planned | Plate-local paint and reusable semantic detail libraries |
 | M5: LOD and consumer handoff | Planned | Semantic detail tiers, capability negotiation, and stable export fixtures |
@@ -192,8 +192,9 @@ Exit criteria met:
 - Approved changes can be located by semantic ID without making historical
   output an implicit correctness assertion.
 
-Next action: begin M3A with a typed attachment/module schema and one narrow
-humanoid-plus-quadruped proof before broad catalog adoption.
+Next action completed: M3A now has a typed attachment/module schema and a narrow
+humanoid-plus-quadruped proof. The remaining M3A work is recorded in that
+milestone rather than being folded into the review-audit contract.
 
 Candidate future hard checks—surface-facing plausibility, projected-bound
 stability, abrupt acceleration, and suspicious always-on-top behavior—remain
@@ -242,15 +243,47 @@ Exit criteria met.
 
 ## M3A — modular attachment foundation
 
-Status: planned.
+Status: in progress.
 
 Add typed local frames and compatibility declarations for slots such as eyes,
 nose, mouth, horn, hat, hand-held, back-mounted, and body-surface details. A
 module is reusable semantic rig geometry, not a flattened decorative SVG.
 
+Delivered in the foundation slice:
+
+- a pure `@paper-rig/attachments` package that normalizes legacy anchor module
+  names to hierarchical slot types and resolves module instances without
+  mutating the rig, model, or module source;
+- strict `paper-rig/attachment-module-1` and
+  `paper-rig/attachment-assembly/1` JSON Schemas;
+- model-source attachment declarations, exact slot compatibility, cardinality,
+  owner/reference, positive-scale, target-material, local-geometry,
+  palette-role, and stable-ID validation;
+- deterministic instance IDs in the form `<instance>__<module-local-id>` and an
+  assembly manifest that records slot type, owner, frame, scale, and emitted
+  geometry IDs;
+- an opt-in `loadModelAssembly()` / `resolveModelAssembly()` API, preserving
+  byte-identical ordinary `loadModel()` resolution;
+- `rig render|sheet --attachments` for immediate multi-camera inspection; and
+- one source-native `travelPack` module attached to the humanoid and rabbit
+  back slots at different instance scales, with tests for posed owner-frame
+  tracking and rigid geometry across idle, walk, and attack samples.
+
+Next implementation order:
+
+1. Add authored typed slot declarations rather than relying only on normalized
+   legacy anchors, including the first plate-owned surface slot.
+2. Define bounded plate-local attachment regions and reject module geometry
+   outside them with explicit, narrowly scoped exceptions where needed.
+3. Add a face/head module proof (eye, horn, or hat) to exercise paired slots,
+   surface orientation, and counterpart semantics.
+4. Include assembly manifests and module geometry in the canonical audit/review
+   artifact, then decide whether workbench assembly toggles add enough value
+   beyond attachment contact sheets.
+
 Exit criteria:
 
-- The same eye, horn, hat, or weapon module can attach to compatible models
+- The same eye, horn, hat, weapon, or body-mounted module can attach to compatible models
   without model-specific world coordinates.
 - Validators reject incompatible slots, missing required frames, invalid paint
   references, and geometry that escapes a declared plate-local region.

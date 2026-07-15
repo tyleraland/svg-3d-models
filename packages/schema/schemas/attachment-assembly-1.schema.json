@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:attachment-assembly-1",
+  "title": "paper-rig resolved attachment assembly manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "schemaVersion", "sourceModelId", "resolvedModelId", "instances"],
+  "properties": {
+    "schema": { "const": "paper-rig/attachment-assembly/1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "sourceModelId": { "$ref": "#/$defs/id" },
+    "resolvedModelId": { "$ref": "#/$defs/id" },
+    "instances": { "type": "array", "items": { "$ref": "#/$defs/instance" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "slotType": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)*$" },
+    "vector3": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "number" } },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["positionMeters", "rotationXYZDegrees"],
+      "properties": {
+        "positionMeters": { "$ref": "#/$defs/vector3" },
+        "rotationXYZDegrees": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": { "const": "joint" },
+        "id": { "$ref": "#/$defs/id" }
+      }
+    },
+    "geometryIds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["joints", "plates"],
+      "properties": {
+        "joints": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+        "plates": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } }
+      }
+    },
+    "instance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "moduleId", "slotId", "slotType", "scale", "owner", "slotFrame", "geometryIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "moduleId": { "$ref": "#/$defs/id" },
+        "slotId": { "$ref": "#/$defs/id" },
+        "slotType": { "$ref": "#/$defs/slotType" },
+        "scale": { "type": "number", "exclusiveMinimum": 0 },
+        "owner": { "$ref": "#/$defs/owner" },
+        "slotFrame": { "$ref": "#/$defs/frame" },
+        "geometryIds": { "$ref": "#/$defs/geometryIds" }
+      }
+    }
+  }
+}

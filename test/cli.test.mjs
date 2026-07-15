@@ -29,6 +29,14 @@ test('render output is byte-identical to the golden fixture', () => {
   assert.equal(svg, golden);
 });
 
+test('render includes declared reusable modules only when attachments are requested', () => {
+  const plain = run(['render', 'rabbit', '--stdout']);
+  const assembled = run(['render', 'rabbit', '--attachments', '--stdout']);
+  assert.doesNotMatch(plain, /travelPack__/);
+  assert.match(assembled, /id="travelPack__body"/);
+  assert.match(assembled, /data-palette-role="equipment"/);
+});
+
 test('sheet produces 32 finite tiles', () => {
   const dir = mkdtempSync(join(tmpdir(), 'rig-sheet-'));
   const out = run(['sheet', 'rabbit', '-o', join(dir, 'sheet.html')]);

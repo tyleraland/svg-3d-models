@@ -9,11 +9,13 @@ is a **generated demo**, not the source of truth.
 
 ```
 packages/schema/       paper-rig/1 constants (C), V, plate/joint primitives
+packages/attachments/  pure typed-slot normalization + reusable module assembly
 packages/compiler/     pure pipeline: posing, projection, SVG, package compilation
 packages/validator/    structural + directional checks (validate/isValid)
 packages/cli/          the `rig` command
 rigs/families/*.json   raw (pre-normalization) family base per creature
 rigs/models/*.json     one thin declarative model per creature (all 31)
+rigs/modules/*.json    reusable paper-rig/attachment-module-1 sources
 rigs/resolve.js        resolveModel(): family + overrides -> rig, in one pass
 rigs/family-kit.js     family-preset + normalization operations
 apps/workbench/        template.html + ui.js (DOM layer) + build reassembly
@@ -21,15 +23,16 @@ fixtures/              golden oracle captured from the original monolith
 test/                  behavior-parity tests (node --test)
 ```
 
-Dependency direction: `schema <- compiler <- validator`; `schema <- rigs`;
-`cli`/workbench depend on all.
+Dependency direction: `schema <- compiler <- validator`; `schema <- attachments`;
+`schema/attachments <- rigs`; `cli`/workbench depend on all.
 
 ## CLI
 
 ```
 rig validate rigs/models/rabbit.json          # resolve + compile + validate
 rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
-rig sheet rabbit                               # 8x4 heading/elevation contact sheet
+rig render rabbit --attachments               # opt-in declared module assembly
+rig sheet rabbit --attachments                 # 8x4 assembled contact sheet
 rig manifest rabbit -o rabbit-candidate.json  # canonical projected review evidence
 rig audit rabbit --against approved.json      # source-ID-level review diff
 rig explain rabbit plate:headPlate.size       # resolved field origin + history
@@ -64,6 +67,13 @@ it with `rig diff`; the workbench never writes model files.
 Use the paused previous/next onion skins and the current-pose eight-heading
 turntable for quick animation/occlusion review before opening the full
 directional matrix. They are diagnostic UI only and never enter exported SVG.
+
+Reusable attachments live in `rigs/modules/`. Model `attachments` entries are
+validated declarations but ordinary `loadModel()` resolution deliberately omits
+them for compatibility. Use `loadModelAssembly()` / `resolveModelAssembly()` or
+CLI `--attachments` to inspect the assembly. Module geometry uses module-local
+coordinates and stable generated IDs `<instance>__<local-id>`; never author a
+reusable module in model/world coordinates or patch it into a resolved rig.
 
 ## Tests
 

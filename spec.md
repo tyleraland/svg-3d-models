@@ -181,6 +181,52 @@ A module MUST declare compatible slot types and its own attachment frame. A
 module MAY contain joints, plates, paint, clips, or constraints. The resolver
 MUST produce stable instance IDs and MUST NOT mutate either source object.
 
+The first implemented capability is `paper-rig/attachment-module-1` version
+`1.0.0`. It supports module-local joints and plates attached to joint-owned
+slots. Plate-owned surface slots, module-local paint, clips, and constraints are
+reserved capabilities: producers MUST NOT encode them as undocumented fields in
+the 1.0 schema.
+
+Until authored typed slots replace the legacy anchor vocabulary, the resolver
+normalizes these exact types:
+
+| Legacy `moduleType` | Slot type |
+| --- | --- |
+| `weapon` | `hand.grip` |
+| `horn` | `head.horn` |
+| `hat` | `head.hat` |
+| `helmet` | `head.helmet` |
+| `backItem` | `back.mount` |
+| `collar` | `neck.collar` |
+| `saddle` | `back.saddle` |
+| `ear` | `head.ear` |
+| `wing` | `back.wing` |
+| `tail` | `tail.mount` |
+| `generic` | `generic` |
+
+Compatibility in 1.0 is exact: a module's `compatibleSlotTypes` MUST contain
+the normalized slot type. Assembly MUST also reject missing slot/module
+references, occupancy above slot cardinality, non-positive or non-finite
+instance scale, target materials absent from the resolved rig, invalid
+module-local hierarchy/references, undeclared module palette roles, and any
+generated stable-ID collision. These checks describe declared facts and MUST
+NOT guess visual suitability from a module or model name.
+
+Each model attachment declaration identifies an instance, module, slot, and
+optional positive scale. Assembly transforms the module attachment frame onto
+the slot local frame and emits IDs as `<instance-id>__<module-local-id>`.
+`paper-rig/attachment-assembly/1` records the source/resolved model IDs, slot
+type and owner, local slot frame, scale, and generated joint/plate IDs. Module
+geometry remains ordinary rig geometry after assembly and therefore uses the
+same posing, projection, semantic grouping, and rigid-span validation as model
+anatomy.
+
+Assembly is explicitly additive during the compatibility transition.
+`resolveModel()` and `loadModel()` MUST continue to return the base resolved rig
+without declared attachments; `resolveModelAssembly()` and
+`loadModelAssembly()` return `{ rig, manifest }`. This avoids changing existing
+goldens or consumers merely because an author declares optional modules.
+
 Weapons are modules from this repository when they need coherent attachment and
 motion. Damage, range, game timing, and effects remain consumer metadata.
 

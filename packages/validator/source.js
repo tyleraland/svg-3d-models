@@ -5,6 +5,7 @@
 import Ajv2020 from 'ajv/dist/2020.js';
 import modelSchema from '@paper-rig/schema/schemas/model-1.schema.json' with { type: 'json' };
 import familySchema from '@paper-rig/schema/schemas/family-1.schema.json' with { type: 'json' };
+import { validateModelAttachmentConfiguration } from './attachments.js';
 
 const ajv = new Ajv2020({ allErrors: true, strict: true, verbose: false });
 const validateModelSchema = ajv.compile(modelSchema);
@@ -235,8 +236,16 @@ export function validateFamilySource(family) {
   return report([...schemaChecks('family', validateFamilySchema, family), ...familySemanticChecks(family)]);
 }
 
-export function validateSourcePair(model, family, { resolvedRig } = {}) {
+export function validateSourcePair(model, family, { resolvedRig, attachmentModules } = {}) {
   const modelReport = validateModelSource(model);
   const familyReport = validateFamilySource(family);
-  return report([...modelReport.checks, ...familyReport.checks, ...overrideTargetChecks(model, family, resolvedRig)]);
+  const attachmentReport = resolvedRig && attachmentModules !== undefined
+    ? validateModelAttachmentConfiguration(model, resolvedRig, attachmentModules)
+    : { checks: [] };
+  return report([
+    ...modelReport.checks,
+    ...familyReport.checks,
+    ...overrideTargetChecks(model, family, resolvedRig),
+    ...attachmentReport.checks,
+  ]);
 }

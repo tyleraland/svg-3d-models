@@ -58,6 +58,10 @@
       "type": "array",
       "items": { "$ref": "#/$defs/clipPatch" }
     },
+    "attachments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/attachmentInstance" }
+    },
     "attack": {
       "type": "object",
       "additionalProperties": false,
@@ -190,6 +194,17 @@
         "clip": { "$ref": "#/$defs/id" },
         "t": { "$ref": "#/$defs/time" },
         "add": { "$ref": "#/$defs/clipPatchAdd" }
+      }
+    },
+    "attachmentInstance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "moduleId", "slotId"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "moduleId": { "$ref": "#/$defs/id" },
+        "slotId": { "$ref": "#/$defs/id" },
+        "scale": { "$ref": "#/$defs/positiveNumber" }
       }
     },
     "frame": {
