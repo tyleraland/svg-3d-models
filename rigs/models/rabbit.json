@@ -1,0 +1,68 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "quadruped",
+  "variant": {
+    "id": "rabbitBase",
+    "archetypes": ["rabbit", "hare"],
+    "height": 0.28,
+    "scale": 48,
+    "groundY": 72,
+    "sx": 0.5,
+    "sy": 0.6,
+    "sz": 0.38,
+    "thickness": 0.68,
+    "profile": {
+      "sizeClass": "XS",
+      "silhouette": "compact body, powerful haunches, paired floppy ears"
+    },
+    "jointTweaks": {
+      "neck": [0.1, 0, 0.05],
+      "head": [0.16, 0, 0.02],
+      "tailBase": [-0.13, 0, 0.04],
+      "tailTip": [-0.09, 0, 0.04],
+      "nearRearHip": [-0.02, 0.15, -0.01],
+      "farRearHip": [-0.02, -0.15, -0.01]
+    },
+    "plateTweaks": {
+      "castShadow": [0.72, 0.48],
+      "torsoPlate": [0.34],
+      "pelvisPlate": [0.48, 0.46],
+      "neckPlate": [0.2],
+      "headConnectorPlate": [0.21],
+      "headPlate": [0.36, 0.38],
+      "tailPlate": [0.18]
+    }
+  },
+  "limbs": { "upper": 0.1, "lower": 0.08, "paw": [0.15, 0.11] },
+  "plateSizeOverrides": [
+    { "match": "Rear.*UpperPlate$", "size": [0.16] },
+    { "match": "Rear.*PawPlate$", "size": [0.22, 0.15] }
+  ],
+  "addons": [
+    {
+      "type": "pairedEars",
+      "baseX": -0.02, "baseY": 0.09, "baseZ": 0.06,
+      "tipX": -0.15, "tipY": 0.22, "tipZ": -0.05,
+      "width": 0.12, "style": "flat-floppy"
+    }
+  ],
+  "clipEvents": {
+    "walkA": [
+      { "t": 0, "name": "hop-compress" },
+      { "t": 0.5, "name": "hop-land" }
+    ]
+  },
+  "attack": { "rotations": { "neck": [0, 28, 0], "head": [0, -12, 0] } },
+  "gait": {
+    "a": { "nearFrontHip": [0, -28, 0], "nearFrontKnee": [0, 38, 0], "farRearHip": [0, -24, 0], "farRearKnee": [0, 42, 0] },
+    "b": { "farFrontHip": [0, -28, 0], "farFrontKnee": [0, 38, 0], "nearRearHip": [0, -24, 0], "nearRearKnee": [0, 42, 0] },
+    "semantics": "compact under-body limbs rotate as complete chains; no stretched endpoint-only plates"
+  },
+  "occlusion": [
+    {
+      "match": "(Front|Rear)(Upper|Lower|Paw)Plate$",
+      "mode": "under-core",
+      "reference": { "ifMatch": "Front", "then": "chest", "else": "pelvis" }
+    }
+  ]
+}
