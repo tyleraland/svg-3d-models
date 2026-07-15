@@ -17,7 +17,8 @@
     "validate-all": "node packages/cli/bin/rig.js validate-all",
     "build-workbench": "node packages/cli/bin/rig.js build-workbench",
     "capture-fixtures": "node scripts/capture-fixtures.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "test:workbench": "node scripts/check-workbench-parity.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1"
