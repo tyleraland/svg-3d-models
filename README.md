@@ -134,11 +134,12 @@ exit status.
 
 ### Reviewing intentional projected changes
 
-`rig manifest <model>` captures the canonical 192-view projected contract at a
+`rig manifest <model>` captures the canonical 240-view projected contract at a
 numeric precision of `1e-9`: full joint transforms, vector geometry, surface and
 depth data, active contacts, semantic element classifications, and compositing
-order. It deliberately omits notes and other data that cannot affect the
-structured projection.
+order. The matrix includes attack anticipation, impact, and recovery in addition
+to bind, idle, gait contacts, hit, and knockout samples. It deliberately omits
+notes and other data that cannot affect the structured projection.
 
 Treat generated manifests as candidates. Inspect the corresponding audit HTML,
 then move or commit a candidate as an approved baseline only through an explicit
@@ -150,6 +151,14 @@ schema is always reported as incompatible rather than compared misleadingly.
 No catalog baseline is approved merely because it matches today's output. This
 keeps historical mistakes from becoming silent correctness assertions while
 still making later, reviewed changes cheap to locate.
+
+Audit HTML exposes independent toggles for joints, active contact IDs, plate IDs
+with camera depth, compositing-group tint, and anchor/surface-normal frames.
+When an approved-manifest comparison changes, affected current elements and
+joints are highlighted separately and changed view tiles are outlined. Overlay
+records also remain in `paper-rig/audit/1` JSON as deterministic
+`paper-rig/audit-overlay/1` evidence, so an agent does not have to scrape labels
+from the HTML.
 
 ## Using the compiler from JavaScript
 

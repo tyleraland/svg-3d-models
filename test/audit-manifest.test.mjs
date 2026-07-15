@@ -51,6 +51,8 @@ test('manifest diffs identify affected geometry without asserting that a change 
   const html = renderAuditHtml(changed, report);
   assert.match(html, /Approved manifest comparison/);
   assert.match(html, /headPlate/);
+  assert.match(html, /class="auditChangedElement"/);
+  assert.match(html, /data-body-class="show-changes" checked/);
 });
 
 test('manifest diffs separate semantic/compositing changes from vector changes', () => {
@@ -85,7 +87,7 @@ test('CLI generates candidates, reports approval diffs, and gates only by explic
   const manifestPath = join(dir, 'rabbit-candidate.json');
   const reportPath = join(dir, 'rabbit-audit.json');
   const stdout = execFileSync('node', [RIG, 'manifest', 'rabbit', '-o', manifestPath], { cwd: ROOT, encoding: 'utf8' });
-  assert.match(stdout, /manifest candidate: rabbitBase, 192 views/);
+  assert.match(stdout, /manifest candidate: rabbitBase, 240 views/);
 
   const approved = JSON.parse(readFileSync(manifestPath, 'utf8'));
   approved.views[0].elements[0].vector.attributes.rx = '999';

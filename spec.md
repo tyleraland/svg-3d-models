@@ -342,9 +342,20 @@ adopted a baseline. Different model IDs, sampling matrices, canonicalization
 contracts, or manifest schema versions are incompatible and MUST NOT be compared
 as if they were equivalent views.
 
+Each `paper-rig/audit/1` view MAY carry `paper-rig/audit-overlay/1` evidence.
+This evidence records ordered compositing membership, traceable plate label
+anchors and camera depth, active contact positions, projected attachment
+anchors, and explicit or legacy surface normals. Its HTML rendering MUST keep
+diagnostic layers separate from compiled asset geometry and MUST allow the
+reviewer to toggle joint, contact, plate/depth, compositing, and frame layers
+independently. A manifest comparison SHOULD highlight affected current elements
+and joints, but missing/removed elements MUST remain described in the machine
+diff because they cannot be drawn in the current scene.
+
 Canonical review MUST sample multiple headings, elevations, clips, phases, and
-times. A single attractive default view is insufficient evidence of model
-correctness.
+times, including attack anticipation, contact/impact, and recovery even before a
+model adopts explicit phase metadata. A single attractive default view is
+insufficient evidence of model correctness.
 
 ## 13. Author and agent rules
 

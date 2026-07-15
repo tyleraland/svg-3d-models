@@ -16,12 +16,47 @@ test('audit emits deterministic diagnostics over the complete canonical matrix',
   const report = auditRig(rig);
   assert.equal(report.schema, 'paper-rig/audit/1');
   assert.equal(report.status, 'passed');
-  assert.equal(report.summary.viewCount, 192);
+  assert.equal(report.summary.viewCount, 240);
+  assert.deepEqual(report.sampling.poses.filter((pose) => pose.clip === 'attack').map((pose) => pose.id), [
+    'attackAnticipation', 'attackImpact', 'attackRecovery',
+  ]);
   assert.equal(report.issues.length, 0);
   assert.equal(report.summary.warningCount, report.warnings.length);
   assert.ok(report.warnings.every((item) => item.severity === 'warning'));
   assert.ok(report.diagnostics.some((item) => item.code === 'audit.rigid-span-policy' && item.pass));
+  assert.ok(report.diagnostics.some((item) => item.code === 'audit.overlay-evidence' && item.pass));
   assert.deepEqual(auditRig(rig), report, 'audit output must be deterministic');
+});
+
+test('audit views carry traceable plate/depth, compositing, and contact overlay evidence', () => {
+  const report = auditRig(loadModel('rabbit'), {
+    headings: [0],
+    elevations: [60],
+    poses: [{ id: 'bind', clip: 'bind', t: 0 }],
+  });
+  const overlay = report.views[0].overlay;
+  assert.equal(overlay.schema, 'paper-rig/audit-overlay/1');
+  assert.deepEqual(overlay.compositingGroups.map((group) => group.order), [0, 1, 2, 3, 4, 5]);
+  const head = overlay.plateLabels.find((label) => label.elementId === 'headPlate');
+  assert.equal(head.sourceId, 'headPlate');
+  assert.equal(head.groupId, 'coreSurfaceGroup');
+  assert.match(head.label, /^headPlate · g3 · z-?\d/);
+  assert.ok([...head.anchor, ...head.labelPosition, head.cameraDepth].every(Number.isFinite));
+  assert.deepEqual(overlay.contacts.map((contact) => contact.jointId), [
+    'farFrontPaw', 'farRearPaw', 'nearFrontPaw', 'nearRearPaw',
+  ]);
+
+  const humanoid = auditRig(loadModel('humanoid'), {
+    headings: [315],
+    elevations: [75],
+    poses: [{ id: 'bind', clip: 'bind', t: 0 }],
+  }).views[0].overlay;
+  assert.equal(humanoid.anchors.length, 8);
+  assert.ok(humanoid.anchors.every((anchor) => anchor.moduleType && anchor.screenPosition.every(Number.isFinite)));
+  assert.equal(humanoid.surfaceNormals.length, 3);
+  assert.ok(humanoid.surfaceNormals.every((normal) => (
+    normal.cameraNormal.length === 3 && normal.cameraNormal.every(Number.isFinite)
+  )));
 });
 
 test('audit HTML is self-contained and includes every sampled view', () => {
@@ -29,7 +64,11 @@ test('audit HTML is self-contained and includes every sampled view', () => {
   const report = auditRig(rig);
   const html = renderAuditHtml(rig, report);
   assert.match(html, /rabbitBase paper-rig audit/);
-  assert.equal((html.match(/<svg /g) || []).length, 192);
+  assert.equal((html.match(/<svg /g) || []).length, 240);
+  assert.equal((html.match(/class="auditPlateDepthOverlay"/g) || []).length, 240);
+  assert.match(html, /data-body-class="show-compositing"/);
+  assert.match(html, /data-body-class="show-frames"/);
+  assert.match(html, /data-body-class="show-contacts" checked/);
   assert.doesNotMatch(html, /NaN|Infinity/);
   assert.doesNotMatch(html, /<script[^>]+src=/);
 });
@@ -38,7 +77,7 @@ test('rig audit CLI writes a review artifact', () => {
   const dir = mkdtempSync(join(tmpdir(), 'rig-audit-'));
   const out = join(dir, 'rabbit-audit.html');
   const stdout = execFileSync('node', [RIG, 'audit', 'rabbit', '-o', out], { cwd: ROOT, encoding: 'utf8' });
-  assert.match(stdout, /audit passed: 192 views, 0 issues, \d+ warnings/);
+  assert.match(stdout, /audit passed: 240 views, 0 issues, \d+ warnings/);
   assert.match(readFileSync(out, 'utf8'), /paper-rig\/audit\/1/);
 });
 
@@ -80,7 +119,7 @@ test('catalog audit is deterministic, compact, and warning-tolerant', () => {
   assert.equal(report.schema, 'paper-rig/audit-catalog/1');
   assert.equal(report.status, 'passed');
   assert.equal(report.summary.modelCount, 2);
-  assert.equal(report.summary.viewCount, 384);
+  assert.equal(report.summary.viewCount, 480);
   assert.equal(report.summary.issueCount, 0);
   assert.ok(report.summary.warningCount > 0);
   assert.ok(report.models.every((model) => !('views' in model)));

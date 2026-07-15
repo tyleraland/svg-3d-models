@@ -5,7 +5,7 @@
 import { compilePackage, core, projectScene } from '@paper-rig/compiler';
 import Ajv2020 from 'ajv/dist/2020.js';
 import auditManifestSchema from '@paper-rig/schema/schemas/audit-manifest-1.schema.json' with { type: 'json' };
-import { DEFAULT_AUDIT_ELEVATIONS, DEFAULT_AUDIT_HEADINGS } from './audit.js';
+import { DEFAULT_AUDIT_ELEVATIONS, DEFAULT_AUDIT_HEADINGS, defaultAuditPoses } from './audit.js';
 
 const NUMERIC_PRECISION = 1e-9;
 const NUMERIC_DIGITS = 9;
@@ -122,7 +122,7 @@ export function createAuditManifest(rig, options = {}) {
   const pkg = compilePackage(rig);
   const headings = [...(options.headings || DEFAULT_AUDIT_HEADINGS)];
   const elevations = [...(options.elevations || DEFAULT_AUDIT_ELEVATIONS)];
-  const poses = (options.poses || pkg.directionalBake.keyPoses).map((pose) => ({ ...pose }));
+  const poses = (options.poses || defaultAuditPoses(rig, pkg)).map((pose) => ({ ...pose }));
   const views = [];
 
   for (const pose of poses) {

@@ -27,7 +27,7 @@ const USAGE = `paper-rig CLI
   rig render <model> [flags] [-o out.svg]         render a projected SVG
       --clip <name> --time <0..1> --elevation <deg> --heading <deg> --stdout
   rig sheet <model> [--clip --time] [-o out.html] 8x4 heading/elevation contact sheet
-  rig audit <model> [--json] [-o report.html]      deterministic 192-view audit
+  rig audit <model> [--json] [-o report.html]      deterministic 240-view audit
       --against <manifest.json> [--fail-on-change]
   rig audit-all [--json] [-o report.json]          audit every model; warnings do not fail CI
   rig manifest <model> [-o candidate.json]         emit canonical projected review evidence

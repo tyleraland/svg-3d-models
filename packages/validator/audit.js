@@ -3,6 +3,7 @@
 // sampling manifest plus projected SVGs and never becomes an authoring source.
 
 import { compilePackage, core, markup, projectScene } from '@paper-rig/compiler';
+import { buildAuditOverlayEvidence, renderAuditOverlaySvg } from './audit-overlay.js';
 
 export const DEFAULT_AUDIT_HEADINGS = [0, 45, 90, 135, 180, 225, 270, 315];
 export const DEFAULT_AUDIT_ELEVATIONS = [45, 60, 75];
@@ -38,6 +39,27 @@ function jointBounds(scene) {
 const inUnitInterval = (value) => Number.isFinite(value) && value >= 0 && value <= 1;
 const vector3IsFinite = (value) => Array.isArray(value) && value.length === 3 && value.every(Number.isFinite);
 const zeroVector = [0, 0, 0];
+
+export function defaultAuditPoses(rig, pkg = compilePackage(rig)) {
+  const poses = pkg.directionalBake.keyPoses.map((pose) => ({ ...pose }));
+  const impactIndex = poses.findIndex((pose) => pose.clip === 'attack');
+  if (impactIndex < 0) return poses;
+  const attack = rig.clips.attack;
+  const impactTime = poses[impactIndex].t;
+  const releaseTime = (attack?.events || []).find((event) => event.t > impactTime && /release|recover|settle/i.test(event.name))?.t
+    ?? impactTime + (1 - impactTime) * 0.6;
+  poses.splice(impactIndex, 0, {
+    id: 'attackAnticipation',
+    clip: 'attack',
+    t: impactTime * 0.45,
+  });
+  poses.splice(impactIndex + 2, 0, {
+    id: 'attackRecovery',
+    clip: 'attack',
+    t: Math.min(1, releaseTime),
+  });
+  return poses;
+}
 
 function vectorEquivalent(a = zeroVector, b = zeroVector, rotations = false) {
   if (!vector3IsFinite(a) || !vector3IsFinite(b)) return false;
@@ -144,7 +166,7 @@ export function auditRig(rig, options = {}) {
   const pkg = compilePackage(rig);
   const headings = [...(options.headings || DEFAULT_AUDIT_HEADINGS)];
   const elevations = [...(options.elevations || DEFAULT_AUDIT_ELEVATIONS)];
-  const poses = (options.poses || pkg.directionalBake.keyPoses).map((pose) => ({ ...pose }));
+  const poses = (options.poses || defaultAuditPoses(rig, pkg)).map((pose) => ({ ...pose }));
   const views = [];
 
   for (const pose of poses) {
@@ -157,6 +179,8 @@ export function auditRig(rig, options = {}) {
           heading,
         });
         const elements = scene.compositingGroups.flatMap((group) => group.elements);
+        const activeContactIds = pose.clip === 'bind' ? [...pkg.groundContacts] : core.contactIds(rig, pose.clip, pose.t);
+        const overlay = buildAuditOverlayEvidence(rig, scene, activeContactIds);
         views.push({
           id: `${pose.id}@${elevation}@${heading}`,
           poseId: pose.id,
@@ -168,12 +192,13 @@ export function auditRig(rig, options = {}) {
           jointBounds: jointBounds(scene),
           elementCount: elements.length,
           generatedElementCount: elements.filter((element) => element.generated).length,
-          activeContactIds: pose.clip === 'bind' ? [...pkg.groundContacts] : core.contactIds(rig, pose.clip, pose.t),
+          activeContactIds,
           compositingGroups: scene.compositingGroups.map((group) => ({
             semanticRole: group.semanticRole,
             elementCount: group.elements.length,
           })),
           traceable: elements.every((element) => element.sourceId && element.sourceKind && element.vector?.attributes?.id === element.id),
+          overlay,
         });
       }
     }
@@ -201,6 +226,13 @@ export function auditRig(rig, options = {}) {
       JSON.stringify(view.compositingGroups.map((group) => group.semanticRole)) === JSON.stringify(EXPECTED_GROUPS)
     )), 'all sampled scenes contain the six ordered semantic compositing groups'),
     diagnostic('audit.source-traceability', views.every((view) => view.traceable), 'every sampled vector element resolves to a semantic source'),
+    diagnostic('audit.overlay-evidence', views.every((view) => (
+      view.overlay?.schema === 'paper-rig/audit-overlay/1'
+      && view.overlay.plateLabels.every((label) => label.elementId && label.sourceId && finiteDeep(label))
+      && view.overlay.contacts.every((contact) => contact.jointId && finiteDeep(contact))
+      && view.overlay.anchors.every((anchor) => anchor.id && anchor.boneId && finiteDeep(anchor))
+      && view.overlay.surfaceNormals.every((normal) => normal.sourceId && finiteDeep(normal))
+    )), 'every sampled view contains finite plate/depth, compositing, and contact overlay evidence'),
     diagnostic('audit.rigid-span-policy', core.rigidPlateSpanLengthsPass(rig), 'every rigid span preserves bind length across every clip'),
     ...motionDiagnostics(rig),
   ];
@@ -297,6 +329,9 @@ function renderManifestComparison(diff) {
 
 export function renderAuditHtml(rig, report = auditRig(rig), options = {}) {
   const overlays = options.overlays ?? true;
+  const viewById = new Map(report.views.map((view) => [view.id, view]));
+  const changeByViewId = new Map((report.approvedManifestDiff?.changes || []).map((change) => [change.viewId, change]));
+  const hasManifestChanges = report.approvedManifestDiff?.status === 'changed';
   const diagnostics = report.diagnostics.map((item) => {
     const state = item.pass ? 'pass' : item.severity === 'warning' ? 'warn' : 'fail';
     const label = item.pass ? 'PASS' : item.severity === 'warning' ? 'WARN' : 'FAIL';
@@ -305,16 +340,37 @@ export function renderAuditHtml(rig, report = auditRig(rig), options = {}) {
   const sections = report.sampling.poses.map((pose) => {
     const rows = report.sampling.elevationsDegrees.map((elevation) => {
       const cells = report.sampling.headingsDegrees.map((heading) => {
+        const viewId = `${pose.id}@${elevation}@${heading}`;
+        const viewEvidence = viewById.get(viewId);
+        const change = changeByViewId.get(viewId);
         const vector = markup(rig, {
           clip: pose.clip,
           time: pose.t,
           elevation,
           heading,
           bones: overlays,
-          contacts: overlays,
+          contacts: false,
           clean: !overlays,
         });
-        return `<figure><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">${vector}</svg><figcaption>${heading}°</figcaption></figure>`;
+        let overlayMarkup = '';
+        if (overlays) {
+          const scene = projectScene(rig, { clip: pose.clip, time: pose.t, elevation, heading });
+          const evidence = viewEvidence?.overlay || buildAuditOverlayEvidence(rig, scene, viewEvidence?.activeContactIds || []);
+          const elementIds = change ? [...new Set([
+            ...change.addedElementIds,
+            ...change.semanticChangedElementIds,
+            ...change.projectionChangedElementIds,
+            ...change.geometryChangedElementIds,
+            ...change.compositingChangedElementIds,
+          ])] : [];
+          overlayMarkup = renderAuditOverlaySvg(scene, evidence, {
+            elementIds,
+            jointIds: change?.jointTransformChangedIds || [],
+            contactIds: change?.contactChanged ? [...new Set([...change.approvedContactIds, ...change.currentContactIds])] : [],
+          });
+        }
+        const changed = change ? '<span class="viewChanged">changed</span>' : '';
+        return `<figure class="${change ? 'changedView' : ''}" data-view-id="${escapeHtml(viewId)}"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">${vector}${overlayMarkup}</svg><figcaption>${heading}° ${changed}</figcaption></figure>`;
       }).join('');
       return `<h3>elevation ${elevation}°</h3><div class="view-row">${cells}</div>`;
     }).join('');
@@ -322,10 +378,13 @@ export function renderAuditHtml(rig, report = auditRig(rig), options = {}) {
   }).join('');
   const reportJson = JSON.stringify(report, null, 2).replaceAll('&', '\\u0026').replaceAll('<', '\\u003c');
   const manifestComparison = renderManifestComparison(report.approvedManifestDiff);
+  const overlayControls = overlays ? `<nav class="overlayControls" aria-label="Diagnostic overlay controls"><strong>Overlays</strong><label><input type="checkbox" data-body-class="show-skeleton" checked>joints</label><label><input type="checkbox" data-body-class="show-contacts" checked>contacts</label><label><input type="checkbox" data-body-class="show-plates">plate IDs + depth</label><label><input type="checkbox" data-body-class="show-compositing">compositing tint</label><label><input type="checkbox" data-body-class="show-frames">anchors + normals</label>${hasManifestChanges ? '<label><input type="checkbox" data-body-class="show-changes" checked>manifest changes</label>' : ''}</nav>` : '';
+  const bodyClasses = overlays ? `show-skeleton show-contacts${hasManifestChanges ? ' show-changes' : ''}` : '';
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(rig.id)} paper-rig audit</title>
 <style>
-:root{color-scheme:dark}body{margin:20px;background:#24211d;color:#eee4cf;font:14px/1.4 system-ui,sans-serif}header{display:flex;align-items:end;justify-content:space-between;gap:20px}h1,h2,h3{margin:.5em 0}small{font-weight:400;opacity:.7}.status{padding:.35em .7em;border-radius:999px;background:${report.status === 'passed' ? '#285c43' : '#7d3434'};font-weight:700}table{width:100%;border-collapse:collapse;margin:16px 0 28px}td{padding:6px 8px;border-bottom:1px solid #494239}.pass td:first-child{color:#72d59b}.warn td:first-child{color:#f0c66f}.fail td:first-child{color:#ff8888}.manifestComparison{padding:1px 14px;border-left:4px solid #72d59b;background:#2b2823}.manifestComparison.changed{border-color:#f0c66f}.manifestComparison.incompatible{border-color:#ff8888}.view-row{display:grid;grid-template-columns:repeat(8,minmax(90px,1fr));gap:8px}figure{margin:0;text-align:center}svg{display:block;width:100%;background:#f6f0e3;border-radius:5px}figcaption{font-size:11px;opacity:.7;margin-top:2px}section{margin:32px 0}details{margin:30px 0}pre{overflow:auto;background:#171512;padding:12px;border-radius:6px}
+:root{color-scheme:dark}body{margin:20px;background:#24211d;color:#eee4cf;font:14px/1.4 system-ui,sans-serif}header{display:flex;align-items:end;justify-content:space-between;gap:20px}h1,h2,h3{margin:.5em 0}small{font-weight:400;opacity:.7}.status{padding:.35em .7em;border-radius:999px;background:${report.status === 'passed' ? '#285c43' : '#7d3434'};font-weight:700}table{width:100%;border-collapse:collapse;margin:16px 0 28px}td{padding:6px 8px;border-bottom:1px solid #494239}.pass td:first-child{color:#72d59b}.warn td:first-child{color:#f0c66f}.fail td:first-child{color:#ff8888}.manifestComparison{padding:1px 14px;border-left:4px solid #72d59b;background:#2b2823}.manifestComparison.changed{border-color:#f0c66f}.manifestComparison.incompatible{border-color:#ff8888}.overlayControls{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:9px 12px;background:#171512e8;border:1px solid #494239;border-radius:6px;backdrop-filter:blur(8px)}.overlayControls label{display:flex;align-items:center;gap:4px;font-size:12px}.view-row{display:grid;grid-template-columns:repeat(8,minmax(90px,1fr));gap:8px}figure{margin:0;text-align:center}.changedView svg{box-shadow:0 0 0 2px #ee5d5d}svg{display:block;width:100%;background:#f6f0e3;border-radius:5px}figcaption{font-size:11px;opacity:.7;margin-top:2px}.viewChanged{color:#ff8888;margin-left:4px}section{margin:32px 0}details{margin:30px 0}pre{overflow:auto;background:#171512;padding:12px;border-radius:6px}
 .paperPlate{fill:#d7c39c;stroke:#39362e;stroke-width:1.2;vector-effect:non-scaling-stroke}.plateShade{fill:#b99d73}.paperPlate[data-palette-role="shadow"]{fill:#9d927d}.coreOccluderCell,.jointGasket{fill:#d7c39c;stroke:#d7c39c;stroke-width:1.5;vector-effect:non-scaling-stroke}.faceEye{fill:#fffdf7;stroke:#39362e;stroke-width:.8}.faceNose,.wingMembrane{fill:#b99d73;stroke:#39362e;stroke-width:.8;stroke-linejoin:round}.boneLine{stroke:#567084;stroke-width:.35}.jointDot{fill:#fff;stroke:#567084;stroke-width:.25}.labelText{fill:#28231d;font-size:2px}.contactRing{fill:none;stroke:#5d8e62;stroke-width:.55}
-</style></head><body><header><div><h1>${escapeHtml(rig.id)} paper-rig audit</h1><div>${report.summary.viewCount} views · ${report.summary.jointCount} joints · ${report.summary.plateCount} plates · ${report.summary.clipCount} clips · ${report.summary.warningCount} warnings</div></div><div class="status">${report.status.toUpperCase()}</div></header><table><tbody>${diagnostics}</tbody></table>${manifestComparison}${sections}<details><summary>Machine-readable report</summary><pre>${escapeHtml(reportJson)}</pre></details></body></html>`;
+.auditGroup0{color:#6d747c}.auditGroup1{color:#357ca5}.auditGroup2{color:#7d55a6}.auditGroup3{color:#c77d1a}.auditGroup4{color:#d65332}.auditGroup5{color:#a83c82}.auditElementOutline{fill:currentColor!important;fill-opacity:.14;stroke:currentColor!important;stroke-width:.55;vector-effect:non-scaling-stroke}.auditPlateLeader{stroke:currentColor;stroke-width:.35;vector-effect:non-scaling-stroke}.auditPlateLabel,.auditContactLabel,.auditAnchorLabel,.auditChangedLabel{font:1.65px ui-monospace,monospace;paint-order:stroke;stroke:#f6f0e3;stroke-width:.7;stroke-linejoin:round}.auditPlateLabel{fill:currentColor}.auditContactRing{fill:none;stroke:#27864d;stroke-width:.75;vector-effect:non-scaling-stroke}.auditContactLabel{fill:#166b3a}.auditAnchorMark,.auditNormalLine{fill:none;stroke:#7652aa;stroke-width:.75;vector-effect:non-scaling-stroke}.auditAnchorLabel{fill:#62418e}.auditNormalTip{fill:#7652aa}.auditChangedElement{fill:none!important;stroke:#e32f2f!important;stroke-width:1.25;vector-effect:non-scaling-stroke}.auditChangedJoint{fill:#fff;stroke:#e32f2f;stroke-width:1;vector-effect:non-scaling-stroke}.auditChangedContact{fill:none;stroke:#e32f2f;stroke-width:1.2;stroke-dasharray:1.4 1;vector-effect:non-scaling-stroke}.auditChangedLabel{fill:#c51919;font-weight:700}.auditChangedOverlay{pointer-events:none}body:not(.show-skeleton) #skeletonOverlay,body:not(.show-contacts) .auditContactOverlay,body:not(.show-plates) .auditPlateDepthOverlay,body:not(.show-compositing) .auditCompositingOverlay,body:not(.show-frames) .auditFrameOverlay,body:not(.show-changes) .auditChangedOverlay{display:none}
+</style></head><body class="${bodyClasses}"><header><div><h1>${escapeHtml(rig.id)} paper-rig audit</h1><div>${report.summary.viewCount} views · ${report.summary.jointCount} joints · ${report.summary.plateCount} plates · ${report.summary.clipCount} clips · ${report.summary.warningCount} warnings</div></div><div class="status">${report.status.toUpperCase()}</div></header>${overlayControls}<table><tbody>${diagnostics}</tbody></table>${manifestComparison}${sections}<details><summary>Machine-readable report</summary><pre>${escapeHtml(reportJson)}</pre></details><script>document.querySelectorAll('[data-body-class]').forEach(input=>input.addEventListener('change',()=>document.body.classList.toggle(input.dataset.bodyClass,input.checked)));</script></body></html>`;
 }

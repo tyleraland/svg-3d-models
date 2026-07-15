@@ -45,8 +45,8 @@ runtime asset policy.
 | --- | --- | --- |
 | M0: extract and harden the current pipeline | Complete | 31 models are factored into families/models, validated, parity-tested, and CI-ready |
 | M1: semantic projection foundation | Complete | World/camera transforms, explicit surface frames, and `projected-scene/1` |
-| M2: automated audit and review artifact | In progress | JSON diagnostics plus an inspectable multi-view HTML report |
-| M2.5: authoring round-trip | Planned | Provenance, semantic diffs, and workbench-to-source patches |
+| M2: automated audit and review artifact | Complete | JSON diagnostics, approved-manifest diffs, and inspectable multi-view HTML |
+| M2.5: authoring round-trip | In progress | Provenance, semantic diffs, and workbench-to-source patches |
 | M3A: modular attachment foundation | Planned | Typed slots and reusable modules on local frames |
 | M4: composable motion system | Planned | Motion phases, recipes, richer body participation, and contact-aware checks |
 | M3B: appearance and paint | Planned | Plate-local paint and reusable semantic detail libraries |
@@ -139,7 +139,7 @@ Exit criteria met:
 
 ## M2 — automated audit and review artifact
 
-Status: in progress.
+Status: complete.
 
 Add `rig audit <model>` and `rig audit-all`. Each audit should emit machine
 readable JSON and, when requested, one self-contained HTML report containing:
@@ -153,8 +153,9 @@ readable JSON and, when requested, one self-contained HTML report containing:
 Delivered in the first M2 slice:
 
 - `rig audit <model> --json` with deterministic `paper-rig/audit/1` diagnostics;
-- `rig audit <model> -o report.html` with one self-contained 192-view artifact;
-- eight canonical poses across eight headings and three review elevations;
+- `rig audit <model> -o report.html` with one self-contained 240-view artifact;
+- ten canonical poses—including attack anticipation, impact, and recovery—
+  across eight headings and three review elevations;
 - joint, bone, contact, compositing, traceability, finite-coordinate, and rigid
   span evidence;
 - `rig audit-all --json` with a compact `paper-rig/audit-catalog/1` envelope,
@@ -174,37 +175,35 @@ Delivered in the first M2 slice:
 - regressions proving non-projected notes do not create review churn and that
   geometry and compositing edits identify affected semantic IDs without
   declaring the reviewed change intrinsically wrong;
+- deterministic `paper-rig/audit-overlay/1` evidence for plate IDs and camera
+  depth, compositing membership, active contacts, attachment anchors, and
+  explicit or legacy surface normals;
+- independently toggleable HTML layers for joints, contacts, plate/depth labels,
+  compositing tint, anchors/normals, and manifest-change highlighting;
 - stable diagnostic codes and API/CLI/HTML regression coverage; and
 - successful visual QA of the harpy report layout.
 
-Next action: add the plate/compositing/depth and contact overlays needed to
-diagnose manifest changes directly in the review artifact, then begin M2.5
-resolver provenance and source-level semantic diffs.
+Exit criteria met:
 
-Initial deterministic checks:
+- `rig audit-all --json` is a CI-suitable command with warnings separated from
+  hard issues.
+- One self-contained artifact covers the canonical model, camera, and motion
+  review matrix with machine-linked diagnostic evidence.
+- Approved changes can be located by semantic ID without making historical
+  output an implicit correctness assertion.
 
-- finite transforms and geometry;
-- unique and resolvable semantic references;
-- parent/child and span continuity within declared tolerances;
-- attachment and plate-to-bone consistency;
-- contact drift during planted intervals;
-- unexpected ground penetration;
-- bilateral symmetry or explicitly declared asymmetry;
-- surface-facing and visibility plausibility over canonical cameras;
-- extreme or unstable projected bounds;
-- animation loop closure, event ordering, and abrupt acceleration;
-- depth-order instability and suspicious always-on-top elements.
+Next action: continue M2.5 with resolver field provenance, then expose that data
+through `rig explain` and source-level semantic diffs.
 
-Exit criteria:
-
-- `rig audit-all --json` is a CI-suitable command.
-- A human can review a changed model from one generated artifact rather than
-  manually scrubbing the workbench.
-- Diagnostic codes are documented and regression tested.
+Candidate future hard checks—surface-facing plausibility, projected-bound
+stability, abrupt acceleration, and suspicious always-on-top behavior—remain
+deliberately deferred until their semantic intent and exception mechanism are
+unambiguous. They are not M2 exit blockers and MUST NOT be promoted from review
+evidence to failures merely because a heuristic is easy to compute.
 
 ## M2.5 — authoring round-trip
 
-Status: planned.
+Status: in progress.
 
 Make resolved data explainable and make safe workbench experimentation produce
 small editable-source patches rather than compiled-package dumps.
@@ -218,6 +217,10 @@ Implementation order:
    keyframe patch for the current local edits.
 4. Add clip-phase/keyframe selection, previous/next onion skins, and a small set
    of simultaneous representative cameras.
+
+The projected manifest/diff surface is delivered. The next implementation slice
+is field provenance through the ordered resolver pass; source-level diffing must
+build on that provenance rather than comparing opaque resolved JSON blobs.
 
 Exit criteria:
 

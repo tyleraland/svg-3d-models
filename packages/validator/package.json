@@ -7,7 +7,8 @@
     ".": "./index.js",
     "./source": "./source.js",
     "./audit": "./audit.js",
-    "./audit-manifest": "./audit-manifest.js"
+    "./audit-manifest": "./audit-manifest.js",
+    "./audit-overlay": "./audit-overlay.js"
   },
   "dependencies": {
     "@paper-rig/compiler": "*",
