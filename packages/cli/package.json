@@ -1,0 +1,14 @@
+{
+  "name": "@paper-rig/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "rig": "bin/rig.js"
+  },
+  "dependencies": {
+    "@paper-rig/compiler": "*",
+    "@paper-rig/validator": "*",
+    "@paper-rig/rigs": "*",
+    "@paper-rig/schema": "*"
+  }
+}
