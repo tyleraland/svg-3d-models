@@ -428,6 +428,16 @@ the exact artifact before copying. Applying the artifact to repository source
 remains an explicit author or agent action followed by source validation and
 semantic review.
 
+Workbench pose-comparison layers are diagnostic and MUST NOT alter source-patch
+content, compiled packages, or exported SVG. Adjacent-pose onion skins SHOULD
+use declared keyframe times rather than inventing semantic phases. Their DOM IDs
+MUST NOT collide with current-pose semantic IDs. A simultaneous current-pose
+camera view SHOULD cover all canonical headings at one explicitly selected
+review elevation; selecting a comparison tile MAY update the live camera but
+MUST NOT mutate model or clip data. Diagnostic multi-view refresh MAY pause
+during animation playback for responsiveness if it refreshes at the current
+time when playback stops.
+
 The versioned JSON Schemas in `packages/schema/schemas/` are the machine
 contract for provenance, explanations, semantic diffs, and model patches.
 

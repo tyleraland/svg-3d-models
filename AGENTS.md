@@ -61,6 +61,9 @@ additive joint-local edits at an exact existing keyframe. It deliberately reject
 global/proportion/interpolated or rigid-child-translation edits. Apply the
 artifact explicitly with `applyModelPatch`, validate the candidate, and review
 it with `rig diff`; the workbench never writes model files.
+Use the paused previous/next onion skins and the current-pose eight-heading
+turntable for quick animation/occlusion review before opening the full
+directional matrix. They are diagnostic UI only and never enter exported SVG.
 
 ## Tests
 

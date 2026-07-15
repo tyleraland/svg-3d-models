@@ -206,6 +206,23 @@ to source clips such as `idleA` or `walkA` run before canonical clip derivation;
 patches naming generated clips such as `idle` or `walk` apply only to that
 canonical clip. Multiple patches compose additively in source order.
 
+### Comparing poses and cameras in the workbench
+
+The timeline exposes every declared keyframe and previous/next navigation.
+While playback is paused, the adjacent declared keys appear behind the current
+pose as blue/red outline onion skins. They are diagnostic workbench layers only:
+they use prefixed DOM IDs, do not affect source-patch generation, and never enter
+the exported SVG.
+
+The **Current pose turntable** renders the selected clip/time and current editor
+transforms at all eight canonical headings. Its comparison elevation is
+independent of the live camera and can be switched among 45°, 60°, and 75°.
+Clicking one cell applies that camera to the main view. This gives geometry,
+occlusion, and animation edits an immediate multi-angle check without opening
+the full 192-view directional matrix. Playback pauses the diagnostic onion and
+turntable refreshes so animation remains responsive; pausing refreshes both at
+the current time.
+
 Audit diagnostics distinguish contract errors from review guidance. Invalid
 references, timelines, transforms, contacts, rigid spans, and loop closure fail
 the command. Motion-quality observations such as limited whole-body attack

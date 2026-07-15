@@ -46,7 +46,7 @@ runtime asset policy.
 | M0: extract and harden the current pipeline | Complete | 31 models are factored into families/models, validated, parity-tested, and CI-ready |
 | M1: semantic projection foundation | Complete | World/camera transforms, explicit surface frames, and `projected-scene/1` |
 | M2: automated audit and review artifact | Complete | JSON diagnostics, approved-manifest diffs, and inspectable multi-view HTML |
-| M2.5: authoring round-trip | In progress | Provenance, semantic diffs, and workbench-to-source patches |
+| M2.5: authoring round-trip | Complete | Provenance, semantic diffs, source patches, and adjacent-pose/multi-camera review |
 | M3A: modular attachment foundation | Planned | Typed slots and reusable modules on local frames |
 | M4: composable motion system | Planned | Motion phases, recipes, richer body participation, and contact-aware checks |
 | M3B: appearance and paint | Planned | Plate-local paint and reusable semantic detail libraries |
@@ -192,8 +192,8 @@ Exit criteria met:
 - Approved changes can be located by semantic ID without making historical
   output an implicit correctness assertion.
 
-Next action: continue M2.5 with clip comparison ergonomics now that provenance,
-semantic diffs, and the first workbench-to-source patch path are in place.
+Next action: begin M3A with a typed attachment/module schema and one narrow
+humanoid-plus-quadruped proof before broad catalog adoption.
 
 Candidate future hard checks—surface-facing plausibility, projected-bound
 stability, abrupt acceleration, and suspicious always-on-top behavior—remain
@@ -203,7 +203,7 @@ evidence to failures merely because a heuristic is easy to compute.
 
 ## M2.5 — authoring round-trip
 
-Status: in progress.
+Status: complete.
 
 Make resolved data explainable and make safe workbench experimentation produce
 small editable-source patches rather than compiled-package dumps.
@@ -224,9 +224,11 @@ every final leaf across all 31 models, exposes selector-scoped history through
 `rig explain`, and compares valid candidate model sources through a
 schema-valid, provenance-linked `rig diff`. The workbench can also emit a
 schema-valid additive local-transform patch for an exact existing keyframe. It
-refuses ambiguous preview states and never writes a source file. The remaining
-M2.5 slice is previous/next pose comparison and simultaneous representative
-cameras.
+refuses ambiguous preview states and never writes a source file. Declared
+keyframes are directly selectable; while paused, previous and next declared
+keys appear as diagnostic onion-skin outlines. A current-pose turntable renders
+all eight canonical headings simultaneously at a selectable 45°, 60°, or 75°
+comparison elevation. These review layers never enter exported SVG.
 
 Exit criteria:
 
@@ -235,6 +237,8 @@ Exit criteria:
 - A human can tune a pose in the workbench and copy a schema-valid source patch.
 - Generated patches contain stable semantic IDs and never mutate source files
   implicitly.
+
+Exit criteria met.
 
 ## M3A — modular attachment foundation
 

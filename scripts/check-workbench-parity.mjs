@@ -142,18 +142,32 @@ async function main() {
     };
     state.t = 0.62;
     render();
+    const ids = [...document.querySelectorAll('#mainSvg [id]')].map((element) => element.id);
+    const onionTimes = [...document.querySelectorAll('#mainSvg .onionSkin')]
+      .map((element) => Number(element.dataset.time));
+    const turntableHeadings = [...document.querySelectorAll('.turntableCell')]
+      .map((element) => Number(element.dataset.heading));
+    document.querySelector('.turntableCell[data-heading="315"]').click();
     return {
       empty,
       nonKeyframe,
       status: currentSourcePatchInspection().status,
       disabled: $('#copySourcePatch').disabled,
       patch: JSON.parse($('#patchText').textContent),
+      review: {
+        onionTimes,
+        uniqueMainSvgIds: new Set(ids).size === ids.length,
+        turntableHeadings,
+        comparisonElevation: state.compareElev,
+        clickedCamera: [state.elev, normalizeHeading(state.az)],
+        exportedHasDiagnostics: /onionSkin|turntableCell/.test(exportedSvg()),
+      },
     };
   });
   const browserErrors = [...regenerated.errors];
   await browser.close();
 
-  const patchReady = patchUi.empty.status === 'empty'
+  const authoringUiReady = patchUi.empty.status === 'empty'
     && patchUi.empty.disabled
     && patchUi.nonKeyframe.code === 'not-a-keyframe'
     && patchUi.nonKeyframe.disabled
@@ -163,9 +177,15 @@ async function main() {
     && patchUi.patch?.sourceModelId === 'rabbit'
     && patchUi.patch?.operation?.value?.clip === 'attack'
     && patchUi.patch?.operation?.value?.t === 0.62
-    && JSON.stringify(patchUi.patch?.operation?.value?.add?.rotations?.neck) === '[0,10,0]';
-  if (!patchReady) {
-    console.error('FAIL: workbench source-patch preview did not enforce the expected empty/non-keyframe/ready states');
+    && JSON.stringify(patchUi.patch?.operation?.value?.add?.rotations?.neck) === '[0,10,0]'
+    && JSON.stringify(patchUi.review?.onionTimes) === '[0,1]'
+    && patchUi.review?.uniqueMainSvgIds
+    && JSON.stringify(patchUi.review?.turntableHeadings) === '[0,45,90,135,180,225,270,315]'
+    && patchUi.review?.comparisonElevation === 60
+    && JSON.stringify(patchUi.review?.clickedCamera) === '[60,-45]'
+    && patchUi.review?.exportedHasDiagnostics === false;
+  if (!authoringUiReady) {
+    console.error('FAIL: workbench patch/review UI did not enforce the expected patch, onion-skin, or turntable states');
     console.error(JSON.stringify(patchUi, null, 2));
     process.exit(1);
   }
@@ -193,7 +213,7 @@ async function main() {
   }
   if (mismatch) { console.error(`FAIL: ${mismatch}/${expected.length} outputs differ`); process.exit(1); }
   console.log(`workbench parity: ${expected.length}/${expected.length} package/browser outputs identical across all models, clips, times, cameras`);
-  console.log('workbench source-patch preview: empty, unsupported, and ready states passed');
+  console.log('workbench authoring UI: patch states, onion skins, and eight-heading turntable passed');
   console.log('regenerated workbench matches the current package sources, with zero console errors.');
 }
 
