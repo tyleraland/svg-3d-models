@@ -65,6 +65,12 @@ npx rig audit rabbit --against approved/rabbit.json -o rabbit-audit.html
 # Optional CI policy after a project has explicitly approved that manifest
 npx rig audit rabbit --json --against approved/rabbit.json --fail-on-change
 
+# Explain where a resolved field came from and show overwritten values
+npx rig explain rabbit plate:nearRearUpperPlate.size --history
+
+# Emit the same explanation as stable, schema-valid JSON
+npx rig explain horse clip:attack.frames[1].rotations.neckBase --json
+
 # Regenerate the browser workbench from its sources
 npx rig build-workbench
 ```
@@ -125,6 +131,31 @@ A practical edit loop is:
 
 A family change can affect every model that inherits from it. Search model
 references and review representative variants before accepting new fixtures.
+
+### Explaining resolved fields
+
+Resolution provenance is opt-in and additive. Normal `loadModel()` and
+`resolveModel()` calls do not collect it, so `paper-rig/1` output stays
+byte-identical and consumers do not pay a tracking cost. Agents and authoring
+tools can call `loadModelWithProvenance()` or use `rig explain` when they need to
+understand a result.
+
+Selectors address stable semantic IDs rather than source-array indexes:
+
+```text
+rig
+joint:neck.bind
+plate:headPlate.size
+anchor:nearHornMount.moduleType
+clip:attack.frames[1].rotations.neckBase
+```
+
+Each final leaf is attributed to exactly one of four origin categories: the
+family base, a named reusable recipe, an explicit model override, or a derived
+default. `--history` also shows values superseded later in the ordered resolver
+pass. This is diagnostic evidence, not a mutation API: explaining a field never
+edits a model, and generated or suggested patches still require validation and
+review.
 
 Audit diagnostics distinguish contract errors from review guidance. Invalid
 references, timelines, transforms, contacts, rigid spans, and loop closure fail

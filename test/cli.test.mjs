@@ -42,3 +42,23 @@ test('validate-all exits 0 when every model passes', () => {
   const out = run(['validate-all']);
   assert.match(out, /models passed/);
 });
+
+test('explain displays the ordered override history for a semantic field', () => {
+  const out = run(['explain', 'rabbit', 'plate:nearRearUpperPlate.size', '--history']);
+  assert.match(out, /family \/plates\/nearRearUpperPlate\/size\/0 via family\.base/);
+  assert.match(out, /recipe \/variant via variant\.quadruped/);
+  assert.match(out, /model-override \/plateSizeOverrides\/0 via plates\.size-override/);
+});
+
+test('explain emits a stable machine-readable explanation', () => {
+  const explanation = JSON.parse(run([
+    'explain',
+    'horse',
+    'clip:attack.frames[1].rotations.neckBase',
+    '--json',
+  ]));
+  assert.equal(explanation.schema, 'paper-rig/explanation/1');
+  assert.equal(explanation.status, 'found');
+  assert.equal(explanation.fields.length, 3);
+  assert.ok(explanation.fields.every((field) => field.origin.sourcePointer === '/clips/attack'));
+});

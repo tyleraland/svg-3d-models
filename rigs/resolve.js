@@ -10,8 +10,9 @@
 
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { cloneData } from '@paper-rig/schema';
+import { createProvenanceTracker } from './provenance.js';
 import {
   quadrupedVariant, tuneQuadrupedLimbs, addMuzzle, addPairedEars,
   setRotationalAttack, rotationalGait, ensureCanonicalClips, inferredAnchorModule,
@@ -31,6 +32,12 @@ export function loadModel(name) {
   const model = loadModelSource(name);
   return resolveModel(model, loadFamily(model.family));
 }
+export function loadModelWithProvenance(name) {
+  const model = loadModelSource(name);
+  const sourceModelId = basename(name, '.json');
+  return resolveModelWithProvenance(model, loadFamily(model.family), { sourceModelId });
+}
+export { explainProvenance, provenanceSelectorPrefix } from './provenance.js';
 
 const ADDONS = {
   pairedEars: (rig, a) => addPairedEars(rig, a),
@@ -48,69 +55,179 @@ function occlusionReference(ref, id) {
   return new RegExp(ref.ifMatch).test(id) ? ref.then : ref.else;
 }
 
+const modelOverride = (sourcePointer) => ({
+  kind: 'model-override',
+  sourcePointer,
+});
+const derivedDefault = (recipeId) => ({
+  kind: 'derived-default',
+  recipeId,
+  sourcePointer: null,
+});
+
+function variantOrigin(model, targetPointer) {
+  const parts = targetPointer.split('/').slice(1);
+  const rootSources = {
+    id: 'id',
+    archetypes: 'archetypes',
+    heightMeters: 'height',
+    tokenScale: 'scale',
+    tokenGroundY: 'groundY',
+  };
+  if (rootSources[parts[0]] && Object.hasOwn(model.variant, rootSources[parts[0]])) {
+    return modelOverride(`/variant/${rootSources[parts[0]]}${parts.slice(1).length ? `/${parts.slice(1).join('/')}` : ''}`);
+  }
+  if (parts[0] === 'profile' && Object.hasOwn(model.variant.profile || {}, parts[1])) {
+    return modelOverride(`/variant/profile/${parts.slice(1).join('/')}`);
+  }
+  if (parts[0] === 'joints' && parts[2] === 'bind' && Object.hasOwn(model.variant.jointTweaks || {}, parts[1])) {
+    return modelOverride(`/variant/jointTweaks/${parts[1]}${parts.slice(3).length ? `/${parts.slice(3).join('/')}` : ''}`);
+  }
+  if (parts[0] === 'plates' && parts[2] === 'size' && Object.hasOwn(model.variant.plateTweaks || {}, parts[1])) {
+    return modelOverride(`/variant/plateTweaks/${parts[1]}${parts.slice(3).length ? `/${parts.slice(3).join('/')}` : ''}`);
+  }
+  return {
+    kind: 'recipe',
+    recipeId: `${model.family}.variant`,
+    sourcePointer: '/variant',
+  };
+}
+
+function mutateWithProvenance(rig, tracker, descriptor, mutation) {
+  if (!tracker) {
+    mutation();
+    return;
+  }
+  const before = cloneData(rig);
+  mutation();
+  tracker.recordTransition(before, rig, descriptor);
+}
+
 // Resolve `model` against its already-loaded `family` base. Steps run in the same
 // order the imperative workbench applied them, so the result is byte-identical.
-export function resolveModel(model, family) {
+function resolveModelInternal(model, family, tracker) {
   // 1. Base geometry: a scaled variant of the family, or the raw base itself.
+  tracker?.recordInitial(family);
   const rig = model.base
     ? cloneData(family)
     : VARIANT_BUILDERS[model.family](family, model.variant);
+  if (!model.base) tracker?.recordTransition(family, rig, {
+    operation: `variant.${model.family}`,
+    origin: (targetPointer) => variantOrigin(model, targetPointer),
+  });
 
   // 2. Proportional limb tuning.
-  if (model.limbs) tuneQuadrupedLimbs(rig, model.limbs.upper, model.limbs.lower, model.limbs.paw);
+  if (model.limbs) mutateWithProvenance(rig, tracker, {
+    operation: 'limbs.tune',
+    origin: modelOverride('/limbs'),
+  }, () => tuneQuadrupedLimbs(rig, model.limbs.upper, model.limbs.lower, model.limbs.paw));
 
   // 3. Per-plate size overrides (regex-matched).
-  for (const o of model.plateSizeOverrides || []) {
-    const re = new RegExp(o.match);
-    for (const p of rig.plates) if (re.test(p.id)) p.size = [...o.size];
+  for (const [index, o] of (model.plateSizeOverrides || []).entries()) {
+    mutateWithProvenance(rig, tracker, {
+      operation: 'plates.size-override',
+      origin: modelOverride(`/plateSizeOverrides/${index}`),
+    }, () => {
+      const re = new RegExp(o.match);
+      for (const p of rig.plates) if (re.test(p.id)) p.size = [...o.size];
+    });
   }
 
   // 4. Addons (ears, muzzle, ...).
-  for (const a of model.addons || []) ADDONS[a.type](rig, a);
+  for (const [index, a] of (model.addons || []).entries()) mutateWithProvenance(rig, tracker, {
+    operation: `addon.${a.type}`,
+    origin: modelOverride(`/addons/${index}`),
+  }, () => ADDONS[a.type](rig, a));
 
   // 5. Clip event overrides.
   for (const [clip, events] of Object.entries(model.clipEvents || {})) {
-    rig.clips[clip].events = events.map((e) => ({ ...e }));
+    mutateWithProvenance(rig, tracker, {
+      operation: 'clips.events-override',
+      origin: modelOverride(`/clipEvents/${clip}`),
+    }, () => { rig.clips[clip].events = events.map((e) => ({ ...e })); });
   }
 
   // 5b. Full clip overrides (normalized attack/gait clips supplied as data). These
   // replace the base's source clips before canonical derivation runs.
   for (const [clip, def] of Object.entries(model.clips || {})) {
-    rig.clips[clip] = cloneData(def);
+    mutateWithProvenance(rig, tracker, {
+      operation: 'clips.full-override',
+      origin: modelOverride(`/clips/${clip}`),
+    }, () => { rig.clips[clip] = cloneData(def); });
   }
 
   // 6. Rotational attack clip.
-  if (model.attack) setRotationalAttack(rig, model.attack.rotations, model.attack.opts || {});
+  if (model.attack) mutateWithProvenance(rig, tracker, {
+    operation: 'motion.rotational-attack',
+    origin: modelOverride('/attack'),
+  }, () => setRotationalAttack(rig, model.attack.rotations, model.attack.opts || {}));
 
   // 7. Rotational gait (walk) clip.
-  if (model.gait) rotationalGait(rig, model.gait.a, model.gait.b, { semantics: model.gait.semantics });
+  if (model.gait) mutateWithProvenance(rig, tracker, {
+    operation: 'motion.rotational-gait',
+    origin: modelOverride('/gait'),
+  }, () => rotationalGait(rig, model.gait.a, model.gait.b, { semantics: model.gait.semantics }));
 
   // 8. Canonical clip derivation (idle/walk/hit/ko) — must follow attack + gait.
-  ensureCanonicalClips(rig);
+  mutateWithProvenance(rig, tracker, {
+    operation: 'clips.ensure-canonical',
+    origin: derivedDefault('ensureCanonicalClips'),
+  }, () => ensureCanonicalClips(rig));
 
   // 9. Default anchor module inference.
-  rig.anchors.forEach((a) => { a.moduleType ??= inferredAnchorModule(a.id); });
+  mutateWithProvenance(rig, tracker, {
+    operation: 'anchors.infer-module',
+    origin: derivedDefault('inferredAnchorModule'),
+  }, () => rig.anchors.forEach((a) => { a.moduleType ??= inferredAnchorModule(a.id); }));
 
   // 10. Occlusion overrides (the declarative form of the workbench's Object.assign sites).
-  for (const o of model.occlusion || []) {
-    const re = new RegExp(o.match);
-    for (const p of rig.plates) if (re.test(p.id)) {
-      p.occlusionMode = o.mode;
-      p.occlusionReference = occlusionReference(o.reference, p.id);
-    }
+  for (const [index, o] of (model.occlusion || []).entries()) {
+    mutateWithProvenance(rig, tracker, {
+      operation: 'plates.occlusion-override',
+      origin: modelOverride(`/occlusion/${index}`),
+    }, () => {
+      const re = new RegExp(o.match);
+      for (const p of rig.plates) if (re.test(p.id)) {
+        p.occlusionMode = o.mode;
+        p.occlusionReference = occlusionReference(o.reference, p.id);
+      }
+    });
   }
 
   // 11. General plate field overrides, matched by id or regex (covers tusk role +
   // occlusion, under-core appendages, and any other post-normalization plate edit).
-  for (const o of model.plateOverrides || []) {
-    const re = o.match ? new RegExp(o.match) : null;
-    for (const p of rig.plates) if (o.id ? p.id === o.id : re.test(p.id)) Object.assign(p, cloneData(o.set));
+  for (const [index, o] of (model.plateOverrides || []).entries()) {
+    mutateWithProvenance(rig, tracker, {
+      operation: 'plates.field-override',
+      origin: modelOverride(`/plateOverrides/${index}/set`),
+    }, () => {
+      const re = o.match ? new RegExp(o.match) : null;
+      for (const p of rig.plates) if (o.id ? p.id === o.id : re.test(p.id)) Object.assign(p, cloneData(o.set));
+    });
   }
 
   // 12. Anchor field overrides (rare explicit module-type or metadata edits).
-  for (const o of model.anchorOverrides || []) {
-    for (const a of rig.anchors) if (a.id === o.id) Object.assign(a, cloneData(o.set));
+  for (const [index, o] of (model.anchorOverrides || []).entries()) {
+    mutateWithProvenance(rig, tracker, {
+      operation: 'anchors.field-override',
+      origin: modelOverride(`/anchorOverrides/${index}/set`),
+    }, () => {
+      for (const a of rig.anchors) if (a.id === o.id) Object.assign(a, cloneData(o.set));
+    });
   }
 
   return rig;
+}
+
+export function resolveModel(model, family) {
+  return resolveModelInternal(model, family, null);
+}
+
+export function resolveModelWithProvenance(model, family, options = {}) {
+  const tracker = createProvenanceTracker({
+    sourceModelId: options.sourceModelId || model.variant?.id || family.id,
+    familyId: model.family,
+  });
+  const rig = resolveModelInternal(model, family, tracker);
+  return { rig, provenance: tracker.finalize(rig) };
 }

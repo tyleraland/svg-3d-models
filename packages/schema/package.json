@@ -11,6 +11,8 @@
     "./schemas/model-1.schema.json": "./schemas/model-1.schema.json",
     "./schemas/family-1.schema.json": "./schemas/family-1.schema.json",
     "./schemas/projected-scene-1.schema.json": "./schemas/projected-scene-1.schema.json",
-    "./schemas/audit-manifest-1.schema.json": "./schemas/audit-manifest-1.schema.json"
+    "./schemas/audit-manifest-1.schema.json": "./schemas/audit-manifest-1.schema.json",
+    "./schemas/provenance-1.schema.json": "./schemas/provenance-1.schema.json",
+    "./schemas/explanation-1.schema.json": "./schemas/explanation-1.schema.json"
   }
 }

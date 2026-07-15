@@ -7,6 +7,7 @@
 //   rig audit <model> [--json] [-o report.html]
 //   rig audit-all [--json] [-o report.json]
 //   rig manifest <model> [-o candidate.json]
+//   rig explain <model> <entity[.field]> [--json] [--history]
 //   rig validate-sources [model]
 //   rig validate-all
 //   rig build-workbench [-o paper-rig-workbench.html]
@@ -17,6 +18,7 @@ import { runSheet } from '../commands/sheet.js';
 import { runAudit } from '../commands/audit.js';
 import { runAuditAll } from '../commands/audit-all.js';
 import { runManifest } from '../commands/manifest.js';
+import { runExplain } from '../commands/explain.js';
 import { runValidateSources } from '../commands/validate-sources.js';
 import { runValidateAll } from '../commands/validate-all.js';
 import { runBuildWorkbench } from '../commands/build-workbench.js';
@@ -31,6 +33,8 @@ const USAGE = `paper-rig CLI
       --against <manifest.json> [--fail-on-change]
   rig audit-all [--json] [-o report.json]          audit every model; warnings do not fail CI
   rig manifest <model> [-o candidate.json]         emit canonical projected review evidence
+  rig explain <model> <entity[.field]> [--json] [--history]
+                                                   explain resolved field provenance
   rig validate-sources [model] [--json]            validate authoring JSON and references
   rig validate-all                                validate every model in rigs/models/
   rig build-workbench [-o file.html]              regenerate the workbench demo
@@ -46,6 +50,7 @@ function main() {
     case 'audit': return runAudit(rest);
     case 'audit-all': return runAuditAll(rest);
     case 'manifest': return runManifest(rest);
+    case 'explain': return runExplain(rest);
     case 'validate-sources': return runValidateSources(rest);
     case 'validate-all': return runValidateAll(rest);
     case 'build-workbench': return runBuildWorkbench(rest);

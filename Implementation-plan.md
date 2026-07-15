@@ -218,9 +218,11 @@ Implementation order:
 4. Add clip-phase/keyframe selection, previous/next onion skins, and a small set
    of simultaneous representative cameras.
 
-The projected manifest/diff surface is delivered. The next implementation slice
-is field provenance through the ordered resolver pass; source-level diffing must
-build on that provenance rather than comparing opaque resolved JSON blobs.
+The projected manifest/diff surface is delivered. The first M2.5 slice now adds
+an opt-in, schema-valid provenance sidecar without changing normal resolution,
+attributes every final leaf across all 31 models, and exposes selector-scoped
+history through `rig explain`. Source-level semantic diffing is next and MUST
+build on this provenance rather than comparing opaque resolved JSON blobs.
 
 Exit criteria:
 

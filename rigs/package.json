@@ -6,6 +6,7 @@
   "exports": {
     ".": "./resolve.js",
     "./resolve": "./resolve.js",
+    "./provenance": "./provenance.js",
     "./normalize": "./normalize.js"
   },
   "dependencies": {

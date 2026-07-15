@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:provenance-1",
+  "title": "paper-rig resolved field provenance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "schemaVersion", "sourceModelId", "familyId", "resolvedModelId", "summary", "writes"],
+  "properties": {
+    "schema": { "const": "paper-rig/provenance/1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "sourceModelId": { "$ref": "#/$defs/id" },
+    "familyId": { "$ref": "#/$defs/id" },
+    "resolvedModelId": { "$ref": "#/$defs/id" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["leafCount", "writeCount", "unexplainedLeafCount", "finalOriginCounts"],
+      "properties": {
+        "leafCount": { "type": "integer", "minimum": 1 },
+        "writeCount": { "type": "integer", "minimum": 1 },
+        "unexplainedLeafCount": { "type": "integer", "minimum": 0 },
+        "finalOriginCounts": {
+          "type": "object",
+          "propertyNames": { "enum": ["family", "recipe", "model-override", "derived-default"] },
+          "additionalProperties": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "writes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/write" }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "pointer": { "type": "string", "pattern": "^(/([^/~]|~[01])*)*$" },
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "operation", "sourcePointer"],
+      "properties": {
+        "kind": { "enum": ["family", "recipe", "model-override", "derived-default"] },
+        "operation": { "type": "string", "minLength": 1 },
+        "sourceId": { "$ref": "#/$defs/id" },
+        "sourcePointer": {
+          "oneOf": [
+            { "$ref": "#/$defs/pointer" },
+            { "type": "null" }
+          ]
+        },
+        "recipeId": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "family" } } },
+          "then": {
+            "required": ["sourceId"],
+            "properties": {
+              "sourceId": { "$ref": "#/$defs/id" },
+              "sourcePointer": { "$ref": "#/$defs/pointer" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "recipe" } } },
+          "then": {
+            "required": ["recipeId"],
+            "properties": {
+              "recipeId": { "type": "string", "minLength": 1 },
+              "sourcePointer": { "$ref": "#/$defs/pointer" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "model-override" } } },
+          "then": {
+            "properties": { "sourcePointer": { "$ref": "#/$defs/pointer" } }
+          }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "derived-default" } } },
+          "then": {
+            "required": ["recipeId"],
+            "properties": {
+              "recipeId": { "type": "string", "minLength": 1 },
+              "sourcePointer": { "type": "null" }
+            }
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "fieldPointer"],
+      "properties": {
+        "kind": { "enum": ["rig", "joint", "plate", "anchor", "clip"] },
+        "id": { "$ref": "#/$defs/id" },
+        "fieldPointer": { "$ref": "#/$defs/pointer" }
+      }
+    },
+    "write": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "targetPointer", "target", "origin", "value"],
+      "properties": {
+        "sequence": { "type": "integer", "minimum": 0 },
+        "targetPointer": { "$ref": "#/$defs/pointer" },
+        "target": { "$ref": "#/$defs/target" },
+        "origin": { "$ref": "#/$defs/origin" },
+        "value": {}
+      }
+    }
+  }
+}

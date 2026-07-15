@@ -32,6 +32,7 @@ rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
 rig sheet rabbit                               # 8x4 heading/elevation contact sheet
 rig manifest rabbit -o rabbit-candidate.json  # canonical projected review evidence
 rig audit rabbit --against approved.json      # source-ID-level review diff
+rig explain rabbit plate:headPlate.size       # resolved field origin + history
 rig validate-all                               # CI gate over rigs/models/
 rig build-workbench                            # regenerate paper-rig-workbench.html
 ```
@@ -48,6 +49,9 @@ ordered pass, then auto-derives canonical clips and infers anchor modules. See
 (e.g. `horse.json`) for the own-base shape. The one-time migration that generated
 the family bases and models from the original workbench is in
 `scripts/gen-families.mjs` and `scripts/gen-models.mjs` (kept for provenance).
+Use `rig explain <model> <entity[.field]> --history` before searching resolver
+code when a resolved value is surprising. Provenance is an opt-in sidecar and
+does not alter normal `paper-rig/1` output.
 
 ## Tests
 

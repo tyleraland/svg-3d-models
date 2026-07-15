@@ -357,7 +357,39 @@ times, including attack anticipation, contact/impact, and recovery even before a
 model adopts explicit phase metadata. A single attractive default view is
 insufficient evidence of model correctness.
 
-## 13. Author and agent rules
+## 13. Resolution provenance and explanations
+
+Resolution provenance is optional authoring evidence and MUST remain separate
+from `paper-rig/1`. Enabling it MUST NOT alter the resolved rig, compiled
+package, projected scene, or rendered SVG. Consumers that only need assets MUST
+NOT be required to retain provenance.
+
+`paper-rig/provenance/1` records semantic leaf writes in resolver order. Target
+pointers use stable joint, plate, anchor, and clip IDs in collection positions,
+not their current source-array indexes. Every final leaf MUST have one final
+origin in exactly one of these categories:
+
+- `family`: copied from the reusable family base;
+- `recipe`: produced by a named reusable transformation from declared inputs;
+- `model-override`: directly attributable to a model-source pointer; or
+- `derived-default`: supplied by a named normalization/defaulting operation.
+
+Write history MAY retain earlier values that were overwritten, but it MUST omit
+fields absent from the final resolved rig. `sourcePointer` identifies the
+smallest source object that authoritatively supplied the value when a
+leaf-for-leaf source mapping does not exist. A derived default has no source
+pointer and MUST name its recipe.
+
+`paper-rig/explanation/1` is a selector-scoped view of this sidecar. Selectors
+MUST support `rig`, `joint:<id>`, `plate:<id>`, `anchor:<id>`, and `clip:<id>`,
+with optional dotted or bracketed field paths. A missing selector is an explicit
+`not-found` result. Explanation is read-only diagnostic evidence; it MUST NOT
+mutate source files or imply that the current value is visually correct.
+
+The versioned JSON Schemas in `packages/schema/schemas/` are the machine
+contract for both documents.
+
+## 14. Author and agent rules
 
 Authors and automated agents working in this repository MUST:
 
@@ -376,7 +408,7 @@ Agents SHOULD prefer small semantic edits that expose intent in data. They
 SHOULD NOT compensate for incorrect 3D anatomy by adding camera-specific SVG
 offsets unless the field is explicitly a projection policy.
 
-## 14. Compatibility and versioning
+## 15. Compatibility and versioning
 
 `schemaVersion` follows semantic versioning at the schema level:
 
