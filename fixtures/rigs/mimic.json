@@ -1,0 +1,788 @@
+{
+  "schema": "paper-rig/1",
+  "schemaVersion": "1.1.0",
+  "generatorVersion": "0.10.0",
+  "generator": "paper-rig-workbench/0.10.0",
+  "axes": {
+    "origin": "ground center between contacts",
+    "forward": "+x",
+    "lateral": "+y/left",
+    "up": "+z",
+    "units": "meters",
+    "transforms": "joint-local"
+  },
+  "spaces": [
+    "model",
+    "joint-local",
+    "posed-world",
+    "camera",
+    "token"
+  ],
+  "materials": {
+    "paperMain": "#d7c39c",
+    "paperShade": "#b99d73",
+    "paperLight": "#eadbb9",
+    "ink": "#39362e",
+    "shadow": "#9d927d",
+    "equipmentMetal": "#727b7a",
+    "equipmentLeather": "#735545"
+  },
+  "id": "mimicBase",
+  "family": "constructMimic",
+  "archetypes": [
+    "treasure-chest mimic",
+    "animated coffer"
+  ],
+  "heightMeters": 0.82,
+  "tokenScale": 34,
+  "tokenGroundY": 72,
+  "surfaceConvention": {
+    "outward": "+z",
+    "groundPlane": "z=0",
+    "canonicalModelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "camera": {
+    "type": "orthographic",
+    "direction": [
+      0,
+      0,
+      -1
+    ],
+    "elevation": 90,
+    "azimuth": 0,
+    "preset": "canonicalTop",
+    "orientation": "camera is above +Z and looks straight down -Z; +X points toward token top",
+    "framing": "fixed scale with ground origin at token [50,72]",
+    "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
+  },
+  "profile": {
+    "silhouette": "rectangular treasure chest",
+    "mechanism": "single rear hinge with snapping lid",
+    "locomotion": "wobble"
+  },
+  "joints": [
+    {
+      "id": "root",
+      "parent": null,
+      "bind": [
+        0,
+        0,
+        0
+      ],
+      "role": "root"
+    },
+    {
+      "id": "chestBase",
+      "parent": "root",
+      "bind": [
+        0,
+        0,
+        0.28
+      ],
+      "role": "body"
+    },
+    {
+      "id": "rearHinge",
+      "parent": "chestBase",
+      "bind": [
+        -0.38,
+        0,
+        0.22
+      ],
+      "role": "hinge",
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "limits": [
+        -82,
+        8
+      ]
+    },
+    {
+      "id": "lidFront",
+      "parent": "rearHinge",
+      "bind": [
+        0.76,
+        0,
+        0.02
+      ],
+      "role": "body"
+    },
+    {
+      "id": "frontLock",
+      "parent": "chestBase",
+      "bind": [
+        0.39,
+        0,
+        0.08
+      ],
+      "role": "accessoryAnchor"
+    },
+    {
+      "id": "leftFoot",
+      "parent": "chestBase",
+      "bind": [
+        -0.18,
+        0.24,
+        -0.28
+      ],
+      "role": "limb",
+      "mirror": "rightFoot"
+    },
+    {
+      "id": "rightFoot",
+      "parent": "chestBase",
+      "bind": [
+        -0.18,
+        -0.24,
+        -0.28
+      ],
+      "role": "limb",
+      "mirror": "leftFoot"
+    }
+  ],
+  "plates": [
+    {
+      "id": "castShadow",
+      "bone": "root",
+      "shape": "ellipse",
+      "size": [
+        1.16,
+        0.82
+      ],
+      "role": "shadow",
+      "attachment": "rigid",
+      "material": "shadow",
+      "zBias": -99
+    },
+    {
+      "id": "chestBasePlate",
+      "bone": "chestBase",
+      "shape": "customPath",
+      "size": [
+        0.98,
+        0.72
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3,
+      "localPath": "M -1 -.68 L 1 -.68 L 1 .68 L -1 .68 Z",
+      "planeAxes": [
+        "+y",
+        "-x"
+      ]
+    },
+    {
+      "id": "mouthInteriorPlate",
+      "bone": "chestBase",
+      "shape": "customPath",
+      "size": [
+        0.92,
+        0.64
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.4,
+      "localPath": "M -.82 -.52 L .82 -.52 L .82 .52 L -.82 .52 Z",
+      "planeAxes": [
+        "+y",
+        "-x"
+      ]
+    },
+    {
+      "id": "lidPlate",
+      "bone": "lidFront",
+      "shape": "bone",
+      "size": [
+        0.72
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 4.5,
+      "span": [
+        "rearHinge",
+        "lidFront"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "lidBandPlate",
+      "bone": "lidFront",
+      "shape": "bone",
+      "size": [
+        0.18
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4.8,
+      "span": [
+        "rearHinge",
+        "lidFront"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "frontLockPlate",
+      "bone": "frontLock",
+      "shape": "ellipse",
+      "size": [
+        0.18,
+        0.22
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 5
+    },
+    {
+      "id": "leftFootPlate",
+      "bone": "leftFoot",
+      "shape": "ellipse",
+      "size": [
+        0.24,
+        0.17
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0
+    },
+    {
+      "id": "rightFootPlate",
+      "bone": "rightFoot",
+      "shape": "ellipse",
+      "size": [
+        0.24,
+        0.17
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0
+    }
+  ],
+  "anchors": [
+    {
+      "id": "lockAccessoryAnchor",
+      "bone": "frontLock",
+      "offset": [
+        0.04,
+        0,
+        0
+      ],
+      "inheritScale": false,
+      "moduleType": "generic"
+    },
+    {
+      "id": "lidTopAnchor",
+      "bone": "lidFront",
+      "offset": [
+        -0.18,
+        0,
+        0.12
+      ],
+      "inheritScale": false,
+      "moduleType": "generic"
+    },
+    {
+      "id": "chestCarryAnchor",
+      "bone": "chestBase",
+      "offset": [
+        0,
+        0,
+        0.22
+      ],
+      "inheritScale": false,
+      "moduleType": "generic"
+    }
+  ],
+  "clips": {
+    "idleA": {
+      "base": "bind",
+      "duration": 1700,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {
+            "rearHinge": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "chestBase": [
+              0,
+              0,
+              0.02
+            ]
+          },
+          "rotations": {
+            "rearHinge": [
+              0,
+              -4,
+              0
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {
+            "rearHinge": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "contacts": [
+        "leftFoot",
+        "rightFoot"
+      ]
+    },
+    "walkA": {
+      "base": "idleA",
+      "duration": 820,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {
+            "leftFoot": [
+              0.1,
+              0,
+              0.03
+            ],
+            "rightFoot": [
+              -0.06,
+              0,
+              0
+            ]
+          },
+          "rotations": {
+            "rearHinge": [
+              0,
+              -5,
+              4
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "leftFoot": [
+              -0.06,
+              0,
+              0
+            ],
+            "rightFoot": [
+              0.1,
+              0,
+              0.03
+            ]
+          },
+          "rotations": {
+            "rearHinge": [
+              0,
+              -5,
+              -4
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {
+            "leftFoot": [
+              0.1,
+              0,
+              0.03
+            ],
+            "rightFoot": [
+              -0.06,
+              0,
+              0
+            ]
+          },
+          "rotations": {
+            "rearHinge": [
+              0,
+              -5,
+              4
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "rightFoot"
+          ],
+          "from": 0,
+          "to": 0.48
+        },
+        {
+          "ids": [
+            "leftFoot"
+          ],
+          "from": 0.5,
+          "to": 0.98
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "left-step"
+        },
+        {
+          "t": 0.5,
+          "name": "right-step"
+        }
+      ]
+    },
+    "attack": {
+      "base": "idleA",
+      "duration": 720,
+      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {
+            "rearHinge": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "t": 0.45,
+          "poses": {},
+          "rotations": {
+            "rearHinge": [
+              0,
+              -76,
+              0
+            ]
+          }
+        },
+        {
+          "t": 0.62,
+          "poses": {},
+          "rotations": {
+            "rearHinge": [
+              0,
+              -12,
+              0
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {
+            "rearHinge": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "contacts": [
+        "leftFoot",
+        "rightFoot"
+      ],
+      "events": [
+        {
+          "t": 0.45,
+          "name": "lid-open"
+        },
+        {
+          "t": 0.62,
+          "name": "impact"
+        },
+        {
+          "t": 0.84,
+          "name": "release"
+        }
+      ],
+      "boneLengthPolicy": "preserve",
+      "motionSemantics": "rear-hinge rotation with fixed lid length"
+    },
+    "idle": {
+      "base": "bind",
+      "duration": 1700,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {
+            "rearHinge": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "chestBase": [
+              0,
+              0,
+              0.02
+            ]
+          },
+          "rotations": {
+            "rearHinge": [
+              0,
+              -4,
+              0
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {
+            "rearHinge": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "contacts": [
+        "leftFoot",
+        "rightFoot"
+      ],
+      "id": "idle",
+      "aliasOf": "idleA"
+    },
+    "walk": {
+      "base": "idle",
+      "duration": 820,
+      "easing": "ease-in-out",
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {
+            "leftFoot": [
+              0.1,
+              0,
+              0.03
+            ],
+            "rightFoot": [
+              -0.06,
+              0,
+              0
+            ]
+          },
+          "rotations": {
+            "rearHinge": [
+              0,
+              -5,
+              4
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {
+            "leftFoot": [
+              -0.06,
+              0,
+              0
+            ],
+            "rightFoot": [
+              0.1,
+              0,
+              0.03
+            ]
+          },
+          "rotations": {
+            "rearHinge": [
+              0,
+              -5,
+              -4
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "poses": {
+            "leftFoot": [
+              0.1,
+              0,
+              0.03
+            ],
+            "rightFoot": [
+              -0.06,
+              0,
+              0
+            ]
+          },
+          "rotations": {
+            "rearHinge": [
+              0,
+              -5,
+              4
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "rightFoot"
+          ],
+          "from": 0,
+          "to": 0.48
+        },
+        {
+          "ids": [
+            "leftFoot"
+          ],
+          "from": 0.5,
+          "to": 0.98
+        }
+      ],
+      "events": [
+        {
+          "t": 0,
+          "name": "left-step"
+        },
+        {
+          "t": 0.5,
+          "name": "right-step"
+        }
+      ],
+      "id": "walk",
+      "aliasOf": "walkA"
+    },
+    "hit": {
+      "id": "hit",
+      "base": "idle",
+      "duration": 460,
+      "easing": "cubic-bezier(.2,.8,.3,1)",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.35,
+          "poses": {
+            "root": [
+              -0.06,
+              0,
+              0
+            ]
+          },
+          "rotations": {}
+        },
+        {
+          "t": 1,
+          "poses": {},
+          "rotations": {}
+        }
+      ],
+      "contacts": [
+        "leftFoot",
+        "rightFoot"
+      ],
+      "events": [
+        {
+          "t": 0.05,
+          "name": "hit-start"
+        },
+        {
+          "t": 0.35,
+          "name": "recoil"
+        },
+        {
+          "t": 0.82,
+          "name": "recover"
+        }
+      ]
+    },
+    "ko": {
+      "id": "ko",
+      "base": "bind",
+      "duration": 900,
+      "easing": "ease-in",
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 1,
+          "poses": {
+            "root": [
+              0,
+              0.1,
+              0.04
+            ]
+          },
+          "rotations": {
+            "root": [
+              0,
+              72,
+              0
+            ]
+          }
+        }
+      ],
+      "contactIntervals": [
+        {
+          "ids": [
+            "leftFoot",
+            "rightFoot"
+          ],
+          "from": 0,
+          "to": 0.05
+        }
+      ],
+      "events": [
+        {
+          "t": 0.5,
+          "name": "fall"
+        },
+        {
+          "t": 1,
+          "name": "down"
+        }
+      ]
+    }
+  }
+}
