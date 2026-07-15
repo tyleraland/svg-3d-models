@@ -1,23 +1,56 @@
 #!/usr/bin/env node
-// Parity gate for `rig build-workbench`: load the committed baseline workbench and
-// a freshly regenerated one side by side in headless Chromium and assert they
-// behave identically — exportedSvg() and rigPayload() must match for every model,
-// clip, time, and camera, the page must reach rigReady, and there must be zero
-// console errors.
+// Parity gate for `rig build-workbench`: compare a freshly regenerated browser
+// bundle with the current pure package sources. exportedSvg() and rigPayload()
+// must match for every model, clip, time, and camera; the page must reach
+// rigReady; and there must be zero console errors. The original monolith baseline
+// is provenance, not the ongoing correctness oracle for intentional model fixes.
 //
 //   node scripts/check-workbench-parity.mjs [regenerated.html]
 
 import { chromium } from '@playwright/test';
+import { existsSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
+import { loadModel } from '@paper-rig/rigs';
+import { compilePackage, renderSvg } from '@paper-rig/compiler';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const BASELINE = join(ROOT, 'fixtures/paper-rig-workbench.baseline.html');
 const REGEN = resolve(process.cwd(), process.argv[2] || join(ROOT, 'paper-rig-workbench.html'));
+const SYSTEM_CHROMIUM = [
+  process.env.PLAYWRIGHT_EXECUTABLE_PATH,
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/Applications/Chromium.app/Contents/MacOS/Chromium',
+  '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+].find((candidate) => candidate && existsSync(candidate));
 
 const CLIPS = ['idle', 'walk', 'attack', 'hit', 'ko'];
 const TIMES = [0, 0.25, 0.5, 0.62, 1];
 const CAMERAS = [null, [60, 0], [45, 90], [90, 180]];
+
+// Node and Chromium may use different V8 revisions, producing last-bit string
+// differences such as 68.90864194094382 vs 68.90864194094385. Compare decimal
+// tokens with a sub-pixel tolerance while requiring all intervening structure,
+// ordering, IDs, and metadata to match exactly.
+function equivalentOutput(expected, actual) {
+  // Tokenize every JSON/SVG numeric spelling, including integers. Different V8
+  // revisions may stringify the same computed value as `98` vs
+  // `98.00000000000001`; the surrounding text is still compared byte-for-byte.
+  const number = /[+-]?(?:\d+\.\d*|\.\d+|\d+)(?:e[+-]?\d+)?/gi;
+  const expectedMatches = [...expected.matchAll(number)];
+  const actualMatches = [...actual.matchAll(number)];
+  if (expectedMatches.length !== actualMatches.length) return false;
+  let expectedOffset = 0;
+  let actualOffset = 0;
+  for (let i = 0; i < expectedMatches.length; i++) {
+    const a = expectedMatches[i];
+    const b = actualMatches[i];
+    if (expected.slice(expectedOffset, a.index) !== actual.slice(actualOffset, b.index)) return false;
+    if (Math.abs(Number(a[0]) - Number(b[0])) > 1e-10) return false;
+    expectedOffset = a.index + a[0].length;
+    actualOffset = b.index + b[0].length;
+  }
+  return expected.slice(expectedOffset) === actual.slice(actualOffset);
+}
 
 async function open(browser, file) {
   const page = await browser.newPage();
@@ -52,37 +85,64 @@ function sweep(page) {
   }, { clips: CLIPS, times: TIMES, cameras: CAMERAS });
 }
 
-async function main() {
-  const browser = await chromium.launch();
-  const a = await open(browser, BASELINE);
-  const b = await open(browser, REGEN);
-
-  if (b.errors.length) {
-    console.error('FAIL: regenerated workbench logged console errors:\n' + b.errors.join('\n'));
-    await browser.close(); process.exit(1);
-  }
-
-  const [base, regen] = await Promise.all([sweep(a.page), sweep(b.page)]);
-  await browser.close();
-
-  if (base.length !== regen.length) {
-    console.error(`FAIL: sweep length ${base.length} (baseline) vs ${regen.length} (regenerated)`);
-    process.exit(1);
-  }
-  let mismatch = 0;
-  for (let i = 0; i < base.length; i++) {
-    if (base[i] !== regen[i]) {
-      mismatch++;
-      if (mismatch <= 3) {
-        const label = base[i].slice(0, base[i].indexOf('='));
-        let k = 0; while (k < base[i].length && base[i][k] === regen[i][k]) k++;
-        console.error(`  mismatch @ ${label} (first diff at char ${k})`);
+function packageSweep(models) {
+  const out = [];
+  for (const model of models) {
+    const rig = loadModel(model);
+    const defaultCam = [rig.camera?.elevation ?? 90, rig.camera?.azimuth ?? 0];
+    out.push('PKG:' + model + ':' + JSON.stringify(compilePackage(rig)));
+    for (const clip of CLIPS) {
+      if (!rig.clips[clip]) continue;
+      for (const time of TIMES) {
+        for (const camera of CAMERAS) {
+          const [elevation, heading] = camera || defaultCam;
+          out.push([model, clip, time, elevation, heading].join('@') + '=' + renderSvg(rig, {
+            clip, time, elevation, heading,
+          }));
+        }
       }
     }
   }
-  if (mismatch) { console.error(`FAIL: ${mismatch}/${base.length} outputs differ`); process.exit(1); }
-  console.log(`workbench parity: ${base.length}/${base.length} outputs identical across all models, clips, times, cameras`);
-  console.log('regenerated workbench is behavior-identical to the baseline, with zero console errors.');
+  return out;
+}
+
+async function main() {
+  // Prefer Playwright's pinned browser, but keep local development usable when
+  // node_modules is present without the separate browser download. CI should
+  // still install the pinned browser for reproducibility.
+  const browser = await chromium.launch(SYSTEM_CHROMIUM ? { executablePath: SYSTEM_CHROMIUM } : {});
+  const regenerated = await open(browser, REGEN);
+
+  if (regenerated.errors.length) {
+    console.error('FAIL: regenerated workbench logged console errors:\n' + regenerated.errors.join('\n'));
+    await browser.close(); process.exit(1);
+  }
+
+  const models = await regenerated.page.evaluate(() => Object.keys(rigs));
+  const expected = packageSweep(models);
+  const regen = await sweep(regenerated.page);
+  await browser.close();
+
+  if (expected.length !== regen.length) {
+    console.error(`FAIL: sweep length ${expected.length} (packages) vs ${regen.length} (workbench)`);
+    process.exit(1);
+  }
+  let mismatch = 0;
+  for (let i = 0; i < expected.length; i++) {
+    if (!equivalentOutput(expected[i], regen[i])) {
+      mismatch++;
+      if (mismatch <= 3) {
+        const label = expected[i].slice(0, expected[i].indexOf('='));
+        let k = 0; while (k < expected[i].length && expected[i][k] === regen[i][k]) k++;
+        console.error(`  mismatch @ ${label} (first diff at char ${k})`);
+        console.error(`    packages:  ${JSON.stringify(expected[i].slice(k - 60, k + 140))}`);
+        console.error(`    workbench: ${JSON.stringify(regen[i].slice(k - 60, k + 140))}`);
+      }
+    }
+  }
+  if (mismatch) { console.error(`FAIL: ${mismatch}/${expected.length} outputs differ`); process.exit(1); }
+  console.log(`workbench parity: ${expected.length}/${expected.length} package/browser outputs identical across all models, clips, times, cameras`);
+  console.log('regenerated workbench matches the current package sources, with zero console errors.');
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

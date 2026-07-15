@@ -23,9 +23,12 @@ const readJSON = (p) => JSON.parse(readFileSync(p, 'utf8'));
 export function loadFamily(name) {
   return readJSON(join(RIGS_DIR, 'families', `${name}.json`));
 }
-export function loadModel(name) {
+export function loadModelSource(name) {
   const path = name.endsWith('.json') ? name : join(RIGS_DIR, 'models', `${name}.json`);
-  const model = readJSON(path);
+  return readJSON(path);
+}
+export function loadModel(name) {
+  const model = loadModelSource(name);
   return resolveModel(model, loadFamily(model.family));
 }
 

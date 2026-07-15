@@ -138,7 +138,7 @@
       ],
       "role": "limb",
       "mirror": "farHip",
-      "diagonal": "farShoulder",
+      "diagonal": "rightWingRoot",
       "ik": "nearLeg"
     },
     {
@@ -183,7 +183,7 @@
       ],
       "role": "limb",
       "mirror": "nearHip",
-      "diagonal": "nearShoulder",
+      "diagonal": "leftWingRoot",
       "ik": "farLeg"
     },
     {
@@ -436,6 +436,7 @@
         0.3264
       ],
       "role": "accent",
+      "bodyRegion": "core",
       "attachment": "rigid",
       "material": "paperShade",
       "zBias": 4.5

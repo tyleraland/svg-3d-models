@@ -1659,7 +1659,7 @@
       "id": "upperTorsoPlate",
       "stableId": "upperTorsoPlate",
       "semanticRole": "body",
-      "bodyRegion": "limb",
+      "bodyRegion": "core",
       "side": "center",
       "attachment": {
         "type": "jointSpan",
@@ -1683,15 +1683,12 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
-      "silhouetteCritical": false,
-      "lodTier": "major",
-      "lodMergeGroup": "limb.center",
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "core.center",
       "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
@@ -1702,7 +1699,7 @@
       "id": "upperChestPlate",
       "stableId": "upperChestPlate",
       "semanticRole": "body",
-      "bodyRegion": "limb",
+      "bodyRegion": "core",
       "side": "center",
       "attachment": {
         "type": "jointSpan",
@@ -1726,15 +1723,12 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
-      "silhouetteCritical": false,
-      "lodTier": "major",
-      "lodMergeGroup": "limb.center",
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "core.center",
       "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
@@ -1778,7 +1772,7 @@
       "id": "upperNeckPlate",
       "stableId": "upperNeckPlate",
       "semanticRole": "body",
-      "bodyRegion": "limb",
+      "bodyRegion": "neck",
       "side": "center",
       "attachment": {
         "type": "jointSpan",
@@ -1802,15 +1796,12 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
-      "silhouetteCritical": false,
-      "lodTier": "major",
-      "lodMergeGroup": "limb.center",
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "neck.center",
       "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
@@ -1821,7 +1812,7 @@
       "id": "upperHeadConnectorPlate",
       "stableId": "upperHeadConnectorPlate",
       "semanticRole": "body",
-      "bodyRegion": "limb",
+      "bodyRegion": "head",
       "side": "center",
       "attachment": {
         "type": "jointSpan",
@@ -1845,15 +1836,12 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
-      "silhouetteCritical": false,
-      "lodTier": "major",
-      "lodMergeGroup": "limb.center",
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "head.center",
       "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
@@ -1864,7 +1852,7 @@
       "id": "upperHeadPlate",
       "stableId": "upperHeadPlate",
       "semanticRole": "body",
-      "bodyRegion": "limb",
+      "bodyRegion": "head",
       "side": "center",
       "attachment": {
         "type": "rigidBone",
@@ -1884,15 +1872,12 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
-      "silhouetteCritical": false,
-      "lodTier": "major",
-      "lodMergeGroup": "limb.center",
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "head.center",
       "mirrorPlateId": null,
       "coverage": null
     },
@@ -2802,7 +2787,7 @@
       "id": "upperPelvisGasket",
       "jointId": "upperPelvis",
       "semanticRole": "jointGasket",
-      "bodyRegion": "limb",
+      "bodyRegion": "core",
       "side": "center",
       "diameterMeters": 0.32,
       "paletteRole": "base",
@@ -2813,7 +2798,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "limb.center",
+      "lodMergeGroup": "core.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "upperPelvis",
@@ -2828,18 +2813,14 @@
         "type": "circle",
         "diameterMeters": 0.32
       },
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
       "headingSwapsNearFar": false
     },
     {
       "id": "upperSpineGasket",
       "jointId": "upperSpine",
       "semanticRole": "jointGasket",
-      "bodyRegion": "limb",
+      "bodyRegion": "core",
       "side": "center",
       "diameterMeters": 0.32,
       "paletteRole": "base",
@@ -2850,7 +2831,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "limb.center",
+      "lodMergeGroup": "core.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "upperSpine",
@@ -2865,18 +2846,14 @@
         "type": "circle",
         "diameterMeters": 0.32
       },
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
       "headingSwapsNearFar": false
     },
     {
       "id": "upperShouldersGasket",
       "jointId": "upperShoulders",
       "semanticRole": "jointGasket",
-      "bodyRegion": "limb",
+      "bodyRegion": "neck",
       "side": "center",
       "diameterMeters": 0.32,
       "paletteRole": "base",
@@ -2885,9 +2862,9 @@
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
-      "silhouetteCritical": false,
+      "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "limb.center",
+      "lodMergeGroup": "neck.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "upperShoulders",
@@ -2902,18 +2879,14 @@
         "type": "circle",
         "diameterMeters": 0.32
       },
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
       "headingSwapsNearFar": false
     },
     {
       "id": "upperNeckGasket",
       "jointId": "upperNeck",
       "semanticRole": "jointGasket",
-      "bodyRegion": "limb",
+      "bodyRegion": "head",
       "side": "center",
       "diameterMeters": 0.23,
       "paletteRole": "base",
@@ -2922,9 +2895,9 @@
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
-      "silhouetteCritical": false,
+      "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "limb.center",
+      "lodMergeGroup": "head.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "upperNeck",
@@ -2939,18 +2912,14 @@
         "type": "circle",
         "diameterMeters": 0.23
       },
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
       "headingSwapsNearFar": false
     },
     {
       "id": "upperHeadGasket",
       "jointId": "upperHead",
       "semanticRole": "jointGasket",
-      "bodyRegion": "limb",
+      "bodyRegion": "head",
       "side": "center",
       "diameterMeters": 0.32,
       "paletteRole": "base",
@@ -2959,9 +2928,9 @@
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
-      "silhouetteCritical": false,
+      "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "limb.center",
+      "lodMergeGroup": "head.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "upperHead",
@@ -2976,11 +2945,7 @@
         "type": "circle",
         "diameterMeters": 0.32
       },
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
       "headingSwapsNearFar": false
     },
     {
@@ -3214,18 +3179,33 @@
       "memberPlateIds": [
         "torsoPlate",
         "pelvisPlate",
-        "upperShoulderPlate"
+        "upperTorsoPlate",
+        "upperChestPlate",
+        "upperShoulderPlate",
+        "upperNeckPlate",
+        "upperHeadConnectorPlate",
+        "upperHeadPlate"
       ],
       "connectorGasketIds": [
         "pelvisGasket",
-        "chestGasket"
+        "chestGasket",
+        "upperPelvisGasket",
+        "upperSpineGasket",
+        "upperShouldersGasket",
+        "upperNeckGasket",
+        "upperHeadGasket"
       ],
       "closure": "every member and connector is a closed opaque shape; connector gaskets bridge continuous core masses"
     },
     "memberPlateIds": [
       "torsoPlate",
       "pelvisPlate",
-      "upperShoulderPlate"
+      "upperTorsoPlate",
+      "upperChestPlate",
+      "upperShoulderPlate",
+      "upperNeckPlate",
+      "upperHeadConnectorPlate",
+      "upperHeadPlate"
     ],
     "closed": true,
     "paletteRole": "base",
@@ -3237,7 +3217,12 @@
     "sitsInFrontOf": "camera-far appendages",
     "memberGasketIds": [
       "pelvisGasket",
-      "chestGasket"
+      "chestGasket",
+      "upperPelvisGasket",
+      "upperSpineGasket",
+      "upperShouldersGasket",
+      "upperNeckGasket",
+      "upperHeadGasket"
     ]
   },
   "compositingPolicy": {
@@ -3274,6 +3259,30 @@
       "mirrorBehavior": "none",
       "detailPriority": 1,
       "lodTier": "detail",
+      "compileMode": "solid-overlay-clipped-to-owner",
+      "intentionalHoles": []
+    },
+    {
+      "id": "faceMarkingRegion",
+      "owningPlateId": "upperHeadConnectorPlate",
+      "closedPath": "M -0.30 -0.10 Q 0 -0.34 0.30 -0.10 Q 0 0.18 -0.30 -0.10 Z",
+      "coordinateSpace": "plate-local-normalized",
+      "paletteRole": "marking",
+      "opacity": 1,
+      "transform": {
+        "translate": [
+          0,
+          0
+        ],
+        "rotateDegrees": 0,
+        "scale": [
+          1,
+          1
+        ]
+      },
+      "mirrorBehavior": "bilateral",
+      "detailPriority": 2,
+      "lodTier": "micro",
       "compileMode": "solid-overlay-clipped-to-owner",
       "intentionalHoles": []
     },
@@ -4561,9 +4570,13 @@
       "core.center": [
         "torsoPlate",
         "pelvisPlate",
+        "upperTorsoPlate",
+        "upperChestPlate",
         "upperShoulderPlate",
         "pelvisGasket",
-        "chestGasket"
+        "chestGasket",
+        "upperPelvisGasket",
+        "upperSpineGasket"
       ],
       "limb.left": [
         "nearFrontUpperPlate",
@@ -4617,15 +4630,13 @@
         "tailBaseGasket",
         "tailTipGasket"
       ],
-      "limb.center": [
-        "upperTorsoPlate",
-        "upperChestPlate",
+      "neck.center": [
         "upperNeckPlate",
+        "upperShouldersGasket"
+      ],
+      "head.center": [
         "upperHeadConnectorPlate",
         "upperHeadPlate",
-        "upperPelvisGasket",
-        "upperSpineGasket",
-        "upperShouldersGasket",
         "upperNeckGasket",
         "upperHeadGasket"
       ]
@@ -4652,7 +4663,12 @@
         "farRearHoofPlate",
         "tailConnectorPlate",
         "tailPlate",
-        "upperShoulderPlate"
+        "upperTorsoPlate",
+        "upperChestPlate",
+        "upperShoulderPlate",
+        "upperNeckPlate",
+        "upperHeadConnectorPlate",
+        "upperHeadPlate"
       ],
       "preserveFacing": true,
       "preserveContacts": true
@@ -4789,6 +4805,17 @@
         "id": "under-core-compositor-contract",
         "pass": true,
         "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+      },
+      {
+        "id": "rigid-plate-span-lengths",
+        "pass": true,
+        "detail": "every rigid joint-span plate preserves its bind length at clip keys and interval midpoints"
+      },
+      {
+        "id": "inferred-central-appendage-regions",
+        "pass": true,
+        "detail": "no inferred plate on a centerline body/head/neck joint enters camera-relative appendage compositing",
+        "entityIds": []
       }
     ],
     "issues": [],
@@ -4932,6 +4959,7 @@
     ],
     "translationUnits": "meters",
     "rotationUnits": "degrees",
+    "rigidPlateSpans": "endpoint pose deltas steer the bone direction and are normalized to bind length; the resulting swing is inherited by descendants",
     "easing": "clip-level easing applied between normalized keyframes",
     "ik": "optional authoring metadata; directional bake may solve then bake transforms"
   },

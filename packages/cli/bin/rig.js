@@ -4,12 +4,18 @@
 //   rig validate <model|path.json> [--json]
 //   rig render <model> [--clip --time --elevation --heading] [-o out.svg]
 //   rig sheet <model> [--clip --time] [-o out.html]
+//   rig audit <model> [--json] [-o report.html]
+//   rig audit-all [--json] [-o report.json]
+//   rig validate-sources [model]
 //   rig validate-all
 //   rig build-workbench [-o paper-rig-workbench.html]
 
 import { runValidate } from '../commands/validate.js';
 import { runRender } from '../commands/render.js';
 import { runSheet } from '../commands/sheet.js';
+import { runAudit } from '../commands/audit.js';
+import { runAuditAll } from '../commands/audit-all.js';
+import { runValidateSources } from '../commands/validate-sources.js';
 import { runValidateAll } from '../commands/validate-all.js';
 import { runBuildWorkbench } from '../commands/build-workbench.js';
 
@@ -19,6 +25,9 @@ const USAGE = `paper-rig CLI
   rig render <model> [flags] [-o out.svg]         render a projected SVG
       --clip <name> --time <0..1> --elevation <deg> --heading <deg> --stdout
   rig sheet <model> [--clip --time] [-o out.html] 8x4 heading/elevation contact sheet
+  rig audit <model> [--json] [-o report.html]      deterministic 192-view audit
+  rig audit-all [--json] [-o report.json]          audit every model; warnings do not fail CI
+  rig validate-sources [model] [--json]            validate authoring JSON and references
   rig validate-all                                validate every model in rigs/models/
   rig build-workbench [-o file.html]              regenerate the workbench demo
 `;
@@ -30,6 +39,9 @@ function main() {
     case 'validate': return runValidate(rest);
     case 'render': return runRender(rest);
     case 'sheet': return runSheet(rest);
+    case 'audit': return runAudit(rest);
+    case 'audit-all': return runAuditAll(rest);
+    case 'validate-sources': return runValidateSources(rest);
     case 'validate-all': return runValidateAll(rest);
     case 'build-workbench': return runBuildWorkbench(rest);
     case undefined:
@@ -46,8 +58,10 @@ function main() {
 }
 
 try {
-  process.exit(main());
+  // Let Node drain stdout before exiting. Calling process.exit() immediately can
+  // truncate large `rig render --stdout` SVGs when stdout is a pipe.
+  process.exitCode = main();
 } catch (e) {
   console.error(`error: ${e.message}`);
-  process.exit(1);
+  process.exitCode = 1;
 }

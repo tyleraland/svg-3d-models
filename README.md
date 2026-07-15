@@ -1,0 +1,226 @@
+# Paper Rig
+
+Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
+creature rigs and projecting them into SVG-compatible 2D scenes. The current
+catalog contains 31 animals and monsters. They are factored into reusable family
+bases and one thin declarative model file per creature; they no longer live as
+model definitions inside the workbench HTML.
+
+The browser workbench is a generated inspection UI. The reusable product is the
+schema, resolver, compiler, validator, CLI, model catalog, and—incrementally—the
+structured projected scene consumed by downstream art pipelines.
+
+## Start here
+
+Requirements: a current Node.js release and npm. A Chromium-compatible browser
+is only required for the browser parity test. The test prefers Playwright's
+pinned Chromium and falls back to Chrome, Chromium, or Edge installed in the
+standard macOS application locations; `PLAYWRIGHT_EXECUTABLE_PATH` can specify
+another executable.
+
+```sh
+npm ci
+npm run check
+npm run test:workbench
+```
+
+`npm run check` is the normal fast gate. It validates raw sources, runs all
+headless Node tests, compiles and validates every model, and requires no browser.
+`npm run test:workbench` launches headless Playwright/Chromium and verifies that
+the generated browser app behaves like the package implementation.
+
+## Common commands
+
+```sh
+# Resolve, compile, and validate one declarative model
+npx rig validate rigs/models/rabbit.json
+
+# Validate every raw family/model source against JSON Schema
+npx rig validate-sources
+
+# Resolve, compile, and validate the entire catalog
+npx rig validate-all
+
+# Render a single pose to SVG
+npx rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
+
+# Render the canonical heading/elevation contact sheet
+npx rig sheet rabbit
+
+# Write a self-contained canonical-pose/multi-view review artifact
+npx rig audit rabbit -o rabbit-audit.html
+
+# Emit the same audit as deterministic machine-readable diagnostics
+npx rig audit rabbit --json
+
+# Run the compact catalog audit used by CI; advisory warnings do not fail it
+npx rig audit-all --json -o paper-rig-audit.json
+
+# Regenerate the browser workbench from its sources
+npx rig build-workbench
+```
+
+The equivalent npm form is `npm run rig -- <command>`.
+
+## Repository layout
+
+```text
+packages/schema/       paper-rig constants, primitives, and JSON Schemas
+packages/compiler/     pure posing, projection, scene, SVG, and package compiler
+packages/validator/    raw-source, structural, and directional validation
+packages/cli/          the `rig` command
+rigs/families/*.json   raw reusable family bases
+rigs/models/*.json     one thin declarative model per creature
+rigs/resolve.js        family + overrides -> one normalized rig
+rigs/family-kit.js     family presets and normalization operations
+apps/workbench/        browser template, UI source, and build reassembly
+fixtures/              golden rigs/packages/SVGs and historical browser oracle
+scripts/               extraction provenance, capture, and parity checks
+test/                  Node behavior and regression tests
+spec/                  detailed versioned package references
+```
+
+Dependency direction is `schema <- compiler <- validator`; `rigs` depends on
+schema, while the CLI and workbench depend on the full pipeline. Packages are
+plain ESM npm workspaces with no transpile or bundle step.
+
+## Authoring or changing a creature
+
+Start in `rigs/models/<id>.json`. A model references a family and declares only
+its differences: proportions, plate/limb sizes, addons, clip events, attack or
+gait tuning, occlusion, and targeted plate/anchor edits. `resolveModel()` applies
+the family plus overrides in one ordered pass, then derives canonical clips and
+anchor modules. Models do not mutate a resolved rig after the fact.
+
+Use `rigs/models/rabbit.json` as a compact shared-family example. Models such as
+`horse.json` demonstrate own-base variants. The extraction/generation scripts
+are retained for provenance; they are not the normal authoring interface.
+
+Plate IDs may supply harmless defaults, but names are not semantic authority.
+When a plate's intended region is ambiguous—especially on a centerline body,
+neck, or head joint—declare `bodyRegion` explicitly. Validation rejects only a
+silent inferred appendage classification; an explicit declaration is treated as
+intentional and is not second-guessed.
+
+A practical edit loop is:
+
+1. Make the smallest semantic change in a model, family, resolver, or package.
+2. Run `npx rig validate-sources`.
+3. Run `npx rig validate <model-file>` and the relevant Node tests.
+4. Render a contact sheet or inspect the workbench across multiple headings,
+   elevations, and animation phases.
+5. Add a regression test for a bug or new invariant.
+6. Run `npm run check`.
+7. If package/workbench sources changed, run `npm run build-workbench`, then
+   `npm run test:workbench`.
+
+A family change can affect every model that inherits from it. Search model
+references and review representative variants before accepting new fixtures.
+
+Audit diagnostics distinguish contract errors from review guidance. Invalid
+references, timelines, transforms, contacts, rigid spans, and loop closure fail
+the command. Motion-quality observations such as limited whole-body attack
+participation are warnings and remain visible in JSON/HTML without changing the
+exit status.
+
+## Using the compiler from JavaScript
+
+All core operations are synchronous, pure, and DOM-free once a rig is resolved.
+
+```js
+import { loadModel } from '@paper-rig/rigs';
+import {
+  compilePackage,
+  projectScene,
+  renderSvg,
+  solve,
+  solvePose,
+} from '@paper-rig/compiler';
+
+const rig = loadModel('rabbit');
+const pose = solvePose(rig, { clip: 'walk', time: 0.25 });
+const scene = projectScene(rig, {
+  clip: 'walk',
+  time: 0.25,
+  elevation: 60,
+  heading: 0,
+});
+const svg = renderSvg(rig, { clip: 'walk', time: 0.25 });
+const pkg = compilePackage(rig);
+
+// Compatibility API: world positions only.
+const positions = solve(rig, { clip: 'walk', time: 0.25 });
+```
+
+`projectScene()` is the intended long-term consumer boundary: an ordered,
+structured, traceable 2D vector scene. `renderSvg()` remains the convenient
+preview and compatibility adapter. See [spec.md](./spec.md) for ownership and
+semantic guarantees and [spec/paper-rig-1.md](./spec/paper-rig-1.md) for the
+current resolved package fields.
+
+## Downstream consumer workflow
+
+A typical game asset pipeline should:
+
+1. select a model, clip/phase/time, heading, elevation, and semantic detail tier;
+2. request `projected-scene/1` from this repository's compiler;
+3. preserve source IDs while applying the game's palette and art treatment;
+4. simplify/quantize paths for the target screen size;
+5. deduplicate, pack, and version the resulting game assets;
+6. add game-specific hitboxes, effects, balance, and runtime metadata there.
+
+Do not infer bones, attachment points, occlusion, or semantic importance from a
+flattened SVG when the projected scene provides those fields directly. If the
+consumer needs missing generic semantics, extend the producer contract here
+instead of adding a private guess in the game repository.
+
+## Generated files and fixtures
+
+`paper-rig-workbench.html` is generated by `rig build-workbench`; edit
+`apps/workbench/`, packages, or rigs instead. The workbench parity script compares
+the generated browser implementation with the package implementation over all
+models, clips, sampled times, and cameras.
+
+Golden rig/package/SVG fixtures use the Node package implementation's byte
+format. Fixture capture first smoke-loads the generated workbench; the separate
+headless parity sweep proves package/browser equivalence while tolerating only
+last-bit cross-V8 numeric spelling differences.
+`fixtures/paper-rig-workbench.baseline.html` is the historical oracle from the
+original monolith and is intentionally immutable during normal work. Resetting
+that baseline is an exceptional migration requiring explicit intent and review.
+
+Fixture diffs are not routine formatting noise. Before accepting one, determine
+whether it represents an intended semantic/visual change, inspect affected
+models from multiple views, and describe why the new result is correct.
+
+## Notes for future agents and maintainers
+
+- Read `AGENTS.md`, [Implementation-plan.md](./Implementation-plan.md), and
+  [spec.md](./spec.md) before changing architecture.
+- Preserve unrelated work in a dirty worktree. Do not regenerate or rewrite
+  files simply because they are already modified.
+- Stable IDs are part of the consumer contract. Renames need an explicit
+  migration.
+- Prefer declarative semantic data over model-specific projection offsets or
+  post-resolution mutation.
+- A correct default camera does not prove a correct model. Check side/back and
+  low/high elevations, plus anticipation/contact/recovery for action clips.
+- Bugs such as disconnected spans, stale references, inverted surface frames,
+  and always-on-top details should become deterministic validator regressions.
+- Keep reusable anatomy, modules, motion, paint semantics, and projection here.
+  Keep the consuming game's art style, packing, hitboxes, and gameplay policy in
+  the game repository.
+- Do not weaken validation merely to admit a model. If a valid exception exists,
+  encode its semantic intent and scope explicitly.
+- The current SVG renderer is parity-sensitive. Introduce structured APIs
+  additively, then make SVG an adapter only when byte-for-byte tests protect the
+  refactor.
+
+## Project documents
+
+- [Implementation-plan.md](./Implementation-plan.md) — milestones, status,
+  exit criteria, and pickup procedure.
+- [spec.md](./spec.md) — repository/consumer responsibilities and forward
+  contract.
+- [spec/paper-rig-1.md](./spec/paper-rig-1.md) — detailed current package format.
+- `AGENTS.md` — concise repository instructions loaded by coding agents.

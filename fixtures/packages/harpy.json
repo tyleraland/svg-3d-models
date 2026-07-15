@@ -309,7 +309,7 @@
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": true,
       "mirroredCounterpartId": "farHip",
-      "diagonalCounterpartId": "farShoulder",
+      "diagonalCounterpartId": "rightWingRoot",
       "bendAxis": null,
       "rotationLimitsDegrees": null,
       "ikChain": "nearLeg",
@@ -403,7 +403,7 @@
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": true,
       "mirroredCounterpartId": "nearHip",
-      "diagonalCounterpartId": "nearShoulder",
+      "diagonalCounterpartId": "leftWingRoot",
       "bendAxis": null,
       "rotationLimitsDegrees": null,
       "ikChain": "farLeg",
@@ -990,7 +990,7 @@
       "id": "shoulderPlate",
       "stableId": "shoulderPlate",
       "semanticRole": "accent",
-      "bodyRegion": "limb",
+      "bodyRegion": "core",
       "side": "center",
       "attachment": {
         "type": "rigidBone",
@@ -1010,15 +1010,12 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
-      "silhouetteCritical": false,
-      "lodTier": "major",
-      "lodMergeGroup": "limb.center",
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "core.center",
       "mirrorPlateId": null,
       "coverage": null
     },
@@ -2473,6 +2470,7 @@
       "memberPlateIds": [
         "pelvisSpinePlate",
         "chestPlate",
+        "shoulderPlate",
         "neckPlate",
         "headConnectorPlate",
         "headPlate"
@@ -2489,6 +2487,7 @@
     "memberPlateIds": [
       "pelvisSpinePlate",
       "chestPlate",
+      "shoulderPlate",
       "neckPlate",
       "headConnectorPlate",
       "headPlate"
@@ -2572,7 +2571,7 @@
     },
     {
       "id": "sockMarkingRegion",
-      "owningPlateId": "shoulderPlate",
+      "owningPlateId": "nearThighPlate",
       "closedPath": "M -0.50 0 L 0.50 0 L 0.50 0.50 L -0.50 0.50 Z",
       "coordinateSpace": "plate-local-normalized",
       "paletteRole": "marking",
@@ -3984,11 +3983,9 @@
       "core.center": [
         "pelvisSpinePlate",
         "chestPlate",
+        "shoulderPlate",
         "hipsGasket",
         "spineGasket"
-      ],
-      "limb.center": [
-        "shoulderPlate"
       ],
       "neck.center": [
         "neckPlate",
@@ -4056,6 +4053,7 @@
         "head",
         "pelvisSpinePlate",
         "chestPlate",
+        "shoulderPlate",
         "neckPlate",
         "headConnectorPlate",
         "headPlate",
@@ -4197,6 +4195,17 @@
         "id": "under-core-compositor-contract",
         "pass": true,
         "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+      },
+      {
+        "id": "rigid-plate-span-lengths",
+        "pass": true,
+        "detail": "every rigid joint-span plate preserves its bind length at clip keys and interval midpoints"
+      },
+      {
+        "id": "inferred-central-appendage-regions",
+        "pass": true,
+        "detail": "no inferred plate on a centerline body/head/neck joint enters camera-relative appendage compositing",
+        "entityIds": []
       }
     ],
     "issues": [],
@@ -4340,6 +4349,7 @@
     ],
     "translationUnits": "meters",
     "rotationUnits": "degrees",
+    "rigidPlateSpans": "endpoint pose deltas steer the bone direction and are normalized to bind length; the resulting swing is inherited by descendants",
     "easing": "clip-level easing applied between normalized keyframes",
     "ik": "optional authoring metadata; directional bake may solve then bake transforms"
   },

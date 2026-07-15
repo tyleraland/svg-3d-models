@@ -3672,6 +3672,17 @@
         "id": "under-core-compositor-contract",
         "pass": true,
         "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+      },
+      {
+        "id": "rigid-plate-span-lengths",
+        "pass": true,
+        "detail": "every rigid joint-span plate preserves its bind length at clip keys and interval midpoints"
+      },
+      {
+        "id": "inferred-central-appendage-regions",
+        "pass": true,
+        "detail": "no inferred plate on a centerline body/head/neck joint enters camera-relative appendage compositing",
+        "entityIds": []
       }
     ],
     "issues": [],
@@ -3815,6 +3826,7 @@
     ],
     "translationUnits": "meters",
     "rotationUnits": "degrees",
+    "rigidPlateSpans": "endpoint pose deltas steer the bone direction and are normalized to bind length; the resulting swing is inherited by descendants",
     "easing": "clip-level easing applied between normalized keyframes",
     "ik": "optional authoring metadata; directional bake may solve then bake transforms"
   },

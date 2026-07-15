@@ -699,6 +699,7 @@
         0.5
       ],
       "role": "body",
+      "bodyRegion": "core",
       "attachment": "rigid",
       "material": "paperMain",
       "zBias": 4,
@@ -716,6 +717,7 @@
         0.62
       ],
       "role": "body",
+      "bodyRegion": "core",
       "attachment": "rigid",
       "material": "paperMain",
       "zBias": 4.3,
@@ -747,6 +749,7 @@
         0.2
       ],
       "role": "body",
+      "bodyRegion": "neck",
       "attachment": "rigid",
       "material": "paperMain",
       "zBias": 5,
@@ -764,6 +767,7 @@
         0.25
       ],
       "role": "body",
+      "bodyRegion": "head",
       "attachment": "rigid",
       "material": "paperMain",
       "zBias": 5.2,
@@ -782,6 +786,7 @@
         0.42
       ],
       "role": "body",
+      "bodyRegion": "head",
       "attachment": "rigid",
       "material": "paperMain",
       "zBias": 5.5

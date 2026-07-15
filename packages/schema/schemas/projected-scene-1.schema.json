@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:projected-scene-1",
+  "title": "paper-rig projected scene",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "schemaVersion", "modelId", "view", "pose", "camera",
+    "coordinateSpaces", "joints", "compositingGroups"
+  ],
+  "properties": {
+    "schema": { "const": "paper-rig/projected-scene/1" },
+    "schemaVersion": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+    "modelId": { "$ref": "#/$defs/id" },
+    "view": { "enum": ["projected", "top", "front", "side"] },
+    "pose": { "$ref": "#/$defs/pose" },
+    "camera": { "$ref": "#/$defs/camera" },
+    "coordinateSpaces": { "$ref": "#/$defs/coordinateSpaces" },
+    "joints": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/joint" }
+    },
+    "compositingGroups": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/compositingGroup" }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "number": { "type": "number" },
+    "vector2": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/number" }
+    },
+    "vector3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/number" }
+    },
+    "matrix3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/vector3" }
+    },
+    "pose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clipId", "timeNormalized"],
+      "properties": {
+        "clipId": { "$ref": "#/$defs/id" },
+        "timeNormalized": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["right", "up", "forward"],
+      "properties": {
+        "right": { "$ref": "#/$defs/vector3" },
+        "up": { "$ref": "#/$defs/vector3" },
+        "forward": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "elevationDegrees", "headingDegrees", "basis"],
+      "properties": {
+        "type": { "const": "orthographic" },
+        "elevationDegrees": { "oneOf": [{ "$ref": "#/$defs/number" }, { "type": "null" }] },
+        "headingDegrees": { "oneOf": [{ "$ref": "#/$defs/number" }, { "type": "null" }] },
+        "basis": { "$ref": "#/$defs/basis" }
+      }
+    },
+    "coordinateSpaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["world", "screen"],
+      "properties": {
+        "world": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["units", "forwardAxis", "leftAxis", "upAxis"],
+          "properties": {
+            "units": { "const": "meters" },
+            "forwardAxis": { "const": "+x" },
+            "leftAxis": { "const": "+y" },
+            "upAxis": { "const": "+z" }
+          }
+        },
+        "screen": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["units", "origin", "xAxis", "yAxis", "viewBox", "groundY"],
+          "properties": {
+            "units": { "const": "token" },
+            "origin": { "const": "top-left" },
+            "xAxis": { "const": "+right" },
+            "yAxis": { "const": "+down" },
+            "viewBox": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": { "$ref": "#/$defs/number" }
+            },
+            "groundY": { "$ref": "#/$defs/number" }
+          }
+        }
+      }
+    },
+    "joint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "parentId", "worldPositionMeters", "localToWorldRotation",
+        "screenPosition", "cameraDepth"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "parentId": { "oneOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] },
+        "worldPositionMeters": { "$ref": "#/$defs/vector3" },
+        "localToWorldRotation": { "$ref": "#/$defs/matrix3" },
+        "screenPosition": { "$ref": "#/$defs/vector2" },
+        "cameraDepth": { "$ref": "#/$defs/number" }
+      }
+    },
+    "surfaceFrame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "normal", "tangent", "bitangent", "camera"],
+      "properties": {
+        "space": { "const": "posed-world" },
+        "normal": { "$ref": "#/$defs/vector3" },
+        "tangent": { "$ref": "#/$defs/vector3" },
+        "bitangent": { "$ref": "#/$defs/vector3" },
+        "camera": { "$ref": "#/$defs/cameraSurfaceFrame" }
+      }
+    },
+    "cameraSurfaceFrame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "normal", "tangent", "bitangent"],
+      "properties": {
+        "space": { "const": "camera" },
+        "normal": { "$ref": "#/$defs/vector3" },
+        "tangent": { "$ref": "#/$defs/vector3" },
+        "bitangent": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "vector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tag", "attributes"],
+      "properties": {
+        "tag": { "enum": ["circle", "ellipse", "path", "rect"] },
+        "attributes": {
+          "type": "object",
+          "required": ["id"],
+          "properties": { "id": { "$ref": "#/$defs/id" } },
+          "propertyNames": { "pattern": "^[A-Za-z_:][A-Za-z0-9_.:-]*$" },
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "element": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "sourceId", "sourceKind", "kind", "generated", "semanticRole",
+        "bodyRegion", "side", "paletteRole", "lodTier", "cameraDepth",
+        "depthBias", "vector"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "sourceId": { "$ref": "#/$defs/id" },
+        "sourceKind": { "enum": ["plate", "gasket"] },
+        "kind": { "enum": ["plate", "gasket", "occluderCell"] },
+        "generated": { "type": "boolean" },
+        "semanticRole": { "type": "string", "minLength": 1 },
+        "bodyRegion": { "type": "string", "minLength": 1 },
+        "side": { "enum": ["left", "right", "center"] },
+        "paletteRole": { "type": "string", "minLength": 1 },
+        "lodTier": { "type": "string", "minLength": 1 },
+        "cameraDepth": { "$ref": "#/$defs/number" },
+        "depthBias": { "$ref": "#/$defs/number" },
+        "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" },
+        "vector": { "$ref": "#/$defs/vector" }
+      }
+    },
+    "compositingGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "semanticRole", "order", "elements"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "semanticRole": { "type": "string", "minLength": 1 },
+        "order": { "type": "integer", "minimum": 0 },
+        "elements": { "type": "array", "items": { "$ref": "#/$defs/element" } }
+      }
+    }
+  }
+}

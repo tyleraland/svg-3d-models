@@ -4,8 +4,9 @@
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { loadModel } from '@paper-rig/rigs';
+import { loadFamily, loadModelSource, resolveModel } from '@paper-rig/rigs';
 import { validate } from '@paper-rig/validator';
+import { validateSourcePair } from '@paper-rig/validator/source';
 
 const MODELS_DIR = join(dirname(fileURLToPath(import.meta.url)), '../../../rigs/models');
 
@@ -17,7 +18,16 @@ export function runValidateAll() {
   for (const f of files) {
     const name = f.replace(/\.json$/, '');
     try {
-      const rig = loadModel(name);
+      const model = loadModelSource(name);
+      const family = loadFamily(model.family);
+      const sourceReport = validateSourcePair(model, family);
+      if (sourceReport.status !== 'passed') {
+        failed++;
+        console.log(`✗ ${name.padEnd(18)} source  ${sourceReport.checks.length} checks, ${sourceReport.issues.length} issue${sourceReport.issues.length === 1 ? '' : 's'}`);
+        for (const issue of sourceReport.issues) console.log(`    - ${issue.id}: ${issue.detail}`);
+        continue;
+      }
+      const rig = resolveModel(model, family);
       const report = validate(rig);
       const issues = report.issues || [];
       const mark = report.status === 'passed' ? '✓' : '✗';

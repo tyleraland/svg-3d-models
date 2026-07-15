@@ -12,6 +12,7 @@ export const structuralValidation = core.packageValidation;
 export const directionalValidation = core.directionalValidation;
 export const preservedClipLengthsPass = core.preservedClipLengthsPass;
 export const bilateralHeadingSwapPass = core.bilateralHeadingSwapPass;
+export const inferredCentralAppendageConflicts = core.inferredCentralAppendageConflicts;
 
 // Validate a rig end-to-end. Returns the merged report:
 //   { status: 'passed'|'failed', checks: [...], issues: [...], ... }

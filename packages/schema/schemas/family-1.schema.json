@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:family-1",
+  "title": "paper-rig family source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "schemaVersion", "generatorVersion", "generator", "axes",
+    "spaces", "materials", "id", "family", "heightMeters", "tokenScale",
+    "tokenGroundY", "surfaceConvention", "camera", "joints", "plates",
+    "anchors", "clips"
+  ],
+  "properties": {
+    "schema": { "const": "paper-rig/1" },
+    "schemaVersion": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" },
+    "generatorVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "generator": { "type": "string", "minLength": 1 },
+    "axes": { "$ref": "#/$defs/axes" },
+    "spaces": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "materials": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+    },
+    "id": { "$ref": "#/$defs/id" },
+    "family": { "$ref": "#/$defs/id" },
+    "variantOf": { "$ref": "#/$defs/id" },
+    "archetypes": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "heightMeters": { "$ref": "#/$defs/positiveNumber" },
+    "tokenScale": { "$ref": "#/$defs/positiveNumber" },
+    "tokenGroundY": { "$ref": "#/$defs/finiteNumber" },
+    "surfaceConvention": { "$ref": "#/$defs/surfaceConvention" },
+    "camera": { "$ref": "#/$defs/camera" },
+    "profile": { "$ref": "#/$defs/profile" },
+    "joints": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/joint" } },
+    "plates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/plate" } },
+    "anchors": { "type": "array", "items": { "$ref": "#/$defs/anchor" } },
+    "clips": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "$ref": "#/$defs/clip" }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "finiteNumber": { "type": "number" },
+    "positiveNumber": { "type": "number", "exclusiveMinimum": 0 },
+    "time": { "type": "number", "minimum": 0, "maximum": 1 },
+    "axis": { "type": "string", "pattern": "^[+-][xyz](?:/left)?$" },
+    "vector3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/finiteNumber" }
+    },
+    "size": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/positiveNumber" }
+    },
+    "axes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "forward", "lateral", "up", "units", "transforms"],
+      "properties": {
+        "origin": { "type": "string", "minLength": 1 },
+        "forward": { "type": "string", "minLength": 1 },
+        "lateral": { "type": "string", "minLength": 1 },
+        "up": { "type": "string", "minLength": 1 },
+        "units": { "const": "meters" },
+        "transforms": { "type": "string", "minLength": 1 }
+      }
+    },
+    "surfaceConvention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["outward", "groundPlane", "canonicalModelRotation"],
+      "properties": {
+        "outward": { "type": "string", "minLength": 1 },
+        "faceNormal": { "type": "string", "minLength": 1 },
+        "groundPlane": { "type": "string", "minLength": 1 },
+        "canonicalModelRotation": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "cameraPreset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "direction", "elevation", "azimuth"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "direction": { "$ref": "#/$defs/vector3" },
+        "elevation": { "$ref": "#/$defs/finiteNumber" },
+        "azimuth": { "$ref": "#/$defs/finiteNumber" },
+        "note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "direction", "elevation", "azimuth", "preset", "orientation", "framing", "depthOrder"],
+      "properties": {
+        "type": { "const": "orthographic" },
+        "direction": { "$ref": "#/$defs/vector3" },
+        "elevation": { "$ref": "#/$defs/finiteNumber" },
+        "azimuth": { "$ref": "#/$defs/finiteNumber" },
+        "preset": { "$ref": "#/$defs/id" },
+        "orientation": { "type": "string", "minLength": 1 },
+        "framing": { "type": "string", "minLength": 1 },
+        "depthOrder": { "type": "string", "minLength": 1 },
+        "presets": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/id" },
+          "additionalProperties": { "$ref": "#/$defs/cameraPreset" }
+        }
+      }
+    },
+    "profileValue": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "number" },
+        { "type": "boolean" },
+        { "type": "array", "items": { "oneOf": [{ "type": "string" }, { "type": "number" }] } }
+      ]
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/profileValue" }
+    },
+    "joint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "parent", "bind"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "parent": { "oneOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] },
+        "bind": { "$ref": "#/$defs/vector3" },
+        "role": { "type": "string", "minLength": 1 },
+        "mirror": { "$ref": "#/$defs/id" },
+        "diagonal": { "$ref": "#/$defs/id" },
+        "bendAxis": { "$ref": "#/$defs/vector3" },
+        "limits": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/finiteNumber" }
+        },
+        "ik": { "type": "string", "minLength": 1 },
+        "helper": { "type": "boolean" },
+        "facing": { "type": "string", "minLength": 1 },
+        "preferredLean": { "type": "string", "minLength": 1 },
+        "protrusionAxis": { "type": "string", "minLength": 1 },
+        "radialIndex": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "plate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "bone", "shape", "size", "role", "attachment", "material", "zBias"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "bone": { "$ref": "#/$defs/id" },
+        "shape": { "enum": ["ellipse", "bone", "taperedBone", "polygon", "disc", "roundedTip", "customPath", "capsule", "tapered"] },
+        "size": { "$ref": "#/$defs/size" },
+        "role": { "type": "string", "minLength": 1 },
+        "bodyRegion": { "type": "string", "minLength": 1 },
+        "attachment": { "const": "rigid" },
+        "material": { "$ref": "#/$defs/id" },
+        "zBias": { "$ref": "#/$defs/finiteNumber" },
+        "span": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "points": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "jointOverlap": { "$ref": "#/$defs/positiveNumber" },
+        "localPath": { "type": "string", "minLength": 1 },
+        "surfaceNormal": { "$ref": "#/$defs/vector3" },
+        "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" },
+        "planeAxes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "string", "pattern": "^[+-][xyz]$" }
+        },
+        "occlusionMode": { "enum": ["semantic-group", "under-core", "surface-relative"] },
+        "occlusionReference": { "$ref": "#/$defs/id" },
+        "intentionalHoles": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "surfaceFrame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normal", "tangent", "bitangent"],
+      "properties": {
+        "normal": { "$ref": "#/$defs/vector3" },
+        "tangent": { "$ref": "#/$defs/vector3" },
+        "bitangent": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "bone", "offset"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "bone": { "$ref": "#/$defs/id" },
+        "offset": { "$ref": "#/$defs/vector3" },
+        "counterpart": { "$ref": "#/$defs/id" },
+        "inheritScale": { "type": "boolean" },
+        "moduleType": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "style": { "type": "string", "minLength": 1 },
+        "forward": { "type": "string", "pattern": "^[+-][xyz]$" },
+        "protrusionAxis": { "type": "string", "minLength": 1 }
+      }
+    },
+    "transformMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "$ref": "#/$defs/vector3" }
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["t", "poses"],
+      "properties": {
+        "t": { "$ref": "#/$defs/time" },
+        "poses": { "$ref": "#/$defs/transformMap" },
+        "rotations": { "$ref": "#/$defs/transformMap" }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["t", "name"],
+      "properties": {
+        "t": { "$ref": "#/$defs/time" },
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "contactInterval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ids", "from", "to"],
+      "properties": {
+        "ids": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "from": { "$ref": "#/$defs/time" },
+        "to": { "$ref": "#/$defs/time" }
+      }
+    },
+    "clip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["base", "duration", "easing", "loop", "frames"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "aliasOf": { "$ref": "#/$defs/id" },
+        "base": { "$ref": "#/$defs/id" },
+        "duration": { "$ref": "#/$defs/positiveNumber" },
+        "easing": { "type": "string", "minLength": 1 },
+        "loop": { "type": "boolean" },
+        "frames": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/frame" } },
+        "contacts": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "contactIntervals": { "type": "array", "items": { "$ref": "#/$defs/contactInterval" } },
+        "events": { "type": "array", "items": { "$ref": "#/$defs/event" } },
+        "boneLengthPolicy": { "type": "string", "minLength": 1 },
+        "motionSemantics": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

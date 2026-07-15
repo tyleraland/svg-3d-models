@@ -1,15 +1,18 @@
 #!/usr/bin/env node
-// Capture golden fixtures from the current monolithic workbench.
+// Capture byte-exact golden fixtures from the current package implementation,
+// after smoke-loading the generated workbench in Chromium. Package/browser
+// equivalence is independently proven by check-workbench-parity.mjs with a
+// cross-V8 numeric tolerance.
 //
-// This is the regression oracle for the extraction. It loads the CURRENT
-// `paper-rig-workbench.html` in headless Chromium, drives its `state` global,
-// and dumps the outputs of the (soon to be extracted) pipeline so every ported
-// module can be diffed against a known-good baseline.
+// This is the golden-output refresh tool for the extracted pipeline. Node owns
+// byte formatting for the Node golden tests; Chromium remains a runtime smoke
+// check rather than a source of engine-dependent decimal strings.
 //
 //   node scripts/capture-fixtures.mjs
+//   node scripts/capture-fixtures.mjs --reset-baseline  # exceptional migration use
 //
 // Outputs (all under fixtures/):
-//   paper-rig-workbench.baseline.html  copy of the source of truth at capture time
+//   paper-rig-workbench.baseline.html  immutable original-monolith provenance
 //   rigs/<model>.json                  JSON.stringify(rigs[model])         (resolver oracle)
 //   packages/<model>.json              rigPayload() per model              (compile oracle)
 //   svg/<model>@<clip>@<t>@<elev>@<az>.svg  exportedSvg() sweep            (render oracle)
@@ -19,20 +22,30 @@
 // `svgMarkup` as top-level classic-script globals reachable inside page.evaluate.
 
 import { chromium } from '@playwright/test';
+import { existsSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 import { mkdir, writeFile, copyFile, readdir, rm } from 'node:fs/promises';
+import { loadModel } from '@paper-rig/rigs';
+import { compilePackage, markup, renderSvg } from '@paper-rig/compiler';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'paper-rig-workbench.html');
 const FIX = join(ROOT, 'fixtures');
 const BASELINE = join(FIX, 'paper-rig-workbench.baseline.html');
+const RESET_BASELINE = process.argv.includes('--reset-baseline');
+const SYSTEM_CHROMIUM = [
+  process.env.PLAYWRIGHT_EXECUTABLE_PATH,
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/Applications/Chromium.app/Contents/MacOS/Chromium',
+  '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+].find((candidate) => candidate && existsSync(candidate));
 
 // Models to capture the SVG render sweep for (kept bounded; broad all-model
-// parity is proven live in the workbench parity test, not from committed SVGs).
+// parity is proven live against package sources, not from committed SVGs).
 // Only the models the CLI actually renders this increment need committed SVG
-// goldens; broad all-model render parity is proven live (baseline vs regenerated
-// workbench) in the Playwright parity test, which needs no committed SVGs.
+// goldens; broad all-model render parity is proven live (package sources vs
+// generated workbench) in Playwright, which needs no committed SVGs.
 const SWEEP_MODELS = ['rabbit', 'quadruped'];
 const SWEEP_CLIPS = ['idle', 'walk', 'attack'];
 const SWEEP_TIMES = [0, 0.25, 0.5];
@@ -55,44 +68,38 @@ async function emptyDir(dir) {
 
 async function main() {
   await mkdir(FIX, { recursive: true });
-  await copyFile(SRC, BASELINE);
+  // The baseline is provenance from the original monolith. Normal model and
+  // fixture updates must not silently replace it with the generated workbench.
+  if (RESET_BASELINE) await copyFile(SRC, BASELINE);
   for (const sub of ['rigs', 'packages', 'svg', 'contact-sheets']) {
     await emptyDir(join(FIX, sub));
   }
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(SYSTEM_CHROMIUM ? { executablePath: SYSTEM_CHROMIUM } : {});
   const page = await browser.newPage();
   const errors = [];
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
   page.on('pageerror', (e) => errors.push(String(e)));
 
-  await page.goto(pathToFileURL(BASELINE).href);
+  await page.goto(pathToFileURL(SRC).href);
   await page.waitForSelector('html[data-rig-ready="true"]', { timeout: 30000 });
   if (errors.length) {
-    console.warn('WARNING: console errors while loading baseline:\n' + errors.join('\n'));
+    console.warn('WARNING: console errors while loading generated workbench:\n' + errors.join('\n'));
   }
 
   const models = await page.evaluate(() => Object.keys(rigs));
-  console.log(`Loaded baseline with ${models.length} models.`);
+  console.log(`Loaded generated workbench with ${models.length} models.`);
 
-  // 1. Raw rig objects (resolver oracle) — pure data, no state needed.
+  // 1. Raw rig objects (resolver oracle) — pure package data.
   for (const m of models) {
-    const json = await page.evaluate((m) => JSON.stringify(rigs[m], null, 2), m);
+    const json = JSON.stringify(loadModel(m), null, 2);
     await writeFile(join(FIX, 'rigs', `${m}.json`), json + '\n');
   }
   console.log(`Captured ${models.length} rig fixtures.`);
 
-  // 2. Compiled packages (compile oracle) — deterministic at default camera.
+  // 2. Compiled packages (compile oracle) — deterministic Node byte format.
   for (const m of models) {
-    const json = await page.evaluate((m) => {
-      state.model = m;
-      updateModel();
-      state.clip = 'idle';
-      state.t = 0;
-      state.height = 1;
-      state.width = 1;
-      return JSON.stringify(rigPayload(), null, 2);
-    }, m);
+    const json = JSON.stringify(compilePackage(loadModel(m)), null, 2);
     await writeFile(join(FIX, 'packages', `${m}.json`), json + '\n');
   }
   console.log(`Captured ${models.length} package fixtures.`);
@@ -110,32 +117,16 @@ async function main() {
   }
   let svgCount = 0;
   for (const { model, clip, t, cam } of svgJobs) {
-    const { svg, elev, az } = await page.evaluate(({ model, clip, t, cam }) => {
-      state.model = model;
-      updateModel();
-      if (cam) { state.elev = cam[0]; state.az = cam[1]; }
-      state.clip = clip;
-      state.t = t;
-      state.height = 1;
-      state.width = 1;
-      return { svg: exportedSvg(), elev: state.elev, az: state.az };
-    }, { model, clip, t, cam });
+    const rig = loadModel(model);
+    const elev = cam?.[0] ?? rig.camera?.elevation ?? 90;
+    const az = cam?.[1] ?? rig.camera?.azimuth ?? 0;
+    const svg = renderSvg(rig, { clip, time: t, elevation: elev, heading: az });
     await writeFile(join(FIX, 'svg', svgName(model, clip, t, elev, az)), svg);
     svgCount++;
   }
   // Extra exact-command goldens.
   for (const { model, clip, t, elev, az } of EXTRA_SVGS) {
-    const svg = await page.evaluate(({ model, clip, t, elev, az }) => {
-      state.model = model;
-      updateModel();
-      state.elev = elev;
-      state.az = az;
-      state.clip = clip;
-      state.t = t;
-      state.height = 1;
-      state.width = 1;
-      return exportedSvg();
-    }, { model, clip, t, elev, az });
+    const svg = renderSvg(loadModel(model), { clip, time: t, elevation: elev, heading: az });
     await writeFile(join(FIX, 'svg', svgName(model, clip, t, elev, az)), svg);
     svgCount++;
   }
@@ -143,24 +134,12 @@ async function main() {
 
   // 4. Contact sheets (sheet oracle) — 8 headings x 4 elevations of clean markup.
   for (const model of SWEEP_MODELS) {
-    const grid = await page.evaluate(({ model, headings, elevations }) => {
-      state.model = model;
-      updateModel();
-      state.clip = 'idle';
-      state.t = 0;
-      state.height = 1;
-      state.width = 1;
-      const rig = rigs[model];
-      const cells = [];
-      for (const elev of elevations) {
-        for (const az of headings) {
-          state.elev = elev;
-          state.az = az;
-          cells.push({ elev, az, markup: svgMarkup(rig, 0, 'idle', 'projected', { clean: true }) });
-        }
-      }
-      return cells;
-    }, { model, headings: SHEET_HEADINGS, elevations: SHEET_ELEVATIONS });
+    const rig = loadModel(model);
+    const grid = SHEET_ELEVATIONS.flatMap((elev) => SHEET_HEADINGS.map((az) => ({
+      elev,
+      az,
+      markup: markup(rig, { clip: 'idle', time: 0, elevation: elev, heading: az }),
+    })));
     await writeFile(join(FIX, 'contact-sheets', `${model}.json`), JSON.stringify(grid, null, 2) + '\n');
   }
   console.log(`Captured ${SWEEP_MODELS.length} contact-sheet fixtures.`);

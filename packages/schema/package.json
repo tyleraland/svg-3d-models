@@ -7,6 +7,9 @@
     ".": "./index.js",
     "./constants": "./constants.js",
     "./vec": "./vec.js",
-    "./primitives": "./primitives.js"
+    "./primitives": "./primitives.js",
+    "./schemas/model-1.schema.json": "./schemas/model-1.schema.json",
+    "./schemas/family-1.schema.json": "./schemas/family-1.schema.json",
+    "./schemas/projected-scene-1.schema.json": "./schemas/projected-scene-1.schema.json"
   }
 }

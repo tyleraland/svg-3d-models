@@ -18,6 +18,11 @@ test('validate exits 0 for a passing model', () => {
   assert.match(out, /passed/);
 });
 
+test('validate-sources accepts every declarative model and family', () => {
+  const out = run(['validate-sources']);
+  assert.match(out, /31\/31 model sources passed/);
+});
+
 test('render output is byte-identical to the golden fixture', () => {
   const svg = run(['render', 'rabbit', '--clip', 'walk', '--time', '.25', '--elevation', '60', '--heading', '0', '--stdout']);
   const golden = readFileSync(join(ROOT, 'fixtures/svg/rabbit@walk@0.25@60@0.svg'), 'utf8');

@@ -6,6 +6,7 @@
 // compiler runs headless in the CLI and, once flattened, inside the workbench.
 
 import * as core from './core.js';
+import { buildProjectedScene } from './projected-scene.js';
 
 export { core };
 export const state = core.state;
@@ -58,4 +59,28 @@ export function markup(rig, opts = {}) {
 export function solve(rig, opts = {}) {
   useRig(rig, opts);
   return core.worldJoints(rig, core.state.t, core.state.clip);
+}
+
+// Solve the full posed joint frames. Each record contains the world-space
+// position and the joint's local-to-world 3x3 rotation matrix. This is the
+// foundation for surface-aware details, attachment modules, and diagnostics.
+export function solvePose(rig, opts = {}) {
+  useRig(rig, opts);
+  const { positions, rotations } = core.worldPose(rig, core.state.t, core.state.clip);
+  return {
+    space: 'posed-world',
+    units: 'meters',
+    joints: Object.fromEntries(rig.joints.map((joint) => [joint.id, {
+      positionMeters: [...positions[joint.id]],
+      localToWorldRotation: rotations[joint.id].map((row) => [...row]),
+    }])),
+  };
+}
+
+// Project one pose/camera to a structured, traceable 2D vector scene. During the
+// M1 transition renderSvg() remains the parity-protected legacy adapter; it will
+// be inverted to serialize this scene once equivalence is fully covered.
+export function projectScene(rig, opts = {}) {
+  useRig(rig, opts);
+  return buildProjectedScene(rig, core.state.t, core.state.clip, opts.view || 'projected');
 }
