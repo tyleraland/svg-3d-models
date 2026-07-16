@@ -10,6 +10,7 @@ import {
   loadModelConfigured,
   loadModelSource,
   loadMotionRecipesForModel,
+  loadPaintPrimitivesForModel,
   resolveModel,
 } from '@paper-rig/rigs';
 import { validate } from '@paper-rig/validator';
@@ -31,8 +32,9 @@ export function runValidateAll() {
       const rig = preliminary.status === 'passed' ? resolveModel(model, family) : null;
       const attachmentModules = preliminary.status === 'passed' ? loadAttachmentModulesForModel(model) : {};
       const motionRecipes = preliminary.status === 'passed' ? loadMotionRecipesForModel(model) : {};
+      const paintPrimitives = preliminary.status === 'passed' ? loadPaintPrimitivesForModel(model) : {};
       const sourceReport = preliminary.status === 'passed'
-        ? validateSourcePair(model, family, { resolvedRig: rig, attachmentModules, motionRecipes })
+        ? validateSourcePair(model, family, { resolvedRig: rig, attachmentModules, motionRecipes, paintPrimitives })
         : preliminary;
       if (sourceReport.status !== 'passed') {
         failed++;
@@ -40,8 +42,12 @@ export function runValidateAll() {
         for (const issue of sourceReport.issues) console.log(`    - ${issue.id}: ${issue.detail}`);
         continue;
       }
-      const validationRig = model.motion || model.attachments?.length
-        ? loadModelConfigured(name, { motion: Boolean(model.motion), attachments: Boolean(model.attachments?.length) }).rig
+      const validationRig = model.motion || model.attachments?.length || model.appearance
+        ? loadModelConfigured(name, {
+          motion: Boolean(model.motion),
+          attachments: Boolean(model.attachments?.length),
+          appearance: Boolean(model.appearance),
+        }).rig
         : rig;
       const report = validate(validationRig);
       const issues = report.issues || [];

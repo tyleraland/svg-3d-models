@@ -13,17 +13,18 @@ export function runAudit(argv) {
   const { positionals, flags } = parseArgs(argv, { o: 'out' });
   const target = positionals[0];
   if (!target || positionals.length > 1 || (flags['fail-on-change'] && !flags.against)) {
-    console.error('usage: rig audit <model> [--motion] [--attachments] [--json] [-o report.html] [--no-overlays] [--against manifest.json] [--fail-on-change]');
+    console.error('usage: rig audit <model> [--motion] [--attachments] [--paint] [--json] [-o report.html] [--no-overlays] [--against manifest.json] [--fail-on-change]');
     return 2;
   }
 
-  const configured = flags.motion || flags.attachments
-    ? loadModelConfigured(target, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments) })
+  const configured = flags.motion || flags.attachments || flags.paint
+    ? loadModelConfigured(target, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments), appearance: Boolean(flags.paint) })
     : null;
   const rig = configured?.rig || loadModel(target);
   const report = auditRig(rig);
   if (configured?.attachmentManifest) report.attachmentAssembly = configured.attachmentManifest;
   if (configured?.motionManifest) report.motionResolution = configured.motionManifest;
+  if (configured?.appearanceManifest) report.appearanceResolution = configured.appearanceManifest;
   if (flags.against) {
     const approvedPath = resolve(process.cwd(), flags.against);
     const approved = JSON.parse(readFileSync(approvedPath, 'utf8'));

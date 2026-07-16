@@ -10,9 +10,11 @@
     "./audit-manifest": "./audit-manifest.js",
     "./audit-overlay": "./audit-overlay.js",
     "./attachments": "./attachments.js",
+    "./appearance": "./appearance.js",
     "./motion": "./motion.js"
   },
   "dependencies": {
+    "@paper-rig/appearance": "*",
     "@paper-rig/attachments": "*",
     "@paper-rig/compiler": "*",
     "@paper-rig/motion": "*",

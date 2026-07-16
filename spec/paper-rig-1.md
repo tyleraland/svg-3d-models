@@ -39,7 +39,7 @@ handoff schema.
 
 ## Identity and compatibility
 
-- Every joint, plate, anchor, clip, event, gasket, and generated paint region
+- Every joint, plate, anchor, clip, event, gasket, and resolved paint instance
   MUST have a stable ID within its model.
 - IDs MUST be unique within their declared namespace. Published package IDs that
   share one lookup namespace MUST be globally unique in that package.
@@ -102,6 +102,21 @@ plates. A later strict directional profile will require an explicit local plane
 basis, surface normal, sidedness, and depth envelope for surface-bound geometry.
 Those additions can be backward-compatible source metadata, but consumers MUST
 not infer physical orientation from a plate ID.
+
+## Optional semantic appearance
+
+Authored appearance is an additive capability and is absent from ordinary
+`loadModel()` output. `paper-rig/paint-primitive-1` stores reusable closed
+normalized paths, and a model's `paper-rig/appearance-plan-1` places them on a
+rigid two-axis plate with an explicit right-handed local frame, bounded region,
+and finite transform. The resolver emits opaque `rig.paint` records and a
+`paper-rig/appearance-resolution/1` manifest.
+
+Projected paint is a stable `sourceKind: "paint"` element in the final semantic
+compositing group. Its vector metadata retains the owning plate and reusable
+primitive IDs, and its semantic fields retain role, palette role, detail tier,
+posed surface frame, and camera depth. Reverse-facing surface paint is culled.
+Consumers select actual colors and may omit or simplify paint by metadata.
 
 ## Occlusion and compositing
 

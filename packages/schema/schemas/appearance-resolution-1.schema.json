@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:appearance-resolution-1",
+  "title": "paper-rig resolved semantic appearance manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "schemaVersion", "sourceModelId", "resolvedModelId", "instances"],
+  "properties": {
+    "schema": { "const": "paper-rig/appearance-resolution/1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "sourceModelId": { "$ref": "#/$defs/id" },
+    "resolvedModelId": { "$ref": "#/$defs/id" },
+    "instances": { "type": "array", "items": { "$ref": "#/$defs/instance" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "semanticRole": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)+$" },
+    "vector2": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number" } },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["center", "size"],
+      "properties": {
+        "center": { "$ref": "#/$defs/vector2" },
+        "size": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "exclusiveMinimum": 0 } }
+      }
+    },
+    "transform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["translate", "rotateDegrees", "scale"],
+      "properties": {
+        "translate": { "$ref": "#/$defs/vector2" },
+        "rotateDegrees": { "type": "number" },
+        "scale": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "exclusiveMinimum": 0 } }
+      }
+    },
+    "instance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "primitiveId", "ownerPlateId", "semanticRole", "paletteRole", "detailTier", "region", "transform"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "primitiveId": { "$ref": "#/$defs/id" },
+        "ownerPlateId": { "$ref": "#/$defs/id" },
+        "semanticRole": { "$ref": "#/$defs/semanticRole" },
+        "paletteRole": { "$ref": "#/$defs/semanticRole" },
+        "detailTier": { "enum": ["identity", "expression", "texture", "micro"] },
+        "region": { "$ref": "#/$defs/region" },
+        "transform": { "$ref": "#/$defs/transform" }
+      }
+    }
+  }
+}

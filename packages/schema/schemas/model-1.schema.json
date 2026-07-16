@@ -67,6 +67,7 @@
       "items": { "$ref": "#/$defs/attachmentSlot" }
     },
     "motion": { "$ref": "#/$defs/motionPlan" },
+    "appearance": { "$ref": "#/$defs/appearancePlan" },
     "attack": {
       "type": "object",
       "additionalProperties": false,
@@ -156,6 +157,7 @@
   ],
   "$defs": {
     "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "semanticRole": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)+$" },
     "finiteNumber": { "type": "number" },
     "positiveNumber": { "type": "number", "exclusiveMinimum": 0 },
     "time": { "type": "number", "minimum": 0, "maximum": 1 },
@@ -163,6 +165,12 @@
       "type": "array",
       "minItems": 3,
       "maxItems": 3,
+      "items": { "$ref": "#/$defs/finiteNumber" }
+    },
+    "vector2": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
       "items": { "$ref": "#/$defs/finiteNumber" }
     },
     "size": {
@@ -290,6 +298,62 @@
           "minProperties": 1,
           "propertyNames": { "$ref": "#/$defs/id" },
           "additionalProperties": { "$ref": "#/$defs/motionClip" }
+        }
+      }
+    },
+    "appearancePlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["$schema", "instances"],
+      "properties": {
+        "$schema": { "const": "paper-rig/appearance-plan-1" },
+        "instances": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/paintInstance" }
+        }
+      }
+    },
+    "paintInstance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "primitiveId", "ownerPlateId", "surfaceFrame", "region"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "primitiveId": { "$ref": "#/$defs/id" },
+        "ownerPlateId": { "$ref": "#/$defs/id" },
+        "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" },
+        "region": { "$ref": "#/$defs/paintRegion" },
+        "transform": { "$ref": "#/$defs/paintTransform" },
+        "paletteRole": { "$ref": "#/$defs/semanticRole" }
+      }
+    },
+    "paintRegion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["center", "size"],
+      "properties": {
+        "center": { "$ref": "#/$defs/vector2" },
+        "size": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/positiveNumber" }
+        }
+      }
+    },
+    "paintTransform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["translate", "rotateDegrees", "scale"],
+      "properties": {
+        "translate": { "$ref": "#/$defs/vector2" },
+        "rotateDegrees": { "$ref": "#/$defs/finiteNumber" },
+        "scale": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/positiveNumber" }
         }
       }
     },

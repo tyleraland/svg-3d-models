@@ -6,6 +6,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import modelSchema from '@paper-rig/schema/schemas/model-1.schema.json' with { type: 'json' };
 import familySchema from '@paper-rig/schema/schemas/family-1.schema.json' with { type: 'json' };
 import { validateModelAttachmentConfiguration } from './attachments.js';
+import { validateModelAppearanceConfiguration } from './appearance.js';
 import { validateModelMotionConfiguration } from './motion.js';
 
 const ajv = new Ajv2020({ allErrors: true, strict: true, verbose: false });
@@ -237,7 +238,7 @@ export function validateFamilySource(family) {
   return report([...schemaChecks('family', validateFamilySchema, family), ...familySemanticChecks(family)]);
 }
 
-export function validateSourcePair(model, family, { resolvedRig, attachmentModules, motionRecipes } = {}) {
+export function validateSourcePair(model, family, { resolvedRig, attachmentModules, motionRecipes, paintPrimitives } = {}) {
   const modelReport = validateModelSource(model);
   const familyReport = validateFamilySource(family);
   const attachmentReport = resolvedRig && attachmentModules !== undefined
@@ -246,11 +247,15 @@ export function validateSourcePair(model, family, { resolvedRig, attachmentModul
   const motionReport = resolvedRig && motionRecipes !== undefined
     ? validateModelMotionConfiguration(model, resolvedRig, motionRecipes)
     : { checks: [] };
+  const appearanceReport = resolvedRig && paintPrimitives !== undefined
+    ? validateModelAppearanceConfiguration(model, resolvedRig, paintPrimitives)
+    : { checks: [] };
   return report([
     ...modelReport.checks,
     ...familyReport.checks,
     ...overrideTargetChecks(model, family, resolvedRig),
     ...attachmentReport.checks,
     ...motionReport.checks,
+    ...appearanceReport.checks,
   ]);
 }

@@ -53,6 +53,12 @@ npx rig render rabbit --motion --clip attack --time .22 --elevation 60 --heading
 # Capabilities compose: inspect recipe motion with declared modules attached
 npx rig audit humanoid --motion --attachments -o humanoid-motion-audit.html
 
+# Resolve versioned semantic paint and review it across animation/cameras
+npx rig audit rabbit --paint -o rabbit-paint-audit.html
+
+# Motion, modules, and paint compose in one candidate
+npx rig render humanoid --motion --attachments --paint --clip attack --time .62 --elevation 60 --heading 180
+
 # Render the canonical heading/elevation contact sheet
 npx rig sheet rabbit --attachments
 
@@ -95,6 +101,7 @@ The equivalent npm form is `npm run rig -- <command>`.
 packages/schema/       paper-rig constants, primitives, and JSON Schemas
 packages/attachments/  pure typed-slot normalization and module assembly
 packages/motion/       pure phase/block recipe composition to ordinary clips
+packages/appearance/   pure plate-local semantic paint resolution
 packages/compiler/     pure posing, projection, scene, SVG, and package compiler
 packages/validator/    raw-source, structural, and directional validation
 packages/cli/          the `rig` command
@@ -102,6 +109,7 @@ rigs/families/*.json   raw reusable family bases
 rigs/models/*.json     one thin declarative model per creature
 rigs/modules/*.json    reusable source-native attachment modules
 rigs/motion-recipes/   reusable versioned phase timing and block curves
+rigs/paint-primitives/ reusable versioned semantic paint paths
 rigs/resolve.js        family + overrides -> one normalized rig
 rigs/family-kit.js     family presets and normalization operations
 apps/workbench/        browser template, UI source, and build reassembly
@@ -112,8 +120,8 @@ spec/                  detailed versioned package references
 ```
 
 Dependency direction is `schema <- compiler <- validator`,
-`schema <- attachments`, and `schema <- motion`; `rigs` depends on the pure
-schema, attachment, and motion packages, while the CLI and workbench depend on
+`schema <- attachments`, `schema <- motion`, and `schema <- appearance`; `rigs`
+depends on those pure authoring packages, while the CLI and workbench depend on
 the full pipeline. Packages are plain ESM npm workspaces with no transpile or
 bundle step.
 
@@ -198,6 +206,31 @@ audit samples their declared phase peaks and treats malformed phase coverage,
 misaligned events, invalid contacts, phased joint-limit violations, bone-length
 changes, and loop discontinuities as hard failures. `npm run audit-motion` runs
 the opt-in candidate audit over the complete catalog.
+
+### Authoring semantic paint
+
+Reusable paint lives in `rigs/paint-primitives/` as strict
+`paper-rig/paint-primitive-1` sources. A model's
+`paper-rig/appearance-plan-1` instances target a rigid two-axis plate, declare a
+right-handed plate-local surface frame and bounded normalized region, and place
+the primitive with a finite translate/rotate/positive-scale transform. Use
+namespaced semantic roles such as `face.marking` and `body.marking`; do not put
+product colors, line style, or arbitrary CSS in these sources.
+
+The 1.0 grammar accepts a single closed absolute path using only `M`, `L`, `Q`,
+`C`, and `Z`. Every endpoint and curve control must stay in `[-1, 1]`, and the
+transformed controls must fit the declared owner region. This conservative
+contract makes open geometry and region escapes deterministic errors. Add a new
+versioned primitive contract before introducing strokes, holes, true masks,
+relative commands, or arbitrary SVG.
+
+Appearance is opt-in so existing rigs and SVG goldens do not change merely
+because a model declares paint. Use `loadModelAppearance()`,
+`loadModelConfigured(name, { appearance: true })`, or CLI `--paint`. The
+projected scene emits paint in the details group with stable instance and
+primitive IDs, owner-plate metadata, semantic palette roles, posed surface
+frames, and reverse-surface culling. Humanoid and rabbit share the reusable
+`faceBlaze` proof. Run `npm run audit-paint` for the catalog gate.
 
 ### Explaining resolved fields
 

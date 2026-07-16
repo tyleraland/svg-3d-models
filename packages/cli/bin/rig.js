@@ -2,7 +2,7 @@
 // paper-rig CLI. Runs the pure pipeline headless — no browser, no workbench.
 //
 //   rig validate <model|path.json> [--json]
-//   rig render <model> [--motion] [--attachments] [--clip --time --elevation --heading] [-o out.svg]
+//   rig render <model> [--motion] [--attachments] [--paint] [--clip --time --elevation --heading] [-o out.svg]
 //   rig sheet <model> [--motion] [--attachments] [--clip --time] [-o out.html]
 //   rig audit <model> [--motion] [--attachments] [--json] [-o report.html]
 //   rig audit-all [--motion] [--attachments] [--json] [-o report.json]
@@ -29,15 +29,15 @@ const USAGE = `paper-rig CLI
 
   rig validate <model|path.json> [--json]         validate one model
   rig render <model> [flags] [-o out.svg]         render a projected SVG
-      --motion --attachments --clip <name> --time <0..1> --elevation <deg> --heading <deg> --stdout
-  rig sheet <model> [--motion] [--attachments] [--clip --time] [-o out.html]
+      --motion --attachments --paint --clip <name> --time <0..1> --elevation <deg> --heading <deg> --stdout
+  rig sheet <model> [--motion] [--attachments] [--paint] [--clip --time] [-o out.html]
                                                    8x4 heading/elevation contact sheet
-  rig audit <model> [--motion] [--attachments] [--json] [-o report.html]
+  rig audit <model> [--motion] [--attachments] [--paint] [--json] [-o report.html]
                                                    deterministic 240-view audit
       --against <manifest.json> [--fail-on-change]
-  rig audit-all [--motion] [--attachments] [--json] [-o report.json]
+  rig audit-all [--motion] [--attachments] [--paint] [--json] [-o report.json]
                                                    audit every model; warnings do not fail CI
-  rig manifest <model> [--motion] [--attachments] [-o candidate.json]
+  rig manifest <model> [--motion] [--attachments] [--paint] [-o candidate.json]
                                                    emit canonical projected review evidence
   rig explain <model> <entity[.field]> [--json] [--history]
                                                    explain resolved field provenance

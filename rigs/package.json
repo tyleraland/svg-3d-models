@@ -11,6 +11,7 @@
     "./normalize": "./normalize.js"
   },
   "dependencies": {
+    "@paper-rig/appearance": "*",
     "@paper-rig/attachments": "*",
     "@paper-rig/motion": "*",
     "@paper-rig/schema": "*"

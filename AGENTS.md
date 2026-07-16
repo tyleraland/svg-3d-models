@@ -11,6 +11,7 @@ is a **generated demo**, not the source of truth.
 packages/schema/       paper-rig/1 constants (C), V, plate/joint primitives
 packages/attachments/  pure typed-slot normalization + reusable module assembly
 packages/motion/       pure phase/block recipe composition to ordinary clips
+packages/appearance/   pure plate-local semantic paint resolution
 packages/compiler/     pure pipeline: posing, projection, SVG, package compilation
 packages/validator/    structural + directional checks (validate/isValid)
 packages/cli/          the `rig` command
@@ -18,6 +19,7 @@ rigs/families/*.json   raw (pre-normalization) family base per creature
 rigs/models/*.json     one thin declarative model per creature (all 31)
 rigs/modules/*.json    reusable paper-rig/attachment-module-1 sources
 rigs/motion-recipes/   reusable paper-rig/motion-recipe-1 sources
+rigs/paint-primitives/ reusable paper-rig/paint-primitive-1 sources
 rigs/resolve.js        resolveModel(): family + overrides -> rig, in one pass
 rigs/family-kit.js     family-preset + normalization operations
 apps/workbench/        template.html + ui.js (DOM layer) + build reassembly
@@ -26,7 +28,8 @@ test/                  behavior-parity tests (node --test)
 ```
 
 Dependency direction: `schema <- compiler <- validator`; `schema <- attachments`;
-`schema <- motion`; `schema/attachments/motion <- rigs`; `cli`/workbench depend on all.
+`schema <- motion`; `schema <- appearance`; pure authoring packages feed `rigs`;
+`cli`/workbench depend on all.
 
 ## CLI
 
@@ -35,7 +38,8 @@ rig validate rigs/models/rabbit.json          # resolve + compile + validate
 rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
 rig render rabbit --attachments               # opt-in declared module assembly
 rig render rabbit --motion --clip attack --time .22
-rig audit humanoid --motion --attachments      # composed candidate review
+rig render rabbit --paint                      # opt-in semantic appearance
+rig audit humanoid --motion --attachments --paint # composed candidate review
 rig sheet rabbit --attachments                 # 8x4 assembled contact sheet
 rig manifest rabbit --attachments -o rabbit-candidate.json
 rig audit rabbit --attachments -o rabbit-audit.html
@@ -75,11 +79,20 @@ directional matrix. They are diagnostic UI only and never enter exported SVG.
 Reusable motion timing lives in `rigs/motion-recipes/`. Model `motion` plans are
 validated declarations but ordinary `loadModel()` resolution deliberately omits
 them for compatibility. Use `loadModelMotion()` / `resolveModelMotion()` or CLI
-`--motion`; use `loadModelConfigured()` when composing motion and attachments.
+`--motion`; use `loadModelConfigured()` when composing motion, attachments, and
+appearance.
 Recipes own phase timing and normalized block curves, while models author only
 joint-local layer amplitudes. Resolution emits ordinary clips. Never teach a
 renderer or consumer to evaluate recipes, and never bypass phase/event/contact/
 limit/bone-length audit failures with ad hoc keyframes.
+
+Reusable semantic paint lives in `rigs/paint-primitives/`. Model `appearance`
+plans are validated declarations but ordinary `loadModel()` resolution omits
+them. Use `loadModelAppearance()` or CLI `--paint`. Every placement targets a
+rigid two-axis plate through an explicit right-handed surface frame and bounded
+normalized region. The 1.0 grammar is closed absolute `M/L/Q/C/Z` only; do not
+bypass containment with arbitrary SVG/CSS or world-space coordinates. Extend
+the versioned contract before adding strokes, holes, or true masks.
 
 Reusable attachments live in `rigs/modules/`. Model `attachments` entries are
 validated declarations but ordinary `loadModel()` resolution deliberately omits

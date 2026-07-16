@@ -19,6 +19,8 @@
     "./schemas/attachment-module-1.schema.json": "./schemas/attachment-module-1.schema.json",
     "./schemas/attachment-assembly-1.schema.json": "./schemas/attachment-assembly-1.schema.json",
     "./schemas/motion-recipe-1.schema.json": "./schemas/motion-recipe-1.schema.json",
-    "./schemas/motion-resolution-1.schema.json": "./schemas/motion-resolution-1.schema.json"
+    "./schemas/motion-resolution-1.schema.json": "./schemas/motion-resolution-1.schema.json",
+    "./schemas/paint-primitive-1.schema.json": "./schemas/paint-primitive-1.schema.json",
+    "./schemas/appearance-resolution-1.schema.json": "./schemas/appearance-resolution-1.schema.json"
   }
 }

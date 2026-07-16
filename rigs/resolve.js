@@ -12,6 +12,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { basename, dirname, join } from 'node:path';
 import { cloneData } from '@paper-rig/schema';
+import { resolveAppearancePlan } from '@paper-rig/appearance';
 import { resolveAttachmentAssembly } from '@paper-rig/attachments';
 import { resolveMotionPlan } from '@paper-rig/motion';
 import { createProvenanceTracker } from './provenance.js';
@@ -23,6 +24,7 @@ import {
 const RIGS_DIR = dirname(fileURLToPath(import.meta.url));
 const MODULES_DIR = join(RIGS_DIR, 'modules');
 const MOTION_RECIPES_DIR = join(RIGS_DIR, 'motion-recipes');
+const PAINT_PRIMITIVES_DIR = join(RIGS_DIR, 'paint-primitives');
 const readJSON = (p) => JSON.parse(readFileSync(p, 'utf8'));
 
 export function loadFamily(name) {
@@ -43,6 +45,14 @@ export function loadMotionRecipe(name) {
 export function loadMotionRecipesForModel(model) {
   const recipeIds = [...new Set(Object.values(model.motion?.clips || {}).map((clip) => clip.recipe))];
   return Object.fromEntries(recipeIds.map((id) => [id, loadMotionRecipe(id)]));
+}
+export function loadPaintPrimitive(name) {
+  const path = name.endsWith('.json') ? name : join(PAINT_PRIMITIVES_DIR, `${name}.json`);
+  return readJSON(path);
+}
+export function loadPaintPrimitivesForModel(model) {
+  const primitiveIds = [...new Set((model.appearance?.instances || []).map((instance) => instance.primitiveId))];
+  return Object.fromEntries(primitiveIds.map((id) => [id, loadPaintPrimitive(id)]));
 }
 export function loadAttachmentModule(name) {
   const path = name.endsWith('.json') ? name : join(MODULES_DIR, `${name}.json`);
@@ -66,7 +76,14 @@ export function loadModelMotion(name) {
     recipes: loadMotionRecipesForModel(model),
   });
 }
-export function loadModelConfigured(name, { motion = false, attachments = false } = {}) {
+export function loadModelAppearance(name) {
+  const model = loadModelSource(name);
+  return resolveModelAppearance(model, loadFamily(model.family), {
+    sourceModelId: basename(name, '.json'),
+    primitives: loadPaintPrimitivesForModel(model),
+  });
+}
+export function loadModelConfigured(name, { motion = false, attachments = false, appearance = false } = {}) {
   const model = loadModelSource(name);
   const family = loadFamily(model.family);
   const sourceModelId = basename(name, '.json');
@@ -82,10 +99,19 @@ export function loadModelConfigured(name, { motion = false, attachments = false 
       modules: loadAttachmentModulesForModel(model),
     })
     : null;
+  const appearanceResolution = appearance
+    ? resolveAppearancePlan({
+      rig: attachmentResolution?.rig || motionResolution.rig,
+      sourceModelId,
+      plan: model.appearance || { instances: [] },
+      primitives: loadPaintPrimitivesForModel(model),
+    })
+    : null;
   return {
-    rig: attachmentResolution?.rig || motionResolution.rig,
+    rig: appearanceResolution?.rig || attachmentResolution?.rig || motionResolution.rig,
     motionManifest: motionResolution.manifest,
     attachmentManifest: attachmentResolution?.manifest || null,
+    appearanceManifest: appearanceResolution?.manifest || null,
   };
 }
 export function loadModelWithProvenance(name) {
@@ -339,6 +365,15 @@ export function resolveModelMotion(model, family, { sourceModelId, recipes = {} 
     sourceModelId: sourceModelId || model.variant?.id || family.id,
     plan: model.motion || { clips: {} },
     recipes,
+  });
+}
+
+export function resolveModelAppearance(model, family, { sourceModelId, primitives = {} } = {}) {
+  return resolveAppearancePlan({
+    rig: resolveModel(model, family),
+    sourceModelId: sourceModelId || model.variant?.id || family.id,
+    plan: model.appearance || { instances: [] },
+    primitives,
   });
 }
 

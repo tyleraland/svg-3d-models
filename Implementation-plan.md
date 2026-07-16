@@ -49,7 +49,7 @@ runtime asset policy.
 | M2.5: authoring round-trip | Complete | Provenance, semantic diffs, source patches, and adjacent-pose/multi-camera review |
 | M3A: modular attachment foundation | Complete | Typed joint/surface slots, bounded reusable modules, assembly validation, and canonical review |
 | M4: composable motion system | Complete | Versioned phases/recipes, representative whole-body attacks, and hard motion checks |
-| M3B: appearance and paint | Planned | Plate-local paint and reusable semantic detail libraries |
+| M3B: appearance and paint | Complete | Versioned plate-local paint, bounded placement, semantic palette roles, and projected traceability |
 | M5: LOD and consumer handoff | Planned | Semantic detail tiers, capability negotiation, and stable export fixtures |
 | M6: representative migration and release | Planned | Fully exercise the contract on contrasting rigs, then publish/version it |
 
@@ -345,17 +345,32 @@ Exit criteria met. Ordinary `loadModel()` output and existing SVG goldens remain
 byte-identical; recipe candidates are explicit until broader clip migration is
 reviewed model by model.
 
-Next action: begin M3B with a minimal versioned plate-local paint primitive and
-one animated face/marking proof before broad appearance migration.
+Next action completed by M3B below.
 
 ## M3B — appearance and paint
 
-Status: planned; M4 prerequisite complete.
+Status: complete.
 
 Add plate-local paint primitives that remain coherent through animation:
 regions, paths, spots, stripes, masks, and palette roles. Paint data should use
 semantic colors such as `body.main`, `body.marking`, `face.eye`, or
 `equipment.metal`; concrete game colors remain a consumer concern.
+
+Delivered:
+
+- pure `@paper-rig/appearance` resolution for `paper-rig/paint-primitive-1`,
+  embedded `paper-rig/appearance-plan-1`, and
+  `paper-rig/appearance-resolution/1` manifests;
+- a deliberately conservative closed-path grammar (`M`, `L`, `Q`, `C`, `Z`),
+  normalized curve controls, right-handed surface frames, positive transforms,
+  exact region containment, target-shape checks, and stable-ID collision checks;
+- opt-in `loadModelAppearance()` / `loadModelConfigured()` and `--paint`
+  rendering, sheets, manifests, audits, and a full-catalog `audit-paint` gate;
+- projected paint elements with owner/primitive traceability, semantic palette
+  roles, posed surface frames, deterministic ordering, and reverse-surface
+  culling; and
+- one reusable `faceBlaze` identity marking shared by humanoid and rabbit and
+  exercised through animated attack poses and canonical consumer evidence.
 
 Exit criteria:
 
@@ -363,6 +378,15 @@ Exit criteria:
 - Validators reject invalid targets, open geometry, and paint escaping declared
   plate-local regions.
 - A humanoid and quadruped share at least one reusable semantic paint primitive.
+
+Exit criteria met. Ordinary `loadModel()` resolution, legacy package fixtures,
+and SVG goldens remain unchanged because authored appearance is opt-in. The 1.0
+primitive intentionally admits only closed solid paths; strokes, holes, and
+true masking require a later versioned contract rather than ambiguous CSS.
+
+Next action: begin M5 by making semantic detail-tier selection an explicit
+`projected-scene/1` consumer capability, with deterministic degradation and
+golden handoff fixtures.
 
 ## M5 — LOD and consumer handoff
 

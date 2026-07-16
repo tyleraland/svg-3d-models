@@ -13,7 +13,7 @@ const MODELS_DIR = join(dirname(fileURLToPath(import.meta.url)), '../../../rigs/
 export function runAuditAll(argv) {
   const { positionals, flags } = parseArgs(argv, { o: 'out' });
   if (positionals.length) {
-    console.error('usage: rig audit-all [--motion] [--attachments] [--json] [-o report.json]');
+    console.error('usage: rig audit-all [--motion] [--attachments] [--paint] [--json] [-o report.json]');
     return 2;
   }
 
@@ -28,8 +28,8 @@ export function runAuditAll(argv) {
 
   const report = auditCatalog(names.map((name) => ({
     sourceModelId: name,
-    rig: flags.motion || flags.attachments
-      ? loadModelConfigured(name, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments) }).rig
+    rig: flags.motion || flags.attachments || flags.paint
+      ? loadModelConfigured(name, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments), appearance: Boolean(flags.paint) }).rig
       : loadModel(name),
   })));
   if (flags.json || flags.out) {

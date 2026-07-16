@@ -49,6 +49,18 @@ test('render resolves motion recipes only when requested and composes capability
   assert.match(combined, /id="travelPack__body"/);
 });
 
+test('render includes semantic plate-local paint only when requested', () => {
+  const plain = run(['render', 'rabbit', '--clip', 'attack', '--time', '.62', '--elevation', '60', '--heading', '180', '--stdout']);
+  const painted = run(['render', 'rabbit', '--paint', '--clip', 'attack', '--time', '.62', '--elevation', '60', '--heading', '180', '--stdout']);
+  const combined = run(['render', 'rabbit', '--motion', '--attachments', '--paint', '--clip', 'attack', '--time', '.22', '--elevation', '60', '--heading', '180', '--stdout']);
+  assert.doesNotMatch(plain, /data-paint-primitive/);
+  assert.match(painted, /data-paint-primitive="faceBlaze"/);
+  assert.match(painted, /data-palette-role="body\.marking"/);
+  assert.match(combined, /data-paint-primitive="faceBlaze"/);
+  assert.match(combined, /id="travelPack__body"/);
+  assert.match(combined, /paper-rig\/motion-resolution\/1/);
+});
+
 test('sheet produces 32 finite tiles', () => {
   const dir = mkdtempSync(join(tmpdir(), 'rig-sheet-'));
   const out = run(['sheet', 'rabbit', '-o', join(dir, 'sheet.html')]);

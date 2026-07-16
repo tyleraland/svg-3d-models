@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:paint-primitive-1",
+  "title": "paper-rig reusable semantic paint primitive",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "semanticRole", "paletteRole", "detailTier", "geometry"],
+  "properties": {
+    "$schema": { "const": "paper-rig/paint-primitive-1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "id": { "$ref": "#/$defs/id" },
+    "semanticRole": { "$ref": "#/$defs/semanticRole" },
+    "paletteRole": { "$ref": "#/$defs/semanticRole" },
+    "detailTier": { "enum": ["identity", "expression", "texture", "micro"] },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "path"],
+      "properties": {
+        "type": { "const": "closedPath" },
+        "path": { "type": "string", "minLength": 4 }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "semanticRole": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)+$" }
+  }
+}

@@ -117,8 +117,8 @@
           "required": ["sourceId", "sourceKind", "kind", "generated", "semanticRole", "bodyRegion", "side", "paletteRole", "lodTier", "depthBias"],
           "properties": {
             "sourceId": { "$ref": "#/$defs/id" },
-            "sourceKind": { "enum": ["plate", "gasket"] },
-            "kind": { "enum": ["plate", "gasket", "occluderCell"] },
+            "sourceKind": { "enum": ["plate", "gasket", "paint"] },
+            "kind": { "enum": ["plate", "gasket", "paint", "occluderCell"] },
             "generated": { "type": "boolean" },
             "semanticRole": { "type": "string", "minLength": 1 },
             "bodyRegion": { "type": "string", "minLength": 1 },

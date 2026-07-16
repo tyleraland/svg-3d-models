@@ -268,6 +268,23 @@ Paint order and masking MUST be deterministic. The projected scene MUST preserve
 enough source and palette-role metadata for a consumer to replace, simplify, or
 omit paint without parsing arbitrary CSS.
 
+The current additive source contracts are `paper-rig/paint-primitive-1`,
+embedded `paper-rig/appearance-plan-1`, and
+`paper-rig/appearance-resolution/1`. Version 1 supports one closed absolute
+path made from `M`, `L`, `Q`, `C`, and `Z`; all endpoints and Bézier controls
+MUST be normalized to `[-1, 1]`. Each instance MUST target an existing rigid
+two-axis plate, declare an orthonormal right-handed surface frame and a bounded
+plate-local region, and keep its transformed controls inside that region.
+These restrictions are intentionally sufficient rather than permissive: true
+masks, holes, strokes, relative commands, and arbitrary SVG/CSS require a new
+versioned contract.
+
+Appearance resolution is opt-in. A projected paint element MUST retain its
+stable instance ID, reusable primitive ID, owning plate ID, semantic role,
+semantic palette role, detail tier, and posed surface frame. Front-surface paint
+MUST NOT project through the reverse side. Consumers MAY omit or recolor the
+element by semantic metadata without parsing its CSS class.
+
 ## 9. Motion and clips
 
 Clips MUST remain deterministic functions of normalized time. Looping clips

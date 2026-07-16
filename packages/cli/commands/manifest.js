@@ -12,12 +12,12 @@ export function runManifest(argv) {
   const { positionals, flags } = parseArgs(argv, { o: 'out' });
   const target = positionals[0];
   if (!target || positionals.length > 1) {
-    console.error('usage: rig manifest <model> [--motion] [--attachments] [-o candidate.json]');
+    console.error('usage: rig manifest <model> [--motion] [--attachments] [--paint] [-o candidate.json]');
     return 2;
   }
 
-  const rig = flags.motion || flags.attachments
-    ? loadModelConfigured(target, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments) }).rig
+  const rig = flags.motion || flags.attachments || flags.paint
+    ? loadModelConfigured(target, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments), appearance: Boolean(flags.paint) }).rig
     : loadModel(target);
   const manifest = createAuditManifest(rig);
   const json = `${JSON.stringify(manifest, null, 2)}\n`;

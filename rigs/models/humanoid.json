@@ -139,5 +139,26 @@
         "contacts": ["nearFoot", "farFoot"]
       }
     }
+  },
+  "appearance": {
+    "$schema": "paper-rig/appearance-plan-1",
+    "instances": [
+      {
+        "id": "faceBlaze",
+        "primitiveId": "faceBlaze",
+        "ownerPlateId": "headPlate",
+        "surfaceFrame": {
+          "tangent": [0, 1, 0],
+          "bitangent": [0, 0, 1],
+          "normal": [1, 0, 0]
+        },
+        "region": { "center": [0, 0], "size": [0.4, 1.2] },
+        "transform": {
+          "translate": [0, 0.05],
+          "rotateDegrees": 0,
+          "scale": [0.7, 0.72]
+        }
+      }
+    ]
   }
 }
