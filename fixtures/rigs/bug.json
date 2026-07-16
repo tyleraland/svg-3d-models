@@ -169,7 +169,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "shellPlate",
@@ -182,7 +183,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3
+      "zBias": 3,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearFrontFootPlate",
@@ -199,7 +201,8 @@
         "body",
         "nearFrontFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farFrontFootPlate",
@@ -216,7 +219,8 @@
         "body",
         "farFrontFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearMiddleFootPlate",
@@ -233,7 +237,8 @@
         "body",
         "nearMiddleFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farMiddleFootPlate",
@@ -250,7 +255,8 @@
         "body",
         "farMiddleFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearRearFootPlate",
@@ -267,7 +273,8 @@
         "body",
         "nearRearFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farRearFootPlate",
@@ -284,7 +291,8 @@
         "body",
         "farRearFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

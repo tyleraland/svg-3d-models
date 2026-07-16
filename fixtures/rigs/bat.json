@@ -323,7 +323,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "bodyPlate",
@@ -340,7 +341,8 @@
         "body",
         "chest"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "neckPlate",
@@ -357,7 +359,8 @@
         "chest",
         "neck"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headConnectorPlate",
@@ -374,7 +377,8 @@
         "neck",
         "head"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headPlate",
@@ -387,7 +391,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 4.8
+      "zBias": 4.8,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftEarPlate",
@@ -404,7 +409,8 @@
         "leftEarBase",
         "leftEarTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightEarPlate",
@@ -421,7 +427,8 @@
         "rightEarBase",
         "rightEarTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tailPlate",
@@ -438,7 +445,8 @@
         "tailBase",
         "tailTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftWingMembrane",
@@ -458,7 +466,8 @@
         "leftWingTip",
         "leftWingFinger",
         "leftWingTrailingRoot"
-      ]
+      ],
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightWingMembrane",
@@ -478,7 +487,8 @@
         "rightWingTip",
         "rightWingWrist",
         "rightWingElbow"
-      ]
+      ],
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftWingUpperPlate",
@@ -495,7 +505,8 @@
         "leftWingRoot",
         "leftWingElbow"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftWingForePlate",
@@ -512,7 +523,8 @@
         "leftWingElbow",
         "leftWingWrist"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftWingTipPlate",
@@ -529,7 +541,8 @@
         "leftWingWrist",
         "leftWingTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftWingFingerPlate",
@@ -546,7 +559,8 @@
         "leftWingWrist",
         "leftWingFinger"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightWingUpperPlate",
@@ -563,7 +577,8 @@
         "rightWingRoot",
         "rightWingElbow"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightWingForePlate",
@@ -580,7 +595,8 @@
         "rightWingElbow",
         "rightWingWrist"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightWingTipPlate",
@@ -597,7 +613,8 @@
         "rightWingWrist",
         "rightWingTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightWingFingerPlate",
@@ -614,7 +631,8 @@
         "rightWingWrist",
         "rightWingFinger"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

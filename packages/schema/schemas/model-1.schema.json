@@ -68,6 +68,7 @@
     },
     "motion": { "$ref": "#/$defs/motionPlan" },
     "appearance": { "$ref": "#/$defs/appearancePlan" },
+    "semanticDetailPolicy": { "$ref": "#/$defs/semanticDetailPolicy" },
     "attack": {
       "type": "object",
       "additionalProperties": false,
@@ -562,6 +563,24 @@
       }
     },
     "semanticDetailTier": { "enum": ["silhouette", "identity", "expression", "texture", "micro"] },
+    "semanticDetailPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defaultTier"],
+      "properties": {
+        "defaultTier": { "$ref": "#/$defs/semanticDetailTier" },
+        "byRole": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/id" },
+          "additionalProperties": { "$ref": "#/$defs/semanticDetailTier" }
+        },
+        "byId": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/id" },
+          "additionalProperties": { "$ref": "#/$defs/semanticDetailTier" }
+        }
+      }
+    },
     "anchorPatch": {
       "type": "object",
       "additionalProperties": false,

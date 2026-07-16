@@ -1,6 +1,6 @@
 {
   "name": "paper-rig",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Experiments and tools for SVG-based 3D model rigging and visualization.",
@@ -21,9 +21,10 @@
     "audit-paint": "node packages/cli/bin/rig.js audit-all --paint",
     "build-workbench": "node packages/cli/bin/rig.js build-workbench",
     "capture-fixtures": "node scripts/capture-fixtures.mjs",
+    "check:release": "node scripts/check-release.mjs",
     "test": "node --test",
     "test:workbench": "node scripts/check-workbench-parity.mjs",
-    "check": "npm run validate-sources && npm test && npm run validate-all && npm run audit-all && npm run audit-motion && npm run audit-paint"
+    "check": "npm run validate-sources && npm test && npm run validate-all && npm run audit-all && npm run audit-motion && npm run audit-paint && npm run check:release"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1"

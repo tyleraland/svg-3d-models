@@ -374,7 +374,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "corePlate",
@@ -387,7 +388,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3
+      "zBias": 3,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle0UpperPlate",
@@ -404,7 +406,8 @@
         "tentacle0Base",
         "tentacle0Mid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle0LowerPlate",
@@ -421,7 +424,8 @@
         "tentacle0Mid",
         "tentacle0Tip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle0TipPlate",
@@ -434,7 +438,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1.7
+      "zBias": 1.7,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle1UpperPlate",
@@ -451,7 +456,8 @@
         "tentacle1Base",
         "tentacle1Mid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle1LowerPlate",
@@ -468,7 +474,8 @@
         "tentacle1Mid",
         "tentacle1Tip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle1TipPlate",
@@ -481,7 +488,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1.7
+      "zBias": 1.7,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle2UpperPlate",
@@ -498,7 +506,8 @@
         "tentacle2Base",
         "tentacle2Mid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle2LowerPlate",
@@ -515,7 +524,8 @@
         "tentacle2Mid",
         "tentacle2Tip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle2TipPlate",
@@ -528,7 +538,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1.7
+      "zBias": 1.7,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle3UpperPlate",
@@ -545,7 +556,8 @@
         "tentacle3Base",
         "tentacle3Mid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle3LowerPlate",
@@ -562,7 +574,8 @@
         "tentacle3Mid",
         "tentacle3Tip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle3TipPlate",
@@ -575,7 +588,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1.7
+      "zBias": 1.7,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle4UpperPlate",
@@ -592,7 +606,8 @@
         "tentacle4Base",
         "tentacle4Mid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle4LowerPlate",
@@ -609,7 +624,8 @@
         "tentacle4Mid",
         "tentacle4Tip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle4TipPlate",
@@ -622,7 +638,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1.7
+      "zBias": 1.7,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle5UpperPlate",
@@ -639,7 +656,8 @@
         "tentacle5Base",
         "tentacle5Mid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle5LowerPlate",
@@ -656,7 +674,8 @@
         "tentacle5Mid",
         "tentacle5Tip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle5TipPlate",
@@ -669,7 +688,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1.7
+      "zBias": 1.7,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle6UpperPlate",
@@ -686,7 +706,8 @@
         "tentacle6Base",
         "tentacle6Mid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle6LowerPlate",
@@ -703,7 +724,8 @@
         "tentacle6Mid",
         "tentacle6Tip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle6TipPlate",
@@ -716,7 +738,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1.7
+      "zBias": 1.7,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle7UpperPlate",
@@ -733,7 +756,8 @@
         "tentacle7Base",
         "tentacle7Mid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle7LowerPlate",
@@ -750,7 +774,8 @@
         "tentacle7Mid",
         "tentacle7Tip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacle7TipPlate",
@@ -763,7 +788,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1.7
+      "zBias": 1.7,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

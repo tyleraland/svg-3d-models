@@ -101,6 +101,24 @@ test('full clip overrides remain attributable to their source object', () => {
   assert.ok(explanation.fields.every((field) => field.origin.sourcePointer === '/clips/attack'));
 });
 
+test('semantic detail policies retain default, role, and explicit-ID provenance', async () => {
+  const { loadFamily, loadModelSource, resolveModelWithProvenance } = await import('@paper-rig/rigs');
+  const source = structuredClone(loadModelSource('horse'));
+  source.semanticDetailPolicy.byId = { headPlate: 'identity' };
+  const { provenance } = resolveModelWithProvenance(source, loadFamily(source.family), { sourceModelId: 'horse' });
+  const cases = [
+    ['plate:torsoPlate.semanticDetailTier', '/semanticDetailPolicy/defaultTier'],
+    ['plate:castShadow.semanticDetailTier', '/semanticDetailPolicy/byRole/shadow'],
+    ['plate:headPlate.semanticDetailTier', '/semanticDetailPolicy/byId/headPlate'],
+  ];
+  for (const [selector, sourcePointer] of cases) {
+    const explanation = explainProvenance(provenance, selector);
+    assert.equal(explanation.status, 'found');
+    assert.equal(explanation.fields.length, 1);
+    assert.equal(explanation.fields[0].origin.sourcePointer, sourcePointer);
+  }
+});
+
 test('missing selectors produce a schema-valid not-found explanation', () => {
   const { provenance } = loadModelWithProvenance('rabbit');
   const explanation = explainProvenance(provenance, 'plate:notAPlate.size');

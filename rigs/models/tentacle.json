@@ -1,6 +1,10 @@
 {
   "$schema": "paper-rig/model-1",
   "family": "tentacle",
+  "semanticDetailPolicy": {
+    "defaultTier": "silhouette",
+    "byRole": { "shadow": "texture" }
+  },
   "base": true,
   "clips": {
     "attack": {

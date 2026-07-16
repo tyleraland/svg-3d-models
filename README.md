@@ -10,6 +10,10 @@ The browser workbench is a generated inspection UI. The reusable product is the
 schema, resolver, compiler, validator, CLI, model catalog, and—incrementally—the
 structured projected scene consumed by downstream art pipelines.
 
+Release changes and consumer upgrade guidance live in
+[CHANGELOG.md](CHANGELOG.md), [MIGRATION.md](MIGRATION.md), and
+[RELEASE.md](RELEASE.md).
+
 ## Start here
 
 Requirements: a current Node.js release and npm. A Chromium-compatible browser
@@ -203,6 +207,11 @@ incident plate dependencies and disappear at the same semantic LOD boundary as
 their accessory, so lower tiers cannot retain orphan seam dots. Use
 `rig audit <model> --attachments` for the full 240-view review; its frame overlay includes authored
 joint and plate slots, and its machine report embeds the assembly manifest.
+
+Free geometry endpoints that exist only to control a module plate use
+`attachment-module-1.2` terminal joints with `helper: true`. Do not label them
+as accessory anchors merely to suppress a gasket: helpers must be non-root
+leaves referenced by geometry and cannot own children.
 
 ### Authoring composable motion
 
@@ -465,6 +474,13 @@ model; author `semanticDetailTier` on a family/module plate or through a model
 `plateOverride` when review justifies a different tier. Do not silently make the
 mapping more aggressive in consumer code.
 
+For broad family migration, prefer a model `semanticDetailPolicy` with a
+conservative `defaultTier`, role defaults such as `shadow: texture`, and only
+the visually reviewed `byId` exceptions. This gives every resolved plate an
+authored tier without maintaining a regex copy of the family's plate IDs;
+explicit plate/addon tiers and later `plateOverride` entries remain available
+for exceptions.
+
 Do not infer bones, attachment points, occlusion, or semantic importance from a
 flattened SVG when the projected scene provides those fields directly. If the
 consumer needs missing generic semantics, extend the producer contract here
@@ -481,6 +497,9 @@ Golden rig/package/SVG fixtures use the Node package implementation's byte
 format. Fixture capture first smoke-loads the generated workbench; the separate
 headless parity sweep proves package/browser equivalence while tolerating only
 last-bit cross-V8 numeric spelling differences.
+Use `npm run capture-fixtures -- --node-only` when an intentional pure-data or
+metadata change only needs deterministic Node fixtures; it skips the smoke load
+but does not replace the required `npm run test:workbench` parity gate.
 `fixtures/paper-rig-workbench.baseline.html` is the historical oracle from the
 original monolith and is intentionally immutable during normal work. Resetting
 that baseline is an exceptional migration requiring explicit intent and review.

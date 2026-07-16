@@ -1,16 +1,16 @@
 {
   "name": "@paper-rig/cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "bin": {
     "rig": "bin/rig.js"
   },
   "dependencies": {
-    "@paper-rig/compiler": "*",
-    "@paper-rig/handoff": "*",
-    "@paper-rig/motion": "*",
-    "@paper-rig/validator": "*",
-    "@paper-rig/rigs": "*",
-    "@paper-rig/schema": "*"
+    "@paper-rig/compiler": "^0.2.0",
+    "@paper-rig/handoff": "^0.2.0",
+    "@paper-rig/motion": "^0.2.0",
+    "@paper-rig/validator": "^0.2.0",
+    "@paper-rig/rigs": "^0.2.0",
+    "@paper-rig/schema": "^0.2.0"
   }
 }

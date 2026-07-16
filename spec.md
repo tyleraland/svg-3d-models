@@ -182,11 +182,14 @@ A module MUST declare compatible slot types and its own attachment frame. A
 module MAY contain joints, plates, paint, clips, or constraints. The resolver
 MUST produce stable instance IDs and MUST NOT mutate either source object.
 
-The implemented capability is `paper-rig/attachment-module-1` versions `1.0.0`
-and `1.1.0`. Both support module-local joints and plates attached to authored
-joint-owned or plate-owned slots. Version 1.1 additionally requires a measured
-overlap mount interface. Module-local paint, clips, and constraints are reserved
-capabilities: producers MUST NOT encode them as undocumented fields.
+The implemented capability is `paper-rig/attachment-module-1` versions `1.0.0`,
+`1.1.0`, and `1.2.0`. All support module-local joints and plates attached to
+authored joint-owned or plate-owned slots. Version 1.1 requires a measured
+overlap mount interface. Version 1.2 additionally permits `helper: true` on a
+non-root terminal joint used by module geometry; helpers are control points, do
+not receive structural gaskets, and MUST NOT have children. Module-local paint,
+clips, and constraints are reserved capabilities: producers MUST NOT encode
+them as undocumented fields.
 
 An overlap-mounted module MUST declare `mountInterface.type` as
 `overlap-gasket`, a signed module-local axis, a positive gasket radius, a
@@ -410,7 +413,12 @@ Conservative fallback is migration evidence, not a claim that a human authored
 the classification. Future representative model work SHOULD replace a fallback
 with authored meaning when a different tier is genuinely intended. A family or
 module plate MAY declare `semanticDetailTier`; a model MAY set it through a
-targeted `plateOverride`. Validators MUST reject values outside the five
+targeted `plateOverride`. For catalog-scale authoring, a model MAY instead
+declare `semanticDetailPolicy`: `byId` takes precedence over `byRole`, an
+existing family/addon tier takes precedence over `defaultTier`, and a later
+`plateOverride` remains authoritative. Policy IDs and roles MUST match resolved
+plates. A policy is source authoring, not consumer-side inference.
+Validators MUST reject values outside the five
 versioned tiers and MUST NOT silently infer a more aggressive omission merely
 to produce smaller output.
 

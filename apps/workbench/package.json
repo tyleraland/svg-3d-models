@@ -1,12 +1,12 @@
 {
   "name": "@paper-rig/workbench",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "private": true,
   "dependencies": {
-    "@paper-rig/compiler": "*",
-    "@paper-rig/validator": "*",
-    "@paper-rig/rigs": "*",
-    "@paper-rig/schema": "*"
+    "@paper-rig/compiler": "^0.2.0",
+    "@paper-rig/validator": "^0.2.0",
+    "@paper-rig/rigs": "^0.2.0",
+    "@paper-rig/schema": "^0.2.0"
   }
 }

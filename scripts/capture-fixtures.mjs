@@ -9,6 +9,7 @@
 // check rather than a source of engine-dependent decimal strings.
 //
 //   node scripts/capture-fixtures.mjs
+//   node scripts/capture-fixtures.mjs --node-only       # skip browser smoke check
 //   node scripts/capture-fixtures.mjs --reset-baseline  # exceptional migration use
 //
 // Outputs (all under fixtures/):
@@ -34,6 +35,7 @@ const SRC = join(ROOT, 'paper-rig-workbench.html');
 const FIX = join(ROOT, 'fixtures');
 const BASELINE = join(FIX, 'paper-rig-workbench.baseline.html');
 const RESET_BASELINE = process.argv.includes('--reset-baseline');
+const NODE_ONLY = process.argv.includes('--node-only');
 const SYSTEM_CHROMIUM = [
   process.env.PLAYWRIGHT_EXECUTABLE_PATH,
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
@@ -75,20 +77,30 @@ async function main() {
     await emptyDir(join(FIX, sub));
   }
 
-  const browser = await chromium.launch(SYSTEM_CHROMIUM ? { executablePath: SYSTEM_CHROMIUM } : {});
-  const page = await browser.newPage();
-  const errors = [];
-  page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
-  page.on('pageerror', (e) => errors.push(String(e)));
+  let browser;
+  let models;
+  if (NODE_ONLY) {
+    models = (await readdir(join(ROOT, 'rigs/models')))
+      .filter((file) => file.endsWith('.json'))
+      .map((file) => file.replace(/\.json$/, ''))
+      .sort();
+    console.log(`Node-only fixture capture for ${models.length} models; browser smoke check skipped.`);
+  } else {
+    browser = await chromium.launch(SYSTEM_CHROMIUM ? { executablePath: SYSTEM_CHROMIUM } : {});
+    const page = await browser.newPage();
+    const errors = [];
+    page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+    page.on('pageerror', (e) => errors.push(String(e)));
 
-  await page.goto(pathToFileURL(SRC).href);
-  await page.waitForSelector('html[data-rig-ready="true"]', { timeout: 30000 });
-  if (errors.length) {
-    console.warn('WARNING: console errors while loading generated workbench:\n' + errors.join('\n'));
+    await page.goto(pathToFileURL(SRC).href);
+    await page.waitForSelector('html[data-rig-ready="true"]', { timeout: 30000 });
+    if (errors.length) {
+      console.warn('WARNING: console errors while loading generated workbench:\n' + errors.join('\n'));
+    }
+
+    models = await page.evaluate(() => Object.keys(rigs));
+    console.log(`Loaded generated workbench with ${models.length} models.`);
   }
-
-  const models = await page.evaluate(() => Object.keys(rigs));
-  console.log(`Loaded generated workbench with ${models.length} models.`);
 
   // 1. Raw rig objects (resolver oracle) — pure package data.
   for (const m of models) {
@@ -144,7 +156,7 @@ async function main() {
   }
   console.log(`Captured ${SWEEP_MODELS.length} contact-sheet fixtures.`);
 
-  await browser.close();
+  await browser?.close();
   console.log('Done. Fixtures written to fixtures/.');
 }
 

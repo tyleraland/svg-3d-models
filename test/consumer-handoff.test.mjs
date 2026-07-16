@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadModel, loadModelAppearance, loadModelAssembly, loadModelConfigured } from '@paper-rig/rigs';
@@ -27,6 +27,31 @@ function paintedRabbitScene() {
 }
 
 const elementIds = (scene) => scene.compositingGroups.flatMap((group) => group.elements.map((element) => element.id));
+
+function normalizedFloatingHandoff(value) {
+  const rounded = structuredClone(value);
+  const visit = (item) => {
+    if (Array.isArray(item)) return item.map(visit);
+    if (!item || typeof item !== 'object') return typeof item === 'number'
+      ? Number(item.toFixed(12))
+      : item;
+    for (const [key, child] of Object.entries(item)) item[key] = visit(child);
+    return item;
+  };
+  visit(rounded);
+  for (const group of rounded.scene.compositingGroups) {
+    for (const element of group.elements) {
+      for (const [name, attribute] of Object.entries(element.vector.attributes)) {
+        if (typeof attribute !== 'string') continue;
+        element.vector.attributes[name] = attribute.replace(
+          /-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/gi,
+          (token) => String(Number(Number(token).toFixed(12))),
+        );
+      }
+    }
+  }
+  return rounded;
+}
 
 test('consumer profiles select deterministic cumulative semantic tiers without changing source order', () => {
   assert.equal(validateConsumerProfile(silhouetteProfile).valid, true);
@@ -62,14 +87,17 @@ test('semantic detail provenance separates structural rules, authored paint, and
   const paint = elements.find((element) => element.sourceKind === 'paint');
   const gasket = elements.find((element) => element.sourceKind === 'gasket');
   const shadow = elements.find((element) => element.semanticRole === 'shadow');
-  const legacyPlate = projectScene(loadModel('wolf'), sceneOptions).compositingGroups
+  const legacyRig = structuredClone(loadModel('wolf'));
+  delete legacyRig.plates.find((plate) => plate.id === 'torsoPlate').semanticDetailTier;
+  const legacyPlate = projectScene(legacyRig, sceneOptions).compositingGroups
     .flatMap((group) => group.elements)
-    .find((element) => element.sourceKind === 'plate' && element.semanticDetailSource === 'legacy-conservative');
+    .find((element) => element.id === 'torsoPlate');
 
   assert.deepEqual([paint.semanticDetailTier, paint.semanticDetailSource], ['identity', 'authored-paint']);
   assert.deepEqual([gasket.semanticDetailTier, gasket.semanticDetailSource], ['silhouette', 'structural']);
   assert.deepEqual([shadow.semanticDetailTier, shadow.semanticDetailSource], ['texture', 'authored']);
   assert.equal(legacyPlate.semanticDetailTier, 'silhouette');
+  assert.equal(legacyPlate.semanticDetailSource, 'legacy-conservative');
 
   const authoredRig = structuredClone(loadModel('rabbit'));
   const authoredPlate = authoredRig.plates.find((plate) => plate.id === 'torsoPlate');
@@ -226,6 +254,54 @@ test('M6 humanoid keeps anatomy at silhouette and carries a rigid weapon through
   );
 });
 
+test('M6 harpy keeps its winged double-kick silhouette and core compositing semantics', () => {
+  const options = { clip: 'attack', time: 0.62, elevation: 75, heading: 315 };
+  const bindScene = projectScene(loadModel('harpy'), { ...options, time: 0 });
+  const impactScene = projectScene(loadModel('harpy'), options);
+  const impactElements = impactScene.compositingGroups.flatMap((group) => group.elements);
+  const basePlates = impactElements.filter((element) => element.sourceKind === 'plate'
+    && !element.generated
+    && !element.id.includes('__'));
+  assert.ok(basePlates.length > 0);
+  assert.ok(basePlates.every((element) => element.semanticDetailSource === 'authored'));
+
+  const coreGroup = impactScene.compositingGroups.find((group) => group.semanticRole === 'core surface plates');
+  const nearGroup = impactScene.compositingGroups.find((group) => group.semanticRole === 'camera-near appendages');
+  assert.ok(coreGroup.elements.some((element) => element.id === 'shoulderPlate'));
+  assert.ok(coreGroup.elements.some((element) => element.id === 'headPlate'));
+  assert.equal(nearGroup.elements.some((element) => element.id === 'shoulderPlate'), false);
+
+  const bindJoints = new Map(bindScene.joints.map((joint) => [joint.id, joint]));
+  const impactJoints = new Map(impactScene.joints.map((joint) => [joint.id, joint]));
+  for (const jointId of ['nearKnee', 'farKnee', 'leftWingElbow', 'rightWingElbow']) {
+    assert.notDeepEqual(
+      impactJoints.get(jointId).localToWorldRotation,
+      bindJoints.get(jointId).localToWorldRotation,
+      `${jointId} must participate in the double-kick impact`,
+    );
+  }
+
+  const silhouette = createConsumerHandoff(impactScene, silhouetteProfile);
+  for (const plateId of [
+    'headPlate',
+    'leftTalonPlate',
+    'rightTalonPlate',
+    'leftWingMembrane',
+    'rightWingMembrane',
+    'leftWingForePlate',
+    'rightWingForePlate',
+  ]) {
+    assert.ok(silhouette.semanticDetail.includedElementIds.includes(plateId), `${plateId} must survive silhouette LOD`);
+  }
+  assert.equal(silhouette.semanticDetail.includedElementIds.includes('castShadow'), false);
+  assert.equal(validateConsumerHandoff(silhouette).valid, true);
+  assert.deepEqual(
+    normalizedFloatingHandoff(silhouette),
+    normalizedFloatingHandoff(readJSON(fixture('harpyAttackSilhouette.handoff.json'))),
+    'golden IDs, order, semantics, and vector output are stable within 1e-12 numeric precision',
+  );
+});
+
 test('capability negotiation fails required absences and records declared optional degradation', () => {
   const scene = paintedRabbitScene();
   const degraded = createConsumerHandoff(scene, silhouetteProfile);
@@ -265,5 +341,26 @@ test('golden consumer handoffs lock stable IDs, ordering, negotiation, and vecto
     const reordered = structuredClone(handoff);
     reordered.semanticDetail.includedElementIds.reverse();
     assert.equal(validateConsumerHandoff(reordered).valid, false, 'semantic validation rejects reordered survivor IDs');
+  }
+});
+
+test('every catalog model resolves all base plates to authored semantic detail', () => {
+  const models = readdirSync(join(ROOT, 'rigs/models'))
+    .filter((file) => file.endsWith('.json'))
+    .map((file) => file.replace(/\.json$/, ''))
+    .sort();
+  assert.equal(models.length, 31);
+  for (const model of models) {
+    const elements = projectScene(loadModel(model), {
+      clip: 'idle', time: 0.5, elevation: 60, heading: 45,
+    }).compositingGroups.flatMap((group) => group.elements);
+    const plates = elements.filter((element) => element.sourceKind === 'plate'
+      && !element.generated
+      && !element.id.includes('__'));
+    assert.ok(plates.length > 0, `${model}: expected projected base plates`);
+    assert.ok(
+      plates.every((element) => element.semanticDetailSource === 'authored'),
+      `${model}: ${plates.filter((element) => element.semanticDetailSource !== 'authored').map((element) => element.id).join(', ')}`,
+    );
   }
 });

@@ -167,7 +167,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "baseMassPlate",
@@ -180,7 +181,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 2
+      "zBias": 2,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacleLowerPlate",
@@ -197,7 +199,8 @@
         "tentacleBase",
         "tentacleLower"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacleCrestPlate",
@@ -214,7 +217,8 @@
         "tentacleLower",
         "tentacleCrest"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacleBendPlate",
@@ -231,7 +235,8 @@
         "tentacleCrest",
         "tentacleBend"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacleHangingPlate",
@@ -248,7 +253,8 @@
         "tentacleBend",
         "tentacleTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tentacleTipPlate",
@@ -261,7 +267,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 3.8
+      "zBias": 3.8,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

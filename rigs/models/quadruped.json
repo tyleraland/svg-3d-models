@@ -1,6 +1,10 @@
 {
   "$schema": "paper-rig/model-1",
   "family": "quadruped",
+  "semanticDetailPolicy": {
+    "defaultTier": "silhouette",
+    "byRole": { "shadow": "texture" }
+  },
   "base": true,
   "attack": { "rotations": { "neck": [0, 28, 0], "head": [0, -12, 0] } }
 }

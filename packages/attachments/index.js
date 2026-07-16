@@ -230,6 +230,21 @@ export function validateAttachmentModule(module) {
   checks.push(check('attachment-module-stable-ids', unique([...jointIds, ...plateIds]), `module ${module?.id || '(missing)'} joint and plate IDs occupy one collision-free namespace`));
   checks.push(check('attachment-module-root', joints.filter((joint) => joint.parent == null).length === 1, `module ${module?.id || '(missing)'} has exactly one root joint`));
   const root = joints.find((joint) => joint.parent == null);
+  const helpers = joints.filter((joint) => joint.helper);
+  checks.push(check(
+    'attachment-module-helper-version',
+    helpers.length === 0 || module?.schemaVersion === '1.2.0',
+    `module ${module?.id || '(missing)'} uses terminal helpers only with attachment-module-1.2`,
+  ));
+  checks.push(check(
+    'attachment-module-terminal-helpers',
+    helpers.every((joint) => joint.parent != null
+      && !joints.some((candidate) => candidate.parent === joint.id)
+      && plates.some((plate) => plate.bone === joint.id
+        || (plate.span || []).includes(joint.id)
+        || (plate.points || []).includes(joint.id))),
+    `module ${module?.id || '(missing)'} helpers are non-root terminal geometry controls`,
+  ));
   const mount = module?.mountInterface;
   const mountAxis = axisVector(mount?.axis);
   const incidentRootPlates = root ? plates.filter((plate) => plate.bone === root.id

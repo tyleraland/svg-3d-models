@@ -169,7 +169,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "tailBasePlate",
@@ -186,7 +187,8 @@
         "tailBase",
         "tailMid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tailMidPlate",
@@ -203,7 +205,8 @@
         "tailMid",
         "rearSpine"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rearBodyPlate",
@@ -220,7 +223,8 @@
         "rearSpine",
         "middleSpine"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "middleBodyPlate",
@@ -237,7 +241,8 @@
         "middleSpine",
         "frontSpine"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "frontBodyPlate",
@@ -254,7 +259,8 @@
         "frontSpine",
         "neck"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "neckPlate",
@@ -271,7 +277,8 @@
         "neck",
         "head"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headConnectorPlate",
@@ -288,7 +295,8 @@
         "head",
         "snout"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headPlate",
@@ -301,7 +309,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 5
+      "zBias": 5,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "snoutPlate",
@@ -314,7 +323,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 5.1
+      "zBias": 5.1,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

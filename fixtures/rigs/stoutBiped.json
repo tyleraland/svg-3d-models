@@ -351,7 +351,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "pelvisSpinePlate",
@@ -368,7 +369,8 @@
         "hips",
         "spine"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "chestPlate",
@@ -385,7 +387,8 @@
         "spine",
         "shoulders"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "shoulderPlate",
@@ -399,7 +402,8 @@
       "attachment": "rigid",
       "material": "paperShade",
       "zBias": 4.35,
-      "bodyRegion": "core"
+      "bodyRegion": "core",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "neckPlate",
@@ -416,7 +420,8 @@
         "shoulders",
         "neck"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headConnectorPlate",
@@ -433,7 +438,8 @@
         "neck",
         "head"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headPlate",
@@ -446,7 +452,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 5.5
+      "zBias": 5.5,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearThighPlate",
@@ -463,7 +470,8 @@
         "nearHip",
         "nearKnee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearShinPlate",
@@ -480,7 +488,8 @@
         "nearKnee",
         "nearFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearFootPlate",
@@ -493,7 +502,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearBicepPlate",
@@ -510,7 +520,8 @@
         "nearShoulder",
         "nearElbow"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearForearmPlate",
@@ -527,7 +538,8 @@
         "nearElbow",
         "nearHand"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearHandPlate",
@@ -540,7 +552,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 4.3
+      "zBias": 4.3,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farThighPlate",
@@ -557,7 +570,8 @@
         "farHip",
         "farKnee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farShinPlate",
@@ -574,7 +588,8 @@
         "farKnee",
         "farFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farFootPlate",
@@ -587,7 +602,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farBicepPlate",
@@ -604,7 +620,8 @@
         "farShoulder",
         "farElbow"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farForearmPlate",
@@ -621,7 +638,8 @@
         "farElbow",
         "farHand"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farHandPlate",
@@ -634,7 +652,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 4.3
+      "zBias": 4.3,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearShoulderCapPlate",
@@ -647,7 +666,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 4.5
+      "zBias": 4.5,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farShoulderCapPlate",
@@ -660,7 +680,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 4.5
+      "zBias": 4.5,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

@@ -311,7 +311,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "bodyPlate",
@@ -328,7 +329,8 @@
         "pelvis",
         "chest"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "pelvisPlate",
@@ -341,7 +343,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3.1
+      "zBias": 3.1,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "neckPlate",
@@ -358,7 +361,8 @@
         "chest",
         "neck"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headConnectorPlate",
@@ -375,7 +379,8 @@
         "neck",
         "head"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headPlate",
@@ -388,7 +393,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 5
+      "zBias": 5,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "beakPlate",
@@ -405,7 +411,8 @@
         "head",
         "beak"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tailPlate",
@@ -422,7 +429,8 @@
         "tailBase",
         "tailTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearThighPlate",
@@ -439,7 +447,8 @@
         "nearHip",
         "nearKnee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearShinPlate",
@@ -456,7 +465,8 @@
         "nearKnee",
         "nearFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearToePlate",
@@ -473,7 +483,8 @@
         "nearFoot",
         "nearToe"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farThighPlate",
@@ -490,7 +501,8 @@
         "farHip",
         "farKnee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farShinPlate",
@@ -507,7 +519,8 @@
         "farKnee",
         "farFoot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farToePlate",
@@ -524,7 +537,8 @@
         "farFoot",
         "farToe"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearWingPlate",
@@ -541,7 +555,8 @@
         "nearWing",
         "nearWingTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farWingPlate",
@@ -558,7 +573,8 @@
         "farWing",
         "farWingTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

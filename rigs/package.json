@@ -1,19 +1,18 @@
 {
   "name": "@paper-rig/rigs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "resolve.js",
   "exports": {
     ".": "./resolve.js",
     "./resolve": "./resolve.js",
     "./provenance": "./provenance.js",
-    "./authoring-patch": "./authoring-patch.js",
-    "./normalize": "./normalize.js"
+    "./authoring-patch": "./authoring-patch.js"
   },
   "dependencies": {
-    "@paper-rig/appearance": "*",
-    "@paper-rig/attachments": "*",
-    "@paper-rig/motion": "*",
-    "@paper-rig/schema": "*"
+    "@paper-rig/appearance": "^0.2.0",
+    "@paper-rig/attachments": "^0.2.0",
+    "@paper-rig/motion": "^0.2.0",
+    "@paper-rig/schema": "^0.2.0"
   }
 }

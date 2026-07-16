@@ -1,6 +1,6 @@
 {
   "$schema": "paper-rig/attachment-module-1",
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "id": "simpleSword",
   "compatibleSlotTypes": ["hand.grip"],
   "attachmentFrame": {
@@ -37,7 +37,8 @@
         "id": "tip",
         "parent": "guard",
         "bind": [0.5, 0, 0],
-        "role": "accessoryAnchor"
+        "role": "module-shape",
+        "helper": true
       }
     ],
     "plates": [

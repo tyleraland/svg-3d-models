@@ -1,6 +1,6 @@
 {
   "name": "@paper-rig/validator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -15,12 +15,12 @@
     "./handoff": "./handoff.js"
   },
   "dependencies": {
-    "@paper-rig/appearance": "*",
-    "@paper-rig/attachments": "*",
-    "@paper-rig/compiler": "*",
-    "@paper-rig/handoff": "*",
-    "@paper-rig/motion": "*",
-    "@paper-rig/schema": "*",
+    "@paper-rig/appearance": "^0.2.0",
+    "@paper-rig/attachments": "^0.2.0",
+    "@paper-rig/compiler": "^0.2.0",
+    "@paper-rig/handoff": "^0.2.0",
+    "@paper-rig/motion": "^0.2.0",
+    "@paper-rig/schema": "^0.2.0",
     "ajv": "8.20.0"
   }
 }

@@ -131,5 +131,19 @@
       "boneLengthPolicy": "preserve",
       "motionSemantics": "both legs lift and kick forward while paired arm-wings flap; all motion is joint-local rotation"
     }
-  }
+  },
+  "plateOverrides": [
+    {
+      "match": "^(?:pelvisSpinePlate|chestPlate|shoulderPlate|neckPlate|headConnectorPlate|headPlate|(?:near|far)(?:Thigh|Shin)Plate|(?:left|right)TalonPlate|(?:left|right)Wing(?:Membrane|UpperPlate|ForePlate))$",
+      "set": {
+        "semanticDetailTier": "silhouette"
+      }
+    },
+    {
+      "id": "castShadow",
+      "set": {
+        "semanticDetailTier": "texture"
+      }
+    }
+  ]
 }

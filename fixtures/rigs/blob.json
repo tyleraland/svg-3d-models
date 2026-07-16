@@ -169,7 +169,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "baseMassPlate",
@@ -182,7 +183,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 1
+      "zBias": 1,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "middleMassPlate",
@@ -195,7 +197,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 2
+      "zBias": 2,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "topMassPlate",
@@ -208,7 +211,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 3
+      "zBias": 3,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearArmPlate",
@@ -225,7 +229,8 @@
         "nearArm",
         "nearHand"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearHandPlate",
@@ -238,7 +243,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 2.3
+      "zBias": 2.3,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farArmPlate",
@@ -255,7 +261,8 @@
         "farArm",
         "farHand"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farHandPlate",
@@ -268,7 +275,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 2.3
+      "zBias": 2.3,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

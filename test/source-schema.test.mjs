@@ -94,3 +94,28 @@ test('family plates, model overrides, and generated addons accept only versioned
   rabbit.addons[0].semanticDetailTier = 'tiny';
   assert.equal(validateModelSource(rabbit).status, 'failed');
 });
+
+test('model semantic detail policies are typed and reject unmatched explicit selectors', async () => {
+  const model = structuredClone(loadModelSource('horse'));
+  model.semanticDetailPolicy = {
+    defaultTier: 'silhouette',
+    byRole: { shadow: 'texture' },
+    byId: { headPlate: 'identity' },
+  };
+  assert.equal(validateModelSource(model).status, 'passed');
+
+  const family = loadFamily(model.family);
+  const { resolveModel } = await import('@paper-rig/rigs');
+  const resolvedRig = resolveModel(model, family);
+  assert.equal(resolvedRig.plates.find((plate) => plate.id === 'headPlate').semanticDetailTier, 'identity');
+  assert.equal(resolvedRig.plates.find((plate) => plate.id === 'castShadow').semanticDetailTier, 'texture');
+  assert.equal(resolvedRig.plates.find((plate) => plate.id === 'torsoPlate').semanticDetailTier, 'silhouette');
+  assert.equal(validateSourcePair(model, family, { resolvedRig }).status, 'passed');
+  model.semanticDetailPolicy.byId.missingPlate = 'expression';
+  const report = validateSourcePair(model, family, { resolvedRig });
+  assert.equal(report.status, 'failed');
+  assert.ok(report.issues.some((issue) => issue.id === 'model-semantic-detail-policy-id'));
+
+  model.semanticDetailPolicy.byId.missingPlate = 'tiny';
+  assert.equal(validateModelSource(model).status, 'failed');
+});

@@ -51,7 +51,7 @@ runtime asset policy.
 | M4: composable motion system | Complete | Versioned phases/recipes, representative whole-body attacks, and hard motion checks |
 | M3B: appearance and paint | Complete | Versioned plate-local paint, bounded placement, semantic palette roles, and projected traceability |
 | M5: LOD and consumer handoff | Complete | Semantic detail tiers, capability negotiation, and stable export fixtures |
-| M6: representative migration and release | In progress | Three of four contrasting representatives complete; harpy is next |
+| M6: representative migration and release | Complete | Four representatives, authored tiers for all 31 models, and verified 0.2.0 source release |
 
 ## M0 — extract and harden the current pipeline
 
@@ -315,7 +315,9 @@ Seam hardening follow-up delivered:
 - one `simpleSword` mounts through a humanoid-authored `hand.grip` slot and the
   compatible legacy-normalized angel grip, with a fixed overlap seam and rigid
   handle-to-tip length through attack motion. The surface eye glint stays on
-  1.0 because it is not an overlap mount.
+  1.0 because it is not an overlap mount; and
+- `attachment-module-1.2` replaces semantic role workarounds at free geometry
+  endpoints with versioned terminal helper joints that never receive gaskets.
 
 ## M4 — composable motion system
 
@@ -455,7 +457,7 @@ evidence with authored tiers where visual review justifies it.
 
 ## M6 — representative migration and release
 
-Status: in progress.
+Status: complete.
 
 Before broad migration, use a small set that stresses different needs:
 
@@ -475,7 +477,7 @@ Representative matrix:
 | shared-family quadruped | rabbit | first slice complete |
 | long-necked/head striker | elephant | second slice complete |
 | humanoid/weapon-bearing | humanoid | third slice complete |
-| winged/non-bilateral compositor | harpy | next |
+| winged/non-bilateral compositor | harpy | fourth slice complete |
 
 The rabbit first slice authors every base plate's semantic tier, including its
 addon-generated ears, instead of relying on conservative inference. A combined
@@ -505,8 +507,38 @@ that disappears cleanly at silhouette detail with its seam. A motion + attachmen
 assembly regression proves the same module also mounts to an angel's compatible
 legacy-normalized grip.
 
-Next action: migrate and review harpy tiers and winged/non-bilateral compositing
-evidence before family-wide rollout.
+The harpy fourth slice authors every base plate's tier, retains the complete
+paired-wing and double-talon attack shape at silhouette detail, and keeps the
+cast shadow at texture. Its impact handoff is locked at the original
+high-elevation diagonal stress camera. The slice preserves explicit core
+semantics for the shoulder mass, so it cannot silently return to the
+camera-near appendage group above the head.
+
+The remaining 27 models now use a declarative `semanticDetailPolicy`: every
+base plate has authored provenance, shadows are texture, and all other legacy
+geometry stays conservatively silhouette-critical until a visual review
+justifies a higher tier. The resolver records default, role, and per-ID policy
+origins; source validation rejects selector typos. This removes repeated
+plate-ID regexes and gives new families a scalable migration path.
+
+The workspace is aligned at 0.2.0 with compatible internal ranges, changelog,
+producer/consumer migration notes, a deterministic release-metadata check, and
+dry-run package evidence. Release checking also repaired advertised schema
+subpath exports that had no files. Registry publication remains intentionally
+disabled until a release owner supplies npm scope ownership, credentials, and
+a license; the verified `main` source revision is the supported release
+boundary meanwhile.
+
+Final evidence: all 105 Node tests pass; all 31 models pass source and
+structural validation; base, configured-motion, and configured-paint catalog
+audits report zero hard issues; all package exports import; package dry-runs
+succeed; and headless Chromium reports 3131/3131 package/workbench outputs
+equivalent with zero console errors.
+
+Next action after M6: use the versioned handoff from the consumer repository,
+then iterate on additional models, motion recipes, attachments, paint
+primitives, and visually reviewed per-ID detail-tier exceptions as demand
+reveals them.
 
 Exit criteria:
 

@@ -330,7 +330,34 @@ function resolveModelInternal(model, family, tracker) {
     });
   }
 
-  // 11. General plate field overrides, matched by id or regex (covers tusk role +
+  // 11. Model-wide semantic-detail policy. Explicit per-ID and per-role entries
+  // outrank an already-authored family/addon tier, which outranks the default.
+  // The policy runs after addons so one declaration covers the final base-plate
+  // set; ordinary plateOverrides remain the final, most specific authoring layer.
+  if (model.semanticDetailPolicy) mutateWithProvenance(rig, tracker, {
+    operation: 'plates.semantic-detail-policy',
+    origin: (targetPointer) => {
+      const plateId = targetPointer.split('/')[2];
+      const plate = rig.plates.find((candidate) => candidate.id === plateId);
+      if (Object.hasOwn(model.semanticDetailPolicy.byId || {}, plateId)) {
+        return modelOverride(`/semanticDetailPolicy/byId/${plateId}`);
+      }
+      if (plate && Object.hasOwn(model.semanticDetailPolicy.byRole || {}, plate.role)) {
+        return modelOverride(`/semanticDetailPolicy/byRole/${plate.role}`);
+      }
+      return modelOverride('/semanticDetailPolicy/defaultTier');
+    },
+  }, () => {
+    const { defaultTier, byRole = {}, byId = {} } = model.semanticDetailPolicy;
+    for (const plate of rig.plates) {
+      plate.semanticDetailTier = byId[plate.id]
+        ?? byRole[plate.role]
+        ?? plate.semanticDetailTier
+        ?? defaultTier;
+    }
+  });
+
+  // 12. General plate field overrides, matched by id or regex (covers tusk role +
   // occlusion, under-core appendages, and any other post-normalization plate edit).
   for (const [index, o] of (model.plateOverrides || []).entries()) {
     mutateWithProvenance(rig, tracker, {
@@ -342,7 +369,7 @@ function resolveModelInternal(model, family, tracker) {
     });
   }
 
-  // 12. Anchor field overrides (rare explicit module-type or metadata edits).
+  // 13. Anchor field overrides (rare explicit module-type or metadata edits).
   for (const [index, o] of (model.anchorOverrides || []).entries()) {
     mutateWithProvenance(rig, tracker, {
       operation: 'anchors.field-override',

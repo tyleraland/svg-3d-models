@@ -507,7 +507,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "abdomenPlate",
@@ -520,7 +521,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3
+      "zBias": 3,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "cephalothoraxPlate",
@@ -537,7 +539,8 @@
         "abdomen",
         "cephalothorax"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headPlate",
@@ -550,7 +553,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 3.5
+      "zBias": 3.5,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftLeg1UpperPlate",
@@ -568,6 +572,7 @@
         "leftLeg1Knee"
       ],
       "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
       "occlusionMode": "under-core",
       "occlusionReference": "cephalothorax"
     },
@@ -586,7 +591,8 @@
         "leftLeg1Knee",
         "leftLeg1Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftLeg1FootPlate",
@@ -599,7 +605,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftLeg2UpperPlate",
@@ -617,6 +624,7 @@
         "leftLeg2Knee"
       ],
       "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
       "occlusionMode": "under-core",
       "occlusionReference": "cephalothorax"
     },
@@ -635,7 +643,8 @@
         "leftLeg2Knee",
         "leftLeg2Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftLeg2FootPlate",
@@ -648,7 +657,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftLeg3UpperPlate",
@@ -666,6 +676,7 @@
         "leftLeg3Knee"
       ],
       "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
       "occlusionMode": "under-core",
       "occlusionReference": "cephalothorax"
     },
@@ -684,7 +695,8 @@
         "leftLeg3Knee",
         "leftLeg3Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftLeg3FootPlate",
@@ -697,7 +709,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftLeg4UpperPlate",
@@ -715,6 +728,7 @@
         "leftLeg4Knee"
       ],
       "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
       "occlusionMode": "under-core",
       "occlusionReference": "cephalothorax"
     },
@@ -733,7 +747,8 @@
         "leftLeg4Knee",
         "leftLeg4Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftLeg4FootPlate",
@@ -746,7 +761,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightLeg1UpperPlate",
@@ -764,6 +780,7 @@
         "rightLeg1Knee"
       ],
       "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
       "occlusionMode": "under-core",
       "occlusionReference": "cephalothorax"
     },
@@ -782,7 +799,8 @@
         "rightLeg1Knee",
         "rightLeg1Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightLeg1FootPlate",
@@ -795,7 +813,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightLeg2UpperPlate",
@@ -813,6 +832,7 @@
         "rightLeg2Knee"
       ],
       "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
       "occlusionMode": "under-core",
       "occlusionReference": "cephalothorax"
     },
@@ -831,7 +851,8 @@
         "rightLeg2Knee",
         "rightLeg2Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightLeg2FootPlate",
@@ -844,7 +865,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightLeg3UpperPlate",
@@ -862,6 +884,7 @@
         "rightLeg3Knee"
       ],
       "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
       "occlusionMode": "under-core",
       "occlusionReference": "cephalothorax"
     },
@@ -880,7 +903,8 @@
         "rightLeg3Knee",
         "rightLeg3Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightLeg3FootPlate",
@@ -893,7 +917,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightLeg4UpperPlate",
@@ -911,6 +936,7 @@
         "rightLeg4Knee"
       ],
       "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
       "occlusionMode": "under-core",
       "occlusionReference": "cephalothorax"
     },
@@ -929,7 +955,8 @@
         "rightLeg4Knee",
         "rightLeg4Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightLeg4FootPlate",
@@ -942,7 +969,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "leftFangPlate",
@@ -959,7 +987,8 @@
         "leftFangBase",
         "leftFangTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "rightFangPlate",
@@ -976,7 +1005,8 @@
         "rightFangBase",
         "rightFangTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     }
   ],
   "anchors": [

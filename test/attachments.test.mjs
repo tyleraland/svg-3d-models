@@ -259,6 +259,23 @@ test('overlap mount interfaces reject only measurable seam contract violations',
   }
 });
 
+test('terminal module helpers are explicit, versioned, and cannot hide real joints', () => {
+  const module = loadAttachmentModule('simpleSword');
+  assert.equal(validateAttachmentModuleSource(module).status, 'passed');
+  const invalid = [
+    ['attachment-module-helper-version', (candidate) => { candidate.schemaVersion = '1.1.0'; }],
+    ['attachment-module-terminal-helpers', (candidate) => { candidate.geometry.joints[1].helper = true; }],
+    ['attachment-module-terminal-helpers', (candidate) => { candidate.geometry.joints[0].helper = true; }],
+  ];
+  for (const [issueId, mutate] of invalid) {
+    const candidate = structuredClone(module);
+    mutate(candidate);
+    const report = validateAttachmentModuleSource(candidate);
+    assert.equal(report.status, 'failed');
+    assert.ok(report.issues.some((issue) => issue.id === issueId), issueId);
+  }
+});
+
 test('one horn module mounts with fixed embedded seams on two model families', () => {
   for (const name of ['wolf', 'leopard']) {
     const { rig, manifest } = loadModelAssembly(name);
@@ -318,6 +335,8 @@ test('one rigid sword module mounts through typed and legacy hand grips', () => 
 
     const root = rig.joints.find((joint) => joint.id === 'simpleSword__root');
     const tip = rig.joints.find((joint) => joint.id === 'simpleSword__tip');
+    assert.equal(tip.helper, true);
+    assert.equal(tip.role, 'module-shape');
     const lengths = [];
     for (const sample of [{ clip: 'idle', time: 0 }, { clip: 'attack', time: 0.62 }]) {
       const pose = solvePose(rig, sample).joints;

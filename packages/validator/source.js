@@ -183,6 +183,16 @@ function overrideTargetChecks(model, family, resolvedRig) {
     const count = item.id ? plates.filter((plate) => plate.id === item.id).length : match(item.match);
     checks.push(referenceCheck('model-plate-override-target', count > 0, `plate override ${item.id || `/${item.match}/`} matches ${count} plate(s)`));
   }
+  if (resolvedRig && model.semanticDetailPolicy) {
+    for (const plateId of Object.keys(model.semanticDetailPolicy.byId || {})) {
+      const count = plates.filter((plate) => plate.id === plateId).length;
+      checks.push(referenceCheck('model-semantic-detail-policy-id', count === 1, `semantic detail policy ID ${plateId} matches ${count} plate(s)`));
+    }
+    for (const role of Object.keys(model.semanticDetailPolicy.byRole || {})) {
+      const count = plates.filter((plate) => plate.role === role).length;
+      checks.push(referenceCheck('model-semantic-detail-policy-role', count > 0, `semantic detail policy role ${role} matches ${count} plate(s)`));
+    }
+  }
   for (const item of model.anchorOverrides || []) {
     const count = anchors.filter((anchor) => anchor.id === item.id).length;
     checks.push(referenceCheck('model-anchor-override-target', count > 0, `anchor override ${item.id} matches ${count} anchor(s)`));
