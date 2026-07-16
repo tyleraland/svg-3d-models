@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { loadModel } from '@paper-rig/rigs';
+import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
 import { auditCatalog, auditRig, motionDiagnostics, renderAuditHtml } from '@paper-rig/validator/audit';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -79,6 +79,34 @@ test('rig audit CLI writes a review artifact', () => {
   const stdout = execFileSync('node', [RIG, 'audit', 'rabbit', '-o', out], { cwd: ROOT, encoding: 'utf8' });
   assert.match(stdout, /audit passed: 240 views, 0 issues, \d+ warnings/);
   assert.match(readFileSync(out, 'utf8'), /paper-rig\/audit\/1/);
+});
+
+test('rig audit can review the declared attachment assembly across the canonical matrix', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'rig-attachment-audit-'));
+  const out = join(dir, 'rabbit-attachments-audit.html');
+  const stdout = execFileSync('node', [RIG, 'audit', 'rabbit', '--attachments', '-o', out], { cwd: ROOT, encoding: 'utf8' });
+  assert.match(stdout, /audit passed: 240 views, 0 issues/);
+  const html = readFileSync(out, 'utf8');
+  assert.match(html, /simpleHat__body/);
+  assert.match(html, /travelPack__body/);
+  assert.match(html, /paper-rig\/attachment-assembly\/1/);
+  assert.match(html, /slotType&quot;: &quot;head\.hat/);
+});
+
+test('assembled audit overlays expose authored joint and plate slot positions', () => {
+  const { rig } = loadModelAssembly('humanoid');
+  const report = auditRig(rig, {
+    headings: [315],
+    elevations: [75],
+    poses: [{ id: 'bind', clip: 'bind', t: 0 }],
+  });
+  const anchors = report.views[0].overlay.anchors;
+  const headgear = anchors.find((anchor) => anchor.id === 'headgearSlot');
+  const eyeDetail = anchors.find((anchor) => anchor.id === 'leftEyeDetailSlot');
+  assert.equal(headgear.moduleType, 'head.hat');
+  assert.equal(eyeDetail.moduleType, 'face.eye.detail');
+  assert.deepEqual(eyeDetail.owner, { kind: 'plate', id: 'leftEyePlate' });
+  assert.ok([...headgear.screenPosition, ...eyeDetail.screenPosition].every(Number.isFinite));
 });
 
 test('hard motion diagnostics reject only contract violations', () => {

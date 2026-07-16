@@ -65,11 +65,30 @@
       "reference": { "ifMatch": "Front", "then": "chest", "else": "pelvis" }
     }
   ],
+  "slots": [
+    {
+      "id": "headgearSlot",
+      "type": "head.hat",
+      "owner": { "kind": "joint", "id": "head" },
+      "localFrame": {
+        "positionMeters": [0, 0, 0.21],
+        "rotationXYZDegrees": [0, 0, 0]
+      },
+      "scaleBehavior": "preserve-local-aspect",
+      "cardinality": 1
+    }
+  ],
   "attachments": [
     {
       "id": "travelPack",
       "moduleId": "travelPack",
       "slotId": "backAnchor",
+      "scale": 0.45
+    },
+    {
+      "id": "simpleHat",
+      "moduleId": "simpleHat",
+      "slotId": "headgearSlot",
       "scale": 0.45
     }
   ]

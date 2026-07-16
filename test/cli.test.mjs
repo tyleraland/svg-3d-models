@@ -34,6 +34,7 @@ test('render includes declared reusable modules only when attachments are reques
   const assembled = run(['render', 'rabbit', '--attachments', '--stdout']);
   assert.doesNotMatch(plain, /travelPack__/);
   assert.match(assembled, /id="travelPack__body"/);
+  assert.match(assembled, /id="simpleHat__body"/);
   assert.match(assembled, /data-palette-role="equipment"/);
 });
 

@@ -4,7 +4,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { loadModel } from '@paper-rig/rigs';
+import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
 import { auditRig, renderAuditHtml } from '@paper-rig/validator/audit';
 import { createAuditManifest, diffAuditManifests } from '@paper-rig/validator/audit-manifest';
 import { parseArgs } from '../lib/args.js';
@@ -13,12 +13,14 @@ export function runAudit(argv) {
   const { positionals, flags } = parseArgs(argv, { o: 'out' });
   const target = positionals[0];
   if (!target || positionals.length > 1 || (flags['fail-on-change'] && !flags.against)) {
-    console.error('usage: rig audit <model> [--json] [-o report.html] [--no-overlays] [--against manifest.json] [--fail-on-change]');
+    console.error('usage: rig audit <model> [--attachments] [--json] [-o report.html] [--no-overlays] [--against manifest.json] [--fail-on-change]');
     return 2;
   }
 
-  const rig = loadModel(target);
+  const assembly = flags.attachments ? loadModelAssembly(target) : null;
+  const rig = assembly?.rig || loadModel(target);
   const report = auditRig(rig);
+  if (assembly) report.attachmentAssembly = assembly.manifest;
   if (flags.against) {
     const approvedPath = resolve(process.cwd(), flags.against);
     const approved = JSON.parse(readFileSync(approvedPath, 'utf8'));

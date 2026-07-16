@@ -75,7 +75,7 @@ function projectWorld(scene, rig, worldPosition) {
 }
 
 function anchorEvidence(rig, scene, jointById) {
-  return [...rig.anchors].sort((left, right) => left.id.localeCompare(right.id)).flatMap((anchor) => {
+  const legacy = [...rig.anchors].flatMap((anchor) => {
     const joint = jointById.get(anchor.bone);
     if (!joint) return [];
     const offset = matrixVector(joint.localToWorldRotation, anchor.offset || [0, 0, 0]);
@@ -90,6 +90,26 @@ function anchorEvidence(rig, scene, jointById) {
       cameraDepth: projected.cameraDepth,
     }];
   });
+  const authored = (rig.attachmentSlots || []).flatMap((slot) => {
+    const joint = jointById.get(slot.resolvedParentJointId);
+    const localPosition = slot.resolvedJointFrame?.positionMeters;
+    if (!joint || !Array.isArray(localPosition)) return [];
+    const offset = matrixVector(joint.localToWorldRotation, localPosition);
+    const worldPosition = joint.worldPositionMeters.map((value, index) => value + offset[index]);
+    const projected = projectWorld(scene, rig, worldPosition);
+    return [{
+      id: slot.id,
+      boneId: slot.resolvedParentJointId,
+      moduleType: slot.type,
+      owner: slot.owner,
+      worldPositionMeters: worldPosition.map((value) => rounded(value)),
+      screenPosition: projected.screenPosition,
+      cameraDepth: projected.cameraDepth,
+    }];
+  });
+  const authoredIds = new Set(authored.map((slot) => slot.id));
+  return [...legacy.filter((anchor) => !authoredIds.has(anchor.id)), ...authored]
+    .sort((left, right) => left.id.localeCompare(right.id));
 }
 
 function surfaceNormalEvidence(rig, scene, jointById, plateLabels) {

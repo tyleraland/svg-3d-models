@@ -4,9 +4,9 @@
 //   rig validate <model|path.json> [--json]
 //   rig render <model> [--attachments] [--clip --time --elevation --heading] [-o out.svg]
 //   rig sheet <model> [--attachments] [--clip --time] [-o out.html]
-//   rig audit <model> [--json] [-o report.html]
-//   rig audit-all [--json] [-o report.json]
-//   rig manifest <model> [-o candidate.json]
+//   rig audit <model> [--attachments] [--json] [-o report.html]
+//   rig audit-all [--attachments] [--json] [-o report.json]
+//   rig manifest <model> [--attachments] [-o candidate.json]
 //   rig explain <model> <entity[.field]> [--json] [--history]
 //   rig diff <baseline-model> <candidate-model> [--json]
 //   rig validate-sources [model]
@@ -32,10 +32,13 @@ const USAGE = `paper-rig CLI
       --attachments --clip <name> --time <0..1> --elevation <deg> --heading <deg> --stdout
   rig sheet <model> [--attachments] [--clip --time] [-o out.html]
                                                    8x4 heading/elevation contact sheet
-  rig audit <model> [--json] [-o report.html]      deterministic 240-view audit
+  rig audit <model> [--attachments] [--json] [-o report.html]
+                                                   deterministic 240-view audit
       --against <manifest.json> [--fail-on-change]
-  rig audit-all [--json] [-o report.json]          audit every model; warnings do not fail CI
-  rig manifest <model> [-o candidate.json]         emit canonical projected review evidence
+  rig audit-all [--attachments] [--json] [-o report.json]
+                                                   audit every model; warnings do not fail CI
+  rig manifest <model> [--attachments] [-o candidate.json]
+                                                   emit canonical projected review evidence
   rig explain <model> <entity[.field]> [--json] [--history]
                                                    explain resolved field provenance
   rig diff <baseline-model> <candidate-model> [--json]

@@ -181,11 +181,18 @@ A module MUST declare compatible slot types and its own attachment frame. A
 module MAY contain joints, plates, paint, clips, or constraints. The resolver
 MUST produce stable instance IDs and MUST NOT mutate either source object.
 
-The first implemented capability is `paper-rig/attachment-module-1` version
-`1.0.0`. It supports module-local joints and plates attached to joint-owned
-slots. Plate-owned surface slots, module-local paint, clips, and constraints are
-reserved capabilities: producers MUST NOT encode them as undocumented fields in
-the 1.0 schema.
+The implemented capability is `paper-rig/attachment-module-1` version `1.0.0`.
+It supports module-local joints and plates attached to authored joint-owned or
+plate-owned slots. Module-local paint, clips, and constraints are reserved
+capabilities: producers MUST NOT encode them as undocumented fields in the 1.0
+schema.
+
+For a joint-owned slot, `localFrame` is expressed in the owning joint's local
+axes. For a plate-owned slot, it is expressed as `[tangent, bitangent, normal]`
+coordinates in the plate's explicit right-handed surface frame. Plate-owned
+slots MUST declare a finite positive box `region` in that same coordinate
+space; a plate without an explicit usable right-handed surface frame (including
+the legacy normal/plane-axis pair) cannot own a slot.
 
 Until authored typed slots replace the legacy anchor vocabulary, the resolver
 normalizes these exact types:
@@ -212,6 +219,16 @@ module-local hierarchy/references, undeclared module palette roles, and any
 generated stable-ID collision. These checks describe declared facts and MUST
 NOT guess visual suitability from a module or model name.
 
+Module geometry has a deterministic conservative bound: joint-span plates use
+their control joints expanded by half-width, joint polygons use their control
+positions, and rigid primitives use a sphere derived from their largest size.
+A module MAY declare a larger finite `bounds` box, but it MUST contain the
+derived geometry. When a slot declares a region, the resolver transforms all
+eight module-bound corners through attachment-frame alignment and instance
+scale and MUST reject any corner outside the region. Exceptions require a
+future explicit contract field; validators MUST NOT silently add tolerance for
+a particular model or module name.
+
 Each model attachment declaration identifies an instance, module, slot, and
 optional positive scale. Assembly transforms the module attachment frame onto
 the slot local frame and emits IDs as `<instance-id>__<module-local-id>`.
@@ -226,6 +243,12 @@ Assembly is explicitly additive during the compatibility transition.
 without declared attachments; `resolveModelAssembly()` and
 `loadModelAssembly()` return `{ rig, manifest }`. This avoids changing existing
 goldens or consumers merely because an author declares optional modules.
+
+`rig render`, `sheet`, `audit`, `audit-all`, and `manifest` accept an explicit
+`--attachments` flag. Canonical assembled audits include the assembly manifest,
+module geometry in every sampled projection, and authored joint/plate slot
+positions in the frame overlay. The flag is required so existing review
+baselines never change merely because attachment declarations were added.
 
 Weapons are modules from this repository when they need coherent attachment and
 motion. Damage, range, game timing, and effects remain consumer metadata.

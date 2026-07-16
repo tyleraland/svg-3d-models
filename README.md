@@ -51,7 +51,7 @@ npx rig render rabbit --attachments --clip walk --time .25 --elevation 60 --head
 npx rig sheet rabbit --attachments
 
 # Write a self-contained canonical-pose/multi-view review artifact
-npx rig audit rabbit -o rabbit-audit.html
+npx rig audit rabbit --attachments -o rabbit-audit.html
 
 # Emit the same audit as deterministic machine-readable diagnostics
 npx rig audit rabbit --json
@@ -60,7 +60,7 @@ npx rig audit rabbit --json
 npx rig audit-all --json -o paper-rig-audit.json
 
 # Generate projected review evidence (a candidate is not approved automatically)
-npx rig manifest rabbit -o rabbit-manifest-candidate.json
+npx rig manifest rabbit --attachments -o rabbit-manifest-candidate.json
 
 # Compare an audit with a reviewed manifest; changes are reported, not failed
 npx rig audit rabbit --against approved/rabbit.json -o rabbit-audit.html
@@ -150,19 +150,25 @@ module-local rig joints/plates. Model `attachments` entries select a module and
 slot and may provide a positive per-instance scale. Generated geometry IDs are
 stable and namespaced as `<instance>__<local-id>`.
 
-The 1.0 slice supports joint-owned slots and module-local joints/plates. Legacy
-anchors are normalized to typed slots—for example, `backItem` becomes
-`back.mount` and `weapon` becomes `hand.grip`. Compatibility is exact and source
-validation checks owner/module/slot references, occupancy, scale, target
-materials, palette roles, local geometry, and ID collisions. Do not bypass a
-rejection with model-specific world coordinates; either fix the declaration or
-extend the versioned contract.
+The 1.0 slice supports authored joint- and plate-owned slots plus module-local
+joints/plates. Legacy anchors are normalized to typed slots—for example,
+`backItem` becomes `back.mount` and `weapon` becomes `hand.grip`. Plate slots use
+the plate's explicit `[tangent, bitangent, normal]` surface frame and require a
+bounded plate-local region. Module bounds are conservatively derived from their
+geometry; optional authored bounds may enlarge, never understate, that envelope.
+Compatibility and region containment are exact, and source validation checks
+owner/module/slot references, occupancy, scale, target materials, palette roles,
+local geometry, and ID collisions. Do not bypass a rejection with model-specific
+world coordinates; either fix the declaration or extend the versioned contract.
 
 Attachments are intentionally opt-in while existing `paper-rig/1` consumers
 remain byte-compatible. `loadModel()` and ordinary renders omit a model's
 attachment declarations. Use `loadModelAssembly()` or `--attachments` when the
-assembled asset is wanted. The current proof attaches the same `travelPack`
-module to humanoid and rabbit `back.mount` slots at different scales.
+assembled asset is wanted. The current proofs attach the same `travelPack` and
+`simpleHat` modules to humanoid and rabbit slots at different scales, plus an
+`eyeGlint` to a bounded humanoid eye-plate slot. Use
+`rig audit <model> --attachments` for the full 240-view review; its frame overlay includes authored
+joint and plate slots, and its machine report embeds the assembly manifest.
 
 ### Explaining resolved fields
 

@@ -33,8 +33,8 @@ rig validate rigs/models/rabbit.json          # resolve + compile + validate
 rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
 rig render rabbit --attachments               # opt-in declared module assembly
 rig sheet rabbit --attachments                 # 8x4 assembled contact sheet
-rig manifest rabbit -o rabbit-candidate.json  # canonical projected review evidence
-rig audit rabbit --against approved.json      # source-ID-level review diff
+rig manifest rabbit --attachments -o rabbit-candidate.json
+rig audit rabbit --attachments -o rabbit-audit.html
 rig explain rabbit plate:headPlate.size       # resolved field origin + history
 rig diff rabbit /tmp/rabbit-candidate.json    # source edits -> stable-ID effects
 rig validate-all                               # CI gate over rigs/models/
@@ -74,6 +74,11 @@ them for compatibility. Use `loadModelAssembly()` / `resolveModelAssembly()` or
 CLI `--attachments` to inspect the assembly. Module geometry uses module-local
 coordinates and stable generated IDs `<instance>__<local-id>`; never author a
 reusable module in model/world coordinates or patch it into a resolved rig.
+Authored model `slots` can be joint- or plate-owned. Plate slots require an
+explicit surface frame and bounded plate-local region; module geometry/bounds
+must fit that region after scale and attachment-frame alignment. Use
+`rig audit <model> --attachments` to review module geometry and slot overlays
+across the canonical pose/camera matrix.
 
 ## Tests
 

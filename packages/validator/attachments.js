@@ -40,6 +40,7 @@ export function validateModelAttachmentConfiguration(model, rig, modules) {
   if (moduleReports.some((moduleReport) => moduleReport.status !== 'passed')) return report(schemaChecksForModules);
   const configuration = validateAttachmentConfiguration({
     rig,
+    slots: model.slots || [],
     instances: model.attachments || [],
     modules,
   });

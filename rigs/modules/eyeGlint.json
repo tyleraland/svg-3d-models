@@ -1,0 +1,40 @@
+{
+  "$schema": "paper-rig/attachment-module-1",
+  "schemaVersion": "1.0.0",
+  "id": "eyeGlint",
+  "compatibleSlotTypes": ["face.eye.detail"],
+  "attachmentFrame": {
+    "positionMeters": [0, 0, 0],
+    "rotationXYZDegrees": [0, 0, 0]
+  },
+  "bounds": {
+    "centerMeters": [0, 0, 0],
+    "sizeMeters": [0.02, 0.02, 0.02]
+  },
+  "paletteRoles": ["eye.highlight"],
+  "geometry": {
+    "joints": [
+      {
+        "id": "root",
+        "parent": null,
+        "bind": [0, 0, 0],
+        "role": "module-root"
+      }
+    ],
+    "plates": [
+      {
+        "id": "disc",
+        "bone": "root",
+        "shape": "disc",
+        "size": [0.02, 0.02],
+        "role": "eye",
+        "bodyRegion": "accessory",
+        "attachment": "rigid",
+        "material": "paperLight",
+        "paletteRole": "eye.highlight",
+        "zBias": 6.5,
+        "surfaceNormal": [0, 0, 1]
+      }
+    ]
+  }
+}

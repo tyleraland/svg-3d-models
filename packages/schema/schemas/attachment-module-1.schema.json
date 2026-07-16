@@ -11,6 +11,7 @@
     "id": { "$ref": "#/$defs/id" },
     "compatibleSlotTypes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/slotType" } },
     "attachmentFrame": { "$ref": "#/$defs/frame" },
+    "bounds": { "$ref": "#/$defs/bounds" },
     "paletteRoles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/slotType" } },
     "geometry": {
       "type": "object",
@@ -36,6 +37,15 @@
       "properties": {
         "positionMeters": { "$ref": "#/$defs/vector3" },
         "rotationXYZDegrees": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["centerMeters", "sizeMeters"],
+      "properties": {
+        "centerMeters": { "$ref": "#/$defs/vector3" },
+        "sizeMeters": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/positiveNumber" } }
       }
     },
     "surfaceFrame": {

@@ -30,7 +30,7 @@
       "additionalProperties": false,
       "required": ["kind", "id"],
       "properties": {
-        "kind": { "const": "joint" },
+        "kind": { "enum": ["joint", "plate"] },
         "id": { "$ref": "#/$defs/id" }
       }
     },

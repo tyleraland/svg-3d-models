@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import manifestSchema from '@paper-rig/schema/schemas/audit-manifest-1.schema.json' with { type: 'json' };
-import { loadModel } from '@paper-rig/rigs';
+import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
 import { auditRig, renderAuditHtml } from '@paper-rig/validator/audit';
 import { createAuditManifest, diffAuditManifests } from '@paper-rig/validator/audit-manifest';
 
@@ -30,6 +30,14 @@ test('audit manifests are deterministic, schema-valid, and ignore non-projected 
   const annotated = structuredClone(rig);
   annotated.profile = { ...(annotated.profile || {}), reviewNote: 'not projected' };
   assert.deepEqual(createAuditManifest(annotated, ONE_VIEW), manifest);
+});
+
+test('assembled audit manifests include reusable module geometry and remain schema-valid', () => {
+  const manifest = createAuditManifest(loadModelAssembly('rabbit').rig, ONE_VIEW);
+  assert.equal(validateManifest(manifest), true, JSON.stringify(validateManifest.errors));
+  const elementIds = manifest.views[0].elements.map((element) => element.id);
+  assert.ok(elementIds.includes('simpleHat__body'));
+  assert.ok(elementIds.includes('travelPack__body'));
 });
 
 test('manifest diffs identify affected geometry without asserting that a change is wrong', () => {

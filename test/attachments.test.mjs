@@ -41,19 +41,20 @@ test('legacy anchor module types normalize to versioned hierarchical slot types'
 
 test('one source-native travel pack assembles on humanoid and quadruped slots', () => {
   const expected = {
-    humanoid: { owner: 'shoulders', scale: 1, topBind: 0.18 },
-    rabbit: { owner: 'chest', scale: 0.45, topBind: 0.081 },
+    humanoid: { owner: 'shoulders', scale: 1, topBind: 0.18, instanceCount: 3 },
+    rabbit: { owner: 'chest', scale: 0.45, topBind: 0.081, instanceCount: 2 },
   };
   for (const [name, proof] of Object.entries(expected)) {
     const { rig, manifest } = loadModelAssembly(name);
     assert.equal(validate(rig).status, 'passed', name);
     assert.equal(validateAttachmentManifest(manifest).status, 'passed', name);
     assert.equal(manifest.sourceModelId, name);
-    assert.equal(manifest.instances.length, 1);
-    assert.equal(manifest.instances[0].moduleId, 'travelPack');
-    assert.equal(manifest.instances[0].slotType, 'back.mount');
-    assert.equal(manifest.instances[0].scale, proof.scale);
-    assert.deepEqual(manifest.instances[0].geometryIds, {
+    assert.equal(manifest.instances.length, proof.instanceCount);
+    const instance = manifest.instances.find((candidate) => candidate.id === 'travelPack');
+    assert.equal(instance.moduleId, 'travelPack');
+    assert.equal(instance.slotType, 'back.mount');
+    assert.equal(instance.scale, proof.scale);
+    assert.deepEqual(instance.geometryIds, {
       joints: ['travelPack__root', 'travelPack__top'],
       plates: ['travelPack__body'],
     });
@@ -73,26 +74,46 @@ test('one source-native travel pack assembles on humanoid and quadruped slots', 
 test('attachment roots track the complete posed owner frame and module spans remain rigid', () => {
   for (const name of ['humanoid', 'rabbit']) {
     const { rig, manifest } = loadModelAssembly(name);
-    const instance = manifest.instances[0];
-    const rootJoint = rig.joints.find((joint) => joint.id === instance.geometryIds.joints[0]);
     const samples = [
       { clip: 'idle', time: 0 },
       { clip: 'walk', time: 0.25 },
       { clip: 'attack', time: 0.62 },
     ];
-    const lengths = [];
-    for (const sample of samples) {
-      const pose = solvePose(rig, sample).joints;
-      const owner = pose[instance.owner.id];
-      const expectedRoot = add(owner.positionMeters, multiply(owner.localToWorldRotation, rootJoint.bind));
-      pose[instance.geometryIds.joints[0]].positionMeters.forEach((value, axis) => close(value, expectedRoot[axis]));
-      lengths.push(distance(
-        pose[instance.geometryIds.joints[0]].positionMeters,
-        pose[instance.geometryIds.joints[1]].positionMeters,
-      ));
+    for (const instance of manifest.instances) {
+      const rootJoint = rig.joints.find((joint) => joint.id === instance.geometryIds.joints[0]);
+      const lengths = [];
+      for (const sample of samples) {
+        const pose = solvePose(rig, sample).joints;
+        const parent = pose[rootJoint.parent];
+        const expectedRoot = add(parent.positionMeters, multiply(parent.localToWorldRotation, rootJoint.bind));
+        pose[rootJoint.id].positionMeters.forEach((value, axis) => close(value, expectedRoot[axis]));
+        if (instance.geometryIds.joints.length > 1) lengths.push(distance(
+          pose[instance.geometryIds.joints[0]].positionMeters,
+          pose[instance.geometryIds.joints[1]].positionMeters,
+        ));
+      }
+      lengths.forEach((length) => close(length, lengths[0]));
     }
-    lengths.forEach((length) => close(length, lengths[0]));
   }
+});
+
+test('authored joint and plate slots assemble shared hats and surface-oriented details', () => {
+  const humanoidModel = loadModelSource('humanoid');
+  const humanoidSlots = attachmentSlots(loadModel('humanoid'), humanoidModel.slots);
+  const headgear = humanoidSlots.find((slot) => slot.id === 'headgearSlot');
+  const eyeDetail = humanoidSlots.find((slot) => slot.id === 'leftEyeDetailSlot');
+  assert.deepEqual(headgear.owner, { kind: 'joint', id: 'head' });
+  assert.deepEqual(eyeDetail.owner, { kind: 'plate', id: 'leftEyePlate' });
+  assert.equal(eyeDetail.resolvedParentJointId, 'leftEye');
+  assert.deepEqual(eyeDetail.resolvedJointFrame.positionMeters, [0.005, 0.012, 0.012]);
+  assert.equal(eyeDetail.region.kind, 'box');
+
+  const humanoid = loadModelAssembly('humanoid');
+  const rabbit = loadModelAssembly('rabbit');
+  assert.equal(humanoid.manifest.instances.find((instance) => instance.id === 'simpleHat').slotType, 'head.hat');
+  assert.equal(rabbit.manifest.instances.find((instance) => instance.id === 'simpleHat').slotType, 'head.hat');
+  assert.equal(humanoid.rig.plates.find((plate) => plate.id === 'leftEyeGlint__disc').paletteRole, 'eye.highlight');
+  assert.deepEqual(humanoid.rig.plates.find((plate) => plate.id === 'leftEyeGlint__disc').surfaceNormal, [1, 0, 0]);
 });
 
 test('assembly is opt-in and never mutates the base rig, model source, or module source', () => {
@@ -100,7 +121,7 @@ test('assembly is opt-in and never mutates the base rig, model source, or module
   const model = loadModelSource('rabbit');
   const modules = loadAttachmentModulesForModel(model);
   const snapshots = [structuredClone(rig), structuredClone(model), structuredClone(modules)];
-  const assembly = resolveAttachmentAssembly({ rig, sourceModelId: 'rabbit', instances: model.attachments, modules });
+  const assembly = resolveAttachmentAssembly({ rig, sourceModelId: 'rabbit', slots: model.slots, instances: model.attachments, modules });
 
   assert.deepEqual(rig, snapshots[0]);
   assert.deepEqual(model, snapshots[1]);
@@ -113,8 +134,9 @@ test('module and model attachment validation reject only explicit contract viola
   const rig = loadModel('humanoid');
   const model = loadModelSource('humanoid');
   const module = loadAttachmentModule('travelPack');
+  const modules = loadAttachmentModulesForModel(model);
   assert.equal(validateAttachmentModuleSource(module).status, 'passed');
-  assert.equal(validateModelAttachmentConfiguration(model, rig, { travelPack: module }).status, 'passed');
+  assert.equal(validateModelAttachmentConfiguration(model, rig, modules).status, 'passed');
 
   const cases = [
     {
@@ -163,6 +185,39 @@ test('module and model attachment validation reject only explicit contract viola
       (error) => error instanceof AttachmentAssemblyError,
     );
   }
+});
+
+test('bounded surface slots reject modules outside their declared plate-local region', () => {
+  const rig = loadModel('humanoid');
+  const model = loadModelSource('humanoid');
+  const eyeGlint = loadAttachmentModule('eyeGlint');
+  const oversized = structuredClone(eyeGlint);
+  oversized.bounds.sizeMeters = [1, 1, 1];
+  const candidate = {
+    rig,
+    slots: model.slots,
+    instances: model.attachments.filter((instance) => instance.id === 'leftEyeGlint'),
+    modules: { eyeGlint: oversized },
+  };
+  const report = validateAttachmentConfiguration(candidate);
+  assert.equal(report.status, 'failed');
+  assert.ok(report.issues.some((issue) => issue.id === 'attachment-region-containment'));
+  assert.throws(
+    () => resolveAttachmentAssembly(candidate),
+    (error) => error instanceof AttachmentAssemblyError,
+  );
+
+  const invalidSurfaceSlot = {
+    id: 'unsupportedSurface',
+    type: 'surface.detail',
+    owner: { kind: 'plate', id: 'headPlate' },
+    localFrame: { positionMeters: [0, 0, 0], rotationXYZDegrees: [0, 0, 0] },
+    scaleBehavior: 'preserve-local-aspect',
+    cardinality: 1,
+    region: { kind: 'box', centerMeters: [0, 0, 0], sizeMeters: [1, 1, 1] },
+  };
+  const badFrame = validateAttachmentConfiguration({ rig, slots: [invalidSurfaceSlot] });
+  assert.ok(badFrame.issues.some((issue) => issue.id === 'attachment-plate-slot-surface-frames'));
 });
 
 test('module-local geometry references, palette roles, and stable IDs are validated', () => {

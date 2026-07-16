@@ -1,15 +1,15 @@
 {
   "$schema": "paper-rig/attachment-module-1",
   "schemaVersion": "1.0.0",
-  "id": "travelPack",
-  "compatibleSlotTypes": ["back.mount"],
+  "id": "simpleHat",
+  "compatibleSlotTypes": ["head.hat"],
   "attachmentFrame": {
     "positionMeters": [0, 0, 0],
     "rotationXYZDegrees": [0, 0, 0]
   },
   "bounds": {
-    "centerMeters": [0, 0, 0.09],
-    "sizeMeters": [0.14, 0.14, 0.32]
+    "centerMeters": [0, 0, 0.06],
+    "sizeMeters": [0.22, 0.22, 0.34]
   },
   "paletteRoles": ["equipment"],
   "geometry": {
@@ -21,26 +21,26 @@
         "role": "module-root"
       },
       {
-        "id": "top",
+        "id": "crown",
         "parent": "root",
-        "bind": [0, 0, 0.18],
+        "bind": [0, 0, 0.12],
         "role": "module-shape"
       }
     ],
     "plates": [
       {
         "id": "body",
-        "bone": "top",
+        "bone": "crown",
         "shape": "bone",
-        "size": [0.14],
+        "size": [0.22],
         "role": "equipment",
         "bodyRegion": "accessory",
         "attachment": "rigid",
         "material": "equipmentLeather",
         "paletteRole": "equipment",
-        "zBias": 5.7,
-        "span": ["root", "top"],
-        "jointOverlap": 1.12
+        "zBias": 6.1,
+        "span": ["root", "crown"],
+        "jointOverlap": 1.08
       }
     ]
   }

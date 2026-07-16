@@ -62,6 +62,10 @@
       "type": "array",
       "items": { "$ref": "#/$defs/attachmentInstance" }
     },
+    "slots": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/attachmentSlot" }
+    },
     "attack": {
       "type": "object",
       "additionalProperties": false,
@@ -205,6 +209,73 @@
         "moduleId": { "$ref": "#/$defs/id" },
         "slotId": { "$ref": "#/$defs/id" },
         "scale": { "$ref": "#/$defs/positiveNumber" }
+      }
+    },
+    "attachmentSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "owner", "localFrame", "scaleBehavior", "cardinality"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": { "$ref": "#/$defs/slotType" },
+        "owner": { "$ref": "#/$defs/slotOwner" },
+        "localFrame": { "$ref": "#/$defs/attachmentFrame" },
+        "scaleBehavior": { "enum": ["inherit-owner-scale", "preserve-local-aspect"] },
+        "cardinality": { "type": "integer", "minimum": 1 },
+        "counterpartSlotId": { "$ref": "#/$defs/id" },
+        "region": { "$ref": "#/$defs/attachmentRegion" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "owner": {
+                "type": "object",
+                "properties": { "kind": { "const": "plate" } },
+                "required": ["kind"]
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": { "region": { "$ref": "#/$defs/attachmentRegion" } },
+            "required": ["region"]
+          }
+        }
+      ]
+    },
+    "slotType": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)*$" },
+    "slotOwner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": { "enum": ["joint", "plate"] },
+        "id": { "$ref": "#/$defs/id" }
+      }
+    },
+    "attachmentFrame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["positionMeters", "rotationXYZDegrees"],
+      "properties": {
+        "positionMeters": { "$ref": "#/$defs/vector3" },
+        "rotationXYZDegrees": { "$ref": "#/$defs/vector3" }
+      }
+    },
+    "attachmentRegion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "centerMeters", "sizeMeters"],
+      "properties": {
+        "kind": { "const": "box" },
+        "centerMeters": { "$ref": "#/$defs/vector3" },
+        "sizeMeters": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "$ref": "#/$defs/positiveNumber" }
+        }
       }
     },
     "frame": {

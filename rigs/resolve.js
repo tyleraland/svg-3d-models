@@ -298,6 +298,7 @@ export function resolveModelAssembly(model, family, { sourceModelId, modules = {
   return resolveAttachmentAssembly({
     rig: resolveModel(model, family),
     sourceModelId: sourceModelId || model.variant?.id || family.id,
+    slots: model.slots || [],
     instances: model.attachments || [],
     modules,
   });

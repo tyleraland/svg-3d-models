@@ -2,11 +2,52 @@
   "$schema": "paper-rig/model-1",
   "family": "humanoid",
   "base": true,
+  "slots": [
+    {
+      "id": "headgearSlot",
+      "type": "head.hat",
+      "owner": { "kind": "joint", "id": "head" },
+      "localFrame": {
+        "positionMeters": [0, 0, 0.22],
+        "rotationXYZDegrees": [0, 0, 0]
+      },
+      "scaleBehavior": "preserve-local-aspect",
+      "cardinality": 1
+    },
+    {
+      "id": "leftEyeDetailSlot",
+      "type": "face.eye.detail",
+      "owner": { "kind": "plate", "id": "leftEyePlate" },
+      "localFrame": {
+        "positionMeters": [0.012, 0.012, 0.005],
+        "rotationXYZDegrees": [0, 0, 0]
+      },
+      "scaleBehavior": "preserve-local-aspect",
+      "cardinality": 1,
+      "region": {
+        "kind": "box",
+        "centerMeters": [0, 0, 0.005],
+        "sizeMeters": [0.06, 0.06, 0.02]
+      }
+    }
+  ],
   "attachments": [
     {
       "id": "travelPack",
       "moduleId": "travelPack",
       "slotId": "backAnchor",
+      "scale": 1
+    },
+    {
+      "id": "simpleHat",
+      "moduleId": "simpleHat",
+      "slotId": "headgearSlot",
+      "scale": 0.8
+    },
+    {
+      "id": "leftEyeGlint",
+      "moduleId": "eyeGlint",
+      "slotId": "leftEyeDetailSlot",
       "scale": 1
     }
   ],

@@ -40,8 +40,74 @@ export function slotTypeForAnchor(anchor) {
   return LEGACY_SLOT_TYPES[declared] || declared;
 }
 
-export function attachmentSlots(rig) {
-  return (rig.anchors || []).map((anchor) => ({
+const axisVector = (axis) => {
+  const sign = axis?.[0] === '-' ? -1 : 1;
+  const index = { x: 0, y: 1, z: 2 }[axis?.[1]];
+  if (index === undefined) return null;
+  return [0, 1, 2].map((candidate) => candidate === index ? sign : 0);
+};
+const basisMatrix = (tangent, bitangent, normal) => [0, 1, 2].map((row) => [
+  tangent[row], bitangent[row], normal[row],
+]);
+const dot3 = (left, right) => left.reduce((sum, value, axis) => sum + value * right[axis], 0);
+const cross3 = (left, right) => [
+  left[1] * right[2] - left[2] * right[1],
+  left[2] * right[0] - left[0] * right[2],
+  left[0] * right[1] - left[1] * right[0],
+];
+const rightHandedOrthonormal = (tangent, bitangent, normal) => {
+  if (![tangent, bitangent, normal].every(vector3)) return false;
+  const lengths = [tangent, bitangent, normal].map((vector) => Math.hypot(...vector));
+  if (lengths.some((length) => Math.abs(length - 1) > 1e-6)) return false;
+  if (Math.abs(dot3(tangent, bitangent)) > 1e-6
+    || Math.abs(dot3(tangent, normal)) > 1e-6
+    || Math.abs(dot3(bitangent, normal)) > 1e-6) return false;
+  return dot3(cross3(tangent, bitangent), normal) > 1 - 1e-6;
+};
+
+function plateSurfaceBasis(plate) {
+  if (plate?.surfaceFrame) {
+    const { tangent, bitangent, normal } = plate.surfaceFrame;
+    return rightHandedOrthonormal(tangent, bitangent, normal) ? basisMatrix(tangent, bitangent, normal) : null;
+  }
+  if (vector3(plate?.surfaceNormal) && Array.isArray(plate?.planeAxes) && plate.planeAxes.length === 2) {
+    const tangent = axisVector(plate.planeAxes[0]);
+    const bitangent = axisVector(plate.planeAxes[1]);
+    return rightHandedOrthonormal(tangent, bitangent, plate.surfaceNormal)
+      ? basisMatrix(tangent, bitangent, plate.surfaceNormal)
+      : null;
+  }
+  return null;
+}
+
+function normalizedAuthoredSlot(rig, slot) {
+  const localFrame = cloneData(slot.localFrame);
+  if (slot.owner.kind === 'joint') {
+    return {
+      ...cloneData(slot),
+      counterpartSlotId: slot.counterpartSlotId || null,
+      resolvedParentJointId: slot.owner.id,
+      resolvedJointFrame: {
+        positionMeters: [...localFrame.positionMeters],
+        rotation: eulerXYZ(localFrame.rotationXYZDegrees),
+      },
+    };
+  }
+  const plate = (rig.plates || []).find((candidate) => candidate.id === slot.owner.id);
+  const basis = plateSurfaceBasis(plate);
+  return {
+    ...cloneData(slot),
+    counterpartSlotId: slot.counterpartSlotId || null,
+    resolvedParentJointId: plate?.bone || null,
+    resolvedJointFrame: basis ? {
+      positionMeters: mv(basis, localFrame.positionMeters),
+      rotation: mm(basis, eulerXYZ(localFrame.rotationXYZDegrees)),
+    } : null,
+  };
+}
+
+export function attachmentSlots(rig, declaredSlots = []) {
+  const legacy = (rig.anchors || []).map((anchor) => ({
     id: anchor.id,
     type: slotTypeForAnchor(anchor),
     owner: { kind: 'joint', id: anchor.bone },
@@ -52,7 +118,75 @@ export function attachmentSlots(rig) {
     scaleBehavior: anchor.inheritScale === false ? 'preserve-local-aspect' : 'inherit-owner-scale',
     cardinality: anchor.cardinality || 1,
     counterpartSlotId: anchor.counterpart || null,
+    resolvedParentJointId: anchor.bone,
+    resolvedJointFrame: {
+      positionMeters: [...(anchor.offset || [0, 0, 0])],
+      rotation: eulerXYZ(anchor.rotation || [0, 0, 0]),
+    },
   }));
+  const byId = new Map(legacy.map((slot) => [slot.id, slot]));
+  for (const slot of declaredSlots) byId.set(slot.id, normalizedAuthoredSlot(rig, slot));
+  return [...byId.values()];
+}
+
+const boundsValid = (bounds) => vector3(bounds?.centerMeters)
+  && vector3(bounds?.sizeMeters) && bounds.sizeMeters.every((value) => value > 0);
+const boundsCorners = (bounds) => {
+  if (!boundsValid(bounds)) return [];
+  const half = bounds.sizeMeters.map((value) => value / 2);
+  return [-1, 1].flatMap((x) => [-1, 1].flatMap((y) => [-1, 1].map((z) => [x, y, z].map(
+    (sign, axis) => bounds.centerMeters[axis] + sign * half[axis],
+  ))));
+};
+const boundsContains = (bounds, points, tolerance = 1e-9) => {
+  if (!boundsValid(bounds) || !points.length) return false;
+  const half = bounds.sizeMeters.map((value) => value / 2);
+  return points.every((point) => point.every((value, axis) =>
+    value >= bounds.centerMeters[axis] - half[axis] - tolerance
+    && value <= bounds.centerMeters[axis] + half[axis] + tolerance));
+};
+
+function moduleGeometryPoints(module) {
+  const joints = Array.isArray(module?.geometry?.joints) ? module.geometry.joints : [];
+  const plates = Array.isArray(module?.geometry?.plates) ? module.geometry.plates : [];
+  const positions = {};
+  for (const joint of joints) {
+    if (!vector3(joint.bind) || (joint.parent != null && !positions[joint.parent])) return [];
+    positions[joint.id] = joint.parent == null ? [...joint.bind] : add(positions[joint.parent], joint.bind);
+  }
+  const points = [];
+  for (const plate of plates) {
+    if (!Array.isArray(plate.size) || !plate.size.length) return [];
+    const controls = plate.span?.length
+      ? plate.span.map((id) => positions[id])
+      : plate.points?.length
+        ? plate.points.map((id) => positions[id])
+        : [positions[plate.bone]];
+    if (controls.some((point) => !vector3(point))) return [];
+    const radius = plate.points?.length ? 0 : Math.max(...plate.size) / 2;
+    for (const point of controls) {
+      points.push(...[-1, 1].flatMap((x) => [-1, 1].flatMap((y) => [-1, 1].map((z) => [
+        point[0] + x * radius,
+        point[1] + y * radius,
+        point[2] + z * radius,
+      ]))));
+    }
+  }
+  return points;
+}
+
+function pointsBounds(points) {
+  if (!points.length) return null;
+  const min = [0, 1, 2].map((axis) => Math.min(...points.map((point) => point[axis])));
+  const max = [0, 1, 2].map((axis) => Math.max(...points.map((point) => point[axis])));
+  return {
+    centerMeters: min.map((value, axis) => (value + max[axis]) / 2),
+    sizeMeters: min.map((value, axis) => max[axis] - value),
+  };
+}
+
+function effectiveModuleBounds(module) {
+  return module?.bounds || pointsBounds(moduleGeometryPoints(module));
 }
 
 export function validateAttachmentModule(module) {
@@ -73,6 +207,11 @@ export function validateAttachmentModule(module) {
     'attachment-module-attachment-frame',
     vector3(module?.attachmentFrame?.positionMeters) && vector3(module?.attachmentFrame?.rotationXYZDegrees),
     `module ${module?.id || '(missing)'} has a finite attachment frame`,
+  ));
+  checks.push(check(
+    'attachment-module-bounds',
+    module?.bounds == null || boundsValid(module.bounds),
+    `module ${module?.id || '(missing)'} optional geometry bounds are finite and positive`,
   ));
   checks.push(check(
     'attachment-module-palette-roles',
@@ -116,17 +255,25 @@ export function validateAttachmentModule(module) {
     plates.every((plate) => paletteRoles.has(plate.paletteRole)),
     `module ${module?.id || '(missing)'} plate palette roles are declared by the module`,
   ));
+  checks.push(check(
+    'attachment-module-bounds-contain-geometry',
+    moduleGeometryPoints(module).length > 0
+      && (module?.bounds == null || boundsContains(module.bounds, moduleGeometryPoints(module))),
+    `module ${module?.id || '(missing)'} conservative plate geometry fits its optional declared bounds`,
+  ));
   return report(checks);
 }
 
-export function validateAttachmentConfiguration({ rig, instances = [], modules = {} }) {
+export function validateAttachmentConfiguration({ rig, slots: declaredSlots = [], instances = [], modules = {} }) {
   const registry = modulesById(modules);
-  const slots = attachmentSlots(rig);
+  const slots = attachmentSlots(rig, declaredSlots);
   const slotsById = new Map(slots.map((slot) => [slot.id, slot]));
   const checks = [];
   for (const module of Object.values(registry)) checks.push(...validateAttachmentModule(module).checks);
   const rigJointIds = new Set((rig.joints || []).map((joint) => joint.id));
+  const rigPlateIds = new Set((rig.plates || []).map((plate) => plate.id));
   const rigMaterials = new Set(Object.keys(rig.materials || {}));
+  checks.push(check('attachment-authored-slot-ids', unique(declaredSlots.map((slot) => slot.id)), 'authored attachment slot IDs are unique'));
   checks.push(check(
     'attachment-slot-frames',
     slots.every((slot) => vector3(slot.localFrame.positionMeters) && vector3(slot.localFrame.rotationXYZDegrees)),
@@ -139,8 +286,31 @@ export function validateAttachmentConfiguration({ rig, instances = [], modules =
   ));
   checks.push(check(
     'attachment-slot-owner-references',
-    slots.every((slot) => rigJointIds.has(slot.owner.id)),
-    'attachment slot owners reference rig joints',
+    slots.every((slot) => slot.owner.kind === 'joint'
+      ? rigJointIds.has(slot.owner.id)
+      : rigPlateIds.has(slot.owner.id) && rigJointIds.has(slot.resolvedParentJointId)),
+    'attachment slot owners reference rig joints or plates attached to rig joints',
+  ));
+  checks.push(check(
+    'attachment-plate-slot-surface-frames',
+    slots.every((slot) => slot.owner.kind !== 'plate' || slot.resolvedJointFrame != null),
+    'plate-owned attachment slots have an explicit source surface frame',
+  ));
+  checks.push(check(
+    'attachment-slot-regions',
+    slots.every((slot) => slot.region == null || (slot.region.kind === 'box' && boundsValid(slot.region))),
+    'declared attachment regions are finite positive boxes in owner-local coordinates',
+  ));
+  checks.push(check(
+    'attachment-plate-slot-regions',
+    slots.every((slot) => slot.owner.kind !== 'plate' || slot.region != null),
+    'plate-owned attachment slots declare bounded plate-local regions',
+  ));
+  const allSlotIds = new Set(slots.map((slot) => slot.id));
+  checks.push(check(
+    'attachment-slot-counterparts',
+    slots.every((slot) => !slot.counterpartSlotId || allSlotIds.has(slot.counterpartSlotId)),
+    'attachment slot counterpart references resolve',
   ));
 
   const instanceIds = instances.map((instance) => instance.id);
@@ -174,6 +344,31 @@ export function validateAttachmentConfiguration({ rig, instances = [], modules =
         'attachment-module-material-references',
         modulePlates.every((plate) => rigMaterials.has(plate.material)),
         `instance ${instance.id}: module ${module.id} materials exist on rig ${rig.id}`,
+      ));
+      const moduleBounds = effectiveModuleBounds(module);
+      const framesValid = vector3(slot.localFrame?.positionMeters)
+        && vector3(slot.localFrame?.rotationXYZDegrees)
+        && vector3(module.attachmentFrame?.positionMeters)
+        && vector3(module.attachmentFrame?.rotationXYZDegrees)
+        && boundsValid(moduleBounds)
+        && Number.isFinite(amount) && amount > 0;
+      const pointsInOwner = framesValid ? (() => {
+        const moduleOwnerRotation = mm(
+          eulerXYZ(slot.localFrame.rotationXYZDegrees),
+          transpose(eulerXYZ(module.attachmentFrame.rotationXYZDegrees)),
+        );
+        const attachmentPoint = scale(module.attachmentFrame.positionMeters, amount);
+        return boundsCorners(moduleBounds).map((point) => add(
+          slot.localFrame.positionMeters,
+          mv(moduleOwnerRotation, subtract(scale(point, amount), attachmentPoint)),
+        ));
+      })() : [];
+      checks.push(check(
+        'attachment-region-containment',
+        slot.region == null || (framesValid && boundsContains(slot.region, pointsInOwner)),
+        slot.region == null
+          ? `instance ${instance.id}: slot ${slot.id} has no bounded region`
+          : `instance ${instance.id}: module ${module.id} fits slot ${slot.id} owner-local region`,
       ));
       occupied.set(slot.id, (occupied.get(slot.id) || 0) + 1);
       const generated = [
@@ -228,15 +423,30 @@ export class AttachmentAssemblyError extends Error {
   }
 }
 
-export function resolveAttachmentAssembly({ rig, sourceModelId = rig.id, instances = [], modules = {} }) {
-  const validation = validateAttachmentConfiguration({ rig, instances, modules });
+export function resolveAttachmentAssembly({ rig, sourceModelId = rig.id, slots: declaredSlots = [], instances = [], modules = {} }) {
+  const validation = validateAttachmentConfiguration({ rig, slots: declaredSlots, instances, modules });
   if (validation.status !== 'passed') {
     const issue = validation.issues[0];
     throw new AttachmentAssemblyError(issue.id, issue.detail);
   }
   const registry = modulesById(modules);
-  const slotsById = new Map(attachmentSlots(rig).map((slot) => [slot.id, slot]));
+  const slotsById = new Map(attachmentSlots(rig, declaredSlots).map((slot) => [slot.id, slot]));
   const assemblyRig = cloneData(rig);
+  assemblyRig.attachmentSlots = declaredSlots.map((declared) => {
+    const slot = slotsById.get(declared.id);
+    return {
+      id: slot.id,
+      type: slot.type,
+      owner: cloneData(slot.owner),
+      localFrame: cloneData(slot.localFrame),
+      scaleBehavior: slot.scaleBehavior,
+      cardinality: slot.cardinality,
+      counterpartSlotId: slot.counterpartSlotId,
+      region: slot.region ? cloneData(slot.region) : null,
+      resolvedParentJointId: slot.resolvedParentJointId,
+      resolvedJointFrame: cloneData(slot.resolvedJointFrame),
+    };
+  });
   const manifestInstances = [];
 
   for (const instance of instances) {
@@ -244,7 +454,7 @@ export function resolveAttachmentAssembly({ rig, sourceModelId = rig.id, instanc
     const slot = slotsById.get(instance.slotId);
     const amount = instance.scale ?? 1;
     const moduleFrame = module.attachmentFrame;
-    const slotRotation = eulerXYZ(slot.localFrame.rotationXYZDegrees);
+    const slotRotation = slot.resolvedJointFrame.rotation;
     const moduleRotation = eulerXYZ(moduleFrame.rotationXYZDegrees);
     const rotation = mm(slotRotation, transpose(moduleRotation));
     const root = module.geometry.joints.find((joint) => joint.parent == null);
@@ -255,12 +465,12 @@ export function resolveAttachmentAssembly({ rig, sourceModelId = rig.id, instanc
     for (const joint of module.geometry.joints) {
       const localBind = scale(joint.bind, amount);
       const bind = joint.id === root.id
-        ? add(slot.localFrame.positionMeters, mv(rotation, subtract(localBind, attachmentPoint)))
+        ? add(slot.resolvedJointFrame.positionMeters, mv(rotation, subtract(localBind, attachmentPoint)))
         : mv(rotation, localBind);
       assemblyRig.joints.push({
         ...cloneData(joint),
         id: jointIds[joint.id],
-        parent: joint.parent == null ? slot.owner.id : jointIds[joint.parent],
+        parent: joint.parent == null ? slot.resolvedParentJointId : jointIds[joint.parent],
         bind,
       });
     }

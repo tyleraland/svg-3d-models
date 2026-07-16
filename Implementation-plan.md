@@ -47,7 +47,7 @@ runtime asset policy.
 | M1: semantic projection foundation | Complete | World/camera transforms, explicit surface frames, and `projected-scene/1` |
 | M2: automated audit and review artifact | Complete | JSON diagnostics, approved-manifest diffs, and inspectable multi-view HTML |
 | M2.5: authoring round-trip | Complete | Provenance, semantic diffs, source patches, and adjacent-pose/multi-camera review |
-| M3A: modular attachment foundation | In progress | Typed joint slots, reusable rig modules, assembly validation, and a two-family proof |
+| M3A: modular attachment foundation | Complete | Typed joint/surface slots, bounded reusable modules, assembly validation, and canonical review |
 | M4: composable motion system | Planned | Motion phases, recipes, richer body participation, and contact-aware checks |
 | M3B: appearance and paint | Planned | Plate-local paint and reusable semantic detail libraries |
 | M5: LOD and consumer handoff | Planned | Semantic detail tiers, capability negotiation, and stable export fixtures |
@@ -243,7 +243,7 @@ Exit criteria met.
 
 ## M3A — modular attachment foundation
 
-Status: in progress.
+Status: complete.
 
 Add typed local frames and compatibility declarations for slots such as eyes,
 nose, mouth, horn, hat, hand-held, back-mounted, and body-surface details. A
@@ -269,17 +269,22 @@ Delivered in the foundation slice:
   back slots at different instance scales, with tests for posed owner-frame
   tracking and rigid geometry across idle, walk, and attack samples.
 
-Next implementation order:
+Delivered in the completion slice:
 
-1. Add authored typed slot declarations rather than relying only on normalized
-   legacy anchors, including the first plate-owned surface slot.
-2. Define bounded plate-local attachment regions and reject module geometry
-   outside them with explicit, narrowly scoped exceptions where needed.
-3. Add a face/head module proof (eye, horn, or hat) to exercise paired slots,
-   surface orientation, and counterpart semantics.
-4. Include assembly manifests and module geometry in the canonical audit/review
-   artifact, then decide whether workbench assembly toggles add enough value
-   beyond attachment contact sheets.
+- model-authored typed slots with joint or plate owners, complete local frames,
+  explicit scale behavior, cardinality, and optional counterparts;
+- plate-owned slots resolved through explicit right-handed surface frames, with
+  required finite plate-local box regions;
+- conservative module geometry bounds derived from joint/plate geometry, plus
+  optional declared bounds that must contain that geometry;
+- a deterministic containment check that rejects a scaled/rotated module when
+  its bounds escape a declared owner-local region;
+- a shared `simpleHat` on authored humanoid and rabbit `head.hat` slots and an
+  `eyeGlint` aligned to a bounded humanoid eye-plate surface slot;
+- `rig audit|audit-all|manifest --attachments`, so assembled geometry enters
+  canonical review evidence and authored slots appear in frame overlays; and
+- schema, source, assembly, rigid-motion, bounds, projection, audit, and CLI
+  regressions while ordinary resolution/render goldens remain byte-identical.
 
 Exit criteria:
 
@@ -289,6 +294,14 @@ Exit criteria:
   references, and geometry that escapes a declared plate-local region.
 - At least one humanoid and one quadruped use attachment modules without
   changing unrelated rig anatomy.
+
+Exit criteria met. A workbench assembly toggle is deliberately deferred: the
+assembled contact sheet and 240-view audit provide deterministic review now,
+and the UI should only grow another mode when direct module authoring needs it.
+
+Next action: begin M4 with a small versioned motion-recipe/phase contract and
+one representative whole-body attack slice before attempting broad clip
+migration.
 
 ## M4 — composable motion system
 
