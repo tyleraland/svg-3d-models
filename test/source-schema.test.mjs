@@ -72,7 +72,7 @@ test('source validation rejects degenerate or left-handed surface frames', () =>
   assert.ok(report.issues.some((issue) => issue.id === 'family-surface-frames'));
 });
 
-test('family plates and model overrides accept only versioned semantic detail tiers', () => {
+test('family plates, model overrides, and generated addons accept only versioned semantic detail tiers', () => {
   const family = structuredClone(loadFamily('horse'));
   family.plates[0].semanticDetailTier = 'texture';
   assert.equal(validateFamilySource(family).status, 'passed');
@@ -87,4 +87,10 @@ test('family plates and model overrides accept only versioned semantic detail ti
   assert.equal(validateModelSource(model).status, 'passed');
   model.plateOverrides.at(-1).set.semanticDetailTier = 'tiny';
   assert.equal(validateModelSource(model).status, 'failed');
+
+  const rabbit = structuredClone(loadModelSource('rabbit'));
+  rabbit.addons[0].semanticDetailTier = 'identity';
+  assert.equal(validateModelSource(rabbit).status, 'passed');
+  rabbit.addons[0].semanticDetailTier = 'tiny';
+  assert.equal(validateModelSource(rabbit).status, 'failed');
 });

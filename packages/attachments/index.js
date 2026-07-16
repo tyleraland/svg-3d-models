@@ -229,6 +229,54 @@ export function validateAttachmentModule(module) {
   checks.push(check('attachment-module-plate-ids', unique(plateIds), `module ${module?.id || '(missing)'} plate IDs are unique`));
   checks.push(check('attachment-module-stable-ids', unique([...jointIds, ...plateIds]), `module ${module?.id || '(missing)'} joint and plate IDs occupy one collision-free namespace`));
   checks.push(check('attachment-module-root', joints.filter((joint) => joint.parent == null).length === 1, `module ${module?.id || '(missing)'} has exactly one root joint`));
+  const root = joints.find((joint) => joint.parent == null);
+  const mount = module?.mountInterface;
+  const mountAxis = axisVector(mount?.axis);
+  const incidentRootPlates = root ? plates.filter((plate) => plate.bone === root.id
+    || (plate.span || []).includes(root.id)
+    || (plate.points || []).includes(root.id)) : [];
+  const mountDelta = vector3(module?.attachmentFrame?.positionMeters) && vector3(root?.bind)
+    ? subtract(module.attachmentFrame.positionMeters, root.bind)
+    : null;
+  const expectedMountDelta = mountAxis && Number.isFinite(mount?.embedDepthMeters)
+    ? scale(mountAxis, mount.embedDepthMeters)
+    : null;
+  const mountAligned = vector3(mountDelta) && vector3(expectedMountDelta)
+    && mountDelta.every((value, axis) => Math.abs(value - expectedMountDelta[axis]) <= 1e-9);
+  const mountFitsRootPlate = incidentRootPlates.some((plate) =>
+    Array.isArray(plate.size) && Math.min(...plate.size) / 2 + 1e-9 >= mount?.radiusMeters);
+  if (module?.schemaVersion === '1.1.0' || mount != null) {
+    checks.push(check(
+      'attachment-module-mount-interface',
+      mount?.type === 'overlap-gasket'
+        && mountAxis != null
+        && Number.isFinite(mount.radiusMeters) && mount.radiusMeters > 0
+        && Number.isFinite(mount.embedDepthMeters) && mount.embedDepthMeters > 0
+        && mount.compositing === 'module-over-owner',
+      `module ${module?.id || '(missing)'} declares a supported measurable overlap mount interface`,
+    ));
+    checks.push(check(
+      'attachment-module-mount-axis-alignment',
+      mountAligned,
+      `module ${module?.id || '(missing)'} attachment frame is exactly one embed depth from its root along the declared module axis`,
+    ));
+    checks.push(check(
+      'attachment-module-mount-root-contact',
+      incidentRootPlates.length > 0,
+      `module ${module?.id || '(missing)'} has geometry incident to its mount root`,
+    ));
+    checks.push(check(
+      'attachment-module-mount-radius',
+      Number.isFinite(mount?.radiusMeters) && mountFitsRootPlate,
+      `module ${module?.id || '(missing)'} mount gasket fits inside incident root geometry`,
+    ));
+    checks.push(check(
+      'attachment-module-mount-embed-depth',
+      Number.isFinite(mount?.embedDepthMeters) && Number.isFinite(mount?.radiusMeters)
+        && mount.embedDepthMeters <= mount.radiusMeters,
+      `module ${module?.id || '(missing)'} embed depth does not exceed its gasket radius`,
+    ));
+  }
   const ordered = new Set();
   let hierarchyValid = true;
   for (const joint of joints) {
@@ -472,6 +520,17 @@ export function resolveAttachmentAssembly({ rig, sourceModelId = rig.id, slots: 
         id: jointIds[joint.id],
         parent: joint.parent == null ? slot.resolvedParentJointId : jointIds[joint.parent],
         bind,
+        ...(joint.id === root.id && module.mountInterface ? {
+          attachmentMountInterface: {
+            type: module.mountInterface.type,
+            axis: mv(rotation, axisVector(module.mountInterface.axis)),
+            radiusMeters: module.mountInterface.radiusMeters * amount,
+            embedDepthMeters: module.mountInterface.embedDepthMeters * amount,
+            compositing: module.mountInterface.compositing,
+            instanceId: instance.id,
+            moduleId: module.id,
+          },
+        } : {}),
       });
     }
     for (const plate of module.geometry.plates) {
@@ -494,6 +553,17 @@ export function resolveAttachmentAssembly({ rig, sourceModelId = rig.id, slots: 
       scale: amount,
       owner: cloneData(slot.owner),
       slotFrame: cloneData(slot.localFrame),
+      ...(module.mountInterface ? {
+        mountInterface: {
+          type: module.mountInterface.type,
+          moduleAxis: module.mountInterface.axis,
+          ownerLocalAxis: mv(rotation, axisVector(module.mountInterface.axis)),
+          radiusMeters: module.mountInterface.radiusMeters * amount,
+          embedDepthMeters: module.mountInterface.embedDepthMeters * amount,
+          compositing: module.mountInterface.compositing,
+          rootJointId: jointIds[root.id],
+        },
+      } : {}),
       geometryIds: {
         joints: Object.values(jointIds),
         plates: Object.values(plateIds),
@@ -505,7 +575,7 @@ export function resolveAttachmentAssembly({ rig, sourceModelId = rig.id, slots: 
     rig: assemblyRig,
     manifest: {
       schema: 'paper-rig/attachment-assembly/1',
-      schemaVersion: '1.0.0',
+      schemaVersion: '1.1.0',
       sourceModelId,
       resolvedModelId: rig.id,
       instances: manifestInstances,

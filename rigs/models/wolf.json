@@ -2,6 +2,20 @@
   "$schema": "paper-rig/model-1",
   "family": "wolf",
   "base": true,
+  "attachments": [
+    {
+      "id": "nearSimpleHorn",
+      "moduleId": "simpleHorn",
+      "slotId": "nearHornAnchor",
+      "scale": 0.7
+    },
+    {
+      "id": "farSimpleHorn",
+      "moduleId": "simpleHorn",
+      "slotId": "farHornAnchor",
+      "scale": 0.7
+    }
+  ],
   "clips": {
     "attack": {
       "base": "idleA",

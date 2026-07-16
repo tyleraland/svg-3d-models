@@ -235,3 +235,55 @@ test('module-local geometry references, palette roles, and stable IDs are valida
     assert.ok(report.issues.some((issue) => issue.id === issueId), issueId);
   }
 });
+
+test('overlap mount interfaces reject only measurable seam contract violations', () => {
+  const module = loadAttachmentModule('simpleHat');
+  const invalid = [
+    ['attachment-module-mount-axis-alignment', (candidate) => { candidate.attachmentFrame.positionMeters[0] = 0.01; }],
+    ['attachment-module-mount-radius', (candidate) => { candidate.mountInterface.radiusMeters = 0.12; }],
+    ['attachment-module-mount-embed-depth', (candidate) => { candidate.mountInterface.embedDepthMeters = 0.11; candidate.attachmentFrame.positionMeters[2] = 0.11; }],
+    ['attachment-module-mount-root-contact', (candidate) => { candidate.geometry.plates[0].span = ['crown', 'crown']; }],
+  ];
+  assert.equal(validateAttachmentModuleSource(module).status, 'passed');
+  for (const [issueId, mutate] of invalid) {
+    const candidate = structuredClone(module);
+    mutate(candidate);
+    const report = validateAttachmentModuleSource(candidate);
+    assert.equal(report.status, 'failed');
+    assert.ok(report.issues.some((issue) => issue.id === issueId), issueId);
+  }
+});
+
+test('one horn module mounts with fixed embedded seams on two model families', () => {
+  for (const name of ['wolf', 'leopard']) {
+    const { rig, manifest } = loadModelAssembly(name);
+    assert.equal(validate(rig).status, 'passed', name);
+    assert.equal(validateAttachmentManifest(manifest).status, 'passed', name);
+    assert.equal(manifest.schemaVersion, '1.1.0');
+    assert.equal(manifest.instances.length, 2);
+    for (const instance of manifest.instances) {
+      assert.equal(instance.moduleId, 'simpleHorn');
+      assert.equal(instance.slotType, 'head.horn');
+      assert.equal(instance.mountInterface.type, 'overlap-gasket');
+      const root = rig.joints.find((joint) => joint.id === instance.mountInterface.rootJointId);
+      const samples = [
+        { clip: 'idle', time: 0 },
+        { clip: 'walk', time: 0.25 },
+        { clip: 'attack', time: 0.62 },
+      ];
+      for (const sample of samples) {
+        const pose = solvePose(rig, sample).joints;
+        const parent = pose[root.parent];
+        const rootPosition = pose[root.id].positionMeters;
+        const seamOffset = multiply(parent.localToWorldRotation, instance.mountInterface.ownerLocalAxis)
+          .map((value) => value * instance.mountInterface.embedDepthMeters);
+        const actualContact = add(rootPosition, seamOffset);
+        const expectedContact = add(
+          parent.positionMeters,
+          multiply(parent.localToWorldRotation, instance.slotFrame.positionMeters),
+        );
+        actualContact.forEach((value, axis) => close(value, expectedContact[axis]));
+      }
+    }
+  }
+});

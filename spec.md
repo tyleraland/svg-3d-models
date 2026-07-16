@@ -182,11 +182,21 @@ A module MUST declare compatible slot types and its own attachment frame. A
 module MAY contain joints, plates, paint, clips, or constraints. The resolver
 MUST produce stable instance IDs and MUST NOT mutate either source object.
 
-The implemented capability is `paper-rig/attachment-module-1` version `1.0.0`.
-It supports module-local joints and plates attached to authored joint-owned or
-plate-owned slots. Module-local paint, clips, and constraints are reserved
-capabilities: producers MUST NOT encode them as undocumented fields in the 1.0
-schema.
+The implemented capability is `paper-rig/attachment-module-1` versions `1.0.0`
+and `1.1.0`. Both support module-local joints and plates attached to authored
+joint-owned or plate-owned slots. Version 1.1 additionally requires a measured
+overlap mount interface. Module-local paint, clips, and constraints are reserved
+capabilities: producers MUST NOT encode them as undocumented fields.
+
+An overlap-mounted module MUST declare `mountInterface.type` as
+`overlap-gasket`, a signed module-local axis, a positive gasket radius, a
+positive embed depth, and `module-over-owner` compositing. The attachment frame
+MUST be exactly one embed depth from the module root along that axis, with no
+tangential offset. At least one plate MUST be incident to the root; the gasket
+radius MUST fit within an incident plate half-width; and embed depth MUST NOT
+exceed radius. These are geometric seam invariants, not aesthetic claims.
+Surface details that do not need overlap SHOULD remain 1.0 until another mount
+policy is specified.
 
 For a joint-owned slot, `localFrame` is expressed in the owning joint's local
 axes. For a plate-owned slot, it is expressed as `[tangent, bitangent, normal]`
@@ -212,7 +222,7 @@ normalizes these exact types:
 | `tail` | `tail.mount` |
 | `generic` | `generic` |
 
-Compatibility in 1.0 is exact: a module's `compatibleSlotTypes` MUST contain
+Compatibility is exact: a module's `compatibleSlotTypes` MUST contain
 the normalized slot type. Assembly MUST also reject missing slot/module
 references, occupancy above slot cardinality, non-positive or non-finite
 instance scale, target materials absent from the resolved rig, invalid
@@ -233,11 +243,18 @@ a particular model or module name.
 Each model attachment declaration identifies an instance, module, slot, and
 optional positive scale. Assembly transforms the module attachment frame onto
 the slot local frame and emits IDs as `<instance-id>__<module-local-id>`.
-`paper-rig/attachment-assembly/1` records the source/resolved model IDs, slot
-type and owner, local slot frame, scale, and generated joint/plate IDs. Module
+`paper-rig/attachment-assembly/1.1` records the source/resolved model IDs, slot
+type and owner, local slot frame, scale, generated joint/plate IDs, and any
+scaled resolved mount interface with its owner-local axis and root joint. Module
 geometry remains ordinary rig geometry after assembly and therefore uses the
 same posing, projection, semantic grouping, and rigid-span validation as model
 anatomy.
+
+Every projected generated gasket MUST declare the stable IDs of its incident
+plates. Its semantic detail tier MUST equal the most essential tier among those
+dependencies. A cumulative handoff MUST retain a gasket only when at least one
+incident plate is retained. This applies to anatomy connectors and attachment
+seams and prevents isolated generated geometry at lower LODs.
 
 Assembly is explicitly additive during the compatibility transition.
 `resolveModel()` and `loadModel()` MUST continue to return the base resolved rig
@@ -448,6 +465,8 @@ retain every compositing group and its declared order, and MUST preserve the
 stable IDs and relative order of surviving elements. The handoff MUST record
 the ordered complete assignment list plus included and omitted ID lists, so a
 consumer and regression test can reproduce the decision without parsing SVG.
+Assignments for generated dependent geometry MUST also record their dependency
+element IDs.
 
 The implemented scene capabilities are:
 

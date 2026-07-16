@@ -112,6 +112,11 @@ them for compatibility. Use `loadModelAssembly()` / `resolveModelAssembly()` or
 CLI `--attachments` to inspect the assembly. Module geometry uses module-local
 coordinates and stable generated IDs `<instance>__<local-id>`; never author a
 reusable module in model/world coordinates or patch it into a resolved rig.
+Use `attachment-module-1.1` for a hard mount that needs a seam: declare an
+overlap-gasket axis, radius, and embed depth, and align the attachment frame
+exactly one embed depth from the root. Keep surface details on 1.0 unless they
+genuinely need that overlap contract. Generated gasket LOD is dependency-linked
+to its incident plates; do not assign or test connector tiers independently.
 Authored model `slots` can be joint- or plate-owned. Plate slots require an
 explicit surface frame and bounded plate-local region; module geometry/bounds
 must fit that region after scale and attachment-frame alignment. Use

@@ -1,24 +1,24 @@
 {
   "$schema": "paper-rig/attachment-module-1",
   "schemaVersion": "1.1.0",
-  "id": "simpleHat",
-  "compatibleSlotTypes": ["head.hat"],
+  "id": "simpleHorn",
+  "compatibleSlotTypes": ["head.horn"],
   "attachmentFrame": {
-    "positionMeters": [0, 0, 0.015],
+    "positionMeters": [0, 0, 0.012],
     "rotationXYZDegrees": [0, 0, 0]
   },
   "mountInterface": {
     "type": "overlap-gasket",
     "axis": "+z",
-    "radiusMeters": 0.1,
-    "embedDepthMeters": 0.015,
+    "radiusMeters": 0.05,
+    "embedDepthMeters": 0.012,
     "compositing": "module-over-owner"
   },
   "bounds": {
-    "centerMeters": [0, 0, 0.06],
-    "sizeMeters": [0.22, 0.22, 0.34]
+    "centerMeters": [0, 0, 0.11],
+    "sizeMeters": [0.11, 0.11, 0.33]
   },
-  "paletteRoles": ["equipment"],
+  "paletteRoles": ["body.horn"],
   "geometry": {
     "joints": [
       {
@@ -28,26 +28,26 @@
         "role": "module-root"
       },
       {
-        "id": "crown",
+        "id": "tip",
         "parent": "root",
-        "bind": [0, 0, 0.12],
+        "bind": [0, 0, 0.22],
         "role": "module-shape"
       }
     ],
     "plates": [
       {
         "id": "body",
-        "bone": "crown",
-        "shape": "bone",
-        "size": [0.22],
-        "role": "equipment",
+        "bone": "tip",
+        "shape": "taperedBone",
+        "size": [0.11],
+        "role": "horn",
         "bodyRegion": "accessory",
         "semanticDetailTier": "identity",
         "attachment": "rigid",
-        "material": "equipmentLeather",
-        "paletteRole": "equipment",
-        "zBias": 6.1,
-        "span": ["root", "crown"],
+        "material": "paperShade",
+        "paletteRole": "body.horn",
+        "zBias": 6.2,
+        "span": ["root", "tip"],
         "jointOverlap": 1.08
       }
     ]

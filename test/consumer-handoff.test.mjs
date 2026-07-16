@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadModel, loadModelAppearance } from '@paper-rig/rigs';
+import { loadModel, loadModelAppearance, loadModelAssembly, loadModelConfigured } from '@paper-rig/rigs';
 import { projectScene } from '@paper-rig/compiler';
 import {
   ConsumerCapabilityError,
+  ConsumerSceneError,
   SEMANTIC_DETAIL_TIERS,
   createConsumerHandoff,
 } from '@paper-rig/handoff';
@@ -18,6 +19,12 @@ const fixture = (name) => join(ROOT, 'fixtures/consumer', name);
 const silhouetteProfile = readJSON(fixture('topDownSilhouette.profile.json'));
 const expressionProfile = readJSON(fixture('topDownExpression.profile.json'));
 const sceneOptions = { clip: 'attack', time: 0.62, elevation: 60, heading: 180 };
+const configuredSceneOptions = { ...sceneOptions, time: 0.22 };
+const identityWithoutPaintProfile = {
+  ...expressionProfile,
+  id: 'topDownIdentityWithoutPaint',
+  capabilities: expressionProfile.capabilities.filter((capability) => capability.id !== 'semanticPaint'),
+};
 
 function paintedRabbitScene() {
   return projectScene(loadModelAppearance('rabbit').rig, sceneOptions);
@@ -59,11 +66,13 @@ test('semantic detail provenance separates structural rules, authored paint, and
   const paint = elements.find((element) => element.sourceKind === 'paint');
   const gasket = elements.find((element) => element.sourceKind === 'gasket');
   const shadow = elements.find((element) => element.semanticRole === 'shadow');
-  const legacyPlate = elements.find((element) => element.sourceKind === 'plate' && element.semanticDetailSource === 'legacy-conservative');
+  const legacyPlate = projectScene(loadModel('wolf'), sceneOptions).compositingGroups
+    .flatMap((group) => group.elements)
+    .find((element) => element.sourceKind === 'plate' && element.semanticDetailSource === 'legacy-conservative');
 
   assert.deepEqual([paint.semanticDetailTier, paint.semanticDetailSource], ['identity', 'authored-paint']);
   assert.deepEqual([gasket.semanticDetailTier, gasket.semanticDetailSource], ['silhouette', 'structural']);
-  assert.deepEqual([shadow.semanticDetailTier, shadow.semanticDetailSource], ['texture', 'semantic-role']);
+  assert.deepEqual([shadow.semanticDetailTier, shadow.semanticDetailSource], ['texture', 'authored']);
   assert.equal(legacyPlate.semanticDetailTier, 'silhouette');
 
   const authoredRig = structuredClone(loadModel('rabbit'));
@@ -74,6 +83,56 @@ test('semantic detail provenance separates structural rules, authored paint, and
   const authoredOccluder = authoredElements.find((element) => element.generated && element.sourceId === authoredPlate.id);
   assert.deepEqual([authoredElement.semanticDetailTier, authoredElement.semanticDetailSource], ['identity', 'authored']);
   assert.deepEqual([authoredOccluder.semanticDetailTier, authoredOccluder.semanticDetailSource], ['silhouette', 'structural']);
+});
+
+test('generated seam elements are atomic with their incident accessory detail tier', () => {
+  const rabbitScene = projectScene(loadModelAssembly('rabbit').rig, sceneOptions);
+  const elements = rabbitScene.compositingGroups.flatMap((group) => group.elements);
+  const byId = new Map(elements.map((element) => [element.id, element]));
+  for (const id of ['travelPack__rootGasket', 'simpleHat__rootGasket']) {
+    const seam = byId.get(id);
+    assert.equal(seam.semanticRole, 'attachmentSeam');
+    assert.equal(seam.semanticDetailTier, 'identity');
+    assert.ok(seam.detailDependencyIds.every((dependencyId) => byId.get(dependencyId).semanticDetailTier === 'identity'));
+  }
+
+  const silhouette = createConsumerHandoff(rabbitScene, silhouetteProfile);
+  const expression = createConsumerHandoff(rabbitScene, identityWithoutPaintProfile);
+  assert.equal(silhouette.semanticDetail.includedElementIds.some((id) => id.startsWith('simpleHat__') || id.startsWith('travelPack__')), false);
+  assert.equal(expression.semanticDetail.includedElementIds.some((id) => id === 'simpleHat__body'), true);
+  assert.equal(expression.semanticDetail.includedElementIds.some((id) => id === 'simpleHat__rootGasket'), true);
+
+  const glintElements = projectScene(loadModelAssembly('humanoid').rig, sceneOptions).compositingGroups
+    .flatMap((group) => group.elements)
+    .filter((element) => element.id.startsWith('leftEyeGlint__'));
+  assert.ok(glintElements.length > 0);
+  assert.ok(glintElements.every((element) => element.semanticDetailTier === 'micro'));
+
+  const invalidScene = structuredClone(rabbitScene);
+  const invalidSeam = invalidScene.compositingGroups.flatMap((group) => group.elements)
+    .find((element) => element.id === 'simpleHat__rootGasket');
+  invalidSeam.semanticDetailTier = 'silhouette';
+  assert.throws(() => createConsumerHandoff(invalidScene, identityWithoutPaintProfile), ConsumerSceneError);
+});
+
+test('M6 starts with an authored-tier configured rabbit consumer boundary', () => {
+  const rig = loadModelConfigured('rabbit', { motion: true, attachments: true, appearance: true }).rig;
+  const scene = projectScene(rig, configuredSceneOptions);
+  const elements = scene.compositingGroups.flatMap((group) => group.elements);
+  const basePlates = elements.filter((element) => element.sourceKind === 'plate'
+    && !element.generated
+    && !element.id.includes('__'));
+  assert.ok(basePlates.length > 0);
+  assert.ok(basePlates.every((element) => element.semanticDetailSource === 'authored'));
+  const handoff = createConsumerHandoff(scene, expressionProfile);
+  assert.equal(validateConsumerHandoff(handoff).valid, true);
+  assert.ok(handoff.negotiation.availableCapabilities.includes('semanticPaint'));
+  assert.ok(handoff.semanticDetail.includedElementIds.includes('simpleHat__body'));
+  assert.ok(handoff.semanticDetail.includedElementIds.includes('faceBlaze'));
+  assert.equal(
+    `${JSON.stringify(handoff, null, 2)}\n`,
+    readFileSync(fixture('rabbitAttackConfiguredExpression.handoff.json'), 'utf8'),
+  );
 });
 
 test('capability negotiation fails required absences and records declared optional degradation', () => {

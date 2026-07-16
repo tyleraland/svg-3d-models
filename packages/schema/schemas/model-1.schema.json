@@ -515,7 +515,8 @@
         "tipY": { "$ref": "#/$defs/finiteNumber" },
         "tipZ": { "$ref": "#/$defs/finiteNumber" },
         "width": { "$ref": "#/$defs/positiveNumber" },
-        "style": { "type": "string", "minLength": 1 }
+        "style": { "type": "string", "minLength": 1 },
+        "semanticDetailTier": { "$ref": "#/$defs/semanticDetailTier" }
       }
     },
     "muzzleAddon": {

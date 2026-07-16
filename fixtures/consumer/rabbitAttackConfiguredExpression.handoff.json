@@ -10,7 +10,7 @@
     "view": "projected",
     "pose": {
       "clipId": "attack",
-      "timeNormalized": 0.62
+      "timeNormalized": 0.22
     },
     "camera": {
       "type": "orthographic",
@@ -82,21 +82,21 @@
         ]
       },
       {
-        "elementId": "nearRearKneeGasket",
-        "tier": "silhouette",
-        "source": "structural",
-        "dependencyElementIds": [
-          "nearRearUpperPlate",
-          "nearRearLowerPlate"
-        ]
-      },
-      {
         "elementId": "farRearKneeGasket",
         "tier": "silhouette",
         "source": "structural",
         "dependencyElementIds": [
           "farRearUpperPlate",
           "farRearLowerPlate"
+        ]
+      },
+      {
+        "elementId": "nearRearKneeGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearRearUpperPlate",
+          "nearRearLowerPlate"
         ]
       },
       {
@@ -204,12 +204,12 @@
         "source": "authored"
       },
       {
-        "elementId": "nearRearUpperPlate",
+        "elementId": "farRearUpperPlate",
         "tier": "silhouette",
         "source": "authored"
       },
       {
-        "elementId": "farRearUpperPlate",
+        "elementId": "nearRearUpperPlate",
         "tier": "silhouette",
         "source": "authored"
       },
@@ -371,6 +371,22 @@
         "source": "authored"
       },
       {
+        "elementId": "travelPack__rootGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "travelPack__body"
+        ]
+      },
+      {
+        "elementId": "travelPack__topGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "travelPack__body"
+        ]
+      },
+      {
         "elementId": "farEarTipGasket",
         "tier": "identity",
         "source": "structural",
@@ -403,12 +419,38 @@
         ]
       },
       {
+        "elementId": "simpleHat__rootGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "simpleHat__body"
+        ]
+      },
+      {
+        "elementId": "simpleHat__crownGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "simpleHat__body"
+        ]
+      },
+      {
+        "elementId": "travelPack__body",
+        "tier": "identity",
+        "source": "authored"
+      },
+      {
         "elementId": "farEarPlate",
         "tier": "identity",
         "source": "authored"
       },
       {
         "elementId": "nearEarPlate",
+        "tier": "identity",
+        "source": "authored"
+      },
+      {
+        "elementId": "simpleHat__body",
         "tier": "identity",
         "source": "authored"
       },
@@ -421,8 +463,8 @@
     "includedElementIds": [
       "nearRearPawGasket",
       "farRearPawGasket",
-      "nearRearKneeGasket",
       "farRearKneeGasket",
+      "nearRearKneeGasket",
       "tailTipGasket",
       "tailBaseGasket",
       "nearRearHipGasket",
@@ -437,8 +479,8 @@
       "farRearPawPlate",
       "nearRearLowerPlate",
       "farRearLowerPlate",
-      "nearRearUpperPlate",
       "farRearUpperPlate",
+      "nearRearUpperPlate",
       "tailPlate",
       "nearFrontPawPlate",
       "farFrontPawPlate",
@@ -464,12 +506,18 @@
       "neckPlate",
       "headConnectorPlate",
       "headPlate",
+      "travelPack__rootGasket",
+      "travelPack__topGasket",
       "farEarTipGasket",
       "nearEarTipGasket",
       "farEarBaseGasket",
       "nearEarBaseGasket",
+      "simpleHat__rootGasket",
+      "simpleHat__crownGasket",
+      "travelPack__body",
       "farEarPlate",
       "nearEarPlate",
+      "simpleHat__body",
       "faceBlaze"
     ],
     "omittedElementIds": [
@@ -480,6 +528,7 @@
     "base",
     "secondary",
     "hoof",
+    "equipment",
     "accent",
     "body.marking"
   ],
@@ -490,7 +539,7 @@
     "view": "projected",
     "pose": {
       "clipId": "attack",
-      "timeNormalized": 0.62
+      "timeNormalized": 0.22
     },
     "camera": {
       "type": "orthographic",
@@ -540,7 +589,7 @@
         "id": "root",
         "parentId": null,
         "worldPositionMeters": [
-          0,
+          -0.041999999999999996,
           0,
           0
         ],
@@ -563,15 +612,15 @@
         ],
         "screenPosition": [
           50,
-          72
+          70.25409278597057
         ],
-        "cameraDepth": 0
+        "cameraDepth": 0.021
       },
       {
         "id": "pelvis",
         "parentId": "root",
         "worldPositionMeters": [
-          -0.17,
+          -0.21200000000000002,
           0,
           0.2356
         ],
@@ -594,23 +643,23 @@
         ],
         "screenPosition": [
           50,
-          59.27883270511898
+          57.53292549108955
         ],
-        "cameraDepth": -0.11903558513161372
+        "cameraDepth": -0.0980355851316137
       },
       {
         "id": "chest",
         "parentId": "pelvis",
         "worldPositionMeters": [
-          0.16,
+          0.118,
           0,
           0.2812
         ],
         "localToWorldRotation": [
           [
-            1,
+            0.898794046299167,
             0,
-            0
+            -0.4383711467890774
           ],
           [
             0,
@@ -618,30 +667,30 @@
             0
           ],
           [
+            0.4383711467890774,
             0,
-            0,
-            1
+            0.898794046299167
           ]
         ],
         "screenPosition": [
           50,
-          71.90227510106449
+          70.15636788703506
         ],
-        "cameraDepth": -0.3235263435441842
+        "cameraDepth": -0.3025263435441842
       },
       {
         "id": "neck",
         "parentId": "chest",
         "worldPositionMeters": [
-          0.26,
+          0.18596084729046283,
           0,
-          0.3312
+          0.3699768169938661
         ],
         "localToWorldRotation": [
           [
-            0.882947592858927,
+            0.8110638189893267,
             0,
-            0.4694715627858908
+            -0.5849576749872154
           ],
           [
             0,
@@ -649,30 +698,30 @@
             0
           ],
           [
-            -0.4694715627858908,
+            0.5849576749872154,
             0,
-            0.882947592858927
+            0.8110638189893267
           ]
         ],
         "screenPosition": [
           50,
-          74.8591970392298
+          70.85080364956255
         ],
-        "cameraDepth": -0.41682761373340604
+        "cameraDepth": -0.41338974597322564
       },
       {
         "id": "head",
         "parentId": "neck",
         "worldPositionMeters": [
-          0.41066104611314613,
+          0.3040319048290108,
           0,
-          0.27374350181143603
+          0.47979132137160707
         ],
         "localToWorldRotation": [
           [
-            0.9612616959383189,
+            0.8517269341430477,
             0,
-            0.2756373558169992
+            -0.5239859059700791
           ],
           [
             0,
@@ -680,30 +729,30 @@
             0
           ],
           [
-            -0.2756373558169992,
+            0.5239859059700791,
             0,
-            0.9612616959383189
+            0.8517269341430477
           ]
         ],
         "screenPosition": [
           50,
-          82.50101507390204
+          73.12337723794045
         ],
-        "cameraDepth": -0.4423993497461882
+        "cameraDepth": -0.5675274252376208
       },
       {
         "id": "nearHornMount",
         "parentId": "head",
         "worldPositionMeters": [
-          0.4157123364832273,
+          0.26763858528997214,
           0.072,
-          0.3276389975935246
+          0.5198633352083164
         ],
         "localToWorldRotation": [
           [
-            0.9612616959383189,
+            0.8517269341430477,
             0,
-            0.2756373558169992
+            -0.5239859059700791
           ],
           [
             0,
@@ -711,30 +760,30 @@
             0
           ],
           [
-            -0.2756373558169992,
+            0.5239859059700791,
             0,
-            0.9612616959383189
+            0.8517269341430477
           ]
         ],
         "screenPosition": [
           46.544,
-          81.41750137268626
+          70.64880702191452
         ],
-        "cameraDepth": -0.4915998634280746
+        "cameraDepth": -0.5840341474314933
       },
       {
         "id": "farHornMount",
         "parentId": "head",
         "worldPositionMeters": [
-          0.4157123364832273,
+          0.26763858528997214,
           -0.072,
-          0.3276389975935246
+          0.5198633352083164
         ],
         "localToWorldRotation": [
           [
-            0.9612616959383189,
+            0.8517269341430477,
             0,
-            0.2756373558169992
+            -0.5239859059700791
           ],
           [
             0,
@@ -742,22 +791,22 @@
             0
           ],
           [
-            -0.2756373558169992,
+            0.5239859059700791,
             0,
-            0.9612616959383189
+            0.8517269341430477
           ]
         ],
         "screenPosition": [
           53.455999999999996,
-          81.41750137268626
+          70.64880702191452
         ],
-        "cameraDepth": -0.4915998634280746
+        "cameraDepth": -0.5840341474314933
       },
       {
         "id": "tailBase",
         "parentId": "pelvis",
         "worldPositionMeters": [
-          -0.30000000000000004,
+          -0.342,
           0,
           0.2756
         ],
@@ -780,15 +829,15 @@
         ],
         "screenPosition": [
           50,
-          52.91483418550408
+          51.168926971474654
         ],
-        "cameraDepth": -0.08867660128299124
+        "cameraDepth": -0.06767660128299124
       },
       {
         "id": "tailTip",
         "parentId": "tailBase",
         "worldPositionMeters": [
-          -0.39,
+          -0.432,
           0,
           0.3156
         ],
@@ -811,23 +860,23 @@
         ],
         "screenPosition": [
           50,
-          48.21360444115531
+          46.46769722712588
         ],
-        "cameraDepth": -0.07831761743436877
+        "cameraDepth": -0.05731761743436878
       },
       {
         "id": "nearFrontHip",
         "parentId": "chest",
         "worldPositionMeters": [
-          0.135,
+          0.0988617695581178,
           0.132,
-          0.2736
+          0.2634098865783994
         ],
         "localToWorldRotation": [
           [
-            1,
+            0.898794046299167,
             0,
-            0
+            -0.4383711467890774
           ],
           [
             0,
@@ -835,30 +884,30 @@
             0
           ],
           [
+            0.4383711467890774,
             0,
-            0,
-            1
+            0.898794046299167
           ]
         ],
         "screenPosition": [
           43.664,
-          71.04544461652316
+          69.78776930933824
         ],
-        "cameraDepth": -0.3044445504754224
+        "cameraDepth": -0.27755053816393044
       },
       {
         "id": "nearFrontKnee",
         "parentId": "nearFrontHip",
         "worldPositionMeters": [
-          0.14500000000000002,
+          0.1611556414706613,
           0.132,
-          0.15200000000000002
+          0.1585002420163115
         ],
         "localToWorldRotation": [
           [
-            1,
+            0.898794046299167,
             0,
-            0
+            -0.4383711467890774
           ],
           [
             0,
@@ -866,30 +915,30 @@
             0
           ],
           [
+            0.4383711467890774,
             0,
-            0,
-            1
+            0.898794046299167
           ]
         ],
         "screenPosition": [
           43.664,
-          74.37953681033969
+          74.89510840649346
         ],
-        "cameraDepth": -0.2041358613752347
+        "cameraDepth": -0.21784305682743804
       },
       {
         "id": "nearFrontPaw",
         "parentId": "nearFrontKnee",
         "worldPositionMeters": [
-          0.165,
+          0.23077164348839796,
           0.132,
-          0.03420000000000002
+          0.06138972629805116
         ],
         "localToWorldRotation": [
           [
-            1,
+            0.898794046299167,
             0,
-            0
+            -0.4383711467890774
           ],
           [
             0,
@@ -897,30 +946,30 @@
             0
           ],
           [
+            0.4383711467890774,
             0,
-            0,
-            1
+            0.898794046299167
           ]
         ],
         "screenPosition": [
           43.664,
-          78.03812119797276
+          80.11964364408061
         ],
-        "cameraDepth": -0.11211806880942782
+        "cameraDepth": -0.16855088424968492
       },
       {
         "id": "farFrontHip",
         "parentId": "chest",
         "worldPositionMeters": [
-          0.135,
+          0.0988617695581178,
           -0.132,
-          0.2736
+          0.2634098865783994
         ],
         "localToWorldRotation": [
           [
-            1,
+            0.898794046299167,
             0,
-            0
+            -0.4383711467890774
           ],
           [
             0,
@@ -928,30 +977,30 @@
             0
           ],
           [
+            0.4383711467890774,
             0,
-            0,
-            1
+            0.898794046299167
           ]
         ],
         "screenPosition": [
           56.336,
-          71.04544461652316
+          69.78776930933824
         ],
-        "cameraDepth": -0.3044445504754224
+        "cameraDepth": -0.27755053816393044
       },
       {
         "id": "farFrontKnee",
         "parentId": "farFrontHip",
         "worldPositionMeters": [
-          0.14500000000000002,
+          0.1611556414706613,
           -0.132,
-          0.15200000000000002
+          0.1585002420163115
         ],
         "localToWorldRotation": [
           [
-            1,
+            0.898794046299167,
             0,
-            0
+            -0.4383711467890774
           ],
           [
             0,
@@ -959,30 +1008,30 @@
             0
           ],
           [
+            0.4383711467890774,
             0,
-            0,
-            1
+            0.898794046299167
           ]
         ],
         "screenPosition": [
           56.336,
-          74.37953681033969
+          74.89510840649346
         ],
-        "cameraDepth": -0.20413586137523473
+        "cameraDepth": -0.21784305682743807
       },
       {
         "id": "farFrontPaw",
         "parentId": "farFrontKnee",
         "worldPositionMeters": [
-          0.165,
+          0.23077164348839796,
           -0.132,
-          0.03420000000000002
+          0.06138972629805116
         ],
         "localToWorldRotation": [
           [
-            1,
+            0.898794046299167,
             0,
-            0
+            -0.4383711467890774
           ],
           [
             0,
@@ -990,22 +1039,22 @@
             0
           ],
           [
+            0.4383711467890774,
             0,
-            0,
-            1
+            0.898794046299167
           ]
         ],
         "screenPosition": [
           56.336,
-          78.03812119797276
+          80.11964364408061
         ],
-        "cameraDepth": -0.11211806880942785
+        "cameraDepth": -0.16855088424968495
       },
       {
         "id": "nearRearHip",
         "parentId": "pelvis",
         "worldPositionMeters": [
-          -0.19,
+          -0.232,
           0.15,
           0.2256
         ],
@@ -1028,15 +1077,15 @@
         ],
         "screenPosition": [
           42.800000000000004,
-          58.68744831748592
+          56.94154110345649
         ],
-        "cameraDepth": -0.1003753310937693
+        "cameraDepth": -0.07937533109376929
       },
       {
         "id": "nearRearKnee",
         "parentId": "nearRearHip",
         "worldPositionMeters": [
-          -0.215,
+          -0.257,
           0.15,
           0.104
         ],
@@ -1059,15 +1108,15 @@
         ],
         "screenPosition": [
           42.800000000000004,
-          60.566617832944594
+          58.820710618915165
         ],
-        "cameraDepth": 0.01743335800641843
+        "cameraDepth": 0.03843335800641842
       },
       {
         "id": "nearRearPaw",
         "parentId": "nearRearKnee",
         "worldPositionMeters": [
-          -0.2,
+          -0.242,
           0.15,
           -0.009999999999999995
         ],
@@ -1090,15 +1139,15 @@
         ],
         "screenPosition": [
           42.800000000000004,
-          63.92615612366939
+          62.18024890963996
         ],
-        "cameraDepth": 0.10866025403784443
+        "cameraDepth": 0.12966025403784442
       },
       {
         "id": "farRearHip",
         "parentId": "pelvis",
         "worldPositionMeters": [
-          -0.19,
+          -0.232,
           -0.15,
           0.2256
         ],
@@ -1121,15 +1170,15 @@
         ],
         "screenPosition": [
           57.2,
-          58.68744831748592
+          56.941541103456494
         ],
-        "cameraDepth": -0.10037533109376932
+        "cameraDepth": -0.07937533109376932
       },
       {
         "id": "farRearKnee",
         "parentId": "farRearHip",
         "worldPositionMeters": [
-          -0.215,
+          -0.257,
           -0.15,
           0.104
         ],
@@ -1152,15 +1201,15 @@
         ],
         "screenPosition": [
           57.2,
-          60.566617832944594
+          58.82071061891517
         ],
-        "cameraDepth": 0.017433358006418403
+        "cameraDepth": 0.03843335800641842
       },
       {
         "id": "farRearPaw",
         "parentId": "farRearKnee",
         "worldPositionMeters": [
-          -0.2,
+          -0.242,
           -0.15,
           -0.009999999999999995
         ],
@@ -1183,23 +1232,23 @@
         ],
         "screenPosition": [
           57.2,
-          63.92615612366939
+          62.180248909639964
         ],
-        "cameraDepth": 0.1086602540378444
+        "cameraDepth": 0.1296602540378444
       },
       {
         "id": "nearEarBase",
         "parentId": "head",
         "worldPositionMeters": [
-          0.4079740535433997,
+          0.25555821178794513,
           0.09,
-          0.3369319506840751
+          0.5204152193007884
         ],
         "localToWorldRotation": [
           [
-            0.9612616959383189,
+            0.8517269341430477,
             0,
-            0.2756373558169992
+            -0.5239859059700791
           ],
           [
             0,
@@ -1207,30 +1256,30 @@
             0
           ],
           [
-            -0.2756373558169992,
+            0.5239859059700791,
             0,
-            0.9612616959383189
+            0.8517269341430477
           ]
         ],
         "screenPosition": [
           45.68,
-          80.87279611735005
+          70.13339010737712
         ],
-        "cameraDepth": -0.4957786554107546
+        "cameraDepth": -0.578471906324505
       },
       {
         "id": "nearEarTip",
         "parentId": "nearEarBase",
         "worldPositionMeters": [
-          0.2500029313618019,
+          0.15399846696499195,
           0.31,
-          0.33021446925970904
+          0.3992309866981241
         ],
         "localToWorldRotation": [
           [
-            0.9612616959383189,
+            0.8517269341430477,
             0,
-            0.2756373558169992
+            -0.5239859059700791
           ],
           [
             0,
@@ -1238,30 +1287,30 @@
             0
           ],
           [
-            -0.2756373558169992,
+            0.5239859059700791,
             0,
-            0.9612616959383189
+            0.8517269341430477
           ]
         ],
         "screenPosition": [
-          35.12,
-          74.46727943760207
+          35.120000000000005,
+          68.82005237695101
         ],
-        "cameraDepth": -0.4109755847570046
+        "cameraDepth": -0.4227434099409988
       },
       {
         "id": "farEarBase",
         "parentId": "head",
         "worldPositionMeters": [
-          0.4079740535433997,
+          0.25555821178794513,
           -0.09,
-          0.3369319506840751
+          0.5204152193007884
         ],
         "localToWorldRotation": [
           [
-            0.9612616959383189,
+            0.8517269341430477,
             0,
-            0.2756373558169992
+            -0.5239859059700791
           ],
           [
             0,
@@ -1269,30 +1318,30 @@
             0
           ],
           [
-            -0.2756373558169992,
+            0.5239859059700791,
             0,
-            0.9612616959383189
+            0.8517269341430477
           ]
         ],
         "screenPosition": [
-          54.31999999999999,
-          80.87279611735005
+          54.32,
+          70.13339010737712
         ],
-        "cameraDepth": -0.4957786554107546
+        "cameraDepth": -0.578471906324505
       },
       {
         "id": "farEarTip",
         "parentId": "farEarBase",
         "worldPositionMeters": [
-          0.2500029313618019,
+          0.15399846696499195,
           -0.31,
-          0.33021446925970904
+          0.3992309866981241
         ],
         "localToWorldRotation": [
           [
-            0.9612616959383189,
+            0.8517269341430477,
             0,
-            0.2756373558169992
+            -0.5239859059700791
           ],
           [
             0,
@@ -1300,16 +1349,140 @@
             0
           ],
           [
-            -0.2756373558169992,
+            0.5239859059700791,
             0,
-            0.9612616959383189
+            0.8517269341430477
           ]
         ],
         "screenPosition": [
           64.88,
-          74.46727943760207
+          68.82005237695103
         ],
-        "cameraDepth": -0.4109755847570046
+        "cameraDepth": -0.4227434099409988
+      },
+      {
+        "id": "travelPack__root",
+        "parentId": "chest",
+        "worldPositionMeters": [
+          0.024794302469748647,
+          0,
+          0.33542967774106075
+        ],
+        "localToWorldRotation": [
+          [
+            0.898794046299167,
+            0,
+            -0.4383711467890774
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0.4383711467890774,
+            0,
+            0.898794046299167
+          ]
+        ],
+        "screenPosition": [
+          50,
+          64.98036753299459
+        ],
+        "cameraDepth": -0.30288777334186057
+      },
+      {
+        "id": "travelPack__top",
+        "parentId": "travelPack__root",
+        "worldPositionMeters": [
+          -0.010713760420166626,
+          0,
+          0.4082319954912933
+        ],
+        "localToWorldRotation": [
+          [
+            0.898794046299167,
+            0,
+            -0.4383711467890774
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0.4383711467890774,
+            0,
+            0.898794046299167
+          ]
+        ],
+        "screenPosition": [
+          50,
+          61.75706945090058
+        ],
+        "cameraDepth": -0.3481823985229911
+      },
+      {
+        "id": "simpleHat__root",
+        "parentId": "head",
+        "worldPositionMeters": [
+          0.19753176944059225,
+          0,
+          0.6529048207361815
+        ],
+        "localToWorldRotation": [
+          [
+            0.8517269341430477,
+            0,
+            -0.5239859059700791
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0.5239859059700791,
+            0,
+            0.8517269341430477
+          ]
+        ],
+        "screenPosition": [
+          50,
+          64.54152576105373
+        ],
+        "cameraDepth": -0.6641980457311543
+      },
+      {
+        "id": "simpleHat__crown",
+        "parentId": "simpleHat__root",
+        "worldPositionMeters": [
+          0.16923653051820797,
+          0,
+          0.6988980751799061
+        ],
+        "localToWorldRotation": [
+          [
+            0.8517269341430477,
+            0,
+            -0.5239859059700791
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0.5239859059700791,
+            0,
+            0.8517269341430477
+          ]
+        ],
+        "screenPosition": [
+          50,
+          62.26147666018346
+        ],
+        "cameraDepth": -0.6898817530209491
       }
     ],
     "compositingGroups": [
@@ -1341,7 +1514,7 @@
               "nearRearLowerPlate",
               "nearRearPawPlate"
             ],
-            "cameraDepth": 0.10866025403784443,
+            "cameraDepth": 0.12966025403784442,
             "depthBias": 1.15,
             "vector": {
               "tag": "circle",
@@ -1350,7 +1523,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "42.800000000000004",
-                "cy": "63.92615612366939",
+                "cy": "62.18024890963996",
                 "r": "4.8576"
               }
             }
@@ -1372,7 +1545,7 @@
               "farRearLowerPlate",
               "farRearPawPlate"
             ],
-            "cameraDepth": 0.1086602540378444,
+            "cameraDepth": 0.1296602540378444,
             "depthBias": 1.15,
             "vector": {
               "tag": "circle",
@@ -1381,39 +1554,8 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "57.2",
-                "cy": "63.92615612366939",
+                "cy": "62.180248909639964",
                 "r": "4.8576"
-              }
-            }
-          },
-          {
-            "id": "nearRearKneeGasket",
-            "sourceId": "nearRearKneeGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "limb",
-            "side": "left",
-            "paletteRole": "base",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "detailDependencyIds": [
-              "nearRearUpperPlate",
-              "nearRearLowerPlate"
-            ],
-            "cameraDepth": 0.01743335800641843,
-            "depthBias": 1.15,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "nearRearKneeGasket",
-                "class": "jointGasket",
-                "data-palette-role": "base",
-                "cx": "42.800000000000004",
-                "cy": "60.566617832944594",
-                "r": "3.5328"
               }
             }
           },
@@ -1434,7 +1576,7 @@
               "farRearUpperPlate",
               "farRearLowerPlate"
             ],
-            "cameraDepth": 0.017433358006418403,
+            "cameraDepth": 0.03843335800641842,
             "depthBias": 1.15,
             "vector": {
               "tag": "circle",
@@ -1443,7 +1585,38 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "57.2",
-                "cy": "60.566617832944594",
+                "cy": "58.82071061891517",
+                "r": "3.5328"
+              }
+            }
+          },
+          {
+            "id": "nearRearKneeGasket",
+            "sourceId": "nearRearKneeGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearRearUpperPlate",
+              "nearRearLowerPlate"
+            ],
+            "cameraDepth": 0.03843335800641842,
+            "depthBias": 1.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearRearKneeGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "42.800000000000004",
+                "cy": "58.820710618915165",
                 "r": "3.5328"
               }
             }
@@ -1464,7 +1637,7 @@
             "detailDependencyIds": [
               "tailPlate"
             ],
-            "cameraDepth": -0.07831761743436877,
+            "cameraDepth": -0.05731761743436878,
             "depthBias": 1.95,
             "vector": {
               "tag": "circle",
@@ -1473,7 +1646,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "secondary",
                 "cx": "50",
-                "cy": "48.21360444115531",
+                "cy": "46.46769722712588",
                 "r": "3.9744"
               }
             }
@@ -1494,7 +1667,7 @@
             "detailDependencyIds": [
               "tailPlate"
             ],
-            "cameraDepth": -0.08867660128299124,
+            "cameraDepth": -0.06767660128299124,
             "depthBias": 1.95,
             "vector": {
               "tag": "circle",
@@ -1503,7 +1676,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "secondary",
                 "cx": "50",
-                "cy": "52.91483418550408",
+                "cy": "51.168926971474654",
                 "r": "3.9744"
               }
             }
@@ -1524,7 +1697,7 @@
             "detailDependencyIds": [
               "nearRearUpperPlate"
             ],
-            "cameraDepth": -0.1003753310937693,
+            "cameraDepth": -0.07937533109376929,
             "depthBias": 0.95,
             "vector": {
               "tag": "circle",
@@ -1533,7 +1706,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "42.800000000000004",
-                "cy": "58.68744831748592",
+                "cy": "56.94154110345649",
                 "r": "3.5328"
               }
             }
@@ -1554,7 +1727,7 @@
             "detailDependencyIds": [
               "farRearUpperPlate"
             ],
-            "cameraDepth": -0.10037533109376932,
+            "cameraDepth": -0.07937533109376932,
             "depthBias": 0.95,
             "vector": {
               "tag": "circle",
@@ -1563,7 +1736,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "57.2",
-                "cy": "58.68744831748592",
+                "cy": "56.941541103456494",
                 "r": "3.5328"
               }
             }
@@ -1585,7 +1758,7 @@
               "nearFrontLowerPlate",
               "nearFrontPawPlate"
             ],
-            "cameraDepth": -0.11211806880942782,
+            "cameraDepth": -0.16855088424968492,
             "depthBias": 1.15,
             "vector": {
               "tag": "circle",
@@ -1594,7 +1767,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "43.664",
-                "cy": "78.03812119797276",
+                "cy": "80.11964364408061",
                 "r": "3.3120000000000003"
               }
             }
@@ -1616,7 +1789,7 @@
               "farFrontLowerPlate",
               "farFrontPawPlate"
             ],
-            "cameraDepth": -0.11211806880942785,
+            "cameraDepth": -0.16855088424968495,
             "depthBias": 1.15,
             "vector": {
               "tag": "circle",
@@ -1625,7 +1798,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "56.336",
-                "cy": "78.03812119797276",
+                "cy": "80.11964364408061",
                 "r": "3.3120000000000003"
               }
             }
@@ -1647,7 +1820,7 @@
               "nearFrontUpperPlate",
               "nearFrontLowerPlate"
             ],
-            "cameraDepth": -0.2041358613752347,
+            "cameraDepth": -0.21784305682743804,
             "depthBias": 1.15,
             "vector": {
               "tag": "circle",
@@ -1656,7 +1829,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "43.664",
-                "cy": "74.37953681033969",
+                "cy": "74.89510840649346",
                 "r": "2.208"
               }
             }
@@ -1678,7 +1851,7 @@
               "farFrontUpperPlate",
               "farFrontLowerPlate"
             ],
-            "cameraDepth": -0.20413586137523473,
+            "cameraDepth": -0.21784305682743807,
             "depthBias": 1.15,
             "vector": {
               "tag": "circle",
@@ -1687,7 +1860,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "56.336",
-                "cy": "74.37953681033969",
+                "cy": "74.89510840649346",
                 "r": "2.208"
               }
             }
@@ -1708,7 +1881,7 @@
             "detailDependencyIds": [
               "farFrontUpperPlate"
             ],
-            "cameraDepth": -0.3044445504754224,
+            "cameraDepth": -0.27755053816393044,
             "depthBias": 0.95,
             "vector": {
               "tag": "circle",
@@ -1717,7 +1890,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "56.336",
-                "cy": "71.04544461652316",
+                "cy": "69.78776930933824",
                 "r": "2.208"
               }
             }
@@ -1738,7 +1911,7 @@
             "detailDependencyIds": [
               "nearFrontUpperPlate"
             ],
-            "cameraDepth": -0.3044445504754224,
+            "cameraDepth": -0.27755053816393044,
             "depthBias": 0.95,
             "vector": {
               "tag": "circle",
@@ -1747,7 +1920,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "43.664",
-                "cy": "71.04544461652316",
+                "cy": "69.78776930933824",
                 "r": "2.208"
               }
             }
@@ -1765,7 +1938,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": 0.10866025403784443,
+            "cameraDepth": 0.12966025403784442,
             "depthBias": 0,
             "vector": {
               "tag": "ellipse",
@@ -1774,7 +1947,7 @@
                 "class": "paperPlate plateShade",
                 "data-palette-role": "hoof",
                 "cx": "42.800000000000004",
-                "cy": "63.92615612366939",
+                "cy": "62.18024890963996",
                 "rx": "5.28",
                 "ry": "3.5999999999999996"
               }
@@ -1793,7 +1966,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": 0.1086602540378444,
+            "cameraDepth": 0.1296602540378444,
             "depthBias": 0,
             "vector": {
               "tag": "ellipse",
@@ -1802,7 +1975,7 @@
                 "class": "paperPlate plateShade",
                 "data-palette-role": "hoof",
                 "cx": "57.2",
-                "cy": "63.92615612366939",
+                "cy": "62.180248909639964",
                 "rx": "5.28",
                 "ry": "3.5999999999999996"
               }
@@ -1821,7 +1994,7 @@
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": 0.10866025403784443,
+            "cameraDepth": 0.12966025403784442,
             "depthBias": 1.2,
             "vector": {
               "tag": "rect",
@@ -1830,11 +2003,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "42.45440000000001",
-                "y": "58.64661783294459",
+                "y": "56.90071061891516",
                 "width": "4.050738290724792",
                 "height": "3.84",
                 "rx": "1.92",
-                "transform": "rotate(90 42.800000000000004 60.566617832944594)"
+                "transform": "rotate(90 42.800000000000004 58.820710618915165)"
               }
             }
           },
@@ -1851,7 +2024,7 @@
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": 0.1086602540378444,
+            "cameraDepth": 0.1296602540378444,
             "depthBias": 1.2,
             "vector": {
               "tag": "rect",
@@ -1860,41 +2033,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "56.854400000000005",
-                "y": "58.64661783294459",
+                "y": "56.90071061891517",
                 "width": "4.050738290724792",
                 "height": "3.84",
                 "rx": "1.92",
-                "transform": "rotate(90 57.2 60.566617832944594)"
-              }
-            }
-          },
-          {
-            "id": "nearRearUpperPlate",
-            "sourceId": "nearRearUpperPlate",
-            "sourceKind": "plate",
-            "kind": "plate",
-            "generated": false,
-            "semanticRole": "body",
-            "bodyRegion": "limb",
-            "side": "left",
-            "paletteRole": "base",
-            "lodTier": "major",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "authored",
-            "cameraDepth": 0.01743335800641843,
-            "depthBias": 1,
-            "vector": {
-              "tag": "rect",
-              "attributes": {
-                "id": "nearRearUpperPlate",
-                "class": "paperPlate",
-                "data-palette-role": "base",
-                "x": "42.1088",
-                "y": "54.84744831748591",
-                "width": "3.2615695154586772",
-                "height": "7.68",
-                "rx": "3.84",
-                "transform": "rotate(90 42.800000000000004 58.68744831748592)"
+                "transform": "rotate(90 57.2 58.82071061891517)"
               }
             }
           },
@@ -1911,7 +2054,7 @@
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": 0.017433358006418403,
+            "cameraDepth": 0.03843335800641842,
             "depthBias": 1,
             "vector": {
               "tag": "rect",
@@ -1920,11 +2063,41 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "56.5088",
-                "y": "54.84744831748591",
+                "y": "53.1015411034565",
                 "width": "3.2615695154586772",
                 "height": "7.68",
                 "rx": "3.84",
-                "transform": "rotate(90 57.2 58.68744831748592)"
+                "transform": "rotate(90 57.2 56.941541103456494)"
+              }
+            }
+          },
+          {
+            "id": "nearRearUpperPlate",
+            "sourceId": "nearRearUpperPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": 0.03843335800641842,
+            "depthBias": 1,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "nearRearUpperPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "42.1088",
+                "y": "53.10154110345648",
+                "width": "3.2615695154586772",
+                "height": "7.68",
+                "rx": "3.84",
+                "transform": "rotate(90 42.800000000000004 56.94154110345649)"
               }
             }
           },
@@ -1941,7 +2114,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.07831761743436877,
+            "cameraDepth": -0.05731761743436878,
             "depthBias": 2,
             "vector": {
               "tag": "rect",
@@ -1950,11 +2123,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "secondary",
                 "x": "49.2224",
-                "y": "48.59483418550408",
-                "width": "6.256429744348765",
+                "y": "46.848926971474654",
+                "width": "6.256429744348772",
                 "height": "8.64",
                 "rx": "4.32",
-                "transform": "rotate(-90 50 52.91483418550408)"
+                "transform": "rotate(-90 50 51.168926971474654)"
               }
             }
           },
@@ -1971,7 +2144,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.11211806880942782,
+            "cameraDepth": -0.16855088424968492,
             "depthBias": 0,
             "vector": {
               "tag": "ellipse",
@@ -1980,7 +2153,7 @@
                 "class": "paperPlate plateShade",
                 "data-palette-role": "hoof",
                 "cx": "43.664",
-                "cy": "78.03812119797276",
+                "cy": "80.11964364408061",
                 "rx": "3.5999999999999996",
                 "ry": "2.64"
               }
@@ -1999,7 +2172,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.11211806880942785,
+            "cameraDepth": -0.16855088424968495,
             "depthBias": 0,
             "vector": {
               "tag": "ellipse",
@@ -2008,7 +2181,7 @@
                 "class": "paperPlate plateShade",
                 "data-palette-role": "hoof",
                 "cx": "56.336",
-                "cy": "78.03812119797276",
+                "cy": "80.11964364408061",
                 "rx": "3.5999999999999996",
                 "ry": "2.64"
               }
@@ -2027,7 +2200,7 @@
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.11211806880942782,
+            "cameraDepth": -0.16855088424968492,
             "depthBias": 1.2,
             "vector": {
               "tag": "rect",
@@ -2036,11 +2209,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "43.318400000000004",
-                "y": "72.45953681033969",
-                "width": "4.349784387633069",
+                "y": "72.97510840649346",
+                "width": "5.915735237587147",
                 "height": "3.84",
                 "rx": "1.92",
-                "transform": "rotate(90 43.664 74.37953681033969)"
+                "transform": "rotate(90 43.664 74.89510840649346)"
               }
             }
           },
@@ -2057,7 +2230,7 @@
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.11211806880942785,
+            "cameraDepth": -0.16855088424968495,
             "depthBias": 1.2,
             "vector": {
               "tag": "rect",
@@ -2066,11 +2239,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "55.9904",
-                "y": "72.45953681033969",
-                "width": "4.349784387633069",
+                "y": "72.97510840649346",
+                "width": "5.915735237587147",
                 "height": "3.84",
                 "rx": "1.92",
-                "transform": "rotate(90 56.336 74.37953681033969)"
+                "transform": "rotate(90 56.336 74.89510840649346)"
               }
             }
           },
@@ -2087,7 +2260,7 @@
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.2041358613752347,
+            "cameraDepth": -0.21784305682743804,
             "depthBias": 1,
             "vector": {
               "tag": "rect",
@@ -2096,11 +2269,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "43.232",
-                "y": "68.64544461652315",
-                "width": "4.198092193816531",
+                "y": "67.38776930933824",
+                "width": "5.9713390971552185",
                 "height": "4.800000000000001",
                 "rx": "2.4000000000000004",
-                "transform": "rotate(90 43.664 71.04544461652316)"
+                "transform": "rotate(90 43.664 69.78776930933824)"
               }
             }
           },
@@ -2117,7 +2290,7 @@
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.20413586137523473,
+            "cameraDepth": -0.21784305682743807,
             "depthBias": 1,
             "vector": {
               "tag": "rect",
@@ -2126,11 +2299,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "55.903999999999996",
-                "y": "68.64544461652315",
-                "width": "4.198092193816531",
+                "y": "67.38776930933824",
+                "width": "5.9713390971552185",
                 "height": "4.800000000000001",
                 "rx": "2.4000000000000004",
-                "transform": "rotate(90 56.336 71.04544461652316)"
+                "transform": "rotate(90 56.336 69.78776930933824)"
               }
             }
           }
@@ -2154,7 +2327,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
-            "cameraDepth": -0.3235263435441842,
+            "cameraDepth": -0.3025263435441842,
             "depthBias": 3,
             "vector": {
               "tag": "rect",
@@ -2163,11 +2336,11 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "x": "48.5312",
-                "y": "51.118832705118976",
+                "y": "49.372925491089546",
                 "width": "15.56104239594551",
                 "height": "16.32",
                 "rx": "8.16",
-                "transform": "rotate(90 50 59.27883270511898)"
+                "transform": "rotate(90 50 57.53292549108955)"
               }
             }
           },
@@ -2184,7 +2357,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
-            "cameraDepth": -0.11903558513161372,
+            "cameraDepth": -0.0980355851316137,
             "depthBias": 3.1,
             "vector": {
               "tag": "ellipse",
@@ -2193,7 +2366,7 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "59.27883270511898",
+                "cy": "57.53292549108955",
                 "rx": "11.52",
                 "ry": "11.040000000000001"
               }
@@ -2212,7 +2385,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
-            "cameraDepth": -0.41682761373340604,
+            "cameraDepth": -0.41338974597322564,
             "depthBias": 4,
             "vector": {
               "tag": "rect",
@@ -2221,11 +2394,11 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "x": "49.136",
-                "y": "67.10227510106449",
-                "width": "4.684921938165308",
+                "y": "65.35636788703506",
+                "width": "2.42243576252749",
                 "height": "9.600000000000001",
                 "rx": "4.800000000000001",
-                "transform": "rotate(90 50 71.90227510106449)"
+                "transform": "rotate(90 50 70.15636788703506)"
               }
             }
           },
@@ -2242,7 +2415,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
-            "cameraDepth": -0.4423993497461882,
+            "cameraDepth": -0.5675274252376208,
             "depthBias": 4.7,
             "vector": {
               "tag": "rect",
@@ -2251,11 +2424,11 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "x": "49.0928",
-                "y": "69.81919703922979",
-                "width": "9.45621803467224",
+                "y": "65.81080364956254",
+                "width": "4.086973588377894",
                 "height": "10.08",
                 "rx": "5.04",
-                "transform": "rotate(90 50 74.8591970392298)"
+                "transform": "rotate(90 50 70.85080364956255)"
               }
             }
           },
@@ -2272,7 +2445,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
-            "cameraDepth": -0.4423993497461882,
+            "cameraDepth": -0.5675274252376208,
             "depthBias": 5,
             "vector": {
               "tag": "ellipse",
@@ -2281,7 +2454,7 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "82.50101507390204",
+                "cy": "73.12337723794045",
                 "rx": "8.64",
                 "ry": "9.120000000000001"
               }
@@ -2304,7 +2477,7 @@
               "torsoPlateOccluderCell",
               "pelvisPlateOccluderCell"
             ],
-            "cameraDepth": -0.11903558513161372,
+            "cameraDepth": -0.0980355851316137,
             "depthBias": 3.0500000000000003,
             "vector": {
               "tag": "circle",
@@ -2313,7 +2486,7 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "59.27883270511898",
+                "cy": "57.53292549108955",
                 "r": "7.68"
               }
             }
@@ -2335,7 +2508,7 @@
               "torsoPlateOccluderCell",
               "neckPlateOccluderCell"
             ],
-            "cameraDepth": -0.3235263435441842,
+            "cameraDepth": -0.3025263435441842,
             "depthBias": 3.95,
             "vector": {
               "tag": "circle",
@@ -2344,7 +2517,7 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "71.90227510106449",
+                "cy": "70.15636788703506",
                 "r": "7.507200000000001"
               }
             }
@@ -2366,7 +2539,7 @@
               "neckPlateOccluderCell",
               "headConnectorPlateOccluderCell"
             ],
-            "cameraDepth": -0.41682761373340604,
+            "cameraDepth": -0.41338974597322564,
             "depthBias": 4.65,
             "vector": {
               "tag": "circle",
@@ -2375,7 +2548,7 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "74.8591970392298",
+                "cy": "70.85080364956255",
                 "r": "4.6368"
               }
             }
@@ -2397,7 +2570,7 @@
               "headConnectorPlateOccluderCell",
               "headPlateOccluderCell"
             ],
-            "cameraDepth": -0.4423993497461882,
+            "cameraDepth": -0.5675274252376208,
             "depthBias": 4.95,
             "vector": {
               "tag": "circle",
@@ -2406,7 +2579,7 @@
                 "class": "coreOccluderCell",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "82.50101507390204",
+                "cy": "73.12337723794045",
                 "r": "7.68"
               }
             }
@@ -2435,7 +2608,7 @@
               "torsoPlate",
               "pelvisPlate"
             ],
-            "cameraDepth": -0.11903558513161372,
+            "cameraDepth": -0.0980355851316137,
             "depthBias": 3.0500000000000003,
             "vector": {
               "tag": "circle",
@@ -2444,7 +2617,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "59.27883270511898",
+                "cy": "57.53292549108955",
                 "r": "7.68"
               }
             }
@@ -2466,7 +2639,7 @@
               "torsoPlate",
               "neckPlate"
             ],
-            "cameraDepth": -0.3235263435441842,
+            "cameraDepth": -0.3025263435441842,
             "depthBias": 3.95,
             "vector": {
               "tag": "circle",
@@ -2475,7 +2648,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "71.90227510106449",
+                "cy": "70.15636788703506",
                 "r": "7.507200000000001"
               }
             }
@@ -2497,7 +2670,7 @@
               "neckPlate",
               "headConnectorPlate"
             ],
-            "cameraDepth": -0.41682761373340604,
+            "cameraDepth": -0.41338974597322564,
             "depthBias": 4.65,
             "vector": {
               "tag": "circle",
@@ -2506,7 +2679,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "74.8591970392298",
+                "cy": "70.85080364956255",
                 "r": "4.6368"
               }
             }
@@ -2528,7 +2701,7 @@
               "headConnectorPlate",
               "headPlate"
             ],
-            "cameraDepth": -0.4423993497461882,
+            "cameraDepth": -0.5675274252376208,
             "depthBias": 4.95,
             "vector": {
               "tag": "circle",
@@ -2537,7 +2710,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "secondary",
                 "cx": "50",
-                "cy": "82.50101507390204",
+                "cy": "73.12337723794045",
                 "r": "7.68"
               }
             }
@@ -2555,7 +2728,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.11903558513161372,
+            "cameraDepth": -0.0980355851316137,
             "depthBias": 3.1,
             "vector": {
               "tag": "ellipse",
@@ -2564,7 +2737,7 @@
                 "class": "paperPlate ",
                 "data-palette-role": "base",
                 "cx": "50",
-                "cy": "59.27883270511898",
+                "cy": "57.53292549108955",
                 "rx": "11.52",
                 "ry": "11.040000000000001"
               }
@@ -2583,7 +2756,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.3235263435441842,
+            "cameraDepth": -0.3025263435441842,
             "depthBias": 3,
             "vector": {
               "tag": "rect",
@@ -2592,11 +2765,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "48.5312",
-                "y": "51.118832705118976",
+                "y": "49.372925491089546",
                 "width": "15.56104239594551",
                 "height": "16.32",
                 "rx": "8.16",
-                "transform": "rotate(90 50 59.27883270511898)"
+                "transform": "rotate(90 50 57.53292549108955)"
               }
             }
           },
@@ -2613,7 +2786,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.41682761373340604,
+            "cameraDepth": -0.41338974597322564,
             "depthBias": 4,
             "vector": {
               "tag": "rect",
@@ -2622,11 +2795,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "49.136",
-                "y": "67.10227510106449",
-                "width": "4.684921938165308",
+                "y": "65.35636788703506",
+                "width": "2.42243576252749",
                 "height": "9.600000000000001",
                 "rx": "4.800000000000001",
-                "transform": "rotate(90 50 71.90227510106449)"
+                "transform": "rotate(90 50 70.15636788703506)"
               }
             }
           },
@@ -2643,7 +2816,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.4423993497461882,
+            "cameraDepth": -0.5675274252376208,
             "depthBias": 4.7,
             "vector": {
               "tag": "rect",
@@ -2652,11 +2825,11 @@
                 "class": "paperPlate",
                 "data-palette-role": "base",
                 "x": "49.0928",
-                "y": "69.81919703922979",
-                "width": "9.45621803467224",
+                "y": "65.81080364956254",
+                "width": "4.086973588377894",
                 "height": "10.08",
                 "rx": "5.04",
-                "transform": "rotate(90 50 74.8591970392298)"
+                "transform": "rotate(90 50 70.85080364956255)"
               }
             }
           },
@@ -2673,7 +2846,7 @@
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.4423993497461882,
+            "cameraDepth": -0.5675274252376208,
             "depthBias": 5,
             "vector": {
               "tag": "ellipse",
@@ -2682,7 +2855,7 @@
                 "class": "paperPlate plateShade",
                 "data-palette-role": "secondary",
                 "cx": "50",
-                "cy": "82.50101507390204",
+                "cy": "73.12337723794045",
                 "rx": "8.64",
                 "ry": "9.120000000000001"
               }
@@ -2702,6 +2875,66 @@
         "order": 5,
         "elements": [
           {
+            "id": "travelPack__rootGasket",
+            "sourceId": "travelPack__rootGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "attachmentSeam",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "travelPack__body"
+            ],
+            "cameraDepth": -0.30288777334186057,
+            "depthBias": 5.65,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "travelPack__rootGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment",
+                "cx": "50",
+                "cy": "64.98036753299459",
+                "r": "1.4040000000000001"
+              }
+            }
+          },
+          {
+            "id": "travelPack__topGasket",
+            "sourceId": "travelPack__topGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "travelPack__body"
+            ],
+            "cameraDepth": -0.3481823985229911,
+            "depthBias": 5.65,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "travelPack__topGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment",
+                "cx": "50",
+                "cy": "61.75706945090058",
+                "r": "1.44"
+              }
+            }
+          },
+          {
             "id": "farEarTipGasket",
             "sourceId": "farEarTipGasket",
             "sourceKind": "gasket",
@@ -2717,7 +2950,7 @@
             "detailDependencyIds": [
               "farEarPlate"
             ],
-            "cameraDepth": -0.4109755847570046,
+            "cameraDepth": -0.4227434099409988,
             "depthBias": 5.45,
             "vector": {
               "tag": "circle",
@@ -2726,7 +2959,7 @@
                 "class": "jointGasket",
                 "data-palette-role": "accent",
                 "cx": "64.88",
-                "cy": "74.46727943760207",
+                "cy": "68.82005237695103",
                 "r": "2.6496"
               }
             }
@@ -2747,7 +2980,7 @@
             "detailDependencyIds": [
               "nearEarPlate"
             ],
-            "cameraDepth": -0.4109755847570046,
+            "cameraDepth": -0.4227434099409988,
             "depthBias": 5.45,
             "vector": {
               "tag": "circle",
@@ -2755,8 +2988,8 @@
                 "id": "nearEarTipGasket",
                 "class": "jointGasket",
                 "data-palette-role": "accent",
-                "cx": "35.12",
-                "cy": "74.46727943760207",
+                "cx": "35.120000000000005",
+                "cy": "68.82005237695101",
                 "r": "2.6496"
               }
             }
@@ -2777,7 +3010,7 @@
             "detailDependencyIds": [
               "farEarPlate"
             ],
-            "cameraDepth": -0.4957786554107546,
+            "cameraDepth": -0.578471906324505,
             "depthBias": 5.45,
             "vector": {
               "tag": "circle",
@@ -2785,8 +3018,8 @@
                 "id": "farEarBaseGasket",
                 "class": "jointGasket",
                 "data-palette-role": "accent",
-                "cx": "54.31999999999999",
-                "cy": "80.87279611735005",
+                "cx": "54.32",
+                "cy": "70.13339010737712",
                 "r": "2.6496"
               }
             }
@@ -2807,7 +3040,7 @@
             "detailDependencyIds": [
               "nearEarPlate"
             ],
-            "cameraDepth": -0.4957786554107546,
+            "cameraDepth": -0.578471906324505,
             "depthBias": 5.45,
             "vector": {
               "tag": "circle",
@@ -2816,8 +3049,98 @@
                 "class": "jointGasket",
                 "data-palette-role": "accent",
                 "cx": "45.68",
-                "cy": "80.87279611735005",
+                "cy": "70.13339010737712",
                 "r": "2.6496"
+              }
+            }
+          },
+          {
+            "id": "simpleHat__rootGasket",
+            "sourceId": "simpleHat__rootGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "attachmentSeam",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "simpleHat__body"
+            ],
+            "cameraDepth": -0.6641980457311543,
+            "depthBias": 6.05,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "simpleHat__rootGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment",
+                "cx": "50",
+                "cy": "64.54152576105373",
+                "r": "2.16"
+              }
+            }
+          },
+          {
+            "id": "simpleHat__crownGasket",
+            "sourceId": "simpleHat__crownGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "simpleHat__body"
+            ],
+            "cameraDepth": -0.6898817530209491,
+            "depthBias": 6.05,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "simpleHat__crownGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment",
+                "cx": "50",
+                "cy": "62.26147666018346",
+                "r": "2.1859200000000003"
+              }
+            }
+          },
+          {
+            "id": "travelPack__body",
+            "sourceId": "travelPack__body",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "equipment",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.3481823985229911,
+            "depthBias": 5.7,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "travelPack__body",
+                "class": "paperPlate",
+                "data-palette-role": "equipment",
+                "x": "49.81856",
+                "y": "63.46836753299459",
+                "width": "3.586178082094012",
+                "height": "3.024000000000001",
+                "rx": "1.5120000000000005",
+                "transform": "rotate(-90 50 64.98036753299459)"
               }
             }
           },
@@ -2834,7 +3157,7 @@
             "lodTier": "detail",
             "semanticDetailTier": "identity",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.4109755847570046,
+            "cameraDepth": -0.4227434099409988,
             "depthBias": 5.5,
             "vector": {
               "tag": "rect",
@@ -2842,12 +3165,12 @@
                 "id": "farEarPlate",
                 "class": "paperPlate",
                 "data-palette-role": "accent",
-                "x": "53.80159999999999",
-                "y": "77.99279611735005",
-                "width": "13.38768028986313",
+                "x": "53.8016",
+                "y": "67.25339010737713",
+                "width": "11.678155928365552",
                 "height": "5.76",
                 "rx": "2.88",
-                "transform": "rotate(-31.240288900407876 54.31999999999999 80.87279611735005)"
+                "transform": "rotate(-7.0894219878892315 54.32 70.13339010737712)"
               }
             }
           },
@@ -2864,7 +3187,7 @@
             "lodTier": "detail",
             "semanticDetailTier": "identity",
             "semanticDetailSource": "authored",
-            "cameraDepth": -0.4109755847570046,
+            "cameraDepth": -0.4227434099409988,
             "depthBias": 5.5,
             "vector": {
               "tag": "rect",
@@ -2873,11 +3196,41 @@
                 "class": "paperPlate",
                 "data-palette-role": "accent",
                 "x": "45.1616",
-                "y": "77.99279611735005",
-                "width": "13.38768028986313",
+                "y": "67.25339010737713",
+                "width": "11.678155928365554",
                 "height": "5.76",
                 "rx": "2.88",
-                "transform": "rotate(-148.75971109959215 45.68 80.87279611735005)"
+                "transform": "rotate(-172.9105780121107 45.68 70.13339010737712)"
+              }
+            }
+          },
+          {
+            "id": "simpleHat__body",
+            "sourceId": "simpleHat__body",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "equipment",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.6898817530209491,
+            "depthBias": 6.1,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "simpleHat__body",
+                "class": "paperPlate",
+                "data-palette-role": "equipment",
+                "x": "49.80992",
+                "y": "62.165525761053736",
+                "width": "2.6602091008702726",
+                "height": "4.752000000000001",
+                "rx": "2.3760000000000003",
+                "transform": "rotate(-90 50 64.54152576105373)"
               }
             }
           },
@@ -2894,14 +3247,14 @@
             "lodTier": "detail",
             "semanticDetailTier": "identity",
             "semanticDetailSource": "authored-paint",
-            "cameraDepth": -0.4423993497461882,
+            "cameraDepth": -0.5675274252376208,
             "depthBias": -0.01,
             "surfaceFrame": {
               "space": "posed-world",
               "normal": [
-                0.9612616959383189,
+                0.8517269341430477,
                 0,
-                -0.2756373558169992
+                0.5239859059700791
               ],
               "tangent": [
                 0,
@@ -2909,16 +3262,16 @@
                 0
               ],
               "bitangent": [
-                0.2756373558169992,
+                -0.5239859059700791,
                 0,
-                0.9612616959383189
+                0.8517269341430477
               ],
               "camera": {
                 "space": "camera",
                 "normal": [
-                  -1.1772060590738186e-16,
-                  -0.9702957262759965,
-                  -0.24192189559966784
+                  -1.0430646636458718e-16,
+                  -0.4756242090702752,
+                  -0.8796485728666166
                 ],
                 "tangent": [
                   -1,
@@ -2926,9 +3279,9 @@
                   6.123233995736767e-17
                 ],
                 "bitangent": [
-                  -3.3755840552672816e-17,
-                  0.24192189559966784,
-                  -0.9702957262759965
+                  6.416976625445834e-17,
+                  0.8796485728666166,
+                  -0.4756242090702752
                 ]
               }
             },
@@ -2941,7 +3294,7 @@
                 "data-owner-plate": "headPlate",
                 "data-paint-primitive": "faceBlaze",
                 "d": "M 0 -0.8 C 0.22 -0.45 0.18 0.2 0 0.65 C -0.18 0.2 -0.22 -0.45 0 -0.8 Z",
-                "transform": "matrix(-6.048 -6.414359043808236e-16 -2.2165435140507074e-16 -1.5885559352656589 50 82.3906986895086)"
+                "transform": "matrix(-6.048 -6.414359043808236e-16 4.2136435313327526e-16 -5.7761243888713505 50 72.72225748871327)"
               }
             }
           }

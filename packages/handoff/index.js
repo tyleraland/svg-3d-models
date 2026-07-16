@@ -61,6 +61,7 @@ function profileIssues(profile) {
 
 function sceneIssues(scene) {
   const elements = Array.isArray(scene?.compositingGroups) ? elementsOf(scene) : [];
+  const elementsById = new Map(elements.map((element) => [element.id, element]));
   const issues = [];
   if (scene?.schema !== 'paper-rig/projected-scene/1') issues.push('scene must be paper-rig/projected-scene/1');
   if (!/^1\.(?:[1-9][0-9]*)\.[0-9]+$/.test(scene?.schemaVersion || '')) issues.push('scene must support semantic detail fields from projected-scene/1.1 or later');
@@ -70,6 +71,20 @@ function sceneIssues(scene) {
     if (element.vector?.attributes?.id !== element.id) issues.push(`element ${element.id} vector ID does not match`);
     if (!DETAIL_INDEX.has(element.semanticDetailTier)) issues.push(`element ${element.id} has no supported semantic detail tier`);
     if (!DETAIL_SOURCES.has(element.semanticDetailSource)) issues.push(`element ${element.id} has no supported semantic detail source`);
+    if (element.detailDependencyIds) {
+      const dependencies = element.detailDependencyIds.map((id) => elementsById.get(id));
+      if (new Set(element.detailDependencyIds).size !== element.detailDependencyIds.length
+        || element.detailDependencyIds.includes(element.id)
+        || dependencies.some((dependency) => !dependency)) {
+        issues.push(`element ${element.id} has invalid semantic detail dependencies`);
+      } else {
+        const requiredTier = dependencies.map((dependency) => dependency.semanticDetailTier)
+          .sort((left, right) => DETAIL_INDEX.get(left) - DETAIL_INDEX.get(right))[0];
+        if (element.semanticDetailTier !== requiredTier) {
+          issues.push(`element ${element.id} must use the most essential dependency tier ${requiredTier}`);
+        }
+      }
+    }
   }
   return issues;
 }
@@ -139,6 +154,7 @@ export function createConsumerHandoff(scene, profile) {
     elementId: element.id,
     tier: element.semanticDetailTier,
     source: element.semanticDetailSource,
+    ...(element.detailDependencyIds ? { dependencyElementIds: [...element.detailDependencyIds] } : {}),
   }));
   const included = new Set(sourceElements
     .filter((element) => DETAIL_INDEX.get(element.semanticDetailTier) <= maximumIndex)

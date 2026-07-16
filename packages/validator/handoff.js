@@ -59,8 +59,25 @@ export function validateConsumerHandoff(handoff) {
   }
   for (const element of elements) {
     const assignment = assignmentById.get(element.id);
-    if (!assignment || assignment.tier !== element.semanticDetailTier || assignment.source !== element.semanticDetailSource) {
+    if (!assignment || assignment.tier !== element.semanticDetailTier || assignment.source !== element.semanticDetailSource
+      || !same(assignment.dependencyElementIds, element.detailDependencyIds)) {
       errors.push(semanticError(`/scene/${element.id}`, 'scene semantic detail must match its assignment'));
+    }
+  }
+  for (const assignment of assignments.filter((candidate) => candidate.dependencyElementIds)) {
+    const dependencies = assignment.dependencyElementIds.map((id) => assignmentById.get(id));
+    if (dependencies.some((dependency) => !dependency) || assignment.dependencyElementIds.includes(assignment.elementId)) {
+      errors.push(semanticError(`/semanticDetail/assignments/${assignment.elementId}`, 'semantic detail dependencies must reference other assignments'));
+      continue;
+    }
+    const requiredTier = dependencies.map((dependency) => dependency.tier)
+      .sort((left, right) => TIERS.indexOf(left) - TIERS.indexOf(right))[0];
+    if (assignment.tier !== requiredTier) {
+      errors.push(semanticError(`/semanticDetail/assignments/${assignment.elementId}`, `dependent element tier must be ${requiredTier}`));
+    }
+    if (included.includes(assignment.elementId)
+      && !assignment.dependencyElementIds.some((id) => included.includes(id))) {
+      errors.push(semanticError(`/semanticDetail/assignments/${assignment.elementId}`, 'included dependent element must retain at least one dependency'));
     }
   }
   if (included.some((id) => TIERS.indexOf(assignmentById.get(id)?.tier) > maximum)) {

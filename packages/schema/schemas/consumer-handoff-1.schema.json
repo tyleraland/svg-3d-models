@@ -89,7 +89,13 @@
             "properties": {
               "elementId": { "$ref": "#/$defs/id" },
               "tier": { "$ref": "#/$defs/detailTier" },
-              "source": { "enum": ["authored", "authored-paint", "structural", "semantic-role", "legacy-conservative"] }
+              "source": { "enum": ["authored", "authored-paint", "structural", "semantic-role", "legacy-conservative"] },
+              "dependencyElementIds": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "$ref": "#/$defs/id" }
+              }
             }
           }
         },

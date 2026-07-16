@@ -189,6 +189,12 @@
         "lodTier": { "type": "string", "minLength": 1 },
         "semanticDetailTier": { "enum": ["silhouette", "identity", "expression", "texture", "micro"] },
         "semanticDetailSource": { "enum": ["authored", "authored-paint", "structural", "semantic-role", "legacy-conservative"] },
+        "detailDependencyIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
         "cameraDepth": { "$ref": "#/$defs/number" },
         "depthBias": { "$ref": "#/$defs/number" },
         "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" },

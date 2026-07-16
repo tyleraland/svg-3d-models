@@ -61,142 +61,192 @@
       {
         "elementId": "castShadow",
         "tier": "texture",
-        "source": "semantic-role"
+        "source": "authored"
       },
       {
         "elementId": "nearRearPawGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearRearLowerPlate",
+          "nearRearPawPlate"
+        ]
       },
       {
         "elementId": "farRearPawGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "farRearLowerPlate",
+          "farRearPawPlate"
+        ]
       },
       {
         "elementId": "nearRearKneeGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearRearUpperPlate",
+          "nearRearLowerPlate"
+        ]
       },
       {
         "elementId": "farRearKneeGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "farRearUpperPlate",
+          "farRearLowerPlate"
+        ]
       },
       {
         "elementId": "tailTipGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "tailPlate"
+        ]
       },
       {
         "elementId": "tailBaseGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "tailPlate"
+        ]
       },
       {
         "elementId": "nearRearHipGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearRearUpperPlate"
+        ]
       },
       {
         "elementId": "farRearHipGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "farRearUpperPlate"
+        ]
       },
       {
         "elementId": "nearFrontPawGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearFrontLowerPlate",
+          "nearFrontPawPlate"
+        ]
       },
       {
         "elementId": "farFrontPawGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "farFrontLowerPlate",
+          "farFrontPawPlate"
+        ]
       },
       {
         "elementId": "nearFrontKneeGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearFrontUpperPlate",
+          "nearFrontLowerPlate"
+        ]
       },
       {
         "elementId": "farFrontKneeGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "farFrontUpperPlate",
+          "farFrontLowerPlate"
+        ]
       },
       {
         "elementId": "farFrontHipGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "farFrontUpperPlate"
+        ]
       },
       {
         "elementId": "nearFrontHipGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearFrontUpperPlate"
+        ]
       },
       {
         "elementId": "nearRearPawPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "farRearPawPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "nearRearLowerPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "farRearLowerPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "nearRearUpperPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "farRearUpperPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "tailPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "nearFrontPawPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "farFrontPawPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "nearFrontLowerPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "farFrontLowerPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "nearFrontUpperPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "farFrontUpperPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "torsoPlateOccluderCell",
@@ -226,97 +276,141 @@
       {
         "elementId": "pelvisGasketOccluderCell",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "torsoPlateOccluderCell",
+          "pelvisPlateOccluderCell"
+        ]
       },
       {
         "elementId": "chestGasketOccluderCell",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "torsoPlateOccluderCell",
+          "neckPlateOccluderCell"
+        ]
       },
       {
         "elementId": "neckGasketOccluderCell",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "neckPlateOccluderCell",
+          "headConnectorPlateOccluderCell"
+        ]
       },
       {
         "elementId": "headGasketOccluderCell",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "headConnectorPlateOccluderCell",
+          "headPlateOccluderCell"
+        ]
       },
       {
         "elementId": "pelvisGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "torsoPlate",
+          "pelvisPlate"
+        ]
       },
       {
         "elementId": "chestGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "torsoPlate",
+          "neckPlate"
+        ]
       },
       {
         "elementId": "neckGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "neckPlate",
+          "headConnectorPlate"
+        ]
       },
       {
         "elementId": "headGasket",
         "tier": "silhouette",
-        "source": "structural"
+        "source": "structural",
+        "dependencyElementIds": [
+          "headConnectorPlate",
+          "headPlate"
+        ]
       },
       {
         "elementId": "pelvisPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "torsoPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "neckPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "headConnectorPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "headPlate",
         "tier": "silhouette",
-        "source": "legacy-conservative"
+        "source": "authored"
       },
       {
         "elementId": "farEarTipGasket",
-        "tier": "silhouette",
-        "source": "structural"
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "farEarPlate"
+        ]
       },
       {
         "elementId": "nearEarTipGasket",
-        "tier": "silhouette",
-        "source": "structural"
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearEarPlate"
+        ]
       },
       {
         "elementId": "farEarBaseGasket",
-        "tier": "silhouette",
-        "source": "structural"
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "farEarPlate"
+        ]
       },
       {
         "elementId": "nearEarBaseGasket",
-        "tier": "silhouette",
-        "source": "structural"
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearEarPlate"
+        ]
       },
       {
         "elementId": "farEarPlate",
         "tier": "identity",
-        "source": "semantic-role"
+        "source": "authored"
       },
       {
         "elementId": "nearEarPlate",
         "tier": "identity",
-        "source": "semantic-role"
+        "source": "authored"
       },
       {
         "elementId": "faceBlaze",
@@ -369,14 +463,14 @@
       "torsoPlate",
       "neckPlate",
       "headConnectorPlate",
-      "headPlate",
-      "farEarTipGasket",
-      "nearEarTipGasket",
-      "farEarBaseGasket",
-      "nearEarBaseGasket"
+      "headPlate"
     ],
     "omittedElementIds": [
       "castShadow",
+      "farEarTipGasket",
+      "nearEarTipGasket",
+      "farEarBaseGasket",
+      "nearEarBaseGasket",
       "farEarPlate",
       "nearEarPlate",
       "faceBlaze"
@@ -385,8 +479,7 @@
   "paletteRoles": [
     "base",
     "secondary",
-    "hoof",
-    "accent"
+    "hoof"
   ],
   "scene": {
     "schema": "paper-rig/projected-scene/1",
@@ -1242,6 +1335,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearRearLowerPlate",
+              "nearRearPawPlate"
+            ],
             "cameraDepth": 0.10866025403784443,
             "depthBias": 1.15,
             "vector": {
@@ -1269,6 +1366,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farRearLowerPlate",
+              "farRearPawPlate"
+            ],
             "cameraDepth": 0.1086602540378444,
             "depthBias": 1.15,
             "vector": {
@@ -1296,6 +1397,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearRearUpperPlate",
+              "nearRearLowerPlate"
+            ],
             "cameraDepth": 0.01743335800641843,
             "depthBias": 1.15,
             "vector": {
@@ -1323,6 +1428,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farRearUpperPlate",
+              "farRearLowerPlate"
+            ],
             "cameraDepth": 0.017433358006418403,
             "depthBias": 1.15,
             "vector": {
@@ -1350,6 +1459,9 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "tailPlate"
+            ],
             "cameraDepth": -0.07831761743436877,
             "depthBias": 1.95,
             "vector": {
@@ -1377,6 +1489,9 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "tailPlate"
+            ],
             "cameraDepth": -0.08867660128299124,
             "depthBias": 1.95,
             "vector": {
@@ -1404,6 +1519,9 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearRearUpperPlate"
+            ],
             "cameraDepth": -0.1003753310937693,
             "depthBias": 0.95,
             "vector": {
@@ -1431,6 +1549,9 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farRearUpperPlate"
+            ],
             "cameraDepth": -0.10037533109376932,
             "depthBias": 0.95,
             "vector": {
@@ -1458,6 +1579,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearFrontLowerPlate",
+              "nearFrontPawPlate"
+            ],
             "cameraDepth": -0.11211806880942782,
             "depthBias": 1.15,
             "vector": {
@@ -1485,6 +1610,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farFrontLowerPlate",
+              "farFrontPawPlate"
+            ],
             "cameraDepth": -0.11211806880942785,
             "depthBias": 1.15,
             "vector": {
@@ -1512,6 +1641,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearFrontUpperPlate",
+              "nearFrontLowerPlate"
+            ],
             "cameraDepth": -0.2041358613752347,
             "depthBias": 1.15,
             "vector": {
@@ -1539,6 +1672,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farFrontUpperPlate",
+              "farFrontLowerPlate"
+            ],
             "cameraDepth": -0.20413586137523473,
             "depthBias": 1.15,
             "vector": {
@@ -1566,6 +1703,9 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farFrontUpperPlate"
+            ],
             "cameraDepth": -0.3044445504754224,
             "depthBias": 0.95,
             "vector": {
@@ -1593,6 +1733,9 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearFrontUpperPlate"
+            ],
             "cameraDepth": -0.3044445504754224,
             "depthBias": 0.95,
             "vector": {
@@ -1619,7 +1762,7 @@
             "paletteRole": "hoof",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": 0.10866025403784443,
             "depthBias": 0,
             "vector": {
@@ -1647,7 +1790,7 @@
             "paletteRole": "hoof",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": 0.1086602540378444,
             "depthBias": 0,
             "vector": {
@@ -1675,7 +1818,7 @@
             "paletteRole": "base",
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": 0.10866025403784443,
             "depthBias": 1.2,
             "vector": {
@@ -1705,7 +1848,7 @@
             "paletteRole": "base",
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": 0.1086602540378444,
             "depthBias": 1.2,
             "vector": {
@@ -1735,7 +1878,7 @@
             "paletteRole": "base",
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": 0.01743335800641843,
             "depthBias": 1,
             "vector": {
@@ -1765,7 +1908,7 @@
             "paletteRole": "base",
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": 0.017433358006418403,
             "depthBias": 1,
             "vector": {
@@ -1795,7 +1938,7 @@
             "paletteRole": "secondary",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.07831761743436877,
             "depthBias": 2,
             "vector": {
@@ -1825,7 +1968,7 @@
             "paletteRole": "hoof",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.11211806880942782,
             "depthBias": 0,
             "vector": {
@@ -1853,7 +1996,7 @@
             "paletteRole": "hoof",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.11211806880942785,
             "depthBias": 0,
             "vector": {
@@ -1881,7 +2024,7 @@
             "paletteRole": "base",
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.11211806880942782,
             "depthBias": 1.2,
             "vector": {
@@ -1911,7 +2054,7 @@
             "paletteRole": "base",
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.11211806880942785,
             "depthBias": 1.2,
             "vector": {
@@ -1941,7 +2084,7 @@
             "paletteRole": "base",
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.2041358613752347,
             "depthBias": 1,
             "vector": {
@@ -1971,7 +2114,7 @@
             "paletteRole": "base",
             "lodTier": "major",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.20413586137523473,
             "depthBias": 1,
             "vector": {
@@ -2155,6 +2298,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "torsoPlateOccluderCell",
+              "pelvisPlateOccluderCell"
+            ],
             "cameraDepth": -0.11903558513161372,
             "depthBias": 3.0500000000000003,
             "vector": {
@@ -2182,6 +2329,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "torsoPlateOccluderCell",
+              "neckPlateOccluderCell"
+            ],
             "cameraDepth": -0.3235263435441842,
             "depthBias": 3.95,
             "vector": {
@@ -2209,6 +2360,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "neckPlateOccluderCell",
+              "headConnectorPlateOccluderCell"
+            ],
             "cameraDepth": -0.41682761373340604,
             "depthBias": 4.65,
             "vector": {
@@ -2236,6 +2391,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "headConnectorPlateOccluderCell",
+              "headPlateOccluderCell"
+            ],
             "cameraDepth": -0.4423993497461882,
             "depthBias": 4.95,
             "vector": {
@@ -2270,6 +2429,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "torsoPlate",
+              "pelvisPlate"
+            ],
             "cameraDepth": -0.11903558513161372,
             "depthBias": 3.0500000000000003,
             "vector": {
@@ -2297,6 +2460,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "torsoPlate",
+              "neckPlate"
+            ],
             "cameraDepth": -0.3235263435441842,
             "depthBias": 3.95,
             "vector": {
@@ -2324,6 +2491,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "neckPlate",
+              "headConnectorPlate"
+            ],
             "cameraDepth": -0.41682761373340604,
             "depthBias": 4.65,
             "vector": {
@@ -2351,6 +2522,10 @@
             "lodTier": "detail",
             "semanticDetailTier": "silhouette",
             "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "headConnectorPlate",
+              "headPlate"
+            ],
             "cameraDepth": -0.4423993497461882,
             "depthBias": 4.95,
             "vector": {
@@ -2377,7 +2552,7 @@
             "paletteRole": "base",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.11903558513161372,
             "depthBias": 3.1,
             "vector": {
@@ -2405,7 +2580,7 @@
             "paletteRole": "base",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.3235263435441842,
             "depthBias": 3,
             "vector": {
@@ -2435,7 +2610,7 @@
             "paletteRole": "base",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.41682761373340604,
             "depthBias": 4,
             "vector": {
@@ -2465,7 +2640,7 @@
             "paletteRole": "base",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.4423993497461882,
             "depthBias": 4.7,
             "vector": {
@@ -2495,7 +2670,7 @@
             "paletteRole": "secondary",
             "lodTier": "silhouette",
             "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "legacy-conservative",
+            "semanticDetailSource": "authored",
             "cameraDepth": -0.4423993497461882,
             "depthBias": 5,
             "vector": {
@@ -2523,116 +2698,7 @@
         "id": "detailsGroup",
         "semanticRole": "paint/details/accessories",
         "order": 5,
-        "elements": [
-          {
-            "id": "farEarTipGasket",
-            "sourceId": "farEarTipGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "accessory",
-            "side": "right",
-            "paletteRole": "accent",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "cameraDepth": -0.4109755847570046,
-            "depthBias": 5.45,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "farEarTipGasket",
-                "class": "jointGasket",
-                "data-palette-role": "accent",
-                "cx": "64.88",
-                "cy": "74.46727943760207",
-                "r": "2.6496"
-              }
-            }
-          },
-          {
-            "id": "nearEarTipGasket",
-            "sourceId": "nearEarTipGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "accessory",
-            "side": "left",
-            "paletteRole": "accent",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "cameraDepth": -0.4109755847570046,
-            "depthBias": 5.45,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "nearEarTipGasket",
-                "class": "jointGasket",
-                "data-palette-role": "accent",
-                "cx": "35.12",
-                "cy": "74.46727943760207",
-                "r": "2.6496"
-              }
-            }
-          },
-          {
-            "id": "farEarBaseGasket",
-            "sourceId": "farEarBaseGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "accessory",
-            "side": "right",
-            "paletteRole": "accent",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "cameraDepth": -0.4957786554107546,
-            "depthBias": 5.45,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "farEarBaseGasket",
-                "class": "jointGasket",
-                "data-palette-role": "accent",
-                "cx": "54.31999999999999",
-                "cy": "80.87279611735005",
-                "r": "2.6496"
-              }
-            }
-          },
-          {
-            "id": "nearEarBaseGasket",
-            "sourceId": "nearEarBaseGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "accessory",
-            "side": "left",
-            "paletteRole": "accent",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "cameraDepth": -0.4957786554107546,
-            "depthBias": 5.45,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "nearEarBaseGasket",
-                "class": "jointGasket",
-                "data-palette-role": "accent",
-                "cx": "45.68",
-                "cy": "80.87279611735005",
-                "r": "2.6496"
-              }
-            }
-          }
-        ]
+        "elements": []
       }
     ]
   }

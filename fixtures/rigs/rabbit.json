@@ -402,7 +402,8 @@
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "semanticDetailTier": "texture"
     },
     {
       "id": "torsoPlate",
@@ -419,7 +420,8 @@
         "pelvis",
         "chest"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "pelvisPlate",
@@ -432,7 +434,8 @@
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3.1
+      "zBias": 3.1,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "neckPlate",
@@ -449,7 +452,8 @@
         "chest",
         "neck"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headConnectorPlate",
@@ -466,7 +470,8 @@
         "neck",
         "head"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "headPlate",
@@ -479,7 +484,8 @@
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 5
+      "zBias": 5,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "tailPlate",
@@ -496,7 +502,8 @@
         "tailBase",
         "tailTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearFrontUpperPlate",
@@ -515,7 +522,8 @@
       ],
       "jointOverlap": 1.18,
       "occlusionMode": "under-core",
-      "occlusionReference": "chest"
+      "occlusionReference": "chest",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearFrontLowerPlate",
@@ -534,7 +542,8 @@
       ],
       "jointOverlap": 1.18,
       "occlusionMode": "under-core",
-      "occlusionReference": "chest"
+      "occlusionReference": "chest",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearFrontPawPlate",
@@ -549,7 +558,8 @@
       "material": "paperShade",
       "zBias": 0,
       "occlusionMode": "under-core",
-      "occlusionReference": "chest"
+      "occlusionReference": "chest",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farFrontUpperPlate",
@@ -568,7 +578,8 @@
       ],
       "jointOverlap": 1.18,
       "occlusionMode": "under-core",
-      "occlusionReference": "chest"
+      "occlusionReference": "chest",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farFrontLowerPlate",
@@ -587,7 +598,8 @@
       ],
       "jointOverlap": 1.18,
       "occlusionMode": "under-core",
-      "occlusionReference": "chest"
+      "occlusionReference": "chest",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farFrontPawPlate",
@@ -602,7 +614,8 @@
       "material": "paperShade",
       "zBias": 0,
       "occlusionMode": "under-core",
-      "occlusionReference": "chest"
+      "occlusionReference": "chest",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearRearUpperPlate",
@@ -621,7 +634,8 @@
       ],
       "jointOverlap": 1.18,
       "occlusionMode": "under-core",
-      "occlusionReference": "pelvis"
+      "occlusionReference": "pelvis",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearRearLowerPlate",
@@ -640,7 +654,8 @@
       ],
       "jointOverlap": 1.18,
       "occlusionMode": "under-core",
-      "occlusionReference": "pelvis"
+      "occlusionReference": "pelvis",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearRearPawPlate",
@@ -655,7 +670,8 @@
       "material": "paperShade",
       "zBias": 0,
       "occlusionMode": "under-core",
-      "occlusionReference": "pelvis"
+      "occlusionReference": "pelvis",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farRearUpperPlate",
@@ -674,7 +690,8 @@
       ],
       "jointOverlap": 1.18,
       "occlusionMode": "under-core",
-      "occlusionReference": "pelvis"
+      "occlusionReference": "pelvis",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farRearLowerPlate",
@@ -693,7 +710,8 @@
       ],
       "jointOverlap": 1.18,
       "occlusionMode": "under-core",
-      "occlusionReference": "pelvis"
+      "occlusionReference": "pelvis",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "farRearPawPlate",
@@ -708,7 +726,8 @@
       "material": "paperShade",
       "zBias": 0,
       "occlusionMode": "under-core",
-      "occlusionReference": "pelvis"
+      "occlusionReference": "pelvis",
+      "semanticDetailTier": "silhouette"
     },
     {
       "id": "nearEarPlate",
@@ -725,7 +744,8 @@
         "nearEarBase",
         "nearEarTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "identity"
     },
     {
       "id": "farEarPlate",
@@ -742,7 +762,8 @@
         "farEarBase",
         "farEarTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "identity"
     }
   ],
   "anchors": [

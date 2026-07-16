@@ -29,6 +29,7 @@
         "size": [0.02, 0.02],
         "role": "eye",
         "bodyRegion": "accessory",
+        "semanticDetailTier": "micro",
         "attachment": "rigid",
         "material": "paperLight",
         "paletteRole": "eye.highlight",

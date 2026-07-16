@@ -299,6 +299,21 @@ Exit criteria met. A workbench assembly toggle is deliberately deferred: the
 assembled contact sheet and 240-view audit provide deterministic review now,
 and the UI should only grow another mode when direct module authoring needs it.
 
+Seam hardening follow-up delivered:
+
+- `paper-rig/attachment-module-1.1` adds a measured overlap-gasket mount
+  interface: module-local axis, radius, embed depth, and compositing policy;
+- validation proves exact root/frame alignment, incident mount geometry, a
+  gasket radius contained by that geometry, and bounded embed depth;
+- assembly manifests expose the scaled interface and owner-local axis, while
+  posed tests prove its contact point remains fixed on the slot;
+- projected gaskets declare incident-element dependencies and inherit their
+  most essential semantic tier, preventing orphan seam dots after LOD
+  filtering; and
+- one `simpleHorn` module attaches to both wolf and leopard `head.horn` slots,
+  alongside upgraded hat and pack seams. The surface eye glint stays on 1.0
+  because it is not an overlap mount.
+
 ## M4 — composable motion system
 
 Status: complete.
@@ -413,7 +428,9 @@ Delivered:
 - strict `paper-rig/consumer-profile-1` and
   `paper-rig/consumer-handoff-1` contracts with palette selection and explicit
   `require`/`omit` capability policies;
-- `rig handoff` with composable motion, attachment, and paint inputs; and
+- `rig handoff` with composable motion, attachment, and paint inputs;
+- dependency-linked generated gaskets that stay atomic with at least one
+  incident plate at every selected semantic tier; and
 - full silhouette and expression golden handoffs for the same painted rabbit
   attack scene, including negotiation and vector geometry.
 
@@ -435,7 +452,7 @@ evidence with authored tiers where visual review justifies it.
 
 ## M6 — representative migration and release
 
-Status: planned.
+Status: in progress.
 
 Before broad migration, use a small set that stresses different needs:
 
@@ -447,6 +464,26 @@ Before broad migration, use a small set that stresses different needs:
 Use what those models reveal to tighten the contract, then migrate the remaining
 models family by family. Publish packages only after the schemas, diagnostics,
 and compatibility rules have survived those examples.
+
+Representative matrix:
+
+| Stress case | Model | Current M6 state |
+| --- | --- | --- |
+| shared-family quadruped | rabbit | first slice complete |
+| long-necked/head striker | elephant | next |
+| humanoid/weapon-bearing | humanoid | queued |
+| winged/non-bilateral compositor | harpy | queued |
+
+The rabbit first slice authors every base plate's semantic tier, including its
+addon-generated ears, instead of relying on conservative inference. A combined
+motion + attachment + paint expression-tier handoff is locked as a golden, so
+the representative boundary exercises transforms, phases, modules, seams,
+surface paint, stable IDs, and LOD together. The resolved-rig and one SVG fixture
+change only by newly authored metadata; the legacy compiled `paper-rig/1`
+gasket surface remains byte-compatible.
+
+Next action: migrate and review elephant tiers and head-strike evidence, then
+apply the same process to humanoid and harpy before family-wide rollout.
 
 Exit criteria:
 
@@ -497,6 +534,9 @@ If work stops unexpectedly, resume in this order:
   consumer repository.
 - 2026-07-15: represent attachable details as typed modules on local frames,
   rather than embedding model-specific decorative coordinates.
+- 2026-07-15: represent reusable hard-mount seams as measured overlap
+  interfaces; generated seam geometry inherits incident LOD instead of acting
+  as an independent detail.
 - 2026-07-15: represent appearance in plate-local semantic paint data so it
   remains coherent through poses.
 - 2026-07-15: define LOD by semantic importance, not only geometry complexity.

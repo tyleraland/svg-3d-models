@@ -38,12 +38,22 @@
     { "match": "Rear.*UpperPlate$", "size": [0.16] },
     { "match": "Rear.*PawPlate$", "size": [0.22, 0.15] }
   ],
+  "plateOverrides": [
+    {
+      "match": "^(?:torsoPlate|pelvisPlate|neckPlate|headConnectorPlate|headPlate|tailPlate|(?:near|far)(?:Front|Rear)(?:Upper|Lower|Paw)Plate)$",
+      "set": { "semanticDetailTier": "silhouette" }
+    },
+    {
+      "id": "castShadow",
+      "set": { "semanticDetailTier": "texture" }
+    }
+  ],
   "addons": [
     {
       "type": "pairedEars",
       "baseX": -0.02, "baseY": 0.09, "baseZ": 0.06,
       "tipX": -0.15, "tipY": 0.22, "tipZ": -0.05,
-      "width": 0.12, "style": "flat-floppy"
+      "width": 0.12, "style": "flat-floppy", "semanticDetailTier": "identity"
     }
   ],
   "clipEvents": {

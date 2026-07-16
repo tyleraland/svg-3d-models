@@ -171,8 +171,16 @@ module-local rig joints/plates. Model `attachments` entries select a module and
 slot and may provide a positive per-instance scale. Generated geometry IDs are
 stable and namespaced as `<instance>__<local-id>`.
 
-The 1.0 slice supports authored joint- and plate-owned slots plus module-local
-joints/plates. Legacy anchors are normalized to typed slots—for example,
+Versions 1.0 and 1.1 support authored joint- and plate-owned slots plus
+module-local joints/plates. Version 1.1 is for hard mounts that need an overlap
+seam: declare a signed module-local axis, gasket radius, embed depth, and
+`module-over-owner` compositing, then place the attachment frame exactly one
+embed depth from the root along that axis. Validation rejects tangential offset,
+missing root contact geometry, a gasket larger than the incident plate, or
+embed depth larger than its radius. Do not use this contract for a surface decal
+merely to make it pass.
+
+Legacy anchors are normalized to typed slots—for example,
 `backItem` becomes `back.mount` and `weapon` becomes `hand.grip`. Plate slots use
 the plate's explicit `[tangent, bitangent, normal]` surface frame and require a
 bounded plate-local region. Module bounds are conservatively derived from their
@@ -187,7 +195,10 @@ remain byte-compatible. `loadModel()` and ordinary renders omit a model's
 attachment declarations. Use `loadModelAssembly()` or `--attachments` when the
 assembled asset is wanted. The current proofs attach the same `travelPack` and
 `simpleHat` modules to humanoid and rabbit slots at different scales, plus an
-`eyeGlint` to a bounded humanoid eye-plate slot. Use
+`eyeGlint` to a bounded humanoid eye-plate slot. `simpleHorn` proves the same
+measured horn module and seam on wolf and leopard. Generated gaskets carry
+incident plate dependencies and disappear at the same semantic LOD boundary as
+their accessory, so lower tiers cannot retain orphan seam dots. Use
 `rig audit <model> --attachments` for the full 240-view review; its frame overlay includes authored
 joint and plate slots, and its machine report embeds the assembly manifest.
 
@@ -445,6 +456,8 @@ A typical game asset pipeline should:
 Semantic detail tiers are `silhouette`, `identity`, `expression`, `texture`,
 and `micro`. Each projected element also records whether its tier was authored,
 structurally required, role-derived, or conservatively migrated from legacy LOD.
+Generated gaskets also name their incident plate dependencies and use the most
+essential dependency tier, so they cannot survive as isolated seam dots.
 Treat `legacy-conservative` as a review target when refining a representative
 model; author `semanticDetailTier` on a family/module plate or through a model
 `plateOverride` when review justifies a different tier. Do not silently make the
