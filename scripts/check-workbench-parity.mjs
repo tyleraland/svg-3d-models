@@ -217,4 +217,9 @@ async function main() {
   console.log('regenerated workbench matches the current package sources, with zero console errors.');
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+try {
+  await main();
+} catch (error) {
+  console.error(error);
+  process.exit(1);
+}

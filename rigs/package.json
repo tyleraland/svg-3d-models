@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@paper-rig/attachments": "*",
+    "@paper-rig/motion": "*",
     "@paper-rig/schema": "*"
   }
 }

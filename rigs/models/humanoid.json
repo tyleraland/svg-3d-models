@@ -102,5 +102,42 @@
       "boneLengthPolicy": "preserve",
       "motionSemantics": "joint-local rotation; no child-bone translation"
     }
+  },
+  "motion": {
+    "$schema": "paper-rig/motion-plan-1",
+    "clips": {
+      "attack": {
+        "recipe": "wholeBodyStrike",
+        "duration": 720,
+        "layers": [
+          {
+            "id": "rootWeightShift",
+            "block": "weightShift",
+            "transform": { "poses": { "root": [0, 0.06, 0] } }
+          },
+          {
+            "id": "stanceTurn",
+            "block": "stance",
+            "transform": { "rotations": { "hips": [0, 0, 10] } }
+          },
+          {
+            "id": "torsoSwing",
+            "block": "bodyDrive",
+            "transform": { "rotations": { "spine": [0, 0, -18], "shoulders": [0, 0, -12] } }
+          },
+          {
+            "id": "leadArmSwing",
+            "block": "strike",
+            "transform": { "rotations": { "nearShoulder": [0, -25, -70], "nearHand": [0, 0, -15] } }
+          },
+          {
+            "id": "leadArmFlex",
+            "block": "flex",
+            "transform": { "rotations": { "nearElbow": [0, 10, 70] } }
+          }
+        ],
+        "contacts": ["nearFoot", "farFoot"]
+      }
+    }
   }
 }

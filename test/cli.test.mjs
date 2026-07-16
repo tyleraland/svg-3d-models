@@ -38,6 +38,17 @@ test('render includes declared reusable modules only when attachments are reques
   assert.match(assembled, /data-palette-role="equipment"/);
 });
 
+test('render resolves motion recipes only when requested and composes capability flags', () => {
+  const plain = run(['render', 'rabbit', '--clip', 'attack', '--time', '.22', '--stdout']);
+  const motion = run(['render', 'rabbit', '--motion', '--clip', 'attack', '--time', '.22', '--stdout']);
+  const combined = run(['render', 'rabbit', '--motion', '--attachments', '--clip', 'attack', '--time', '.22', '--stdout']);
+  assert.doesNotMatch(plain, /paper-rig\/motion-resolution\/1/);
+  assert.match(motion, /paper-rig\/motion-resolution\/1/);
+  assert.notEqual(motion, plain);
+  assert.match(combined, /paper-rig\/motion-resolution\/1/);
+  assert.match(combined, /id="travelPack__body"/);
+});
+
 test('sheet produces 32 finite tiles', () => {
   const dir = mkdtempSync(join(tmpdir(), 'rig-sheet-'));
   const out = run(['sheet', 'rabbit', '-o', join(dir, 'sheet.html')]);

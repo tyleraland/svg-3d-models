@@ -13,6 +13,7 @@ import { fileURLToPath } from 'node:url';
 import { basename, dirname, join } from 'node:path';
 import { cloneData } from '@paper-rig/schema';
 import { resolveAttachmentAssembly } from '@paper-rig/attachments';
+import { resolveMotionPlan } from '@paper-rig/motion';
 import { createProvenanceTracker } from './provenance.js';
 import {
   quadrupedVariant, tuneQuadrupedLimbs, addMuzzle, addPairedEars,
@@ -21,6 +22,7 @@ import {
 
 const RIGS_DIR = dirname(fileURLToPath(import.meta.url));
 const MODULES_DIR = join(RIGS_DIR, 'modules');
+const MOTION_RECIPES_DIR = join(RIGS_DIR, 'motion-recipes');
 const readJSON = (p) => JSON.parse(readFileSync(p, 'utf8'));
 
 export function loadFamily(name) {
@@ -33,6 +35,14 @@ export function loadModelSource(name) {
 export function loadModel(name) {
   const model = loadModelSource(name);
   return resolveModel(model, loadFamily(model.family));
+}
+export function loadMotionRecipe(name) {
+  const path = name.endsWith('.json') ? name : join(MOTION_RECIPES_DIR, `${name}.json`);
+  return readJSON(path);
+}
+export function loadMotionRecipesForModel(model) {
+  const recipeIds = [...new Set(Object.values(model.motion?.clips || {}).map((clip) => clip.recipe))];
+  return Object.fromEntries(recipeIds.map((id) => [id, loadMotionRecipe(id)]));
 }
 export function loadAttachmentModule(name) {
   const path = name.endsWith('.json') ? name : join(MODULES_DIR, `${name}.json`);
@@ -48,6 +58,35 @@ export function loadModelAssembly(name) {
     sourceModelId: basename(name, '.json'),
     modules: loadAttachmentModulesForModel(model),
   });
+}
+export function loadModelMotion(name) {
+  const model = loadModelSource(name);
+  return resolveModelMotion(model, loadFamily(model.family), {
+    sourceModelId: basename(name, '.json'),
+    recipes: loadMotionRecipesForModel(model),
+  });
+}
+export function loadModelConfigured(name, { motion = false, attachments = false } = {}) {
+  const model = loadModelSource(name);
+  const family = loadFamily(model.family);
+  const sourceModelId = basename(name, '.json');
+  const motionResolution = motion
+    ? resolveModelMotion(model, family, { sourceModelId, recipes: loadMotionRecipesForModel(model) })
+    : { rig: resolveModel(model, family), manifest: null };
+  const attachmentResolution = attachments
+    ? resolveAttachmentAssembly({
+      rig: motionResolution.rig,
+      sourceModelId,
+      slots: model.slots || [],
+      instances: model.attachments || [],
+      modules: loadAttachmentModulesForModel(model),
+    })
+    : null;
+  return {
+    rig: attachmentResolution?.rig || motionResolution.rig,
+    motionManifest: motionResolution.manifest,
+    attachmentManifest: attachmentResolution?.manifest || null,
+  };
 }
 export function loadModelWithProvenance(name) {
   const model = loadModelSource(name);
@@ -292,6 +331,15 @@ function resolveModelInternal(model, family, tracker) {
 
 export function resolveModel(model, family) {
   return resolveModelInternal(model, family, null);
+}
+
+export function resolveModelMotion(model, family, { sourceModelId, recipes = {} } = {}) {
+  return resolveMotionPlan({
+    rig: resolveModel(model, family),
+    sourceModelId: sourceModelId || model.variant?.id || family.id,
+    plan: model.motion || { clips: {} },
+    recipes,
+  });
 }
 
 export function resolveModelAssembly(model, family, { sourceModelId, modules = {} } = {}) {

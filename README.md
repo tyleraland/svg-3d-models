@@ -47,6 +47,12 @@ npx rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
 # Render model-declared reusable modules as part of the pose
 npx rig render rabbit --attachments --clip walk --time .25 --elevation 60 --heading 0
 
+# Resolve the model's reusable motion recipe candidate before rendering
+npx rig render rabbit --motion --clip attack --time .22 --elevation 60 --heading 0
+
+# Capabilities compose: inspect recipe motion with declared modules attached
+npx rig audit humanoid --motion --attachments -o humanoid-motion-audit.html
+
 # Render the canonical heading/elevation contact sheet
 npx rig sheet rabbit --attachments
 
@@ -88,12 +94,14 @@ The equivalent npm form is `npm run rig -- <command>`.
 ```text
 packages/schema/       paper-rig constants, primitives, and JSON Schemas
 packages/attachments/  pure typed-slot normalization and module assembly
+packages/motion/       pure phase/block recipe composition to ordinary clips
 packages/compiler/     pure posing, projection, scene, SVG, and package compiler
 packages/validator/    raw-source, structural, and directional validation
 packages/cli/          the `rig` command
 rigs/families/*.json   raw reusable family bases
 rigs/models/*.json     one thin declarative model per creature
 rigs/modules/*.json    reusable source-native attachment modules
+rigs/motion-recipes/   reusable versioned phase timing and block curves
 rigs/resolve.js        family + overrides -> one normalized rig
 rigs/family-kit.js     family presets and normalization operations
 apps/workbench/        browser template, UI source, and build reassembly
@@ -103,10 +111,11 @@ test/                  Node behavior and regression tests
 spec/                  detailed versioned package references
 ```
 
-Dependency direction is `schema <- compiler <- validator` and
-`schema <- attachments`; `rigs` depends on schema and attachments, while the
-CLI and workbench depend on the full pipeline. Packages are plain ESM npm
-workspaces with no transpile or bundle step.
+Dependency direction is `schema <- compiler <- validator`,
+`schema <- attachments`, and `schema <- motion`; `rigs` depends on the pure
+schema, attachment, and motion packages, while the CLI and workbench depend on
+the full pipeline. Packages are plain ESM npm workspaces with no transpile or
+bundle step.
 
 ## Authoring or changing a creature
 
@@ -169,6 +178,26 @@ assembled asset is wanted. The current proofs attach the same `travelPack` and
 `eyeGlint` to a bounded humanoid eye-plate slot. Use
 `rig audit <model> --attachments` for the full 240-view review; its frame overlay includes authored
 joint and plate slots, and its machine report embeds the assembly manifest.
+
+### Authoring composable motion
+
+Reusable motion timing lives in `rigs/motion-recipes/` as strict
+`paper-rig/motion-recipe-1` sources. A recipe declares normalized
+anticipation/action/contact/recovery/settle ranges and reusable block curves.
+A model's `paper-rig/motion-plan-1` declaration assigns joint-local transform
+amplitudes to named layers such as weight shift, rear, body drive, strike, and
+flex. The resolver adds the scaled layers at each phase peak and emits an
+ordinary clip; projection and consumers do not implement the recipe system.
+
+Recipe motion is opt-in for review while legacy rigs and SVG goldens remain
+byte-compatible. Use `loadModelMotion()` or CLI `--motion`; use
+`loadModelConfigured(name, { motion: true, attachments: true })` when composing
+capabilities. Rabbit proves an anticipation/rear/head-strike sequence with rear
+contacts, and humanoid proves a stance/torso/shoulder/elbow/hand swing. The
+audit samples their declared phase peaks and treats malformed phase coverage,
+misaligned events, invalid contacts, phased joint-limit violations, bone-length
+changes, and loop discontinuities as hard failures. `npm run audit-motion` runs
+the opt-in candidate audit over the complete catalog.
 
 ### Explaining resolved fields
 
@@ -297,7 +326,12 @@ from the HTML.
 All core operations are synchronous, pure, and DOM-free once a rig is resolved.
 
 ```js
-import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
+import {
+  loadModel,
+  loadModelAssembly,
+  loadModelConfigured,
+  loadModelMotion,
+} from '@paper-rig/rigs';
 import {
   compilePackage,
   projectScene,
@@ -324,6 +358,15 @@ const positions = solve(rig, { clip: 'walk', time: 0.25 });
 const { rig: equippedRig, manifest: attachmentManifest } = loadModelAssembly('rabbit');
 const equippedScene = projectScene(equippedRig, {
   clip: 'walk', time: 0.25, elevation: 60, heading: 0,
+});
+
+// Opt-in motion composition; the manifest traces recipe, phases, and layers.
+const { rig: motionRig, manifest: motionManifest } = loadModelMotion('rabbit');
+
+// Capabilities compose without mutating the ordinary resolved rig.
+const configured = loadModelConfigured('humanoid', {
+  motion: true,
+  attachments: true,
 });
 ```
 

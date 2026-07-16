@@ -3,7 +3,7 @@
 // non-finite coordinate (NaN/Infinity), which signals a broken projection.
 
 import { writeFileSync } from 'node:fs';
-import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
+import { loadModel, loadModelConfigured } from '@paper-rig/rigs';
 import { markup } from '@paper-rig/compiler';
 import { parseArgs } from '../lib/args.js';
 
@@ -13,9 +13,11 @@ const ELEVATIONS = [30, 45, 60, 75];
 export function runSheet(argv) {
   const { positionals, flags } = parseArgs(argv, { o: 'out' });
   const target = positionals[0];
-  if (!target) { console.error('usage: rig sheet <model> [--attachments] [--clip --time] [-o out.html]'); return 2; }
+  if (!target) { console.error('usage: rig sheet <model> [--motion] [--attachments] [--clip --time] [-o out.html]'); return 2; }
 
-  const rig = flags.attachments ? loadModelAssembly(target).rig : loadModel(target);
+  const rig = flags.motion || flags.attachments
+    ? loadModelConfigured(target, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments) }).rig
+    : loadModel(target);
   const clip = flags.clip ?? 'idle';
   const time = flags.time !== undefined ? Number(flags.time) : 0;
 
@@ -36,11 +38,12 @@ svg{width:100%;background:#3a352c;border-radius:6px}figcaption{font-size:11px;op
 .paperPlate{fill:#d7c39c;stroke:#39362e;stroke-width:1.2;vector-effect:non-scaling-stroke}.plateShade{fill:#b99d73}
 .paperPlate[data-palette-role="shadow"]{fill:#9d927d}.coreOccluderCell,.jointGasket{fill:#d7c39c;stroke:#d7c39c;stroke-width:1.5;vector-effect:non-scaling-stroke}
 .faceEye{fill:#fffdf7;stroke:#39362e;stroke-width:.8}.faceNose,.wingMembrane{fill:#b99d73;stroke:#39362e;stroke-width:.8;stroke-linejoin:round}</style>
-<h1>${rig.id} — contact sheet${flags.attachments ? ' with attachments' : ''} (clip ${clip}, t ${time})</h1>${rows}`;
+<h1>${rig.id} — contact sheet${flags.motion || flags.attachments ? ` with ${[flags.motion && 'motion recipes', flags.attachments && 'attachments'].filter(Boolean).join(' + ')}` : ''} (clip ${clip}, t ${time})</h1>${rows}`;
 
   const out = flags.out || `${rig.id}-contact-sheet.html`;
   writeFileSync(out, html);
-  console.log(`contact sheet for ${rig.id}${flags.attachments ? ' with attachments' : ''}: ${HEADINGS.length * ELEVATIONS.length} tiles -> ${out}`);
+  const capabilities = [flags.motion && 'motion recipes', flags.attachments && 'attachments'].filter(Boolean);
+  console.log(`contact sheet for ${rig.id}${capabilities.length ? ` with ${capabilities.join(' + ')}` : ''}: ${HEADINGS.length * ELEVATIONS.length} tiles -> ${out}`);
   if (bad) { console.error(`${bad} tile(s) had non-finite coordinates`); return 1; }
   return 0;
 }

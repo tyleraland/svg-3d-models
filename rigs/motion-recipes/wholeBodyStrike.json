@@ -1,0 +1,31 @@
+{
+  "$schema": "paper-rig/motion-recipe-1",
+  "schemaVersion": "1.0.0",
+  "id": "wholeBodyStrike",
+  "clip": {
+    "base": "idleA",
+    "duration": 680,
+    "easing": "cubic-bezier(.2,.8,.2,1)",
+    "loop": false
+  },
+  "phases": [
+    { "id": "anticipation", "from": 0, "peak": 0.22, "to": 0.34 },
+    { "id": "action", "from": 0.34, "peak": 0.5, "to": 0.62 },
+    { "id": "contact", "from": 0.62, "peak": 0.62, "to": 0.62 },
+    { "id": "recovery", "from": 0.62, "peak": 0.82, "to": 0.92 },
+    { "id": "settle", "from": 0.92, "peak": 1, "to": 1 }
+  ],
+  "blocks": [
+    { "id": "weightShift", "samples": { "anticipation": -0.7, "action": 0.25, "contact": 1, "recovery": -0.15, "settle": 0 } },
+    { "id": "stance", "samples": { "anticipation": 0.4, "action": 0.15, "contact": -0.1, "recovery": 0.1, "settle": 0 } },
+    { "id": "rear", "samples": { "anticipation": 1, "action": 0.45, "contact": 0, "recovery": -0.1, "settle": 0 } },
+    { "id": "bodyDrive", "samples": { "anticipation": -0.5, "action": 0.35, "contact": 1, "recovery": -0.2, "settle": 0 } },
+    { "id": "strike", "samples": { "anticipation": -0.35, "action": 0.45, "contact": 1, "recovery": -0.15, "settle": 0 } },
+    { "id": "flex", "samples": { "anticipation": 0.15, "action": 0.55, "contact": 1, "recovery": 0.3, "settle": 0 } },
+    { "id": "recoil", "samples": { "anticipation": 0, "action": 0, "contact": 0, "recovery": 1, "settle": 0 } }
+  ],
+  "events": [
+    { "phase": "contact", "name": "impact" },
+    { "phase": "recovery", "name": "release" }
+  ]
+}

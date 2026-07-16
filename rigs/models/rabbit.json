@@ -91,5 +91,40 @@
       "slotId": "headgearSlot",
       "scale": 0.45
     }
-  ]
+  ],
+  "motion": {
+    "$schema": "paper-rig/motion-plan-1",
+    "clips": {
+      "attack": {
+        "recipe": "wholeBodyStrike",
+        "layers": [
+          {
+            "id": "rootWeightShift",
+            "block": "weightShift",
+            "transform": { "poses": { "root": [0.06, 0, 0] } }
+          },
+          {
+            "id": "frontBodyRear",
+            "block": "rear",
+            "transform": { "rotations": { "chest": [0, -18, 0] } }
+          },
+          {
+            "id": "torsoDrive",
+            "block": "bodyDrive",
+            "transform": { "rotations": { "chest": [0, 16, 0] } }
+          },
+          {
+            "id": "headStrike",
+            "block": "strike",
+            "transform": { "rotations": { "neck": [0, 28, 0], "head": [0, -12, 0] } }
+          }
+        ],
+        "contactIntervals": [
+          { "ids": ["nearFrontPaw", "farFrontPaw", "nearRearPaw", "farRearPaw"], "from": 0, "to": 0 },
+          { "ids": ["nearRearPaw", "farRearPaw"], "from": 0, "to": 1 },
+          { "ids": ["nearFrontPaw", "farFrontPaw", "nearRearPaw", "farRearPaw"], "from": 1, "to": 1 }
+        ]
+      }
+    }
+  }
 }

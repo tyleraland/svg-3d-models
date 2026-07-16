@@ -3,6 +3,7 @@
 // sampling manifest plus projected SVGs and never becomes an authoring source.
 
 import { compilePackage, core, markup, projectScene } from '@paper-rig/compiler';
+import { phaseContractChecks } from '@paper-rig/motion';
 import { buildAuditOverlayEvidence, renderAuditOverlaySvg } from './audit-overlay.js';
 
 export const DEFAULT_AUDIT_HEADINGS = [0, 45, 90, 135, 180, 225, 270, 315];
@@ -45,18 +46,22 @@ export function defaultAuditPoses(rig, pkg = compilePackage(rig)) {
   const impactIndex = poses.findIndex((pose) => pose.clip === 'attack');
   if (impactIndex < 0) return poses;
   const attack = rig.clips.attack;
-  const impactTime = poses[impactIndex].t;
+  const phases = attack?.phases || [];
+  const phaseById = new Map(phases.map((phase) => [phase.id, phase]));
+  const impactTime = phaseById.get('contact')?.peak ?? poses[impactIndex].t;
+  poses[impactIndex].t = impactTime;
+  const anticipationTime = phaseById.get('anticipation')?.peak ?? impactTime * 0.45;
   const releaseTime = (attack?.events || []).find((event) => event.t > impactTime && /release|recover|settle/i.test(event.name))?.t
     ?? impactTime + (1 - impactTime) * 0.6;
   poses.splice(impactIndex, 0, {
     id: 'attackAnticipation',
     clip: 'attack',
-    t: impactTime * 0.45,
+    t: anticipationTime,
   });
   poses.splice(impactIndex + 2, 0, {
     id: 'attackRecovery',
     clip: 'attack',
-    t: Math.min(1, releaseTime),
+    t: phaseById.get('recovery')?.peak ?? Math.min(1, releaseTime),
   });
   return poses;
 }
@@ -107,7 +112,13 @@ export function motionDiagnostics(rig) {
   const badEventOrder = [];
   const badContacts = [];
   const badTransforms = [];
+  const badPhases = [];
+  const badPhaseEvents = [];
+  const badJointLimits = [];
   const openLoops = [];
+  const limitedJoints = new Map(rig.joints
+    .filter((joint) => Array.isArray(joint.limits) && vector3IsFinite(joint.bendAxis))
+    .map((joint) => [joint.id, joint]));
 
   for (const [clipId, clip] of clipEntries) {
     const frames = clip.frames || [];
@@ -121,10 +132,11 @@ export function motionDiagnostics(rig) {
     ))) badEventOrder.push(clipId);
 
     const intervals = clip.contactIntervals || [];
-    if ((clip.contacts || []).some((id) => !jointIds.has(id)) || intervals.some((interval) => (
+    if ((clip.contacts || []).some((id) => !jointIds.has(id)) || intervals.some((interval, index) => (
       !inUnitInterval(interval.from)
       || !inUnitInterval(interval.to)
       || interval.from > interval.to
+      || (index > 0 && interval.from < intervals[index - 1].from)
       || !Array.isArray(interval.ids)
       || interval.ids.length === 0
       || interval.ids.some((id) => !jointIds.has(id))
@@ -132,6 +144,24 @@ export function motionDiagnostics(rig) {
 
     if (frames.some((frame) => [...Object.entries(frame.poses || {}), ...Object.entries(frame.rotations || {})]
       .some(([id, vector]) => !jointIds.has(id) || !vector3IsFinite(vector)))) badTransforms.push(clipId);
+
+    if (clip.phases) {
+      const phaseChecks = phaseContractChecks(clip.phases);
+      if (phaseChecks.some((item) => !item.pass)) badPhases.push(clipId);
+      const phaseById = new Map(clip.phases.map((phase) => [phase.id, phase]));
+      const phasedEvents = clip.events || [];
+      if (phasedEvents.some((event) => {
+        const phase = phaseById.get(event.phase);
+        return !phase || event.t < phase.from - 1e-9 || event.t > phase.to + 1e-9;
+      }) || !phasedEvents.some((event) => event.phase === 'contact')) badPhaseEvents.push(clipId);
+
+      if (frames.some((frame) => Object.entries(frame.rotations || {}).some(([id, rotation]) => {
+        const joint = limitedJoints.get(id);
+        if (!joint || !vector3IsFinite(rotation)) return false;
+        const bend = rotation.reduce((sum, value, axis) => sum + value * joint.bendAxis[axis], 0);
+        return bend < joint.limits[0] - 1e-9 || bend > joint.limits[1] + 1e-9;
+      }))) badJointLimits.push(clipId);
+    }
 
     if (clip.loop && frames.length && !frameEquivalent(frames[0], frames.at(-1))) openLoops.push(clipId);
   }
@@ -154,8 +184,11 @@ export function motionDiagnostics(rig) {
     diagnostic('audit.clip-base-graph', baseConflicts.length === 0, baseConflicts.length ? `invalid or cyclic clip bases: ${baseConflicts.join(', ')}` : 'clip bases resolve and form an acyclic graph', 'error', baseConflicts),
     diagnostic('audit.keyframe-order', badFrameOrder.length === 0, badFrameOrder.length ? `clips require finite, strictly increasing normalized keyframe times: ${badFrameOrder.join(', ')}` : 'all clips have finite, strictly increasing normalized keyframe times', 'error', badFrameOrder),
     diagnostic('audit.event-order', badEventOrder.length === 0, badEventOrder.length ? `clips contain invalid or decreasing event times: ${badEventOrder.join(', ')}` : 'all clip events are normalized and ordered', 'error', badEventOrder),
+    diagnostic('audit.phase-contract', badPhases.length === 0, badPhases.length ? `clips contain invalid, unordered, or discontinuous action phases: ${badPhases.join(', ')}` : 'all explicit action phases are normalized, ordered, and contiguous', 'error', badPhases),
+    diagnostic('audit.phase-event-alignment', badPhaseEvents.length === 0, badPhaseEvents.length ? `clips contain events outside their declared phase or lack a contact event: ${badPhaseEvents.join(', ')}` : 'all phased clip events resolve inside their declared phases, including contact', 'error', badPhaseEvents),
     diagnostic('audit.contact-interval-contract', badContacts.length === 0, badContacts.length ? `clips contain invalid contact intervals or joint references: ${badContacts.join(', ')}` : 'all clip contacts resolve and use valid normalized intervals', 'error', badContacts),
     diagnostic('audit.finite-motion-transforms', badTransforms.length === 0, badTransforms.length ? `clips contain invalid joint transforms: ${badTransforms.join(', ')}` : 'all authored motion transforms are finite vectors targeting existing joints', 'error', badTransforms),
+    diagnostic('audit.phased-joint-limits', badJointLimits.length === 0, badJointLimits.length ? `phased clips exceed declared bend-axis joint limits: ${badJointLimits.join(', ')}` : 'all phased clip keyframes respect declared bend-axis joint limits', 'error', badJointLimits),
     diagnostic('audit.loop-closure', openLoops.length === 0, openLoops.length ? `looping clips do not return to an equivalent first frame: ${openLoops.join(', ')}` : 'all looping clips close without a transform discontinuity', 'error', openLoops),
     diagnostic('audit.attack-core-participation', !attack || attackCoreTargets.length > 0, !attack ? 'no attack clip to assess' : attackCoreTargets.length ? `attack includes core motion through ${attackCoreTargets.join(', ')}` : 'attack has no root/body controls; review whether whole-body anticipation and recovery would improve it', 'warning', attackTargets),
     diagnostic('audit.legacy-rigid-endpoint-controls', legacyEndpointTargets.length === 0, legacyEndpointTargets.length ? `legacy endpoint steering remains on rigid chains: ${legacyEndpointTargets.join(', ')}` : 'rigid chains are authored without endpoint translation controls', 'warning', legacyEndpointTargets),

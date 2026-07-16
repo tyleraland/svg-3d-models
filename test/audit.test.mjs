@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
+import { loadModel, loadModelAssembly, loadModelMotion } from '@paper-rig/rigs';
 import { auditCatalog, auditRig, motionDiagnostics, renderAuditHtml } from '@paper-rig/validator/audit';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -139,6 +139,31 @@ test('motion quality guidance is advisory and does not fail a model', () => {
   assert.equal(report.status, 'passed');
   assert.equal(report.issues.includes(participation), false);
   assert.equal(report.warnings.includes(participation), true);
+});
+
+test('explicit phases drive audit samples and hard phase, event, and limit checks', () => {
+  const rig = loadModelMotion('rabbit').rig;
+  const report = auditRig(rig);
+  assert.equal(report.status, 'passed');
+  assert.deepEqual(report.sampling.poses.filter((pose) => pose.clip === 'attack'), [
+    { id: 'attackAnticipation', clip: 'attack', t: 0.22 },
+    { id: 'attackImpact', clip: 'attack', t: 0.62 },
+    { id: 'attackRecovery', clip: 'attack', t: 0.82 },
+  ]);
+  for (const code of ['audit.phase-contract', 'audit.phase-event-alignment', 'audit.phased-joint-limits']) {
+    assert.ok(report.diagnostics.some((item) => item.code === code && item.pass), code);
+  }
+
+  const invalid = structuredClone(rig);
+  invalid.clips.attack.phases[1].from = 0.33;
+  invalid.clips.attack.events[0].t = 0.5;
+  invalid.clips.attack.frames[1].rotations.nearFrontKnee = [0, 160, 0];
+  const failures = motionDiagnostics(invalid).filter((item) => !item.pass && item.severity === 'error');
+  assert.deepEqual(failures.map((item) => item.code), [
+    'audit.phase-contract',
+    'audit.phase-event-alignment',
+    'audit.phased-joint-limits',
+  ]);
 });
 
 test('catalog audit is deterministic, compact, and warning-tolerant', () => {

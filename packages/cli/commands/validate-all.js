@@ -7,9 +7,10 @@ import { dirname, join } from 'node:path';
 import {
   loadAttachmentModulesForModel,
   loadFamily,
+  loadModelConfigured,
   loadModelSource,
+  loadMotionRecipesForModel,
   resolveModel,
-  resolveModelAssembly,
 } from '@paper-rig/rigs';
 import { validate } from '@paper-rig/validator';
 import { validateSourcePair } from '@paper-rig/validator/source';
@@ -29,8 +30,9 @@ export function runValidateAll() {
       const preliminary = validateSourcePair(model, family);
       const rig = preliminary.status === 'passed' ? resolveModel(model, family) : null;
       const attachmentModules = preliminary.status === 'passed' ? loadAttachmentModulesForModel(model) : {};
+      const motionRecipes = preliminary.status === 'passed' ? loadMotionRecipesForModel(model) : {};
       const sourceReport = preliminary.status === 'passed'
-        ? validateSourcePair(model, family, { resolvedRig: rig, attachmentModules })
+        ? validateSourcePair(model, family, { resolvedRig: rig, attachmentModules, motionRecipes })
         : preliminary;
       if (sourceReport.status !== 'passed') {
         failed++;
@@ -38,8 +40,8 @@ export function runValidateAll() {
         for (const issue of sourceReport.issues) console.log(`    - ${issue.id}: ${issue.detail}`);
         continue;
       }
-      const validationRig = model.attachments?.length
-        ? resolveModelAssembly(model, family, { sourceModelId: name, modules: attachmentModules }).rig
+      const validationRig = model.motion || model.attachments?.length
+        ? loadModelConfigured(name, { motion: Boolean(model.motion), attachments: Boolean(model.attachments?.length) }).rig
         : rig;
       const report = validate(validationRig);
       const issues = report.issues || [];

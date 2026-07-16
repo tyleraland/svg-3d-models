@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:motion-resolution-1",
+  "title": "paper-rig resolved motion manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "schemaVersion", "sourceModelId", "resolvedModelId", "clips"],
+  "properties": {
+    "schema": { "const": "paper-rig/motion-resolution/1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "sourceModelId": { "$ref": "#/$defs/id" },
+    "resolvedModelId": { "$ref": "#/$defs/id" },
+    "clips": { "type": "array", "items": { "$ref": "#/$defs/clip" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "layer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "block"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "block": { "$ref": "#/$defs/id" }
+      }
+    },
+    "clip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "recipeId", "phaseIds", "layers"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "recipeId": { "$ref": "#/$defs/id" },
+        "phaseIds": { "type": "array", "minItems": 4, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+        "layers": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/layer" } }
+      }
+    }
+  }
+}

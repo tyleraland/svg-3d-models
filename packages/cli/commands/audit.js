@@ -4,7 +4,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
+import { loadModel, loadModelConfigured } from '@paper-rig/rigs';
 import { auditRig, renderAuditHtml } from '@paper-rig/validator/audit';
 import { createAuditManifest, diffAuditManifests } from '@paper-rig/validator/audit-manifest';
 import { parseArgs } from '../lib/args.js';
@@ -13,14 +13,17 @@ export function runAudit(argv) {
   const { positionals, flags } = parseArgs(argv, { o: 'out' });
   const target = positionals[0];
   if (!target || positionals.length > 1 || (flags['fail-on-change'] && !flags.against)) {
-    console.error('usage: rig audit <model> [--attachments] [--json] [-o report.html] [--no-overlays] [--against manifest.json] [--fail-on-change]');
+    console.error('usage: rig audit <model> [--motion] [--attachments] [--json] [-o report.html] [--no-overlays] [--against manifest.json] [--fail-on-change]');
     return 2;
   }
 
-  const assembly = flags.attachments ? loadModelAssembly(target) : null;
-  const rig = assembly?.rig || loadModel(target);
+  const configured = flags.motion || flags.attachments
+    ? loadModelConfigured(target, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments) })
+    : null;
+  const rig = configured?.rig || loadModel(target);
   const report = auditRig(rig);
-  if (assembly) report.attachmentAssembly = assembly.manifest;
+  if (configured?.attachmentManifest) report.attachmentAssembly = configured.attachmentManifest;
+  if (configured?.motionManifest) report.motionResolution = configured.motionManifest;
   if (flags.against) {
     const approvedPath = resolve(process.cwd(), flags.against);
     const approved = JSON.parse(readFileSync(approvedPath, 'utf8'));

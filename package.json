@@ -17,11 +17,12 @@
     "validate-sources": "node packages/cli/bin/rig.js validate-sources",
     "validate-all": "node packages/cli/bin/rig.js validate-all",
     "audit-all": "node packages/cli/bin/rig.js audit-all",
+    "audit-motion": "node packages/cli/bin/rig.js audit-all --motion",
     "build-workbench": "node packages/cli/bin/rig.js build-workbench",
     "capture-fixtures": "node scripts/capture-fixtures.mjs",
     "test": "node --test",
     "test:workbench": "node scripts/check-workbench-parity.mjs",
-    "check": "npm run validate-sources && npm test && npm run validate-all && npm run audit-all"
+    "check": "npm run validate-sources && npm test && npm run validate-all && npm run audit-all && npm run audit-motion"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1"

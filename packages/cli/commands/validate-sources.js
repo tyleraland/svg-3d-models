@@ -8,15 +8,19 @@ import {
   loadAttachmentModule,
   loadAttachmentModulesForModel,
   loadFamily,
+  loadMotionRecipe,
+  loadMotionRecipesForModel,
   loadModelSource,
   resolveModel,
 } from '@paper-rig/rigs';
 import { validateSourcePair } from '@paper-rig/validator/source';
 import { validateAttachmentModuleSource } from '@paper-rig/validator/attachments';
+import { validateMotionRecipeSource } from '@paper-rig/validator/motion';
 import { parseArgs } from '../lib/args.js';
 
 const MODELS_DIR = join(dirname(fileURLToPath(import.meta.url)), '../../../rigs/models');
 const MODULES_DIR = join(dirname(fileURLToPath(import.meta.url)), '../../../rigs/modules');
+const MOTION_RECIPES_DIR = join(dirname(fileURLToPath(import.meta.url)), '../../../rigs/motion-recipes');
 
 export function runValidateSources(argv) {
   const { positionals, flags } = parseArgs(argv);
@@ -27,6 +31,7 @@ export function runValidateSources(argv) {
 
   const results = [];
   const moduleResults = [];
+  const motionRecipeResults = [];
   let moduleFailed = 0;
   if (!positionals.length) {
     for (const file of readdirSync(MODULES_DIR).filter((item) => item.endsWith('.json')).sort()) {
@@ -40,6 +45,17 @@ export function runValidateSources(argv) {
         moduleResults.push({ module: name, status: 'failed', checks: [], issues: [{ id: 'attachment-module-load', pass: false, detail: error.message }] });
       }
     }
+    for (const file of readdirSync(MOTION_RECIPES_DIR).filter((item) => item.endsWith('.json')).sort()) {
+      const name = file.replace(/\.json$/, '');
+      try {
+        const report = validateMotionRecipeSource(loadMotionRecipe(name));
+        motionRecipeResults.push({ recipe: name, ...report });
+        if (report.status !== 'passed') moduleFailed++;
+      } catch (error) {
+        moduleFailed++;
+        motionRecipeResults.push({ recipe: name, status: 'failed', checks: [], issues: [{ id: 'motion-recipe-load', pass: false, detail: error.message }] });
+      }
+    }
   }
   let modelFailed = 0;
   for (const target of targets) {
@@ -51,6 +67,7 @@ export function runValidateSources(argv) {
         ? validateSourcePair(model, family, {
           resolvedRig: resolveModel(model, family),
           attachmentModules: loadAttachmentModulesForModel(model),
+          motionRecipes: loadMotionRecipesForModel(model),
         })
         : preliminary;
       const name = target.endsWith('.json') ? target : target.replace(/\.json$/, '');
@@ -64,7 +81,7 @@ export function runValidateSources(argv) {
   const failed = moduleFailed + modelFailed;
 
   if (flags.json) {
-    console.log(JSON.stringify({ status: failed ? 'failed' : 'passed', modules: moduleResults, results }, null, 2));
+    console.log(JSON.stringify({ status: failed ? 'failed' : 'passed', modules: moduleResults, motionRecipes: motionRecipeResults, results }, null, 2));
   } else {
     for (const result of moduleResults) {
       const mark = result.status === 'passed' ? '✓' : '✗';
@@ -72,6 +89,12 @@ export function runValidateSources(argv) {
       for (const issue of result.issues) console.log(`    - ${issue.id}: ${issue.detail}`);
     }
     if (moduleResults.length) console.log(`\n${moduleResults.filter((result) => result.status === 'passed').length}/${moduleResults.length} attachment modules passed\n`);
+    for (const result of motionRecipeResults) {
+      const mark = result.status === 'passed' ? '✓' : '✗';
+      console.log(`${mark} recipe:${result.recipe.padEnd(11)} ${result.status.padEnd(7)} ${result.checks.length} source checks, ${result.issues.length} issue${result.issues.length === 1 ? '' : 's'}`);
+      for (const issue of result.issues) console.log(`    - ${issue.id}: ${issue.detail}`);
+    }
+    if (motionRecipeResults.length) console.log(`\n${motionRecipeResults.filter((result) => result.status === 'passed').length}/${motionRecipeResults.length} motion recipes passed\n`);
     for (const result of results) {
       const mark = result.status === 'passed' ? '✓' : '✗';
       console.log(`${mark} ${result.model.padEnd(18)} ${result.status.padEnd(7)} ${result.checks.length} source checks, ${result.issues.length} issue${result.issues.length === 1 ? '' : 's'}`);

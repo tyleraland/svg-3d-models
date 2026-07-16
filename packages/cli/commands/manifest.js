@@ -4,7 +4,7 @@
 
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { loadModel, loadModelAssembly } from '@paper-rig/rigs';
+import { loadModel, loadModelConfigured } from '@paper-rig/rigs';
 import { createAuditManifest } from '@paper-rig/validator/audit-manifest';
 import { parseArgs } from '../lib/args.js';
 
@@ -12,11 +12,13 @@ export function runManifest(argv) {
   const { positionals, flags } = parseArgs(argv, { o: 'out' });
   const target = positionals[0];
   if (!target || positionals.length > 1) {
-    console.error('usage: rig manifest <model> [--attachments] [-o candidate.json]');
+    console.error('usage: rig manifest <model> [--motion] [--attachments] [-o candidate.json]');
     return 2;
   }
 
-  const rig = flags.attachments ? loadModelAssembly(target).rig : loadModel(target);
+  const rig = flags.motion || flags.attachments
+    ? loadModelConfigured(target, { motion: Boolean(flags.motion), attachments: Boolean(flags.attachments) }).rig
+    : loadModel(target);
   const manifest = createAuditManifest(rig);
   const json = `${JSON.stringify(manifest, null, 2)}\n`;
   if (flags.out) {

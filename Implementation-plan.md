@@ -48,7 +48,7 @@ runtime asset policy.
 | M2: automated audit and review artifact | Complete | JSON diagnostics, approved-manifest diffs, and inspectable multi-view HTML |
 | M2.5: authoring round-trip | Complete | Provenance, semantic diffs, source patches, and adjacent-pose/multi-camera review |
 | M3A: modular attachment foundation | Complete | Typed joint/surface slots, bounded reusable modules, assembly validation, and canonical review |
-| M4: composable motion system | Planned | Motion phases, recipes, richer body participation, and contact-aware checks |
+| M4: composable motion system | Complete | Versioned phases/recipes, representative whole-body attacks, and hard motion checks |
 | M3B: appearance and paint | Planned | Plate-local paint and reusable semantic detail libraries |
 | M5: LOD and consumer handoff | Planned | Semantic detail tiers, capability negotiation, and stable export fixtures |
 | M6: representative migration and release | Planned | Fully exercise the contract on contrasting rigs, then publish/version it |
@@ -299,13 +299,9 @@ Exit criteria met. A workbench assembly toggle is deliberately deferred: the
 assembled contact sheet and 240-view audit provide deterministic review now,
 and the UI should only grow another mode when direct module authoring needs it.
 
-Next action: begin M4 with a small versioned motion-recipe/phase contract and
-one representative whole-body attack slice before attempting broad clip
-migration.
-
 ## M4 — composable motion system
 
-Status: planned.
+Status: complete.
 
 Move from whole-clip handcrafted rotations toward semantic controls and motion
 recipes while retaining authored override layers. Examples include stance,
@@ -316,6 +312,27 @@ Clips declare meaningful phases such as anticipation, action, contact, recovery,
 and settle. Recipes coordinate pelvis/torso/head participation and planted
 contacts; per-model tuning remains declarative.
 
+Delivered:
+
+- pure `@paper-rig/motion` composition plus strict
+  `paper-rig/motion-recipe-1`, `paper-rig/motion-plan-1`, and
+  `paper-rig/motion-resolution/1` contracts;
+- contiguous semantic phases and reusable normalized block curves that combine
+  model-local amplitudes into ordinary deterministic clip keyframes;
+- an opt-in rabbit whole-body strike with weight shift, rear/body drive, head
+  strike, and explicit rear-foot contact intent;
+- an opt-in humanoid swing coordinating root/stance, hips, spine, shoulders,
+  lead shoulder, elbow, and hand;
+- `loadModelMotion()` and composable `loadModelConfigured()`, plus CLI
+  `--motion` for render/sheet/audit/audit-all/manifest and a catalog
+  `npm run audit-motion` gate;
+- compiled phase/recipe traceability and phase-aware canonical audit sampling;
+- hard diagnostics for phase coverage/order, event-phase alignment, contact
+  order/references, phased joint limits, finite transforms, bone-length
+  preservation, rigid spans, and loop closure; and
+- a corrected bone-length invariant that permits root weight shift when actual
+  parent-child distances remain fixed.
+
 Exit criteria:
 
 - A representative quadruped attack contains anticipation, whole-body movement,
@@ -324,9 +341,16 @@ Exit criteria:
 - New clips can be composed from reusable motion blocks and tuned per model.
 - Contact, limits, loop closure, and phase/event checks run in the audit gate.
 
+Exit criteria met. Ordinary `loadModel()` output and existing SVG goldens remain
+byte-identical; recipe candidates are explicit until broader clip migration is
+reviewed model by model.
+
+Next action: begin M3B with a minimal versioned plate-local paint primitive and
+one animated face/marking proof before broad appearance migration.
+
 ## M3B — appearance and paint
 
-Status: planned after the representative M4 motion slice.
+Status: planned; M4 prerequisite complete.
 
 Add plate-local paint primitives that remain coherent through animation:
 regions, paths, spots, stripes, masks, and palette roles. Paint data should use

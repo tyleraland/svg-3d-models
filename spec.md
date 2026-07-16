@@ -302,6 +302,43 @@ Whole-body participation is an authoring quality target, while contacts, limits,
 loop closure, event order, and discontinuities are deterministic validation
 targets.
 
+The implemented additive capability uses `paper-rig/motion-recipe-1` version
+`1.0.0` and an embedded `paper-rig/motion-plan-1`. A recipe owns contiguous
+normalized phase ranges, one peak per phase, reusable named blocks, one scalar
+sample per block/phase, default clip timing, and phase-addressed events. A model
+motion plan selects a recipe and supplies named layers. Each layer binds one
+recipe block to finite joint-local translation and/or rotation amplitudes.
+
+Resolution MUST multiply each layer amplitude by its block sample and add all
+layer contributions at the corresponding phase peak. It MUST then emit an
+ordinary `paper-rig/1` clip with keyframes, contacts, events, phase metadata,
+`boneLengthPolicy: "preserve"`, and a traceable
+`paper-rig/motion-resolution/1` reference. Layer order MUST NOT change the
+numeric result. Recipe, block, joint, base-clip, event-phase, and contact
+references MUST resolve before composition. Inputs MUST remain immutable.
+
+Explicit action phases MUST appear exactly as `anticipation`, `action`,
+`contact`, `recovery`, and optional `settle`; their ranges MUST cover `[0,1]`
+without gaps and each peak MUST lie inside its range. Events on phased clips
+MUST name a phase and lie inside that phase, and every phased action MUST expose
+a contact event. Contact intervals MUST be normalized and ordered. For phased
+clips, bend-axis rotations at keyframes MUST remain inside declared joint
+limits. Linear interpolation, loop closure, finite transforms, rigid spans, and
+declared bone-length preservation remain hard audit invariants.
+
+Root translation MAY participate in weight shift because it cannot change a
+parent-child distance. A preserve-policy check MUST measure actual bone lengths;
+it MUST NOT reject root translation merely because a translation vector is
+nonzero. Translation of a rigid child endpoint remains forbidden unless a later
+explicit non-rigid capability says otherwise.
+
+`loadModel()` and ordinary rendering deliberately omit model motion plans for
+compatibility. `loadModelMotion()` / `resolveModelMotion()` and CLI `--motion`
+opt into composition. `loadModelConfigured()` composes motion and attachments
+when both are requested. Compiled clips preserve normalized phase and recipe
+traceability so consumers can select semantic poses, but consumers are never
+required to evaluate recipes.
+
 ## 10. Semantic levels of detail
 
 Detail importance MUST describe meaning, not only path complexity. The target

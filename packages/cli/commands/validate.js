@@ -5,9 +5,10 @@
 import {
   loadAttachmentModulesForModel,
   loadFamily,
+  loadModelConfigured,
+  loadMotionRecipesForModel,
   loadModelSource,
   resolveModel,
-  resolveModelAssembly,
 } from '@paper-rig/rigs';
 import { validate } from '@paper-rig/validator';
 import { validateSourcePair } from '@paper-rig/validator/source';
@@ -23,8 +24,9 @@ export function runValidate(argv) {
   const preliminary = validateSourcePair(model, family);
   const rig = preliminary.status === 'passed' ? resolveModel(model, family) : null;
   const attachmentModules = preliminary.status === 'passed' ? loadAttachmentModulesForModel(model) : {};
+  const motionRecipes = preliminary.status === 'passed' ? loadMotionRecipesForModel(model) : {};
   const sourceReport = preliminary.status === 'passed'
-    ? validateSourcePair(model, family, { resolvedRig: rig, attachmentModules })
+    ? validateSourcePair(model, family, { resolvedRig: rig, attachmentModules, motionRecipes })
     : preliminary;
   if (sourceReport.status !== 'passed') {
     if (flags.json) console.log(JSON.stringify({ model: target, source: sourceReport }, null, 2));
@@ -35,8 +37,8 @@ export function runValidate(argv) {
     return 1;
   }
 
-  const validationRig = model.attachments?.length
-    ? resolveModelAssembly(model, family, { modules: attachmentModules }).rig
+  const validationRig = model.motion || model.attachments?.length
+    ? loadModelConfigured(target, { motion: Boolean(model.motion), attachments: Boolean(model.attachments?.length) }).rig
     : rig;
   const report = validate(validationRig);
 
