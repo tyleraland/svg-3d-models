@@ -61,6 +61,26 @@ test('render includes semantic plate-local paint only when requested', () => {
   assert.match(combined, /paper-rig\/motion-resolution\/1/);
 });
 
+test('handoff emits the schema-valid golden consumer scene selected by a profile', () => {
+  const actual = run([
+    'handoff',
+    'rabbit',
+    '--profile',
+    'fixtures/consumer/topDownExpression.profile.json',
+    '--paint',
+    '--clip',
+    'attack',
+    '--time',
+    '.62',
+    '--elevation',
+    '60',
+    '--heading',
+    '180',
+  ]);
+  const golden = readFileSync(join(ROOT, 'fixtures/consumer/rabbitAttackExpression.handoff.json'), 'utf8');
+  assert.equal(actual, golden);
+});
+
 test('sheet produces 32 finite tiles', () => {
   const dir = mkdtempSync(join(tmpdir(), 'rig-sheet-'));
   const out = run(['sheet', 'rabbit', '-o', join(dir, 'sheet.html')]);

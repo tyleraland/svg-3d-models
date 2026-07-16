@@ -13,6 +13,7 @@ packages/attachments/  pure typed-slot normalization + reusable module assembly
 packages/motion/       pure phase/block recipe composition to ordinary clips
 packages/appearance/   pure plate-local semantic paint resolution
 packages/compiler/     pure pipeline: posing, projection, SVG, package compilation
+packages/handoff/      pure semantic-detail selection + capability negotiation
 packages/validator/    structural + directional checks (validate/isValid)
 packages/cli/          the `rig` command
 rigs/families/*.json   raw (pre-normalization) family base per creature
@@ -39,6 +40,7 @@ rig render rabbit --clip walk --time .25 --elevation 60 --heading 0
 rig render rabbit --attachments               # opt-in declared module assembly
 rig render rabbit --motion --clip attack --time .22
 rig render rabbit --paint                      # opt-in semantic appearance
+rig handoff rabbit --profile consumer.json     # negotiated tier-filtered scene
 rig audit humanoid --motion --attachments --paint # composed candidate review
 rig sheet rabbit --attachments                 # 8x4 assembled contact sheet
 rig manifest rabbit --attachments -o rabbit-candidate.json
@@ -93,6 +95,16 @@ rigid two-axis plate through an explicit right-handed surface frame and bounded
 normalized region. The 1.0 grammar is closed absolute `M/L/Q/C/Z` only; do not
 bypass containment with arbitrary SVG/CSS or world-space coordinates. Extend
 the versioned contract before adding strokes, holes, or true masks.
+
+Consumer profiles use `paper-rig/consumer-profile-1`; apply them to
+`projected-scene/1.1` with `createConsumerHandoff()` or `rig handoff`. Selection
+is cumulative across silhouette/identity/expression/texture/micro and may only
+remove elements, never renumber or reorder survivors. Preserve
+`semanticDetailSource`: `legacy-conservative` is explicit migration evidence,
+not authored truth. When review justifies a different classification, declare
+`semanticDetailTier` on a family/module plate or a model `plateOverride`.
+Capability policy `require` fails when absent; `omit` records a degraded
+handoff. Concrete palettes and game styling stay downstream.
 
 Reusable attachments live in `rigs/modules/`. Model `attachments` entries are
 validated declarations but ordinary `loadModel()` resolution deliberately omits

@@ -59,6 +59,9 @@ npx rig audit rabbit --paint -o rabbit-paint-audit.html
 # Motion, modules, and paint compose in one candidate
 npx rig render humanoid --motion --attachments --paint --clip attack --time .62 --elevation 60 --heading 180
 
+# Emit a negotiated, tier-filtered projected scene for a downstream consumer
+npx rig handoff rabbit --profile fixtures/consumer/topDownExpression.profile.json --paint --clip attack --time .62 --elevation 60 --heading 180 -o rabbit-handoff.json
+
 # Render the canonical heading/elevation contact sheet
 npx rig sheet rabbit --attachments
 
@@ -103,6 +106,7 @@ packages/attachments/  pure typed-slot normalization and module assembly
 packages/motion/       pure phase/block recipe composition to ordinary clips
 packages/appearance/   pure plate-local semantic paint resolution
 packages/compiler/     pure posing, projection, scene, SVG, and package compiler
+packages/handoff/      pure semantic-detail selection and capability negotiation
 packages/validator/    raw-source, structural, and directional validation
 packages/cli/          the `rig` command
 rigs/families/*.json   raw reusable family bases
@@ -120,10 +124,10 @@ spec/                  detailed versioned package references
 ```
 
 Dependency direction is `schema <- compiler <- validator`,
-`schema <- attachments`, `schema <- motion`, and `schema <- appearance`; `rigs`
-depends on those pure authoring packages, while the CLI and workbench depend on
-the full pipeline. Packages are plain ESM npm workspaces with no transpile or
-bundle step.
+`schema <- attachments`, `schema <- motion`, `schema <- appearance`, and
+`schema <- handoff`; `rigs` depends on the pure authoring packages, while the
+CLI and workbench depend on the full pipeline. Packages are plain ESM npm
+workspaces with no transpile or bundle step.
 
 ## Authoring or changing a creature
 
@@ -372,6 +376,7 @@ import {
   solve,
   solvePose,
 } from '@paper-rig/compiler';
+import { createConsumerHandoff } from '@paper-rig/handoff';
 
 const rig = loadModel('rabbit');
 const pose = solvePose(rig, { clip: 'walk', time: 0.25 });
@@ -401,13 +406,25 @@ const configured = loadModelConfigured('humanoid', {
   motion: true,
   attachments: true,
 });
+
+// Consumer selection removes detail but never renumbers or reorders survivors.
+const handoff = createConsumerHandoff(scene, {
+  $schema: 'paper-rig/consumer-profile-1',
+  schemaVersion: '1.0.0',
+  id: 'gameSprites',
+  selection: { maximumDetailTier: 'expression', paletteId: 'gameDefault' },
+  capabilities: [
+    { id: 'semanticDetailTiers', policy: 'require' },
+    { id: 'semanticPaint', policy: 'omit' },
+  ],
+});
 ```
 
-`projectScene()` is the intended long-term consumer boundary: an ordered,
-structured, traceable 2D vector scene. `renderSvg()` remains the convenient
-preview and compatibility adapter. See [spec.md](./spec.md) for ownership and
-semantic guarantees and [spec/paper-rig-1.md](./spec/paper-rig-1.md) for the
-current resolved package fields.
+`projectScene()` produces the ordered, structured, traceable 2D vector scene.
+`createConsumerHandoff()` applies a versioned consumer profile to that stable
+boundary. `renderSvg()` remains the convenient preview and compatibility
+adapter. See [spec.md](./spec.md) for ownership and semantic guarantees and
+[spec/paper-rig-1.md](./spec/paper-rig-1.md) for current resolved package fields.
 
 ## Downstream consumer workflow
 
@@ -415,12 +432,23 @@ A typical game asset pipeline should:
 
 1. select a model and whether its declared module assembly is required, then
    select clip/phase/time, heading, elevation, and semantic detail tier;
-2. request `projected-scene/1` from this repository's compiler and retain the
-   attachment manifest when assembly was requested;
-3. preserve source IDs while applying the game's palette and art treatment;
-4. simplify/quantize paths for the target screen size;
-5. deduplicate, pack, and version the resulting game assets;
-6. add game-specific hitboxes, effects, balance, and runtime metadata there.
+2. request `projected-scene/1.1` from this repository's compiler and retain the
+   attachment, motion, or appearance manifests when requested;
+3. apply a versioned consumer profile to negotiate capabilities and select a
+   cumulative semantic detail tier;
+4. preserve source IDs while applying the profile's consumer-owned palette and
+   art treatment;
+5. simplify/quantize paths for the target screen size;
+6. deduplicate, pack, and version the resulting game assets;
+7. add game-specific hitboxes, effects, balance, and runtime metadata there.
+
+Semantic detail tiers are `silhouette`, `identity`, `expression`, `texture`,
+and `micro`. Each projected element also records whether its tier was authored,
+structurally required, role-derived, or conservatively migrated from legacy LOD.
+Treat `legacy-conservative` as a review target when refining a representative
+model; author `semanticDetailTier` on a family/module plate or through a model
+`plateOverride` when review justifies a different tier. Do not silently make the
+mapping more aggressive in consumer code.
 
 Do not infer bones, attachment points, occlusion, or semantic importance from a
 flattened SVG when the projected scene provides those fields directly. If the

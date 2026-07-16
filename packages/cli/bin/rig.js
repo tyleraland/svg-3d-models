@@ -7,6 +7,7 @@
 //   rig audit <model> [--motion] [--attachments] [--json] [-o report.html]
 //   rig audit-all [--motion] [--attachments] [--json] [-o report.json]
 //   rig manifest <model> [--motion] [--attachments] [-o candidate.json]
+//   rig handoff <model> --profile consumer.json [--motion] [--attachments] [--paint] [-o scene.json]
 //   rig explain <model> <entity[.field]> [--json] [--history]
 //   rig diff <baseline-model> <candidate-model> [--json]
 //   rig validate-sources [model]
@@ -19,6 +20,7 @@ import { runSheet } from '../commands/sheet.js';
 import { runAudit } from '../commands/audit.js';
 import { runAuditAll } from '../commands/audit-all.js';
 import { runManifest } from '../commands/manifest.js';
+import { runHandoff } from '../commands/handoff.js';
 import { runExplain } from '../commands/explain.js';
 import { runDiff } from '../commands/diff.js';
 import { runValidateSources } from '../commands/validate-sources.js';
@@ -39,6 +41,8 @@ const USAGE = `paper-rig CLI
                                                    audit every model; warnings do not fail CI
   rig manifest <model> [--motion] [--attachments] [--paint] [-o candidate.json]
                                                    emit canonical projected review evidence
+  rig handoff <model> --profile <consumer.json> [flags] [-o scene.json]
+                                                   emit a negotiated semantic-detail handoff
   rig explain <model> <entity[.field]> [--json] [--history]
                                                    explain resolved field provenance
   rig diff <baseline-model> <candidate-model> [--json]
@@ -58,6 +62,7 @@ function main() {
     case 'audit': return runAudit(rest);
     case 'audit-all': return runAuditAll(rest);
     case 'manifest': return runManifest(rest);
+    case 'handoff': return runHandoff(rest);
     case 'explain': return runExplain(rest);
     case 'diff': return runDiff(rest);
     case 'validate-sources': return runValidateSources(rest);

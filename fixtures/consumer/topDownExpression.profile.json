@@ -1,0 +1,23 @@
+{
+  "$schema": "paper-rig/consumer-profile-1",
+  "schemaVersion": "1.0.0",
+  "id": "topDownExpression",
+  "selection": {
+    "maximumDetailTier": "expression",
+    "paletteId": "gameDefault"
+  },
+  "capabilities": [
+    {
+      "id": "semanticDetailTiers",
+      "policy": "require"
+    },
+    {
+      "id": "stableElementOrder",
+      "policy": "require"
+    },
+    {
+      "id": "semanticPaint",
+      "policy": "require"
+    }
+  ]
+}

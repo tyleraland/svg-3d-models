@@ -61,6 +61,7 @@ family + model overrides
         -> resolved paper-rig/1 rig
         -> posed world transforms
         -> projected-scene/1
+        -> consumer-handoff/1
         -> SVG preview/adapter
         -> consumer art and asset pipeline
 ```
@@ -372,10 +373,29 @@ encode one game's pixel budget as the universal definition of LOD. Omitting a
 tier MUST preserve stable IDs and ordering among surviving elements.
 
 Current `paper-rig/1` packages use the legacy vocabulary `silhouette`, `major`,
-`detail`, and `micro`. `projected-scene/1.0` preserves those values rather than
-pretending there is a lossless mapping. Consumers MUST treat the `lodTier`
-string as the producer-declared ordering until a later compatible capability
-adds the richer semantic vocabulary and model data has been migrated.
+`detail`, and `micro`. `projected-scene/1.0` preserves those values in `lodTier`.
+`projected-scene/1.1` additionally emits `semanticDetailTier` and
+`semanticDetailSource`; it does not reinterpret or remove the legacy field.
+
+The initial semantic migration is deliberately conservative:
+
+- authored semantic detail and paint-primitive detail are authoritative;
+- generated opaque-core cells and joint gaskets are `silhouette` because
+  removing them can create holes or disconnected anatomy;
+- shadow, eye/nose, and accessory roles map unambiguously to `texture`,
+  `expression`, and `identity` respectively;
+- legacy `silhouette` and `major` geometry remains at `silhouette`, legacy
+  `detail` becomes `identity`, and legacy `micro` remains `micro`.
+
+Every element MUST identify the assignment source as `authored`,
+`authored-paint`, `structural`, `semantic-role`, or `legacy-conservative`.
+Conservative fallback is migration evidence, not a claim that a human authored
+the classification. Future representative model work SHOULD replace a fallback
+with authored meaning when a different tier is genuinely intended. A family or
+module plate MAY declare `semanticDetailTier`; a model MAY set it through a
+targeted `plateOverride`. Validators MUST reject values outside the five
+versioned tiers and MUST NOT silently infer a more aggressive omission merely
+to produce smaller output.
 
 ## 11. `paper-rig/projected-scene/1`
 
@@ -413,7 +433,48 @@ one source entity.
 MUST serialize `projected-scene/1` rather than independently calculate pose,
 projection, or order.
 
-## 12. Validation and review
+## 12. `paper-rig/consumer-handoff/1`
+
+`consumer-handoff/1` is an additive selection envelope around one
+`projected-scene/1.1` scene. A `paper-rig/consumer-profile-1` declares a stable
+profile ID, a maximum semantic detail tier, an opaque consumer-owned palette
+ID, and requested capabilities. Camera, clip, phase/time, and optional rig
+capabilities are selected before projection; the handoff records the resulting
+pose and camera exactly.
+
+Tier selection is cumulative in this order: `silhouette`, `identity`,
+`expression`, `texture`, `micro`. Selection MUST only remove elements. It MUST
+retain every compositing group and its declared order, and MUST preserve the
+stable IDs and relative order of surviving elements. The handoff MUST record
+the ordered complete assignment list plus included and omitted ID lists, so a
+consumer and regression test can reproduce the decision without parsing SVG.
+
+The implemented scene capabilities are:
+
+- `structuredVectorGeometry`, `stableElementOrder`,
+  `semanticDetailTiers`, `semanticPaletteRoles`, and `jointTransforms` for every
+  1.1 scene;
+- `surfaceFrames` when the scene contains transformed surface frames; and
+- `semanticPaint` when the scene contains projected semantic paint.
+
+Capability availability describes the projected source scene, before detail
+filtering. A profile capability with policy `require` MUST fail with stable code
+`UNSUPPORTED_CONSUMER_CAPABILITY` when absent. Policy `omit` MUST continue,
+record the capability as `omitted`, and mark negotiation `degraded`. Unknown or
+absent capabilities MUST NOT be silently treated as available.
+
+`paletteId` records the palette selected by the consumer; the producer MUST NOT
+interpret it as a color table. `paletteRoles` lists the producer roles still
+needed after detail selection. Applying concrete colors and style remains the
+consumer's responsibility.
+
+The versioned profile and handoff JSON Schemas live in `packages/schema/`.
+`createConsumerHandoff()` is pure and MUST NOT mutate its scene or profile.
+`rig handoff` is the file/CLI adapter. Golden handoffs are consumer-boundary
+regression evidence and require the same deliberate review as projected audit
+manifests.
+
+## 13. Validation and review
 
 Validation has four responsibilities:
 
@@ -480,7 +541,7 @@ times, including attack anticipation, contact/impact, and recovery even before a
 model adopts explicit phase metadata. A single attractive default view is
 insufficient evidence of model correctness.
 
-## 13. Resolution provenance and explanations
+## 14. Resolution provenance and explanations
 
 Resolution provenance is optional authoring evidence and MUST remain separate
 from `paper-rig/1`. Enabling it MUST NOT alter the resolved rig, compiled
@@ -564,7 +625,7 @@ time when playback stops.
 The versioned JSON Schemas in `packages/schema/schemas/` are the machine
 contract for provenance, explanations, semantic diffs, and model patches.
 
-## 14. Author and agent rules
+## 15. Author and agent rules
 
 Authors and automated agents working in this repository MUST:
 
@@ -583,7 +644,7 @@ Agents SHOULD prefer small semantic edits that expose intent in data. They
 SHOULD NOT compensate for incorrect 3D anatomy by adding camera-specific SVG
 offsets unless the field is explicitly a projection policy.
 
-## 15. Compatibility and versioning
+## 16. Compatibility and versioning
 
 `schemaVersion` follows semantic versioning at the schema level:
 

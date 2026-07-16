@@ -24,3 +24,5 @@ export function validate(rig) {
 export function isValid(rig) {
   return validate(rig).status === 'passed';
 }
+
+export { validateConsumerProfile, validateConsumerHandoff } from './handoff.js';

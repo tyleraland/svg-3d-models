@@ -539,6 +539,7 @@
       "properties": {
         "role": { "type": "string", "minLength": 1 },
         "bodyRegion": { "type": "string", "minLength": 1 },
+        "semanticDetailTier": { "$ref": "#/$defs/semanticDetailTier" },
         "size": { "$ref": "#/$defs/size" },
         "zBias": { "$ref": "#/$defs/finiteNumber" },
         "occlusionMode": { "$ref": "#/$defs/occlusionMode" },
@@ -559,6 +560,7 @@
         "bitangent": { "$ref": "#/$defs/vector3" }
       }
     },
+    "semanticDetailTier": { "enum": ["silhouette", "identity", "expression", "texture", "micro"] },
     "anchorPatch": {
       "type": "object",
       "additionalProperties": false,

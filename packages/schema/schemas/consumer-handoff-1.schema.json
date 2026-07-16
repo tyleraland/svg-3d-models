@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:consumer-handoff-1",
+  "title": "paper-rig deterministic consumer handoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "schemaVersion", "modelId", "consumer", "selection",
+    "negotiation", "semanticDetail", "paletteRoles", "scene"
+  ],
+  "properties": {
+    "schema": { "const": "paper-rig/consumer-handoff/1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "modelId": { "$ref": "#/$defs/id" },
+    "consumer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "profileSchemaVersion"],
+      "properties": {
+        "profileId": { "$ref": "#/$defs/id" },
+        "profileSchemaVersion": { "const": "1.0.0" }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["view", "pose", "camera", "maximumDetailTier", "paletteId"],
+      "properties": {
+        "view": { "enum": ["projected", "top", "front", "side"] },
+        "pose": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["clipId", "timeNormalized"],
+          "properties": {
+            "clipId": { "$ref": "#/$defs/id" },
+            "timeNormalized": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "camera": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "elevationDegrees", "headingDegrees"],
+          "properties": {
+            "type": { "const": "orthographic" },
+            "elevationDegrees": { "oneOf": [{ "type": "number" }, { "type": "null" }] },
+            "headingDegrees": { "oneOf": [{ "type": "number" }, { "type": "null" }] }
+          }
+        },
+        "maximumDetailTier": { "$ref": "#/$defs/detailTier" },
+        "paletteId": { "$ref": "#/$defs/id" }
+      }
+    },
+    "negotiation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "availableCapabilities", "capabilities"],
+      "properties": {
+        "status": { "enum": ["accepted", "degraded"] },
+        "availableCapabilities": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "policy", "status"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "policy": { "enum": ["require", "omit"] },
+              "status": { "enum": ["available", "omitted"] }
+            }
+          }
+        }
+      }
+    },
+    "semanticDetail": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["orderedTiers", "assignments", "includedElementIds", "omittedElementIds"],
+      "properties": {
+        "orderedTiers": {
+          "const": ["silhouette", "identity", "expression", "texture", "micro"]
+        },
+        "assignments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["elementId", "tier", "source"],
+            "properties": {
+              "elementId": { "$ref": "#/$defs/id" },
+              "tier": { "$ref": "#/$defs/detailTier" },
+              "source": { "enum": ["authored", "authored-paint", "structural", "semantic-role", "legacy-conservative"] }
+            }
+          }
+        },
+        "includedElementIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "omittedElementIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true }
+      }
+    },
+    "paletteRoles": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "scene": { "$ref": "urn:paper-rig:schema:projected-scene-1" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "detailTier": { "enum": ["silhouette", "identity", "expression", "texture", "micro"] }
+  }
+}

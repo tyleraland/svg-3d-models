@@ -21,6 +21,8 @@
     "./schemas/motion-recipe-1.schema.json": "./schemas/motion-recipe-1.schema.json",
     "./schemas/motion-resolution-1.schema.json": "./schemas/motion-resolution-1.schema.json",
     "./schemas/paint-primitive-1.schema.json": "./schemas/paint-primitive-1.schema.json",
-    "./schemas/appearance-resolution-1.schema.json": "./schemas/appearance-resolution-1.schema.json"
+    "./schemas/appearance-resolution-1.schema.json": "./schemas/appearance-resolution-1.schema.json",
+    "./schemas/consumer-profile-1.schema.json": "./schemas/consumer-profile-1.schema.json",
+    "./schemas/consumer-handoff-1.schema.json": "./schemas/consumer-handoff-1.schema.json"
   }
 }

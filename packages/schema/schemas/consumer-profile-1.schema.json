@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:paper-rig:schema:consumer-profile-1",
+  "title": "paper-rig consumer handoff profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "selection", "capabilities"],
+  "properties": {
+    "$schema": { "const": "paper-rig/consumer-profile-1" },
+    "schemaVersion": { "const": "1.0.0" },
+    "id": { "$ref": "#/$defs/id" },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maximumDetailTier", "paletteId"],
+      "properties": {
+        "maximumDetailTier": { "$ref": "#/$defs/detailTier" },
+        "paletteId": { "$ref": "#/$defs/id" }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "policy"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "policy": { "enum": ["require", "omit"] }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+    "detailTier": { "enum": ["silhouette", "identity", "expression", "texture", "micro"] }
+  }
+}

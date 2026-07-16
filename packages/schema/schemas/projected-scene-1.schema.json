@@ -187,6 +187,8 @@
         "side": { "enum": ["left", "right", "center"] },
         "paletteRole": { "type": "string", "minLength": 1 },
         "lodTier": { "type": "string", "minLength": 1 },
+        "semanticDetailTier": { "enum": ["silhouette", "identity", "expression", "texture", "micro"] },
+        "semanticDetailSource": { "enum": ["authored", "authored-paint", "structural", "semantic-role", "legacy-conservative"] },
         "cameraDepth": { "$ref": "#/$defs/number" },
         "depthBias": { "$ref": "#/$defs/number" },
         "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" },

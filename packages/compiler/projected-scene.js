@@ -11,7 +11,7 @@ export function buildProjectedScene(rig, time, clipId, view = 'projected') {
 
   return {
     schema: 'paper-rig/projected-scene/1',
-    schemaVersion: '1.0.0',
+    schemaVersion: '1.1.0',
     modelId: rig.id,
     view,
     pose: { clipId, timeNormalized: time },

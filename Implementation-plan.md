@@ -50,7 +50,7 @@ runtime asset policy.
 | M3A: modular attachment foundation | Complete | Typed joint/surface slots, bounded reusable modules, assembly validation, and canonical review |
 | M4: composable motion system | Complete | Versioned phases/recipes, representative whole-body attacks, and hard motion checks |
 | M3B: appearance and paint | Complete | Versioned plate-local paint, bounded placement, semantic palette roles, and projected traceability |
-| M5: LOD and consumer handoff | Planned | Semantic detail tiers, capability negotiation, and stable export fixtures |
+| M5: LOD and consumer handoff | Complete | Semantic detail tiers, capability negotiation, and stable export fixtures |
 | M6: representative migration and release | Planned | Fully exercise the contract on contrasting rigs, then publish/version it |
 
 ## M0 — extract and harden the current pipeline
@@ -384,13 +384,11 @@ and SVG goldens remain unchanged because authored appearance is opt-in. The 1.0
 primitive intentionally admits only closed solid paths; strokes, holes, and
 true masking require a later versioned contract rather than ambiguous CSS.
 
-Next action: begin M5 by making semantic detail-tier selection an explicit
-`projected-scene/1` consumer capability, with deterministic degradation and
-golden handoff fixtures.
+Next action completed by M5 below.
 
 ## M5 — LOD and consumer handoff
 
-Status: planned.
+Status: complete.
 
 Add semantic importance tiers such as silhouette, identity, expression, texture,
 and micro-detail. Do not define LOD only as geometric point count: consumers need
@@ -402,6 +400,23 @@ consumer capabilities. A consumer selects cameras, poses, phases, palettes, and
 detail tiers, then applies its own stylization, vector reduction, deduplication,
 packing, and game metadata.
 
+Delivered:
+
+- `projected-scene/1.1` semantic detail tier and provenance fields while
+  retaining the legacy `lodTier` vocabulary for compatibility;
+- conservative structural/role/legacy assignment rules that never hide an
+  inference behind authored truth;
+- schema-backed family/module plate declarations and model plate overrides for
+  explicit authored semantic tiers;
+- pure `@paper-rig/handoff` cumulative filtering that preserves compositing
+  groups, stable IDs, and relative element order;
+- strict `paper-rig/consumer-profile-1` and
+  `paper-rig/consumer-handoff-1` contracts with palette selection and explicit
+  `require`/`omit` capability policies;
+- `rig handoff` with composable motion, attachment, and paint inputs; and
+- full silhouette and expression golden handoffs for the same painted rabbit
+  attack scene, including negotiation and vector geometry.
+
 Exit criteria:
 
 - The same scene can be deterministically emitted at multiple semantic detail
@@ -409,6 +424,14 @@ Exit criteria:
 - Unsupported optional capabilities fail clearly or degrade according to a
   declared rule.
 - Golden consumer fixtures demonstrate stable IDs and ordering across releases.
+
+Exit criteria met. Unsupported required capabilities fail with stable code
+`UNSUPPORTED_CONSUMER_CAPABILITY`; declared omission produces an explicit
+degraded negotiation record. Ordinary SVG/package output remains unchanged.
+
+Next action: begin M6 with the representative quadruped, head-striker,
+humanoid, and winged/non-bilateral set, replacing conservative LOD migration
+evidence with authored tiers where visual review justifies it.
 
 ## M6 — representative migration and release
 

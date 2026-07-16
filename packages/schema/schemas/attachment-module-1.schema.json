@@ -80,6 +80,7 @@
         "size": { "$ref": "#/$defs/size" },
         "role": { "type": "string", "minLength": 1 },
         "bodyRegion": { "const": "accessory" },
+        "semanticDetailTier": { "$ref": "#/$defs/semanticDetailTier" },
         "attachment": { "const": "rigid" },
         "material": { "$ref": "#/$defs/id" },
         "paletteRole": { "$ref": "#/$defs/slotType" },
@@ -91,6 +92,7 @@
         "surfaceNormal": { "$ref": "#/$defs/vector3" },
         "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" }
       }
-    }
+    },
+    "semanticDetailTier": { "enum": ["silhouette", "identity", "expression", "texture", "micro"] }
   }
 }

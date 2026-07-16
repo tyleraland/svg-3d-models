@@ -63,6 +63,8 @@ test('every model emits a schema-valid, traceable projected scene', () => {
     const elements = scene.compositingGroups.flatMap((group) => group.elements);
     assert.equal(new Set(elements.map((element) => element.id)).size, elements.length, `${model}: projected IDs must be unique`);
     assert.ok(elements.every((element) => element.vector.attributes.id === element.id));
+    assert.ok(elements.every((element) => ['silhouette', 'identity', 'expression', 'texture', 'micro'].includes(element.semanticDetailTier)));
+    assert.ok(elements.every((element) => element.semanticDetailSource));
   }
 });
 
