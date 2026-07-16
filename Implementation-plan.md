@@ -51,7 +51,7 @@ runtime asset policy.
 | M4: composable motion system | Complete | Versioned phases/recipes, representative whole-body attacks, and hard motion checks |
 | M3B: appearance and paint | Complete | Versioned plate-local paint, bounded placement, semantic palette roles, and projected traceability |
 | M5: LOD and consumer handoff | Complete | Semantic detail tiers, capability negotiation, and stable export fixtures |
-| M6: representative migration and release | Planned | Fully exercise the contract on contrasting rigs, then publish/version it |
+| M6: representative migration and release | In progress | Three of four contrasting representatives complete; harpy is next |
 
 ## M0 — extract and harden the current pipeline
 
@@ -311,8 +311,11 @@ Seam hardening follow-up delivered:
   most essential semantic tier, preventing orphan seam dots after LOD
   filtering; and
 - one `simpleHorn` module attaches to both wolf and leopard `head.horn` slots,
-  alongside upgraded hat and pack seams. The surface eye glint stays on 1.0
-  because it is not an overlap mount.
+  alongside upgraded hat and pack seams;
+- one `simpleSword` mounts through a humanoid-authored `hand.grip` slot and the
+  compatible legacy-normalized angel grip, with a fixed overlap seam and rigid
+  handle-to-tip length through attack motion. The surface eye glint stays on
+  1.0 because it is not an overlap mount.
 
 ## M4 — composable motion system
 
@@ -471,8 +474,8 @@ Representative matrix:
 | --- | --- | --- |
 | shared-family quadruped | rabbit | first slice complete |
 | long-necked/head striker | elephant | second slice complete |
-| humanoid/weapon-bearing | humanoid | next |
-| winged/non-bilateral compositor | harpy | queued |
+| humanoid/weapon-bearing | humanoid | third slice complete |
+| winged/non-bilateral compositor | harpy | next |
 
 The rabbit first slice authors every base plate's semantic tier, including its
 addon-generated ears, instead of relying on conservative inference. A combined
@@ -493,8 +496,17 @@ a core plate to a non-core plate, its projected occluder dependency now falls
 back to the real incident plate instead of naming an occluder cell that does not
 exist in that view.
 
-Next action: migrate and review humanoid tiers and weapon-bearing evidence, then
-apply the same process to harpy before family-wide rollout.
+The humanoid third slice authors every base plate's tier, keeping the articulated
+body at silhouette detail, moving eyes and nose to expression, and leaving the
+shadow at texture. A reusable rigid sword mounts through a typed near-hand grip,
+tracks the composed root/hips/spine/shoulder/arm strike, and is identity geometry
+that disappears cleanly at silhouette detail with its seam. A motion + attachment
++ paint expression-tier handoff locks the configured consumer boundary, while an
+assembly regression proves the same module also mounts to an angel's compatible
+legacy-normalized grip.
+
+Next action: migrate and review harpy tiers and winged/non-bilateral compositing
+evidence before family-wide rollout.
 
 Exit criteria:
 

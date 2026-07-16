@@ -1,0 +1,3522 @@
+{
+  "schema": "paper-rig/consumer-handoff/1",
+  "schemaVersion": "1.0.0",
+  "modelId": "humanoidBase",
+  "consumer": {
+    "profileId": "topDownExpression",
+    "profileSchemaVersion": "1.0.0"
+  },
+  "selection": {
+    "view": "projected",
+    "pose": {
+      "clipId": "attack",
+      "timeNormalized": 0.62
+    },
+    "camera": {
+      "type": "orthographic",
+      "elevationDegrees": 60,
+      "headingDegrees": 180
+    },
+    "maximumDetailTier": "expression",
+    "paletteId": "gameDefault"
+  },
+  "negotiation": {
+    "status": "accepted",
+    "availableCapabilities": [
+      "structuredVectorGeometry",
+      "stableElementOrder",
+      "semanticDetailTiers",
+      "semanticPaletteRoles",
+      "jointTransforms",
+      "surfaceFrames",
+      "semanticPaint"
+    ],
+    "capabilities": [
+      {
+        "id": "semanticDetailTiers",
+        "policy": "require",
+        "status": "available"
+      },
+      {
+        "id": "stableElementOrder",
+        "policy": "require",
+        "status": "available"
+      },
+      {
+        "id": "semanticPaint",
+        "policy": "require",
+        "status": "available"
+      }
+    ]
+  },
+  "semanticDetail": {
+    "orderedTiers": [
+      "silhouette",
+      "identity",
+      "expression",
+      "texture",
+      "micro"
+    ],
+    "assignments": [
+      {
+        "elementId": "castShadow",
+        "tier": "texture",
+        "source": "authored"
+      },
+      {
+        "elementId": "farFootGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "farShinPlate",
+          "farFootPlate"
+        ]
+      },
+      {
+        "elementId": "farKneeGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "farThighPlate",
+          "farShinPlate"
+        ]
+      },
+      {
+        "elementId": "farHipGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "farThighPlate"
+        ]
+      },
+      {
+        "elementId": "farHandGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "farForearmPlate",
+          "farHandPlate"
+        ]
+      },
+      {
+        "elementId": "farElbowGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "farBicepPlate",
+          "farForearmPlate"
+        ]
+      },
+      {
+        "elementId": "farShoulderGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "farBicepPlate",
+          "farShoulderCapPlate"
+        ]
+      },
+      {
+        "elementId": "farFootPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "farShinPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "farThighPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "farForearmPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "farHandPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "farBicepPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "farShoulderCapPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "pelvisSpinePlateOccluderCell",
+        "tier": "silhouette",
+        "source": "structural"
+      },
+      {
+        "elementId": "chestPlateOccluderCell",
+        "tier": "silhouette",
+        "source": "structural"
+      },
+      {
+        "elementId": "shoulderPlateOccluderCell",
+        "tier": "silhouette",
+        "source": "structural"
+      },
+      {
+        "elementId": "neckPlateOccluderCell",
+        "tier": "silhouette",
+        "source": "structural"
+      },
+      {
+        "elementId": "headConnectorPlateOccluderCell",
+        "tier": "silhouette",
+        "source": "structural"
+      },
+      {
+        "elementId": "headPlateOccluderCell",
+        "tier": "silhouette",
+        "source": "structural"
+      },
+      {
+        "elementId": "hipsGasketOccluderCell",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "pelvisSpinePlateOccluderCell"
+        ]
+      },
+      {
+        "elementId": "spineGasketOccluderCell",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "pelvisSpinePlateOccluderCell",
+          "chestPlateOccluderCell"
+        ]
+      },
+      {
+        "elementId": "shouldersGasketOccluderCell",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "chestPlateOccluderCell",
+          "shoulderPlateOccluderCell",
+          "neckPlateOccluderCell"
+        ]
+      },
+      {
+        "elementId": "neckGasketOccluderCell",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "neckPlateOccluderCell",
+          "headConnectorPlateOccluderCell"
+        ]
+      },
+      {
+        "elementId": "headGasketOccluderCell",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "headConnectorPlateOccluderCell",
+          "headPlateOccluderCell"
+        ]
+      },
+      {
+        "elementId": "hipsGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "pelvisSpinePlate"
+        ]
+      },
+      {
+        "elementId": "spineGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "pelvisSpinePlate",
+          "chestPlate"
+        ]
+      },
+      {
+        "elementId": "shouldersGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "chestPlate",
+          "shoulderPlate",
+          "neckPlate"
+        ]
+      },
+      {
+        "elementId": "neckGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "neckPlate",
+          "headConnectorPlate"
+        ]
+      },
+      {
+        "elementId": "headGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "headConnectorPlate",
+          "headPlate"
+        ]
+      },
+      {
+        "elementId": "pelvisSpinePlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "chestPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "shoulderPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "neckPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "headConnectorPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "headPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearFootGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearShinPlate",
+          "nearFootPlate"
+        ]
+      },
+      {
+        "elementId": "nearKneeGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearThighPlate",
+          "nearShinPlate"
+        ]
+      },
+      {
+        "elementId": "nearHipGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearThighPlate"
+        ]
+      },
+      {
+        "elementId": "nearHandGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearForearmPlate",
+          "nearHandPlate"
+        ]
+      },
+      {
+        "elementId": "nearElbowGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearBicepPlate",
+          "nearForearmPlate"
+        ]
+      },
+      {
+        "elementId": "nearShoulderGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearBicepPlate",
+          "nearShoulderCapPlate"
+        ]
+      },
+      {
+        "elementId": "nearFootPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearShinPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearThighPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearForearmPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearHandPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearBicepPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearShoulderCapPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "simpleSword__rootGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "simpleSword__handle"
+        ]
+      },
+      {
+        "elementId": "simpleSword__guardGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "simpleSword__handle",
+          "simpleSword__guardPlate",
+          "simpleSword__blade"
+        ]
+      },
+      {
+        "elementId": "travelPack__rootGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "travelPack__body"
+        ]
+      },
+      {
+        "elementId": "travelPack__topGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "travelPack__body"
+        ]
+      },
+      {
+        "elementId": "leftEyeGlint__rootGasket",
+        "tier": "micro",
+        "source": "structural",
+        "dependencyElementIds": [
+          "leftEyeGlint__disc"
+        ]
+      },
+      {
+        "elementId": "simpleHat__rootGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "simpleHat__body"
+        ]
+      },
+      {
+        "elementId": "simpleHat__crownGasket",
+        "tier": "identity",
+        "source": "structural",
+        "dependencyElementIds": [
+          "simpleHat__body"
+        ]
+      },
+      {
+        "elementId": "simpleSword__handle",
+        "tier": "identity",
+        "source": "authored"
+      },
+      {
+        "elementId": "simpleSword__guardPlate",
+        "tier": "identity",
+        "source": "authored"
+      },
+      {
+        "elementId": "simpleSword__blade",
+        "tier": "identity",
+        "source": "authored"
+      },
+      {
+        "elementId": "travelPack__body",
+        "tier": "identity",
+        "source": "authored"
+      },
+      {
+        "elementId": "nosePlate",
+        "tier": "expression",
+        "source": "authored"
+      },
+      {
+        "elementId": "rightEyePlate",
+        "tier": "expression",
+        "source": "authored"
+      },
+      {
+        "elementId": "leftEyePlate",
+        "tier": "expression",
+        "source": "authored"
+      },
+      {
+        "elementId": "leftEyeGlint__disc",
+        "tier": "micro",
+        "source": "authored"
+      },
+      {
+        "elementId": "simpleHat__body",
+        "tier": "identity",
+        "source": "authored"
+      },
+      {
+        "elementId": "faceBlaze",
+        "tier": "identity",
+        "source": "authored-paint"
+      }
+    ],
+    "includedElementIds": [
+      "farFootGasket",
+      "farKneeGasket",
+      "farHipGasket",
+      "farHandGasket",
+      "farElbowGasket",
+      "farShoulderGasket",
+      "farFootPlate",
+      "farShinPlate",
+      "farThighPlate",
+      "farForearmPlate",
+      "farHandPlate",
+      "farBicepPlate",
+      "farShoulderCapPlate",
+      "pelvisSpinePlateOccluderCell",
+      "chestPlateOccluderCell",
+      "shoulderPlateOccluderCell",
+      "neckPlateOccluderCell",
+      "headConnectorPlateOccluderCell",
+      "headPlateOccluderCell",
+      "hipsGasketOccluderCell",
+      "spineGasketOccluderCell",
+      "shouldersGasketOccluderCell",
+      "neckGasketOccluderCell",
+      "headGasketOccluderCell",
+      "hipsGasket",
+      "spineGasket",
+      "shouldersGasket",
+      "neckGasket",
+      "headGasket",
+      "pelvisSpinePlate",
+      "chestPlate",
+      "shoulderPlate",
+      "neckPlate",
+      "headConnectorPlate",
+      "headPlate",
+      "nearFootGasket",
+      "nearKneeGasket",
+      "nearHipGasket",
+      "nearHandGasket",
+      "nearElbowGasket",
+      "nearShoulderGasket",
+      "nearFootPlate",
+      "nearShinPlate",
+      "nearThighPlate",
+      "nearForearmPlate",
+      "nearHandPlate",
+      "nearBicepPlate",
+      "nearShoulderCapPlate",
+      "simpleSword__rootGasket",
+      "simpleSword__guardGasket",
+      "travelPack__rootGasket",
+      "travelPack__topGasket",
+      "simpleHat__rootGasket",
+      "simpleHat__crownGasket",
+      "simpleSword__handle",
+      "simpleSword__guardPlate",
+      "simpleSword__blade",
+      "travelPack__body",
+      "nosePlate",
+      "rightEyePlate",
+      "leftEyePlate",
+      "simpleHat__body",
+      "faceBlaze"
+    ],
+    "omittedElementIds": [
+      "castShadow",
+      "leftEyeGlint__rootGasket",
+      "leftEyeGlint__disc"
+    ]
+  },
+  "paletteRoles": [
+    "base",
+    "secondary",
+    "hoof",
+    "equipment.leather",
+    "equipment.metal",
+    "equipment",
+    "eye",
+    "body.marking"
+  ],
+  "scene": {
+    "schema": "paper-rig/projected-scene/1",
+    "schemaVersion": "1.1.0",
+    "modelId": "humanoidBase",
+    "view": "projected",
+    "pose": {
+      "clipId": "attack",
+      "timeNormalized": 0.62
+    },
+    "camera": {
+      "type": "orthographic",
+      "elevationDegrees": 60,
+      "headingDegrees": 180,
+      "basis": {
+        "right": [
+          -1.2246467991473532e-16,
+          -1,
+          0
+        ],
+        "up": [
+          -0.8660254037844386,
+          1.0605752387249068e-16,
+          0.5000000000000001
+        ],
+        "forward": [
+          -0.5000000000000001,
+          6.123233995736767e-17,
+          -0.8660254037844386
+        ]
+      }
+    },
+    "coordinateSpaces": {
+      "world": {
+        "units": "meters",
+        "forwardAxis": "+x",
+        "leftAxis": "+y",
+        "upAxis": "+z"
+      },
+      "screen": {
+        "units": "token",
+        "origin": "top-left",
+        "xAxis": "+right",
+        "yAxis": "+down",
+        "viewBox": [
+          0,
+          0,
+          100,
+          100
+        ],
+        "groundY": 78
+      }
+    },
+    "joints": [
+      {
+        "id": "root",
+        "parentId": null,
+        "worldPositionMeters": [
+          0,
+          0.06,
+          0
+        ],
+        "localToWorldRotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          48.14,
+          78
+        ],
+        "cameraDepth": 3.67394039744206e-18
+      },
+      {
+        "id": "hips",
+        "parentId": "root",
+        "worldPositionMeters": [
+          0,
+          0.06,
+          0.88
+        ],
+        "localToWorldRotation": [
+          [
+            0.9998476951563913,
+            0.01745240643728351,
+            0
+          ],
+          [
+            -0.01745240643728351,
+            0.9998476951563913,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          48.14,
+          64.36
+        ],
+        "cameraDepth": -0.762102355330306
+      },
+      {
+        "id": "spine",
+        "parentId": "hips",
+        "worldPositionMeters": [
+          0,
+          0.06,
+          1.22
+        ],
+        "localToWorldRotation": [
+          [
+            0.9455185755993168,
+            0.32556815445715664,
+            0
+          ],
+          [
+            -0.32556815445715664,
+            0.9455185755993168,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          48.14,
+          59.089999999999996
+        ],
+        "cameraDepth": -1.0565509926170151
+      },
+      {
+        "id": "shoulders",
+        "parentId": "spine",
+        "worldPositionMeters": [
+          0.018910371511986337,
+          0.05348863691085687,
+          1.49
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          48.341852255763435,
+          55.41268272585583
+        ],
+        "cameraDepth": -1.2998330373948068
+      },
+      {
+        "id": "neck",
+        "parentId": "shoulders",
+        "worldPositionMeters": [
+          0.03605371752602858,
+          0.043187875412655785,
+          1.62
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          48.66117586220767,
+          53.85792649363067
+        ],
+        "cameraDepth": -1.420988012893805
+      },
+      {
+        "id": "head",
+        "parentId": "neck",
+        "worldPositionMeters": [
+          0.053197063540070824,
+          0.0328871139144547,
+          1.82
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          48.98049946865191,
+          51.21817026140552
+        ],
+        "cameraDepth": -1.6027647666577138
+      },
+      {
+        "id": "face",
+        "parentId": "head",
+        "worldPositionMeters": [
+          0.16462881263134543,
+          -0.03406783582385235,
+          1.81
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          51.05610291053942,
+          54.364754751942016
+        ],
+        "cameraDepth": -1.6498203871655066
+      },
+      {
+        "id": "leftEye",
+        "parentId": "face",
+        "worldPositionMeters": [
+          0.23325752377417344,
+          0.012193379106954165,
+          1.865
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          49.62200524768442,
+          55.354715177580886
+        ],
+        "cameraDepth": -1.7317661399450648
+      },
+      {
+        "id": "rightEye",
+        "parentId": "face",
+        "worldPositionMeters": [
+          0.1560018125376653,
+          -0.11638171599836268,
+          1.865
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          53.60783319594924,
+          53.280647513515106
+        ],
+        "cameraDepth": -1.6931382843268108
+      },
+      {
+        "id": "nose",
+        "parentId": "face",
+        "worldPositionMeters": [
+          0.22034468717698275,
+          -0.06754531069300587,
+          1.7950000000000002
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          52.093904631483184,
+          56.093046997210266
+        ],
+        "cameraDepth": -1.6646879433815587
+      },
+      {
+        "id": "nearHip",
+        "parentId": "hips",
+        "worldPositionMeters": [
+          0.0024433369012196917,
+          0.19997867732189478,
+          0.86
+        ],
+        "localToWorldRotation": [
+          [
+            0.9998476951563913,
+            0.01745240643728351,
+            0
+          ],
+          [
+            -0.01745240643728351,
+            0.9998476951563913,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          43.80066100302126,
+          64.73559574662026
+        ],
+        "cameraDepth": -0.7460035157052269
+      },
+      {
+        "id": "nearKnee",
+        "parentId": "nearHip",
+        "worldPositionMeters": [
+          0.02244029080434752,
+          0.1996296291931491,
+          0.39999999999999997
+        ],
+        "localToWorldRotation": [
+          [
+            0.9998476951563913,
+            0.01745240643728351,
+            0
+          ],
+          [
+            -0.01745240643728351,
+            0.9998476951563913,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          43.81148149501238,
+          72.40244971905113
+        ],
+        "cameraDepth": -0.35763030691594916
+      },
+      {
+        "id": "nearFoot",
+        "parentId": "nearKnee",
+        "worldPositionMeters": [
+          -0.017553617001908134,
+          0.20032772545064045,
+          -0.020000000000000018
+        ],
+        "localToWorldRotation": [
+          [
+            0.9998476951563913,
+            0.01745240643728351,
+            0
+          ],
+          [
+            -0.01745240643728351,
+            0.9998476951563913,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          43.78984051103015,
+          77.8387417741894
+        ],
+        "cameraDepth": 0.026097316576642868
+      },
+      {
+        "id": "farHip",
+        "parentId": "hips",
+        "worldPositionMeters": [
+          -0.0024433369012196917,
+          -0.07997867732189479,
+          0.86
+        ],
+        "localToWorldRotation": [
+          [
+            0.9998476951563913,
+            0.01745240643728351,
+            0
+          ],
+          [
+            -0.01745240643728351,
+            0.9998476951563913,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          52.47933899697874,
+          64.60440425337973
+        ],
+        "cameraDepth": -0.7435601788040073
+      },
+      {
+        "id": "farKnee",
+        "parentId": "farHip",
+        "worldPositionMeters": [
+          0.017553617001908134,
+          -0.08032772545064046,
+          0.39999999999999997
+        ],
+        "localToWorldRotation": [
+          [
+            0.9998476951563913,
+            0.01745240643728351,
+            0
+          ],
+          [
+            -0.01745240643728351,
+            0.9998476951563913,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          52.49015948896985,
+          72.2712582258106
+        ],
+        "cameraDepth": -0.3551869700147295
+      },
+      {
+        "id": "farFoot",
+        "parentId": "farKnee",
+        "worldPositionMeters": [
+          -0.02244029080434752,
+          -0.07962962919314912,
+          -0.020000000000000018
+        ],
+        "localToWorldRotation": [
+          [
+            0.9998476951563913,
+            0.01745240643728351,
+            0
+          ],
+          [
+            -0.01745240643728351,
+            0.9998476951563913,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          52.46851850498762,
+          77.70755028094887
+        ],
+        "cameraDepth": 0.028540653477862544
+      },
+      {
+        "id": "nearShoulder",
+        "parentId": "shoulders",
+        "worldPositionMeters": [
+          0.16312103248680154,
+          0.2934954811074484,
+          1.49
+        ],
+        "localToWorldRotation": [
+          [
+            -0.1729316783464026,
+            0.9816271834476641,
+            0.0806393659505245
+          ],
+          [
+            -0.8896563603254719,
+            -0.19080899537654472,
+            0.4148535739460705
+          ],
+          [
+            0.42261826174069944,
+            0,
+            0.9063077870366499
+          ]
+        ],
+        "screenPosition": [
+          40.9016400856691,
+          59.284275698778615
+        ],
+        "cameraDepth": -1.3719383678822143
+      },
+      {
+        "id": "nearElbow",
+        "parentId": "nearShoulder",
+        "worldPositionMeters": [
+          0.2595069599515309,
+          0.10804849298732422,
+          1.257364732716773
+        ],
+        "localToWorldRotation": [
+          [
+            0.8361636354339261,
+            0.4982388920173795,
+            0.2293215673660336
+          ],
+          [
+            -0.5482740676848559,
+            0.7707429968865823,
+            0.3245778480651315
+          ],
+          [
+            -0.015030684689068624,
+            -0.3971312619671028,
+            0.9176387302670883
+          ]
+        ],
+        "screenPosition": [
+          46.65049671739295,
+          65.47777485597382
+        ],
+        "cameraDepth": -1.2186632803311217
+      },
+      {
+        "id": "nearHand",
+        "parentId": "nearElbow",
+        "worldPositionMeters": [
+          0.33315242438028714,
+          -0.10139914808013281,
+          1.0188106901596399
+        ],
+        "localToWorldRotation": [
+          [
+            0.6787183362045103,
+            0.6976768871336982,
+            0.2293215673660336
+          ],
+          [
+            -0.7290750483350034,
+            0.6025767954715155,
+            0.3245778480651315
+          ],
+          [
+            0.08826660747470551,
+            -0.3874895698192561,
+            0.9176387302670883
+          ]
+        ],
+        "screenPosition": [
+          53.14337359048412,
+          71.15250665074237
+        ],
+        "cameraDepth": -1.0488921515155483
+      },
+      {
+        "id": "farShoulder",
+        "parentId": "shoulders",
+        "worldPositionMeters": [
+          -0.1253002894628289,
+          -0.18651820728573462,
+          1.49
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          55.782064425857776,
+          51.54108975293304
+        ],
+        "cameraDepth": -1.227727706907399
+      },
+      {
+        "id": "farElbow",
+        "parentId": "farShoulder",
+        "worldPositionMeters": [
+          -0.1493968741660303,
+          -0.32370186012251195,
+          1.21
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          60.03475766379787,
+          55.23417386351315
+        ],
+        "cameraDepth": -0.9731923014961555
+      },
+      {
+        "id": "farHand",
+        "parentId": "farElbow",
+        "worldPositionMeters": [
+          0.02034438220765153,
+          -0.3906936945852584,
+          0.94
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          62.11150453214301,
+          63.976181306299914
+        ],
+        "cameraDepth": -0.8242360706611981
+      },
+      {
+        "id": "simpleSword__root",
+        "parentId": "nearHand",
+        "worldPositionMeters": [
+          0.37387552455255774,
+          -0.14514365098023302,
+          1.024106686608122
+        ],
+        "localToWorldRotation": [
+          [
+            0.6787183362045103,
+            0.6976768871336982,
+            0.2293215673660336
+          ],
+          [
+            -0.7290750483350034,
+            0.6025767954715155,
+            0.3245778480651315
+          ],
+          [
+            0.08826660747470551,
+            -0.3874895698192561,
+            0.9176387302670883
+          ]
+        ],
+        "screenPosition": [
+          54.49945318038722,
+          72.16370312316228
+        ],
+        "cameraDepth": -1.0738401690644213
+      },
+      {
+        "id": "simpleSword__guard",
+        "parentId": "simpleSword__root",
+        "worldPositionMeters": [
+          0.46889609162118917,
+          -0.2472141577471335,
+          1.036464011654581
+        ],
+        "localToWorldRotation": [
+          [
+            0.6787183362045103,
+            0.6976768871336982,
+            0.2293215673660336
+          ],
+          [
+            -0.7290750483350034,
+            0.6025767954715155,
+            0.3245778480651315
+          ],
+          [
+            0.08826660747470551,
+            -0.3874895698192561,
+            0.9176387302670883
+          ]
+        ],
+        "screenPosition": [
+          57.66363889016114,
+          74.52316155880874
+        ],
+        "cameraDepth": -1.1320522100117922
+      },
+      {
+        "id": "simpleSword__tip",
+        "parentId": "simpleSword__guard",
+        "worldPositionMeters": [
+          0.8082552597234443,
+          -0.6117516819146351,
+          1.0805973153919337
+        ],
+        "localToWorldRotation": [
+          [
+            0.6787183362045103,
+            0.6976768871336982,
+            0.2293215673660336
+          ],
+          [
+            -0.7290750483350034,
+            0.6025767954715155,
+            0.3245778480651315
+          ],
+          [
+            0.08826660747470551,
+            -0.3874895698192561,
+            0.9176387302670883
+          ]
+        ],
+        "screenPosition": [
+          68.96430213935369,
+          82.94979882897468
+        ],
+        "cameraDepth": -1.339952356252402
+      },
+      {
+        "id": "travelPack__root",
+        "parentId": "shoulders",
+        "worldPositionMeters": [
+          -0.015376320516098156,
+          0.07409015990725903,
+          1.558
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          47.70320504287497,
+          53.43819519030613
+        ],
+        "cameraDepth": -1.3415794188381063
+      },
+      {
+        "id": "travelPack__top",
+        "parentId": "travelPack__root",
+        "worldPositionMeters": [
+          -0.015376320516098156,
+          0.07409015990725903,
+          1.738
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          47.70320504287497,
+          50.64819519030614
+        ],
+        "cameraDepth": -1.497463991519305
+      },
+      {
+        "id": "simpleHat__root",
+        "parentId": "head",
+        "worldPositionMeters": [
+          0.053197063540070824,
+          0.0328871139144547,
+          2.028
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          48.98049946865191,
+          47.994170261405515
+        ],
+        "cameraDepth": -1.782898050644877
+      },
+      {
+        "id": "simpleHat__crown",
+        "parentId": "simpleHat__root",
+        "worldPositionMeters": [
+          0.053197063540070824,
+          0.0328871139144547,
+          2.124
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          48.98049946865191,
+          46.506170261405515
+        ],
+        "cameraDepth": -1.8660364894081831
+      },
+      {
+        "id": "leftEyeGlint__root",
+        "parentId": "leftEye",
+        "worldPositionMeters": [
+          0.24372381717660466,
+          0.019904196340829242,
+          1.877
+        ],
+        "localToWorldRotation": [
+          [
+            0.8571673007021123,
+            0.5150380749100543,
+            0
+          ],
+          [
+            -0.5150380749100543,
+            0.8571673007021123,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "screenPosition": [
+          49.382969913434295,
+          55.449701532649854
+        ],
+        "cameraDepth": -1.7473915914916935
+      }
+    ],
+    "compositingGroups": [
+      {
+        "id": "groundShadowGroup",
+        "semanticRole": "ground shadow",
+        "order": 0,
+        "elements": []
+      },
+      {
+        "id": "cameraFarAppendagesGroup",
+        "semanticRole": "camera-far appendages",
+        "order": 1,
+        "elements": [
+          {
+            "id": "farFootGasket",
+            "sourceId": "farFootGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farShinPlate",
+              "farFootPlate"
+            ],
+            "cameraDepth": 0.028540653477862544,
+            "depthBias": 1.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "farFootGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "52.46851850498762",
+                "cy": "77.70755028094887",
+                "r": "3.1372"
+              }
+            }
+          },
+          {
+            "id": "farKneeGasket",
+            "sourceId": "farKneeGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farThighPlate",
+              "farShinPlate"
+            ],
+            "cameraDepth": -0.3551869700147295,
+            "depthBias": 1.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "farKneeGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "52.49015948896985",
+                "cy": "72.2712582258106",
+                "r": "2.5667999999999997"
+              }
+            }
+          },
+          {
+            "id": "farHipGasket",
+            "sourceId": "farHipGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farThighPlate"
+            ],
+            "cameraDepth": -0.7435601788040073,
+            "depthBias": 0.95,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "farHipGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "52.47933899697874",
+                "cy": "64.60440425337973",
+                "r": "2.5667999999999997"
+              }
+            }
+          },
+          {
+            "id": "farHandGasket",
+            "sourceId": "farHandGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "secondary",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farForearmPlate",
+              "farHandPlate"
+            ],
+            "cameraDepth": -0.8242360706611981,
+            "depthBias": 4.25,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "farHandGasket",
+                "class": "jointGasket",
+                "data-palette-role": "secondary",
+                "cx": "62.11150453214301",
+                "cy": "63.976181306299914",
+                "r": "2.4242000000000004"
+              }
+            }
+          },
+          {
+            "id": "farElbowGasket",
+            "sourceId": "farElbowGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farBicepPlate",
+              "farForearmPlate"
+            ],
+            "cameraDepth": -0.9731923014961555,
+            "depthBias": 4.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "farElbowGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "60.03475766379787",
+                "cy": "55.23417386351315",
+                "r": "2.1390000000000002"
+              }
+            }
+          },
+          {
+            "id": "farShoulderGasket",
+            "sourceId": "farShoulderGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "secondary",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "farBicepPlate",
+              "farShoulderCapPlate"
+            ],
+            "cameraDepth": -1.227727706907399,
+            "depthBias": 4.45,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "farShoulderGasket",
+                "class": "jointGasket",
+                "data-palette-role": "secondary",
+                "cx": "55.782064425857776",
+                "cy": "51.54108975293304",
+                "r": "3.4224"
+              }
+            }
+          },
+          {
+            "id": "farFootPlate",
+            "sourceId": "farFootPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "accent",
+            "bodyRegion": "hoof",
+            "side": "right",
+            "paletteRole": "hoof",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": 0.028540653477862544,
+            "depthBias": 0,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "farFootPlate",
+                "class": "paperPlate plateShade",
+                "data-palette-role": "hoof",
+                "cx": "52.46851850498762",
+                "cy": "77.70755028094887",
+                "rx": "3.41",
+                "ry": "2.1700000000000004"
+              }
+            }
+          },
+          {
+            "id": "farShinPlate",
+            "sourceId": "farShinPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": 0.028540653477862544,
+            "depthBias": 1.2,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "farShinPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "52.07165948896985",
+                "y": "69.9462582258106",
+                "width": "6.273335129565428",
+                "height": "4.6499999999999995",
+                "rx": "2.3249999999999997",
+                "transform": "rotate(90.22808386385361 52.49015948896985 72.2712582258106)"
+              }
+            }
+          },
+          {
+            "id": "farThighPlate",
+            "sourceId": "farThighPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.3551869700147295,
+            "depthBias": 1,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "farThighPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "51.97713899697874",
+                "y": "61.81440425337973",
+                "width": "8.671261608091408",
+                "height": "5.58",
+                "rx": "2.79",
+                "transform": "rotate(89.91913656971364 52.47933899697874 64.60440425337973)"
+              }
+            }
+          },
+          {
+            "id": "farForearmPlate",
+            "sourceId": "farForearmPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.8242360706611981,
+            "depthBias": 4.2,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "farForearmPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "59.67205766379787",
+                "y": "53.21917386351315",
+                "width": "9.71069752901486",
+                "height": "4.03",
+                "rx": "2.015",
+                "transform": "rotate(76.6365548290493 60.03475766379787 55.23417386351315)"
+              }
+            }
+          },
+          {
+            "id": "farHandPlate",
+            "sourceId": "farHandPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "accent",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "secondary",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.8242360706611981,
+            "depthBias": 4.3,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "farHandPlate",
+                "class": "paperPlate plateShade",
+                "data-palette-role": "secondary",
+                "cx": "62.11150453214301",
+                "cy": "63.976181306299914",
+                "rx": "2.6350000000000002",
+                "ry": "2.1700000000000004"
+              }
+            }
+          },
+          {
+            "id": "farBicepPlate",
+            "sourceId": "farBicepPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.9731923014961555,
+            "depthBias": 4,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "farBicepPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "55.363564425857774",
+                "y": "49.21608975293304",
+                "width": "6.469430205856143",
+                "height": "4.6499999999999995",
+                "rx": "2.3249999999999997",
+                "transform": "rotate(40.971396640596595 55.782064425857776 51.54108975293304)"
+              }
+            }
+          },
+          {
+            "id": "farShoulderCapPlate",
+            "sourceId": "farShoulderCapPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "accent",
+            "bodyRegion": "limb",
+            "side": "right",
+            "paletteRole": "secondary",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.227727706907399,
+            "depthBias": 4.5,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "farShoulderCapPlate",
+                "class": "paperPlate plateShade",
+                "data-palette-role": "secondary",
+                "cx": "55.782064425857776",
+                "cy": "51.54108975293304",
+                "rx": "3.7199999999999998",
+                "ry": "3.1"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "opaqueCoreOccluderGroup",
+        "semanticRole": "opaque core occluder",
+        "order": 2,
+        "elements": [
+          {
+            "id": "pelvisSpinePlateOccluderCell",
+            "sourceId": "pelvisSpinePlate",
+            "sourceKind": "plate",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "cameraDepth": -1.0565509926170151,
+            "depthBias": 3,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "pelvisSpinePlateOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "x": "46.6892",
+                "y": "56.3",
+                "width": "8.171600000000002",
+                "height": "16.12",
+                "rx": "8.06",
+                "transform": "rotate(-90 48.14 64.36)"
+              }
+            }
+          },
+          {
+            "id": "chestPlateOccluderCell",
+            "sourceId": "chestPlate",
+            "sourceKind": "plate",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "cameraDepth": -1.2998330373948068,
+            "depthBias": 3.5,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "chestPlateOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "x": "46.3544",
+                "y": "49.169999999999995",
+                "width": "7.25405306085864",
+                "height": "19.84",
+                "rx": "9.92",
+                "transform": "rotate(-86.85812050549062 48.14 59.089999999999996)"
+              }
+            }
+          },
+          {
+            "id": "shoulderPlateOccluderCell",
+            "sourceId": "shoulderPlate",
+            "sourceKind": "plate",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "cameraDepth": -1.2998330373948068,
+            "depthBias": 4.35,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "shoulderPlateOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "cx": "48.341852255763435",
+                "cy": "55.41268272585583",
+                "rx": "5.2700000000000005",
+                "ry": "2.1700000000000004"
+              }
+            }
+          },
+          {
+            "id": "neckPlateOccluderCell",
+            "sourceId": "neckPlate",
+            "sourceKind": "plate",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "neck",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "cameraDepth": -1.420988012893805,
+            "depthBias": 5,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "neckPlateOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "x": "47.72805225576344",
+                "y": "52.002682725855834",
+                "width": "2.814809660780681",
+                "height": "6.82",
+                "rx": "3.41",
+                "transform": "rotate(-78.39370622322495 48.341852255763435 55.41268272585583)"
+              }
+            }
+          },
+          {
+            "id": "headConnectorPlateOccluderCell",
+            "sourceId": "headConnectorPlate",
+            "sourceKind": "plate",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "cameraDepth": -1.6027647666577138,
+            "depthBias": 5.2,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "headConnectorPlateOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "x": "47.87997586220767",
+                "y": "49.51792649363067",
+                "width": "4.221399911847326",
+                "height": "8.680000000000001",
+                "rx": "4.340000000000001",
+                "transform": "rotate(-83.10260975463845 48.66117586220767 53.85792649363067)"
+              }
+            }
+          },
+          {
+            "id": "headPlateOccluderCell",
+            "sourceId": "headPlate",
+            "sourceKind": "plate",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "cameraDepth": -1.6027647666577138,
+            "depthBias": 5.5,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "headPlateOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "cx": "48.98049946865191",
+                "cy": "51.21817026140552",
+                "rx": "5.89",
+                "ry": "6.9750000000000005"
+              }
+            }
+          },
+          {
+            "id": "hipsGasketOccluderCell",
+            "sourceId": "hipsGasket",
+            "sourceKind": "gasket",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "pelvisSpinePlateOccluderCell"
+            ],
+            "cameraDepth": -0.762102355330306,
+            "depthBias": 2.95,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "hipsGasketOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "cx": "48.14",
+                "cy": "64.36",
+                "r": "4.96"
+              }
+            }
+          },
+          {
+            "id": "spineGasketOccluderCell",
+            "sourceId": "spineGasket",
+            "sourceKind": "gasket",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "pelvisSpinePlateOccluderCell",
+              "chestPlateOccluderCell"
+            ],
+            "cameraDepth": -1.0565509926170151,
+            "depthBias": 3.45,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "spineGasketOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "cx": "48.14",
+                "cy": "59.089999999999996",
+                "r": "4.96"
+              }
+            }
+          },
+          {
+            "id": "shouldersGasketOccluderCell",
+            "sourceId": "shouldersGasket",
+            "sourceKind": "gasket",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "neck",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "chestPlateOccluderCell",
+              "shoulderPlateOccluderCell",
+              "neckPlateOccluderCell"
+            ],
+            "cameraDepth": -1.2998330373948068,
+            "depthBias": 4.95,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "shouldersGasketOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "cx": "48.341852255763435",
+                "cy": "55.41268272585583",
+                "r": "4.96"
+              }
+            }
+          },
+          {
+            "id": "neckGasketOccluderCell",
+            "sourceId": "neckGasket",
+            "sourceKind": "gasket",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "neckPlateOccluderCell",
+              "headConnectorPlateOccluderCell"
+            ],
+            "cameraDepth": -1.420988012893805,
+            "depthBias": 5.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "neckGasketOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "cx": "48.66117586220767",
+                "cy": "53.85792649363067",
+                "r": "3.992800000000001"
+              }
+            }
+          },
+          {
+            "id": "headGasketOccluderCell",
+            "sourceId": "headGasket",
+            "sourceKind": "gasket",
+            "kind": "occluderCell",
+            "generated": true,
+            "semanticRole": "opaqueCoreOccluderCell",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "headConnectorPlateOccluderCell",
+              "headPlateOccluderCell"
+            ],
+            "cameraDepth": -1.6027647666577138,
+            "depthBias": 5.45,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "headGasketOccluderCell",
+                "class": "coreOccluderCell",
+                "data-palette-role": "base",
+                "cx": "48.98049946865191",
+                "cy": "51.21817026140552",
+                "r": "4.96"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "coreSurfaceGroup",
+        "semanticRole": "core surface plates",
+        "order": 3,
+        "elements": [
+          {
+            "id": "hipsGasket",
+            "sourceId": "hipsGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "pelvisSpinePlate"
+            ],
+            "cameraDepth": -0.762102355330306,
+            "depthBias": 2.95,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "hipsGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "48.14",
+                "cy": "64.36",
+                "r": "4.96"
+              }
+            }
+          },
+          {
+            "id": "spineGasket",
+            "sourceId": "spineGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "pelvisSpinePlate",
+              "chestPlate"
+            ],
+            "cameraDepth": -1.0565509926170151,
+            "depthBias": 3.45,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "spineGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "48.14",
+                "cy": "59.089999999999996",
+                "r": "4.96"
+              }
+            }
+          },
+          {
+            "id": "shouldersGasket",
+            "sourceId": "shouldersGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "neck",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "chestPlate",
+              "shoulderPlate",
+              "neckPlate"
+            ],
+            "cameraDepth": -1.2998330373948068,
+            "depthBias": 4.95,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "shouldersGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "48.341852255763435",
+                "cy": "55.41268272585583",
+                "r": "4.96"
+              }
+            }
+          },
+          {
+            "id": "neckGasket",
+            "sourceId": "neckGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "neckPlate",
+              "headConnectorPlate"
+            ],
+            "cameraDepth": -1.420988012893805,
+            "depthBias": 5.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "neckGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "48.66117586220767",
+                "cy": "53.85792649363067",
+                "r": "3.992800000000001"
+              }
+            }
+          },
+          {
+            "id": "headGasket",
+            "sourceId": "headGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "headConnectorPlate",
+              "headPlate"
+            ],
+            "cameraDepth": -1.6027647666577138,
+            "depthBias": 5.45,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "headGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "48.98049946865191",
+                "cy": "51.21817026140552",
+                "r": "4.96"
+              }
+            }
+          },
+          {
+            "id": "pelvisSpinePlate",
+            "sourceId": "pelvisSpinePlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.0565509926170151,
+            "depthBias": 3,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "pelvisSpinePlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "46.6892",
+                "y": "56.3",
+                "width": "8.171600000000002",
+                "height": "16.12",
+                "rx": "8.06",
+                "transform": "rotate(-90 48.14 64.36)"
+              }
+            }
+          },
+          {
+            "id": "chestPlate",
+            "sourceId": "chestPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.2998330373948068,
+            "depthBias": 3.5,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "chestPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "46.3544",
+                "y": "49.169999999999995",
+                "width": "7.25405306085864",
+                "height": "19.84",
+                "rx": "9.92",
+                "transform": "rotate(-86.85812050549062 48.14 59.089999999999996)"
+              }
+            }
+          },
+          {
+            "id": "shoulderPlate",
+            "sourceId": "shoulderPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "secondary",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.2998330373948068,
+            "depthBias": 4.35,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "shoulderPlate",
+                "class": "paperPlate ",
+                "data-palette-role": "secondary",
+                "cx": "48.341852255763435",
+                "cy": "55.41268272585583",
+                "rx": "5.2700000000000005",
+                "ry": "2.1700000000000004"
+              }
+            }
+          },
+          {
+            "id": "neckPlate",
+            "sourceId": "neckPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "neck",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.420988012893805,
+            "depthBias": 5,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "neckPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "47.72805225576344",
+                "y": "52.002682725855834",
+                "width": "2.814809660780681",
+                "height": "6.82",
+                "rx": "3.41",
+                "transform": "rotate(-78.39370622322495 48.341852255763435 55.41268272585583)"
+              }
+            }
+          },
+          {
+            "id": "headConnectorPlate",
+            "sourceId": "headConnectorPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.6027647666577138,
+            "depthBias": 5.2,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "headConnectorPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "47.87997586220767",
+                "y": "49.51792649363067",
+                "width": "4.221399911847326",
+                "height": "8.680000000000001",
+                "rx": "4.340000000000001",
+                "transform": "rotate(-83.10260975463845 48.66117586220767 53.85792649363067)"
+              }
+            }
+          },
+          {
+            "id": "headPlate",
+            "sourceId": "headPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.6027647666577138,
+            "depthBias": 5.5,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "headPlate",
+                "class": "paperPlate ",
+                "data-palette-role": "base",
+                "cx": "48.98049946865191",
+                "cy": "51.21817026140552",
+                "rx": "5.89",
+                "ry": "6.9750000000000005"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "cameraNearAppendagesGroup",
+        "semanticRole": "camera-near appendages",
+        "order": 4,
+        "elements": [
+          {
+            "id": "nearFootGasket",
+            "sourceId": "nearFootGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearShinPlate",
+              "nearFootPlate"
+            ],
+            "cameraDepth": 0.026097316576642868,
+            "depthBias": 1.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearFootGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "43.78984051103015",
+                "cy": "77.8387417741894",
+                "r": "3.1372"
+              }
+            }
+          },
+          {
+            "id": "nearKneeGasket",
+            "sourceId": "nearKneeGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearThighPlate",
+              "nearShinPlate"
+            ],
+            "cameraDepth": -0.35763030691594916,
+            "depthBias": 1.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearKneeGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "43.81148149501238",
+                "cy": "72.40244971905113",
+                "r": "2.5667999999999997"
+              }
+            }
+          },
+          {
+            "id": "nearHipGasket",
+            "sourceId": "nearHipGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearThighPlate"
+            ],
+            "cameraDepth": -0.7460035157052269,
+            "depthBias": 0.95,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearHipGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "43.80066100302126",
+                "cy": "64.73559574662026",
+                "r": "2.5667999999999997"
+              }
+            }
+          },
+          {
+            "id": "nearHandGasket",
+            "sourceId": "nearHandGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "secondary",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearForearmPlate",
+              "nearHandPlate"
+            ],
+            "cameraDepth": -1.0488921515155483,
+            "depthBias": 4.25,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearHandGasket",
+                "class": "jointGasket",
+                "data-palette-role": "secondary",
+                "cx": "53.14337359048412",
+                "cy": "71.15250665074237",
+                "r": "2.4242000000000004"
+              }
+            }
+          },
+          {
+            "id": "nearElbowGasket",
+            "sourceId": "nearElbowGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearBicepPlate",
+              "nearForearmPlate"
+            ],
+            "cameraDepth": -1.2186632803311217,
+            "depthBias": 4.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearElbowGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "46.65049671739295",
+                "cy": "65.47777485597382",
+                "r": "2.1390000000000002"
+              }
+            }
+          },
+          {
+            "id": "nearShoulderGasket",
+            "sourceId": "nearShoulderGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "secondary",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearBicepPlate",
+              "nearShoulderCapPlate"
+            ],
+            "cameraDepth": -1.3719383678822143,
+            "depthBias": 4.45,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearShoulderGasket",
+                "class": "jointGasket",
+                "data-palette-role": "secondary",
+                "cx": "40.9016400856691",
+                "cy": "59.284275698778615",
+                "r": "3.4224"
+              }
+            }
+          },
+          {
+            "id": "nearFootPlate",
+            "sourceId": "nearFootPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "accent",
+            "bodyRegion": "hoof",
+            "side": "left",
+            "paletteRole": "hoof",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": 0.026097316576642868,
+            "depthBias": 0,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "nearFootPlate",
+                "class": "paperPlate plateShade",
+                "data-palette-role": "hoof",
+                "cx": "43.78984051103015",
+                "cy": "77.8387417741894",
+                "rx": "3.41",
+                "ry": "2.1700000000000004"
+              }
+            }
+          },
+          {
+            "id": "nearShinPlate",
+            "sourceId": "nearShinPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": 0.026097316576642868,
+            "depthBias": 1.2,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "nearShinPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "43.39298149501238",
+                "y": "70.07744971905113",
+                "width": "6.273335129565428",
+                "height": "4.6499999999999995",
+                "rx": "2.3249999999999997",
+                "transform": "rotate(90.22808386385361 43.81148149501238 72.40244971905113)"
+              }
+            }
+          },
+          {
+            "id": "nearThighPlate",
+            "sourceId": "nearThighPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.35763030691594916,
+            "depthBias": 1,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "nearThighPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "43.29846100302126",
+                "y": "61.94559574662026",
+                "width": "8.671261608091408",
+                "height": "5.58",
+                "rx": "2.79",
+                "transform": "rotate(89.9191365697136 43.80066100302126 64.73559574662026)"
+              }
+            }
+          },
+          {
+            "id": "nearForearmPlate",
+            "sourceId": "nearForearmPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.0488921515155483,
+            "depthBias": 4.2,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "nearForearmPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "46.28779671739295",
+                "y": "63.46277485597382",
+                "width": "9.348626254232185",
+                "height": "4.03",
+                "rx": "2.015",
+                "transform": "rotate(41.15324528885059 46.65049671739295 65.47777485597382)"
+              }
+            }
+          },
+          {
+            "id": "nearHandPlate",
+            "sourceId": "nearHandPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "accent",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "secondary",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.0488921515155483,
+            "depthBias": 4.3,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "nearHandPlate",
+                "class": "paperPlate plateShade",
+                "data-palette-role": "secondary",
+                "cx": "53.14337359048412",
+                "cy": "71.15250665074237",
+                "rx": "2.6350000000000002",
+                "ry": "2.1700000000000004"
+              }
+            }
+          },
+          {
+            "id": "nearBicepPlate",
+            "sourceId": "nearBicepPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.2186632803311217,
+            "depthBias": 4,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "nearBicepPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "40.4831400856691",
+                "y": "56.95927569877861",
+                "width": "9.287371848758667",
+                "height": "4.6499999999999995",
+                "rx": "2.3249999999999997",
+                "transform": "rotate(47.13227425327412 40.9016400856691 59.284275698778615)"
+              }
+            }
+          },
+          {
+            "id": "nearShoulderCapPlate",
+            "sourceId": "nearShoulderCapPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "accent",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "secondary",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.3719383678822143,
+            "depthBias": 4.5,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "nearShoulderCapPlate",
+                "class": "paperPlate plateShade",
+                "data-palette-role": "secondary",
+                "cx": "40.9016400856691",
+                "cy": "59.284275698778615",
+                "rx": "3.7199999999999998",
+                "ry": "3.1"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "detailsGroup",
+        "semanticRole": "paint/details/accessories",
+        "order": 5,
+        "elements": [
+          {
+            "id": "simpleSword__rootGasket",
+            "sourceId": "simpleSword__rootGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "attachmentSeam",
+            "bodyRegion": "accessory",
+            "side": "left",
+            "paletteRole": "equipment.leather",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "simpleSword__handle"
+            ],
+            "cameraDepth": -1.0738401690644213,
+            "depthBias": 6.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "simpleSword__rootGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment.leather",
+                "cx": "54.49945318038722",
+                "cy": "72.16370312316228",
+                "r": "1.24"
+              }
+            }
+          },
+          {
+            "id": "simpleSword__guardGasket",
+            "sourceId": "simpleSword__guardGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "accessory",
+            "side": "left",
+            "paletteRole": "equipment.metal",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "simpleSword__handle",
+              "simpleSword__guardPlate",
+              "simpleSword__blade"
+            ],
+            "cameraDepth": -1.1320522100117922,
+            "depthBias": 6.25,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "simpleSword__guardGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment.metal",
+                "cx": "57.66363889016114",
+                "cy": "74.52316155880874",
+                "r": "1.9964000000000004"
+              }
+            }
+          },
+          {
+            "id": "travelPack__rootGasket",
+            "sourceId": "travelPack__rootGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "attachmentSeam",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "travelPack__body"
+            ],
+            "cameraDepth": -1.3415794188381063,
+            "depthBias": 5.65,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "travelPack__rootGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment",
+                "cx": "47.70320504287497",
+                "cy": "53.43819519030613",
+                "r": "2.015"
+              }
+            }
+          },
+          {
+            "id": "travelPack__topGasket",
+            "sourceId": "travelPack__topGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "travelPack__body"
+            ],
+            "cameraDepth": -1.497463991519305,
+            "depthBias": 5.65,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "travelPack__topGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment",
+                "cx": "47.70320504287497",
+                "cy": "50.64819519030614",
+                "r": "1.9964000000000004"
+              }
+            }
+          },
+          {
+            "id": "simpleHat__rootGasket",
+            "sourceId": "simpleHat__rootGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "attachmentSeam",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "simpleHat__body"
+            ],
+            "cameraDepth": -1.782898050644877,
+            "depthBias": 6.05,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "simpleHat__rootGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment",
+                "cx": "48.98049946865191",
+                "cy": "47.994170261405515",
+                "r": "2.4800000000000004"
+              }
+            }
+          },
+          {
+            "id": "simpleHat__crownGasket",
+            "sourceId": "simpleHat__crownGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "simpleHat__body"
+            ],
+            "cameraDepth": -1.8660364894081831,
+            "depthBias": 6.05,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "simpleHat__crownGasket",
+                "class": "jointGasket",
+                "data-palette-role": "equipment",
+                "cx": "48.98049946865191",
+                "cy": "46.506170261405515",
+                "r": "2.5097600000000004"
+              }
+            }
+          },
+          {
+            "id": "simpleSword__handle",
+            "sourceId": "simpleSword__handle",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "equipment",
+            "bodyRegion": "accessory",
+            "side": "left",
+            "paletteRole": "equipment.leather",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.1320522100117922,
+            "depthBias": 6.2,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "simpleSword__handle",
+                "class": "paperPlate",
+                "data-palette-role": "equipment.leather",
+                "x": "54.40025318038722",
+                "y": "70.92370312316228",
+                "width": "4.1454388033918175",
+                "height": "2.48",
+                "rx": "1.24",
+                "transform": "rotate(36.71102294129706 54.49945318038722 72.16370312316228)"
+              }
+            }
+          },
+          {
+            "id": "simpleSword__guardPlate",
+            "sourceId": "simpleSword__guardPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "equipment",
+            "bodyRegion": "accessory",
+            "side": "left",
+            "paletteRole": "equipment.metal",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.1320522100117922,
+            "depthBias": 6.3,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "simpleSword__guardPlate",
+                "class": "paperPlate ",
+                "data-palette-role": "equipment.metal",
+                "cx": "57.66363889016114",
+                "cy": "74.52316155880874",
+                "rx": "2.1700000000000004",
+                "ry": "0.62"
+              }
+            }
+          },
+          {
+            "id": "simpleSword__blade",
+            "sourceId": "simpleSword__blade",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "equipment",
+            "bodyRegion": "accessory",
+            "side": "left",
+            "paletteRole": "equipment.metal",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.339952356252402,
+            "depthBias": 6.25,
+            "vector": {
+              "tag": "path",
+              "attributes": {
+                "id": "simpleSword__blade",
+                "class": "paperPlate plateShade",
+                "data-palette-role": "equipment.metal",
+                "d": "M 56.829736645547186 75.64147817159235 L 68.60563450726167 83.43079522156978 Q 69.4452985319488 83.3084664610667 69.32296977144571 82.46880243637958 L 58.49754113477509 73.40484494602512 Z"
+              }
+            }
+          },
+          {
+            "id": "travelPack__body",
+            "sourceId": "travelPack__body",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "equipment",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.497463991519305,
+            "depthBias": 5.7,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "travelPack__body",
+                "class": "paperPlate",
+                "data-palette-role": "equipment",
+                "x": "47.44280504287497",
+                "y": "51.26819519030613",
+                "width": "3.3107999999999924",
+                "height": "4.340000000000001",
+                "rx": "2.1700000000000004",
+                "transform": "rotate(-90 47.70320504287497 53.43819519030613)"
+              }
+            }
+          },
+          {
+            "id": "nosePlate",
+            "sourceId": "nosePlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "nose",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "micro",
+            "semanticDetailTier": "expression",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.6646879433815587,
+            "depthBias": 6.3,
+            "vector": {
+              "tag": "path",
+              "attributes": {
+                "id": "nosePlate",
+                "class": "paperPlate faceNose",
+                "data-palette-role": "base",
+                "d": "M 52.093904631483184 57.060246997210264 C 53.461004631483185 56.55804699721027 53.33080463148318 55.68384699721027 52.093904631483184 55.23744699721026 C 50.857004631483186 55.68384699721027 50.72680463148318 56.55804699721027 52.093904631483184 57.060246997210264Z"
+              }
+            }
+          },
+          {
+            "id": "rightEyePlate",
+            "sourceId": "rightEyePlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "eye",
+            "bodyRegion": "head",
+            "side": "right",
+            "paletteRole": "eye",
+            "lodTier": "micro",
+            "semanticDetailTier": "expression",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.6931382843268108,
+            "depthBias": 6.2,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "rightEyePlate",
+                "class": "paperPlate faceEye",
+                "data-palette-role": "eye",
+                "cx": "53.60783319594924",
+                "cy": "53.280647513515106",
+                "rx": "1.0850000000000002",
+                "ry": "0.5425000000000002",
+                "transform": "rotate(-180 53.60783319594924 53.280647513515106)"
+              }
+            }
+          },
+          {
+            "id": "leftEyePlate",
+            "sourceId": "leftEyePlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "eye",
+            "bodyRegion": "head",
+            "side": "left",
+            "paletteRole": "eye",
+            "lodTier": "micro",
+            "semanticDetailTier": "expression",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.7317661399450648,
+            "depthBias": 6.2,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "leftEyePlate",
+                "class": "paperPlate faceEye",
+                "data-palette-role": "eye",
+                "cx": "49.62200524768442",
+                "cy": "55.354715177580886",
+                "rx": "1.0850000000000002",
+                "ry": "0.5425000000000002",
+                "transform": "rotate(-180 49.62200524768442 55.354715177580886)"
+              }
+            }
+          },
+          {
+            "id": "simpleHat__body",
+            "sourceId": "simpleHat__body",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "equipment",
+            "bodyRegion": "accessory",
+            "side": "center",
+            "paletteRole": "equipment",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.8660364894081831,
+            "depthBias": 6.1,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "simpleHat__body",
+                "class": "paperPlate",
+                "data-palette-role": "equipment",
+                "x": "48.762259468651905",
+                "y": "45.26617026140551",
+                "width": "1.92448",
+                "height": "5.456",
+                "rx": "2.728",
+                "transform": "rotate(-90 48.98049946865191 47.994170261405515)"
+              }
+            }
+          },
+          {
+            "id": "faceBlaze",
+            "sourceId": "faceBlaze",
+            "sourceKind": "paint",
+            "kind": "paint",
+            "generated": false,
+            "semanticRole": "face.marking",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "body.marking",
+            "lodTier": "detail",
+            "semanticDetailTier": "identity",
+            "semanticDetailSource": "authored-paint",
+            "cameraDepth": -1.6027647666577138,
+            "depthBias": -0.01,
+            "surfaceFrame": {
+              "space": "posed-world",
+              "normal": [
+                0.8571673007021123,
+                -0.5150380749100543,
+                0
+              ],
+              "tangent": [
+                0.5150380749100543,
+                0.8571673007021123,
+                0
+              ],
+              "bitangent": [
+                0,
+                0,
+                1
+              ],
+              "camera": {
+                "space": "camera",
+                "normal": [
+                  0.5150380749100542,
+                  -0.7423286577013641,
+                  -0.42858365035105633
+                ],
+                "tangent": [
+                  -0.8571673007021124,
+                  -0.4460360567883396,
+                  -0.25751903745502713
+                ],
+                "bitangent": [
+                  0,
+                  0.5000000000000001,
+                  -0.8660254037844386
+                ]
+              }
+            },
+            "vector": {
+              "tag": "path",
+              "attributes": {
+                "id": "faceBlaze",
+                "class": "paperPaint",
+                "data-palette-role": "body.marking",
+                "data-owner-plate": "headPlate",
+                "data-paint-primitive": "faceBlaze",
+                "d": "M 0 -0.8 C 0.22 -0.45 0.18 0.2 0 0.65 C -0.18 0.2 -0.22 -0.45 0 -0.8 Z",
+                "transform": "matrix(-3.534100780794809 1.8390066621383239 0 -2.5110000000000006 48.98049946865191 51.04379526140552)"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -174,6 +174,58 @@ test('M6 elephant keeps its complete head-strike silhouette and adds tusks at id
   );
 });
 
+test('M6 humanoid keeps anatomy at silhouette and carries a rigid weapon through a whole-body strike', () => {
+  const configured = loadModelConfigured('humanoid', { motion: true, attachments: true, appearance: true });
+  const bindScene = projectScene(configured.rig, { ...sceneOptions, time: 0 });
+  const impactScene = projectScene(configured.rig, sceneOptions);
+  const impactElements = impactScene.compositingGroups.flatMap((group) => group.elements);
+  const basePlates = impactElements.filter((element) => element.sourceKind === 'plate'
+    && !element.generated
+    && !element.id.includes('__'));
+  assert.ok(basePlates.length > 0);
+  assert.ok(basePlates.every((element) => element.semanticDetailSource === 'authored'));
+
+  const weapon = configured.attachmentManifest.instances.find((instance) => instance.id === 'simpleSword');
+  assert.deepEqual([weapon.slotType, weapon.owner.id], ['hand.grip', 'nearHand']);
+  assert.deepEqual(weapon.mountInterface.ownerLocalAxis, [1, 0, 0]);
+  const swordElements = impactElements.filter((element) => element.id.startsWith('simpleSword__'));
+  assert.ok(swordElements.length > 0);
+  assert.ok(swordElements.every((element) => element.semanticDetailTier === 'identity'));
+  assert.equal(swordElements.some((element) => element.id === 'simpleSword__tipGasket'), false);
+
+  const bindJoints = new Map(bindScene.joints.map((joint) => [joint.id, joint]));
+  const impactJoints = new Map(impactScene.joints.map((joint) => [joint.id, joint]));
+  assert.notDeepEqual(impactJoints.get('root').worldPositionMeters, bindJoints.get('root').worldPositionMeters);
+  for (const jointId of ['hips', 'spine', 'shoulders', 'nearHand', 'simpleSword__tip']) {
+    assert.notDeepEqual(
+      impactJoints.get(jointId).localToWorldRotation,
+      bindJoints.get(jointId).localToWorldRotation,
+      `${jointId} must participate in the composed strike`,
+    );
+  }
+
+  const silhouette = createConsumerHandoff(impactScene, silhouetteProfile);
+  for (const plateId of ['pelvisSpinePlate', 'chestPlate', 'nearBicepPlate', 'nearForearmPlate', 'nearHandPlate']) {
+    assert.ok(silhouette.semanticDetail.includedElementIds.includes(plateId), `${plateId} must survive silhouette LOD`);
+  }
+  assert.equal(silhouette.semanticDetail.includedElementIds.some((id) => id.startsWith('simpleSword__')), false);
+  assert.equal(silhouette.semanticDetail.includedElementIds.includes('leftEyePlate'), false);
+
+  const expression = createConsumerHandoff(impactScene, expressionProfile);
+  assert.equal(validateConsumerHandoff(expression).valid, true);
+  assert.ok(expression.semanticDetail.includedElementIds.includes('simpleSword__blade'));
+  assert.ok(expression.semanticDetail.includedElementIds.includes('simpleSword__rootGasket'));
+  assert.ok(expression.semanticDetail.includedElementIds.includes('leftEyePlate'));
+  assert.ok(expression.semanticDetail.includedElementIds.includes('nosePlate'));
+  assert.ok(expression.semanticDetail.includedElementIds.includes('faceBlaze'));
+  assert.equal(expression.semanticDetail.includedElementIds.includes('leftEyeGlint__disc'), false);
+  assert.equal(expression.semanticDetail.includedElementIds.includes('castShadow'), false);
+  assert.equal(
+    `${JSON.stringify(expression, null, 2)}\n`,
+    readFileSync(fixture('humanoidAttackConfiguredExpression.handoff.json'), 'utf8'),
+  );
+});
+
 test('capability negotiation fails required absences and records declared optional degradation', () => {
   const scene = paintedRabbitScene();
   const degraded = createConsumerHandoff(scene, silhouetteProfile);

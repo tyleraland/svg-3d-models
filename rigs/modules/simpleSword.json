@@ -1,0 +1,89 @@
+{
+  "$schema": "paper-rig/attachment-module-1",
+  "schemaVersion": "1.1.0",
+  "id": "simpleSword",
+  "compatibleSlotTypes": ["hand.grip"],
+  "attachmentFrame": {
+    "positionMeters": [0.02, 0, 0],
+    "rotationXYZDegrees": [0, 0, 0]
+  },
+  "mountInterface": {
+    "type": "overlap-gasket",
+    "axis": "+x",
+    "radiusMeters": 0.04,
+    "embedDepthMeters": 0.02,
+    "compositing": "module-over-owner"
+  },
+  "bounds": {
+    "centerMeters": [0.3225, 0, 0],
+    "sizeMeters": [0.725, 0.14, 0.14]
+  },
+  "paletteRoles": ["equipment.leather", "equipment.metal"],
+  "geometry": {
+    "joints": [
+      {
+        "id": "root",
+        "parent": null,
+        "bind": [0, 0, 0],
+        "role": "module-root"
+      },
+      {
+        "id": "guard",
+        "parent": "root",
+        "bind": [0.14, 0, 0],
+        "role": "module-shape"
+      },
+      {
+        "id": "tip",
+        "parent": "guard",
+        "bind": [0.5, 0, 0],
+        "role": "accessoryAnchor"
+      }
+    ],
+    "plates": [
+      {
+        "id": "handle",
+        "bone": "guard",
+        "shape": "bone",
+        "size": [0.08],
+        "role": "equipment",
+        "bodyRegion": "accessory",
+        "semanticDetailTier": "identity",
+        "attachment": "rigid",
+        "material": "equipmentLeather",
+        "paletteRole": "equipment.leather",
+        "zBias": 6.2,
+        "span": ["root", "guard"],
+        "jointOverlap": 1.08
+      },
+      {
+        "id": "guardPlate",
+        "bone": "guard",
+        "shape": "ellipse",
+        "size": [0.14, 0.04],
+        "role": "equipment",
+        "bodyRegion": "accessory",
+        "semanticDetailTier": "identity",
+        "attachment": "rigid",
+        "material": "equipmentMetal",
+        "paletteRole": "equipment.metal",
+        "zBias": 6.3
+      },
+      {
+        "id": "blade",
+        "bone": "tip",
+        "shape": "taperedBone",
+        "size": [0.09],
+        "role": "equipment",
+        "bodyRegion": "accessory",
+        "semanticDetailTier": "identity",
+        "attachment": "rigid",
+        "material": "equipmentMetal",
+        "paletteRole": "equipment.metal",
+        "zBias": 6.25,
+        "span": ["guard", "tip"],
+        "jointOverlap": 1.08
+      }
+    ]
+  }
+}

@@ -41,7 +41,7 @@ test('legacy anchor module types normalize to versioned hierarchical slot types'
 
 test('one source-native travel pack assembles on humanoid and quadruped slots', () => {
   const expected = {
-    humanoid: { owner: 'shoulders', scale: 1, topBind: 0.18, instanceCount: 3 },
+    humanoid: { owner: 'shoulders', scale: 1, topBind: 0.18, instanceCount: 4 },
     rabbit: { owner: 'chest', scale: 0.45, topBind: 0.081, instanceCount: 2 },
   };
   for (const [name, proof] of Object.entries(expected)) {
@@ -100,8 +100,12 @@ test('attachment roots track the complete posed owner frame and module spans rem
 test('authored joint and plate slots assemble shared hats and surface-oriented details', () => {
   const humanoidModel = loadModelSource('humanoid');
   const humanoidSlots = attachmentSlots(loadModel('humanoid'), humanoidModel.slots);
+  const nearGrip = humanoidSlots.find((slot) => slot.id === 'nearGripSlot');
   const headgear = humanoidSlots.find((slot) => slot.id === 'headgearSlot');
   const eyeDetail = humanoidSlots.find((slot) => slot.id === 'leftEyeDetailSlot');
+  assert.deepEqual(nearGrip.owner, { kind: 'joint', id: 'nearHand' });
+  assert.equal(nearGrip.type, 'hand.grip');
+  assert.equal(nearGrip.counterpartSlotId, 'farGripSlot');
   assert.deepEqual(headgear.owner, { kind: 'joint', id: 'head' });
   assert.deepEqual(eyeDetail.owner, { kind: 'plate', id: 'leftEyePlate' });
   assert.equal(eyeDetail.resolvedParentJointId, 'leftEye');
@@ -110,6 +114,7 @@ test('authored joint and plate slots assemble shared hats and surface-oriented d
 
   const humanoid = loadModelAssembly('humanoid');
   const rabbit = loadModelAssembly('rabbit');
+  assert.equal(humanoid.manifest.instances.find((instance) => instance.id === 'simpleSword').slotType, 'hand.grip');
   assert.equal(humanoid.manifest.instances.find((instance) => instance.id === 'simpleHat').slotType, 'head.hat');
   assert.equal(rabbit.manifest.instances.find((instance) => instance.id === 'simpleHat').slotType, 'head.hat');
   assert.equal(humanoid.rig.plates.find((plate) => plate.id === 'leftEyeGlint__disc').paletteRole, 'eye.highlight');
@@ -285,5 +290,48 @@ test('one horn module mounts with fixed embedded seams on two model families', (
         actualContact.forEach((value, axis) => close(value, expectedContact[axis]));
       }
     }
+  }
+});
+
+test('one rigid sword module mounts through typed and legacy hand grips', () => {
+  const module = loadAttachmentModule('simpleSword');
+  const assemblies = [
+    ['humanoid', loadModelAssembly('humanoid')],
+    ['angel', resolveAttachmentAssembly({
+      rig: loadModel('angel'),
+      sourceModelId: 'angel',
+      slots: [],
+      instances: [{ id: 'simpleSword', moduleId: 'simpleSword', slotId: 'nearGripAnchor' }],
+      modules: { simpleSword: module },
+    })],
+  ];
+
+  for (const [name, { rig, manifest }] of assemblies) {
+    assert.equal(validate(rig).status, 'passed', name);
+    assert.equal(validateAttachmentManifest(manifest).status, 'passed', name);
+    const instance = manifest.instances.find((candidate) => candidate.id === 'simpleSword');
+    assert.equal(instance.slotType, 'hand.grip');
+    assert.deepEqual(instance.mountInterface.ownerLocalAxis, [1, 0, 0]);
+    assert.deepEqual(instance.geometryIds.plates, [
+      'simpleSword__handle', 'simpleSword__guardPlate', 'simpleSword__blade',
+    ]);
+
+    const root = rig.joints.find((joint) => joint.id === 'simpleSword__root');
+    const tip = rig.joints.find((joint) => joint.id === 'simpleSword__tip');
+    const lengths = [];
+    for (const sample of [{ clip: 'idle', time: 0 }, { clip: 'attack', time: 0.62 }]) {
+      const pose = solvePose(rig, sample).joints;
+      lengths.push(distance(pose[root.id].positionMeters, pose[tip.id].positionMeters));
+      const parent = pose[root.parent];
+      const seamOffset = multiply(parent.localToWorldRotation, instance.mountInterface.ownerLocalAxis)
+        .map((value) => value * instance.mountInterface.embedDepthMeters);
+      const actualContact = add(pose[root.id].positionMeters, seamOffset);
+      const expectedContact = add(
+        parent.positionMeters,
+        multiply(parent.localToWorldRotation, instance.slotFrame.positionMeters),
+      );
+      actualContact.forEach((value, axis) => close(value, expectedContact[axis]));
+    }
+    lengths.forEach((length) => close(length, 0.64));
   }
 });

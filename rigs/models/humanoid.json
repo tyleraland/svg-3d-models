@@ -4,6 +4,30 @@
   "base": true,
   "slots": [
     {
+      "id": "nearGripSlot",
+      "type": "hand.grip",
+      "owner": { "kind": "joint", "id": "nearHand" },
+      "localFrame": {
+        "positionMeters": [0.08, 0, 0],
+        "rotationXYZDegrees": [0, 0, 0]
+      },
+      "scaleBehavior": "preserve-local-aspect",
+      "cardinality": 1,
+      "counterpartSlotId": "farGripSlot"
+    },
+    {
+      "id": "farGripSlot",
+      "type": "hand.grip",
+      "owner": { "kind": "joint", "id": "farHand" },
+      "localFrame": {
+        "positionMeters": [0.08, 0, 0],
+        "rotationXYZDegrees": [0, 0, 0]
+      },
+      "scaleBehavior": "preserve-local-aspect",
+      "cardinality": 1,
+      "counterpartSlotId": "nearGripSlot"
+    },
+    {
       "id": "headgearSlot",
       "type": "head.hat",
       "owner": { "kind": "joint", "id": "head" },
@@ -32,6 +56,12 @@
     }
   ],
   "attachments": [
+    {
+      "id": "simpleSword",
+      "moduleId": "simpleSword",
+      "slotId": "nearGripSlot",
+      "scale": 1
+    },
     {
       "id": "travelPack",
       "moduleId": "travelPack",
@@ -160,5 +190,25 @@
         }
       }
     ]
-  }
+  },
+  "plateOverrides": [
+    {
+      "match": "^(?:pelvisSpinePlate|chestPlate|shoulderPlate|neckPlate|headConnectorPlate|headPlate|(?:near|far)(?:Thigh|Shin|Foot|Bicep|Forearm|Hand|ShoulderCap)Plate)$",
+      "set": {
+        "semanticDetailTier": "silhouette"
+      }
+    },
+    {
+      "match": "^(?:leftEyePlate|rightEyePlate|nosePlate)$",
+      "set": {
+        "semanticDetailTier": "expression"
+      }
+    },
+    {
+      "id": "castShadow",
+      "set": {
+        "semanticDetailTier": "texture"
+      }
+    }
+  ]
 }

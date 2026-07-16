@@ -196,7 +196,9 @@ attachment declarations. Use `loadModelAssembly()` or `--attachments` when the
 assembled asset is wanted. The current proofs attach the same `travelPack` and
 `simpleHat` modules to humanoid and rabbit slots at different scales, plus an
 `eyeGlint` to a bounded humanoid eye-plate slot. `simpleHorn` proves the same
-measured horn module and seam on wolf and leopard. Generated gaskets carry
+measured horn module and seam on wolf and leopard, while `simpleSword` follows a
+typed humanoid hand grip and remains reusable on compatible normalized grips.
+Generated gaskets carry
 incident plate dependencies and disappear at the same semantic LOD boundary as
 their accessory, so lower tiers cannot retain orphan seam dots. Use
 `rig audit <model> --attachments` for the full 240-view review; its frame overlay includes authored
