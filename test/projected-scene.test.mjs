@@ -61,10 +61,17 @@ test('every model emits a schema-valid, traceable projected scene', () => {
     assert.equal(validateScene(scene), true, `${model}: ${JSON.stringify(validateScene.errors)}`);
     assert.deepEqual(scene.compositingGroups.map((group) => group.order), scene.compositingGroups.map((_, index) => index));
     const elements = scene.compositingGroups.flatMap((group) => group.elements);
-    assert.equal(new Set(elements.map((element) => element.id)).size, elements.length, `${model}: projected IDs must be unique`);
+    const elementIds = new Set(elements.map((element) => element.id));
+    assert.equal(elementIds.size, elements.length, `${model}: projected IDs must be unique`);
     assert.ok(elements.every((element) => element.vector.attributes.id === element.id));
     assert.ok(elements.every((element) => ['silhouette', 'identity', 'expression', 'texture', 'micro'].includes(element.semanticDetailTier)));
     assert.ok(elements.every((element) => element.semanticDetailSource));
+    for (const element of elements) {
+      assert.ok(
+        (element.detailDependencyIds || []).every((dependencyId) => elementIds.has(dependencyId)),
+        `${model}: ${element.id} detail dependencies must name projected elements`,
+      );
+    }
   }
 });
 

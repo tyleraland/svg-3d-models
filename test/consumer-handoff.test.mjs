@@ -17,14 +17,10 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const readJSON = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const fixture = (name) => join(ROOT, 'fixtures/consumer', name);
 const silhouetteProfile = readJSON(fixture('topDownSilhouette.profile.json'));
+const identityWithoutPaintProfile = readJSON(fixture('topDownIdentity.profile.json'));
 const expressionProfile = readJSON(fixture('topDownExpression.profile.json'));
 const sceneOptions = { clip: 'attack', time: 0.62, elevation: 60, heading: 180 };
 const configuredSceneOptions = { ...sceneOptions, time: 0.22 };
-const identityWithoutPaintProfile = {
-  ...expressionProfile,
-  id: 'topDownIdentityWithoutPaint',
-  capabilities: expressionProfile.capabilities.filter((capability) => capability.id !== 'semanticPaint'),
-};
 
 function paintedRabbitScene() {
   return projectScene(loadModelAppearance('rabbit').rig, sceneOptions);
@@ -132,6 +128,49 @@ test('M6 starts with an authored-tier configured rabbit consumer boundary', () =
   assert.equal(
     `${JSON.stringify(handoff, null, 2)}\n`,
     readFileSync(fixture('rabbitAttackConfiguredExpression.handoff.json'), 'utf8'),
+  );
+});
+
+test('M6 elephant keeps its complete head-strike silhouette and adds tusks at identity tier', () => {
+  const bindScene = projectScene(loadModel('elephant'), { ...sceneOptions, time: 0 });
+  const impactScene = projectScene(loadModel('elephant'), sceneOptions);
+  const impactElements = impactScene.compositingGroups.flatMap((group) => group.elements);
+  const basePlates = impactElements.filter((element) => element.sourceKind === 'plate'
+    && !element.generated
+    && !element.id.includes('__'));
+  assert.ok(basePlates.length > 0);
+  assert.ok(basePlates.every((element) => element.semanticDetailSource === 'authored'));
+  assert.deepEqual(
+    impactElements.find((element) => element.id === 'trunkTipGasketOccluderCell').detailDependencyIds,
+    ['trunkLowerPlate', 'trunkTipPlateOccluderCell'],
+  );
+
+  const bindJoints = new Map(bindScene.joints.map((joint) => [joint.id, joint]));
+  const impactJoints = new Map(impactScene.joints.map((joint) => [joint.id, joint]));
+  for (const jointId of ['head', 'trunkBase', 'trunkMid', 'trunkTip']) {
+    assert.notDeepEqual(
+      impactJoints.get(jointId).worldPositionMeters,
+      bindJoints.get(jointId).worldPositionMeters,
+      `${jointId} must participate in the impact pose`,
+    );
+  }
+
+  const silhouette = createConsumerHandoff(impactScene, silhouetteProfile);
+  for (const plateId of ['headPlate', 'trunkConnectorPlate', 'trunkUpperPlate', 'trunkLowerPlate', 'trunkTipPlate']) {
+    assert.ok(silhouette.semanticDetail.includedElementIds.includes(plateId), `${plateId} must survive silhouette LOD`);
+  }
+  assert.equal(silhouette.semanticDetail.includedElementIds.includes('nearTuskPlate'), false);
+  assert.equal(silhouette.semanticDetail.includedElementIds.includes('farTuskPlate'), false);
+  assert.equal(silhouette.semanticDetail.includedElementIds.includes('castShadow'), false);
+
+  const identity = createConsumerHandoff(impactScene, identityWithoutPaintProfile);
+  assert.equal(validateConsumerHandoff(identity).valid, true);
+  assert.ok(identity.semanticDetail.includedElementIds.includes('nearTuskPlate'));
+  assert.ok(identity.semanticDetail.includedElementIds.includes('farTuskPlate'));
+  assert.equal(identity.semanticDetail.includedElementIds.includes('castShadow'), false);
+  assert.equal(
+    `${JSON.stringify(identity, null, 2)}\n`,
+    readFileSync(fixture('elephantAttackIdentity.handoff.json'), 'utf8'),
   );
 });
 

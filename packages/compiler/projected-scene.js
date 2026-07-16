@@ -5,9 +5,32 @@
 
 import * as core from './core.js';
 
+function resolveProjectedDetailDependencies(groups) {
+  const elementIds = new Set(groups.flatMap((group) => group.elements.map((element) => element.id)));
+  return groups.map((group) => ({
+    ...group,
+    elements: group.elements.map((element) => {
+      if (!element.detailDependencyIds) return element;
+      const detailDependencyIds = element.detailDependencyIds.map((dependencyId) => {
+        if (elementIds.has(dependencyId)) return dependencyId;
+        // A core gasket can touch an appendage that has no generated occluder
+        // cell. Keep the dependency on that real incident plate; the gasket and
+        // plate still enter and leave cumulative LOD atomically.
+        const occluderSuffix = 'OccluderCell';
+        const sourceId = dependencyId.endsWith(occluderSuffix)
+          ? dependencyId.slice(0, -occluderSuffix.length)
+          : null;
+        return sourceId && elementIds.has(sourceId) ? sourceId : dependencyId;
+      });
+      return { ...element, detailDependencyIds };
+    }),
+  }));
+}
+
 export function buildProjectedScene(rig, time, clipId, view = 'projected') {
   const plan = core.projectedRenderPlan(rig, time, clipId, view);
   const { pose, basis, projectedJoints } = plan;
+  const groups = resolveProjectedDetailDependencies(plan.groups);
 
   return {
     schema: 'paper-rig/projected-scene/1',
@@ -37,7 +60,7 @@ export function buildProjectedScene(rig, time, clipId, view = 'projected') {
       screenPosition: projectedJoints[joint.id].slice(0, 2),
       cameraDepth: projectedJoints[joint.id][2],
     })),
-    compositingGroups: plan.groups.map(({ id, semanticRole, order, elements }) => ({
+    compositingGroups: groups.map(({ id, semanticRole, order, elements }) => ({
       id, semanticRole, order, elements,
     })),
   };

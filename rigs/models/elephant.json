@@ -68,9 +68,22 @@
   },
   "plateOverrides": [
     {
+      "match": "^(?:torsoPlate|pelvisPlate|neckPlate|headConnectorPlate|headPlate|tailPlate|(?:near|far)(?:Front|Rear)(?:Upper|Lower|Paw)Plate|trunk(?:Connector|Upper|Lower|Tip)Plate)$",
+      "set": {
+        "semanticDetailTier": "silhouette"
+      }
+    },
+    {
+      "id": "castShadow",
+      "set": {
+        "semanticDetailTier": "texture"
+      }
+    },
+    {
       "id": "nearTuskPlate",
       "set": {
         "role": "tusk",
+        "semanticDetailTier": "identity",
         "occlusionMode": "surface-relative",
         "occlusionReference": "head"
       }
@@ -79,6 +92,7 @@
       "id": "farTuskPlate",
       "set": {
         "role": "tusk",
+        "semanticDetailTier": "identity",
         "occlusionMode": "surface-relative",
         "occlusionReference": "head"
       }

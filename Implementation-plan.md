@@ -470,8 +470,8 @@ Representative matrix:
 | Stress case | Model | Current M6 state |
 | --- | --- | --- |
 | shared-family quadruped | rabbit | first slice complete |
-| long-necked/head striker | elephant | next |
-| humanoid/weapon-bearing | humanoid | queued |
+| long-necked/head striker | elephant | second slice complete |
+| humanoid/weapon-bearing | humanoid | next |
 | winged/non-bilateral compositor | harpy | queued |
 
 The rabbit first slice authors every base plate's semantic tier, including its
@@ -482,8 +482,19 @@ surface paint, stable IDs, and LOD together. The resolved-rig and one SVG fixtur
 change only by newly authored metadata; the legacy compiled `paper-rig/1`
 gasket surface remains byte-compatible.
 
-Next action: migrate and review elephant tiers and head-strike evidence, then
-apply the same process to humanoid and harpy before family-wide rollout.
+The elephant second slice authors every base plate's tier, preserves the entire
+head-and-trunk action chain at silhouette detail, treats paired tusks as
+identity geometry, and keeps the cast shadow in the texture tier. Its impact
+pose is locked as an identity-tier consumer golden, with regression evidence
+that the rotation-authored head strike moves the head and successive trunk
+joints without requiring a consumer to understand the source clip. This slice
+also tightened structural LOD dependencies: when a generated core gasket joins
+a core plate to a non-core plate, its projected occluder dependency now falls
+back to the real incident plate instead of naming an occluder cell that does not
+exist in that view.
+
+Next action: migrate and review humanoid tiers and weapon-bearing evidence, then
+apply the same process to harpy before family-wide rollout.
 
 Exit criteria:
 
