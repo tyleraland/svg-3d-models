@@ -35,7 +35,7 @@
   ],
   "heightMeters": 3.15,
   "tokenScale": 14,
-  "tokenGroundY": 72,
+  "tokenGroundY": 50,
   "surfaceConvention": {
     "outward": "+z",
     "groundPlane": "z=0",
@@ -61,8 +61,8 @@
   },
   "profile": {
     "sizeClass": "XL",
-    "silhouette": "huge wide body, broad head, trunk and paired tusks",
-    "locomotion": "diagonal gait",
+    "silhouette": "deep barrel and high shoulders, broad fan ears, column legs, hanging articulated trunk and curved tusks",
+    "locomotion": "four-beat lateral-sequence walk with sustained support",
     "modularHornMounts": [
       "nearHornMount",
       "farHornMount"
@@ -83,9 +83,9 @@
       "id": "pelvis",
       "parent": "root",
       "bind": [
-        -0.5508000000000001,
+        -0.85,
         0,
-        1.302
+        1.85
       ],
       "role": "body"
     },
@@ -93,9 +93,9 @@
       "id": "chest",
       "parent": "pelvis",
       "bind": [
-        1.0692000000000002,
+        1.55,
         0,
-        0.252
+        0.16
       ],
       "role": "body"
     },
@@ -103,9 +103,9 @@
       "id": "neck",
       "parent": "chest",
       "bind": [
-        0.16,
+        0.2,
         0,
-        0.08
+        0.18
       ],
       "role": "neck"
     },
@@ -113,9 +113,9 @@
       "id": "head",
       "parent": "neck",
       "bind": [
-        0.3,
+        0.32,
         0,
-        -0.02
+        0.17
       ],
       "role": "head"
     },
@@ -123,9 +123,9 @@
       "id": "nearHornMount",
       "parent": "head",
       "bind": [
-        -0.032400000000000005,
-        0.192,
-        0.29400000000000004
+        -0.06,
+        0.27,
+        0.34
       ],
       "role": "accessoryAnchor",
       "mirror": "farHornMount"
@@ -134,9 +134,9 @@
       "id": "farHornMount",
       "parent": "head",
       "bind": [
-        -0.032400000000000005,
-        -0.192,
-        0.29400000000000004
+        -0.06,
+        -0.27,
+        0.34
       ],
       "role": "accessoryAnchor",
       "mirror": "nearHornMount"
@@ -145,9 +145,9 @@
       "id": "tailBase",
       "parent": "pelvis",
       "bind": [
-        -0.3,
+        -0.63,
         0,
-        0.05
+        0.25
       ],
       "role": "tail"
     },
@@ -155,9 +155,9 @@
       "id": "tailTip",
       "parent": "tailBase",
       "bind": [
-        -0.4,
+        -0.18,
         0,
-        -0.2
+        -1.28
       ],
       "role": "tail"
     },
@@ -165,9 +165,9 @@
       "id": "nearFrontHip",
       "parent": "chest",
       "bind": [
-        -0.08100000000000002,
-        0.35200000000000004,
-        -0.042
+        0.025,
+        0.45,
+        -0.2
       ],
       "role": "limb",
       "mirror": "farFrontHip",
@@ -177,9 +177,9 @@
       "id": "nearFrontKnee",
       "parent": "nearFrontHip",
       "bind": [
-        0.032400000000000005,
+        -0.22,
         0,
-        -0.672
+        -0.88
       ],
       "role": "limb",
       "mirror": "farFrontKnee",
@@ -190,17 +190,17 @@
         0
       ],
       "limits": [
-        -30,
-        120
+        -130,
+        30
       ]
     },
     {
       "id": "nearFrontPaw",
       "parent": "nearFrontKnee",
       "bind": [
-        0.06480000000000001,
+        0.22,
         0,
-        -0.651
+        -0.9
       ],
       "role": "limb",
       "mirror": "farFrontPaw",
@@ -211,9 +211,9 @@
       "id": "farFrontHip",
       "parent": "chest",
       "bind": [
-        -0.08100000000000002,
-        -0.35200000000000004,
-        -0.042
+        0.025,
+        -0.45,
+        -0.2
       ],
       "role": "limb",
       "mirror": "nearFrontHip",
@@ -223,9 +223,9 @@
       "id": "farFrontKnee",
       "parent": "farFrontHip",
       "bind": [
-        0.032400000000000005,
+        -0.22,
         0,
-        -0.672
+        -0.88
       ],
       "role": "limb",
       "mirror": "nearFrontKnee",
@@ -236,17 +236,17 @@
         0
       ],
       "limits": [
-        -30,
-        120
+        -130,
+        30
       ]
     },
     {
       "id": "farFrontPaw",
       "parent": "farFrontKnee",
       "bind": [
-        0.06480000000000001,
+        0.22,
         0,
-        -0.651
+        -0.9
       ],
       "role": "limb",
       "mirror": "nearFrontPaw",
@@ -257,9 +257,9 @@
       "id": "nearRearHip",
       "parent": "pelvis",
       "bind": [
-        -0.06480000000000001,
-        0.36800000000000005,
-        -0.042
+        -0.14,
+        0.48,
+        -0.08
       ],
       "role": "limb",
       "mirror": "farRearHip",
@@ -269,9 +269,9 @@
       "id": "nearRearKnee",
       "parent": "nearRearHip",
       "bind": [
-        -0.08100000000000002,
+        0.25,
         0,
-        -0.672
+        -0.88
       ],
       "role": "limb",
       "mirror": "farRearKnee",
@@ -282,17 +282,17 @@
         0
       ],
       "limits": [
-        -120,
-        30
+        -30,
+        130
       ]
     },
     {
       "id": "nearRearPaw",
       "parent": "nearRearKnee",
       "bind": [
-        0.048600000000000004,
+        -0.25,
         0,
-        -0.63
+        -0.9
       ],
       "role": "limb",
       "mirror": "farRearPaw",
@@ -303,9 +303,9 @@
       "id": "farRearHip",
       "parent": "pelvis",
       "bind": [
-        -0.06480000000000001,
-        -0.36800000000000005,
-        -0.042
+        -0.14,
+        -0.48,
+        -0.08
       ],
       "role": "limb",
       "mirror": "nearRearHip",
@@ -315,9 +315,9 @@
       "id": "farRearKnee",
       "parent": "farRearHip",
       "bind": [
-        -0.08100000000000002,
+        0.25,
         0,
-        -0.672
+        -0.88
       ],
       "role": "limb",
       "mirror": "nearRearKnee",
@@ -328,17 +328,17 @@
         0
       ],
       "limits": [
-        -120,
-        30
+        -30,
+        130
       ]
     },
     {
       "id": "farRearPaw",
       "parent": "farRearKnee",
       "bind": [
-        0.048600000000000004,
+        -0.25,
         0,
-        -0.63
+        -0.9
       ],
       "role": "limb",
       "mirror": "nearRearPaw",
@@ -349,9 +349,9 @@
       "id": "trunkBase",
       "parent": "head",
       "bind": [
-        0.25,
+        0.32,
         0,
-        -0.1
+        -0.32
       ],
       "role": "snout"
     },
@@ -359,9 +359,9 @@
       "id": "trunkMid",
       "parent": "trunkBase",
       "bind": [
-        0.34,
+        0.08,
         0,
-        -0.18
+        -0.65
       ],
       "role": "trunk",
       "bendAxis": [
@@ -375,12 +375,31 @@
       ]
     },
     {
-      "id": "trunkTip",
+      "id": "trunkLower",
       "parent": "trunkMid",
       "bind": [
-        0.32,
+        0.015,
         0,
-        -0.16
+        -0.7
+      ],
+      "role": "trunk",
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "limits": [
+        -90,
+        90
+      ]
+    },
+    {
+      "id": "trunkTip",
+      "parent": "trunkLower",
+      "bind": [
+        0.13,
+        0,
+        -0.35
       ],
       "role": "trunk",
       "ik": "trunkChain"
@@ -389,20 +408,31 @@
       "id": "nearTuskBase",
       "parent": "head",
       "bind": [
-        0.16,
-        0.2,
-        -0.07
+        0.26,
+        0.25,
+        -0.32
       ],
       "role": "tusk",
       "mirror": "farTuskBase"
     },
     {
-      "id": "nearTuskTip",
+      "id": "nearTuskMid",
       "parent": "nearTuskBase",
       "bind": [
-        0.45,
-        0.03,
-        -0.1
+        0.54,
+        0.035,
+        -0.32
+      ],
+      "role": "tusk",
+      "mirror": "farTuskMid"
+    },
+    {
+      "id": "nearTuskTip",
+      "parent": "nearTuskMid",
+      "bind": [
+        0.34,
+        0.015,
+        0.08
       ],
       "role": "tusk",
       "mirror": "farTuskTip"
@@ -411,23 +441,198 @@
       "id": "farTuskBase",
       "parent": "head",
       "bind": [
-        0.16,
-        -0.2,
-        -0.07
+        0.26,
+        -0.25,
+        -0.32
       ],
       "role": "tusk",
       "mirror": "nearTuskBase"
     },
     {
-      "id": "farTuskTip",
+      "id": "farTuskMid",
       "parent": "farTuskBase",
       "bind": [
-        0.45,
-        -0.03,
-        -0.1
+        0.54,
+        -0.035,
+        -0.32
+      ],
+      "role": "tusk",
+      "mirror": "nearTuskMid"
+    },
+    {
+      "id": "farTuskTip",
+      "parent": "farTuskMid",
+      "bind": [
+        0.34,
+        -0.015,
+        0.08
       ],
       "role": "tusk",
       "mirror": "nearTuskTip"
+    },
+    {
+      "id": "trunkCurl",
+      "parent": "trunkTip",
+      "bind": [
+        0.13,
+        0,
+        0.07
+      ],
+      "role": "trunk"
+    },
+    {
+      "id": "nearEarBase",
+      "parent": "head",
+      "bind": [
+        -0.22,
+        0.31,
+        0.21
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "farEarBase"
+    },
+    {
+      "id": "nearEarEdge0",
+      "parent": "nearEarBase",
+      "bind": [
+        0.08,
+        0,
+        0.24
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "farEarEdge0"
+    },
+    {
+      "id": "nearEarEdge1",
+      "parent": "nearEarBase",
+      "bind": [
+        0.1,
+        0.42,
+        0.36
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "farEarEdge1"
+    },
+    {
+      "id": "nearEarEdge2",
+      "parent": "nearEarBase",
+      "bind": [
+        -0.12,
+        0.73,
+        0.12
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "farEarEdge2"
+    },
+    {
+      "id": "nearEarEdge3",
+      "parent": "nearEarBase",
+      "bind": [
+        -0.64,
+        0.7,
+        -0.35
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "farEarEdge3"
+    },
+    {
+      "id": "nearEarEdge4",
+      "parent": "nearEarBase",
+      "bind": [
+        -0.65,
+        0.3,
+        -0.68
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "farEarEdge4"
+    },
+    {
+      "id": "nearEarEdge5",
+      "parent": "nearEarBase",
+      "bind": [
+        -0.1,
+        0,
+        -0.48
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "farEarEdge5"
+    },
+    {
+      "id": "farEarBase",
+      "parent": "head",
+      "bind": [
+        -0.22,
+        -0.31,
+        0.21
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "nearEarBase"
+    },
+    {
+      "id": "farEarEdge0",
+      "parent": "farEarBase",
+      "bind": [
+        0.08,
+        0,
+        0.24
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "nearEarEdge0"
+    },
+    {
+      "id": "farEarEdge1",
+      "parent": "farEarBase",
+      "bind": [
+        0.1,
+        -0.42,
+        0.36
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "nearEarEdge1"
+    },
+    {
+      "id": "farEarEdge2",
+      "parent": "farEarBase",
+      "bind": [
+        -0.12,
+        -0.73,
+        0.12
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "nearEarEdge2"
+    },
+    {
+      "id": "farEarEdge3",
+      "parent": "farEarBase",
+      "bind": [
+        -0.64,
+        -0.7,
+        -0.35
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "nearEarEdge3"
+    },
+    {
+      "id": "farEarEdge4",
+      "parent": "farEarBase",
+      "bind": [
+        -0.65,
+        -0.3,
+        -0.68
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "nearEarEdge4"
+    },
+    {
+      "id": "farEarEdge5",
+      "parent": "farEarBase",
+      "bind": [
+        -0.1,
+        0,
+        -0.48
+      ],
+      "role": "accessoryAnchor",
+      "mirror": "nearEarEdge5"
     }
   ],
   "plates": [
@@ -436,8 +641,8 @@
       "bone": "root",
       "shape": "ellipse",
       "size": [
-        2.45,
-        1.55
+        3.4,
+        1.6
       ],
       "role": "shadow",
       "attachment": "rigid",
@@ -449,7 +654,7 @@
       "bone": "chest",
       "shape": "bone",
       "size": [
-        1.15
+        1.65
       ],
       "role": "body",
       "attachment": "rigid",
@@ -466,8 +671,8 @@
       "bone": "pelvis",
       "shape": "ellipse",
       "size": [
-        1.12,
-        0.98
+        1.35,
+        1.55
       ],
       "role": "body",
       "attachment": "rigid",
@@ -479,7 +684,7 @@
       "bone": "neck",
       "shape": "bone",
       "size": [
-        0.6
+        0.85
       ],
       "role": "body",
       "attachment": "rigid",
@@ -496,7 +701,7 @@
       "bone": "head",
       "shape": "bone",
       "size": [
-        0.62
+        0.8
       ],
       "role": "body",
       "attachment": "rigid",
@@ -513,8 +718,8 @@
       "bone": "head",
       "shape": "ellipse",
       "size": [
-        0.94,
-        0.88
+        0.98,
+        1.12
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -526,7 +731,7 @@
       "bone": "tailTip",
       "shape": "bone",
       "size": [
-        0.12
+        0.1
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -543,7 +748,7 @@
       "bone": "nearFrontKnee",
       "shape": "bone",
       "size": [
-        0.31
+        0.48
       ],
       "role": "body",
       "attachment": "rigid",
@@ -560,7 +765,7 @@
       "bone": "nearFrontPaw",
       "shape": "bone",
       "size": [
-        0.27
+        0.37
       ],
       "role": "body",
       "attachment": "rigid",
@@ -577,8 +782,8 @@
       "bone": "nearFrontPaw",
       "shape": "ellipse",
       "size": [
-        0.36,
-        0.29
+        0.46,
+        0.38
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -590,7 +795,7 @@
       "bone": "farFrontKnee",
       "shape": "bone",
       "size": [
-        0.31
+        0.48
       ],
       "role": "body",
       "attachment": "rigid",
@@ -607,7 +812,7 @@
       "bone": "farFrontPaw",
       "shape": "bone",
       "size": [
-        0.27
+        0.37
       ],
       "role": "body",
       "attachment": "rigid",
@@ -624,8 +829,8 @@
       "bone": "farFrontPaw",
       "shape": "ellipse",
       "size": [
-        0.36,
-        0.29
+        0.46,
+        0.38
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -637,7 +842,7 @@
       "bone": "nearRearKnee",
       "shape": "bone",
       "size": [
-        0.31
+        0.52
       ],
       "role": "body",
       "attachment": "rigid",
@@ -654,7 +859,7 @@
       "bone": "nearRearPaw",
       "shape": "bone",
       "size": [
-        0.27
+        0.37
       ],
       "role": "body",
       "attachment": "rigid",
@@ -671,8 +876,8 @@
       "bone": "nearRearPaw",
       "shape": "ellipse",
       "size": [
-        0.36,
-        0.29
+        0.46,
+        0.38
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -684,7 +889,7 @@
       "bone": "farRearKnee",
       "shape": "bone",
       "size": [
-        0.31
+        0.52
       ],
       "role": "body",
       "attachment": "rigid",
@@ -701,7 +906,7 @@
       "bone": "farRearPaw",
       "shape": "bone",
       "size": [
-        0.27
+        0.37
       ],
       "role": "body",
       "attachment": "rigid",
@@ -718,8 +923,8 @@
       "bone": "farRearPaw",
       "shape": "ellipse",
       "size": [
-        0.36,
-        0.29
+        0.46,
+        0.38
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -731,7 +936,7 @@
       "bone": "trunkBase",
       "shape": "bone",
       "size": [
-        0.42
+        0.41
       ],
       "role": "body",
       "attachment": "rigid",
@@ -741,14 +946,15 @@
         "head",
         "trunkBase"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "bodyRegion": "head"
     },
     {
       "id": "trunkUpperPlate",
       "bone": "trunkMid",
       "shape": "bone",
       "size": [
-        0.28
+        0.32
       ],
       "role": "body",
       "attachment": "rigid",
@@ -758,14 +964,15 @@
         "trunkBase",
         "trunkMid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "bodyRegion": "head"
     },
     {
       "id": "trunkLowerPlate",
-      "bone": "trunkTip",
+      "bone": "trunkLower",
       "shape": "bone",
       "size": [
-        0.2
+        0.24
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -773,56 +980,209 @@
       "zBias": 5.5,
       "span": [
         "trunkMid",
-        "trunkTip"
+        "trunkLower"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "bodyRegion": "head"
     },
     {
       "id": "trunkTipPlate",
       "bone": "trunkTip",
       "shape": "ellipse",
       "size": [
-        0.23,
-        0.2
+        0.15,
+        0.14
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 5.6
+      "zBias": 5.6,
+      "bodyRegion": "head"
     },
     {
       "id": "nearTuskPlate",
-      "bone": "nearTuskTip",
+      "bone": "nearTuskMid",
       "shape": "taperedBone",
       "size": [
-        0.15
+        0.16
       ],
-      "role": "accent",
+      "role": "tusk",
       "attachment": "rigid",
       "material": "paperShade",
       "zBias": 6,
       "span": [
         "nearTuskBase",
-        "nearTuskTip"
+        "nearTuskMid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "identity"
     },
     {
       "id": "farTuskPlate",
-      "bone": "farTuskTip",
+      "bone": "farTuskMid",
       "shape": "taperedBone",
       "size": [
-        0.15
+        0.16
       ],
-      "role": "accent",
+      "role": "tusk",
       "attachment": "rigid",
       "material": "paperShade",
       "zBias": 6,
       "span": [
         "farTuskBase",
+        "farTuskMid"
+      ],
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "identity"
+    },
+    {
+      "id": "nearTuskTipPlate",
+      "bone": "nearTuskTip",
+      "shape": "taperedBone",
+      "size": [
+        0.09
+      ],
+      "role": "tusk",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 6,
+      "span": [
+        "nearTuskMid",
+        "nearTuskTip"
+      ],
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "identity"
+    },
+    {
+      "id": "nearEarPlate",
+      "bone": "nearEarBase",
+      "shape": "polygon",
+      "points": [
+        "nearEarEdge0",
+        "nearEarEdge1",
+        "nearEarEdge2",
+        "nearEarEdge3",
+        "nearEarEdge4",
+        "nearEarEdge5"
+      ],
+      "size": [
+        1.0,
+        1.05
+      ],
+      "role": "ear",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
+    },
+    {
+      "id": "farTuskTipPlate",
+      "bone": "farTuskTip",
+      "shape": "taperedBone",
+      "size": [
+        0.09
+      ],
+      "role": "tusk",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 6,
+      "span": [
+        "farTuskMid",
         "farTuskTip"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "identity"
+    },
+    {
+      "id": "farEarPlate",
+      "bone": "farEarBase",
+      "shape": "polygon",
+      "points": [
+        "farEarEdge0",
+        "farEarEdge1",
+        "farEarEdge2",
+        "farEarEdge3",
+        "farEarEdge4",
+        "farEarEdge5"
+      ],
+      "size": [
+        1.0,
+        1.05
+      ],
+      "role": "ear",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "semanticDetailTier": "silhouette"
+    },
+    {
+      "id": "trunkDistalPlate",
+      "bone": "trunkTip",
+      "span": [
+        "trunkLower",
+        "trunkTip"
+      ],
+      "shape": "bone",
+      "size": [
+        0.17
+      ],
+      "role": "trunk",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
+      "bodyRegion": "head"
+    },
+    {
+      "id": "trunkCurlPlate",
+      "bone": "trunkCurl",
+      "span": [
+        "trunkTip",
+        "trunkCurl"
+      ],
+      "shape": "bone",
+      "size": [
+        0.12
+      ],
+      "role": "trunk",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
+      "bodyRegion": "head"
+    },
+    {
+      "id": "shoulderPlate",
+      "bone": "chest",
+      "shape": "ellipse",
+      "size": [
+        1.3,
+        1.78
+      ],
+      "role": "body",
+      "bodyRegion": "core",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.05,
+      "semanticDetailTier": "silhouette"
+    },
+    {
+      "id": "tailTuftPlate",
+      "bone": "tailTip",
+      "shape": "ellipse",
+      "size": [
+        0.15,
+        0.23
+      ],
+      "role": "tail",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "semanticDetailTier": "identity"
     }
   ],
   "anchors": [
@@ -906,37 +1266,107 @@
   "clips": {
     "idleA": {
       "base": "bind",
-      "duration": 1800,
+      "duration": 3200,
       "easing": "ease-in-out",
       "loop": true,
       "frames": [
         {
           "t": 0,
-          "poses": {}
+          "poses": {},
+          "rotations": {}
         },
         {
-          "t": 0.5,
-          "poses": {
-            "head": [
-              0.016200000000000003,
+          "t": 0.25,
+          "poses": {},
+          "rotations": {
+            "trunkBase": [
               0,
-              0.042
+              2,
+              0
             ],
-            "tailTip": [
+            "trunkMid": [
               0,
-              0.064,
+              -4,
+              0
+            ],
+            "trunkLower": [
+              0,
+              -7,
               0
             ],
             "trunkTip": [
-              -0.03,
-              0.04,
-              0.03
+              0,
+              -8,
+              0
+            ],
+            "nearEarBase": [
+              0,
+              0,
+              5
+            ],
+            "farEarBase": [
+              0,
+              0,
+              -5
+            ],
+            "tailBase": [
+              3,
+              0,
+              4
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "poses": {},
+          "rotations": {
+            "trunkBase": [
+              0,
+              -2,
+              0
+            ],
+            "trunkMid": [
+              0,
+              3,
+              0
+            ],
+            "trunkLower": [
+              0,
+              5,
+              0
+            ],
+            "trunkTip": [
+              0,
+              6,
+              0
+            ]
+          }
+        },
+        {
+          "t": 0.75,
+          "poses": {},
+          "rotations": {
+            "trunkMid": [
+              0,
+              -3,
+              0
+            ],
+            "trunkLower": [
+              0,
+              -5,
+              0
+            ],
+            "tailBase": [
+              -3,
+              0,
+              -4
             ]
           }
         },
         {
           "t": 1,
-          "poses": {}
+          "poses": {},
+          "rotations": {}
         }
       ],
       "contacts": [
@@ -944,7 +1374,8 @@
         "farFrontPaw",
         "nearRearPaw",
         "farRearPaw"
-      ]
+      ],
+      "boneLengthPolicy": "preserve"
     },
     "walkA": {
       "base": "idleA",
@@ -954,93 +1385,70 @@
       "frames": [
         {
           "t": 0,
-          "poses": {
-            "nearFrontPaw": [
-              0.27540000000000003,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.25,
+          "poses": {},
+          "rotations": {
+            "trunkBase": [
               0,
-              0.126
-            ],
-            "farRearPaw": [
-              0.243,
-              0,
-              0.10500000000000001
-            ],
-            "farFrontPaw": [
-              -0.2106,
-              0,
+              -3,
               0
             ],
-            "nearRearPaw": [
-              -0.2106,
+            "trunkMid": [
               0,
+              -4,
+              0
+            ],
+            "trunkLower": [
+              0,
+              -6,
               0
             ],
             "trunkTip": [
               0,
-              0.08,
-              0.02
+              -8,
+              0
             ]
           }
         },
         {
           "t": 0.5,
-          "poses": {
-            "nearFrontPaw": [
-              -0.2106,
+          "poses": {},
+          "rotations": {}
+        },
+        {
+          "t": 0.75,
+          "poses": {},
+          "rotations": {
+            "trunkBase": [
               0,
+              3,
               0
             ],
-            "farRearPaw": [
-              -0.2106,
+            "trunkMid": [
               0,
+              4,
               0
             ],
-            "farFrontPaw": [
-              0.27540000000000003,
+            "trunkLower": [
               0,
-              0.126
-            ],
-            "nearRearPaw": [
-              0.243,
-              0,
-              0.10500000000000001
+              6,
+              0
             ],
             "trunkTip": [
               0,
-              -0.08,
-              0.02
+              8,
+              0
             ]
           }
         },
         {
           "t": 1,
-          "poses": {
-            "nearFrontPaw": [
-              0.27540000000000003,
-              0,
-              0.126
-            ],
-            "farRearPaw": [
-              0.243,
-              0,
-              0.10500000000000001
-            ],
-            "farFrontPaw": [
-              -0.2106,
-              0,
-              0
-            ],
-            "nearRearPaw": [
-              -0.2106,
-              0,
-              0
-            ],
-            "trunkTip": [
-              0,
-              0.08,
-              0.02
-            ]
-          }
+          "poses": {},
+          "rotations": {}
         }
       ],
       "contactIntervals": [

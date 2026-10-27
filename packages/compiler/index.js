@@ -29,6 +29,7 @@ export function useRig(rig, opts = {}) {
   s.clip = opts.clip ?? 'idle';
   s.t = opts.time ?? 0;
   s.bones = opts.bones ?? false;
+  s.labels = opts.labels ?? s.bones;
   s.contacts = opts.contacts ?? false;
   return s;
 }

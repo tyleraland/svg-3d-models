@@ -4,20 +4,349 @@
   "title": "paper-rig declarative model source",
   "type": "object",
   "additionalProperties": false,
-  "required": ["$schema", "family"],
+  "required": [
+    "$schema",
+    "family"
+  ],
   "properties": {
-    "$schema": { "const": "paper-rig/model-1" },
-    "family": { "$ref": "#/$defs/id" },
-    "base": { "type": "boolean" },
-    "variant": { "$ref": "#/$defs/variant" },
+    "$schema": {
+      "const": "paper-rig/model-1"
+    },
+    "family": {
+      "$ref": "#/$defs/id"
+    },
+    "base": {
+      "type": "boolean"
+    },
+    "groundedQuadruped": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "gallop": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "durationMs",
+            "stride",
+            "lift"
+          ],
+          "properties": {
+            "durationMs": {
+              "type": "number",
+              "minimum": 400,
+              "maximum": 1600
+            },
+            "stride": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 0.8
+            },
+            "lift": {
+              "type": "number",
+              "minimum": 0.15,
+              "maximum": 0.4
+            },
+            "bodyRise": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.15
+            },
+            "bodyDip": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.06
+            },
+            "pitchDegrees": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 6
+            },
+            "lead": {
+              "enum": [
+                "left",
+                "right"
+              ]
+            }
+          }
+        },
+        "run": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "durationMs",
+                "stride",
+                "lift"
+              ],
+              "properties": {
+                "durationMs": {
+                  "type": "number",
+                  "minimum": 400,
+                  "maximum": 1600
+                },
+                "stride": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 0.8
+                },
+                "lift": {
+                  "type": "number",
+                  "minimum": 0.15,
+                  "maximum": 0.4
+                },
+                "bodyRise": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 0.15
+                },
+                "bodyDip": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 0.06
+                },
+                "pitchDegrees": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 6
+                },
+                "lead": {
+                  "enum": [
+                    "left",
+                    "right"
+                  ]
+                },
+                "spineFlexDegrees": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "neckPitchDegrees": {
+                  "type": "number",
+                  "minimum": -30,
+                  "maximum": 30
+                },
+                "headPitchDegrees": {
+                  "type": "number",
+                  "minimum": -30,
+                  "maximum": 30
+                },
+                "tailPitchDegrees": {
+                  "type": "number",
+                  "minimum": -30,
+                  "maximum": 45
+                },
+                "dutyFactor": {
+                  "type": "number",
+                  "minimum": 0.14,
+                  "maximum": 0.22
+                },
+                "keepPawsLevel": {
+                  "type": "boolean"
+                }
+              }
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/properties/groundedQuadruped/properties/walk"
+                },
+                {
+                  "required": [
+                    "durationMs",
+                    "pattern"
+                  ],
+                  "properties": {
+                    "pattern": {
+                      "const": "lateral-sequence"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          ]
+        },
+        "walk": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "stride",
+            "lift"
+          ],
+          "properties": {
+            "stride": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 0.6
+            },
+            "lift": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 0.3
+            },
+            "pattern": {
+              "enum": [
+                "diagonal",
+                "fore-hind",
+                "lateral-sequence"
+              ]
+            },
+            "bodyCycles": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2
+            },
+            "earSwingDegrees": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10
+            },
+            "dutyFactor": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 0.8
+            },
+            "bodyBounce": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.06
+            },
+            "headNodDegrees": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 8
+            },
+            "tailWaveDegrees": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10
+            },
+            "durationMs": {
+              "type": "number",
+              "minimum": 400,
+              "maximum": 3000
+            },
+            "tailSwingDegrees": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 12
+            },
+            "keepPawsLevel": {
+              "type": "boolean"
+            }
+          }
+        },
+        "trot": {
+          "allOf": [
+            {
+              "$ref": "#/properties/groundedQuadruped/properties/walk"
+            },
+            {
+              "type": "object",
+              "required": [
+                "durationMs",
+                "pattern"
+              ],
+              "properties": {
+                "pattern": {
+                  "const": "diagonal"
+                }
+              }
+            }
+          ]
+        },
+        "sprint": {
+          "$ref": "#/properties/groundedQuadruped/properties/run"
+        }
+      }
+    },
+    "felineAttacks": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "swipe": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "durationMs",
+            "reach",
+            "lift"
+          ],
+          "properties": {
+            "durationMs": {
+              "type": "number",
+              "minimum": 400,
+              "maximum": 2000
+            },
+            "reach": {
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.8
+            },
+            "side": {
+              "enum": [
+                "left",
+                "right"
+              ]
+            },
+            "lift": {
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.8
+            }
+          }
+        },
+        "pounce": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "durationMs",
+            "reach",
+            "height"
+          ],
+          "properties": {
+            "durationMs": {
+              "type": "number",
+              "minimum": 400,
+              "maximum": 2000
+            },
+            "reach": {
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.8
+            },
+            "height": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.2
+            }
+          }
+        }
+      }
+    },
+    "variant": {
+      "$ref": "#/$defs/variant"
+    },
     "limbs": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["upper", "lower", "paw"],
+      "required": [
+        "upper",
+        "lower",
+        "paw"
+      ],
       "properties": {
-        "upper": { "$ref": "#/$defs/positiveNumber" },
-        "lower": { "$ref": "#/$defs/positiveNumber" },
-        "paw": { "$ref": "#/$defs/size" }
+        "upper": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "lower": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "paw": {
+          "$ref": "#/$defs/size"
+        }
       }
     },
     "plateSizeOverrides": {
@@ -25,10 +354,18 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["match", "size"],
+        "required": [
+          "match",
+          "size"
+        ],
         "properties": {
-          "match": { "type": "string", "minLength": 1 },
-          "size": { "$ref": "#/$defs/size" }
+          "match": {
+            "type": "string",
+            "minLength": 1
+          },
+          "size": {
+            "$ref": "#/$defs/size"
+          }
         }
       }
     },
@@ -36,51 +373,86 @@
       "type": "array",
       "items": {
         "oneOf": [
-          { "$ref": "#/$defs/pairedEarsAddon" },
-          { "$ref": "#/$defs/muzzleAddon" }
+          {
+            "$ref": "#/$defs/pairedEarsAddon"
+          },
+          {
+            "$ref": "#/$defs/muzzleAddon"
+          }
         ]
       }
     },
     "clipEvents": {
       "type": "object",
-      "propertyNames": { "$ref": "#/$defs/id" },
+      "propertyNames": {
+        "$ref": "#/$defs/id"
+      },
       "additionalProperties": {
         "type": "array",
-        "items": { "$ref": "#/$defs/event" }
+        "items": {
+          "$ref": "#/$defs/event"
+        }
       }
     },
     "clips": {
       "type": "object",
-      "propertyNames": { "$ref": "#/$defs/id" },
-      "additionalProperties": { "$ref": "#/$defs/clip" }
+      "propertyNames": {
+        "$ref": "#/$defs/id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/clip"
+      }
     },
     "clipPatches": {
       "type": "array",
-      "items": { "$ref": "#/$defs/clipPatch" }
+      "items": {
+        "$ref": "#/$defs/clipPatch"
+      }
     },
     "attachments": {
       "type": "array",
-      "items": { "$ref": "#/$defs/attachmentInstance" }
+      "items": {
+        "$ref": "#/$defs/attachmentInstance"
+      }
     },
     "slots": {
       "type": "array",
-      "items": { "$ref": "#/$defs/attachmentSlot" }
+      "items": {
+        "$ref": "#/$defs/attachmentSlot"
+      }
     },
-    "motion": { "$ref": "#/$defs/motionPlan" },
-    "appearance": { "$ref": "#/$defs/appearancePlan" },
-    "semanticDetailPolicy": { "$ref": "#/$defs/semanticDetailPolicy" },
+    "motion": {
+      "$ref": "#/$defs/motionPlan"
+    },
+    "appearance": {
+      "$ref": "#/$defs/appearancePlan"
+    },
+    "semanticDetailPolicy": {
+      "$ref": "#/$defs/semanticDetailPolicy"
+    },
     "attack": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["rotations"],
+      "required": [
+        "rotations"
+      ],
       "properties": {
-        "rotations": { "$ref": "#/$defs/transformMap" },
+        "rotations": {
+          "$ref": "#/$defs/transformMap"
+        },
         "opts": {
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "impact": { "$ref": "#/$defs/time" },
-            "events": { "type": "array", "items": { "$ref": "#/$defs/event" } }
+            "impact": {
+              "$ref": "#/$defs/time"
+            },
+            "events": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/event"
+              }
+            }
           }
         }
       }
@@ -88,11 +460,21 @@
     "gait": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["a", "b"],
+      "required": [
+        "a",
+        "b"
+      ],
       "properties": {
-        "a": { "$ref": "#/$defs/transformMap" },
-        "b": { "$ref": "#/$defs/transformMap" },
-        "semantics": { "type": "string", "minLength": 1 }
+        "a": {
+          "$ref": "#/$defs/transformMap"
+        },
+        "b": {
+          "$ref": "#/$defs/transformMap"
+        },
+        "semantics": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "occlusion": {
@@ -100,21 +482,42 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["match", "mode"],
+        "required": [
+          "match",
+          "mode"
+        ],
         "properties": {
-          "match": { "type": "string", "minLength": 1 },
-          "mode": { "$ref": "#/$defs/occlusionMode" },
+          "match": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mode": {
+            "$ref": "#/$defs/occlusionMode"
+          },
           "reference": {
             "oneOf": [
-              { "$ref": "#/$defs/id" },
+              {
+                "$ref": "#/$defs/id"
+              },
               {
                 "type": "object",
                 "additionalProperties": false,
-                "required": ["ifMatch", "then", "else"],
+                "required": [
+                  "ifMatch",
+                  "then",
+                  "else"
+                ],
                 "properties": {
-                  "ifMatch": { "type": "string", "minLength": 1 },
-                  "then": { "$ref": "#/$defs/id" },
-                  "else": { "$ref": "#/$defs/id" }
+                  "ifMatch": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "then": {
+                    "$ref": "#/$defs/id"
+                  },
+                  "else": {
+                    "$ref": "#/$defs/id"
+                  }
                 }
               }
             ]
@@ -127,15 +530,45 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["set"],
+        "required": [
+          "set"
+        ],
         "properties": {
-          "id": { "$ref": "#/$defs/id" },
-          "match": { "type": "string", "minLength": 1 },
-          "set": { "$ref": "#/$defs/platePatch" }
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "match": {
+            "type": "string",
+            "minLength": 1
+          },
+          "set": {
+            "$ref": "#/$defs/platePatch"
+          }
         },
         "oneOf": [
-          { "required": ["id"], "properties": { "id": { "$ref": "#/$defs/id" }, "match": false } },
-          { "required": ["match"], "properties": { "id": false, "match": { "type": "string", "minLength": 1 } } }
+          {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "match": false
+            }
+          },
+          {
+            "required": [
+              "match"
+            ],
+            "properties": {
+              "id": false,
+              "match": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
         ]
       }
     },
@@ -144,96 +577,237 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "set"],
+        "required": [
+          "id",
+          "set"
+        ],
         "properties": {
-          "id": { "$ref": "#/$defs/id" },
-          "set": { "$ref": "#/$defs/anchorPatch" }
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "set": {
+            "$ref": "#/$defs/anchorPatch"
+          }
+        }
+      }
+    },
+    "canineAttack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "durationMs",
+        "lunge",
+        "bodyDip",
+        "jawOpenDegrees"
+      ],
+      "properties": {
+        "durationMs": {
+          "type": "number",
+          "minimum": 500,
+          "maximum": 2000
+        },
+        "lunge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.2
+        },
+        "bodyDip": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.06
+        },
+        "jawOpenDegrees": {
+          "type": "number",
+          "minimum": 5,
+          "maximum": 50
         }
       }
     }
   },
   "oneOf": [
-    { "required": ["base"], "properties": { "base": { "const": true }, "variant": false } },
-    { "required": ["variant"], "properties": { "base": false, "variant": { "$ref": "#/$defs/variant" } } }
+    {
+      "required": [
+        "base"
+      ],
+      "properties": {
+        "base": {
+          "const": true
+        },
+        "variant": false
+      }
+    },
+    {
+      "required": [
+        "variant"
+      ],
+      "properties": {
+        "base": false,
+        "variant": {
+          "$ref": "#/$defs/variant"
+        }
+      }
+    }
   ],
   "$defs": {
-    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
-    "semanticRole": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)+$" },
-    "finiteNumber": { "type": "number" },
-    "positiveNumber": { "type": "number", "exclusiveMinimum": 0 },
-    "time": { "type": "number", "minimum": 0, "maximum": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+    },
+    "semanticRole": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)+$"
+    },
+    "finiteNumber": {
+      "type": "number"
+    },
+    "positiveNumber": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "time": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "vector3": {
       "type": "array",
       "minItems": 3,
       "maxItems": 3,
-      "items": { "$ref": "#/$defs/finiteNumber" }
+      "items": {
+        "$ref": "#/$defs/finiteNumber"
+      }
     },
     "vector2": {
       "type": "array",
       "minItems": 2,
       "maxItems": 2,
-      "items": { "$ref": "#/$defs/finiteNumber" }
+      "items": {
+        "$ref": "#/$defs/finiteNumber"
+      }
     },
     "size": {
       "type": "array",
       "minItems": 1,
       "maxItems": 2,
-      "items": { "$ref": "#/$defs/positiveNumber" }
+      "items": {
+        "$ref": "#/$defs/positiveNumber"
+      }
     },
     "transformMap": {
       "type": "object",
-      "propertyNames": { "$ref": "#/$defs/id" },
-      "additionalProperties": { "$ref": "#/$defs/vector3" }
+      "propertyNames": {
+        "$ref": "#/$defs/id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/vector3"
+      }
     },
     "nonEmptyTransformMap": {
       "type": "object",
       "minProperties": 1,
-      "propertyNames": { "$ref": "#/$defs/id" },
-      "additionalProperties": { "$ref": "#/$defs/vector3" }
+      "propertyNames": {
+        "$ref": "#/$defs/id"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/vector3"
+      }
     },
     "clipPatchAdd": {
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
       "properties": {
-        "poses": { "$ref": "#/$defs/nonEmptyTransformMap" },
-        "rotations": { "$ref": "#/$defs/nonEmptyTransformMap" }
+        "poses": {
+          "$ref": "#/$defs/nonEmptyTransformMap"
+        },
+        "rotations": {
+          "$ref": "#/$defs/nonEmptyTransformMap"
+        }
       }
     },
     "clipPatch": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["clip", "t", "add"],
+      "required": [
+        "clip",
+        "t",
+        "add"
+      ],
       "properties": {
-        "clip": { "$ref": "#/$defs/id" },
-        "t": { "$ref": "#/$defs/time" },
-        "add": { "$ref": "#/$defs/clipPatchAdd" }
+        "clip": {
+          "$ref": "#/$defs/id"
+        },
+        "t": {
+          "$ref": "#/$defs/time"
+        },
+        "add": {
+          "$ref": "#/$defs/clipPatchAdd"
+        }
       }
     },
     "attachmentInstance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "moduleId", "slotId"],
+      "required": [
+        "id",
+        "moduleId",
+        "slotId"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/id" },
-        "moduleId": { "$ref": "#/$defs/id" },
-        "slotId": { "$ref": "#/$defs/id" },
-        "scale": { "$ref": "#/$defs/positiveNumber" }
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "moduleId": {
+          "$ref": "#/$defs/id"
+        },
+        "slotId": {
+          "$ref": "#/$defs/id"
+        },
+        "scale": {
+          "$ref": "#/$defs/positiveNumber"
+        }
       }
     },
     "attachmentSlot": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "type", "owner", "localFrame", "scaleBehavior", "cardinality"],
+      "required": [
+        "id",
+        "type",
+        "owner",
+        "localFrame",
+        "scaleBehavior",
+        "cardinality"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/id" },
-        "type": { "$ref": "#/$defs/slotType" },
-        "owner": { "$ref": "#/$defs/slotOwner" },
-        "localFrame": { "$ref": "#/$defs/attachmentFrame" },
-        "scaleBehavior": { "enum": ["inherit-owner-scale", "preserve-local-aspect"] },
-        "cardinality": { "type": "integer", "minimum": 1 },
-        "counterpartSlotId": { "$ref": "#/$defs/id" },
-        "region": { "$ref": "#/$defs/attachmentRegion" }
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/slotType"
+        },
+        "owner": {
+          "$ref": "#/$defs/slotOwner"
+        },
+        "localFrame": {
+          "$ref": "#/$defs/attachmentFrame"
+        },
+        "scaleBehavior": {
+          "enum": [
+            "inherit-owner-scale",
+            "preserve-local-aspect"
+          ]
+        },
+        "cardinality": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "counterpartSlotId": {
+          "$ref": "#/$defs/id"
+        },
+        "region": {
+          "$ref": "#/$defs/attachmentRegion"
+        }
       },
       "allOf": [
         {
@@ -241,156 +815,290 @@
             "properties": {
               "owner": {
                 "type": "object",
-                "properties": { "kind": { "const": "plate" } },
-                "required": ["kind"]
+                "properties": {
+                  "kind": {
+                    "const": "plate"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
               }
             }
           },
           "then": {
             "type": "object",
-            "properties": { "region": { "$ref": "#/$defs/attachmentRegion" } },
-            "required": ["region"]
+            "properties": {
+              "region": {
+                "$ref": "#/$defs/attachmentRegion"
+              }
+            },
+            "required": [
+              "region"
+            ]
           }
         }
       ]
     },
-    "slotType": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)*$" },
+    "slotType": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)*$"
+    },
     "slotOwner": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["kind", "id"],
+      "required": [
+        "kind",
+        "id"
+      ],
       "properties": {
-        "kind": { "enum": ["joint", "plate"] },
-        "id": { "$ref": "#/$defs/id" }
+        "kind": {
+          "enum": [
+            "joint",
+            "plate"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        }
       }
     },
     "attachmentFrame": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["positionMeters", "rotationXYZDegrees"],
+      "required": [
+        "positionMeters",
+        "rotationXYZDegrees"
+      ],
       "properties": {
-        "positionMeters": { "$ref": "#/$defs/vector3" },
-        "rotationXYZDegrees": { "$ref": "#/$defs/vector3" }
+        "positionMeters": {
+          "$ref": "#/$defs/vector3"
+        },
+        "rotationXYZDegrees": {
+          "$ref": "#/$defs/vector3"
+        }
       }
     },
     "attachmentRegion": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["kind", "centerMeters", "sizeMeters"],
+      "required": [
+        "kind",
+        "centerMeters",
+        "sizeMeters"
+      ],
       "properties": {
-        "kind": { "const": "box" },
-        "centerMeters": { "$ref": "#/$defs/vector3" },
+        "kind": {
+          "const": "box"
+        },
+        "centerMeters": {
+          "$ref": "#/$defs/vector3"
+        },
         "sizeMeters": {
           "type": "array",
           "minItems": 3,
           "maxItems": 3,
-          "items": { "$ref": "#/$defs/positiveNumber" }
+          "items": {
+            "$ref": "#/$defs/positiveNumber"
+          }
         }
       }
     },
     "motionPlan": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["$schema", "clips"],
+      "required": [
+        "$schema",
+        "clips"
+      ],
       "properties": {
-        "$schema": { "const": "paper-rig/motion-plan-1" },
+        "$schema": {
+          "const": "paper-rig/motion-plan-1"
+        },
         "clips": {
           "type": "object",
           "minProperties": 1,
-          "propertyNames": { "$ref": "#/$defs/id" },
-          "additionalProperties": { "$ref": "#/$defs/motionClip" }
+          "propertyNames": {
+            "$ref": "#/$defs/id"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/motionClip"
+          }
         }
       }
     },
     "appearancePlan": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["$schema", "instances"],
+      "required": [
+        "$schema",
+        "instances"
+      ],
       "properties": {
-        "$schema": { "const": "paper-rig/appearance-plan-1" },
+        "$schema": {
+          "const": "paper-rig/appearance-plan-1"
+        },
         "instances": {
           "type": "array",
           "minItems": 1,
-          "items": { "$ref": "#/$defs/paintInstance" }
+          "items": {
+            "$ref": "#/$defs/paintInstance"
+          }
         }
       }
     },
     "paintInstance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "primitiveId", "ownerPlateId", "surfaceFrame", "region"],
+      "required": [
+        "id",
+        "primitiveId",
+        "ownerPlateId",
+        "surfaceFrame",
+        "region"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/id" },
-        "primitiveId": { "$ref": "#/$defs/id" },
-        "ownerPlateId": { "$ref": "#/$defs/id" },
-        "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" },
-        "region": { "$ref": "#/$defs/paintRegion" },
-        "transform": { "$ref": "#/$defs/paintTransform" },
-        "paletteRole": { "$ref": "#/$defs/semanticRole" }
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "primitiveId": {
+          "$ref": "#/$defs/id"
+        },
+        "ownerPlateId": {
+          "$ref": "#/$defs/id"
+        },
+        "surfaceFrame": {
+          "$ref": "#/$defs/surfaceFrame"
+        },
+        "region": {
+          "$ref": "#/$defs/paintRegion"
+        },
+        "transform": {
+          "$ref": "#/$defs/paintTransform"
+        },
+        "paletteRole": {
+          "$ref": "#/$defs/semanticRole"
+        }
       }
     },
     "paintRegion": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["center", "size"],
+      "required": [
+        "center",
+        "size"
+      ],
       "properties": {
-        "center": { "$ref": "#/$defs/vector2" },
+        "center": {
+          "$ref": "#/$defs/vector2"
+        },
         "size": {
           "type": "array",
           "minItems": 2,
           "maxItems": 2,
-          "items": { "$ref": "#/$defs/positiveNumber" }
+          "items": {
+            "$ref": "#/$defs/positiveNumber"
+          }
         }
       }
     },
     "paintTransform": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["translate", "rotateDegrees", "scale"],
+      "required": [
+        "translate",
+        "rotateDegrees",
+        "scale"
+      ],
       "properties": {
-        "translate": { "$ref": "#/$defs/vector2" },
-        "rotateDegrees": { "$ref": "#/$defs/finiteNumber" },
+        "translate": {
+          "$ref": "#/$defs/vector2"
+        },
+        "rotateDegrees": {
+          "$ref": "#/$defs/finiteNumber"
+        },
         "scale": {
           "type": "array",
           "minItems": 2,
           "maxItems": 2,
-          "items": { "$ref": "#/$defs/positiveNumber" }
+          "items": {
+            "$ref": "#/$defs/positiveNumber"
+          }
         }
       }
     },
     "motionClip": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["recipe", "layers"],
+      "required": [
+        "recipe",
+        "layers"
+      ],
       "properties": {
-        "recipe": { "$ref": "#/$defs/id" },
-        "base": { "$ref": "#/$defs/id" },
-        "duration": { "$ref": "#/$defs/positiveNumber" },
-        "easing": { "type": "string", "minLength": 1 },
-        "loop": { "type": "boolean" },
+        "recipe": {
+          "$ref": "#/$defs/id"
+        },
+        "base": {
+          "$ref": "#/$defs/id"
+        },
+        "duration": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "easing": {
+          "type": "string",
+          "minLength": 1
+        },
+        "loop": {
+          "type": "boolean"
+        },
         "layers": {
           "type": "array",
           "minItems": 1,
-          "items": { "$ref": "#/$defs/motionLayer" }
+          "items": {
+            "$ref": "#/$defs/motionLayer"
+          }
         },
-        "contacts": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
-        "contactIntervals": { "type": "array", "items": { "$ref": "#/$defs/contactInterval" } }
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "contactIntervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/contactInterval"
+          }
+        }
       }
     },
     "motionLayer": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "block", "transform"],
+      "required": [
+        "id",
+        "block",
+        "transform"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/id" },
-        "block": { "$ref": "#/$defs/id" },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "block": {
+          "$ref": "#/$defs/id"
+        },
         "transform": {
           "type": "object",
           "additionalProperties": false,
           "minProperties": 1,
           "properties": {
-            "poses": { "$ref": "#/$defs/nonEmptyTransformMap" },
-            "rotations": { "$ref": "#/$defs/nonEmptyTransformMap" }
+            "poses": {
+              "$ref": "#/$defs/nonEmptyTransformMap"
+            },
+            "rotations": {
+              "$ref": "#/$defs/nonEmptyTransformMap"
+            }
           }
         }
       }
@@ -398,83 +1106,204 @@
     "frame": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["t"],
+      "required": [
+        "t"
+      ],
       "properties": {
-        "t": { "$ref": "#/$defs/time" },
-        "poses": { "$ref": "#/$defs/transformMap" },
-        "rotations": { "$ref": "#/$defs/transformMap" }
+        "t": {
+          "$ref": "#/$defs/time"
+        },
+        "poses": {
+          "$ref": "#/$defs/transformMap"
+        },
+        "rotations": {
+          "$ref": "#/$defs/transformMap"
+        }
       }
     },
     "event": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["t", "name"],
+      "required": [
+        "t",
+        "name"
+      ],
       "properties": {
-        "t": { "$ref": "#/$defs/time" },
-        "name": { "type": "string", "minLength": 1 },
-        "phase": { "$ref": "#/$defs/id" }
+        "t": {
+          "$ref": "#/$defs/time"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "phase": {
+          "$ref": "#/$defs/id"
+        }
       }
     },
     "contactInterval": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["ids", "from", "to"],
+      "required": [
+        "ids",
+        "from",
+        "to"
+      ],
       "properties": {
-        "ids": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
-        "from": { "$ref": "#/$defs/time" },
-        "to": { "$ref": "#/$defs/time" }
+        "ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "from": {
+          "$ref": "#/$defs/time"
+        },
+        "to": {
+          "$ref": "#/$defs/time"
+        }
       }
     },
     "clip": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["base", "duration", "easing", "loop", "frames"],
+      "required": [
+        "base",
+        "duration",
+        "easing",
+        "loop",
+        "frames"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/id" },
-        "aliasOf": { "$ref": "#/$defs/id" },
-        "base": { "$ref": "#/$defs/id" },
-        "duration": { "$ref": "#/$defs/positiveNumber" },
-        "easing": { "type": "string", "minLength": 1 },
-        "loop": { "type": "boolean" },
-        "frames": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/frame" } },
-        "contacts": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
-        "contactIntervals": { "type": "array", "items": { "$ref": "#/$defs/contactInterval" } },
-        "events": { "type": "array", "items": { "$ref": "#/$defs/event" } },
-        "phases": { "type": "array", "minItems": 4, "maxItems": 5, "items": { "$ref": "#/$defs/motionPhase" } },
-        "motionRecipe": { "$ref": "#/$defs/motionRecipeReference" },
-        "boneLengthPolicy": { "type": "string", "minLength": 1 },
-        "motionSemantics": { "type": "string", "minLength": 1 }
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "aliasOf": {
+          "$ref": "#/$defs/id"
+        },
+        "base": {
+          "$ref": "#/$defs/id"
+        },
+        "duration": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "easing": {
+          "type": "string",
+          "minLength": 1
+        },
+        "loop": {
+          "type": "boolean"
+        },
+        "frames": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/frame"
+          }
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "contactIntervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/contactInterval"
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          }
+        },
+        "phases": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/$defs/motionPhase"
+          }
+        },
+        "motionRecipe": {
+          "$ref": "#/$defs/motionRecipeReference"
+        },
+        "boneLengthPolicy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "motionSemantics": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "motionPhase": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "from", "peak", "to"],
+      "required": [
+        "id",
+        "from",
+        "peak",
+        "to"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/id" },
-        "from": { "$ref": "#/$defs/time" },
-        "peak": { "$ref": "#/$defs/time" },
-        "to": { "$ref": "#/$defs/time" }
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "from": {
+          "$ref": "#/$defs/time"
+        },
+        "peak": {
+          "$ref": "#/$defs/time"
+        },
+        "to": {
+          "$ref": "#/$defs/time"
+        }
       }
     },
     "motionRecipeReference": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema", "recipeId", "recipeVersion", "layers"],
+      "required": [
+        "schema",
+        "recipeId",
+        "recipeVersion",
+        "layers"
+      ],
       "properties": {
-        "schema": { "const": "paper-rig/motion-resolution/1" },
-        "recipeId": { "$ref": "#/$defs/id" },
-        "recipeVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "schema": {
+          "const": "paper-rig/motion-resolution/1"
+        },
+        "recipeId": {
+          "$ref": "#/$defs/id"
+        },
+        "recipeVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
         "layers": {
           "type": "array",
           "minItems": 1,
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["id", "block"],
+            "required": [
+              "id",
+              "block"
+            ],
             "properties": {
-              "id": { "$ref": "#/$defs/id" },
-              "block": { "$ref": "#/$defs/id" }
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "block": {
+                "$ref": "#/$defs/id"
+              }
             }
           }
         }
@@ -483,101 +1312,242 @@
     "variant": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "archetypes", "height", "scale"],
+      "required": [
+        "id",
+        "archetypes",
+        "height",
+        "scale"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/id" },
-        "archetypes": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "height": { "$ref": "#/$defs/positiveNumber" },
-        "scale": { "$ref": "#/$defs/positiveNumber" },
-        "groundY": { "$ref": "#/$defs/finiteNumber" },
-        "sx": { "$ref": "#/$defs/positiveNumber" },
-        "sy": { "$ref": "#/$defs/positiveNumber" },
-        "sz": { "$ref": "#/$defs/positiveNumber" },
-        "thickness": { "$ref": "#/$defs/positiveNumber" },
-        "profile": { "type": "object", "additionalProperties": true },
-        "jointTweaks": { "$ref": "#/$defs/transformMap" },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "archetypes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "height": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "scale": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "groundY": {
+          "$ref": "#/$defs/finiteNumber"
+        },
+        "sx": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "sy": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "sz": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "thickness": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "profile": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "jointTweaks": {
+          "$ref": "#/$defs/transformMap"
+        },
         "plateTweaks": {
           "type": "object",
-          "propertyNames": { "$ref": "#/$defs/id" },
-          "additionalProperties": { "$ref": "#/$defs/size" }
+          "propertyNames": {
+            "$ref": "#/$defs/id"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/size"
+          }
         }
       }
     },
     "pairedEarsAddon": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
-        "type": { "const": "pairedEars" },
-        "baseX": { "$ref": "#/$defs/finiteNumber" },
-        "baseY": { "$ref": "#/$defs/finiteNumber" },
-        "baseZ": { "$ref": "#/$defs/finiteNumber" },
-        "tipX": { "$ref": "#/$defs/finiteNumber" },
-        "tipY": { "$ref": "#/$defs/finiteNumber" },
-        "tipZ": { "$ref": "#/$defs/finiteNumber" },
-        "width": { "$ref": "#/$defs/positiveNumber" },
-        "style": { "type": "string", "minLength": 1 },
-        "semanticDetailTier": { "$ref": "#/$defs/semanticDetailTier" }
+        "type": {
+          "const": "pairedEars"
+        },
+        "baseX": {
+          "$ref": "#/$defs/finiteNumber"
+        },
+        "baseY": {
+          "$ref": "#/$defs/finiteNumber"
+        },
+        "baseZ": {
+          "$ref": "#/$defs/finiteNumber"
+        },
+        "tipX": {
+          "$ref": "#/$defs/finiteNumber"
+        },
+        "tipY": {
+          "$ref": "#/$defs/finiteNumber"
+        },
+        "tipZ": {
+          "$ref": "#/$defs/finiteNumber"
+        },
+        "width": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "style": {
+          "type": "string",
+          "minLength": 1
+        },
+        "semanticDetailTier": {
+          "$ref": "#/$defs/semanticDetailTier"
+        }
       }
     },
     "muzzleAddon": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
-        "type": { "const": "muzzle" },
-        "id": { "$ref": "#/$defs/id" },
-        "length": { "$ref": "#/$defs/positiveNumber" },
-        "width": { "$ref": "#/$defs/positiveNumber" },
-        "height": { "$ref": "#/$defs/positiveNumber" },
-        "z": { "$ref": "#/$defs/finiteNumber" }
+        "type": {
+          "const": "muzzle"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "length": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "width": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "height": {
+          "$ref": "#/$defs/positiveNumber"
+        },
+        "z": {
+          "$ref": "#/$defs/finiteNumber"
+        }
       }
     },
-    "occlusionMode": { "enum": ["semantic-group", "under-core", "surface-relative"] },
+    "occlusionMode": {
+      "enum": [
+        "semantic-group",
+        "under-core",
+        "surface-relative"
+      ]
+    },
     "platePatch": {
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
       "properties": {
-        "role": { "type": "string", "minLength": 1 },
-        "bodyRegion": { "type": "string", "minLength": 1 },
-        "semanticDetailTier": { "$ref": "#/$defs/semanticDetailTier" },
-        "size": { "$ref": "#/$defs/size" },
-        "zBias": { "$ref": "#/$defs/finiteNumber" },
-        "occlusionMode": { "$ref": "#/$defs/occlusionMode" },
-        "occlusionReference": { "$ref": "#/$defs/id" },
-        "surfaceNormal": { "$ref": "#/$defs/vector3" },
-        "surfaceFrame": { "$ref": "#/$defs/surfaceFrame" },
-        "planeAxes": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "string", "pattern": "^[+-][xyz]$" } },
-        "jointOverlap": { "$ref": "#/$defs/positiveNumber" }
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bodyRegion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "semanticDetailTier": {
+          "$ref": "#/$defs/semanticDetailTier"
+        },
+        "size": {
+          "$ref": "#/$defs/size"
+        },
+        "zBias": {
+          "$ref": "#/$defs/finiteNumber"
+        },
+        "occlusionMode": {
+          "$ref": "#/$defs/occlusionMode"
+        },
+        "occlusionReference": {
+          "$ref": "#/$defs/id"
+        },
+        "surfaceNormal": {
+          "$ref": "#/$defs/vector3"
+        },
+        "surfaceFrame": {
+          "$ref": "#/$defs/surfaceFrame"
+        },
+        "planeAxes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "pattern": "^[+-][xyz]$"
+          }
+        },
+        "jointOverlap": {
+          "$ref": "#/$defs/positiveNumber"
+        }
       }
     },
     "surfaceFrame": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["normal", "tangent", "bitangent"],
+      "required": [
+        "normal",
+        "tangent",
+        "bitangent"
+      ],
       "properties": {
-        "normal": { "$ref": "#/$defs/vector3" },
-        "tangent": { "$ref": "#/$defs/vector3" },
-        "bitangent": { "$ref": "#/$defs/vector3" }
+        "normal": {
+          "$ref": "#/$defs/vector3"
+        },
+        "tangent": {
+          "$ref": "#/$defs/vector3"
+        },
+        "bitangent": {
+          "$ref": "#/$defs/vector3"
+        }
       }
     },
-    "semanticDetailTier": { "enum": ["silhouette", "identity", "expression", "texture", "micro"] },
+    "semanticDetailTier": {
+      "enum": [
+        "silhouette",
+        "identity",
+        "expression",
+        "texture",
+        "micro"
+      ]
+    },
     "semanticDetailPolicy": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["defaultTier"],
+      "required": [
+        "defaultTier"
+      ],
       "properties": {
-        "defaultTier": { "$ref": "#/$defs/semanticDetailTier" },
+        "defaultTier": {
+          "$ref": "#/$defs/semanticDetailTier"
+        },
         "byRole": {
           "type": "object",
-          "propertyNames": { "$ref": "#/$defs/id" },
-          "additionalProperties": { "$ref": "#/$defs/semanticDetailTier" }
+          "propertyNames": {
+            "$ref": "#/$defs/id"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/semanticDetailTier"
+          }
         },
         "byId": {
           "type": "object",
-          "propertyNames": { "$ref": "#/$defs/id" },
-          "additionalProperties": { "$ref": "#/$defs/semanticDetailTier" }
+          "propertyNames": {
+            "$ref": "#/$defs/id"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/semanticDetailTier"
+          }
         }
       }
     },
@@ -586,11 +1556,25 @@
       "additionalProperties": false,
       "minProperties": 1,
       "properties": {
-        "moduleType": { "type": "string", "minLength": 1 },
-        "role": { "type": "string", "minLength": 1 },
-        "style": { "type": "string", "minLength": 1 },
-        "forward": { "type": "string", "pattern": "^[+-][xyz]$" },
-        "inheritScale": { "type": "boolean" }
+        "moduleType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "style": {
+          "type": "string",
+          "minLength": 1
+        },
+        "forward": {
+          "type": "string",
+          "pattern": "^[+-][xyz]$"
+        },
+        "inheritScale": {
+          "type": "boolean"
+        }
       }
     }
   }

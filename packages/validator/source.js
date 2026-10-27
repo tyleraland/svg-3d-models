@@ -2,6 +2,7 @@
 // This layer runs before resolution so misspelled fields and broken source
 // references cannot be normalized away or hidden by generated defaults.
 
+import { core } from '@paper-rig/compiler';
 import Ajv2020 from 'ajv/dist/2020.js';
 import modelSchema from '@paper-rig/schema/schemas/model-1.schema.json' with { type: 'json' };
 import familySchema from '@paper-rig/schema/schemas/family-1.schema.json' with { type: 'json' };
@@ -91,6 +92,15 @@ function familySemanticChecks(family) {
     if (joint.diagonal && !jointIds.has(joint.diagonal)) counterpartPass = false;
     ordered.add(joint.id);
   }
+  for(const joint of family.joints.filter(j=>j.gasket)){
+    const incident=(family.plates||[]).filter(p=>p.role!=='shadow'&&(p.bone===joint.id||p.span?.includes(joint.id)||p.points?.includes(joint.id)));
+    let owner=joint,headOwned=false;const visited=new Set();
+    while(owner&&!visited.has(owner.id)){visited.add(owner.id);if(owner.role==='head'){headOwned=true;break;}owner=family.joints.find(j=>j.id===owner.parent);}
+    const visible=!!joint.parent&&!joint.helper&&joint.role!=='accessoryAnchor'&&incident.length>0;
+    const width=Math.max(0,...incident.map(p=>p.size?.[0]||0));
+    const supported=!joint.gasket.underIncidentPlates||incident.every(p=>p.occlusionMode!=='under-core'&&(headOwned||['core','head','neck'].includes(core.bodyRegionFor(p))));
+    checks.push(referenceCheck('family-authored-gasket',visible&&supported&&(!joint.gasket.diameterMeters||joint.gasket.diameterMeters<=width),`authored gasket ${joint.id} requires incident geometry, a bounded diameter and a supported core/head seam`));
+  }
   checks.push(referenceCheck('family-parent-order', hierarchyPass, 'every parent exists and precedes its children'));
   checks.push(referenceCheck('family-joint-counterparts', counterpartPass, 'mirror and diagonal joint references resolve'));
 
@@ -158,7 +168,11 @@ function regularExpressionChecks(model) {
 
 function overrideTargetChecks(model, family, resolvedRig) {
   if (!model || !family) return [];
-  const plates = resolvedRig?.plates || family.plates || [];
+  // Before resolution, include the IDs declared by geometry-generating addons.
+  const addonPlates = (model.addons || []).flatMap(addon => addon.type === 'pairedEars'
+    ? [{ id: 'nearEarPlate' }, { id: 'farEarPlate' }]
+    : addon.type === 'muzzle' ? [{ id: (addon.id || 'muzzle') + 'Plate' }, { id: (addon.id || 'muzzle') + 'ConnectorPlate' }] : []);
+  const plates = resolvedRig?.plates || [...(family.plates || []), ...addonPlates];
   const anchors = resolvedRig?.anchors || family.anchors || [];
   const clips = resolvedRig?.clips || family.clips || {};
   const checks = [];
@@ -199,6 +213,60 @@ function overrideTargetChecks(model, family, resolvedRig) {
   }
   for (const clip of Object.keys(model.clipEvents || {})) {
     checks.push(referenceCheck('model-clip-event-target', Boolean(clips[clip]), `clip event override targets ${clip}`));
+  }
+  if (model.groundedQuadruped) {
+    const rig = resolvedRig || family;
+    const ids = rig.clips?.idleA?.contacts || [];
+    const byId = new Map((rig.joints || []).map(j => [j.id, j]));
+    const valid = ids.length === 4 && new Set(ids).size === 4 && ids.every(id => {
+      const foot = byId.get(id), parent = byId.get(foot?.parent);
+      const knee = parent && /(?:Hock|Carpus)$/.test(parent.id) ? byId.get(parent.parent) : parent;
+      return /Hip$|Shoulder$/.test(byId.get(knee?.parent)?.id || '');
+    });
+    checks.push(referenceCheck('model-grounded-quadruped-chains', valid, 'grounded quadruped has four distinct hip/shoulder-to-contact chains'));
+    if (model.groundedQuadruped.walk || model.groundedQuadruped.gallop || model.groundedQuadruped.run || model.groundedQuadruped.trot || model.groundedQuadruped.sprint) {
+      checks.push(referenceCheck('model-grounded-quadruped-walk-source', !model.groundedQuadruped.walk || (!model.gait && !model.clips?.walkA),
+        'grounded walk owns walkA; omit competing gait and walkA overrides'));
+      checks.push(referenceCheck('model-grounded-quadruped-gallop-source', !model.groundedQuadruped.gallop || !model.clips?.gallop,
+        'generated gallop cannot also declare a competing gallop clip'));
+      checks.push(referenceCheck('model-grounded-quadruped-run-source', !model.groundedQuadruped.run || !model.clips?.run,
+        'generated run cannot also declare a competing run clip'));
+      checks.push(referenceCheck('model-grounded-quadruped-sprint-source', !model.groundedQuadruped.sprint || (!model.clips?.sprint && !model.groundedQuadruped.sprint.pattern),
+        'generated sprint requires a suspended gait and cannot declare a competing sprint clip'));
+      checks.push(referenceCheck('model-grounded-quadruped-trot-source', !model.groundedQuadruped.trot || !model.clips?.trot,
+        'generated trot cannot also declare a competing trot clip'));
+      const sagittal = valid && ids.every(id => {
+        let joint = byId.get(id);
+        while (joint && !/Hip$|Shoulder$/.test(joint.id)) {
+          if (Math.abs(joint.bind[1]) > 1e-9) return false;
+          joint = byId.get(joint.parent);
+        }
+        return true;
+      });
+      checks.push(referenceCheck('model-grounded-quadruped-sagittal-chains', sagittal,
+        'grounded walk requires sagittal chains; keep splayed gaits authored separately'));
+    }
+  }
+  if (model.canineAttack) {
+    const rig=resolvedRig||family,ids=new Set((rig.joints||[]).map(j=>j.id));
+    checks.push(referenceCheck('model-canine-bite-joints',['jaw','jawTip','spineMid','neck','head'].every(id=>ids.has(id)),
+      'canine bite requires explicit jaw, head/neck and spine controls'));
+    const jaw=rig.joints?.find(j=>j.id==='jaw');
+    checks.push(referenceCheck('model-canine-jaw-limits', !jaw?.limits||(jaw.limits[0]<=0&&model.canineAttack.jawOpenDegrees<=jaw.limits[1]),
+      'canine opening and closure stay inside the authored jaw limits'));
+    checks.push(referenceCheck('model-canine-bite-source',!model.clips?.attack&&!model.felineAttacks,
+      'canine bite owns attack; omit competing clips and feline actions'));
+  }
+  if (model.felineAttacks) {
+    const rig = resolvedRig || family, ids = new Set((rig.joints || []).map(j => j.id));
+    const needed = ['spineMid', 'neck', 'head', ...['near', 'far'].flatMap(side =>
+      [1, 2, 3].map(digit => side + `FrontClaw${digit}Base`))];
+    checks.push(referenceCheck('model-feline-action-joints', needed.every(id => ids.has(id)),
+      'feline actions require an articulated spine, head/neck and explicit forepaw claw controls'));
+    checks.push(referenceCheck('model-feline-action-source', !model.felineAttacks.swipe || !model.clips?.attack,
+      'generated swipe owns attack; omit a competing attack clip'));
+    checks.push(referenceCheck('model-feline-pounce-source', !model.felineAttacks.pounce || !model.clips?.pounce,
+      'generated pounce cannot also declare a competing pounce clip'));
   }
   if (resolvedRig) {
     const jointIds = new Set(resolvedRig.joints.map((joint) => joint.id));

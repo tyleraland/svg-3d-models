@@ -342,7 +342,8 @@ export function diffResolvedModels(baseline, candidate) {
   for (const sourceChange of sourceChanges) {
     for (const change of changes) {
       const origins = [change.baselineOrigin, change.candidateOrigin];
-      if (!origins.some((origin) => relatedPointers(sourceChange.sourcePointer, origin?.sourcePointer))) continue;
+      if (!origins.some((origin) => [origin?.sourcePointer, ...(origin?.inputSourcePointers || [])]
+        .some((pointer) => relatedPointers(sourceChange.sourcePointer, pointer)))) continue;
       sourceChange.affectedTargetPointers.push(change.targetPointer);
       change.relatedSourcePointers.push(sourceChange.sourcePointer);
     }

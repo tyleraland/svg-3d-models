@@ -20,7 +20,7 @@ test('validate exits 0 for a passing model', () => {
 
 test('validate-sources accepts every declarative model and family', () => {
   const out = run(['validate-sources']);
-  assert.match(out, /31\/31 model sources passed/);
+  assert.match(out, /32\/32 model sources passed/);
 });
 
 test('render output is byte-identical to the golden fixture', () => {

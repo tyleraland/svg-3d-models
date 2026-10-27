@@ -1,12 +1,36 @@
 {
   "$schema": "paper-rig/model-1",
   "family": "elephant",
+  "groundedQuadruped": {
+    "walk": {
+      "durationMs": 2200,
+      "stride": 0.34,
+      "lift": 0.075,
+      "pattern": "lateral-sequence",
+      "dutyFactor": 0.76,
+      "bodyBounce": 0.008,
+      "headNodDegrees": 1,
+      "earSwingDegrees": 4,
+      "tailSwingDegrees": 5
+    },
+    "run": {
+      "durationMs": 1250,
+      "stride": 0.43,
+      "lift": 0.13,
+      "pattern": "lateral-sequence",
+      "dutyFactor": 0.6,
+      "bodyBounce": 0.015,
+      "headNodDegrees": 1.5,
+      "earSwingDegrees": 6,
+      "tailSwingDegrees": 7
+    }
+  },
   "base": true,
   "clips": {
     "attack": {
-      "base": "idleA",
-      "duration": 680,
-      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "base": "bind",
+      "duration": 1400,
+      "easing": "ease-in-out",
       "loop": false,
       "frames": [
         {
@@ -15,27 +39,129 @@
           "rotations": {}
         },
         {
-          "t": 0.62,
+          "t": 0.22,
           "poses": {},
           "rotations": {
             "neck": [
               0,
-              28,
+              -8,
               0
             ],
             "head": [
               0,
-              -12,
+              -5,
               0
             ],
             "trunkBase": [
               0,
-              22,
+              12,
               0
             ],
             "trunkMid": [
               0,
-              -38,
+              -22,
+              0
+            ],
+            "trunkLower": [
+              0,
+              -35,
+              0
+            ],
+            "trunkTip": [
+              0,
+              -45,
+              0
+            ],
+            "nearEarBase": [
+              0,
+              0,
+              12
+            ],
+            "farEarBase": [
+              0,
+              0,
+              -12
+            ]
+          }
+        },
+        {
+          "t": 0.52,
+          "poses": {},
+          "rotations": {
+            "neck": [
+              0,
+              12,
+              0
+            ],
+            "head": [
+              0,
+              -7,
+              0
+            ],
+            "trunkBase": [
+              0,
+              -35,
+              0
+            ],
+            "trunkMid": [
+              0,
+              -32,
+              0
+            ],
+            "trunkLower": [
+              0,
+              -25,
+              0
+            ],
+            "trunkTip": [
+              0,
+              -18,
+              0
+            ],
+            "nearEarBase": [
+              0,
+              0,
+              15
+            ],
+            "farEarBase": [
+              0,
+              0,
+              -15
+            ]
+          }
+        },
+        {
+          "t": 0.68,
+          "poses": {},
+          "rotations": {
+            "neck": [
+              0,
+              7,
+              0
+            ],
+            "head": [
+              0,
+              -4,
+              0
+            ],
+            "trunkBase": [
+              0,
+              -23,
+              0
+            ],
+            "trunkMid": [
+              0,
+              -24,
+              0
+            ],
+            "trunkLower": [
+              0,
+              -22,
+              0
+            ],
+            "trunkTip": [
+              0,
+              -20,
               0
             ]
           }
@@ -54,16 +180,20 @@
       ],
       "events": [
         {
-          "t": 0.62,
+          "t": 0.22,
+          "name": "windup"
+        },
+        {
+          "t": 0.52,
           "name": "impact"
         },
         {
-          "t": 0.84,
+          "t": 0.68,
           "name": "release"
         }
       ],
       "boneLengthPolicy": "preserve",
-      "motionSemantics": "joint-local rotation; no child-bone translation"
+      "motionSemantics": "braced tusk thrust with trunk curl; four planted feet; joint-local rotation only"
     }
   },
   "plateOverrides": [
@@ -83,19 +213,41 @@
       "id": "nearTuskPlate",
       "set": {
         "role": "tusk",
-        "semanticDetailTier": "identity",
-        "occlusionMode": "surface-relative",
-        "occlusionReference": "head"
+        "semanticDetailTier": "identity"
       }
     },
     {
       "id": "farTuskPlate",
       "set": {
         "role": "tusk",
-        "semanticDetailTier": "identity",
-        "occlusionMode": "surface-relative",
-        "occlusionReference": "head"
+        "semanticDetailTier": "identity"
+      }
+    },
+    {
+      "id": "trunkConnectorPlate",
+      "set": {
+        "occlusionMode": "under-core"
       }
     }
-  ]
+  ],
+  "clipEvents": {
+    "walkA": [
+      {
+        "t": 0,
+        "name": "near-rear-footfall"
+      },
+      {
+        "t": 0.25,
+        "name": "near-front-footfall"
+      },
+      {
+        "t": 0.5,
+        "name": "far-rear-footfall"
+      },
+      {
+        "t": 0.75,
+        "name": "far-front-footfall"
+      }
+    ]
+  }
 }

@@ -17,7 +17,7 @@ packages/handoff/      pure semantic-detail selection + capability negotiation
 packages/validator/    structural + directional checks (validate/isValid)
 packages/cli/          the `rig` command
 rigs/families/*.json   raw (pre-normalization) family base per creature
-rigs/models/*.json     one thin declarative model per creature (all 31)
+rigs/models/*.json     one thin declarative model per creature (all 32)
 rigs/modules/*.json    reusable paper-rig/attachment-module-1 sources
 rigs/motion-recipes/   reusable paper-rig/motion-recipe-1 sources
 rigs/paint-primitives/ reusable paper-rig/paint-primitive-1 sources

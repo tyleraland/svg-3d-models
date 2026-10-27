@@ -49,6 +49,18 @@ test('humanoid walk swings rigid forearms without extending them', () => {
   assert.notDeepEqual(start.farHand, oppositeStep.farHand, 'the mirrored hand must still swing');
 });
 
+test('humanoid chest span remains torso-like instead of collapsing into a width-dominated disk', () => {
+  const rig = loadModel('humanoid');
+  const chest = rig.plates.find((plate) => plate.id === 'chestPlate');
+  const bind = core.solveWorld(rig, 0, 'bind');
+  const spanLength = distance(bind, ...chest.span);
+
+  assert.ok(
+    chest.size[0] <= spanLength * 1.75,
+    `chestPlate width ${chest.size[0]} overwhelms its ${spanLength} m torso span`,
+  );
+});
+
 test('harpy shoulder mass stays on the core surface behind head details', () => {
   const rig = loadModel('harpy');
   const shoulder = rig.plates.find((plate) => plate.id === 'shoulderPlate');

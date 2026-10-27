@@ -16,7 +16,7 @@ const normalize = (obj) => JSON.parse(JSON.stringify(obj));
 const MODELS = readdirSync(join(ROOT, 'rigs/models')).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, ''));
 
 test('every declarative model resolves byte-identical to its golden rig', () => {
-  assert.equal(MODELS.length, 31, 'expected all 31 creatures as declarative models');
+  assert.equal(MODELS.length, 32, 'expected all 32 creatures as declarative models');
   for (const m of MODELS) {
     const golden = readJSON(`fixtures/rigs/${m}.json`);
     assert.deepEqual(normalize(loadModel(m)), golden, `resolved rig mismatch for ${m}`);

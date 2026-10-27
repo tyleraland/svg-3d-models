@@ -1,6 +1,7 @@
 {
   "$schema": "paper-rig/model-1",
   "family": "lizard",
+  "groundedQuadruped": {  },
   "semanticDetailPolicy": {
     "defaultTier": "silhouette",
     "byRole": { "shadow": "texture" }

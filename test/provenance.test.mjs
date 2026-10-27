@@ -29,8 +29,8 @@ function assertSchemaValid(validate, value, label) {
   assert.equal(validate(value), true, `${label}: ${ajv.errorsText(validate.errors)}`);
 }
 
-test('all 31 provenance sidecars preserve rig output and explain every final leaf', () => {
-  assert.equal(MODELS.length, 31);
+test('all 32 provenance sidecars preserve rig output and explain every final leaf', () => {
+  assert.equal(MODELS.length, 32);
   for (const model of MODELS) {
     const expected = loadModel(model);
     const { rig, provenance } = loadModelWithProvenance(model);
@@ -67,7 +67,7 @@ test('explain reports an ordered family, recipe, and explicit override chain', (
     'model-override',
   ]);
   assert.equal(field.origin.sourcePointer, '/plateSizeOverrides/0');
-  assert.equal(field.value, 0.16);
+  assert.equal(field.value, 0.085);
 });
 
 test('explain distinguishes variant inputs, addons, family fields, and derived defaults', () => {

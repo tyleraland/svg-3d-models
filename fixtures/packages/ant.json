@@ -1448,12 +1448,9 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
-      "headingSwapsNearFar": true,
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.left",
@@ -1491,12 +1488,9 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
-      "headingSwapsNearFar": true,
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.right",
@@ -1649,7 +1643,7 @@
       "diameterMeters": 0.06,
       "paletteRole": "hoof",
       "depthBias": 1.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -1670,12 +1664,11 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearFrontFootGasket",
@@ -1723,7 +1716,7 @@
       "diameterMeters": 0.06,
       "paletteRole": "hoof",
       "depthBias": 1.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -1744,12 +1737,11 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearMiddleFootGasket",
@@ -1797,7 +1789,7 @@
       "diameterMeters": 0.06,
       "paletteRole": "hoof",
       "depthBias": 1.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -1818,12 +1810,11 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearRearFootGasket",
@@ -1871,7 +1862,7 @@
       "diameterMeters": 0.06,
       "paletteRole": "hoof",
       "depthBias": 1.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -1894,10 +1885,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farFrontFootGasket",
@@ -1945,7 +1935,7 @@
       "diameterMeters": 0.06,
       "paletteRole": "hoof",
       "depthBias": 1.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -1968,10 +1958,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farMiddleFootGasket",
@@ -2019,7 +2008,7 @@
       "diameterMeters": 0.06,
       "paletteRole": "hoof",
       "depthBias": 1.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -2042,10 +2031,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farRearFootGasket",
@@ -2114,12 +2102,8 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
-      "headingSwapsNearFar": true
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearAntennaTipGasket",
@@ -2151,12 +2135,8 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
-      "headingSwapsNearFar": true
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
     },
     {
       "id": "farAntennaBaseGasket",
@@ -2188,12 +2168,8 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
-      "headingSwapsNearFar": true
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
     },
     {
       "id": "farAntennaTipGasket",
@@ -2225,12 +2201,8 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
-      "headingSwapsNearFar": true
+      "compositingGroup": "core surface plates",
+      "headingSwapsNearFar": false
     }
   ],
   "coreOccluder": {
@@ -3496,7 +3468,7 @@
       {
         "id": "under-core-compositor-contract",
         "pass": true,
-        "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+        "detail": "6 under-core plate/gasket records are fixed behind the opaque core"
       },
       {
         "id": "rigid-plate-span-lengths",

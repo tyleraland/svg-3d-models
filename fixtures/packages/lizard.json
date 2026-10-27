@@ -381,14 +381,14 @@
       "localBindPositionMeters": [
         -0.04,
         0.28,
-        -0.1
+        -0.1285714286
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.3,
+      "boneLengthMeters": 0.3107,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "left",
@@ -417,14 +417,14 @@
       "localBindPositionMeters": [
         0.12,
         0.22,
-        -0.11
+        -0.1414285714
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.2737,
+      "boneLengthMeters": 0.2878,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "left",
@@ -436,7 +436,7 @@
       "rotationLimitsDegrees": null,
       "ikChain": "nearFrontLeg",
       "groundContact": true,
-      "contactSurfaceOffsetMeters": 0.06,
+      "contactSurfaceOffsetMeters": 0,
       "coverageGasketId": "nearFrontFootGasket"
     },
     {
@@ -475,14 +475,14 @@
       "localBindPositionMeters": [
         -0.04,
         -0.28,
-        -0.1
+        -0.1285714286
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.3,
+      "boneLengthMeters": 0.3107,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "right",
@@ -511,14 +511,14 @@
       "localBindPositionMeters": [
         0.12,
         -0.22,
-        -0.11
+        -0.1414285714
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.2737,
+      "boneLengthMeters": 0.2878,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "right",
@@ -530,7 +530,7 @@
       "rotationLimitsDegrees": null,
       "ikChain": "farFrontLeg",
       "groundContact": true,
-      "contactSurfaceOffsetMeters": 0.06,
+      "contactSurfaceOffsetMeters": 0,
       "coverageGasketId": "farFrontFootGasket"
     },
     {
@@ -569,14 +569,14 @@
       "localBindPositionMeters": [
         -0.08,
         0.29,
-        -0.1
+        -0.1095238095
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.317,
+      "boneLengthMeters": 0.3201,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "left",
@@ -605,14 +605,14 @@
       "localBindPositionMeters": [
         -0.12,
         0.21,
-        -0.11
+        -0.1204761905
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.2657,
+      "boneLengthMeters": 0.2702,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "left",
@@ -624,7 +624,7 @@
       "rotationLimitsDegrees": null,
       "ikChain": "nearRearLeg",
       "groundContact": true,
-      "contactSurfaceOffsetMeters": 0.02,
+      "contactSurfaceOffsetMeters": 0,
       "coverageGasketId": "nearRearFootGasket"
     },
     {
@@ -663,14 +663,14 @@
       "localBindPositionMeters": [
         -0.08,
         -0.29,
-        -0.1
+        -0.1095238095
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.317,
+      "boneLengthMeters": 0.3201,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "right",
@@ -699,14 +699,14 @@
       "localBindPositionMeters": [
         -0.12,
         -0.21,
-        -0.11
+        -0.1204761905
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.2657,
+      "boneLengthMeters": 0.2702,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "right",
@@ -718,7 +718,7 @@
       "rotationLimitsDegrees": null,
       "ikChain": "farRearLeg",
       "groundContact": true,
-      "contactSurfaceOffsetMeters": 0.02,
+      "contactSurfaceOffsetMeters": 0,
       "coverageGasketId": "farRearFootGasket"
     }
   ],
@@ -745,6 +745,11 @@
         "sizeMeters": [
           1.48,
           0.62
+        ],
+        "surfaceNormal": [
+          0,
+          0,
+          1
         ]
       },
       "depthBias": -99,
@@ -1819,7 +1824,7 @@
       "diameterMeters": 0.1104,
       "paletteRole": "base",
       "depthBias": 0.95,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -1840,12 +1845,11 @@
         "type": "circle",
         "diameterMeters": 0.1104
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearFrontElbowGasket",
@@ -1930,7 +1934,7 @@
       "diameterMeters": 0.1104,
       "paletteRole": "base",
       "depthBias": 0.95,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -1953,10 +1957,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farFrontElbowGasket",
@@ -2041,7 +2044,7 @@
       "diameterMeters": 0.11960000000000001,
       "paletteRole": "base",
       "depthBias": 0.95,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -2062,12 +2065,11 @@
         "type": "circle",
         "diameterMeters": 0.11960000000000001
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearRearKneeGasket",
@@ -2152,7 +2154,7 @@
       "diameterMeters": 0.11960000000000001,
       "paletteRole": "base",
       "depthBias": 0.95,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -2175,10 +2177,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farRearKneeGasket",
@@ -3887,7 +3888,7 @@
       {
         "id": "under-core-compositor-contract",
         "pass": true,
-        "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+        "detail": "4 under-core plate/gasket records are fixed behind the opaque core"
       },
       {
         "id": "rigid-plate-span-lengths",

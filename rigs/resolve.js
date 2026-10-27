@@ -15,6 +15,9 @@ import { cloneData } from '@paper-rig/schema';
 import { resolveAppearancePlan } from '@paper-rig/appearance';
 import { resolveAttachmentAssembly } from '@paper-rig/attachments';
 import { resolveMotionPlan } from '@paper-rig/motion';
+import { applyFelineAttacks, foldFelineClaws } from './feline-attacks.js';
+import { applyCanineAttack } from './canine-attack.js';
+import { applyGroundedQuadruped } from './quadruped-locomotion.js';
 import { createProvenanceTracker } from './provenance.js';
 import {
   quadrupedVariant, tuneQuadrupedLimbs, addMuzzle, addPairedEars,
@@ -288,6 +291,22 @@ function resolveModelInternal(model, family, tracker) {
     origin: modelOverride('/gait'),
   }, () => rotationalGait(rig, model.gait.a, model.gait.b, { semantics: model.gait.semantics }));
 
+  if (model.groundedQuadruped) mutateWithProvenance(rig, tracker, {
+    operation: 'locomotion.grounded-quadruped',
+    origin: { kind: 'recipe', recipeId: 'grounded-quadruped', sourcePointer: '/groundedQuadruped',
+      inputSourcePointers: model.variant ? ['/variant'] : [] },
+  }, () => applyGroundedQuadruped(rig, model.groundedQuadruped));
+
+  if (model.canineAttack) mutateWithProvenance(rig, tracker, {
+    operation: 'motion.canine-bite',
+    origin: { kind: 'recipe', recipeId: 'canine-bite', sourcePointer: '/canineAttack' },
+  }, () => applyCanineAttack(rig, model.canineAttack));
+
+  if (model.felineAttacks) mutateWithProvenance(rig, tracker, {
+    operation: 'motion.feline-attacks',
+    origin: { kind: 'recipe', recipeId: 'feline-attacks', sourcePointer: '/felineAttacks' },
+  }, () => applyFelineAttacks(rig, model.felineAttacks));
+
   // 7b. Patch source clips before canonical aliases are derived so edits to
   // idleA/walkA flow into idle/walk. Patches for generated canonical clips run
   // immediately after derivation below.
@@ -303,6 +322,11 @@ function resolveModelInternal(model, family, tracker) {
     operation: 'clips.ensure-canonical',
     origin: derivedDefault('ensureCanonicalClips'),
   }, () => ensureCanonicalClips(rig));
+
+  if (model.felineAttacks) mutateWithProvenance(rig, tracker, {
+    operation: 'motion.feline-claw-defaults',
+    origin: { kind: 'recipe', recipeId: 'feline-claws', sourcePointer: '/felineAttacks' },
+  }, () => foldFelineClaws(rig));
 
   // 8b. Canonical-only patch targets (idle/walk/hit/ko).
   const postCanonicalPatchIndexes = clipPatches

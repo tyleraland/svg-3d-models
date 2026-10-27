@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 31 animals and monsters. They are factored into reusable family
+catalog contains 32 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -166,6 +166,34 @@ A practical edit loop is:
 A family change can affect every model that inherits from it. Search model
 references and review representative variants before accepting new fixtures.
 
+### Grounded quadrupeds
+
+Models opt into authoring-time grounding with `"groundedQuadruped": {}`.
+Four idle contact chains are required. Their vertical bind lengths are fitted
+from the shoulder/hip to Z=0; idle animation must keep those contacts planted.
+Ground shadows use the XY plane. Splayed lizard/dragon rigs retain their authored gait.
+
+For sagittal mammal legs, `"groundedQuadruped": { "walk": { "stride": 0.28, "lift": 0.13 } }`
+bakes ordinary rotation keyframes with a 60% stance phase. Stride and lift are
+fractions of hip height; stride is bounded by leg reach. Shoulder/hip and elbow/
+stifle articulate together. An optional authored `Hock` between the rear knee
+and foot adds the opposing bend; a foreleg `Carpus` adds a wrist/distal section.
+Optional `dutyFactor`, `bodyBounce`, `headNodDegrees`, and `tailSwingDegrees`
+control support duration and secondary motion. `pattern: "fore-hind"` uses paired
+fore/hind support for the rabbit; `bodyCycles: 1` sets one body dip per cycle,
+and `earSwingDegrees` adds small ear motion. The default stance fraction is 0.6. Segment lengths, joint limits, loop closure,
+and contact heights are tested between bake samples. No consumer runs IK.
+Author geometry and clip duration in the family; choose stride/lift in the model.
+`rig explain horse joint:nearRearHock.bind --history` attributes generated fields to this recipe and records
+variant geometry inputs in provenance `inputSourcePointers`.
+
+Horse also declares `groundedQuadruped.gallop`: duration in milliseconds,
+normalized stride/clearance, body rise/dip, pitch and left/right lead. It emits
+a separate ordinary `gallop` clip with four staggered contacts and a suspension
+interval. Use `rig render horse --clip gallop --time .83 --elevation 45` to
+inspect the airborne pose. Gallop support/suspension poses enter the default
+audit matrix.
+
 ### Authoring reusable attachments
 
 Reusable equipment and details live in `rigs/modules/` as strict
@@ -205,7 +233,7 @@ typed humanoid hand grip and remains reusable on compatible normalized grips.
 Generated gaskets carry
 incident plate dependencies and disappear at the same semantic LOD boundary as
 their accessory, so lower tiers cannot retain orphan seam dots. Use
-`rig audit <model> --attachments` for the full 240-view review; its frame overlay includes authored
+`rig audit <model> --attachments` for the full 400-view review; its frame overlay includes authored
 joint and plate slots, and its machine report embeds the assembly manifest.
 
 Free geometry endpoints that exist only to control a module plate use
@@ -354,7 +382,7 @@ exit status.
 
 ### Reviewing intentional projected changes
 
-`rig manifest <model>` captures the canonical 240-view projected contract at a
+`rig manifest <model>` captures the canonical 400-view projected contract at a
 numeric precision of `1e-9`: full joint transforms, vector geometry, surface and
 depth data, active contacts, semantic element classifications, and compositing
 order. The matrix includes attack anticipation, impact, and recovery in addition
@@ -539,3 +567,49 @@ models from multiple views, and describe why the new result is correct.
   contract.
 - [spec/paper-rig-1.md](./spec/paper-rig-1.md) — detailed current package format.
 - `AGENTS.md` — concise repository instructions loaded by coding agents.
+
+
+### Occlusion regression checks
+
+Default audits include true side and overhead views (0/45/60/75/90°).
+The independent `audit.buried-appendage-order` check compares emitted painter
+order against posed depths and overlapping supported core primitives. It covers
+plates and gaskets across all models; per-view reports list unsupported custom
+geometry. Mutation tests require it to reject deliberately misplaced buried
+parts. See [the regression study](reference-studies/occlusion-regressions.md)
+for the original failure, coverage, and limits. Golden parity is evidence of
+consistency, not evidence that an occlusion decision is visually correct.
+
+Leopard declares a lateral-sequence `groundedQuadruped.walk` and a separate
+`groundedQuadruped.run` with `spineFlexDegrees`. Its `felineAttacks.swipe` and
+`felineAttacks.pounce` plans bake supported claw strikes and airborne pounces
+into ordinary `attack` and `pounce` clips. Claw controls fold outside attacks;
+contact and phase declarations remain part of the exported clips. See
+`reference-studies/leopard.md` for reference observations and validation scope.
+
+The elephant refinement is documented in `reference-studies/elephant.md`.
+A grounded-quadruped `run` may use `pattern: "lateral-sequence"` with the
+walk declaration fields for a faster four-beat gait with continuous support;
+omitting that pattern retains the existing staggered gallop/run trajectory.
+
+Head assembly regression checks independently compare overlapping physical plates
+and gaskets against posed depth intervals. Polygon ears and tapered tusks/horns
+are covered; ambiguous intersections and unsupported paths remain explicit review
+evidence. `node scripts/head-occlusion-sheet.mjs elephant /tmp/elephant-heads.html`
+generates a focused six-elevation, sixteen-heading visual matrix for any model.
+
+The wolf refinement is documented in `reference-studies/wolf.md`. Its optional
+`groundedQuadruped.trot` declaration uses a diagonal walk-style bake. The bounded
+`canineAttack` authoring plan emits a supported jaw-driven bite with planted-paw
+IK; it requires jaw/head/neck/spine controls. Both produce ordinary consumer clips.
+
+Wolf also offers a suspended `sprint` clip through `groundedQuadruped.sprint`;
+shorter stance windows extend the aerial phase. Flying bird now offers explicit
+`fly` and `glide` clips, airborne pecking, grounded waddling (`walk`) and hopping (`hop`), with synchronous articulated wings and closed feather
+panels. See `reference-studies/flying-bird.md` for the reference study and checks.
+
+The brown bear (`bear`) is an authored ursine family with raised shoulders,
+rounded ears, broad plantigrade paws and a short tail. It includes idle, walk,
+run and a supported paw-swipe attack. `groundedQuadruped` walk/run declarations
+can opt into `keepPawsLevel` to bake level soles and preserve claw clearance.
+See `reference-studies/bear.md` for the WildMesh reference study and checks.

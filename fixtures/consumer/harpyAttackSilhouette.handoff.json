@@ -71,6 +71,15 @@
         ]
       },
       {
+        "elementId": "nearFootGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearShinPlate",
+          "leftTalonPlate"
+        ]
+      },
+      {
         "elementId": "farKneeGasket",
         "tier": "silhouette",
         "source": "structural",
@@ -80,11 +89,28 @@
         ]
       },
       {
+        "elementId": "nearKneeGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearThighPlate",
+          "nearShinPlate"
+        ]
+      },
+      {
         "elementId": "farHipGasket",
         "tier": "silhouette",
         "source": "structural",
         "dependencyElementIds": [
           "farThighPlate"
+        ]
+      },
+      {
+        "elementId": "nearHipGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "nearThighPlate"
         ]
       },
       {
@@ -115,11 +141,28 @@
         ]
       },
       {
+        "elementId": "leftWingTipGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "leftWingMembrane",
+          "leftWingForePlate"
+        ]
+      },
+      {
         "elementId": "rightWingTrailingMidGasket",
         "tier": "silhouette",
         "source": "structural",
         "dependencyElementIds": [
           "rightWingMembrane"
+        ]
+      },
+      {
+        "elementId": "leftWingTrailingTipGasket",
+        "tier": "silhouette",
+        "source": "structural",
+        "dependencyElementIds": [
+          "leftWingMembrane"
         ]
       },
       {
@@ -150,7 +193,22 @@
         "source": "authored"
       },
       {
+        "elementId": "leftTalonPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearShinPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
         "elementId": "farThighPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "nearThighPlate",
         "tier": "silhouette",
         "source": "authored"
       },
@@ -161,6 +219,11 @@
       },
       {
         "elementId": "rightWingUpperPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "leftWingForePlate",
         "tier": "silhouette",
         "source": "authored"
       },
@@ -253,6 +316,11 @@
         ]
       },
       {
+        "elementId": "pelvisSpinePlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
         "elementId": "spineGasket",
         "tier": "silhouette",
         "source": "structural",
@@ -260,6 +328,11 @@
           "pelvisSpinePlate",
           "chestPlate"
         ]
+      },
+      {
+        "elementId": "chestPlate",
+        "tier": "silhouette",
+        "source": "authored"
       },
       {
         "elementId": "shouldersGasket",
@@ -272,6 +345,16 @@
         ]
       },
       {
+        "elementId": "shoulderPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
+        "elementId": "neckPlate",
+        "tier": "silhouette",
+        "source": "authored"
+      },
+      {
         "elementId": "neckGasket",
         "tier": "silhouette",
         "source": "structural",
@@ -279,6 +362,11 @@
           "neckPlate",
           "headConnectorPlate"
         ]
+      },
+      {
+        "elementId": "headConnectorPlate",
+        "tier": "silhouette",
+        "source": "authored"
       },
       {
         "elementId": "headGasket",
@@ -290,77 +378,9 @@
         ]
       },
       {
-        "elementId": "pelvisSpinePlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
-        "elementId": "chestPlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
-        "elementId": "shoulderPlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
-        "elementId": "neckPlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
-        "elementId": "headConnectorPlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
         "elementId": "headPlate",
         "tier": "silhouette",
         "source": "authored"
-      },
-      {
-        "elementId": "nearFootGasket",
-        "tier": "silhouette",
-        "source": "structural",
-        "dependencyElementIds": [
-          "nearShinPlate",
-          "leftTalonPlate"
-        ]
-      },
-      {
-        "elementId": "nearKneeGasket",
-        "tier": "silhouette",
-        "source": "structural",
-        "dependencyElementIds": [
-          "nearThighPlate",
-          "nearShinPlate"
-        ]
-      },
-      {
-        "elementId": "nearHipGasket",
-        "tier": "silhouette",
-        "source": "structural",
-        "dependencyElementIds": [
-          "nearThighPlate"
-        ]
-      },
-      {
-        "elementId": "leftWingTipGasket",
-        "tier": "silhouette",
-        "source": "structural",
-        "dependencyElementIds": [
-          "leftWingMembrane",
-          "leftWingForePlate"
-        ]
-      },
-      {
-        "elementId": "leftWingTrailingTipGasket",
-        "tier": "silhouette",
-        "source": "structural",
-        "dependencyElementIds": [
-          "leftWingMembrane"
-        ]
       },
       {
         "elementId": "leftWingElbowGasket",
@@ -398,26 +418,6 @@
         ]
       },
       {
-        "elementId": "leftTalonPlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
-        "elementId": "nearShinPlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
-        "elementId": "nearThighPlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
-        "elementId": "leftWingForePlate",
-        "tier": "silhouette",
-        "source": "authored"
-      },
-      {
         "elementId": "leftWingUpperPlate",
         "tier": "silhouette",
         "source": "authored"
@@ -430,19 +430,28 @@
     ],
     "includedElementIds": [
       "farFootGasket",
+      "nearFootGasket",
       "farKneeGasket",
+      "nearKneeGasket",
       "farHipGasket",
+      "nearHipGasket",
       "rightWingTipGasket",
       "rightWingTrailingTipGasket",
       "rightWingElbowGasket",
+      "leftWingTipGasket",
       "rightWingTrailingMidGasket",
+      "leftWingTrailingTipGasket",
       "rightWingTrailingRootGasket",
       "rightWingRootGasket",
       "rightTalonPlate",
       "farShinPlate",
+      "leftTalonPlate",
+      "nearShinPlate",
       "farThighPlate",
+      "nearThighPlate",
       "rightWingForePlate",
       "rightWingUpperPlate",
+      "leftWingForePlate",
       "rightWingMembrane",
       "pelvisSpinePlateOccluderCell",
       "chestPlateOccluderCell",
@@ -456,29 +465,20 @@
       "neckGasketOccluderCell",
       "headGasketOccluderCell",
       "hipsGasket",
-      "spineGasket",
-      "shouldersGasket",
-      "neckGasket",
-      "headGasket",
       "pelvisSpinePlate",
+      "spineGasket",
       "chestPlate",
+      "shouldersGasket",
       "shoulderPlate",
       "neckPlate",
+      "neckGasket",
       "headConnectorPlate",
+      "headGasket",
       "headPlate",
-      "nearFootGasket",
-      "nearKneeGasket",
-      "nearHipGasket",
-      "leftWingTipGasket",
-      "leftWingTrailingTipGasket",
       "leftWingElbowGasket",
       "leftWingTrailingRootGasket",
       "leftWingRootGasket",
       "leftWingTrailingMidGasket",
-      "leftTalonPlate",
-      "nearShinPlate",
-      "nearThighPlate",
-      "leftWingForePlate",
       "leftWingUpperPlate",
       "leftWingMembrane"
     ],
@@ -1364,6 +1364,37 @@
             }
           },
           {
+            "id": "nearFootGasket",
+            "sourceId": "nearFootGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearShinPlate",
+              "leftTalonPlate"
+            ],
+            "cameraDepth": -0.20782545026695484,
+            "depthBias": 1.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearFootGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "65.24863715208156",
+                "cy": "66.35489949778591",
+                "r": "2.7870480000000004"
+              }
+            }
+          },
+          {
             "id": "farKneeGasket",
             "sourceId": "farKneeGasket",
             "sourceKind": "gasket",
@@ -1395,6 +1426,37 @@
             }
           },
           {
+            "id": "nearKneeGasket",
+            "sourceId": "nearKneeGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearThighPlate",
+              "nearShinPlate"
+            ],
+            "cameraDepth": -0.600194547450408,
+            "depthBias": 1.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearKneeGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "60.81494926665356",
+                "cy": "68.10634642336092",
+                "r": "2.280312"
+              }
+            }
+          },
+          {
             "id": "farHipGasket",
             "sourceId": "farHipGasket",
             "sourceKind": "gasket",
@@ -1420,6 +1482,36 @@
                 "data-palette-role": "base",
                 "cx": "47.27367909445715",
                 "cy": "69.23660243475821",
+                "r": "2.280312"
+              }
+            }
+          },
+          {
+            "id": "nearHipGasket",
+            "sourceId": "nearHipGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "nearThighPlate"
+            ],
+            "cameraDepth": -0.8734443486509798,
+            "depthBias": 0.95,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "nearHipGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "52.72632090554285",
+                "cy": "74.5034499815895",
                 "r": "2.280312"
               }
             }
@@ -1518,6 +1610,37 @@
             }
           },
           {
+            "id": "leftWingTipGasket",
+            "sourceId": "leftWingTipGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "wing",
+            "side": "left",
+            "paletteRole": "secondary",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "leftWingMembrane",
+              "leftWingForePlate"
+            ],
+            "cameraDepth": -1.386425004491889,
+            "depthBias": 4.05,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "leftWingTipGasket",
+                "class": "jointGasket",
+                "data-palette-role": "secondary",
+                "cx": "65.96651633588017",
+                "cy": "90.71562058584693",
+                "r": "1.4904"
+              }
+            }
+          },
+          {
             "id": "rightWingTrailingMidGasket",
             "sourceId": "rightWingTrailingMidGasket",
             "sourceKind": "gasket",
@@ -1543,6 +1666,36 @@
                 "data-palette-role": "secondary",
                 "cx": "33.31199629950757",
                 "cy": "66.70480989965776",
+                "r": "1.2420000000000002"
+              }
+            }
+          },
+          {
+            "id": "leftWingTrailingTipGasket",
+            "sourceId": "leftWingTrailingTipGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "wing",
+            "side": "left",
+            "paletteRole": "secondary",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "leftWingMembrane"
+            ],
+            "cameraDepth": -1.4920734239454883,
+            "depthBias": 3.75,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "leftWingTrailingTipGasket",
+                "class": "jointGasket",
+                "data-palette-role": "secondary",
+                "cx": "57.70415361943745",
+                "cy": "95.04356054630716",
                 "r": "1.2420000000000002"
               }
             }
@@ -1667,6 +1820,64 @@
             }
           },
           {
+            "id": "leftTalonPlate",
+            "sourceId": "leftTalonPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "accent",
+            "bodyRegion": "hoof",
+            "side": "left",
+            "paletteRole": "hoof",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.20782545026695484,
+            "depthBias": 0,
+            "vector": {
+              "tag": "ellipse",
+              "attributes": {
+                "id": "leftTalonPlate",
+                "class": "paperPlate plateShade",
+                "data-palette-role": "hoof",
+                "cx": "65.24863715208156",
+                "cy": "66.35489949778591",
+                "rx": "3.0294000000000003",
+                "ry": "1.9278000000000002"
+              }
+            }
+          },
+          {
+            "id": "nearShinPlate",
+            "sourceId": "nearShinPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.20782545026695484,
+            "depthBias": 1.2,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "nearShinPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "60.44315926665356",
+                "y": "66.04084642336092",
+                "width": "5.51067078983159",
+                "height": "4.131",
+                "rx": "2.0655",
+                "transform": "rotate(-21.555587274705236 60.81494926665356 68.10634642336092)"
+              }
+            }
+          },
+          {
             "id": "farThighPlate",
             "sourceId": "farThighPlate",
             "sourceKind": "plate",
@@ -1693,6 +1904,36 @@
                 "height": "4.957199999999999",
                 "rx": "2.4785999999999997",
                 "transform": "rotate(-38.3396329501196 47.27367909445715 69.23660243475821)"
+              }
+            }
+          },
+          {
+            "id": "nearThighPlate",
+            "sourceId": "nearThighPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "limb",
+            "side": "left",
+            "paletteRole": "base",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -0.600194547450408,
+            "depthBias": 1,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "nearThighPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "52.28017290554285",
+                "y": "72.0248499815895",
+                "width": "11.204853524633025",
+                "height": "4.957199999999999",
+                "rx": "2.4785999999999997",
+                "transform": "rotate(-38.33963295011957 52.72632090554285 74.5034499815895)"
               }
             }
           },
@@ -1753,6 +1994,36 @@
                 "height": "4.32",
                 "rx": "2.16",
                 "transform": "rotate(-133.63050089667965 45.036110396070434 65.64405315517158)"
+              }
+            }
+          },
+          {
+            "id": "leftWingForePlate",
+            "sourceId": "leftWingForePlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "accent",
+            "bodyRegion": "wing",
+            "side": "left",
+            "paletteRole": "secondary",
+            "lodTier": "major",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.386425004491889,
+            "depthBias": 4.1,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "leftWingForePlate",
+                "class": "paperPlate",
+                "data-palette-role": "secondary",
+                "x": "57.73091562415",
+                "y": "76.10848179281543",
+                "width": "15.807290164519955",
+                "height": "3.2399999999999998",
+                "rx": "1.6199999999999999",
+                "transform": "rotate(58.54661956550835 58.02251562415 77.72848179281543)"
               }
             }
           },
@@ -2157,6 +2428,36 @@
             }
           },
           {
+            "id": "pelvisSpinePlate",
+            "sourceId": "pelvisSpinePlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.2019980982341167,
+            "depthBias": 3,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "pelvisSpinePlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "48.711128",
+                "y": "64.56706867813139",
+                "width": "5.001222010721964",
+                "height": "14.3208",
+                "rx": "7.1604",
+                "transform": "rotate(-90 50 71.72746867813139)"
+              }
+            }
+          },
+          {
             "id": "spineGasket",
             "sourceId": "spineGasket",
             "sourceKind": "gasket",
@@ -2184,6 +2485,36 @@
                 "cx": "50",
                 "cy": "69.30399066740942",
                 "r": "4.32"
+              }
+            }
+          },
+          {
+            "id": "chestPlate",
+            "sourceId": "chestPlate",
+            "sourceKind": "plate",
+            "kind": "plate",
+            "generated": false,
+            "semanticRole": "body",
+            "bodyRegion": "core",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "silhouette",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "authored",
+            "cameraDepth": -1.464353816756282,
+            "depthBias": 3.5,
+            "vector": {
+              "tag": "rect",
+              "attributes": {
+                "id": "chestPlate",
+                "class": "paperPlate",
+                "data-palette-role": "base",
+                "x": "48.413696",
+                "y": "60.49119066740942",
+                "width": "5.49753172840612",
+                "height": "17.625600000000002",
+                "rx": "8.812800000000001",
+                "transform": "rotate(-80.54710777428787 50 69.30399066740942)"
               }
             }
           },
@@ -2216,128 +2547,6 @@
                 "cx": "50.381837661840734",
                 "cy": "67.0106371528143",
                 "r": "4.32"
-              }
-            }
-          },
-          {
-            "id": "neckGasket",
-            "sourceId": "neckGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "head",
-            "side": "center",
-            "paletteRole": "base",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "detailDependencyIds": [
-              "neckPlate",
-              "headConnectorPlate"
-            ],
-            "cameraDepth": -1.5887753272843679,
-            "depthBias": 5.15,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "neckGasket",
-                "class": "jointGasket",
-                "data-palette-role": "base",
-                "cx": "50.76367532368147",
-                "cy": "65.71518634851645",
-                "r": "3.5471520000000005"
-              }
-            }
-          },
-          {
-            "id": "headGasket",
-            "sourceId": "headGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "head",
-            "side": "center",
-            "paletteRole": "base",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "detailDependencyIds": [
-              "headConnectorPlate",
-              "headPlate"
-            ],
-            "cameraDepth": -1.7821639418094934,
-            "depthBias": 5.45,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "headGasket",
-                "class": "jointGasket",
-                "data-palette-role": "base",
-                "cx": "51.14551298552221",
-                "cy": "63.92078418906998",
-                "r": "4.32"
-              }
-            }
-          },
-          {
-            "id": "pelvisSpinePlate",
-            "sourceId": "pelvisSpinePlate",
-            "sourceKind": "plate",
-            "kind": "plate",
-            "generated": false,
-            "semanticRole": "body",
-            "bodyRegion": "core",
-            "side": "center",
-            "paletteRole": "base",
-            "lodTier": "silhouette",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "authored",
-            "cameraDepth": -1.2019980982341167,
-            "depthBias": 3,
-            "vector": {
-              "tag": "rect",
-              "attributes": {
-                "id": "pelvisSpinePlate",
-                "class": "paperPlate",
-                "data-palette-role": "base",
-                "x": "48.711128",
-                "y": "64.56706867813139",
-                "width": "5.001222010721964",
-                "height": "14.3208",
-                "rx": "7.1604",
-                "transform": "rotate(-90 50 71.72746867813139)"
-              }
-            }
-          },
-          {
-            "id": "chestPlate",
-            "sourceId": "chestPlate",
-            "sourceKind": "plate",
-            "kind": "plate",
-            "generated": false,
-            "semanticRole": "body",
-            "bodyRegion": "core",
-            "side": "center",
-            "paletteRole": "base",
-            "lodTier": "silhouette",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "authored",
-            "cameraDepth": -1.464353816756282,
-            "depthBias": 3.5,
-            "vector": {
-              "tag": "rect",
-              "attributes": {
-                "id": "chestPlate",
-                "class": "paperPlate",
-                "data-palette-role": "base",
-                "x": "48.413696",
-                "y": "60.49119066740942",
-                "width": "5.49753172840612",
-                "height": "17.625600000000002",
-                "rx": "8.812800000000001",
-                "transform": "rotate(-80.54710777428787 50 69.30399066740942)"
               }
             }
           },
@@ -2400,6 +2609,37 @@
             }
           },
           {
+            "id": "neckGasket",
+            "sourceId": "neckGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "neckPlate",
+              "headConnectorPlate"
+            ],
+            "cameraDepth": -1.5887753272843679,
+            "depthBias": 5.15,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "neckGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "50.76367532368147",
+                "cy": "65.71518634851645",
+                "r": "3.5471520000000005"
+              }
+            }
+          },
+          {
             "id": "headConnectorPlate",
             "sourceId": "headConnectorPlate",
             "sourceKind": "plate",
@@ -2426,6 +2666,37 @@
                 "height": "7.711200000000001",
                 "rx": "3.8556000000000004",
                 "transform": "rotate(-77.98699521803519 50.76367532368147 65.71518634851645)"
+              }
+            }
+          },
+          {
+            "id": "headGasket",
+            "sourceId": "headGasket",
+            "sourceKind": "gasket",
+            "kind": "gasket",
+            "generated": false,
+            "semanticRole": "jointGasket",
+            "bodyRegion": "head",
+            "side": "center",
+            "paletteRole": "base",
+            "lodTier": "detail",
+            "semanticDetailTier": "silhouette",
+            "semanticDetailSource": "structural",
+            "detailDependencyIds": [
+              "headConnectorPlate",
+              "headPlate"
+            ],
+            "cameraDepth": -1.7821639418094934,
+            "depthBias": 5.45,
+            "vector": {
+              "tag": "circle",
+              "attributes": {
+                "id": "headGasket",
+                "class": "jointGasket",
+                "data-palette-role": "base",
+                "cx": "51.14551298552221",
+                "cy": "63.92078418906998",
+                "r": "4.32"
               }
             }
           },
@@ -2464,159 +2735,6 @@
         "semanticRole": "camera-near appendages",
         "order": 4,
         "elements": [
-          {
-            "id": "nearFootGasket",
-            "sourceId": "nearFootGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "limb",
-            "side": "left",
-            "paletteRole": "base",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "detailDependencyIds": [
-              "nearShinPlate",
-              "leftTalonPlate"
-            ],
-            "cameraDepth": -0.20782545026695484,
-            "depthBias": 1.15,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "nearFootGasket",
-                "class": "jointGasket",
-                "data-palette-role": "base",
-                "cx": "65.24863715208156",
-                "cy": "66.35489949778591",
-                "r": "2.7870480000000004"
-              }
-            }
-          },
-          {
-            "id": "nearKneeGasket",
-            "sourceId": "nearKneeGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "limb",
-            "side": "left",
-            "paletteRole": "base",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "detailDependencyIds": [
-              "nearThighPlate",
-              "nearShinPlate"
-            ],
-            "cameraDepth": -0.600194547450408,
-            "depthBias": 1.15,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "nearKneeGasket",
-                "class": "jointGasket",
-                "data-palette-role": "base",
-                "cx": "60.81494926665356",
-                "cy": "68.10634642336092",
-                "r": "2.280312"
-              }
-            }
-          },
-          {
-            "id": "nearHipGasket",
-            "sourceId": "nearHipGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "limb",
-            "side": "left",
-            "paletteRole": "base",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "detailDependencyIds": [
-              "nearThighPlate"
-            ],
-            "cameraDepth": -0.8734443486509798,
-            "depthBias": 0.95,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "nearHipGasket",
-                "class": "jointGasket",
-                "data-palette-role": "base",
-                "cx": "52.72632090554285",
-                "cy": "74.5034499815895",
-                "r": "2.280312"
-              }
-            }
-          },
-          {
-            "id": "leftWingTipGasket",
-            "sourceId": "leftWingTipGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "wing",
-            "side": "left",
-            "paletteRole": "secondary",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "detailDependencyIds": [
-              "leftWingMembrane",
-              "leftWingForePlate"
-            ],
-            "cameraDepth": -1.386425004491889,
-            "depthBias": 4.05,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "leftWingTipGasket",
-                "class": "jointGasket",
-                "data-palette-role": "secondary",
-                "cx": "65.96651633588017",
-                "cy": "90.71562058584693",
-                "r": "1.4904"
-              }
-            }
-          },
-          {
-            "id": "leftWingTrailingTipGasket",
-            "sourceId": "leftWingTrailingTipGasket",
-            "sourceKind": "gasket",
-            "kind": "gasket",
-            "generated": false,
-            "semanticRole": "jointGasket",
-            "bodyRegion": "wing",
-            "side": "left",
-            "paletteRole": "secondary",
-            "lodTier": "detail",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "structural",
-            "detailDependencyIds": [
-              "leftWingMembrane"
-            ],
-            "cameraDepth": -1.4920734239454883,
-            "depthBias": 3.75,
-            "vector": {
-              "tag": "circle",
-              "attributes": {
-                "id": "leftWingTrailingTipGasket",
-                "class": "jointGasket",
-                "data-palette-role": "secondary",
-                "cx": "57.70415361943745",
-                "cy": "95.04356054630716",
-                "r": "1.2420000000000002"
-              }
-            }
-          },
           {
             "id": "leftWingElbowGasket",
             "sourceId": "leftWingElbowGasket",
@@ -2737,124 +2855,6 @@
                 "cx": "50.66380146199896",
                 "cy": "83.46536663884419",
                 "r": "1.2420000000000002"
-              }
-            }
-          },
-          {
-            "id": "leftTalonPlate",
-            "sourceId": "leftTalonPlate",
-            "sourceKind": "plate",
-            "kind": "plate",
-            "generated": false,
-            "semanticRole": "accent",
-            "bodyRegion": "hoof",
-            "side": "left",
-            "paletteRole": "hoof",
-            "lodTier": "silhouette",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "authored",
-            "cameraDepth": -0.20782545026695484,
-            "depthBias": 0,
-            "vector": {
-              "tag": "ellipse",
-              "attributes": {
-                "id": "leftTalonPlate",
-                "class": "paperPlate plateShade",
-                "data-palette-role": "hoof",
-                "cx": "65.24863715208156",
-                "cy": "66.35489949778591",
-                "rx": "3.0294000000000003",
-                "ry": "1.9278000000000002"
-              }
-            }
-          },
-          {
-            "id": "nearShinPlate",
-            "sourceId": "nearShinPlate",
-            "sourceKind": "plate",
-            "kind": "plate",
-            "generated": false,
-            "semanticRole": "body",
-            "bodyRegion": "limb",
-            "side": "left",
-            "paletteRole": "base",
-            "lodTier": "major",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "authored",
-            "cameraDepth": -0.20782545026695484,
-            "depthBias": 1.2,
-            "vector": {
-              "tag": "rect",
-              "attributes": {
-                "id": "nearShinPlate",
-                "class": "paperPlate",
-                "data-palette-role": "base",
-                "x": "60.44315926665356",
-                "y": "66.04084642336092",
-                "width": "5.51067078983159",
-                "height": "4.131",
-                "rx": "2.0655",
-                "transform": "rotate(-21.555587274705236 60.81494926665356 68.10634642336092)"
-              }
-            }
-          },
-          {
-            "id": "nearThighPlate",
-            "sourceId": "nearThighPlate",
-            "sourceKind": "plate",
-            "kind": "plate",
-            "generated": false,
-            "semanticRole": "body",
-            "bodyRegion": "limb",
-            "side": "left",
-            "paletteRole": "base",
-            "lodTier": "major",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "authored",
-            "cameraDepth": -0.600194547450408,
-            "depthBias": 1,
-            "vector": {
-              "tag": "rect",
-              "attributes": {
-                "id": "nearThighPlate",
-                "class": "paperPlate",
-                "data-palette-role": "base",
-                "x": "52.28017290554285",
-                "y": "72.0248499815895",
-                "width": "11.204853524633025",
-                "height": "4.957199999999999",
-                "rx": "2.4785999999999997",
-                "transform": "rotate(-38.33963295011957 52.72632090554285 74.5034499815895)"
-              }
-            }
-          },
-          {
-            "id": "leftWingForePlate",
-            "sourceId": "leftWingForePlate",
-            "sourceKind": "plate",
-            "kind": "plate",
-            "generated": false,
-            "semanticRole": "accent",
-            "bodyRegion": "wing",
-            "side": "left",
-            "paletteRole": "secondary",
-            "lodTier": "major",
-            "semanticDetailTier": "silhouette",
-            "semanticDetailSource": "authored",
-            "cameraDepth": -1.386425004491889,
-            "depthBias": 4.1,
-            "vector": {
-              "tag": "rect",
-              "attributes": {
-                "id": "leftWingForePlate",
-                "class": "paperPlate",
-                "data-palette-role": "secondary",
-                "x": "57.73091562415",
-                "y": "76.10848179281543",
-                "width": "15.807290164519955",
-                "height": "3.2399999999999998",
-                "rx": "1.6199999999999999",
-                "transform": "rotate(58.54661956550835 58.02251562415 77.72848179281543)"
               }
             }
           },

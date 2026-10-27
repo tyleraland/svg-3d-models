@@ -149,6 +149,13 @@
         },
         "ik": { "type": "string", "minLength": 1 },
         "helper": { "type": "boolean" },
+        "gasket": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "diameterMeters": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.5 },
+            "underIncidentPlates": { "type": "boolean" }
+          }
+        },
         "facing": { "type": "string", "minLength": 1 },
         "preferredLean": { "type": "string", "minLength": 1 },
         "protrusionAxis": { "type": "string", "minLength": 1 },

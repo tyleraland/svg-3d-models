@@ -1,6 +1,7 @@
 {
   "$schema": "paper-rig/model-1",
   "family": "centaur",
+  "groundedQuadruped": { "walk": { "stride": 0.28, "lift": 0.13 } },
   "semanticDetailPolicy": {
     "defaultTier": "silhouette",
     "byRole": { "shadow": "texture" }

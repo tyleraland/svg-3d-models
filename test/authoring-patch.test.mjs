@@ -155,8 +155,9 @@ test('patching one repeated gait frame does not mutate its sibling keyframe or s
   const original = structuredClone(candidate);
   const { rig } = analyze(candidate, 'rabbitCandidate');
   assert.deepEqual(candidate, original);
-  assert.deepEqual(rig.clips.walkA.frames[0].rotations.nearFrontHip, [0, -24, 0]);
-  assert.deepEqual(rig.clips.walkA.frames[2].rotations.nearFrontHip, [0, -28, 0]);
+  const baseline = analyze(source, 'rabbit').rig.clips.walkA;
+  assert.deepEqual(rig.clips.walkA.frames[0].rotations.nearFrontHip, baseline.frames[0].rotations.nearFrontHip.map((v, axis) => v + (axis === 1 ? 4 : 0)));
+  assert.deepEqual(rig.clips.walkA.frames.at(-1).rotations.nearFrontHip, baseline.frames.at(-1).rotations.nearFrontHip);
 });
 
 test('source validation rejects hand-authored rigid child translation patches', () => {

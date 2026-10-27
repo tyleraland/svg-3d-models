@@ -313,7 +313,7 @@
       "ikChain": null,
       "groundContact": false,
       "contactSurfaceOffsetMeters": null,
-      "coverageGasketId": "leftEarTipGasket"
+      "coverageGasketId": null
     },
     {
       "id": "rightEarBase",
@@ -371,7 +371,7 @@
       "ikChain": null,
       "groundContact": false,
       "contactSurfaceOffsetMeters": null,
-      "coverageGasketId": "rightEarTipGasket"
+      "coverageGasketId": null
     },
     {
       "id": "tailBase",
@@ -996,7 +996,7 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "paint/details/accessories",
+      "compositingGroup": "core surface plates",
       "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
       "silhouetteCritical": false,
@@ -1036,7 +1036,7 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "paint/details/accessories",
+      "compositingGroup": "core surface plates",
       "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
       "silhouetteCritical": false,
@@ -1679,40 +1679,7 @@
         "type": "circle",
         "diameterMeters": 0.1012
       },
-      "compositingGroup": "paint/details/accessories",
-      "headingSwapsNearFar": false
-    },
-    {
-      "id": "leftEarTipGasket",
-      "jointId": "leftEarTip",
-      "semanticRole": "jointGasket",
-      "bodyRegion": "accessory",
-      "side": "left",
-      "diameterMeters": 0.1012,
-      "paletteRole": "accent",
-      "depthBias": 4.95,
-      "occlusionMode": "semantic-group",
-      "occlusionReferenceBoneId": null,
-      "opacity": 1,
-      "intentionalHoles": [],
-      "silhouetteCritical": false,
-      "lodTier": "detail",
-      "lodMergeGroup": "accessory.left",
-      "coverage": {
-        "method": "opaque-gasket",
-        "jointId": "leftEarTip",
-        "inheritsBone": "leftEarTip"
-      },
-      "stableId": "leftEarTipGasket",
-      "attachment": {
-        "type": "rigidBone",
-        "boneId": "leftEarTip"
-      },
-      "localGeometry": {
-        "type": "circle",
-        "diameterMeters": 0.1012
-      },
-      "compositingGroup": "paint/details/accessories",
+      "compositingGroup": "core surface plates",
       "headingSwapsNearFar": false
     },
     {
@@ -1745,40 +1712,7 @@
         "type": "circle",
         "diameterMeters": 0.1012
       },
-      "compositingGroup": "paint/details/accessories",
-      "headingSwapsNearFar": false
-    },
-    {
-      "id": "rightEarTipGasket",
-      "jointId": "rightEarTip",
-      "semanticRole": "jointGasket",
-      "bodyRegion": "accessory",
-      "side": "right",
-      "diameterMeters": 0.1012,
-      "paletteRole": "accent",
-      "depthBias": 4.95,
-      "occlusionMode": "semantic-group",
-      "occlusionReferenceBoneId": null,
-      "opacity": 1,
-      "intentionalHoles": [],
-      "silhouetteCritical": false,
-      "lodTier": "detail",
-      "lodMergeGroup": "accessory.right",
-      "coverage": {
-        "method": "opaque-gasket",
-        "jointId": "rightEarTip",
-        "inheritsBone": "rightEarTip"
-      },
-      "stableId": "rightEarTipGasket",
-      "attachment": {
-        "type": "rigidBone",
-        "boneId": "rightEarTip"
-      },
-      "localGeometry": {
-        "type": "circle",
-        "diameterMeters": 0.1012
-      },
-      "compositingGroup": "paint/details/accessories",
+      "compositingGroup": "core surface plates",
       "headingSwapsNearFar": false
     },
     {
@@ -3687,12 +3621,10 @@
         "rightWingTrailingRootGasket"
       ],
       "accessory.left": [
-        "leftEarBaseGasket",
-        "leftEarTipGasket"
+        "leftEarBaseGasket"
       ],
       "accessory.right": [
-        "rightEarBaseGasket",
-        "rightEarTipGasket"
+        "rightEarBaseGasket"
       ]
     },
     "far": {

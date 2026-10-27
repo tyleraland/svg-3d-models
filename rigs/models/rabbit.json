@@ -1,10 +1,25 @@
 {
   "$schema": "paper-rig/model-1",
   "family": "quadruped",
+  "groundedQuadruped": {
+    "walk": {
+      "stride": 0.42,
+      "lift": 0.22,
+      "pattern": "fore-hind",
+      "dutyFactor": 0.6,
+      "bodyBounce": 0.04,
+      "bodyCycles": 1,
+      "headNodDegrees": 2,
+      "earSwingDegrees": 5
+    }
+  },
   "variant": {
     "id": "rabbitBase",
-    "archetypes": ["rabbit", "hare"],
-    "height": 0.28,
+    "archetypes": [
+      "rabbit",
+      "hare"
+    ],
+    "height": 0.38,
     "scale": 48,
     "groundY": 72,
     "sx": 0.5,
@@ -13,76 +28,279 @@
     "thickness": 0.68,
     "profile": {
       "sizeClass": "XS",
-      "silhouette": "compact body, powerful haunches, paired floppy ears"
+      "silhouette": "low compact chest, rounded haunches, long hind feet and upright swept-back ears"
     },
     "jointTweaks": {
-      "neck": [0.1, 0, 0.05],
-      "head": [0.16, 0, 0.02],
-      "tailBase": [-0.13, 0, 0.04],
-      "tailTip": [-0.09, 0, 0.04],
-      "nearRearHip": [-0.02, 0.15, -0.01],
-      "farRearHip": [-0.02, -0.15, -0.01]
+      "neck": [
+        0.055,
+        0,
+        0.02
+      ],
+      "head": [
+        0.075,
+        0,
+        0.035
+      ],
+      "tailBase": [
+        -0.1,
+        0,
+        0.035
+      ],
+      "tailTip": [
+        -0.035,
+        0,
+        0.025
+      ],
+      "nearRearHip": [
+        -0.015,
+        0.065,
+        -0.01
+      ],
+      "farRearHip": [
+        -0.015,
+        -0.065,
+        -0.01
+      ],
+      "pelvis": [
+        -0.14,
+        0,
+        0.18
+      ],
+      "chest": [
+        0.24,
+        0,
+        -0.035
+      ],
+      "nearFrontHip": [
+        -0.015,
+        0.055,
+        -0.02
+      ],
+      "nearFrontKnee": [
+        -0.045,
+        0,
+        -0.06
+      ],
+      "nearFrontPaw": [
+        0.065,
+        0,
+        -0.065
+      ],
+      "nearRearKnee": [
+        0.08,
+        0,
+        -0.065
+      ],
+      "nearRearHock": [
+        -0.085,
+        0,
+        -0.055
+      ],
+      "nearRearPaw": [
+        0.07,
+        0,
+        -0.05
+      ],
+      "farFrontHip": [
+        -0.015,
+        -0.055,
+        -0.02
+      ],
+      "farFrontKnee": [
+        -0.045,
+        0,
+        -0.06
+      ],
+      "farFrontPaw": [
+        0.065,
+        0,
+        -0.065
+      ],
+      "farRearKnee": [
+        0.08,
+        0,
+        -0.065
+      ],
+      "farRearHock": [
+        -0.085,
+        0,
+        -0.055
+      ],
+      "farRearPaw": [
+        0.07,
+        0,
+        -0.05
+      ]
     },
     "plateTweaks": {
-      "castShadow": [0.72, 0.48],
-      "torsoPlate": [0.34],
-      "pelvisPlate": [0.48, 0.46],
-      "neckPlate": [0.2],
-      "headConnectorPlate": [0.21],
-      "headPlate": [0.36, 0.38],
-      "tailPlate": [0.18]
+      "castShadow": [
+        0.56,
+        0.28
+      ],
+      "torsoPlate": [
+        0.19
+      ],
+      "pelvisPlate": [
+        0.25,
+        0.27
+      ],
+      "neckPlate": [
+        0.125
+      ],
+      "headConnectorPlate": [
+        0.13
+      ],
+      "headPlate": [
+        0.16,
+        0.17
+      ],
+      "tailPlate": [
+        0.085
+      ]
     }
   },
-  "limbs": { "upper": 0.1, "lower": 0.08, "paw": [0.15, 0.11] },
+  "limbs": {
+    "upper": 0.06,
+    "lower": 0.045,
+    "paw": [
+      0.06,
+      0.035
+    ]
+  },
   "plateSizeOverrides": [
-    { "match": "Rear.*UpperPlate$", "size": [0.16] },
-    { "match": "Rear.*PawPlate$", "size": [0.22, 0.15] }
+    {
+      "match": "Rear.*UpperPlate$",
+      "size": [
+        0.085
+      ]
+    },
+    {
+      "match": "Rear.*PawPlate$",
+      "size": [
+        0.085,
+        0.05
+      ]
+    },
+    {
+      "match": "Rear.*PasternPlate$",
+      "size": [
+        0.045
+      ]
+    }
   ],
   "plateOverrides": [
     {
       "match": "^(?:torsoPlate|pelvisPlate|neckPlate|headConnectorPlate|headPlate|tailPlate|(?:near|far)(?:Front|Rear)(?:Upper|Lower|Paw)Plate)$",
-      "set": { "semanticDetailTier": "silhouette" }
+      "set": {
+        "semanticDetailTier": "silhouette"
+      }
     },
     {
       "id": "castShadow",
-      "set": { "semanticDetailTier": "texture" }
+      "set": {
+        "semanticDetailTier": "texture"
+      }
+    },
+    {
+      "id": "tailPlate",
+      "set": {
+        "size": [
+          0.085,
+          0.085
+        ],
+        "semanticDetailTier": "silhouette"
+      }
+    },
+    {
+      "id": "muzzleConnectorPlate",
+      "set": {
+        "zBias": 4.8
+      }
+    },
+    {
+      "id": "muzzlePlate",
+      "set": {
+        "zBias": 4.9
+      }
     }
   ],
   "addons": [
     {
       "type": "pairedEars",
-      "baseX": -0.02, "baseY": 0.09, "baseZ": 0.06,
-      "tipX": -0.15, "tipY": 0.22, "tipZ": -0.05,
-      "width": 0.12, "style": "flat-floppy", "semanticDetailTier": "identity"
+      "baseX": -0.025,
+      "baseY": 0.035,
+      "baseZ": 0.06,
+      "tipX": -0.035,
+      "tipY": 0.02,
+      "tipZ": 0.16,
+      "width": 0.06,
+      "style": "upright-swept-back",
+      "semanticDetailTier": "identity"
+    },
+    {
+      "type": "muzzle",
+      "length": 0.09,
+      "width": 0.06,
+      "height": 0.05,
+      "z": -0.02
     }
   ],
   "clipEvents": {
     "walkA": [
-      { "t": 0, "name": "hop-compress" },
-      { "t": 0.5, "name": "hop-land" }
+      {
+        "t": 0,
+        "name": "fore-paws-plant"
+      },
+      {
+        "t": 0.5,
+        "name": "hind-paws-plant"
+      }
     ]
   },
-  "attack": { "rotations": { "neck": [0, 28, 0], "head": [0, -12, 0] } },
-  "gait": {
-    "a": { "nearFrontHip": [0, -28, 0], "nearFrontKnee": [0, 38, 0], "farRearHip": [0, -24, 0], "farRearKnee": [0, 42, 0] },
-    "b": { "farFrontHip": [0, -28, 0], "farFrontKnee": [0, 38, 0], "nearRearHip": [0, -24, 0], "nearRearKnee": [0, 42, 0] },
-    "semantics": "compact under-body limbs rotate as complete chains; no stretched endpoint-only plates"
+  "attack": {
+    "rotations": {
+      "neck": [
+        0,
+        28,
+        0
+      ],
+      "head": [
+        0,
+        -12,
+        0
+      ]
+    }
   },
   "occlusion": [
     {
-      "match": "(Front|Rear)(Upper|Lower|Paw)Plate$",
+      "match": "(Front|Rear)(Upper|Lower|Pastern|Paw)Plate$",
       "mode": "under-core",
-      "reference": { "ifMatch": "Front", "then": "chest", "else": "pelvis" }
+      "reference": {
+        "ifMatch": "Front",
+        "then": "chest",
+        "else": "pelvis"
+      }
     }
   ],
   "slots": [
     {
       "id": "headgearSlot",
       "type": "head.hat",
-      "owner": { "kind": "joint", "id": "head" },
+      "owner": {
+        "kind": "joint",
+        "id": "head"
+      },
       "localFrame": {
-        "positionMeters": [0, 0, 0.21],
-        "rotationXYZDegrees": [0, 0, 0]
+        "positionMeters": [
+          0,
+          0,
+          0.21
+        ],
+        "rotationXYZDegrees": [
+          0,
+          0,
+          0
+        ]
       },
       "scaleBehavior": "preserve-local-aspect",
       "cardinality": 1
@@ -111,28 +329,90 @@
           {
             "id": "rootWeightShift",
             "block": "weightShift",
-            "transform": { "poses": { "root": [0.06, 0, 0] } }
+            "transform": {
+              "poses": {
+                "root": [
+                  0.06,
+                  0,
+                  0
+                ]
+              }
+            }
           },
           {
             "id": "frontBodyRear",
             "block": "rear",
-            "transform": { "rotations": { "chest": [0, -18, 0] } }
+            "transform": {
+              "rotations": {
+                "chest": [
+                  0,
+                  -18,
+                  0
+                ]
+              }
+            }
           },
           {
             "id": "torsoDrive",
             "block": "bodyDrive",
-            "transform": { "rotations": { "chest": [0, 16, 0] } }
+            "transform": {
+              "rotations": {
+                "chest": [
+                  0,
+                  16,
+                  0
+                ]
+              }
+            }
           },
           {
             "id": "headStrike",
             "block": "strike",
-            "transform": { "rotations": { "neck": [0, 28, 0], "head": [0, -12, 0] } }
+            "transform": {
+              "rotations": {
+                "neck": [
+                  0,
+                  28,
+                  0
+                ],
+                "head": [
+                  0,
+                  -12,
+                  0
+                ]
+              }
+            }
           }
         ],
         "contactIntervals": [
-          { "ids": ["nearFrontPaw", "farFrontPaw", "nearRearPaw", "farRearPaw"], "from": 0, "to": 0 },
-          { "ids": ["nearRearPaw", "farRearPaw"], "from": 0, "to": 1 },
-          { "ids": ["nearFrontPaw", "farFrontPaw", "nearRearPaw", "farRearPaw"], "from": 1, "to": 1 }
+          {
+            "ids": [
+              "nearFrontPaw",
+              "farFrontPaw",
+              "nearRearPaw",
+              "farRearPaw"
+            ],
+            "from": 0,
+            "to": 0
+          },
+          {
+            "ids": [
+              "nearRearPaw",
+              "farRearPaw"
+            ],
+            "from": 0,
+            "to": 1
+          },
+          {
+            "ids": [
+              "nearFrontPaw",
+              "farFrontPaw",
+              "nearRearPaw",
+              "farRearPaw"
+            ],
+            "from": 1,
+            "to": 1
+          }
         ]
       }
     }
@@ -145,17 +425,54 @@
         "primitiveId": "faceBlaze",
         "ownerPlateId": "headPlate",
         "surfaceFrame": {
-          "tangent": [0, 1, 0],
-          "bitangent": [0, 0, 1],
-          "normal": [1, 0, 0]
+          "tangent": [
+            0,
+            1,
+            0
+          ],
+          "bitangent": [
+            0,
+            0,
+            1
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ]
         },
-        "region": { "center": [0, 0], "size": [0.4, 1.2] },
+        "region": {
+          "center": [
+            0,
+            0
+          ],
+          "size": [
+            0.4,
+            1.2
+          ]
+        },
         "transform": {
-          "translate": [0, 0.05],
+          "translate": [
+            0,
+            0.05
+          ],
           "rotateDegrees": 0,
-          "scale": [0.7, 0.72]
+          "scale": [
+            0.7,
+            0.72
+          ]
         }
       }
     ]
+  },
+  "semanticDetailPolicy": {
+    "defaultTier": "silhouette",
+    "byRole": {
+      "shadow": "texture"
+    },
+    "byId": {
+      "nearEarPlate": "identity",
+      "farEarPlate": "identity"
+    }
   }
 }

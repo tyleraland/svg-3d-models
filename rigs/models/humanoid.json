@@ -193,6 +193,12 @@
   },
   "plateOverrides": [
     {
+      "id": "chestPlate",
+      "set": {
+        "size": [0.42]
+      }
+    },
+    {
       "match": "^(?:pelvisSpinePlate|chestPlate|shoulderPlate|neckPlate|headConnectorPlate|headPlate|(?:near|far)(?:Thigh|Shin|Foot|Bicep|Forearm|Hand|ShoulderCap)Plate)$",
       "set": {
         "semanticDetailTier": "silhouette"

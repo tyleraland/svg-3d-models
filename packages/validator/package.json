@@ -8,6 +8,7 @@
     "./source": "./source.js",
     "./audit": "./audit.js",
     "./audit-manifest": "./audit-manifest.js",
+    "./occlusion": "./occlusion.js",
     "./audit-overlay": "./audit-overlay.js",
     "./attachments": "./attachments.js",
     "./appearance": "./appearance.js",

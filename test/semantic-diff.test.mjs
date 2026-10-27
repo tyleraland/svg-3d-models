@@ -36,7 +36,7 @@ function assertValid(diff, label) {
 }
 
 test('every catalog model has a deterministic schema-valid unchanged self-diff', () => {
-  assert.equal(MODELS.length, 31);
+  assert.equal(MODELS.length, 32);
   for (const model of MODELS) {
     const source = loadModelSource(model);
     const analysis = analyze(source, model);
@@ -77,6 +77,8 @@ test('a direct variant edit maps one source leaf to its stable-ID plate effect',
 
 test('recipe input edits link to every resolved effect attributed to that recipe scope', () => {
   const baselineSource = loadModelSource('rabbit');
+  // Exercise inherited proportions rather than this specimen's explicit crouched bind.
+  delete baselineSource.variant.jointTweaks;
   const candidateSource = cloneData(baselineSource);
   candidateSource.variant.sx = 0.55;
   const diff = diffResolvedModels(

@@ -3,12 +3,13 @@
 // sampling manifest plus projected SVGs and never becomes an authoring source.
 
 import { compilePackage, core, markup, projectScene } from '@paper-rig/compiler';
+import { inspectOcclusion } from './occlusion.js';
 import { phaseContractChecks } from '@paper-rig/motion';
 import { validateResolvedAppearance } from '@paper-rig/appearance';
 import { buildAuditOverlayEvidence, renderAuditOverlaySvg } from './audit-overlay.js';
 
 export const DEFAULT_AUDIT_HEADINGS = [0, 45, 90, 135, 180, 225, 270, 315];
-export const DEFAULT_AUDIT_ELEVATIONS = [45, 60, 75];
+export const DEFAULT_AUDIT_ELEVATIONS = [0, 45, 60, 75, 90];
 const EXPECTED_GROUPS = [
   'ground shadow',
   'camera-far appendages',
@@ -233,6 +234,7 @@ export function auditRig(rig, options = {}) {
           })),
           traceable: elements.every((element) => element.sourceId && element.sourceKind && element.vector?.attributes?.id === element.id),
           overlay,
+          occlusion: inspectOcclusion(rig, scene),
         });
       }
     }
@@ -273,6 +275,12 @@ export function auditRig(rig, options = {}) {
       && view.overlay.anchors.every((anchor) => anchor.id && anchor.boneId && finiteDeep(anchor))
       && view.overlay.surfaceNormals.every((normal) => normal.sourceId && finiteDeep(normal))
     )), 'every sampled view contains finite plate/depth, compositing, and contact overlay evidence'),
+    diagnostic('audit.buried-appendage-order', views.every(view => view.occlusion.violations.every(v=>v.kind==='head-depth-order')),
+      'appendages behind their owner and overlapping supported core geometry must draw before that core', 'error',
+      [...new Set(views.flatMap(view => view.occlusion.violations.filter(v=>v.kind!=='head-depth-order').map(v => v.elementId)))]),
+    diagnostic('audit.head-assembly-depth', views.every(view => view.occlusion.headAssembly.violations.length === 0),
+      'overlapping physical head parts with separated depth intervals must draw far-to-near; crossing intervals and unsupported paths remain explicit review evidence', 'error',
+      [...new Set(views.flatMap(view => view.occlusion.headAssembly.violations.map(v => v.elementId)))]),
     diagnostic('audit.rigid-span-policy', core.rigidPlateSpanLengthsPass(rig), 'every rigid span preserves bind length across every clip'),
     ...motionDiagnostics(rig),
   ];

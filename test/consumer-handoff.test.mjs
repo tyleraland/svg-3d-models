@@ -170,7 +170,7 @@ test('M6 elephant keeps its complete head-strike silhouette and adds tusks at id
   assert.ok(basePlates.every((element) => element.semanticDetailSource === 'authored'));
   assert.deepEqual(
     impactElements.find((element) => element.id === 'trunkTipGasketOccluderCell').detailDependencyIds,
-    ['trunkLowerPlate', 'trunkTipPlateOccluderCell'],
+    ['trunkTipPlateOccluderCell', 'trunkDistalPlateOccluderCell', 'trunkCurlPlateOccluderCell'],
   );
 
   const bindJoints = new Map(bindScene.joints.map((joint) => [joint.id, joint]));
@@ -184,7 +184,7 @@ test('M6 elephant keeps its complete head-strike silhouette and adds tusks at id
   }
 
   const silhouette = createConsumerHandoff(impactScene, silhouetteProfile);
-  for (const plateId of ['headPlate', 'trunkConnectorPlate', 'trunkUpperPlate', 'trunkLowerPlate', 'trunkTipPlate']) {
+  for (const plateId of ['headPlate', 'trunkConnectorPlate', 'trunkUpperPlate', 'trunkLowerPlate', 'trunkTipPlate', 'trunkDistalPlate', 'trunkCurlPlate', 'nearEarPlate', 'farEarPlate']) {
     assert.ok(silhouette.semanticDetail.includedElementIds.includes(plateId), `${plateId} must survive silhouette LOD`);
   }
   assert.equal(silhouette.semanticDetail.includedElementIds.includes('nearTuskPlate'), false);
@@ -195,6 +195,8 @@ test('M6 elephant keeps its complete head-strike silhouette and adds tusks at id
   assert.equal(validateConsumerHandoff(identity).valid, true);
   assert.ok(identity.semanticDetail.includedElementIds.includes('nearTuskPlate'));
   assert.ok(identity.semanticDetail.includedElementIds.includes('farTuskPlate'));
+  assert.ok(identity.semanticDetail.includedElementIds.includes('nearTuskTipPlate'));
+  assert.ok(identity.semanticDetail.includedElementIds.includes('farTuskTipPlate'));
   assert.equal(identity.semanticDetail.includedElementIds.includes('castShadow'), false);
   assert.equal(
     `${JSON.stringify(identity, null, 2)}\n`,
@@ -349,7 +351,7 @@ test('every catalog model resolves all base plates to authored semantic detail',
     .filter((file) => file.endsWith('.json'))
     .map((file) => file.replace(/\.json$/, ''))
     .sort();
-  assert.equal(models.length, 31);
+  assert.equal(models.length, 32);
   for (const model of models) {
     const elements = projectScene(loadModel(model), {
       clip: 'idle', time: 0.5, elevation: 60, heading: 45,

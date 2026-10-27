@@ -735,7 +735,7 @@
       "diameterMeters": 0.2208,
       "paletteRole": "hoof",
       "depthBias": -0.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -756,12 +756,11 @@
         "type": "circle",
         "diameterMeters": 0.2208
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "rightFootGasket",
@@ -772,7 +771,7 @@
       "diameterMeters": 0.2208,
       "paletteRole": "hoof",
       "depthBias": -0.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -795,10 +794,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     }
   ],
   "coreOccluder": {
@@ -2014,7 +2012,7 @@
       {
         "id": "under-core-compositor-contract",
         "pass": true,
-        "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+        "detail": "2 under-core plate/gasket records are fixed behind the opaque core"
       },
       {
         "id": "rigid-plate-span-lengths",

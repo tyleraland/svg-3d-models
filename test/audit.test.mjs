@@ -16,7 +16,7 @@ test('audit emits deterministic diagnostics over the complete canonical matrix',
   const report = auditRig(rig);
   assert.equal(report.schema, 'paper-rig/audit/1');
   assert.equal(report.status, 'passed');
-  assert.equal(report.summary.viewCount, 240);
+  assert.equal(report.summary.viewCount, 400);
   assert.deepEqual(report.sampling.poses.filter((pose) => pose.clip === 'attack').map((pose) => pose.id), [
     'attackAnticipation', 'attackImpact', 'attackRecovery',
   ]);
@@ -64,8 +64,8 @@ test('audit HTML is self-contained and includes every sampled view', () => {
   const report = auditRig(rig);
   const html = renderAuditHtml(rig, report);
   assert.match(html, /rabbitBase paper-rig audit/);
-  assert.equal((html.match(/<svg /g) || []).length, 240);
-  assert.equal((html.match(/class="auditPlateDepthOverlay"/g) || []).length, 240);
+  assert.equal((html.match(/<svg /g) || []).length, 400);
+  assert.equal((html.match(/class="auditPlateDepthOverlay"/g) || []).length, 400);
   assert.match(html, /data-body-class="show-compositing"/);
   assert.match(html, /data-body-class="show-frames"/);
   assert.match(html, /data-body-class="show-contacts" checked/);
@@ -77,7 +77,7 @@ test('rig audit CLI writes a review artifact', () => {
   const dir = mkdtempSync(join(tmpdir(), 'rig-audit-'));
   const out = join(dir, 'rabbit-audit.html');
   const stdout = execFileSync('node', [RIG, 'audit', 'rabbit', '-o', out], { cwd: ROOT, encoding: 'utf8' });
-  assert.match(stdout, /audit passed: 240 views, 0 issues, \d+ warnings/);
+  assert.match(stdout, /audit passed: 400 views, 0 issues, \d+ warnings/);
   assert.match(readFileSync(out, 'utf8'), /paper-rig\/audit\/1/);
 });
 
@@ -85,7 +85,7 @@ test('rig audit can review the declared attachment assembly across the canonical
   const dir = mkdtempSync(join(tmpdir(), 'rig-attachment-audit-'));
   const out = join(dir, 'rabbit-attachments-audit.html');
   const stdout = execFileSync('node', [RIG, 'audit', 'rabbit', '--attachments', '-o', out], { cwd: ROOT, encoding: 'utf8' });
-  assert.match(stdout, /audit passed: 240 views, 0 issues/);
+  assert.match(stdout, /audit passed: 400 views, 0 issues/);
   const html = readFileSync(out, 'utf8');
   assert.match(html, /simpleHat__body/);
   assert.match(html, /travelPack__body/);
@@ -172,7 +172,7 @@ test('catalog audit is deterministic, compact, and warning-tolerant', () => {
   assert.equal(report.schema, 'paper-rig/audit-catalog/1');
   assert.equal(report.status, 'passed');
   assert.equal(report.summary.modelCount, 2);
-  assert.equal(report.summary.viewCount, 480);
+  assert.equal(report.summary.viewCount, 800);
   assert.equal(report.summary.issueCount, 0);
   assert.ok(report.summary.warningCount > 0);
   assert.ok(report.models.every((model) => !('views' in model)));
@@ -185,9 +185,9 @@ test('rig audit-all CLI writes a CI-suitable catalog report', () => {
   const out = join(dir, 'catalog.json');
   const stdout = execFileSync('node', [RIG, 'audit-all', '--json', '-o', out], { cwd: ROOT, encoding: 'utf8' });
   const report = JSON.parse(readFileSync(out, 'utf8'));
-  assert.match(stdout, /audit-all passed: 31\/31 models, 0 issues, \d+ warnings/);
+  assert.match(stdout, /audit-all passed: 32\/32 models, 0 issues, \d+ warnings/);
   assert.equal(report.schema, 'paper-rig/audit-catalog/1');
-  assert.equal(report.summary.modelCount, 31);
+  assert.equal(report.summary.modelCount, 32);
   assert.ok(report.models.some((model) => model.sourceModelId === 'rabbit' && model.modelId === 'rabbitBase'));
   assert.equal(report.status, 'passed');
 });

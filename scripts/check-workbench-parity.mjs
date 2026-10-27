@@ -6,6 +6,7 @@
 // is provenance, not the ongoing correctness oracle for intentional model fixes.
 //
 //   node scripts/check-workbench-parity.mjs [regenerated.html]
+//   PAPER_RIG_MODELS=flyingBird npm run test:workbench # focused authoring check
 
 import { chromium } from '@playwright/test';
 import { existsSync } from 'node:fs';
@@ -23,7 +24,7 @@ const SYSTEM_CHROMIUM = [
   '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
 ].find((candidate) => candidate && existsSync(candidate));
 
-const CLIPS = ['idle', 'walk', 'attack', 'hit', 'ko'];
+const CLIPS = ['idle', 'idleHind', 'walk', 'walkHind', 'attackHind', 'standUp', 'standDown', 'hop', 'trot', 'sprint', 'fly', 'glide', 'run', 'gallop', 'attack', 'pounce', 'hit', 'ko'];
 const TIMES = [0, 0.25, 0.5, 0.62, 1];
 const CAMERAS = [null, [60, 0], [45, 90], [90, 180]];
 
@@ -35,21 +36,22 @@ function equivalentOutput(expected, actual) {
   // Tokenize every JSON/SVG numeric spelling, including integers. Different V8
   // revisions may stringify the same computed value as `98` vs
   // `98.00000000000001`; the surrounding text is still compared byte-for-byte.
-  const number = /[+-]?(?:\d+\.\d*|\.\d+|\d+)(?:e[+-]?\d+)?/gi;
-  const expectedMatches = [...expected.matchAll(number)];
-  const actualMatches = [...actual.matchAll(number)];
-  if (expectedMatches.length !== actualMatches.length) return false;
-  let expectedOffset = 0;
-  let actualOffset = 0;
-  for (let i = 0; i < expectedMatches.length; i++) {
-    const a = expectedMatches[i];
-    const b = actualMatches[i];
+  if (expected === actual) return true;
+  const pattern = /[+-]?(?:\d+\.\d*|\.\d+|\d+)(?:e[+-]?\d+)?/gi;
+  const left = new RegExp(pattern), right = new RegExp(pattern);
+  let expectedOffset = 0, actualOffset = 0;
+  // Stream numeric tokens instead of retaining millions of match objects for
+  // large compiled packages. Coverage and tolerance remain unchanged.
+  while (true) {
+    const a = left.exec(expected), b = right.exec(actual);
+    if (!a || !b) {
+      return !a && !b && expected.slice(expectedOffset) === actual.slice(actualOffset);
+    }
     if (expected.slice(expectedOffset, a.index) !== actual.slice(actualOffset, b.index)) return false;
     if (Math.abs(Number(a[0]) - Number(b[0])) > 1e-10) return false;
     expectedOffset = a.index + a[0].length;
     actualOffset = b.index + b[0].length;
   }
-  return expected.slice(expectedOffset) === actual.slice(actualOffset);
 }
 
 async function open(browser, file) {
@@ -63,13 +65,13 @@ async function open(browser, file) {
 }
 
 // Drive one page over the full sweep, returning a signature array of outputs.
-function sweep(page) {
-  return page.evaluate(({ clips, times, cameras }) => {
+function sweep(page, models, clips = CLIPS, includePackage = true) {
+  return page.evaluate(({ clips, times, cameras, models, includePackage }) => {
     const out = [];
-    for (const model of Object.keys(rigs)) {
+    for (const model of models) {
       state.model = model; updateModel();
       const defaultCam = [state.elev, state.az];
-      out.push('PKG:' + model + ':' + JSON.stringify(rigPayload()));
+      if (includePackage) out.push('PKG:' + model + ':' + JSON.stringify(rigPayload()));
       for (const clip of clips) {
         if (!rigs[model].clips[clip]) continue;
         for (const t of times) {
@@ -82,16 +84,16 @@ function sweep(page) {
       }
     }
     return out;
-  }, { clips: CLIPS, times: TIMES, cameras: CAMERAS });
+  }, { clips, times: TIMES, cameras: CAMERAS, models, includePackage });
 }
 
-function packageSweep(models) {
+function packageSweep(models, clips = CLIPS, includePackage = true) {
   const out = [];
   for (const model of models) {
     const rig = loadModel(model);
     const defaultCam = [rig.camera?.elevation ?? 90, rig.camera?.azimuth ?? 0];
-    out.push('PKG:' + model + ':' + JSON.stringify(compilePackage(rig)));
-    for (const clip of CLIPS) {
+    if (includePackage) out.push('PKG:' + model + ':' + JSON.stringify(compilePackage(rig)));
+    for (const clip of clips) {
       if (!rig.clips[clip]) continue;
       for (const time of TIMES) {
         for (const camera of CAMERAS) {
@@ -118,9 +120,35 @@ async function main() {
     await browser.close(); process.exit(1);
   }
 
-  const models = await regenerated.page.evaluate(() => Object.keys(rigs));
-  const expected = packageSweep(models);
-  const regen = await sweep(regenerated.page);
+  const catalog = await regenerated.page.evaluate(() => Object.keys(rigs));
+  const requested = process.env.PAPER_RIG_MODELS?.split(',').map(s => s.trim()).filter(Boolean);
+  if (requested?.some(id => !catalog.includes(id))) throw new Error('PAPER_RIG_MODELS contains an unknown model');
+  const models = requested?.length ? catalog.filter(id => requested.includes(id)) : catalog;
+  // Bound browser transport responses by one clip. Dense baked clips can
+  // make the complete catalog exceed V8's maximum string size in one message.
+  let outputCount = 0, mismatch = 0;
+  for (const model of models) {
+    console.log(`checking ${model}`);
+    for (const clip of [null, ...CLIPS]) {
+      const clips = clip === null ? [] : [clip];
+      const expected = packageSweep([model], clips, clip === null);
+      const regen = await sweep(regenerated.page, [model], clips, clip === null);
+      if (expected.length !== regen.length) throw new Error(`Sweep length differs for ${model}`);
+      outputCount += expected.length;
+
+      for (let i = 0; i < expected.length; i++) {
+        if (!equivalentOutput(expected[i], regen[i])) {
+          mismatch++;
+          if (mismatch <= 3) {
+            let k = 0; while (k < expected[i].length && expected[i][k] === regen[i][k]) k++;
+            console.error(`Mismatch ${model}, output ${i}, character ${k}`);
+            console.error(JSON.stringify(expected[i].slice(Math.max(0, k - 60), k + 140)));
+            console.error(JSON.stringify(regen[i].slice(Math.max(0, k - 60), k + 140)));
+          }
+        }
+      }
+    }
+  }
   const patchUi = await regenerated.page.evaluate(() => {
     state.model = 'rabbit';
     state.modelTransforms.rabbit = defaultModelTransform('rabbit');
@@ -164,6 +192,27 @@ async function main() {
       },
     };
   });
+  const labelsUi = await regenerated.page.evaluate(() => {
+    const toggle = (id, checked) => { const el = document.getElementById(id); if (el.checked !== checked) el.click(); };
+    const read = () => ({ labels: document.querySelectorAll('#mainSvg .labelText').length,
+      bones: document.querySelectorAll('#mainSvg .boneLine').length });
+    toggle('bones', false); toggle('showLabels', true);
+    const labelsOnly = read();
+    toggle('showLabels', false);
+    const neither = read();
+    toggle('bones', true);
+    const bonesOnly = read();
+    toggle('showLabels', true);
+    const both = read();
+    return { labelsOnly, neither, bonesOnly, both, grouped: ['showLabels','bones','contacts'].every(id=>document.getElementById(id).closest('[aria-label="Projection overlays"]')) };
+  });
+  if (!(labelsUi.grouped && labelsUi.labelsOnly.labels > 0 && labelsUi.labelsOnly.bones === 0
+    && labelsUi.neither.labels === 0 && labelsUi.neither.bones === 0
+    && labelsUi.bonesOnly.labels === 0 && labelsUi.bonesOnly.bones > 0
+    && labelsUi.both.labels > 0 && labelsUi.both.bones > 0)) {
+    console.error('FAIL: labels and skeleton toggles are coupled', labelsUi);
+    await browser.close(); process.exit(1);
+  }
   const browserErrors = [...regenerated.errors];
   await browser.close();
 
@@ -194,26 +243,9 @@ async function main() {
     process.exit(1);
   }
 
-  if (expected.length !== regen.length) {
-    console.error(`FAIL: sweep length ${expected.length} (packages) vs ${regen.length} (workbench)`);
-    process.exit(1);
-  }
-  let mismatch = 0;
-  for (let i = 0; i < expected.length; i++) {
-    if (!equivalentOutput(expected[i], regen[i])) {
-      mismatch++;
-      if (mismatch <= 3) {
-        const label = expected[i].slice(0, expected[i].indexOf('='));
-        let k = 0; while (k < expected[i].length && expected[i][k] === regen[i][k]) k++;
-        console.error(`  mismatch @ ${label} (first diff at char ${k})`);
-        console.error(`    packages:  ${JSON.stringify(expected[i].slice(k - 60, k + 140))}`);
-        console.error(`    workbench: ${JSON.stringify(regen[i].slice(k - 60, k + 140))}`);
-      }
-    }
-  }
-  if (mismatch) { console.error(`FAIL: ${mismatch}/${expected.length} outputs differ`); process.exit(1); }
-  console.log(`workbench parity: ${expected.length}/${expected.length} package/browser outputs identical across all models, clips, times, cameras`);
-  console.log('workbench authoring UI: patch states, onion skins, and eight-heading turntable passed');
+  if (mismatch) { console.error(`FAIL: ${mismatch}/${outputCount} outputs differ`); process.exit(1); }
+  console.log(`workbench parity: ${outputCount}/${outputCount} package/browser outputs identical across ${requested?.length ? "selected models" : "all models"}, clips, times, cameras`);
+  console.log('workbench authoring UI: patch states, onion skins, turntable, and independent labels/skeleton toggles passed');
   console.log('regenerated workbench matches the current package sources, with zero console errors.');
 }
 

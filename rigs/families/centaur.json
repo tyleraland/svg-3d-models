@@ -72,7 +72,7 @@
       "bind": [
         -0.36,
         0,
-        0.78
+        1.02
       ],
       "role": "body"
     },
@@ -82,7 +82,7 @@
       "bind": [
         0.72,
         0,
-        0.24
+        0
       ],
       "role": "body"
     },
@@ -103,7 +103,7 @@
       "id": "nearFrontKnee",
       "parent": "nearFrontHip",
       "bind": [
-        0.02,
+        -0.12,
         0,
         -0.48
       ],
@@ -116,17 +116,17 @@
         0
       ],
       "limits": [
-        -35,
-        115
+        -130,
+        30
       ]
     },
     {
       "id": "nearFrontHoof",
       "parent": "nearFrontKnee",
       "bind": [
-        0.05,
+        0.19,
         0,
-        -0.45
+        -0.52
       ],
       "role": "limb",
       "mirror": "farFrontHoof",
@@ -149,7 +149,7 @@
       "id": "farFrontKnee",
       "parent": "farFrontHip",
       "bind": [
-        0.02,
+        -0.12,
         0,
         -0.48
       ],
@@ -162,17 +162,17 @@
         0
       ],
       "limits": [
-        -35,
-        115
+        -130,
+        30
       ]
     },
     {
       "id": "farFrontHoof",
       "parent": "farFrontKnee",
       "bind": [
-        0.05,
+        0.19,
         0,
-        -0.45
+        -0.52
       ],
       "role": "limb",
       "mirror": "nearFrontHoof",
@@ -195,9 +195,9 @@
       "id": "nearRearKnee",
       "parent": "nearRearHip",
       "bind": [
-        -0.1,
+        0.2222,
         0,
-        -0.48
+        -0.3535
       ],
       "role": "limb",
       "mirror": "farRearKnee",
@@ -208,17 +208,37 @@
         0
       ],
       "limits": [
-        -115,
-        35
+        -30,
+        130
+      ]
+    },
+    {
+      "id": "nearRearHock",
+      "parent": "nearRearKnee",
+      "bind": [
+        -0.303,
+        0,
+        -0.3535
+      ],
+      "role": "limb",
+      "mirror": "farRearHock",
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "limits": [
+        -130,
+        30
       ]
     },
     {
       "id": "nearRearHoof",
-      "parent": "nearRearKnee",
+      "parent": "nearRearHock",
       "bind": [
-        0.06,
+        0.04079999999999999,
         0,
-        -0.44
+        -0.303
       ],
       "role": "limb",
       "mirror": "farRearHoof",
@@ -241,9 +261,9 @@
       "id": "farRearKnee",
       "parent": "farRearHip",
       "bind": [
-        -0.1,
+        0.2222,
         0,
-        -0.48
+        -0.3535
       ],
       "role": "limb",
       "mirror": "nearRearKnee",
@@ -254,17 +274,37 @@
         0
       ],
       "limits": [
-        -115,
-        35
+        -30,
+        130
+      ]
+    },
+    {
+      "id": "farRearHock",
+      "parent": "farRearKnee",
+      "bind": [
+        -0.303,
+        0,
+        -0.3535
+      ],
+      "role": "limb",
+      "mirror": "nearRearHock",
+      "bendAxis": [
+        0,
+        1,
+        0
+      ],
+      "limits": [
+        -130,
+        30
       ]
     },
     {
       "id": "farRearHoof",
-      "parent": "farRearKnee",
+      "parent": "farRearHock",
       "bind": [
-        0.06,
+        0.04079999999999999,
         0,
-        -0.44
+        -0.303
       ],
       "role": "limb",
       "mirror": "nearRearHoof",
@@ -582,7 +622,7 @@
     },
     {
       "id": "nearRearLowerPlate",
-      "bone": "nearRearHoof",
+      "bone": "nearRearHock",
       "shape": "bone",
       "size": [
         0.14
@@ -593,9 +633,28 @@
       "zBias": 1.2,
       "span": [
         "nearRearKnee",
-        "nearRearHoof"
+        "nearRearHock"
       ],
       "jointOverlap": 1.18
+    },
+    {
+      "id": "nearRearPasternPlate",
+      "bone": "nearRearHoof",
+      "shape": "bone",
+      "size": [
+        0.10920000000000002
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1.2,
+      "span": [
+        "nearRearHock",
+        "nearRearHoof"
+      ],
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
+      "bodyRegion": "limb"
     },
     {
       "id": "nearRearHoofPlate",
@@ -629,7 +688,7 @@
     },
     {
       "id": "farRearLowerPlate",
-      "bone": "farRearHoof",
+      "bone": "farRearHock",
       "shape": "bone",
       "size": [
         0.14
@@ -640,9 +699,28 @@
       "zBias": 1.2,
       "span": [
         "farRearKnee",
-        "farRearHoof"
+        "farRearHock"
       ],
       "jointOverlap": 1.18
+    },
+    {
+      "id": "farRearPasternPlate",
+      "bone": "farRearHoof",
+      "shape": "bone",
+      "size": [
+        0.10920000000000002
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 1.2,
+      "span": [
+        "farRearHock",
+        "farRearHoof"
+      ],
+      "jointOverlap": 1.18,
+      "semanticDetailTier": "silhouette",
+      "bodyRegion": "limb"
     },
     {
       "id": "farRearHoofPlate",
@@ -980,15 +1058,35 @@
         {
           "t": 0.5,
           "poses": {
-            "chest": [
-              0,
-              0,
-              0.012
-            ],
             "upperHead": [
               0,
               0,
               0.02
+            ],
+            "pelvis": [
+              0,
+              0,
+              0.012
+            ],
+            "nearFrontHip": [
+              0,
+              0,
+              -0.012
+            ],
+            "nearRearHip": [
+              0,
+              0,
+              -0.012
+            ],
+            "farFrontHip": [
+              0,
+              0,
+              -0.012
+            ],
+            "farRearHip": [
+              0,
+              0,
+              -0.012
             ]
           }
         },

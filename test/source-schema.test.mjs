@@ -11,7 +11,7 @@ const MODELS = readdirSync(join(ROOT, 'rigs/models')).filter((file) => file.ends
 const FAMILIES = readdirSync(join(ROOT, 'rigs/families')).filter((file) => file.endsWith('.json')).map((file) => file.replace(/\.json$/, '')).sort();
 
 test('all family sources pass their schema and source-reference checks', () => {
-  assert.equal(FAMILIES.length, 30);
+  assert.equal(FAMILIES.length, 31);
   for (const name of FAMILIES) {
     const report = validateFamilySource(loadFamily(name));
     assert.equal(report.status, 'passed', `${name}: ${report.issues.map((issue) => issue.detail).join('; ')}`);
@@ -19,7 +19,7 @@ test('all family sources pass their schema and source-reference checks', () => {
 });
 
 test('all model sources pass their schema and match an existing family', () => {
-  assert.equal(MODELS.length, 31);
+  assert.equal(MODELS.length, 32);
   for (const name of MODELS) {
     const model = loadModelSource(name);
     const report = validateSourcePair(model, loadFamily(model.family));

@@ -1,11 +1,13 @@
 {
   "$schema": "paper-rig/model-1",
   "family": "horse",
+  "groundedQuadruped": {"walk": {"stride": 0.48, "lift": 0.17, "dutyFactor": 0.55, "bodyBounce": 0.025, "headNodDegrees": 3, "tailSwingDegrees": 5}, "gallop": {"durationMs": 700, "stride": 0.55, "lift": 0.28, "bodyRise": 0.08, "bodyDip": 0.025, "pitchDegrees": 3, "lead": "left"}},
   "semanticDetailPolicy": {
     "defaultTier": "silhouette",
     "byRole": { "shadow": "texture" }
   },
   "base": true,
+  "addons": [{ "type": "pairedEars", "baseX": -0.04, "baseY": 0.08, "baseZ": 0.12, "tipX": -0.035, "tipY": 0.01, "tipZ": 0.15, "width": 0.065, "style": "upright-horse", "semanticDetailTier": "silhouette" }],
   "clips": {
     "attack": {
       "base": "idleA",

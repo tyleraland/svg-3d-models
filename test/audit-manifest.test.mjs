@@ -51,7 +51,7 @@ test('manifest diffs identify affected geometry without asserting that a change 
   assert.equal(diff.status, 'changed');
   assert.equal(diff.summary.changedViewCount, 1);
   assert.deepEqual(diff.changes[0].categories, ['vector-geometry']);
-  assert.deepEqual(diff.changes[0].geometryChangedElementIds, ['headPlate', 'headPlateOccluderCell']);
+  assert.deepEqual(diff.changes[0].geometryChangedElementIds, ['headGasket', 'headGasketOccluderCell', 'headPlate', 'headPlateOccluderCell']);
   assert.equal('severity' in diff, false);
 
   const report = auditRig(changed, ONE_VIEW);
@@ -95,7 +95,7 @@ test('CLI generates candidates, reports approval diffs, and gates only by explic
   const manifestPath = join(dir, 'rabbit-candidate.json');
   const reportPath = join(dir, 'rabbit-audit.json');
   const stdout = execFileSync('node', [RIG, 'manifest', 'rabbit', '-o', manifestPath], { cwd: ROOT, encoding: 'utf8' });
-  assert.match(stdout, /manifest candidate: rabbitBase, 240 views/);
+  assert.match(stdout, /manifest candidate: rabbitBase, 400 views/);
 
   const approved = JSON.parse(readFileSync(manifestPath, 'utf8'));
   approved.views[0].elements[0].vector.attributes.rx = '999';

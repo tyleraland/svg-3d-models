@@ -1815,7 +1815,7 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "paint/details/accessories",
+      "compositingGroup": "core surface plates",
       "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
       "silhouetteCritical": false,
@@ -1848,7 +1848,7 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "paint/details/accessories",
+      "compositingGroup": "core surface plates",
       "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
       "silhouetteCritical": false,
@@ -2105,7 +2105,7 @@
       "diameterMeters": 0.17802000000000004,
       "paletteRole": "base",
       "depthBias": 0.95,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -2126,12 +2126,11 @@
         "type": "circle",
         "diameterMeters": 0.17802000000000004
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearKneeGasket",
@@ -2216,7 +2215,7 @@
       "diameterMeters": 0.17802000000000004,
       "paletteRole": "base",
       "depthBias": 0.95,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -2239,10 +2238,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farKneeGasket",
@@ -2327,7 +2325,7 @@
       "diameterMeters": 0.2208,
       "paletteRole": "secondary",
       "depthBias": 4.45,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -2348,12 +2346,11 @@
         "type": "circle",
         "diameterMeters": 0.2208
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearElbowGasket",
@@ -2438,7 +2435,7 @@
       "diameterMeters": 0.2208,
       "paletteRole": "secondary",
       "depthBias": 4.45,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -2461,10 +2458,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farElbowGasket",
@@ -4568,7 +4564,7 @@
       {
         "id": "under-core-compositor-contract",
         "pass": true,
-        "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+        "detail": "4 under-core plate/gasket records are fixed behind the opaque core"
       },
       {
         "id": "rigid-plate-span-lengths",

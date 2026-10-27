@@ -33,9 +33,9 @@
     "giant spider",
     "tarantula-like monster"
   ],
-  "heightMeters": 0.42,
+  "heightMeters": 0.64,
   "tokenScale": 29,
-  "tokenGroundY": 70,
+  "tokenGroundY": 61,
   "surfaceConvention": {
     "outward": "+z",
     "groundPlane": "z=0",
@@ -80,9 +80,9 @@
       "id": "abdomen",
       "parent": "root",
       "bind": [
-        -0.24,
+        -0.3,
         0,
-        0.18
+        0.34
       ],
       "role": "body"
     },
@@ -90,9 +90,9 @@
       "id": "cephalothorax",
       "parent": "abdomen",
       "bind": [
-        0.42,
+        0.43,
         0,
-        0
+        -0.07
       ],
       "role": "body"
     },
@@ -100,7 +100,7 @@
       "id": "head",
       "parent": "cephalothorax",
       "bind": [
-        0.26,
+        0.23,
         0,
         0.01
       ],
@@ -110,20 +110,23 @@
       "id": "leftLeg1Hip",
       "parent": "cephalothorax",
       "bind": [
-        0.28,
         0.17,
+        0.13,
         -0.02
       ],
       "role": "limb",
-      "mirror": "rightLeg1Hip"
+      "mirror": "rightLeg1Hip",
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "leftLeg1Knee",
       "parent": "leftLeg1Hip",
       "bind": [
-        0.0504,
-        0.36,
-        -0.07
+        0.03999999999999998,
+        0.32,
+        0.31999999999999995
       ],
       "role": "limb",
       "mirror": "rightLeg1Knee",
@@ -135,38 +138,47 @@
       "limits": [
         -35,
         135
-      ]
+      ],
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "leftLeg1Foot",
       "parent": "leftLeg1Knee",
       "bind": [
-        -0.028000000000000004,
-        0.162,
-        -0.09
+        0.44,
+        0.26999999999999996,
+        -0.57
       ],
       "role": "limb",
       "mirror": "rightLeg1Foot",
-      "ik": "leftLeg1Chain"
+      "ik": "leftLeg1Chain",
+      "gasket": {
+        "diameterMeters": 0.031
+      }
     },
     {
       "id": "leftLeg2Hip",
       "parent": "cephalothorax",
       "bind": [
-        0.09,
-        0.17,
+        0.06,
+        0.13,
         -0.02
       ],
       "role": "limb",
-      "mirror": "rightLeg2Hip"
+      "mirror": "rightLeg2Hip",
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "leftLeg2Knee",
       "parent": "leftLeg2Hip",
       "bind": [
-        0.0162,
-        0.36,
-        -0.07
+        0.04999999999999999,
+        0.43999999999999995,
+        0.31999999999999995
       ],
       "role": "limb",
       "mirror": "rightLeg2Knee",
@@ -178,38 +190,47 @@
       "limits": [
         -35,
         135
-      ]
+      ],
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "leftLeg2Foot",
       "parent": "leftLeg2Knee",
       "bind": [
-        -0.009,
-        0.162,
-        -0.09
+        0.13,
+        0.37,
+        -0.57
       ],
       "role": "limb",
       "mirror": "rightLeg2Foot",
-      "ik": "leftLeg2Chain"
+      "ik": "leftLeg2Chain",
+      "gasket": {
+        "diameterMeters": 0.031
+      }
     },
     {
       "id": "leftLeg3Hip",
       "parent": "cephalothorax",
       "bind": [
-        -0.1,
-        0.17,
+        -0.06,
+        0.13,
         -0.02
       ],
       "role": "limb",
-      "mirror": "rightLeg3Hip"
+      "mirror": "rightLeg3Hip",
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "leftLeg3Knee",
       "parent": "leftLeg3Hip",
       "bind": [
-        -0.018,
-        0.36,
-        -0.07
+        -0.25,
+        0.44999999999999996,
+        0.31999999999999995
       ],
       "role": "limb",
       "mirror": "rightLeg3Knee",
@@ -221,38 +242,47 @@
       "limits": [
         -35,
         135
-      ]
+      ],
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "leftLeg3Foot",
       "parent": "leftLeg3Knee",
       "bind": [
-        0.010000000000000002,
-        0.162,
-        -0.09
+        -0.2,
+        0.4,
+        -0.57
       ],
       "role": "limb",
       "mirror": "rightLeg3Foot",
-      "ik": "leftLeg3Chain"
+      "ik": "leftLeg3Chain",
+      "gasket": {
+        "diameterMeters": 0.031
+      }
     },
     {
       "id": "leftLeg4Hip",
       "parent": "cephalothorax",
       "bind": [
-        -0.28,
-        0.17,
+        -0.17,
+        0.13,
         -0.02
       ],
       "role": "limb",
-      "mirror": "rightLeg4Hip"
+      "mirror": "rightLeg4Hip",
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "leftLeg4Knee",
       "parent": "leftLeg4Hip",
       "bind": [
-        -0.0504,
-        0.36,
-        -0.07
+        -0.38,
+        0.33999999999999997,
+        0.35
       ],
       "role": "limb",
       "mirror": "rightLeg4Knee",
@@ -264,38 +294,47 @@
       "limits": [
         -35,
         135
-      ]
+      ],
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "leftLeg4Foot",
       "parent": "leftLeg4Knee",
       "bind": [
-        0.028000000000000004,
-        0.162,
-        -0.09
+        -0.5,
+        0.31000000000000005,
+        -0.6
       ],
       "role": "limb",
       "mirror": "rightLeg4Foot",
-      "ik": "leftLeg4Chain"
+      "ik": "leftLeg4Chain",
+      "gasket": {
+        "diameterMeters": 0.031
+      }
     },
     {
       "id": "rightLeg1Hip",
       "parent": "cephalothorax",
       "bind": [
-        0.28,
-        -0.17,
+        0.17,
+        -0.13,
         -0.02
       ],
       "role": "limb",
-      "mirror": "leftLeg1Hip"
+      "mirror": "leftLeg1Hip",
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "rightLeg1Knee",
       "parent": "rightLeg1Hip",
       "bind": [
-        0.0504,
-        -0.36,
-        -0.07
+        0.03999999999999998,
+        -0.32,
+        0.31999999999999995
       ],
       "role": "limb",
       "mirror": "leftLeg1Knee",
@@ -307,38 +346,47 @@
       "limits": [
         -35,
         135
-      ]
+      ],
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "rightLeg1Foot",
       "parent": "rightLeg1Knee",
       "bind": [
-        -0.028000000000000004,
-        -0.162,
-        -0.09
+        0.44,
+        -0.26999999999999996,
+        -0.57
       ],
       "role": "limb",
       "mirror": "leftLeg1Foot",
-      "ik": "rightLeg1Chain"
+      "ik": "rightLeg1Chain",
+      "gasket": {
+        "diameterMeters": 0.031
+      }
     },
     {
       "id": "rightLeg2Hip",
       "parent": "cephalothorax",
       "bind": [
-        0.09,
-        -0.17,
+        0.06,
+        -0.13,
         -0.02
       ],
       "role": "limb",
-      "mirror": "leftLeg2Hip"
+      "mirror": "leftLeg2Hip",
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "rightLeg2Knee",
       "parent": "rightLeg2Hip",
       "bind": [
-        0.0162,
-        -0.36,
-        -0.07
+        0.04999999999999999,
+        -0.43999999999999995,
+        0.31999999999999995
       ],
       "role": "limb",
       "mirror": "leftLeg2Knee",
@@ -350,38 +398,47 @@
       "limits": [
         -35,
         135
-      ]
+      ],
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "rightLeg2Foot",
       "parent": "rightLeg2Knee",
       "bind": [
-        -0.009,
-        -0.162,
-        -0.09
+        0.13,
+        -0.37,
+        -0.57
       ],
       "role": "limb",
       "mirror": "leftLeg2Foot",
-      "ik": "rightLeg2Chain"
+      "ik": "rightLeg2Chain",
+      "gasket": {
+        "diameterMeters": 0.031
+      }
     },
     {
       "id": "rightLeg3Hip",
       "parent": "cephalothorax",
       "bind": [
-        -0.1,
-        -0.17,
+        -0.06,
+        -0.13,
         -0.02
       ],
       "role": "limb",
-      "mirror": "leftLeg3Hip"
+      "mirror": "leftLeg3Hip",
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "rightLeg3Knee",
       "parent": "rightLeg3Hip",
       "bind": [
-        -0.018,
-        -0.36,
-        -0.07
+        -0.25,
+        -0.44999999999999996,
+        0.31999999999999995
       ],
       "role": "limb",
       "mirror": "leftLeg3Knee",
@@ -393,38 +450,47 @@
       "limits": [
         -35,
         135
-      ]
+      ],
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "rightLeg3Foot",
       "parent": "rightLeg3Knee",
       "bind": [
-        0.010000000000000002,
-        -0.162,
-        -0.09
+        -0.2,
+        -0.4,
+        -0.57
       ],
       "role": "limb",
       "mirror": "leftLeg3Foot",
-      "ik": "rightLeg3Chain"
+      "ik": "rightLeg3Chain",
+      "gasket": {
+        "diameterMeters": 0.031
+      }
     },
     {
       "id": "rightLeg4Hip",
       "parent": "cephalothorax",
       "bind": [
-        -0.28,
         -0.17,
+        -0.13,
         -0.02
       ],
       "role": "limb",
-      "mirror": "leftLeg4Hip"
+      "mirror": "leftLeg4Hip",
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "rightLeg4Knee",
       "parent": "rightLeg4Hip",
       "bind": [
-        -0.0504,
-        -0.36,
-        -0.07
+        -0.38,
+        -0.33999999999999997,
+        0.35
       ],
       "role": "limb",
       "mirror": "leftLeg4Knee",
@@ -436,27 +502,33 @@
       "limits": [
         -35,
         135
-      ]
+      ],
+      "gasket": {
+        "diameterMeters": 0.045
+      }
     },
     {
       "id": "rightLeg4Foot",
       "parent": "rightLeg4Knee",
       "bind": [
-        0.028000000000000004,
-        -0.162,
-        -0.09
+        -0.5,
+        -0.31000000000000005,
+        -0.6
       ],
       "role": "limb",
       "mirror": "leftLeg4Foot",
-      "ik": "rightLeg4Chain"
+      "ik": "rightLeg4Chain",
+      "gasket": {
+        "diameterMeters": 0.031
+      }
     },
     {
       "id": "leftFangBase",
       "parent": "head",
       "bind": [
-        0.1,
         0.08,
-        -0.01
+        0.075,
+        -0.035
       ],
       "role": "fang",
       "mirror": "rightFangBase"
@@ -465,9 +537,9 @@
       "id": "leftFangTip",
       "parent": "leftFangBase",
       "bind": [
-        0.18,
-        -0.02,
-        -0.08
+        0.115,
+        -0.025,
+        -0.095
       ],
       "role": "fang",
       "mirror": "rightFangTip"
@@ -476,9 +548,9 @@
       "id": "rightFangBase",
       "parent": "head",
       "bind": [
-        0.1,
-        -0.08,
-        -0.01
+        0.08,
+        -0.075,
+        -0.035
       ],
       "role": "fang",
       "mirror": "leftFangBase"
@@ -487,12 +559,122 @@
       "id": "rightFangTip",
       "parent": "rightFangBase",
       "bind": [
-        0.18,
-        0.02,
-        -0.08
+        0.115,
+        0.025,
+        -0.095
       ],
       "role": "fang",
       "mirror": "leftFangTip"
+    },
+    {
+      "id": "leftPalpBase",
+      "parent": "head",
+      "bind": [
+        0.055,
+        0.14,
+        -0.025
+      ],
+      "role": "limb",
+      "mirror": "rightPalpBase",
+      "gasket": {
+        "diameterMeters": 0.026
+      }
+    },
+    {
+      "id": "leftPalpElbow",
+      "parent": "leftPalpBase",
+      "bind": [
+        0.1,
+        0.045,
+        -0.025
+      ],
+      "role": "limb",
+      "mirror": "rightPalpElbow",
+      "gasket": {
+        "diameterMeters": 0.026
+      }
+    },
+    {
+      "id": "leftPalpTip",
+      "parent": "leftPalpElbow",
+      "bind": [
+        0.07,
+        -0.04,
+        -0.065
+      ],
+      "role": "limb",
+      "mirror": "rightPalpTip",
+      "gasket": {
+        "diameterMeters": 0.026
+      }
+    },
+    {
+      "id": "rightPalpBase",
+      "parent": "head",
+      "bind": [
+        0.055,
+        -0.14,
+        -0.025
+      ],
+      "role": "limb",
+      "mirror": "leftPalpBase",
+      "gasket": {
+        "diameterMeters": 0.026
+      }
+    },
+    {
+      "id": "rightPalpElbow",
+      "parent": "rightPalpBase",
+      "bind": [
+        0.1,
+        -0.045,
+        -0.025
+      ],
+      "role": "limb",
+      "mirror": "leftPalpElbow",
+      "gasket": {
+        "diameterMeters": 0.026
+      }
+    },
+    {
+      "id": "rightPalpTip",
+      "parent": "rightPalpElbow",
+      "bind": [
+        0.07,
+        0.04,
+        -0.065
+      ],
+      "role": "limb",
+      "mirror": "leftPalpTip",
+      "gasket": {
+        "diameterMeters": 0.026
+      }
+    },
+    {
+      "id": "abdomenRear",
+      "parent": "abdomen",
+      "bind": [
+        -0.34,
+        0,
+        0.01
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.1
+      }
+    },
+    {
+      "id": "abdomenFront",
+      "parent": "abdomen",
+      "bind": [
+        0.34,
+        0,
+        -0.01
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.1
+      }
     }
   ],
   "plates": [
@@ -501,41 +683,50 @@
       "bone": "root",
       "shape": "ellipse",
       "size": [
-        1.42,
-        1.3
+        2.1,
+        1.85
       ],
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "surfaceNormal": [
+        0,
+        0,
+        1
+      ]
     },
     {
       "id": "abdomenPlate",
       "bone": "abdomen",
-      "shape": "ellipse",
+      "shape": "bone",
       "size": [
-        0.66,
-        0.58
+        0.52
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3
+      "zBias": 3,
+      "span": [
+        "abdomenRear",
+        "abdomenFront"
+      ],
+      "jointOverlap": 1.1
     },
     {
       "id": "cephalothoraxPlate",
       "bone": "cephalothorax",
       "shape": "bone",
       "size": [
-        0.46
+        0.34
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
       "zBias": 3.3,
       "span": [
-        "abdomen",
-        "cephalothorax"
+        "cephalothorax",
+        "head"
       ],
       "jointOverlap": 1.18
     },
@@ -544,8 +735,8 @@
       "bone": "head",
       "shape": "ellipse",
       "size": [
-        0.31,
-        0.37
+        0.27,
+        0.29
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -557,7 +748,7 @@
       "bone": "leftLeg1Knee",
       "shape": "bone",
       "size": [
-        0.075
+        0.062
       ],
       "role": "body",
       "attachment": "rigid",
@@ -572,9 +763,9 @@
     {
       "id": "leftLeg1LowerPlate",
       "bone": "leftLeg1Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.055
+        0.045
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -591,8 +782,8 @@
       "bone": "leftLeg1Foot",
       "shape": "ellipse",
       "size": [
-        0.07975,
-        0.06325
+        0.033,
+        0.035
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -604,7 +795,7 @@
       "bone": "leftLeg2Knee",
       "shape": "bone",
       "size": [
-        0.075
+        0.062
       ],
       "role": "body",
       "attachment": "rigid",
@@ -619,9 +810,9 @@
     {
       "id": "leftLeg2LowerPlate",
       "bone": "leftLeg2Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.055
+        0.045
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -638,8 +829,8 @@
       "bone": "leftLeg2Foot",
       "shape": "ellipse",
       "size": [
-        0.07975,
-        0.06325
+        0.033,
+        0.035
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -651,7 +842,7 @@
       "bone": "leftLeg3Knee",
       "shape": "bone",
       "size": [
-        0.075
+        0.062
       ],
       "role": "body",
       "attachment": "rigid",
@@ -666,9 +857,9 @@
     {
       "id": "leftLeg3LowerPlate",
       "bone": "leftLeg3Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.055
+        0.045
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -685,8 +876,8 @@
       "bone": "leftLeg3Foot",
       "shape": "ellipse",
       "size": [
-        0.07975,
-        0.06325
+        0.033,
+        0.035
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -698,7 +889,7 @@
       "bone": "leftLeg4Knee",
       "shape": "bone",
       "size": [
-        0.075
+        0.062
       ],
       "role": "body",
       "attachment": "rigid",
@@ -713,9 +904,9 @@
     {
       "id": "leftLeg4LowerPlate",
       "bone": "leftLeg4Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.055
+        0.045
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -732,8 +923,8 @@
       "bone": "leftLeg4Foot",
       "shape": "ellipse",
       "size": [
-        0.07975,
-        0.06325
+        0.033,
+        0.035
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -745,7 +936,7 @@
       "bone": "rightLeg1Knee",
       "shape": "bone",
       "size": [
-        0.075
+        0.062
       ],
       "role": "body",
       "attachment": "rigid",
@@ -760,9 +951,9 @@
     {
       "id": "rightLeg1LowerPlate",
       "bone": "rightLeg1Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.055
+        0.045
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -779,8 +970,8 @@
       "bone": "rightLeg1Foot",
       "shape": "ellipse",
       "size": [
-        0.07975,
-        0.06325
+        0.033,
+        0.035
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -792,7 +983,7 @@
       "bone": "rightLeg2Knee",
       "shape": "bone",
       "size": [
-        0.075
+        0.062
       ],
       "role": "body",
       "attachment": "rigid",
@@ -807,9 +998,9 @@
     {
       "id": "rightLeg2LowerPlate",
       "bone": "rightLeg2Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.055
+        0.045
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -826,8 +1017,8 @@
       "bone": "rightLeg2Foot",
       "shape": "ellipse",
       "size": [
-        0.07975,
-        0.06325
+        0.033,
+        0.035
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -839,7 +1030,7 @@
       "bone": "rightLeg3Knee",
       "shape": "bone",
       "size": [
-        0.075
+        0.062
       ],
       "role": "body",
       "attachment": "rigid",
@@ -854,9 +1045,9 @@
     {
       "id": "rightLeg3LowerPlate",
       "bone": "rightLeg3Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.055
+        0.045
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -873,8 +1064,8 @@
       "bone": "rightLeg3Foot",
       "shape": "ellipse",
       "size": [
-        0.07975,
-        0.06325
+        0.033,
+        0.035
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -886,7 +1077,7 @@
       "bone": "rightLeg4Knee",
       "shape": "bone",
       "size": [
-        0.075
+        0.062
       ],
       "role": "body",
       "attachment": "rigid",
@@ -901,9 +1092,9 @@
     {
       "id": "rightLeg4LowerPlate",
       "bone": "rightLeg4Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.055
+        0.045
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -920,8 +1111,8 @@
       "bone": "rightLeg4Foot",
       "shape": "ellipse",
       "size": [
-        0.07975,
-        0.06325
+        0.033,
+        0.035
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -933,7 +1124,7 @@
       "bone": "leftFangTip",
       "shape": "taperedBone",
       "size": [
-        0.105
+        0.073
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -950,7 +1141,7 @@
       "bone": "rightFangTip",
       "shape": "taperedBone",
       "size": [
-        0.105
+        0.073
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -961,6 +1152,102 @@
         "rightFangTip"
       ],
       "jointOverlap": 1.18
+    },
+    {
+      "id": "leftPalpUpperPlate",
+      "bone": "leftPalpElbow",
+      "shape": "taperedBone",
+      "size": [
+        0.055
+      ],
+      "role": "accent",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "span": [
+        "leftPalpBase",
+        "leftPalpElbow"
+      ],
+      "jointOverlap": 1.12,
+      "zBias": 4,
+      "semanticDetailTier": "identity"
+    },
+    {
+      "id": "leftPalpLowerPlate",
+      "bone": "leftPalpTip",
+      "shape": "taperedBone",
+      "size": [
+        0.04
+      ],
+      "role": "accent",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "span": [
+        "leftPalpElbow",
+        "leftPalpTip"
+      ],
+      "jointOverlap": 1.12,
+      "zBias": 4,
+      "semanticDetailTier": "identity"
+    },
+    {
+      "id": "rightPalpUpperPlate",
+      "bone": "rightPalpElbow",
+      "shape": "taperedBone",
+      "size": [
+        0.055
+      ],
+      "role": "accent",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "span": [
+        "rightPalpBase",
+        "rightPalpElbow"
+      ],
+      "jointOverlap": 1.12,
+      "zBias": 4,
+      "semanticDetailTier": "identity"
+    },
+    {
+      "id": "rightPalpLowerPlate",
+      "bone": "rightPalpTip",
+      "shape": "taperedBone",
+      "size": [
+        0.04
+      ],
+      "role": "accent",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "span": [
+        "rightPalpElbow",
+        "rightPalpTip"
+      ],
+      "jointOverlap": 1.12,
+      "zBias": 4,
+      "semanticDetailTier": "identity"
+    },
+    {
+      "id": "waistPlate",
+      "bone": "cephalothorax",
+      "shape": "bone",
+      "size": [
+        0.2
+      ],
+      "role": "body",
+      "bodyRegion": "core",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "span": [
+        "abdomen",
+        "cephalothorax"
+      ],
+      "jointOverlap": 1.1,
+      "zBias": 2,
+      "occlusionMode": "under-core",
+      "occlusionReference": "abdomen"
     }
   ],
   "anchors": [
