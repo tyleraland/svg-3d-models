@@ -11,6 +11,7 @@ order below. Planning does not start implementation automatically.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: R3 Centaur / `36bef0c`.
+- Latest follow-up: Centaur chest recovery stabilization / `462e480`.
 - Active creature / stage: none.
 - Open decisions or blockers: none blocking R4. Flying-bird variant handling
   is specified below; source action availability must be inspected per model.
@@ -292,3 +293,16 @@ Next action:
 - Implementation commit: `36bef0c`.
 - Next: R4 Eagle / flying-bird refinement and Crow study. No next-creature
   implementation has started; the separate Crow model remains N1.
+
+### Centaur chest recovery follow-up — completed 2026-10-29
+
+- User reported excessive upper-chest pivot near the end of attack.
+- Replaced the foreshortened span-driven chest capsule with a rounded chest mass
+  on a torso-midpoint helper. Attack curves and hand/foot trajectories unchanged.
+- Regression measures silhouette swivel at sixteen headings/five elevations,
+  verifies center attachment, and detects restoration of the old faulty span.
+- Eight focused Centaur tests, all 220 headless tests, full `npm run check`,
+  121/121 browser comparisons and authoring UI passed; zero browser console errors.
+  Centaur audit remains 480 views with zero issues/warnings. Catalog warnings
+  remain 40 ordinary, 38 motion and 40 paint.
+- Implementation commit: `462e480`. Next milestone remains R4 Eagle/Crow study.
