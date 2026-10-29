@@ -33,9 +33,9 @@
     "crab",
     "giant crab"
   ],
-  "heightMeters": 0.34,
-  "tokenScale": 31,
-  "tokenGroundY": 69,
+  "heightMeters": 0.55,
+  "tokenScale": 34,
+  "tokenGroundY": 60,
   "surfaceConvention": {
     "outward": "+z",
     "groundPlane": "z=0",
@@ -60,7 +60,8 @@
     "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
   },
   "profile": {
-    "silhouette": "wide oval carapace, four walking-leg pairs, oversized symmetric claws"
+    "silhouette": "broad low carapace; four fanned walking-leg pairs; right major claw and left minor claw; articulated pincers and eye stalks",
+    "locomotion": "coordinated alternating tetrapods; forward and lateral travel"
   },
   "joints": [
     {
@@ -77,9 +78,9 @@
       "id": "body",
       "parent": "root",
       "bind": [
-        -0.05,
+        -0.08,
         0,
-        0.18
+        0.22
       ],
       "role": "body"
     },
@@ -87,9 +88,9 @@
       "id": "head",
       "parent": "body",
       "bind": [
-        0.28,
+        0.25,
         0,
-        0.01
+        0.025
       ],
       "role": "head"
     },
@@ -97,9 +98,9 @@
       "id": "leftLeg1Hip",
       "parent": "body",
       "bind": [
-        0.24,
-        0.2,
-        -0.02
+        0.22,
+        0.27,
+        -0.055
       ],
       "role": "limb",
       "mirror": "rightLeg1Hip"
@@ -108,9 +109,9 @@
       "id": "leftLeg1Knee",
       "parent": "leftLeg1Hip",
       "bind": [
-        0.043199999999999995,
-        0.28,
-        -0.07
+        0.11,
+        0.24,
+        0.1
       ],
       "role": "limb",
       "mirror": "rightLeg1Knee",
@@ -128,9 +129,9 @@
       "id": "leftLeg1Foot",
       "parent": "leftLeg1Knee",
       "bind": [
-        -0.024,
-        0.12600000000000003,
-        -0.09
+        0.11,
+        0.14,
+        -0.265
       ],
       "role": "limb",
       "mirror": "rightLeg1Foot",
@@ -141,8 +142,8 @@
       "parent": "body",
       "bind": [
         0.08,
-        0.2,
-        -0.02
+        0.27,
+        -0.055
       ],
       "role": "limb",
       "mirror": "rightLeg2Hip"
@@ -151,9 +152,9 @@
       "id": "leftLeg2Knee",
       "parent": "leftLeg2Hip",
       "bind": [
-        0.0144,
-        0.28,
-        -0.07
+        0.04,
+        0.24,
+        0.1
       ],
       "role": "limb",
       "mirror": "rightLeg2Knee",
@@ -171,9 +172,9 @@
       "id": "leftLeg2Foot",
       "parent": "leftLeg2Knee",
       "bind": [
-        -0.008,
-        0.12600000000000003,
-        -0.09
+        0.04,
+        0.14,
+        -0.265
       ],
       "role": "limb",
       "mirror": "rightLeg2Foot",
@@ -184,8 +185,8 @@
       "parent": "body",
       "bind": [
         -0.1,
-        0.2,
-        -0.02
+        0.27,
+        -0.055
       ],
       "role": "limb",
       "mirror": "rightLeg3Hip"
@@ -194,9 +195,9 @@
       "id": "leftLeg3Knee",
       "parent": "leftLeg3Hip",
       "bind": [
-        -0.018,
-        0.28,
-        -0.07
+        -0.07,
+        0.24,
+        0.1
       ],
       "role": "limb",
       "mirror": "rightLeg3Knee",
@@ -214,9 +215,9 @@
       "id": "leftLeg3Foot",
       "parent": "leftLeg3Knee",
       "bind": [
-        0.010000000000000002,
-        0.12600000000000003,
-        -0.09
+        -0.07,
+        0.14,
+        -0.265
       ],
       "role": "limb",
       "mirror": "rightLeg3Foot",
@@ -226,9 +227,9 @@
       "id": "leftLeg4Hip",
       "parent": "body",
       "bind": [
-        -0.26,
-        0.2,
-        -0.02
+        -0.23,
+        0.27,
+        -0.055
       ],
       "role": "limb",
       "mirror": "rightLeg4Hip"
@@ -237,9 +238,9 @@
       "id": "leftLeg4Knee",
       "parent": "leftLeg4Hip",
       "bind": [
-        -0.0468,
-        0.28,
-        -0.07
+        -0.16,
+        0.24,
+        0.1
       ],
       "role": "limb",
       "mirror": "rightLeg4Knee",
@@ -257,9 +258,9 @@
       "id": "leftLeg4Foot",
       "parent": "leftLeg4Knee",
       "bind": [
-        0.026000000000000002,
-        0.12600000000000003,
-        -0.09
+        -0.16,
+        0.14,
+        -0.265
       ],
       "role": "limb",
       "mirror": "rightLeg4Foot",
@@ -269,9 +270,9 @@
       "id": "rightLeg1Hip",
       "parent": "body",
       "bind": [
-        0.24,
-        -0.2,
-        -0.02
+        0.22,
+        -0.27,
+        -0.055
       ],
       "role": "limb",
       "mirror": "leftLeg1Hip"
@@ -280,9 +281,9 @@
       "id": "rightLeg1Knee",
       "parent": "rightLeg1Hip",
       "bind": [
-        0.043199999999999995,
-        -0.28,
-        -0.07
+        0.11,
+        -0.24,
+        0.1
       ],
       "role": "limb",
       "mirror": "leftLeg1Knee",
@@ -300,9 +301,9 @@
       "id": "rightLeg1Foot",
       "parent": "rightLeg1Knee",
       "bind": [
-        -0.024,
-        -0.12600000000000003,
-        -0.09
+        0.11,
+        -0.14,
+        -0.265
       ],
       "role": "limb",
       "mirror": "leftLeg1Foot",
@@ -313,8 +314,8 @@
       "parent": "body",
       "bind": [
         0.08,
-        -0.2,
-        -0.02
+        -0.27,
+        -0.055
       ],
       "role": "limb",
       "mirror": "leftLeg2Hip"
@@ -323,9 +324,9 @@
       "id": "rightLeg2Knee",
       "parent": "rightLeg2Hip",
       "bind": [
-        0.0144,
-        -0.28,
-        -0.07
+        0.04,
+        -0.24,
+        0.1
       ],
       "role": "limb",
       "mirror": "leftLeg2Knee",
@@ -343,9 +344,9 @@
       "id": "rightLeg2Foot",
       "parent": "rightLeg2Knee",
       "bind": [
-        -0.008,
-        -0.12600000000000003,
-        -0.09
+        0.04,
+        -0.14,
+        -0.265
       ],
       "role": "limb",
       "mirror": "leftLeg2Foot",
@@ -356,8 +357,8 @@
       "parent": "body",
       "bind": [
         -0.1,
-        -0.2,
-        -0.02
+        -0.27,
+        -0.055
       ],
       "role": "limb",
       "mirror": "leftLeg3Hip"
@@ -366,9 +367,9 @@
       "id": "rightLeg3Knee",
       "parent": "rightLeg3Hip",
       "bind": [
-        -0.018,
-        -0.28,
-        -0.07
+        -0.07,
+        -0.24,
+        0.1
       ],
       "role": "limb",
       "mirror": "leftLeg3Knee",
@@ -386,9 +387,9 @@
       "id": "rightLeg3Foot",
       "parent": "rightLeg3Knee",
       "bind": [
-        0.010000000000000002,
-        -0.12600000000000003,
-        -0.09
+        -0.07,
+        -0.14,
+        -0.265
       ],
       "role": "limb",
       "mirror": "leftLeg3Foot",
@@ -398,9 +399,9 @@
       "id": "rightLeg4Hip",
       "parent": "body",
       "bind": [
-        -0.26,
-        -0.2,
-        -0.02
+        -0.23,
+        -0.27,
+        -0.055
       ],
       "role": "limb",
       "mirror": "leftLeg4Hip"
@@ -409,9 +410,9 @@
       "id": "rightLeg4Knee",
       "parent": "rightLeg4Hip",
       "bind": [
-        -0.0468,
-        -0.28,
-        -0.07
+        -0.16,
+        -0.24,
+        0.1
       ],
       "role": "limb",
       "mirror": "leftLeg4Knee",
@@ -429,9 +430,9 @@
       "id": "rightLeg4Foot",
       "parent": "rightLeg4Knee",
       "bind": [
-        0.026000000000000002,
-        -0.12600000000000003,
-        -0.09
+        -0.16,
+        -0.14,
+        -0.265
       ],
       "role": "limb",
       "mirror": "leftLeg4Foot",
@@ -441,9 +442,9 @@
       "id": "leftClawShoulder",
       "parent": "head",
       "bind": [
-        0.08,
-        0.23,
-        0
+        0.07,
+        0.2,
+        -0.025
       ],
       "role": "limb",
       "mirror": "rightClawShoulder"
@@ -452,9 +453,9 @@
       "id": "leftClawElbow",
       "parent": "leftClawShoulder",
       "bind": [
-        0.24,
-        0.2,
-        -0.03
+        0.12,
+        0.22,
+        0.04
       ],
       "role": "limb",
       "mirror": "rightClawElbow"
@@ -463,9 +464,9 @@
       "id": "leftClaw",
       "parent": "leftClawElbow",
       "bind": [
-        0.22,
-        -0.03,
-        -0.05
+        0.2,
+        -0.07,
+        0.055
       ],
       "role": "claw",
       "mirror": "rightClaw"
@@ -474,9 +475,9 @@
       "id": "rightClawShoulder",
       "parent": "head",
       "bind": [
-        0.08,
-        -0.23,
-        0
+        0.07,
+        -0.2,
+        -0.025
       ],
       "role": "limb",
       "mirror": "leftClawShoulder"
@@ -485,9 +486,9 @@
       "id": "rightClawElbow",
       "parent": "rightClawShoulder",
       "bind": [
-        0.24,
-        -0.2,
-        -0.03
+        0.12,
+        -0.22,
+        0.04
       ],
       "role": "limb",
       "mirror": "leftClawElbow"
@@ -496,12 +497,143 @@
       "id": "rightClaw",
       "parent": "rightClawElbow",
       "bind": [
-        0.22,
-        0.03,
-        -0.05
+        0.2,
+        0.07,
+        0.055
       ],
       "role": "claw",
       "mirror": "leftClaw"
+    },
+    {
+      "id": "leftClawFixedBase",
+      "parent": "leftClaw",
+      "bind": [
+        0.04760000000000001,
+        0.051000000000000004,
+        0
+      ],
+      "role": "claw"
+    },
+    {
+      "id": "leftClawFixedBaseTip",
+      "parent": "leftClawFixedBase",
+      "bind": [
+        0.1496,
+        -0.027200000000000002,
+        0
+      ],
+      "role": "claw"
+    },
+    {
+      "id": "leftClawMovingBase",
+      "parent": "leftClaw",
+      "bind": [
+        0.030600000000000002,
+        -0.051000000000000004,
+        0
+      ],
+      "role": "claw"
+    },
+    {
+      "id": "leftClawMovingBaseTip",
+      "parent": "leftClawMovingBase",
+      "bind": [
+        0.1496,
+        0.027200000000000002,
+        0
+      ],
+      "role": "claw"
+    },
+    {
+      "id": "leftEyeBase",
+      "parent": "head",
+      "bind": [
+        0.035,
+        0.11,
+        0.035
+      ],
+      "role": "head"
+    },
+    {
+      "id": "leftEyeTip",
+      "parent": "leftEyeBase",
+      "bind": [
+        0.04,
+        0.015,
+        0.12
+      ],
+      "role": "head"
+    },
+    {
+      "id": "rightClawFixedBase",
+      "parent": "rightClaw",
+      "bind": [
+        0.07,
+        -0.075,
+        0
+      ],
+      "role": "claw"
+    },
+    {
+      "id": "rightClawFixedBaseTip",
+      "parent": "rightClawFixedBase",
+      "bind": [
+        0.22,
+        0.04,
+        0
+      ],
+      "role": "claw"
+    },
+    {
+      "id": "rightClawMovingBase",
+      "parent": "rightClaw",
+      "bind": [
+        0.045,
+        0.075,
+        0
+      ],
+      "role": "claw"
+    },
+    {
+      "id": "rightClawMovingBaseTip",
+      "parent": "rightClawMovingBase",
+      "bind": [
+        0.22,
+        -0.04,
+        0
+      ],
+      "role": "claw"
+    },
+    {
+      "id": "rightEyeBase",
+      "parent": "head",
+      "bind": [
+        0.035,
+        -0.11,
+        0.035
+      ],
+      "role": "head"
+    },
+    {
+      "id": "rightEyeTip",
+      "parent": "rightEyeBase",
+      "bind": [
+        0.04,
+        -0.015,
+        0.12
+      ],
+      "role": "head"
+    },
+    {
+      "id": "shellCap",
+      "parent": "body",
+      "bind": [
+        0,
+        0,
+        0.07
+      ],
+      "role": "body",
+      "helper": true
     }
   ],
   "plates": [
@@ -510,21 +642,26 @@
       "bone": "root",
       "shape": "ellipse",
       "size": [
-        1.28,
-        1.22
+        1.4,
+        1.3
       ],
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "surfaceNormal": [
+        0,
+        0,
+        1
+      ]
     },
     {
       "id": "carapacePlate",
       "bone": "body",
       "shape": "ellipse",
       "size": [
-        0.66,
-        1.02
+        0.94,
+        0.34
       ],
       "role": "body",
       "attachment": "rigid",
@@ -536,8 +673,8 @@
       "bone": "head",
       "shape": "ellipse",
       "size": [
-        0.28,
-        0.46
+        0.25,
+        0.22
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -549,7 +686,7 @@
       "bone": "leftLeg1Knee",
       "shape": "bone",
       "size": [
-        0.085
+        0.075
       ],
       "role": "body",
       "attachment": "rigid",
@@ -559,14 +696,16 @@
         "leftLeg1Hip",
         "leftLeg1Knee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg1LowerPlate",
       "bone": "leftLeg1Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.065
+        0.06
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -576,27 +715,31 @@
         "leftLeg1Knee",
         "leftLeg1Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg1FootPlate",
       "bone": "leftLeg1Foot",
       "shape": "ellipse",
       "size": [
-        0.09425,
-        0.07475
+        0.035,
+        0.028
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg2UpperPlate",
       "bone": "leftLeg2Knee",
       "shape": "bone",
       "size": [
-        0.085
+        0.075
       ],
       "role": "body",
       "attachment": "rigid",
@@ -606,14 +749,16 @@
         "leftLeg2Hip",
         "leftLeg2Knee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg2LowerPlate",
       "bone": "leftLeg2Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.065
+        0.06
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -623,27 +768,31 @@
         "leftLeg2Knee",
         "leftLeg2Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg2FootPlate",
       "bone": "leftLeg2Foot",
       "shape": "ellipse",
       "size": [
-        0.09425,
-        0.07475
+        0.035,
+        0.028
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg3UpperPlate",
       "bone": "leftLeg3Knee",
       "shape": "bone",
       "size": [
-        0.085
+        0.075
       ],
       "role": "body",
       "attachment": "rigid",
@@ -653,14 +802,16 @@
         "leftLeg3Hip",
         "leftLeg3Knee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg3LowerPlate",
       "bone": "leftLeg3Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.065
+        0.06
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -670,27 +821,31 @@
         "leftLeg3Knee",
         "leftLeg3Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg3FootPlate",
       "bone": "leftLeg3Foot",
       "shape": "ellipse",
       "size": [
-        0.09425,
-        0.07475
+        0.035,
+        0.028
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg4UpperPlate",
       "bone": "leftLeg4Knee",
       "shape": "bone",
       "size": [
-        0.085
+        0.075
       ],
       "role": "body",
       "attachment": "rigid",
@@ -700,14 +855,16 @@
         "leftLeg4Hip",
         "leftLeg4Knee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg4LowerPlate",
       "bone": "leftLeg4Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.065
+        0.06
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -717,27 +874,31 @@
         "leftLeg4Knee",
         "leftLeg4Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftLeg4FootPlate",
       "bone": "leftLeg4Foot",
       "shape": "ellipse",
       "size": [
-        0.09425,
-        0.07475
+        0.035,
+        0.028
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg1UpperPlate",
       "bone": "rightLeg1Knee",
       "shape": "bone",
       "size": [
-        0.085
+        0.075
       ],
       "role": "body",
       "attachment": "rigid",
@@ -747,14 +908,16 @@
         "rightLeg1Hip",
         "rightLeg1Knee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg1LowerPlate",
       "bone": "rightLeg1Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.065
+        0.06
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -764,27 +927,31 @@
         "rightLeg1Knee",
         "rightLeg1Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg1FootPlate",
       "bone": "rightLeg1Foot",
       "shape": "ellipse",
       "size": [
-        0.09425,
-        0.07475
+        0.035,
+        0.028
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg2UpperPlate",
       "bone": "rightLeg2Knee",
       "shape": "bone",
       "size": [
-        0.085
+        0.075
       ],
       "role": "body",
       "attachment": "rigid",
@@ -794,14 +961,16 @@
         "rightLeg2Hip",
         "rightLeg2Knee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg2LowerPlate",
       "bone": "rightLeg2Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.065
+        0.06
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -811,27 +980,31 @@
         "rightLeg2Knee",
         "rightLeg2Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg2FootPlate",
       "bone": "rightLeg2Foot",
       "shape": "ellipse",
       "size": [
-        0.09425,
-        0.07475
+        0.035,
+        0.028
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg3UpperPlate",
       "bone": "rightLeg3Knee",
       "shape": "bone",
       "size": [
-        0.085
+        0.075
       ],
       "role": "body",
       "attachment": "rigid",
@@ -841,14 +1014,16 @@
         "rightLeg3Hip",
         "rightLeg3Knee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg3LowerPlate",
       "bone": "rightLeg3Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.065
+        0.06
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -858,27 +1033,31 @@
         "rightLeg3Knee",
         "rightLeg3Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg3FootPlate",
       "bone": "rightLeg3Foot",
       "shape": "ellipse",
       "size": [
-        0.09425,
-        0.07475
+        0.035,
+        0.028
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg4UpperPlate",
       "bone": "rightLeg4Knee",
       "shape": "bone",
       "size": [
-        0.085
+        0.075
       ],
       "role": "body",
       "attachment": "rigid",
@@ -888,14 +1067,16 @@
         "rightLeg4Hip",
         "rightLeg4Knee"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg4LowerPlate",
       "bone": "rightLeg4Foot",
-      "shape": "bone",
+      "shape": "taperedBone",
       "size": [
-        0.065
+        0.06
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -905,27 +1086,31 @@
         "rightLeg4Knee",
         "rightLeg4Foot"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "rightLeg4FootPlate",
       "bone": "rightLeg4Foot",
       "shape": "ellipse",
       "size": [
-        0.09425,
-        0.07475
+        0.035,
+        0.028
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "shellCap"
     },
     {
       "id": "leftClawUpperPlate",
       "bone": "leftClawElbow",
       "shape": "bone",
       "size": [
-        0.12
+        0.085
       ],
       "role": "body",
       "attachment": "rigid",
@@ -935,14 +1120,16 @@
         "leftClawShoulder",
         "leftClawElbow"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "body"
     },
     {
       "id": "leftClawForePlate",
       "bone": "leftClaw",
       "shape": "bone",
       "size": [
-        0.11
+        0.085
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -952,20 +1139,24 @@
         "leftClawElbow",
         "leftClaw"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "body"
     },
     {
       "id": "leftClawPlate",
       "bone": "leftClaw",
       "shape": "ellipse",
       "size": [
-        0.29,
-        0.22
+        0.19720000000000001,
+        0.17
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 3.6
+      "zBias": 3.6,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "body"
     },
     {
       "id": "rightClawUpperPlate",
@@ -982,14 +1173,16 @@
         "rightClawShoulder",
         "rightClawElbow"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "body"
     },
     {
       "id": "rightClawForePlate",
       "bone": "rightClaw",
       "shape": "bone",
       "size": [
-        0.11
+        0.13
       ],
       "role": "accent",
       "attachment": "rigid",
@@ -999,7 +1192,9 @@
         "rightClawElbow",
         "rightClaw"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "body"
     },
     {
       "id": "rightClawPlate",
@@ -1007,12 +1202,165 @@
       "shape": "ellipse",
       "size": [
         0.29,
-        0.22
+        0.25
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 3.6
+      "zBias": 3.6,
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "body"
+    },
+    {
+      "id": "leftClawFixedBasePlate",
+      "bone": "leftClawFixedBaseTip",
+      "shape": "taperedBone",
+      "size": [
+        0.0442
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.7,
+      "span": [
+        "leftClawFixedBase",
+        "leftClawFixedBaseTip"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "leftClawMovingBasePlate",
+      "bone": "leftClawMovingBaseTip",
+      "shape": "taperedBone",
+      "size": [
+        0.0442
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.7,
+      "span": [
+        "leftClawMovingBase",
+        "leftClawMovingBaseTip"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "leftEyeBasePlate",
+      "bone": "leftEyeTip",
+      "shape": "bone",
+      "size": [
+        0.035
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 4,
+      "span": [
+        "leftEyeBase",
+        "leftEyeTip"
+      ],
+      "jointOverlap": 1.18,
+      "bodyRegion": "head"
+    },
+    {
+      "id": "leftEyeTipPlate",
+      "bone": "leftEyeTip",
+      "shape": "ellipse",
+      "size": [
+        0.065,
+        0.065
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4.1,
+      "bodyRegion": "head"
+    },
+    {
+      "id": "rightClawFixedBasePlate",
+      "bone": "rightClawFixedBaseTip",
+      "shape": "taperedBone",
+      "size": [
+        0.065
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.7,
+      "span": [
+        "rightClawFixedBase",
+        "rightClawFixedBaseTip"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "rightClawMovingBasePlate",
+      "bone": "rightClawMovingBaseTip",
+      "shape": "taperedBone",
+      "size": [
+        0.065
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.7,
+      "span": [
+        "rightClawMovingBase",
+        "rightClawMovingBaseTip"
+      ],
+      "jointOverlap": 1.18
+    },
+    {
+      "id": "rightEyeBasePlate",
+      "bone": "rightEyeTip",
+      "shape": "bone",
+      "size": [
+        0.035
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 4,
+      "span": [
+        "rightEyeBase",
+        "rightEyeTip"
+      ],
+      "jointOverlap": 1.18,
+      "bodyRegion": "head"
+    },
+    {
+      "id": "rightEyeTipPlate",
+      "bone": "rightEyeTip",
+      "shape": "ellipse",
+      "size": [
+        0.065,
+        0.065
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4.1,
+      "bodyRegion": "head"
+    },
+    {
+      "id": "shellCapPlate",
+      "bone": "shellCap",
+      "shape": "customPath",
+      "size": [
+        1.06,
+        0.72
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.2,
+      "localPath": "M -1 0 C -1 -0.6 -0.55 -1 0 -1 C 0.55 -1 1 -0.6 1 0 C 1 0.6 0.55 1 0 1 C -0.55 1 -1 0.6 -1 0 Z",
+      "planeAxes": [
+        "+y",
+        "-x"
+      ],
+      "bodyRegion": "core"
     }
   ],
   "anchors": [

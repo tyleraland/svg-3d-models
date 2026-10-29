@@ -14,6 +14,9 @@ Release changes and consumer upgrade guidance live in
 [CHANGELOG.md](CHANGELOG.md), [MIGRATION.md](MIGRATION.md), and
 [RELEASE.md](RELEASE.md).
 
+The stepwise creature refinement and expansion backlog, completion gates, and
+resume checkpoint live in [the creature roadmap](reference-studies/creature-roadmap.md).
+
 ## Start here
 
 Requirements: a current Node.js release and npm. A Chromium-compatible browser
@@ -613,3 +616,12 @@ rounded ears, broad plantigrade paws and a short tail. It includes idle, walk,
 run and a supported paw-swipe attack. `groundedQuadruped` walk/run declarations
 can opt into `keepPawsLevel` to bake level soles and preserve claw clearance.
 See `reference-studies/bear.md` for the WildMesh reference study and checks.
+
+### Crab reference pass
+
+Crab has a broad shell, eye stalks, fanned walking legs and an intentionally
+larger right pincer. The workbench offers forward `walk`/`run`, lateral
+`sidewalk`/`siderun`, and an articulated claw strike/snap. Motion is baked by
+`scripts/refine-crab-motion.mjs`; no runtime IK is required. Reference evidence
+and the directional/contact regression coverage are in
+[the Crab study](reference-studies/crab.md).
