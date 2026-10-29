@@ -6,16 +6,17 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: R2a Anaconda complete and committed; stopped between creatures.
-- Next milestone: R2b Serpentine / King Cobra.
+- Status: R2b King Cobra complete and committed; stopped between creatures.
+- Next milestone: R3 Centaur.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: R2a Anaconda / `de8029e`.
+- Last completed milestone / commit: R2b King Cobra / `5d44d9e`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking King Cobra. Flying-bird variant handling
+- Open decisions or blockers: none blocking Centaur. Flying-bird variant handling
   is specified below; source action availability must be inspected per model.
-- Next action: inspect KingCobra_Stylized in Blender; author a separate
-  selectable King Cobra while preserving the Anaconda (`serpentine`) entry.
+- Next action: review the Centaur source and refined Horse alongside the
+  WildMesh Horse reference; refine equine proportions and the torso junction
+  before idle, walk, run and attack.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -35,7 +36,7 @@ Use the inventory as a starting point; it is not a substitute for inspection.
 |---|---|---|---|
 | R1 | complete | Crab — Crab_Stylized; HermitCrab_Stylized as secondary reference | Broad carapace, believable leg stance and hinged claws; one claw distinctly larger. Idle, forward walk/run, sideways walk/run, coordinated support groups, and claw attack. Keep forward and sideways clips separately selectable. |
 | R2a | complete | Serpentine: anaconda — Anaconda_Stylized | Heavy continuous silhouette, distributed traveling body waves, grounded travel, raised-head posture, strike and recovery. Establish reusable snake structure without a hood. |
-| R2b | queued | Serpentine: king cobra — KingCobra_Stylized | Distinct hood and neck proportions, raised forebody, traveling waves, controlled idle, walk/run equivalents and a sudden strike. Preserve the anaconda variant. |
+| R2b | complete | Serpentine: king cobra — KingCobra_Stylized | Distinct hood and neck proportions, raised forebody, traveling waves, controlled idle, walk/run equivalents and a sudden strike. Preserve the anaconda variant. |
 | R3 | queued | Centaur — Horse and the refined SVG horse | Reuse equine proportions, articulated legs and gait timing; integrate the humanoid torso cleanly. Idle, walk, run and attack with explicit support/weight transfer. Review the torso junction and arm overlap through the turntable. |
 | R4 | queued | Flying bird: eagle and crow study — Eagle_Stylized, BaldEagle, Crow/Raven | Refine existing flyingBird as the eagle: hooked beak, head/body ratio, wing folding, span and tail. Compare crow proportions now and identify reusable avian structure. Idle, grounded walk/run, flight/flap/glide, and airborne peck attack. Author the separate crow model in N1. |
 
@@ -229,3 +230,31 @@ Next action:
 - Implementation commit: `de8029e`. Rebuilt HTML and refreshed Anaconda fixtures
   are included. No source mesh, texture or animation channels were imported.
 - Next: R2b King Cobra. No implementation of the next creature has started.
+
+### R2b King Cobra — completed 2026-10-29
+
+- Reference study: [king-cobra.md](king-cobra.md), native KingCobra_Stylized
+  Blender mesh/actions; eight actions sampled at twenty-one poses each.
+- New independent `kingCobra` model/family; workbench label King Cobra · hooded
+  snake. Anaconda (`serpentine`) remains byte-identical to its golden.
+- Shape: slender tapered chain, compact head, head-aligned jaw and two rigid
+  hinged hood panels that spread in threat and fold for ground travel.
+- Clips: raised threat idle, low idle, slow/fast ground travel, rise, raised
+  hold, lower, rapid hooded bite. Bite windup-to-contact is 92 ms; rear support
+  braces and jaw closes. Travel is authored because the native file has no
+  Walk/Run action. Native circular bite/death remain optional follow-ups.
+- Six focused tests: 7,680 pose/camera views, 1,201 interpolated samples per
+  requested clip, hood edge-length preservation, contacts, wave direction,
+  transitions, frontal jaw alignment and hood/core draw-order mutation coverage.
+- Full `npm run check` passed: 212 tests, 33/33 models, source validation,
+  ordinary/motion/paint audits and release checks. Catalog warnings remain
+  41 ordinary, 39 motion, 41 paint; King Cobra contributes none.
+- Default Cobra audit: 960 views, zero issues/warnings. Final Cobra/Anaconda
+  browser parity: 382/382 outputs, selector/shadow/UI checks passed, zero console
+  errors. Frontal, side and oblique hood/face views reviewed in the workbench.
+- Fixed catalog-size assumptions; the bundle discovers additional models and
+  the browser gate checks complete selector coverage. Updated the framing VM
+  harness with its cameraBasis dependency. Generated HTML and Cobra fixtures
+  are included in the implementation commit.
+- Implementation commit: `5d44d9e`.
+- Next: R3 Centaur. No implementation of the next creature has started.
