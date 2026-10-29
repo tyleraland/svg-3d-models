@@ -69,7 +69,7 @@ selectable. Commit every row before proceeding to the next.
 | N14 | queued | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
 | N15 | queued | Tortoise | Tortoise_Stylized | Rigid shell enclosing limb roots, low splayed stance; idle, slow/fast travel equivalents and bite. Avoid forcing an implausible mammalian run. |
 
-### Phase 3 — deferred, outside WildMesh
+### Phase 3 — deferred, additional references needed
 
 Do not begin these until Phase 2 is complete or the user changes priorities.
 
@@ -78,6 +78,10 @@ Do not begin these until Phase 2 is complete or the user changes priorities.
   WildMesh crocodilians may supplement a broader reference search.
 - [ ] Dragon: pause to choose dragon archetypes and obtain suitable references
   before defining model scope. Do not force every dragon into one silhouette.
+- [ ] Dinosaurs: choose species/archetypes and suitable references before defining
+  individual model milestones.
+- [ ] Gorilla: find suitable anatomy and animation references.
+- [ ] Walrus: find suitable anatomy and animation references.
 
 ## Repeatable creature workflow
 
