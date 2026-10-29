@@ -6,18 +6,18 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: R3 Centaur complete and committed; stopped between creatures.
-- Next milestone: R4 Flying bird / Eagle refinement and Crow study.
+- Status: R4 Eagle refinement and Crow study complete and committed; stopped between creatures.
+- Next milestone: N1 separate Crow model.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: R3 Centaur / `36bef0c`.
+- Last completed milestone / commit: R4 Eagle and Crow study / `1bf5102`.
 - Latest follow-up: Centaur shoulder cap alignment / `11511b0`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking R4. Flying-bird variant handling
-  is specified below; source action availability must be inspected per model.
-- Next action: inspect Eagle_Stylized/BaldEagle and Crow/Raven in Blender; refine
-  the existing flyingBird as Eagle and record reusable anatomy/motion for the
-  separately selectable Crow planned in N1.
+- Open decisions or blockers: none blocking N1. The native Crow scene has no
+  named attack; author a peck adaptation or inspect a secondary Raven attack.
+- Next action: read `reference-studies/crow.md`, fit a separately selectable Crow
+  with slimmer body, straighter bill and longer tail, then author/refine its
+  grounded gaits, flight and peck using the recorded Blender study.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -39,7 +39,7 @@ Use the inventory as a starting point; it is not a substitute for inspection.
 | R2a | complete | Serpentine: anaconda — Anaconda_Stylized | Heavy continuous silhouette, distributed traveling body waves, grounded travel, raised-head posture, strike and recovery. Establish reusable snake structure without a hood. |
 | R2b | complete | Serpentine: king cobra — KingCobra_Stylized | Distinct hood and neck proportions, raised forebody, traveling waves, controlled idle, walk/run equivalents and a sudden strike. Preserve the anaconda variant. |
 | R3 | complete | Centaur — Horse and the refined SVG horse | Reuse equine proportions, articulated legs and gait timing; integrate the humanoid torso cleanly. Idle, walk, run and attack with explicit support/weight transfer. Review the torso junction and arm overlap through the turntable. |
-| R4 | queued | Flying bird: eagle and crow study — Eagle_Stylized, BaldEagle, Crow/Raven | Refine existing flyingBird as the eagle: hooked beak, head/body ratio, wing folding, span and tail. Compare crow proportions now and identify reusable avian structure. Idle, grounded walk/run, flight/flap/glide, and airborne peck attack. Author the separate crow model in N1. |
+| R4 | complete | Flying bird: eagle and crow study — Eagle_Stylized, BaldEagle, Crow | Refined existing flyingBird as Eagle: compact hooked bill, fuller chest, broader secondary chord, short fan and talons. Standing idle, grounded walk/run/hop, powered flight/glide, airborne peck and separate talon strike. Native Crow proportions/actions studied; separate model remains N1. |
 
 R2a and R2b are separate creature milestones and commits. Retain the existing
 `serpentine` identity as a compatible entry where practical; choose and document
@@ -317,3 +317,31 @@ Next action:
   views with zero issues/warnings and 121/121 browser comparisons passed.
   Authoring UI passed with zero console errors.
 - Implementation commit: `11511b0`. Next milestone remains R4 Eagle/Crow study.
+
+### R4 — Eagle refinement and Crow study — completed 2026-10-29
+
+- Opened native Eagle_Stylized and Crow scenes and imported BaldEagle's complete
+  FBX in Blender 5.1.2. Recorded actual FPS, frame ranges, skeletons, 17-phase
+  motion samples and side/front/top renders. Reproducible inspection tool saved.
+- Eagle now has a fuller chest, compact hooked bill, broad secondary chord,
+  short fan tail and articulated toes/hallux. Stable model ID `flyingBird` is
+  labeled Eagle in the workbench.
+- Added standing folded-wing idle and alternating ground run; refined walk,
+  powered wingbeat and glide. Paired hop and sudden airborne peck retained;
+  separate airborne talon strike adapts the diving pickup posture.
+- Contact-aware author-time bake uses 240 samples (480 for hop), continuous hip
+  Euler branches and ordinary local keyframes. Dense-bake workbench framing
+  overflow fixed and regression-tested. Browser gate now includes talonStrike
+  and avoids rebuilding UI for absent clips without dropping render outputs.
+- Crow study saved in `reference-studies/crow.md`: slimmer body, straighter bill,
+  longer tail; native walk/flight/look/jump actions inspected. No named attack in
+  this scene. No separate Crow SVG authored yet; Raven remains an optional
+  secondary reference requiring its own inspection.
+- Focused bird/grounding tests: 24/24. Final full `npm run check`: 226 tests,
+  33/33 models, source validation, ordinary/motion/paint audits and release checks
+  passed. Catalog warnings remain 40 ordinary, 38 motion and 40 paint.
+- Directional regression: 8,448 pose/camera views. Eagle audit: 720 views, zero
+  issues/warnings. Browser parity: 201/201 outputs, authoring UI passed, zero
+  console errors. Direct UI review included standing/run, top wing silhouette,
+  peck and talon extension; final workbench left on powered flight at 45°/315°.
+- Implementation commit: `1bf5102`. Phase 1 is complete; next is N1 Crow.
