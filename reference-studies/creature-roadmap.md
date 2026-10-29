@@ -11,7 +11,7 @@ order below. Planning does not start implementation automatically.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: R3 Centaur / `36bef0c`.
-- Latest follow-up: Centaur chest recovery stabilization / `462e480`.
+- Latest follow-up: Centaur shoulder cap alignment / `11511b0`.
 - Active creature / stage: none.
 - Open decisions or blockers: none blocking R4. Flying-bird variant handling
   is specified below; source action availability must be inspected per model.
@@ -306,3 +306,14 @@ Next action:
   Centaur audit remains 480 views with zero issues/warnings. Catalog warnings
   remain 40 ordinary, 38 motion and 40 paint.
 - Implementation commit: `462e480`. Next milestone remains R4 Eagle/Crow study.
+
+### Centaur shoulder alignment follow-up — completed 2026-10-29
+
+- Replaced the screen-aligned upper shoulder ellipse with a rigid bridge between
+  the left/right shoulder centers; reviewed attack recovery at 60°/135°.
+- Added projected-axis alignment checks across eight phases, six elevations and
+  sixteen headings, with a mutation reproducing the old level-plate failure.
+- Nine focused tests, all 221 headless tests, full `npm run check`, 480 audit
+  views with zero issues/warnings and 121/121 browser comparisons passed.
+  Authoring UI passed with zero console errors.
+- Implementation commit: `11511b0`. Next milestone remains R4 Eagle/Crow study.
