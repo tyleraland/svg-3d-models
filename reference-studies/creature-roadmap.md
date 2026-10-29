@@ -6,18 +6,17 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: R4 Eagle refinement and Crow study complete and committed; stopped between creatures.
-- Next milestone: N1 separate Crow model.
+- Status: N1 separate Crow complete and committed; stopped between creatures.
+- Next milestone: N2 Deer without antlers.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: R4 Eagle and Crow study / `1bf5102`.
+- Last completed milestone / commit: N1 Crow / `ad90c33`.
 - Latest follow-up: Centaur shoulder cap alignment / `11511b0`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking N1. The native Crow scene has no
-  named attack; author a peck adaptation or inspect a secondary Raven attack.
-- Next action: read `reference-studies/crow.md`, fit a separately selectable Crow
-  with slimmer body, straighter bill and longer tail, then author/refine its
-  grounded gaits, flight and peck using the recorded Blender study.
+- Open decisions or blockers: none blocking N2. Crow peck and fast gait are
+  documented adaptations; the native scene has no named attack or run.
+- Next action: inspect Deer in Blender, author a separate antlerless SVG with
+  matching proportions, then refine idle, walk, run and bite attack.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -54,7 +53,7 @@ selectable. Commit every row before proceeding to the next.
 
 | ID | Status | Creature | Candidate reference | Distinctive requirements |
 |---|---|---|---|---|
-| N1 | queued | Flying bird: crow | Crow, Raven | Separate eagle/crow silhouettes; crow beak, wings and tail; grounded gaits, flight and peck. Reuse R4's avian structure. |
+| N1 | complete | Flying bird: crow | Crow | Separate slim body, straight bill and long narrow tail; grounded idle/walk/run, wing-assisted hop, flight/glide and angular airborne peck. Shared author-time avian baker; Eagle output unchanged. |
 | N2 | queued | Deer, without antlers | Doe, FemaleDeer, Deer | Slender ungulate proportions, long ears and light gait; bite attack; no antlers. |
 | N3 | queued | Moose | Moose | Tall shoulders, long muzzle/legs and broad antlers; goring attack. |
 | N4 | queued | Bull | Cow, Buffalo as secondary anatomy reference | Heavy forequarters and neck, horns; goring attack. Inspect reference sex/anatomy rather than assuming a folder supplies a bull. |
@@ -345,3 +344,27 @@ Next action:
   console errors. Direct UI review included standing/run, top wing silhouette,
   peck and talon extension; final workbench left on powered flight at 45°/315°.
 - Implementation commit: `1bf5102`. Phase 1 is complete; next is N1 Crow.
+
+### N1 — separate Crow — completed 2026-10-29
+
+- Used R4's native Crow Blender study and rechecked its sampled trajectories:
+  Walk/WalkSpeed have matching relative foot excursions; Fly contains two cycles
+  over 2.50 seconds. The faster SVG gait and peck are explicit adaptations.
+- Authored a separate `crow` family/model and workbench selector: slim horizontal
+  body, small head, long straight bill, narrow secondary chord, long narrow tail
+  with edge-on quill thickness, slender legs and articulated toes/hallux.
+- Added alert grounded idle, alternating walk/run, paired wing-assisted hop,
+  symmetric articulated flight, glide and a 75 ms angular airborne peck.
+- Extracted the pure shared author-time avian baker. Eagle regeneration and
+  resolved output remain exactly golden-identical; no renderer/consumer changes.
+- Seven focused Crow tests passed, including 7,392 pose/camera views, 1,201
+  interpolated samples per ground clip, loop/length/contact/Euler checks, flight
+  symmetry and a bill-gasket occlusion mutation. Baker purity/default parity tested.
+- Full `npm run check`: 233 tests and all 34 models passed, including sources,
+  ordinary/motion/paint audits and release checks. Catalog warnings remain
+  40 ordinary, 38 motion and 40 paint; Crow contributes none.
+- Crow audit: 720 views, zero issues/warnings. Browser parity: 181/181 outputs,
+  authoring UI passed and zero console errors. Reviewed oblique idle, side run,
+  assisted hop, top wing/body/feet and peck. Final workbench left at 45°/270° idle.
+- Implementation commit: `ad90c33`. Next is N2 Deer without antlers; no Deer work
+  has started. Unrelated `.DS_Store` remains excluded.
