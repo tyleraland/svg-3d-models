@@ -150,3 +150,38 @@ checks. Crow's 720-view audit has zero issues/warnings. Browser parity passed
 181/181 package/render outputs, plus patch, onion-skin, turntable and independent
 overlay checks, with zero console errors. The workbench is left on Crow alert
 idle at 45° elevation / 270° heading.
+
+## Folded-wing visibility and hop fan follow-up (2026-10-29)
+
+The old folded pose put its flat panels edge-on to the frontal cameras. The
+shared Crow/Eagle folded pose now has an 8° shoulder cant, 4° departure from the
+old right-angle fold, and a small distal feather-panel cant. The panel surfaces
+retain projected area and the tips protrude outside the body silhouette. This
+changes the grounded wing pose; airborne flight, glide and attack clips remain
+identical.
+
+Crow hop assist now opens the elbow/wrist first, then sweeps the shoulder outward
+into a fully spread apex. Simultaneously interpolating all folded Euler hinges
+had pulled the tip inward during the transition. The staged, eased movement
+keeps each tip on its own side of the body throughout suspension and refolds
+exactly on landing. Feet, root trajectory and contact timing are unchanged.
+Eagle keeps its folded-wing ground hop, with the same visibility correction.
+
+The Chicken uses thick span plates rather than zero-thickness feather panels.
+Harpy and Angel have structural wing spans under their membranes. Their
+frontal/overhead wing silhouettes were checked and require no geometry change.
+
+`test/avian-wing-visibility.test.mjs` adds three regressions: projected filled
+area for Crow/Eagle through nineteen elevations, both frontal headings and all
+ground clips; outward hop-apex reach, side-of-body/ground clearance through
+1,201 interpolated samples; and the same frontal camera check on Chicken, Harpy
+and Angel. Restoring the old coplanar fold or old partial assist must fail the
+respective area/reach condition. Existing checks missed this because valid
+framing, bone lengths and painter order do not establish a visible panel area
+or a correctly unfolding wing.
+
+Follow-up gates passed: 28 focused bird tests; all 236 tests and the full
+34-model `npm run check`; Crow 181/181 and Eagle 201/201 browser/package outputs,
+with authoring UI checks and zero console errors. Catalog warning counts remain
+40 ordinary, 38 motion and 40 paint. Direct UI review verified Crow at 45°/180°
+in idle and at the hop apex, plus Eagle/Chicken/Harpy/Angel frontal silhouettes.

@@ -25,17 +25,16 @@ for(const side of ['near','far']){
  j(side+'WingRoot').bind[1]=s*.071;
 }
 r.plates.push({id:'tailQuillPlate',bone:'tailTip',span:['tailBase','tailTip'],shape:'taperedBone',size:[.025],role:'tail',bodyRegion:'tail',attachment:'rigid',material:'paperShade',zBias:1.9,semanticDetailTier:'silhouette'});
-const motion=bakeAvianMotion(r,{scale,pitch:-12,groundHeight:.294,idleDuration:3600,walkDuration:840,runDuration:520,hopDuration:760,flightDuration:1250,glideDuration:2500,peckDuration:1250,talonStrike:false,wingbeat:{Root:{0:[[0,46],[.42,-40],[.56,-34],[.86,42],[1,46]]},Elbow:{0:[[0,3],[.42,-4],[.56,12],[.78,17],[1,3]],2:[[0,0],[.42,0],[.66,30],[.83,23],[1,0]]},Wrist:{0:[[0,8],[.42,15],[.56,-18],[.72,-32],[.9,-3],[1,8]],2:[[0,0],[.42,0],[.64,20],[.82,15],[1,0]]}}});
+const motion=bakeAvianMotion(r,{scale,pitch:-12,groundHeight:.294,idleDuration:3600,walkDuration:840,runDuration:520,hopDuration:760,flightDuration:1250,glideDuration:2500,peckDuration:1250,talonStrike:false,hopWingAssist:true,wingbeat:{Root:{0:[[0,46],[.42,-40],[.56,-34],[.86,42],[1,46]]},Elbow:{0:[[0,3],[.42,-4],[.56,12],[.78,17],[1,3]],2:[[0,0],[.42,0],[.66,30],[.83,23],[1,0]]},Wrist:{0:[[0,8],[.42,15],[.56,-18],[.72,-32],[.9,-3],[1,8]],2:[[0,0],[.42,0],[.64,20],[.82,15],[1,0]]}}});
 r.clips=motion.familyClips;
 const m={$schema:'paper-rig/model-1',family:'crow',base:true,semanticDetailPolicy:{defaultTier:'silhouette',byRole:{shadow:'texture'}},clips:motion.modelClips};
 for(const clip of [...Object.values(r.clips),...Object.values(m.clips)]){
  if(clip.motionSemantics)clip.motionSemantics=clip.motionSemantics.replaceAll('eagle','crow').replaceAll('Eagle','Crow');
  for(const f of clip.frames){
   if(clip===r.clips.idleA)f.rotations.neck[2]=round((f.rotations.neck[2]||0)*1.5);
-  if(clip===m.clips.hop){const open=Math.sin(Math.PI*Math.max(0,Math.min(1,(f.t-.18)/.60)))**2;for(const side of ['near','far']){const s=side==='near'?1:-1;f.rotations[side+'WingRoot']=[0,round(90-35*open),round(s*(90-18*open))];f.rotations[side+'WingElbow']=[0,0,round(s*(180-30*open))];f.rotations[side+'WingWrist']=[0,round(180-20*open),round(s*(180-25*open))];}}
  }
 }
-m.clips.hop.motionSemantics='paired-foot hop adapted from Crow Jump; crouch and landing contacts with a partial wing assist during suspension';
+m.clips.hop.motionSemantics='paired-foot hop adapted from Crow Jump; crouch and landing contacts with a outward spread-wing assist during suspension';
 m.clips.run.motionSemantics='authored faster alternating ground gait adapted from Crow Walk/WalkSpeed; no separate native Run action';
 m.clips.attack.motionSemantics='authored airborne crow peck: quick neck-only angular jab over continuous flight, adapted because the native Crow has no named Attack';
 function save(path,obj){let s=JSON.stringify(obj,null,2);for(const c of Object.values(obj.clips||{}))for(const f of c.frames||[]){const block=JSON.stringify(f,null,2).split('\n').map(line=>'        '+line).join('\n');s=s.replace(block,'        '+JSON.stringify(f));}fs.writeFileSync(path,s+'\n');}

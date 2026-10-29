@@ -125,3 +125,19 @@ Final browser parity passed **201/201** package/render comparisons, including
 talonStrike. Patch, onion-skin, turntable and independent overlay UI checks
 passed with zero console errors. The final workbench is left on Eagle powered
 flight at 45° elevation / 315° heading.
+
+## Grounded wing visibility follow-up (2026-10-29)
+
+Eagle shared Crow's edge-on folded-wing pose. Both now use a small shoulder and
+feather-panel cant, keeping filled wing area at frontal and overhead cameras.
+Eagle's grounded idle/walk/run/hop and their inherited/default poses receive
+this adjustment; its flight, glide, peck and talon strike remain identical.
+Crow's separate wing-assisted hop now unfolds outward in stages. See the Crow
+study's follow-up and `test/avian-wing-visibility.test.mjs` for the new area,
+body-clearance and apex-reach invariants and mutations. Chicken, Harpy and Angel
+passed the same frontal-wing review without source changes.
+
+This follow-up passed all 236 headless tests and full catalog gates; Eagle's
+201/201 browser comparisons and Crow's 181/181 passed, including authoring UI
+checks with zero console errors. Frontal panel-area and body-margin invariants
+now supplement the existing framing/occlusion/length checks.

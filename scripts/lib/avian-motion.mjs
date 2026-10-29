@@ -6,7 +6,14 @@ export function bakeAvianMotion(skeleton, options={}) {
 const r=structuredClone(skeleton),m={clips:{}},scale=options.scale??1;
 const round=n=>Math.abs(n)<1e-10?0:+n.toFixed(10),clone=structuredClone;
 const j=id=>r.joints.find(j=>j.id===id);
-const folded=()=>Object.fromEntries(['near','far'].flatMap(side=>{const s=side==='near'?1:-1;return[[side+'WingRoot',[0,90,s*90]],[side+'WingElbow',[0,0,s*180]],[side+'WingWrist',[0,180,s*180]]];}));
+// A small mirrored cant keeps folded feather panels visible from the front.
+// Hop assist opens the whole chain to a spread-wing pose, not just its hinge.
+const folded=(open=0)=>{
+ const ease=u=>u*u*(3-2*u),distal=ease(Math.min(1,open/.25)),proximal=ease(Math.max(0,(open-.25)/.75));
+ // Unfold the elbow and wrist first, then sweep the shoulder outward. Moving
+ // all three Euler hinges together can pull the tip across the torso midway.
+ return Object.fromEntries(['near','far'].flatMap(side=>{const s=side==='near'?1:-1;return[[side+'WingRoot',[round(s*(8+12*proximal)),round(86*(1-proximal)),round(s*90*(1-proximal))]],[side+'WingElbow',[0,0,round(s*180*(1-distal))]],[side+'WingWrist',[round(-s*10*(1-distal)),round(180*(1-distal)),round(s*180*(1-distal))]]];}));
+};
 const curve=(keys,t)=>{const i=keys.findIndex((k,i)=>i<keys.length-1&&t>=k[0]&&t<=keys[i+1][0]);const a=keys[Math.max(0,i)],b=keys[Math.max(0,i)+1],u=(t-a[0])/(b[0]-a[0]),v=u*u*(3-2*u);return a[1]+(b[1]-a[1])*v;};
 function flight(glide=false){
  const frames=Array.from({length:101},(_,i)=>{const t=i===100?0:i/100,w=t*2*Math.PI,rotations={body:[0,round(1.8*Math.sin(w)),0],neck:[0,round(-1.8*Math.sin(w)),0],head:[0,0,0],tailBase:[0,round(3*Math.sin(w-.4)),0]};
@@ -42,7 +49,7 @@ function groundClip(mode){
  for(const time of times){const t=time===1?0:time,w=2*Math.PI*t;
   let dz=idle?-.003*(1-Math.cos(w))/2:run?.018*(1-Math.cos(2*w))/2:-.009*(1-Math.cos(2*w))/2;
   if(hop){if(t<.18)dz=-.035*Math.sin(Math.PI*t/.18)**2;else if(t<.78)dz=.12*Math.sin(Math.PI*(t-.18)/.60);else dz=-.025*Math.sin(Math.PI*(t-.78)/.22)**2;}
-  const nod=idle?1.5*Math.sin(w):run?4*Math.sin(2*w):3*Math.sin(w),rotations={...folded(),body:[0,pitch+(run?4:0),0],neck:[0,round(nod-(run?3:0)),idle?round(6*Math.sin(w)**3):0],head:[0,round(-nod),0],tailBase:[0,round((idle?1:3)*Math.sin(w)),0]};
+  const nod=idle?1.5*Math.sin(w):run?4*Math.sin(2*w):3*Math.sin(w),rotations={...folded(hop&&options.hopWingAssist?Math.sin(Math.PI*Math.max(0,Math.min(1,(t-.18)/.60)))**2:0),body:[0,pitch+(run?4:0),0],neck:[0,round(nod-(run?3:0)),idle?round(6*Math.sin(w)**3):0],head:[0,round(-nod),0],tailBase:[0,round((idle?1:3)*Math.sin(w)),0]};
   const root=[0,idle||hop?0:round(scale*(run?.014:.025)*Math.cos(w)),round(rootZ+scale*dz)],body=sagittalBodyPose(r,rotations,root);
   for(const [index,l]of legs.entries()){
    const phase=(t+index*.5)%1,stance=idle||(hop?(t<=.18||t>=.78):phase<=duty);let x=0,z=0;
