@@ -11,7 +11,7 @@ order below. Planning does not start implementation automatically.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: N1 Crow / `ad90c33`.
-- Latest follow-up: Centaur shoulder cap alignment / `11511b0`.
+- Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none blocking N2. Crow peck and fast gait are
   documented adaptations; the native scene has no named attack or run.
@@ -368,3 +368,20 @@ Next action:
   assisted hop, top wing/body/feet and peck. Final workbench left at 45°/270° idle.
 - Implementation commit: `ad90c33`. Next is N2 Deer without antlers; no Deer work
   has started. Unrelated `.DS_Store` remains excluded.
+
+### Crow/Eagle wing follow-up — completed 2026-10-29
+
+- Gave folded Crow/Eagle wings a small shoulder and distal-panel cant so their
+  surfaces remain visible at frontal/overhead cameras and tips clear the body.
+- Crow hop assist now unfolds the elbow/wrist first, then sweeps the shoulder
+  outward to a broad apex; tips stay outside the torso throughout the transition.
+  Ground contacts and airborne flight/glide/attacks are unchanged.
+- Reviewed Chicken, Harpy and Angel frontal silhouettes; their structural wing
+  plates retain thickness and required no source changes.
+- Added projected-area/body-margin tests through nineteen elevations and both
+  frontal headings, 1,201-sample hop reach/clearance checks, and mutations that
+  restore the invisible fold and inward-folded apex.
+- All 236 tests, full 34-model catalog gates and 382/382 Crow/Eagle browser
+  comparisons passed. Authoring UI passed with zero console errors; catalog
+  advisory counts remain 40 ordinary, 38 motion and 40 paint.
+- Implementation commit: `e2c0407`. Next remains N2 Deer; no Deer work started.
