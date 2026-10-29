@@ -930,16 +930,20 @@
     {
       "id": "upperShoulderPlate",
       "bone": "upperShoulders",
-      "shape": "ellipse",
+      "shape": "bone",
       "size": [
-        0.53,
         0.16
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperShade",
       "zBias": 4.4,
-      "bodyRegion": "core"
+      "bodyRegion": "core",
+      "span": [
+        "leftShoulder",
+        "rightShoulder"
+      ],
+      "jointOverlap": 1.18
     },
     {
       "id": "upperNeckPlate",

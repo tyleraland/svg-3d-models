@@ -47,3 +47,11 @@ test('upper chest stays centered and its projected silhouette does not swivel du
  for(const time of [0,.30,.42,.62,.72,.84,1]){const p=solve(r,{clip:'attack',time}),mid=p.upperSpine.map((v,k)=>(v+p.upperShoulders[k])/2);assert.ok(distance(p.upperChestCenter,mid)<1e-9,'chest center follows the torso midpoint');}
  const broken=structuredClone(r),plate=broken.plates.find(p=>p.id==='upperChestPlate');Object.assign(plate,{bone:'upperShoulders',shape:'bone',size:[.5],span:['upperSpine','upperShoulders'],jointOverlap:1.18});assert.ok(maxSwivel(broken)>15,'mutation reproduces the foreshortened chest-span swivel');
 });
+
+test('upper shoulder bridge follows the projected shoulder caps rather than staying screen-level',()=>{
+ const difference=(a,b)=>Math.abs(((a-b+270)%180)-90);
+ const error=(rig,time,elevation,heading)=>{const s=projectScene(rig,{clip:'attack',time,elevation,heading}),left=s.joints.find(j=>j.id==='leftShoulder').screenPosition,right=s.joints.find(j=>j.id==='rightShoulder').screenPosition;if(distance(left,right)<2)return 0;const vector=s.compositingGroups.flatMap(g=>g.elements).find(e=>e.id==='upperShoulderPlate').vector,a=vector.attributes,angle=Number((a.transform||'').match(/rotate\(([-\d.e+]+)/)?.[1]||0),target=Math.atan2(right[1]-left[1],right[0]-left[0])*180/Math.PI;return difference(angle,target);};
+ for(const time of [0,.30,.42,.50,.62,.72,.84,1])for(const elevation of [0,30,45,60,75,90])for(let heading=0;heading<360;heading+=22.5)assert.ok(error(r,time,elevation,heading)<1e-7,`${time}/${elevation}/${heading} shoulder alignment`);
+ const broken=structuredClone(r),p=broken.plates.find(p=>p.id==='upperShoulderPlate');Object.assign(p,{shape:'ellipse',size:[.53,.16]});delete p.span;assert.ok(error(broken,.62,60,135)>20,'mutation reproduces screen-level shoulder plate at heading 135');
+ assert.ok(core.rigidPlateSpanLengthsPass(r),'shoulder bridge stays rigid across clips');
+});

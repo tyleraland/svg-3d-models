@@ -148,3 +148,18 @@ recovery. Final broader checks and fix commit are recorded in the roadmap.
 
 The follow-up passed all 220 headless tests and 121/121 Centaur browser/package
 comparisons, including authoring UI checks with zero console errors.
+
+## Shoulder alignment follow-up (2026-10-29)
+
+The upper shoulder ellipse was screen-aligned, so it stayed level while the
+shoulder caps projected diagonally at heading 135°. It is now a rigid capsule
+spanning the left/right shoulder centers. The centered chest mass and animation
+curves are unchanged. Direct workbench review at 60°/135° confirms the alignment
+during attack recovery.
+
+A regression compares the emitted bridge axis with the projected shoulder line
+at eight attack phases, six elevations and sixteen headings. Restoring the old
+ellipse must reproduce over 20° of error; rigid span lengths are also checked.
+All nine focused tests, all 221 headless tests and the full `npm run check`
+passed. Centaur's audit remains 480 views with zero issues/warnings; browser
+parity passed 121/121 outputs and authoring UI checks with zero console errors.

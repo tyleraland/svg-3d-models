@@ -2118,16 +2118,20 @@
       "bodyRegion": "core",
       "side": "center",
       "attachment": {
-        "type": "rigidBone",
-        "boneId": "upperShoulders"
+        "type": "jointSpan",
+        "jointIds": [
+          "leftShoulder",
+          "rightShoulder"
+        ]
       },
       "localGeometry": {
-        "type": "primitive",
-        "primitive": "ellipse",
-        "sizeMeters": [
-          0.53,
-          0.16
-        ]
+        "type": "capsuleSpan",
+        "jointIds": [
+          "leftShoulder",
+          "rightShoulder"
+        ],
+        "widthMeters": 0.16,
+        "overlapRatio": 1.18
       },
       "depthBias": 4.4,
       "paletteRole": "secondary",
@@ -2142,7 +2146,10 @@
       "lodTier": "silhouette",
       "lodMergeGroup": "core.center",
       "mirrorPlateId": null,
-      "coverage": null
+      "coverage": {
+        "method": "declared-overlap",
+        "overlapRatio": 1.18
+      }
     },
     {
       "id": "upperNeckPlate",
@@ -3411,7 +3418,7 @@
       "semanticRole": "jointGasket",
       "bodyRegion": "neck",
       "side": "center",
-      "diameterMeters": 0.32,
+      "diameterMeters": 0.1564,
       "paletteRole": "base",
       "depthBias": 4.95,
       "occlusionMode": "semantic-group",
@@ -3433,7 +3440,7 @@
       },
       "localGeometry": {
         "type": "circle",
-        "diameterMeters": 0.32
+        "diameterMeters": 0.1564
       },
       "compositingGroup": "core surface plates",
       "headingSwapsNearFar": false
