@@ -30,13 +30,12 @@
   "id": "serpentineBase",
   "family": "serpentine",
   "archetypes": [
-    "snake",
-    "worm",
-    "eel-like crawler"
+    "anaconda",
+    "heavy constrictor"
   ],
-  "heightMeters": 0.22,
-  "tokenScale": 36,
-  "tokenGroundY": 68,
+  "heightMeters": 1.6,
+  "tokenScale": 17,
+  "tokenGroundY": 55,
   "surfaceConvention": {
     "outward": "+z",
     "groundPlane": "z=0",
@@ -61,18 +60,19 @@
     "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
   },
   "profile": {
-    "spine": "seven-segment chain",
-    "limbs": 0,
-    "locomotion": "lateral wave"
+    "species": "anaconda",
+    "spine": "24-point tapered chain; additional jaw articulation",
+    "locomotion": "head-to-tail traveling curvature; grounded rear support during rising and striking",
+    "identity": "compact head and gradual tail taper; no cobra hood"
   },
   "joints": [
     {
       "id": "root",
       "parent": null,
       "bind": [
-        0,
-        0,
-        0
+        0.0,
+        0.0,
+        0.0
       ],
       "role": "root"
     },
@@ -80,79 +80,359 @@
       "id": "tailBase",
       "parent": "root",
       "bind": [
-        -0.72,
-        0,
-        0.1
+        -2.0839534178914283,
+        -0.5333895397587897,
+        0.0225
       ],
-      "role": "tail"
+      "role": "tail",
+      "gasket": {
+        "diameterMeters": 0.01944,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine01",
+      "parent": "tailBase",
+      "bind": [
+        0.22,
+        0.0,
+        0.0105
+      ],
+      "role": "tail",
+      "gasket": {
+        "diameterMeters": 0.034559999999999994,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine02",
+      "parent": "spine01",
+      "bind": [
+        0.211341249625,
+        0.061113633625,
+        0.0105
+      ],
+      "role": "tail",
+      "gasket": {
+        "diameterMeters": 0.049679999999999995,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine03",
+      "parent": "spine02",
+      "bind": [
+        0.1894952554,
+        0.111765594875,
+        0.0105
+      ],
+      "role": "tail",
+      "gasket": {
+        "diameterMeters": 0.0648,
+        "underIncidentPlates": true
+      }
     },
     {
       "id": "tailMid",
-      "parent": "tailBase",
+      "parent": "spine03",
       "bind": [
-        0.28,
-        0.08,
-        0.01
+        0.164330919225,
+        0.1462714906125,
+        0.0105
       ],
-      "role": "tail"
+      "role": "tail",
+      "gasket": {
+        "diameterMeters": 0.07991999999999999,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine05",
+      "parent": "tailMid",
+      "bind": [
+        0.14618620967499998,
+        0.164406788425,
+        0.0105
+      ],
+      "role": "tail",
+      "gasket": {
+        "diameterMeters": 0.09504,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine06",
+      "parent": "spine05",
+      "bind": [
+        0.1417876417375,
+        0.1682149359,
+        0.012750000000000001
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine07",
+      "parent": "spine06",
+      "bind": [
+        0.1526695878125,
+        0.1584045357125,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
     },
     {
       "id": "rearSpine",
-      "parent": "tailMid",
+      "parent": "spine07",
       "bind": [
-        0.3,
-        -0.14,
-        0.01
+        0.1749667610625,
+        0.1333665344,
+        0.0
       ],
-      "role": "body"
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine09",
+      "parent": "rearSpine",
+      "bind": [
+        0.20005328323750002,
+        0.09153515098750001,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine10",
+      "parent": "spine09",
+      "bind": [
+        0.2171522967625,
+        0.03528285695,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine11",
+      "parent": "spine10",
+      "bind": [
+        0.218305547075,
+        -0.027252305025,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
     },
     {
       "id": "middleSpine",
-      "parent": "rearSpine",
+      "parent": "spine11",
       "bind": [
-        0.32,
-        0.14,
-        0.01
+        0.20295908352499997,
+        -0.08489764662499999,
+        0.0
       ],
-      "role": "body"
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine13",
+      "parent": "middleSpine",
+      "bind": [
+        0.178306847125,
+        -0.1288668624375,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine14",
+      "parent": "spine13",
+      "bind": [
+        0.1550730082,
+        -0.1560524339,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine15",
+      "parent": "spine14",
+      "bind": [
+        0.14236962217500002,
+        -0.16772266005,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
     },
     {
       "id": "frontSpine",
-      "parent": "middleSpine",
+      "parent": "spine15",
       "bind": [
-        0.32,
-        -0.12,
-        0.01
+        0.144745940075,
+        -0.16567622885,
+        0.0
       ],
-      "role": "body"
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine17",
+      "parent": "frontSpine",
+      "bind": [
+        0.1613750340125,
+        -0.1495262465125,
+        -0.0075
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.1026,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine18",
+      "parent": "spine17",
+      "bind": [
+        0.18616226584999998,
+        -0.1172331469375,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.1026,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine19",
+      "parent": "spine18",
+      "bind": [
+        0.2090652328875,
+        -0.068496192325,
+        0.0
+      ],
+      "role": "body",
+      "gasket": {
+        "diameterMeters": 0.1026,
+        "underIncidentPlates": true
+      }
     },
     {
       "id": "neck",
-      "parent": "frontSpine",
+      "parent": "spine19",
       "bind": [
-        0.28,
-        0.08,
-        0.02
+        0.21984637276250002,
+        -0.008220240875,
+        0.019750000000000018
       ],
-      "role": "neck"
+      "role": "neck",
+      "gasket": {
+        "diameterMeters": 0.1026,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "spine21",
+      "parent": "neck",
+      "bind": [
+        0.2133843460375,
+        0.053545502725,
+        0.04000000000000001
+      ],
+      "role": "neck",
+      "gasket": {
+        "diameterMeters": 0.0972,
+        "underIncidentPlates": true
+      }
     },
     {
       "id": "head",
-      "parent": "neck",
+      "parent": "spine21",
       "bind": [
-        0.28,
-        0,
-        0.04
+        0.19277146845,
+        0.1060149091375,
+        0.03999999999999998
       ],
-      "role": "head"
+      "role": "head",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
     },
     {
       "id": "snout",
       "parent": "head",
       "bind": [
-        0.18,
-        0,
-        -0.01
+        0.1255588626875,
+        0.10705125873750002,
+        -0.009999999999999981
+      ],
+      "role": "head",
+      "gasket": {
+        "diameterMeters": 0.10500000000000001,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "jaw",
+      "parent": "head",
+      "bind": [
+        0.048125,
+        0.0,
+        -0.026250000000000002
+      ],
+      "role": "head",
+      "gasket": {
+        "diameterMeters": 0.03,
+        "underIncidentPlates": true
+      }
+    },
+    {
+      "id": "jawTip",
+      "parent": "jaw",
+      "bind": [
+        0.17875000000000002,
+        0.0,
+        0.0
       ],
       "role": "head"
     }
@@ -163,158 +443,478 @@
       "bone": "root",
       "shape": "ellipse",
       "size": [
-        1.62,
-        0.54
+        3.25,
+        1.05
       ],
       "role": "shadow",
       "attachment": "rigid",
       "material": "shadow",
-      "zBias": -99
+      "zBias": -99,
+      "surfaceNormal": [
+        0,
+        0,
+        1
+      ]
     },
     {
       "id": "tailBasePlate",
-      "bone": "tailMid",
+      "bone": "spine01",
       "shape": "bone",
       "size": [
-        0.1
+        0.026999999999999996
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 1,
+      "zBias": 3.015,
       "span": [
         "tailBase",
+        "spine01"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine02Plate",
+      "bone": "spine02",
+      "shape": "bone",
+      "size": [
+        0.048
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.03,
+      "span": [
+        "spine01",
+        "spine02"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine03Plate",
+      "bone": "spine03",
+      "shape": "bone",
+      "size": [
+        0.069
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 3.045,
+      "span": [
+        "spine02",
+        "spine03"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine04Plate",
+      "bone": "tailMid",
+      "shape": "bone",
+      "size": [
+        0.09
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.06,
+      "span": [
+        "spine03",
         "tailMid"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
     },
     {
       "id": "tailMidPlate",
+      "bone": "spine05",
+      "shape": "bone",
+      "size": [
+        0.11099999999999999
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.075,
+      "span": [
+        "tailMid",
+        "spine05"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine06Plate",
+      "bone": "spine06",
+      "shape": "bone",
+      "size": [
+        0.132
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.09,
+      "span": [
+        "spine05",
+        "spine06"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine07Plate",
+      "bone": "spine07",
+      "shape": "bone",
+      "size": [
+        0.1575
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.105,
+      "span": [
+        "spine06",
+        "spine07"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine08Plate",
       "bone": "rearSpine",
       "shape": "bone",
       "size": [
-        0.14
+        0.1575
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 2,
+      "zBias": 3.12,
       "span": [
-        "tailMid",
+        "spine07",
         "rearSpine"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
     },
     {
       "id": "rearBodyPlate",
+      "bone": "spine09",
+      "shape": "bone",
+      "size": [
+        0.1575
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.135,
+      "span": [
+        "rearSpine",
+        "spine09"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine10Plate",
+      "bone": "spine10",
+      "shape": "bone",
+      "size": [
+        0.1575
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.15,
+      "span": [
+        "spine09",
+        "spine10"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine11Plate",
+      "bone": "spine11",
+      "shape": "bone",
+      "size": [
+        0.1575
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.165,
+      "span": [
+        "spine10",
+        "spine11"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine12Plate",
       "bone": "middleSpine",
       "shape": "bone",
       "size": [
-        0.19
+        0.1575
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3,
+      "zBias": 3.18,
       "span": [
-        "rearSpine",
+        "spine11",
         "middleSpine"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
     },
     {
       "id": "middleBodyPlate",
+      "bone": "spine13",
+      "shape": "bone",
+      "size": [
+        0.1575
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.195,
+      "span": [
+        "middleSpine",
+        "spine13"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine14Plate",
+      "bone": "spine14",
+      "shape": "bone",
+      "size": [
+        0.1575
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.21,
+      "span": [
+        "spine13",
+        "spine14"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine15Plate",
+      "bone": "spine15",
+      "shape": "bone",
+      "size": [
+        0.1575
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.225,
+      "span": [
+        "spine14",
+        "spine15"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine16Plate",
       "bone": "frontSpine",
       "shape": "bone",
       "size": [
-        0.22
+        0.1575
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3.2,
+      "zBias": 3.24,
       "span": [
-        "middleSpine",
+        "spine15",
         "frontSpine"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
     },
     {
       "id": "frontBodyPlate",
+      "bone": "spine17",
+      "shape": "bone",
+      "size": [
+        0.14250000000000002
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.255,
+      "span": [
+        "frontSpine",
+        "spine17"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine18Plate",
+      "bone": "spine18",
+      "shape": "bone",
+      "size": [
+        0.14250000000000002
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.27,
+      "span": [
+        "spine17",
+        "spine18"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine19Plate",
+      "bone": "spine19",
+      "shape": "bone",
+      "size": [
+        0.14250000000000002
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.285,
+      "span": [
+        "spine18",
+        "spine19"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "core"
+    },
+    {
+      "id": "spine20Plate",
       "bone": "neck",
       "shape": "bone",
       "size": [
-        0.2
+        0.14250000000000002
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 3.4,
+      "zBias": 3.3,
       "span": [
-        "frontSpine",
+        "spine19",
         "neck"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.12,
+      "bodyRegion": "neck"
     },
     {
       "id": "neckPlate",
-      "bone": "head",
+      "bone": "spine21",
       "shape": "bone",
       "size": [
-        0.17
+        0.135
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 4,
+      "zBias": 3.315,
       "span": [
         "neck",
+        "spine21"
+      ],
+      "jointOverlap": 1.12,
+      "bodyRegion": "neck"
+    },
+    {
+      "id": "spine22Plate",
+      "bone": "head",
+      "shape": "bone",
+      "size": [
+        0.135
+      ],
+      "role": "body",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 3.33,
+      "span": [
+        "spine21",
         "head"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.12,
+      "bodyRegion": "head"
     },
     {
       "id": "headConnectorPlate",
       "bone": "snout",
       "shape": "bone",
       "size": [
-        0.2
+        0.15000000000000002
       ],
       "role": "body",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 4.8,
+      "zBias": 3.3449999999999998,
       "span": [
         "head",
         "snout"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.12,
+      "bodyRegion": "head"
     },
     {
       "id": "headPlate",
       "bone": "head",
       "shape": "ellipse",
       "size": [
-        0.28,
-        0.34
+        0.17600000000000002,
+        0.18400000000000002
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 5
+      "zBias": 4.9,
+      "bodyRegion": "head"
     },
     {
       "id": "snoutPlate",
       "bone": "snout",
       "shape": "ellipse",
       "size": [
-        0.2,
-        0.23
+        0.10400000000000001,
+        0.11200000000000002
       ],
       "role": "accent",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 5.1
+      "zBias": 5,
+      "bodyRegion": "head"
+    },
+    {
+      "id": "jawPlate",
+      "bone": "jawTip",
+      "shape": "bone",
+      "size": [
+        0.0675
+      ],
+      "role": "accent",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 4.8,
+      "span": [
+        "jaw",
+        "jawTip"
+      ],
+      "jointOverlap": 1.18,
+      "bodyRegion": "head"
     }
   ],
   "anchors": [
@@ -342,215 +942,93 @@
   "clips": {
     "idleA": {
       "base": "bind",
-      "duration": 1800,
-      "easing": "ease-in-out",
+      "duration": 3200,
       "loop": true,
+      "easing": "linear",
       "frames": [
         {
           "t": 0,
-          "poses": {}
-        },
-        {
-          "t": 0.5,
-          "poses": {
-            "middleSpine": [
-              0,
-              0.03,
-              0.01
-            ],
-            "head": [
-              0,
-              -0.02,
-              0.01
-            ]
-          }
+          "poses": {},
+          "rotations": {}
         },
         {
           "t": 1,
-          "poses": {}
+          "poses": {},
+          "rotations": {}
         }
       ],
       "contacts": [
         "tailBase",
+        "spine01",
+        "spine02",
+        "spine03",
         "tailMid",
+        "spine05",
+        "spine06",
+        "spine07",
         "rearSpine",
+        "spine09",
+        "spine10",
+        "spine11",
         "middleSpine",
-        "frontSpine"
+        "spine13",
+        "spine14",
+        "spine15"
       ]
     },
     "walkA": {
-      "base": "idleA",
-      "duration": 900,
-      "easing": "linear",
+      "base": "bind",
+      "duration": 2200,
       "loop": true,
+      "easing": "linear",
       "frames": [
         {
           "t": 0,
-          "poses": {
-            "tailMid": [
-              0,
-              -0.1,
-              0.01
-            ],
-            "rearSpine": [
-              0,
-              0.14,
-              0.01
-            ],
-            "middleSpine": [
-              0,
-              -0.14,
-              0.01
-            ],
-            "frontSpine": [
-              0,
-              0.12,
-              0.01
-            ],
-            "neck": [
-              0,
-              -0.08,
-              0.01
-            ]
-          }
-        },
-        {
-          "t": 0.5,
-          "poses": {
-            "tailMid": [
-              0,
-              0.1,
-              0.01
-            ],
-            "rearSpine": [
-              0,
-              -0.14,
-              0.01
-            ],
-            "middleSpine": [
-              0,
-              0.14,
-              0.01
-            ],
-            "frontSpine": [
-              0,
-              -0.12,
-              0.01
-            ],
-            "neck": [
-              0,
-              0.08,
-              0.01
-            ]
-          }
+          "poses": {},
+          "rotations": {}
         },
         {
           "t": 1,
-          "poses": {
-            "tailMid": [
-              0,
-              -0.1,
-              0.01
-            ],
-            "rearSpine": [
-              0,
-              0.14,
-              0.01
-            ],
-            "middleSpine": [
-              0,
-              -0.14,
-              0.01
-            ],
-            "frontSpine": [
-              0,
-              0.12,
-              0.01
-            ],
-            "neck": [
-              0,
-              -0.08,
-              0.01
-            ]
-          }
+          "poses": {},
+          "rotations": {}
         }
       ],
-      "contactIntervals": [
-        {
-          "ids": [
-            "tailBase",
-            "tailMid",
-            "rearSpine",
-            "middleSpine",
-            "frontSpine"
-          ],
-          "from": 0,
-          "to": 1
-        }
-      ],
-      "events": [
-        {
-          "t": 0,
-          "name": "wave-a"
-        },
-        {
-          "t": 0.5,
-          "name": "wave-b"
-        }
+      "contacts": [
+        "tailBase",
+        "spine01",
+        "spine02",
+        "spine03",
+        "tailMid",
+        "spine05",
+        "spine06",
+        "spine07",
+        "rearSpine",
+        "spine09",
+        "spine10",
+        "spine11",
+        "middleSpine",
+        "spine13",
+        "spine14",
+        "spine15"
       ]
     },
     "attack": {
-      "base": "idleA",
-      "duration": 680,
-      "easing": "cubic-bezier(.2,.8,.2,1)",
+      "base": "bind",
+      "duration": 1400,
       "loop": false,
       "frames": [
         {
           "t": 0,
-          "poses": {}
-        },
-        {
-          "t": 0.62,
-          "poses": {
-            "neck": [
-              0.16,
-              0,
-              0.03
-            ],
-            "head": [
-              0.28,
-              0,
-              0.04
-            ],
-            "snout": [
-              0.12,
-              0,
-              0.02
-            ]
-          }
+          "poses": {},
+          "rotations": {}
         },
         {
           "t": 1,
-          "poses": {}
+          "poses": {},
+          "rotations": {}
         }
       ],
-      "contacts": [
-        "tailBase",
-        "tailMid",
-        "rearSpine",
-        "middleSpine",
-        "frontSpine"
-      ],
-      "events": [
-        {
-          "t": 0.62,
-          "name": "impact"
-        },
-        {
-          "t": 0.84,
-          "name": "release"
-        }
-      ]
+      "easing": "linear"
     }
   }
 }

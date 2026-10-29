@@ -625,3 +625,12 @@ larger right pincer. The workbench offers forward `walk`/`run`, lateral
 `scripts/refine-crab-motion.mjs`; no runtime IK is required. Reference evidence
 and the directional/contact regression coverage are in
 [the Crab study](reference-studies/crab.md).
+
+### Anaconda reference pass
+
+The `serpentine` entry is now labeled **Anaconda · serpentine**. It has a long,
+tapered articulated body, slow/fast traveling waves, `rise`, `idleRaised`,
+`lower`, and a rising strike with a hinged jaw. Its original model ID is retained
+for CLI compatibility. The separate King Cobra variant is planned next.
+See [the Anaconda study](reference-studies/anaconda.md) for Blender evidence,
+authoring decisions and regression coverage.

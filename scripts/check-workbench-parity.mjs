@@ -24,7 +24,7 @@ const SYSTEM_CHROMIUM = [
   '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
 ].find((candidate) => candidate && existsSync(candidate));
 
-const CLIPS = ['idle', 'idleHind', 'walk', 'walkHind', 'attackHind', 'standUp', 'standDown', 'hop', 'trot', 'sprint', 'fly', 'glide', 'run', 'gallop', 'attack', 'stomp', 'sidewalk', 'siderun', 'pounce', 'hit', 'ko'];
+const CLIPS = ['idle', 'idleHind', 'walk', 'walkHind', 'attackHind', 'standUp', 'standDown', 'hop', 'rise', 'idleRaised', 'lower', 'trot', 'sprint', 'fly', 'glide', 'run', 'gallop', 'attack', 'stomp', 'sidewalk', 'siderun', 'pounce', 'hit', 'ko'];
 const TIMES = [0, 0.25, 0.5, 0.62, 1];
 const CAMERAS = [null, [60, 0], [45, 90], [90, 180]];
 
@@ -148,6 +148,19 @@ async function main() {
         }
       }
     }
+  }
+  if(models.includes('serpentine')){
+    const shadowFraming = await regenerated.page.evaluate(() => {
+      state.model='serpentine';updateModel();const failures=[];
+      for(const clip of ['walk','idleRaised','attack'])for(const elevation of [0,45,90]){
+        state.clip=clip;state.t=clip==='attack'?.42:.5;state.elev=elevation;state.az=270;render();
+        const svg=$('#mainSvg'),v=svg.viewBox.baseVal,b=$('#groundShadowGroup').getBBox();
+        if(b.x<v.x-.01||b.y<v.y-.01||b.x+b.width>v.x+v.width+.01||b.y+b.height>v.y+v.height+.01)failures.push({clip,elevation});
+      }
+      return failures;
+    });
+    if(shadowFraming.length)throw new Error('Workbench crops fixed ground shadows: '+JSON.stringify(shadowFraming));
+    console.log('workbench shadow framing: traveling, raised and striking Anaconda passed');
   }
   const patchUi = await regenerated.page.evaluate(() => {
     state.model = 'rabbit';
