@@ -641,3 +641,11 @@ authoring decisions and regression coverage.
 raised threat idle, low idle, slow/fast travel, rise/lower transitions and rapid
 bite use rigid hinged hood panels and a head-aligned jaw. Blender reference
 findings and regression evidence are in [the King Cobra study](reference-studies/king-cobra.md).
+
+### Centaur reference pass
+
+Centaur reuses the refined Horse body and articulated legs, with an integrated
+humanoid waist, independent arm balance, a four-beat `walk`, a separate galloping
+`run`, and a braced hand strike. Motion is baked by
+`scripts/refine-centaur-motion.mjs`; reference findings and regression evidence
+are in [the Centaur study](reference-studies/centaur.md).

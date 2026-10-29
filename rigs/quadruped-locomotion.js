@@ -118,8 +118,10 @@ function bakeWalk(rig, legs, plan) {
     const dip = -(plan.bodyBounce || 0) * positions.pelvis[2] * (1 - Math.cos(bodyPhase)) / 2;
     if (plan.bodyBounce) sampled.poses.root = [0, 0, round(dip)];
     if (plan.headNodDegrees) {
-      rotations[positions.neckBase ? 'neckBase' : 'neck'] = [0, round(plan.headNodDegrees * Math.sin(bodyPhase)), 0];
-      rotations.head = [0, round(-plan.headNodDegrees * .6 * Math.sin(bodyPhase)), 0];
+      const neckId = positions.neckBase ? 'neckBase' : positions.neck ? 'neck' : positions.upperNeck ? 'upperNeck' : null;
+      const headId = positions.head ? 'head' : positions.upperHead ? 'upperHead' : null;
+      if (neckId) rotations[neckId] = [0, round(plan.headNodDegrees * Math.sin(bodyPhase)), 0];
+      if (headId) rotations[headId] = [0, round(-plan.headNodDegrees * .6 * Math.sin(bodyPhase)), 0];
     }
     if (plan.earSwingDegrees) for (const side of ['near', 'far']) {
       rotations[side + 'EarBase'] = [round(plan.earSwingDegrees * .3 * wave * (side === 'near' ? 1 : -1)), round(plan.earSwingDegrees * wave), 0];
@@ -174,9 +176,12 @@ function bakeGallop(rig, legs, plan, { clipId = 'gallop', spineFlex = 0 } = {}) 
     const moveZ = t <= takeoff
       ? -(plan.bodyDip ?? .025) * height * Math.sin(Math.PI * t / takeoff) ** 2
       : (plan.bodyRise ?? .08) * height * Math.sin(Math.PI * (t - takeoff) / (1 - takeoff)) ** 2;
+    const neckId = bind.neckBase ? 'neckBase' : bind.neck ? 'neck' : bind.upperNeck ? 'upperNeck' : null;
+    const headId = bind.head ? 'head' : bind.upperHead ? 'upperHead' : null;
     const rotations = { root: [0, round(pitch), 0],
-      [bind.neckBase ? 'neckBase' : 'neck']: [0, round((plan.neckPitchDegrees || 0) - 4 * wave), 0],
-      head: [0, round((plan.headPitchDegrees || 0) + 2 * wave), 0], tailBase: [round(2 * wave), round((plan.tailPitchDegrees ?? -10) - 6 * wave), 0] };
+      ...(neckId ? { [neckId]: [0, round((plan.neckPitchDegrees || 0) - 4 * wave), 0] } : {}),
+      ...(headId ? { [headId]: [0, round((plan.headPitchDegrees || 0) + 2 * wave), 0] } : {}),
+      tailBase: [round(2 * wave), round((plan.tailPitchDegrees ?? -10) - 6 * wave), 0] };
     if (spineFlex) {
       rotations.pelvis = [0, round(spineFlex * wave), 0];
       rotations.spineMid = [0, round(-2 * spineFlex * wave), 0];
