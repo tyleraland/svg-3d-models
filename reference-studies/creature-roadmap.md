@@ -6,11 +6,11 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N3 Moose complete; recording completion commit, stopped between creatures.
+- Status: N3 Moose complete and committed; stopped between creatures.
 - Next milestone: N4 Bull.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N3 Moose / completion commit being recorded.
+- Last completed milestone / commit: N3 Moose / `7722cbe`.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none blocking N4. Inspect Cow/Buffalo sex, horn
@@ -435,5 +435,5 @@ Next action:
 - Direct workbench review included side/front/top/oblique anatomy, gallop
   suspension, lowered-rack impact and sharp lift; final view is idle at 45°/225°.
   Study and authoring scripts, declarative sources, regression tests, goldens and
-  regenerated workbench are included. Implementation commit recorded below.
+  regenerated workbench are included. Implementation commit: `7722cbe`.
 - Next is N4 Bull; no Bull work has started. Unrelated `.DS_Store` stays excluded.
