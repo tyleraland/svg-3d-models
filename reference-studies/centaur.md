@@ -128,3 +128,23 @@ in `creature-roadmap.md`.
 - Final Horse/Centaur browser gate: 262/262 outputs matched; authoring UI checks
   passed; zero console errors. Horse's golden output remained unchanged.
 - Rebuilt workbench left open on the Centaur hand strike at 60°/225°.
+
+## Chest recovery swivel follow-up (2026-10-29)
+
+A reported attack-end chest pivot was caused by `upperChestPlate` being a wide
+capsule steered by the short upperSpine-to-upperShoulders span. Foreshortening
+made the projected axis swing visibly even with modest underlying torso motion.
+The plate is now a stable rounded chest mass centered on a rigid midpoint helper
+under upperSpine. It follows the torso center without inheriting the unstable
+projected span direction. The attack curves and hand/foot trajectories are
+unchanged.
+
+The added regression measures the emitted silhouette's principal-axis movement
+during strike/recovery at sixteen headings and five elevations, verifies that
+the center follows the torso midpoint, and restores the old span in a mutation
+that must reproduce more than 15 degrees of swivel. All eight focused Centaur
+tests and the 480-view audit passed; the browser was reviewed at 60°/135° during
+recovery. Final broader checks and fix commit are recorded in the roadmap.
+
+The follow-up passed all 220 headless tests and 121/121 Centaur browser/package
+comparisons, including authoring UI checks with zero console errors.

@@ -38,3 +38,12 @@ test('camera-facing arms stay in front of the torso at 45/225, and an under-body
  const visible=rig=>['idle','run','attack'].every(clip=>{const s=projectScene(rig,{clip,time:clip==='attack'?.42:0,elevation:45,heading:225}),near=s.compositingGroups.find(g=>g.semanticRole==='camera-near appendages');return['leftBicepPlate','leftForearmPlate','leftHandPlate'].every(id=>near.elements.some(e=>e.sourceId===id));});
  assert.ok(visible(r));const broken=structuredClone(r);broken.plates.find(p=>p.id==='leftForearmPlate').occlusionMode='under-core';assert.equal(visible(broken),false);
 });
+
+test('upper chest stays centered and its projected silhouette does not swivel during attack recovery',()=>{
+ const angle=vector=>{const a=vector.attributes,rotation=Number((a.transform||'').match(/rotate\(([-\d.e+]+)/)?.[1]||0),wide=vector.tag==='ellipse'?Number(a.rx)>=Number(a.ry):Number(a.width)>=Number(a.height);return rotation+(wide?0:90);};
+ const delta=(a,b)=>Math.abs(((a-b+270)%180)-90);
+ const maxSwivel=rig=>{let max=0;for(const elevation of [30,45,60,75,90])for(let heading=0;heading<360;heading+=22.5){const angles=[];for(const time of [.42,.50,.56,.62,.68,.72,.78,.84,.92,1]){const e=projectScene(rig,{clip:'attack',time,elevation,heading}).compositingGroups.flatMap(g=>g.elements).find(e=>e.id==='upperChestPlate');angles.push(angle(e.vector));}for(const a of angles)for(const b of angles)max=Math.max(max,delta(a,b));}return max;};
+ assert.ok(maxSwivel(r)<5,'recovery keeps the chest silhouette stable');
+ for(const time of [0,.30,.42,.62,.72,.84,1]){const p=solve(r,{clip:'attack',time}),mid=p.upperSpine.map((v,k)=>(v+p.upperShoulders[k])/2);assert.ok(distance(p.upperChestCenter,mid)<1e-9,'chest center follows the torso midpoint');}
+ const broken=structuredClone(r),plate=broken.plates.find(p=>p.id==='upperChestPlate');Object.assign(plate,{bone:'upperShoulders',shape:'bone',size:[.5],span:['upperSpine','upperShoulders'],jointOverlap:1.18});assert.ok(maxSwivel(broken)>15,'mutation reproduces the foreshortened chest-span swivel');
+});

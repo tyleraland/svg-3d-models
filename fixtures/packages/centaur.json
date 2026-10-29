@@ -866,6 +866,35 @@
       "coverageGasketId": "upperShouldersGasket"
     },
     {
+      "id": "upperChestCenter",
+      "stableId": "upperChestCenter",
+      "parentId": "upperSpine",
+      "localBindPositionMeters": [
+        0.0075,
+        0,
+        0.14
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.1402,
+      "semanticRole": "body",
+      "helper": true,
+      "absoluteSide": "center",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": false,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
       "id": "upperNeck",
       "stableId": "upperNeck",
       "parentId": "upperShoulders",
@@ -2056,20 +2085,16 @@
       "bodyRegion": "core",
       "side": "center",
       "attachment": {
-        "type": "jointSpan",
-        "jointIds": [
-          "upperSpine",
-          "upperShoulders"
-        ]
+        "type": "rigidBone",
+        "boneId": "upperChestCenter"
       },
       "localGeometry": {
-        "type": "capsuleSpan",
-        "jointIds": [
-          "upperSpine",
-          "upperShoulders"
-        ],
-        "widthMeters": 0.5,
-        "overlapRatio": 1.18
+        "type": "primitive",
+        "primitive": "ellipse",
+        "sizeMeters": [
+          0.5,
+          0.34
+        ]
       },
       "depthBias": 4.3,
       "paletteRole": "base",
@@ -2084,10 +2109,7 @@
       "lodTier": "silhouette",
       "lodMergeGroup": "core.center",
       "mirrorPlateId": null,
-      "coverage": {
-        "method": "declared-overlap",
-        "overlapRatio": 1.18
-      }
+      "coverage": null
     },
     {
       "id": "upperShoulderPlate",
@@ -3358,7 +3380,7 @@
       "side": "center",
       "diameterMeters": 0.32,
       "paletteRole": "base",
-      "depthBias": 4.25,
+      "depthBias": 3.95,
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
       "opacity": 1,

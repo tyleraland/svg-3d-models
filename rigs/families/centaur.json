@@ -401,6 +401,17 @@
       "role": "body"
     },
     {
+      "id": "upperChestCenter",
+      "parent": "upperSpine",
+      "bind": [
+        0.0075,
+        0.0,
+        0.14
+      ],
+      "role": "body",
+      "helper": true
+    },
+    {
       "id": "upperNeck",
       "parent": "upperShoulders",
       "bind": [
@@ -904,21 +915,17 @@
     },
     {
       "id": "upperChestPlate",
-      "bone": "upperShoulders",
-      "shape": "bone",
+      "bone": "upperChestCenter",
+      "shape": "ellipse",
       "size": [
-        0.5
+        0.5,
+        0.34
       ],
       "role": "body",
       "bodyRegion": "core",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 4.3,
-      "span": [
-        "upperSpine",
-        "upperShoulders"
-      ],
-      "jointOverlap": 1.18
+      "zBias": 4.3
     },
     {
       "id": "upperShoulderPlate",
