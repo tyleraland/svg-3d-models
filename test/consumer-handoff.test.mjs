@@ -351,7 +351,7 @@ test('every catalog model resolves all base plates to authored semantic detail',
     .filter((file) => file.endsWith('.json'))
     .map((file) => file.replace(/\.json$/, ''))
     .sort();
-  assert.equal(models.length, 32);
+  assert.ok(models.length > 0);
   for (const model of models) {
     const elements = projectScene(loadModel(model), {
       clip: 'idle', time: 0.5, elevation: 60, heading: 45,

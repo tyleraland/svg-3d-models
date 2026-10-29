@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -185,9 +185,10 @@ test('rig audit-all CLI writes a CI-suitable catalog report', () => {
   const out = join(dir, 'catalog.json');
   const stdout = execFileSync('node', [RIG, 'audit-all', '--json', '-o', out], { cwd: ROOT, encoding: 'utf8' });
   const report = JSON.parse(readFileSync(out, 'utf8'));
-  assert.match(stdout, /audit-all passed: 32\/32 models, 0 issues, \d+ warnings/);
+  const modelCount = readdirSync(join(ROOT, 'rigs/models')).filter(f => f.endsWith('.json')).length;
+  assert.ok(stdout.includes(`audit-all passed: ${modelCount}/${modelCount} models, 0 issues`));
   assert.equal(report.schema, 'paper-rig/audit-catalog/1');
-  assert.equal(report.summary.modelCount, 32);
+  assert.equal(report.summary.modelCount, modelCount);
   assert.ok(report.models.some((model) => model.sourceModelId === 'rabbit' && model.modelId === 'rabbitBase'));
   assert.equal(report.status, 'passed');
 });

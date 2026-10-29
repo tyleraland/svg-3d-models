@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 32 animals and monsters. They are factored into reusable family
+catalog contains 33 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -634,3 +634,10 @@ tapered articulated body, slow/fast traveling waves, `rise`, `idleRaised`,
 for CLI compatibility. The separate King Cobra variant is planned next.
 See [the Anaconda study](reference-studies/anaconda.md) for Blender evidence,
 authoring decisions and regression coverage.
+
+### King Cobra
+
+`kingCobra` is a separate hooded snake alongside Anaconda (`serpentine`). Its
+raised threat idle, low idle, slow/fast travel, rise/lower transitions and rapid
+bite use rigid hinged hood panels and a head-aligned jaw. Blender reference
+findings and regression evidence are in [the King Cobra study](reference-studies/king-cobra.md).

@@ -9,7 +9,7 @@
 // layer, concatenated in dependency order with import/export stripped and the
 // injected render context folded back onto the UI's live `state`.
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from '../lib/args.js';
@@ -20,12 +20,15 @@ const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 
 // The workbench's model selector and `state` init key off `Object.keys(rigs)`, so
 // the rig table must preserve the original authoring order, not alphabetical.
-const RIG_ORDER = [
+const PREFERRED_RIG_ORDER = [
   'horse', 'humanoid', 'tinyBiped', 'stoutBiped', 'tailedBiped', 'rhino', 'elephant',
   'rabbit', 'bear', 'leopard', 'wolf', 'greyhound', 'blob', 'quadruped', 'lizard', 'dragon',
-  'walkingBird', 'flyingBird', 'bug', 'ant', 'radial', 'serpentine', 'mimic', 'tentacle',
+  'walkingBird', 'flyingBird', 'bug', 'ant', 'radial', 'serpentine', 'kingCobra', 'mimic', 'tentacle',
   'scorpion', 'bat', 'crab', 'lobster', 'centaur', 'harpy', 'angel', 'spider',
 ];
+
+const discoveredModels = readdirSync(join(ROOT, 'rigs/models')).filter(name => name.endsWith('.json')).map(name => name.slice(0,-5)).sort();
+const RIG_ORDER = [...PREFERRED_RIG_ORDER, ...discoveredModels.filter(name => !PREFERRED_RIG_ORDER.includes(name))];
 
 // Resolve every declarative model to its rig and emit `const rigs = {...}` as data,
 // replacing the old imperative builders. Models are proven byte-identical to the

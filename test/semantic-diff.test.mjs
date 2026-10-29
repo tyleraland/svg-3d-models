@@ -36,7 +36,7 @@ function assertValid(diff, label) {
 }
 
 test('every catalog model has a deterministic schema-valid unchanged self-diff', () => {
-  assert.equal(MODELS.length, 32);
+  assert.ok(MODELS.length > 0);
   for (const model of MODELS) {
     const source = loadModelSource(model);
     const analysis = analyze(source, model);

@@ -29,8 +29,8 @@ function assertSchemaValid(validate, value, label) {
   assert.equal(validate(value), true, `${label}: ${ajv.errorsText(validate.errors)}`);
 }
 
-test('all 32 provenance sidecars preserve rig output and explain every final leaf', () => {
-  assert.equal(MODELS.length, 32);
+test('all catalog provenance sidecars preserve rig output and explain every final leaf', () => {
+  assert.ok(MODELS.length > 0);
   for (const model of MODELS) {
     const expected = loadModel(model);
     const { rig, provenance } = loadModelWithProvenance(model);

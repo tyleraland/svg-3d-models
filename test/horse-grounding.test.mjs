@@ -29,7 +29,7 @@ test('workbench framing and projected horse shadow stay fixed throughout idle', 
     const editorViewBox = runInNewContext(`(${fn})`, {
       state: core.state,
       frameTimes: clip => clip.frames.map(f => f.t),
-      projected: core.projected, worldJoints: core.worldJoints,
+      projected: core.projected, worldJoints: core.worldJoints, cameraBasis: core.cameraBasis,
     });
     const bounds = editorViewBox(rig, 0, 'idle');
     const shadow = () => core.projectedRenderPlan(rig, core.state.t, 'idle').groups[0];

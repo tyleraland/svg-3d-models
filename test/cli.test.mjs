@@ -4,12 +4,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { readFileSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { readFileSync, readdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const MODEL_COUNT = readdirSync(join(ROOT, 'rigs/models')).filter(f => f.endsWith('.json')).length;
 const RIG = join(ROOT, 'packages/cli/bin/rig.js');
 const run = (args, opts = {}) => execFileSync('node', [RIG, ...args], { cwd: ROOT, encoding: 'utf8', ...opts });
 
@@ -20,7 +21,7 @@ test('validate exits 0 for a passing model', () => {
 
 test('validate-sources accepts every declarative model and family', () => {
   const out = run(['validate-sources']);
-  assert.match(out, /32\/32 model sources passed/);
+  assert.ok(out.includes(`${MODEL_COUNT}/${MODEL_COUNT} model sources passed`));
 });
 
 test('render output is byte-identical to the golden fixture', () => {
