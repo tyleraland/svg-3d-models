@@ -30,8 +30,8 @@
   "id": "horseBase",
   "family": "quadruped",
   "heightMeters": 1.85,
-  "tokenScale": 28,
-  "tokenGroundY": 68,
+  "tokenScale": 23,
+  "tokenGroundY": 72,
   "surfaceConvention": {
     "outward": "+z",
     "groundPlane": "z=0",
