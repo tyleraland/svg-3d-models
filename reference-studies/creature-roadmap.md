@@ -6,17 +6,16 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N2 antlerless Deer complete and committed; stopped between creatures.
-- Next milestone: N3 Moose.
+- Status: N3 Moose complete; recording completion commit, stopped between creatures.
+- Next milestone: N4 Bull.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N2 Deer / `72fa988`.
+- Last completed milestone / commit: N3 Moose / completion commit being recorded.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking N3. Inspect the actual Moose action
-  inventory before choosing a native attack reference or authoring an adaptation.
-- Next action: inspect Moose in Blender, fit tall shoulders, long muzzle/legs and
-  broad antlers, then author idle, walk, run and goring attack.
+- Open decisions or blockers: none blocking N4. Inspect Cow/Buffalo sex, horn
+  anatomy and actual action inventory before choosing the Bull reference.
+- Next action: inspect Bull candidates in Blender when the user resumes N4.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -55,7 +54,7 @@ selectable. Commit every row before proceeding to the next.
 |---|---|---|---|---|
 | N1 | complete | Flying bird: crow | Crow | Separate slim body, straight bill and long narrow tail; grounded idle/walk/run, wing-assisted hop, flight/glide and angular airborne peck. Shared author-time avian baker; Eagle output unchanged. |
 | N2 | complete | Deer, without antlers | FemaleDeer primary; Doe and Deer inventories | Antlerless light barrel, long slender legs, leaf ears and short tail; grounded idle, four-beat walk, light gallop and authored bite. |
-| N3 | queued | Moose | Moose | Tall shoulders, long muzzle/legs and broad antlers; goring attack. |
+| N3 | complete | Moose | Moose | Tall shoulders, long muzzle/legs and broad antlers; goring attack. |
 | N4 | queued | Bull | Cow, Buffalo as secondary anatomy reference | Heavy forequarters and neck, horns; goring attack. Inspect reference sex/anatomy rather than assuming a folder supplies a bull. |
 | N5 | queued | Cow, without horns | Cow | Distinct bovine body; hornless silhouette and shove attack. |
 | N6 | queued | Mountain Goat | MountainGoat, Goat | Compact mountain stance, appropriate horns and hooves; head-driven attack. |
@@ -410,3 +409,31 @@ Next action:
   suspension. Workbench left on Deer idle at 45°/270°.
 - Implementation commit: `72fa988`. Next is N3 Moose; no Moose work has started.
   Unrelated `.DS_Store` remains excluded.
+
+
+### N3 — Moose — completed 2026-10-29
+
+- Opened native `Moose/SK_Moose.blend` in Blender 5.1.2: 105 bones, separate
+  body/antler meshes, 99 actions at 25 FPS. Sampled 21 phases and rendered idle,
+  fast walk/run and grazing/threat transitions; added reproducible study script.
+- Authored independent `moose` family/model with tall shoulders/hump, deep barrel,
+  long articulated legs, hanging muzzle/bell and short tail. Two rigid skull-owned
+  racks have sloped broad palm polygons, five outer tines and a forward brow each.
+  Existing Deer and Horse output unchanged.
+- Added grounded breathing idle, four-beat walk, fast gallop with suspension and
+  a braced antler gore: lower/aim, 224 ms drive, rapid lift and full recovery.
+  Native library has no named combat action; the gore is explicitly authored
+  from observed neck/threat articulation. All four feet brace through the attack.
+- Nine focused tests passed, including 1,201 interpolated support samples per
+  clip and a 4,608-view independent order/framing matrix. Antlers retain area in
+  front/profile/top and rigid skull distances. Deliberate jaw-seam and far-antler
+  order mutations are caught. Dense checks fixed a diagonal antler export crop.
+- Full `npm run check`: all 252 tests and 36/36 models, source validation,
+  ordinary/motion/paint audits and release checks passed. Moose adds zero audit
+  issues/warnings; existing catalog advisories remain 40 ordinary, 38 motion,
+  40 paint. Browser gate: 121/121 outputs, authoring UI passed, zero console errors.
+- Direct workbench review included side/front/top/oblique anatomy, gallop
+  suspension, lowered-rack impact and sharp lift; final view is idle at 45°/225°.
+  Study and authoring scripts, declarative sources, regression tests, goldens and
+  regenerated workbench are included. Implementation commit recorded below.
+- Next is N4 Bull; no Bull work has started. Unrelated `.DS_Store` stays excluded.

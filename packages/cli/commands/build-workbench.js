@@ -22,7 +22,7 @@ const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 // the rig table must preserve the original authoring order, not alphabetical.
 const PREFERRED_RIG_ORDER = [
   'horse', 'humanoid', 'tinyBiped', 'stoutBiped', 'tailedBiped', 'rhino', 'elephant',
-  'rabbit', 'bear', 'leopard', 'wolf', 'greyhound', 'deer', 'blob', 'quadruped', 'lizard', 'dragon',
+  'rabbit', 'bear', 'leopard', 'wolf', 'greyhound', 'deer', 'moose', 'blob', 'quadruped', 'lizard', 'dragon',
   'walkingBird', 'flyingBird', 'crow', 'bug', 'ant', 'radial', 'serpentine', 'kingCobra', 'mimic', 'tentacle',
   'scorpion', 'bat', 'crab', 'lobster', 'centaur', 'harpy', 'angel', 'spider',
 ];
