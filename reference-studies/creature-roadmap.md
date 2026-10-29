@@ -6,17 +6,17 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N1 separate Crow complete and committed; stopped between creatures.
-- Next milestone: N2 Deer without antlers.
+- Status: N2 antlerless Deer complete and committed; stopped between creatures.
+- Next milestone: N3 Moose.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N1 Crow / `ad90c33`.
+- Last completed milestone / commit: N2 Deer / `72fa988`.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking N2. Crow peck and fast gait are
-  documented adaptations; the native scene has no named attack or run.
-- Next action: inspect Deer in Blender, author a separate antlerless SVG with
-  matching proportions, then refine idle, walk, run and bite attack.
+- Open decisions or blockers: none blocking N3. Inspect the actual Moose action
+  inventory before choosing a native attack reference or authoring an adaptation.
+- Next action: inspect Moose in Blender, fit tall shoulders, long muzzle/legs and
+  broad antlers, then author idle, walk, run and goring attack.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -54,7 +54,7 @@ selectable. Commit every row before proceeding to the next.
 | ID | Status | Creature | Candidate reference | Distinctive requirements |
 |---|---|---|---|---|
 | N1 | complete | Flying bird: crow | Crow | Separate slim body, straight bill and long narrow tail; grounded idle/walk/run, wing-assisted hop, flight/glide and angular airborne peck. Shared author-time avian baker; Eagle output unchanged. |
-| N2 | queued | Deer, without antlers | Doe, FemaleDeer, Deer | Slender ungulate proportions, long ears and light gait; bite attack; no antlers. |
+| N2 | complete | Deer, without antlers | FemaleDeer primary; Doe and Deer inventories | Antlerless light barrel, long slender legs, leaf ears and short tail; grounded idle, four-beat walk, light gallop and authored bite. |
 | N3 | queued | Moose | Moose | Tall shoulders, long muzzle/legs and broad antlers; goring attack. |
 | N4 | queued | Bull | Cow, Buffalo as secondary anatomy reference | Heavy forequarters and neck, horns; goring attack. Inspect reference sex/anatomy rather than assuming a folder supplies a bull. |
 | N5 | queued | Cow, without horns | Cow | Distinct bovine body; hornless silhouette and shove attack. |
@@ -385,3 +385,28 @@ Next action:
   comparisons passed. Authoring UI passed with zero console errors; catalog
   advisory counts remain 40 ordinary, 38 motion and 40 paint.
 - Implementation commit: `e2c0407`. Next remains N2 Deer; no Deer work started.
+
+### N2 — antlerless Deer — completed 2026-10-29
+
+- Opened native FemaleDeer, Doe and Deer scenes in Blender 5.1.2. FemaleDeer is
+  the antlerless primary: 47 bones, 43 actions, 24 FPS. Sampled 21 phases and
+  rendered idle breathing, walk, run and feeding; saved a reproducible study tool.
+  Male Deer's antler meshes were identified and not reused.
+- Authored separate `deer` family/model: light low barrel, long articulated legs,
+  narrow muzzle, prominent canted leaf ears with structural spines and short tail.
+  No mane, saddle anchor, antlers or horn geometry. Horse output unchanged.
+- Added four-hoof idle with breathing/ears, staggered four-beat walk, light run
+  with suspension and an authored braced bite with 92 ms jaw closure. No named
+  native attack exists in the primary scene; feeding articulation informed the
+  adaptation. All clips use ordinary local rotations and baked contact handling.
+- Seven Deer tests passed: anatomy, visible ear leaves, 1,201 interpolated samples
+  per clip, lengths/limits/contacts/loops, whole-leg movement and bite behavior.
+  Independent occlusion/framing matrix covers 4,224 views; jaw-seam mutation tested.
+- Full `npm run check`: all 243 tests and 35/35 models passed, with source,
+  ordinary/motion/paint audits and release checks. Deer audit: 480 views, zero
+  issues/warnings. Catalog warning counts remain 40 ordinary, 38 motion, 40 paint.
+- Browser parity: 121/121 outputs, authoring UI passed, zero console errors.
+  Direct review included side/oblique/front/top shape, open jaw, walk and run
+  suspension. Workbench left on Deer idle at 45°/270°.
+- Implementation commit: `72fa988`. Next is N3 Moose; no Moose work has started.
+  Unrelated `.DS_Store` remains excluded.
