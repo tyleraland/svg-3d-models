@@ -24,7 +24,7 @@ const SYSTEM_CHROMIUM = [
   '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
 ].find((candidate) => candidate && existsSync(candidate));
 
-const CLIPS = ['idle', 'idleLow', 'idleHind', 'walk', 'walkHind', 'attackHind', 'standUp', 'standDown', 'hop', 'rise', 'idleRaised', 'lower', 'trot', 'sprint', 'fly', 'glide', 'run', 'gallop', 'attack', 'stomp', 'sidewalk', 'siderun', 'pounce', 'hit', 'ko'];
+const CLIPS = ['idle', 'idleLow', 'idleHind', 'walk', 'walkHind', 'attackHind', 'standUp', 'standDown', 'hop', 'rise', 'idleRaised', 'lower', 'trot', 'sprint', 'fly', 'glide', 'run', 'gallop', 'attack', 'stomp', 'sidewalk', 'siderun', 'pounce', 'talonStrike', 'hit', 'ko'];
 const TIMES = [0, 0.25, 0.5, 0.62, 1];
 const CAMERAS = [null, [60, 0], [45, 90], [90, 180]];
 
@@ -131,7 +131,9 @@ async function main() {
   let outputCount = 0, mismatch = 0;
   for (const model of models) {
     console.log(`checking ${model}`);
-    for (const clip of [null, ...CLIPS]) {
+    // Absent clips produce no outputs; avoid rebuilding a dense model's UI for them.
+    const availableClips = new Set(Object.keys(loadModel(model).clips));
+    for (const clip of [null, ...CLIPS.filter(id => availableClips.has(id))]) {
       const clips = clip === null ? [] : [clip];
       const expected = packageSweep([model], clips, clip === null);
       const regen = await sweep(regenerated.page, [model], clips, clip === null);
