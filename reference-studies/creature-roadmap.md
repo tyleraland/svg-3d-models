@@ -6,17 +6,17 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: R2b King Cobra complete and committed; stopped between creatures.
-- Next milestone: R3 Centaur.
+- Status: R3 Centaur complete and committed; stopped between creatures.
+- Next milestone: R4 Flying bird / Eagle refinement and Crow study.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: R2b King Cobra / `5d44d9e`.
+- Last completed milestone / commit: R3 Centaur / `36bef0c`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking Centaur. Flying-bird variant handling
+- Open decisions or blockers: none blocking R4. Flying-bird variant handling
   is specified below; source action availability must be inspected per model.
-- Next action: review the Centaur source and refined Horse alongside the
-  WildMesh Horse reference; refine equine proportions and the torso junction
-  before idle, walk, run and attack.
+- Next action: inspect Eagle_Stylized/BaldEagle and Crow/Raven in Blender; refine
+  the existing flyingBird as Eagle and record reusable anatomy/motion for the
+  separately selectable Crow planned in N1.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -37,7 +37,7 @@ Use the inventory as a starting point; it is not a substitute for inspection.
 | R1 | complete | Crab — Crab_Stylized; HermitCrab_Stylized as secondary reference | Broad carapace, believable leg stance and hinged claws; one claw distinctly larger. Idle, forward walk/run, sideways walk/run, coordinated support groups, and claw attack. Keep forward and sideways clips separately selectable. |
 | R2a | complete | Serpentine: anaconda — Anaconda_Stylized | Heavy continuous silhouette, distributed traveling body waves, grounded travel, raised-head posture, strike and recovery. Establish reusable snake structure without a hood. |
 | R2b | complete | Serpentine: king cobra — KingCobra_Stylized | Distinct hood and neck proportions, raised forebody, traveling waves, controlled idle, walk/run equivalents and a sudden strike. Preserve the anaconda variant. |
-| R3 | queued | Centaur — Horse and the refined SVG horse | Reuse equine proportions, articulated legs and gait timing; integrate the humanoid torso cleanly. Idle, walk, run and attack with explicit support/weight transfer. Review the torso junction and arm overlap through the turntable. |
+| R3 | complete | Centaur — Horse and the refined SVG horse | Reuse equine proportions, articulated legs and gait timing; integrate the humanoid torso cleanly. Idle, walk, run and attack with explicit support/weight transfer. Review the torso junction and arm overlap through the turntable. |
 | R4 | queued | Flying bird: eagle and crow study — Eagle_Stylized, BaldEagle, Crow/Raven | Refine existing flyingBird as the eagle: hooked beak, head/body ratio, wing folding, span and tail. Compare crow proportions now and identify reusable avian structure. Idle, grounded walk/run, flight/flap/glide, and airborne peck attack. Author the separate crow model in N1. |
 
 R2a and R2b are separate creature milestones and commits. Retain the existing
@@ -258,3 +258,33 @@ Next action:
   are included in the implementation commit.
 - Implementation commit: `5d44d9e`.
 - Next: R3 Centaur. No implementation of the next creature has started.
+
+### R3 Centaur — completed 2026-10-29
+
+- Reference study: [centaur.md](centaur.md). WildMesh Horse inspected in Blender;
+  21 samples each of Idle, Walk, Trot, Canter and Gallop, plus top/profile renders.
+  The existing refined Horse supplies the equine geometry; its output is preserved.
+- Shape: longer level horse barrel, rounded shoulder/haunch masses, articulated
+  fore carpi and rear hocks, tapered waist/withers bridge and upright human torso.
+- Clips: planted idle, four-beat walk, faster gallop-style run with suspension,
+  and a phased braced hand strike with torso twist and right-hand guard. The
+  human balance/attack are authored adaptations, not native Horse combat data.
+- Forearm/hand sorting references the torso at their height; shoulder/bicep
+  sorting references upperShoulders. Fixed a near-arm burial at 45°/225° and
+  added a mutation test that reproduces it. Increased idle bake density to meet
+  existing strict planted-hoof tolerance without loosening tests.
+- Seven Centaur tests pass: 5,376 pose/camera views, 1,201 interpolated samples
+  per requested clip, limits/lengths/contacts/loops, gait/strike and authoring
+  control mapping. Combined Centaur/Horse grounding run: 17/17 passed.
+- Full `npm run check`: 219 tests passed, 33/33 models, source validation,
+  ordinary/motion/paint audits and release checks. Catalog warnings: 40 ordinary,
+  38 motion, 40 paint; Centaur contributes none.
+- Centaur audit: 480 views, zero issues/warnings. Horse/Centaur browser parity:
+  262/262 outputs matched, authoring UI passed, zero console errors. Direct review
+  included 45°/225° arms/junction, side/overhead and strike windup/contact.
+- Shared quadruped authoring now supports upperNeck/upperHead controls. Ordinary
+  generated clips still ship without runtime IK. Rebuilt HTML and Centaur
+  fixtures included; existing Horse output remained golden-identical.
+- Implementation commit: `36bef0c`.
+- Next: R4 Eagle / flying-bird refinement and Crow study. No next-creature
+  implementation has started; the separate Crow model remains N1.
