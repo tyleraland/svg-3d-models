@@ -38,3 +38,10 @@ export function finishDinosaur(n,{prefix,feet,sole=.025,idleFixed=true,attack='n
  let radius=0;for(const mode of ['bind',...Object.keys(r.clips)])for(const t of mode==='bind'?[0]:r.clips[mode].frames.map(f=>f.t)){const p=core.solveWorld(r,t,mode);for(const plate of r.plates)for(const id of plate.span||[plate.bone])radius=Math.max(radius,Math.hypot(...p[id])+Math.max(...plate.size)/2);}
  r.tokenGroundY=50;r.tokenScale=Math.floor(44/radius*100)/100;
 }
+// Small closed faceted paper solids: actual thickness, true triangle centroid sorting.
+export function paperSolid(n,id,parent,vertices,faces,{reference=parent,tier='identity',material='paperMain'}={}){
+ const {J,P}=n,points=vertices.map((p,i)=>J(id+'Vertex'+i,parent,p,'accent',{helper:true}));
+ for(const[face,indices]of faces.entries()){const center=indices.reduce((s,i)=>add(s,vertices[i]),[0,0,0]).map(v=>v/indices.length),bone=J(id+'Face'+face+'Center',parent,center,'accent',{helper:true});P(id+'Face'+face+'Plate',bone,'polygon',[.01],'accent',{points:indices.map(i=>points[i]),material,bodyRegion:'accessory',semanticDetailTier:tier,occlusionMode:'surface-relative',occlusionReference:reference});}
+ return points;
+}
+export function paperNeedle(n,id,parent,base,tip,radius,options={}){let axis=sub(tip,base),len=Math.hypot(...axis);axis=mul(axis,1/len);let seed=Math.abs(axis[2])<.8?[0,0,1]:[0,1,0],u=[axis[1]*seed[2]-axis[2]*seed[1],axis[2]*seed[0]-axis[0]*seed[2],axis[0]*seed[1]-axis[1]*seed[0]];u=mul(u,radius/Math.hypot(...u));let v=[axis[1]*u[2]-axis[2]*u[1],axis[2]*u[0]-axis[0]*u[2],axis[0]*u[1]-axis[1]*u[0]];return paperSolid(n,id,parent,[add(base,u),add(base,v),sub(base,u),sub(base,v),tip],[[0,1,4],[1,2,4],[2,3,4],[3,0,4]],options);}

@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 52 animals and monsters. They are factored into reusable family
+catalog contains 53 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -676,3 +676,6 @@ tail, with heavy walk/run, a turning tail sweep and side-rest KO. See
 
 The separate crested `parasaurolophus` has bipedal walk/run and a forward lunge;
 see [its native study](reference-studies/parasaurolophus.md).
+
+The `stegosaurus` adds thick staggered dorsal plates and four tail spikes, with
+a turning tail strike. See [its study](reference-studies/stegosaurus.md).

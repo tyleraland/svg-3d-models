@@ -7,14 +7,14 @@ order below. Planning does not start implementation automatically.
 ## Resume checkpoint
 
 - Status: Q1 Frog and Q2 Wasp complete; continuing the full Quaternius batch.
-- Active creature / stage: Q5 Stegosaurus — native reference study.
+- Active creature / stage: Q6 T. rex — native reference study.
 - Last completed milestone: Apatosaurus; five focused tests and 121 Chromium outputs pass.
 - Next milestone: Q4 Parasaurolophus, then Q5–Q8 in order.
 - References: `quaternius-inventory.json`, `frog.md` and `wasp.md` in this directory.
 - Last correction: Kangaroo elbow/forward forearm guard / `b8096eb`.
 - Open technical blockers: none. User explicitly chose to continue through all
   eight Quaternius creatures, committing each before moving on; no review stop required.
-- Next action: implement Stegosaurus; continue through Q8 without review stops.
+- Next action: implement T. rex, then Triceratops and Velociraptor.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -982,7 +982,7 @@ WildMesh items remain on the list; this is the currently requested sequence.
 | Q2 | complete | Wasp | Easy Animated Enemy Pack / Wasp.blend | Flying, Attack, Death; authored hover/cruise/dart, abdominal sting and side-rest KO. |
 | Q3 | complete | Apatosaurus | Dinosaur Animated Pack / Apatosaurus.blend | Idle, Walk, Run, Jump, Attack; death is unusually named Stegosaurus_Death in this file. Inspect its contents. |
 | Q4 | complete | Parasaurolophus | Dinosaur Animated Pack / Parasaurolophus.blend | Idle, Walk, Run, Jump, Attack, Death. |
-| Q5 | queued | Stegosaurus | Dinosaur Animated Pack / Stegosaurus.blend | Idle, Walk, Run, Jump, Attack, Death. |
+| Q5 | complete | Stegosaurus | Dinosaur Animated Pack / Stegosaurus.blend | Idle, Walk, Run, Jump, Attack, Death. |
 | Q6 | queued | T. rex | Dinosaur Animated Pack / Trex.blend | Idle, Walk, Run, Jump, Attack, Death. |
 | Q7 | queued | Triceratops | Dinosaur Animated Pack / Triceratops.blend | Idle, Walk, Run, Jump, Attack, Death. |
 | Q8 | queued | Velociraptor | Dinosaur Animated Pack / Velociraptor.blend | Idle, Walk, Run, Jump, Attack, Death. |
@@ -1028,3 +1028,6 @@ remain reference assets and are not copied into the workbench.
 
 - Q3 Apatosaurus committed as `c96f8c4`; Q4 Parasaurolophus complete with four
   focused tests, 480-view composed audit and 121 browser outputs passing.
+
+- Q4 Parasaurolophus committed as `bebc996`; Q5 Stegosaurus complete: eight
+  cumulative dinosaur tests, 480-view composed audit and 121 browser outputs pass.
