@@ -10,7 +10,7 @@ order below. Planning does not start implementation automatically.
 - Next milestone: N12 Badger.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N11 Rat / pending commit.
+- Last completed milestone / commit: N11 Rat / `5f7979d`.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
@@ -747,5 +747,5 @@ Next action:
   audits and release metadata passed. Advisory totals stay 40/38/40; Rat adds
   none. Existing 43 model goldens unchanged. Workbench left at Rat idle,
   45° / 225°, overlays off.
-- Implementation commit pending. N12 Badger is next; no next-creature work
+- Implementation commit: `5f7979d`. N12 Badger is next; no next-creature work
   started. Unrelated `.DS_Store` excluded.
