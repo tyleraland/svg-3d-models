@@ -6,16 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N6 Mountain Goat complete and committed; stopped between creatures.
-- Next milestone: N7 Boar.
+- Status: N7 Boar complete; stopped between creatures.
+- Next milestone: N8 Camel.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N6 Mountain Goat / `638995d`.
+- Last completed milestone / commit: N7 Boar / pending commit.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking N7. Inspect WildBoar/Boar/Warthog
-  anatomy and actual actions before selecting the Boar reference and tusk attack.
-- Next action: inspect Boar candidates in Blender when N7 is requested.
+- Open decisions or blockers: none.
+- Next action: inspect Camel candidates in Blender when N8 is requested.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -58,7 +57,7 @@ selectable. Commit every row before proceeding to the next.
 | N4 | complete | Bull | Cow, Buffalo as secondary anatomy reference | Heavy forequarters and neck, horns; goring attack. Inspect reference sex/anatomy rather than assuming a folder supplies a bull. |
 | N5 | complete | Cow, without horns | Cow | Distinct bovine body; hornless silhouette and shove attack. |
 | N6 | complete | Mountain Goat | MountainGoat, Goat | Compact mountain stance, appropriate horns and hooves; head-driven attack. |
-| N7 | queued | Boar | WildBoar, Boar, Warthog | Low heavy forequarters, short legs, tusks; charge/tusk attack. |
+| N7 | complete | Boar | WildBoar, Boar, Warthog | Low heavy forequarters, short legs, tusks; charge/tusk attack. |
 | N8 | queued | Camel | Camel, Camel_Stylized | Reference-led hump count, long neck and leg proportions; distinct pacing; select attack after action inspection. |
 | N9 | queued | Kangaroo | Kangaroo | Upright balance, large hind feet and substantial tail; hop locomotion; separate punch and tail-supported kick attacks. Explicit tail support during kick. |
 | N10 | queued | Monkey | Monkey_Stylized | Primate limb/tail proportions and grounded movement; choose attack from inspected reference and document adaptations. |
@@ -533,3 +532,31 @@ Next action:
   at idle, 45° elevation / 225° heading. Sources, study/authoring scripts, tests,
   fixtures and generated workbench are included. Implementation commit: `638995d`.
 - Next is N7 Boar; no Boar work has started. Unrelated `.DS_Store` stays excluded.
+
+
+### N7 — Boar — completed 2026-10-29
+
+- Studied native WildBoar, Boar and Warthog in Blender: 89/110/134 bones,
+  84/81/101 actions, 30/24/24 FPS. Reproducible study script inventories actions,
+  samples 41 phases, and renders side/front/top and gait/attack key poses.
+- Added independent Boar family/model with high shoulders, compact barrel,
+  short articulated legs, long flat-ended snout, upright ears and short tail.
+  Curved lower tusks follow the jaw; smaller upper canines follow the skull.
+  Orthogonal ribbons retain volume; no Warthog warts or oversized tusks.
+- Added breathing idle, four-beat walk, fast short gallop and a crouch/lunge with
+  open-jaw upward tusk flick. Attack has a velocity-matched parabolic flight,
+  fore then hind landing, compression and complete recovery. Four feet are
+  grounded in idle; shadow stays fixed. Existing ungulate goldens are unchanged.
+- Eight focused tests pass, including 1,201 interpolated contact/clearance
+  samples per clip and 4,608 independent occlusion/full-SVG-framing views.
+  Flattened tusk and promoted far-tusk mutations are detected. Maximum attack
+  stance drift is approximately 5.4 micrometers, below the 10 micrometer bound.
+- Full `npm run check`: 286 tests, 40/40 source/model validations, ordinary/
+  motion/paint audits and release checks passed. Boar adds no issues/warnings;
+  existing catalog advisories remain 40 ordinary / 38 motion / 40 paint.
+  Browser comparison passed 121/121 outputs, authoring UI and zero console errors.
+- Actual workbench review covered side/front/top/oblique shape, gait poses,
+  tusk-lunge impact and playback. Workbench left at idle, 45° / 225°.
+  Implementation commit: pending. Study, authoring scripts, tests, fixtures and
+  generated workbench are included.
+- Next is N8 Camel; no Camel work started. Unrelated `.DS_Store` stays excluded.
