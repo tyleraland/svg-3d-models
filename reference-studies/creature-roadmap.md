@@ -6,11 +6,11 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N6 Mountain Goat complete; recording completion commit, stopped between creatures.
+- Status: N6 Mountain Goat complete and committed; stopped between creatures.
 - Next milestone: N7 Boar.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N6 Mountain Goat / completion commit being recorded.
+- Last completed milestone / commit: N6 Mountain Goat / `638995d`.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none blocking N7. Inspect WildBoar/Boar/Warthog
@@ -531,5 +531,5 @@ Next action:
 - Direct review covered native/SVG side/front proportions, horn flare, top
   burial, lower walk neck, gallop suspension and head-butt impact. Workbench left
   at idle, 45° elevation / 225° heading. Sources, study/authoring scripts, tests,
-  fixtures and generated workbench are included. Implementation commit recorded below.
+  fixtures and generated workbench are included. Implementation commit: `638995d`.
 - Next is N7 Boar; no Boar work has started. Unrelated `.DS_Store` stays excluded.
