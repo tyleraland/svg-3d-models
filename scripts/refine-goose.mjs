@@ -1,0 +1,74 @@
+// WildMesh Goose reference -> separate paper waterfowl. IK runs only at author time.
+import fs from'node:fs';
+import{loadFamily}from'@paper-rig/rigs';
+import{core}from'@paper-rig/compiler';
+import{bindPositions,sagittalBodyPose}from'../rigs/quadruped-locomotion.js';
+import{curve,round}from'./lib/spatial-leg-ik.mjs';
+const r=loadFamily('deer');Object.assign(r,{id:'gooseBase',family:'waterfowl',archetypes:['goose','waterfowl'],heightMeters:.62,tokenScale:60,tokenGroundY:65,profile:{silhouette:'goose: heavy low feather barrel, tall curved neck, small rounded head and broad flat bill, short articulated legs, webbed feet and long folded wings',locomotion:'alternating short-legged waddling walk; faster longer running steps with lowered neck and brief suspension',attack:'authored braced neck lunge and snapping bite, guided by native grazing neck and jaw articulation; no native combat action'},joints:[],plates:[],anchors:[],clips:{}});r.camera.framing='fixed scale with ground origin at token [50,65]';
+const J=(id,parent,bind,role='limb',extra={})=>{const q={id,parent,bind,role,...extra};r.joints.push(q);return q;};
+const P=(id,bone,shape,size,role='limb',extra={})=>r.plates.push({id,bone,shape,size,role,...(['head','neck'].includes(role)?{bodyRegion:role}:{}),attachment:'rigid',material:'paperMain',zBias:role==='core'?2:0,...extra});
+const span=(id,a,b,width,role='limb',extra={})=>P(id,b,'capsule',[width],role,{span:[a,b],...extra});
+J('root',null,[0,0,0],'root');J('pelvis','root',[0,0,.269],'body');J('chest','pelvis',[.13,0,.031],'body');J('neckBase','chest',[.135,0,.038],'neck');J('neckLower','neckBase',[.016,0,.087],'neck');J('neckMid','neckLower',[.016,0,.065],'neck');J('head','neckMid',[-.014,0,.067],'head');J('beak','head',[.105,0,-.018],'head',{helper:true});
+P('castShadow','root','ellipse',[.92,.42],'shadow',{surfaceNormal:[0,0,1],material:'shadow',zBias:-100});span('torsoPlate','pelvis','chest',.25,'core');P('pelvisPlate','pelvis','ellipse',[.34,.255],'core',{occlusionMode:'under-core'});P('chestPlate','chest','ellipse',[.27,.275],'core');span('neckRootPlate','chest','neckBase',.115,'neck');span('neckLowerPlate','neckBase','neckLower',.082,'neck');span('neckMidPlate','neckLower','neckMid',.064,'neck');span('headConnectorPlate','neckMid','head',.062,'head',{occlusionMode:'under-core'});P('headPlate','head','ellipse',[.115,.092],'head');
+// The upper bill is broad in plan and thin in elevation, with an edge for side views.
+J('billBase','head',[.015,0,-.014],'head',{helper:true});
+for(const[id,p]of[['billA',[.012,-.032,-.01]],['billB',[.10,-.025,-.01]],['billC',[.115,-.012,-.01]],['billD',[.115,.012,-.01]],['billE',[.10,.025,-.01]],['billF',[.012,.032,-.01]]])J(id,'head',p,'head',{helper:true});
+P('beakWebPlate','head','polygon',[.02],'head',{points:['billA','billB','billC','billD','billE','billF'],material:'paperShade',occlusionMode:'under-core',semanticDetailTier:'identity'});span('beakPlate','billBase','beak',.025,'head',{bone:'head',shape:'taperedBone',material:'paperShade',occlusionMode:'under-core'});
+P('billTipPlate','beak','ellipse',[.060,.025],'head',{material:'paperShade',occlusionMode:'surface-relative',occlusionReference:'head',semanticDetailTier:'identity'});
+J('jaw','head',[.01,0,-.018],'head',{bendAxis:[0,1,0],limits:[0,24]});J('jawTip','jaw',[.093,0,-.014],'head',{helper:true});span('lowerBillPlate','jaw','jawTip',.018,'head',{bone:'jaw',shape:'taperedBone',material:'paperShade',occlusionMode:'under-core'});
+J('tailBase','pelvis',[-.16,0,.025],'tail');J('tailTip','tailBase',[-.17,0,.025],'tail',{helper:true});span('tailSocketPlate','pelvis','tailBase',.10,'tail',{occlusionMode:'under-core'});span('tailFanPlate','tailBase','tailTip',.15,'tail',{shape:'taperedBone',occlusionMode:'surface-relative',occlusionReference:'pelvis'});
+for(const side of ['near','far']){
+ const s=side==='near'?1:-1,other=side==='near'?'far':'near';
+ J(side+'Hip','pelvis',[0,s*.074,-.009],'limb',{mirror:other+'Hip',bendAxis:[0,1,0],limits:[-90,90]});J(side+'Knee',side+'Hip',[.086,0,-.044],'limb',{mirror:other+'Knee',bendAxis:[0,1,0],limits:[-155,155]});J(side+'Hock',side+'Knee',[-.035,0,-.12],'limb',{mirror:other+'Hock',bendAxis:[0,1,0],limits:[-165,165]});J(side+'Ankle',side+'Hock',[.034,0,-.056],'limb',{mirror:other+'Ankle',bendAxis:[0,1,0],limits:[-180,180]});J(side+'Toe',side+'Ankle',[.024,0,-.04],'limb',{mirror:other+'Toe'});
+ span(side+'ThighPlate',side+'Hip',side+'Knee',.065,'limb',{occlusionMode:'under-core'});span(side+'CalfPlate',side+'Knee',side+'Hock',.027);span(side+'MetatarsalPlate',side+'Hock',side+'Ankle',.023);span(side+'InstepPlate',side+'Ankle',side+'Toe',.022,'hoof',{bone:side+'Ankle',material:'paperShade'});
+ const web=[[-.025,-.015,0],[.055,-.047,0],[.075,-.045,0],[.056,-.019,0],[.09,0,0],[.056,.019,0],[.075,.045,0],[.055,.047,0],[-.025,.015,0]];
+ const points=web.map((p,i)=>{const id=side+'Web'+i;J(id,side+'Toe',p,'limb',{helper:true});return id;});
+ P(side+'WebbedFootPlate',side+'Toe','polygon',[.015],'hoof',{points,material:'paperShade',semanticDetailTier:'identity'});
+ J(side+'SoleHeel',side+'Toe',[-.025,0,.005],'limb',{helper:true});J(side+'SoleTip',side+'Toe',[.09,0,.005],'limb',{helper:true});span(side+'SoleEdgePlate',side+'SoleHeel',side+'SoleTip',.01,'hoof',{bone:side+'Toe',material:'paperShade'});
+ J(side+'SoleLeft',side+'Toe',[.055,-.037,.005],'limb',{helper:true});J(side+'SoleRight',side+'Toe',[.055,.037,.005],'limb',{helper:true});span(side+'SoleCrossEdgePlate',side+'SoleLeft',side+'SoleRight',.01,'hoof',{bone:side+'Toe',material:'paperShade'});
+ J(side+'WingRoot','chest',[-.015,s*.125,.025],'wing',{mirror:other+'WingRoot'});J(side+'WingTip',side+'WingRoot',[-.31,s*.012,-.04],'wing',{mirror:other+'WingTip',helper:true});P(side+'WingCovertPlate',side+'WingRoot','ellipse',[.15,.16],'wing',{bodyRegion:'wing',occlusionMode:'surface-relative',occlusionReference:'chest',semanticDetailTier:'identity'});span(side+'WingFeatherPlate',side+'WingRoot',side+'WingTip',.15,'wing',{bodyRegion:'wing',occlusionMode:'surface-relative',occlusionReference:'chest',semanticDetailTier:'identity'});
+}
+for(const p of r.plates.filter(p=>p.role==='neck'||p.id==='headConnectorPlate'))p.jointOverlap=1.7;
+for(const q of r.joints.filter(j=>j.parent&&!j.helper)){const incident=r.plates.filter(p=>p.role!=='shadow'&&(p.bone===q.id||p.span?.includes(q.id)));if(incident.length)q.gasket={diameterMeters:round(Math.min(...incident.map(p=>p.size[0]))*.82)};}
+const map=new Map(r.joints.map(j=>[j.id,j])),bind=bindPositions(r),feet=['nearToe','farToe'];
+const chains=['near','far'].map(side=>({side,hip:map.get(side+'Knee'),knee:map.get(side+'Hock'),hock:map.get(side+'Ankle'),foot:map.get(side+'Toe')}));
+function distalIK(chain,origin,target,pitch){
+ const{hip,knee,hock,foot}=chain,w=pitch*Math.PI/180,dist=[foot.bind[0]*Math.cos(w)+foot.bind[2]*Math.sin(w),0,-foot.bind[0]*Math.sin(w)+foot.bind[2]*Math.cos(w)],dx=target[0]-dist[0]-origin[0],dz=target[2]-dist[2]-origin[2],d=Math.hypot(dx,dz),a=Math.hypot(knee.bind[0],knee.bind[2]),b=Math.hypot(hock.bind[0],hock.bind[2]);
+ if(d>a+b+1e-9||d<Math.abs(a-b)-1e-9)throw Error('Unreachable '+foot.id+' '+d+' / '+(a+b));
+ const along=(a*a-b*b+d*d)/(2*d),across=-Math.sqrt(Math.max(0,a*a-along*along)),upper=[dx/d*along-dz/d*across,0,dz/d*along+dx/d*across],lower=[dx-upper[0],0,dz-upper[2]],angle=v=>Math.atan2(-v[0],-v[2])*180/Math.PI,wrap=v=>((v+180)%360+360)%360-180,H=wrap(angle(upper)-angle(knee.bind)),K=wrap(angle(lower)-angle(hock.bind)-H),A=wrap(pitch-H-K);
+ return{[hip.id]:[0,H,0],[knee.id]:[0,K,0],[hock.id]:[0,A,0]};
+}
+function frame(mode,time){
+ const t=time===1?0:time,w=2*Math.PI*t,walk=mode==='walk',run=mode==='run',attack=mode==='attack',gait=walk||run,duty=walk?.65:.42,stride=walk?.095:.16;
+ const thrust=attack?curve([[0,0],[.28,-.18],[.36,-.18],[.46,1],[.53,1],[.76,0],[1,0]],t):0;
+ const move=[0,gait?(run?.003:.007)*Math.cos(w):0,attack?-.009*thrust:walk?-.009-.003*(1-Math.cos(2*w))/2:run?-.027+.007*(1-Math.cos(2*w))/2:-.001*(1-Math.cos(w))/2];
+ const nod=gait?(run?3:2)*Math.sin(w):Math.sin(w),rotations={pelvis:[0,gait?(run?2:1)*Math.sin(w):attack?2*thrust:0,0],neckBase:[0,run?22+nod:attack?24*thrust:nod,0],neckLower:[0,run?18:attack?35*thrust:0,0],neckMid:[0,run?-8:attack?-10*thrust:0,0],head:[0,run?-32-nod:attack?-38*thrust:-nod,0],jaw:[0,attack?curve([[0,0],[.32,0],[.42,22],[.46,22],[.51,0],[1,0]],t):0,0],tailBase:[0,(gait?2:.5)*Math.sin(w),0]};
+ for(const[side,index]of[['near',0],['far',1]]){
+  const s=side==='near'?1:-1,phase=(t+index*.5)%1,stance=phase<=duty,u=stance?phase/duty:(phase-duty)/(1-duty),x=gait?(stance?stride*(.5-u):stride*(-.5+(1-Math.cos(Math.PI*u))/2)):0;
+  rotations[side+'Hip']=[0,gait?-160*x:attack?-4*thrust:0,0];
+  rotations[side+'WingRoot']=[s*(gait?2*Math.sin(w):attack?6*thrust:0),0,0];
+ }
+ const body=sagittalBodyPose(r,rotations,move);
+ for(const[index,chain]of chains.entries()){
+  const id=chain.foot.id,target=[...bind[id]],phase=(t+index*.5)%1,stance=phase<=duty,u=stance?phase/duty:(phase-duty)/(1-duty);
+  if(gait){target[0]+=stance?stride*(.5-u):stride*(-.5+(1-Math.cos(Math.PI*u))/2);target[2]=stance?0:(run?.067:.040)*Math.sin(Math.PI*u)**2;}
+  const origin=body.positions[chain.hip.id],dy=target[1]-origin[1],dz=target[2]-origin[2],abduction=Math.atan2(dy,-dz)*180/Math.PI,planar=[target[0],origin[1],origin[2]-Math.hypot(dy,dz)];
+  let local;try{local=distalIK(chain,origin,planar,0);}catch(e){throw Error(mode+'/'+t+': '+e.message);}
+  const mm=(a,b)=>a.map(row=>b[0].map((_,j)=>row.reduce((sum,v,k)=>sum+v*b[k][j],0))),matrix=mm(core.euler([0,-body.angles[chain.hip.id],0]),mm(core.euler([abduction,0,0]),core.euler(local[chain.hip.id])));
+  local[chain.hip.id]=[Math.atan2(matrix[2][1],matrix[2][2]),Math.asin(-matrix[2][0]),Math.atan2(matrix[1][0],matrix[0][0])].map(v=>v*180/Math.PI);
+  // Cancel the hip's lateral rotation at the sole: the entire web remains flat.
+  rotations[id]=[-abduction,0,0];Object.assign(rotations,local);
+  for(const q of [map.get(chain.side+'Hip'),chain.hip,chain.knee,chain.hock]){const a=rotations[q.id]?.[1]||0;if(a<q.limits[0]-1e-8||a>q.limits[1]+1e-8)throw Error(mode+'/'+t+' '+q.id+' limit '+a);}
+ }
+ return{t:time,poses:{root:move.map(round)},rotations:Object.fromEntries(Object.entries(rotations).map(([id,v])=>[id,v.map(round)]))};
+}
+const intervals={idle:[{ids:feet,from:0,to:1}],walk:[],run:[],attack:[{ids:feet,from:0,to:1}]};
+for(const mode of ['walk','run']){const duty=mode==='walk'?.65:.42;for(const[index,id]of feet.entries())for(const cycle of[0,1]){const from=Math.max(0,cycle-index*.5),to=Math.min(1,cycle-index*.5+duty);if(from<=to)intervals[mode].push({ids:[id],from:round(from),to:round(to)});}intervals[mode].sort((a,b)=>a.from-b.from||a.to-b.to);}
+for(const[mode,duration]of Object.entries({idle:3600,walk:1160,run:540,attack:1050})){
+ const samples=mode==='attack'?640:320,times=[...new Set([...Array.from({length:samples+1},(_,i)=>i/samples),.15,.28,.32,.36,.42,.46,.50,.51,.53,.65,.76])].sort((a,b)=>a-b),frames=times.map(t=>frame(mode,t));frames[frames.length-1]={...structuredClone(frames[0]),t:1};
+ r.clips[mode]={base:'bind',duration,loop:mode!=='attack',easing:'linear',frames,contactIntervals:intervals[mode],events:[],boneLengthPolicy:'preserve',motionSemantics:mode==='attack'?'authored braced bite: small neck recoil, fast joint-pivot lunge, bill opens then snaps shut, retract and settle; both webbed feet planted':mode==='run'?'RunFast-informed lowered neck and faster longer alternating steps; brief suspension, articulated thigh/knee/hock/ankle and folded wings':mode==='walk'?'WalkMedium-informed short alternating steps; .65 duty double support, lateral weight transfer with grounded webbed soles and articulated backward hocks':'quiet goose breathing and head stabilization, folded wings and two fixed flat webbed feet'};
+ if(mode==='walk'||mode==='run')r.clips[mode].events=[{t:0,name:'near-footfall'},{t:.5,name:'far-footfall'}];
+ if(mode==='attack'){r.clips[mode].phases=[{id:'anticipation',from:0,peak:.28,to:.36},{id:'action',from:.36,peak:.42,to:.46},{id:'contact',from:.46,peak:.51,to:.53},{id:'recovery',from:.53,peak:.65,to:.76},{id:'settle',from:.76,peak:1,to:1}];r.clips[mode].events=[{t:.28,name:'brace',phase:'anticipation'},{t:.36,name:'lunge-start',phase:'action'},{t:.46,name:'impact',phase:'contact'},{t:.51,name:'bill-snap',phase:'contact'},{t:.53,name:'release',phase:'recovery'},{t:.76,name:'settled',phase:'settle'}];}
+}
+const model={$schema:'paper-rig/model-1',family:'goose',base:true,semanticDetailPolicy:{defaultTier:'silhouette',byRole:{shadow:'texture'}},clips:{run:r.clips.run}};delete r.clips.run;r.clips.idleA=r.clips.idle;delete r.clips.idle;r.clips.walkA=r.clips.walk;delete r.clips.walk;
+for(const[path,obj]of[['rigs/families/goose.json',r],['rigs/models/goose.json',model]]){let text=JSON.stringify(obj,null,2);for(const c of Object.values(obj.clips||{}))for(const f of c.frames||[]){const block=JSON.stringify(f,null,2).split('\n').map(line=>'        '+line).join('\n');text=text.replace(block,'        '+JSON.stringify(f));}fs.writeFileSync(path,text+'\n');}

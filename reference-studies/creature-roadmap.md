@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N13 Ostrich complete; stopped between creatures.
+- Status: N14 Goose in progress.
 - Next milestone: N14 Goose.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: N13 Ostrich / `7b56391`.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
-- Active creature / stage: none; stopped between creatures.
+- Active creature / stage: Goose / verified, awaiting implementation commit.
 - Open decisions or blockers: none.
-- Next action: inspect WildMesh Goose in Blender when N14 is requested.
+- Next action: commit the verified Goose implementation, then record its resume checkpoint.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -64,7 +64,7 @@ selectable. Commit every row before proceeding to the next.
 | N11 | complete | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
 | N12 | complete | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
 | N13 | complete | Ostrich | Ostrich_Stylized | Separate from Chicken; long neck, long articulated legs and reduced wings; walk/run and reference-led kick or peck. |
-| N14 | queued | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
+| N14 | in progress | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
 | N15 | queued | Tortoise | Tortoise_Stylized | Rigid shell enclosing limb roots, low splayed stance; idle, slow/fast travel equivalents and bite. Avoid forcing an implausible mammalian run. |
 
 ### Phase 3 — deferred, additional references needed
@@ -830,3 +830,39 @@ Next action:
   All earlier 45 model goldens unchanged.
 - Implementation commit: `7b56391`. N14 Goose remains next; no next-creature work
   started. Unrelated `.DS_Store` excluded.
+
+### N14 Goose — accepted implementation, 2026-10-30
+
+- Studied `Realistic Animals/Goose/SK_Goose.blend` in Blender, preserving earlier
+  scenes. Native Goose has 156 bones, 24 FPS and 33 actions. Sampled eight actions
+  at 41 phases, with native side/front/top and key-pose renders. WalkMedium and
+  RunFast inform the locomotion; grazing supplies neck/jaw articulation. There
+  is no native attack; the braced bite is explicitly authored. Evidence and
+  reproducible diagnostics: `reference-studies/goose.md`,
+  `scripts/study-wildmesh-goose.py`.
+- Independent Goose family/model, 59 joints / 33 plates, .62 m nominal height:
+  heavy low barrel, tall curved neck, small rounded head, flat broad bill,
+  folded long wings, pointed tail and short four-link legs. Nine-point webbed
+  soles have three lobes, thin crossed edges and shared real sole owners.
+  `scripts/refine-goose.mjs` reproduces shape and baked clips. No licensed
+  runtime assets or shared compositor changes; other birds remain distinct.
+- Idle keeps two full webs planted. Walk uses alternating short steps, .65 duty,
+  double support and compensated lateral weight transfer. Run is faster/longer,
+  .42 duty, brief suspension and lowered neck. Bite recoils, lunges through neck
+  hinges, opens then snaps the bill, and recovers over two planted soles.
+  Shadow stays fixed; clips preserve lengths and actual Z=0 contact surfaces.
+- Fourteen focused tests include independent proportions, support/articulation,
+  bite/return, web planarity/clearance, seam bounds and mutations, lengths/limits,
+  loop continuity, shadow and edge-on visibility. 4,608 pose/camera views check
+  occlusion and full SVG bounds; 960 check buried bill/jaw roots; 1,344 top views
+  ensure feet paint behind the torso, with a promoted-web mutation. Front/rear
+  bill-tip and buried-thigh tests guard those visible boundaries.
+- Actual browser review caught/fixed short-neck gaps, edge-on sole disappearance,
+  an attack framing extreme, jaw-root exposure, hidden head-on bill, and thigh
+  roots showing through the chest. Final preview is idle, 45° / 225°, overlays
+  off. All 46 earlier model goldens remain unchanged.
+- `npm run check`: 372/372 tests, 47/47 sources/models, all ordinary/motion/paint
+  audits and release metadata passed. Advisories unchanged at 40/38/40; Goose
+  adds none. Chromium: 121/121 outputs identical, authoring UI checks passed,
+  zero console errors. Implementation ready to commit; N15 Tortoise remains
+  queued and has not been started. Unrelated `.DS_Store` excluded.
