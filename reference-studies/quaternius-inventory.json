@@ -1,0 +1,519 @@
+[
+  {
+    "id": "frog",
+    "path": "/Users/tal/models/quaternius/Easy Animated Enemy Pack - Jan 2019/Blends/Frog.blend",
+    "fps": 24.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          2.770510673522949,
+          5.395543575286865,
+          2.1139674186706543
+        ]
+      },
+      {
+        "name": "Frog",
+        "type": "MESH",
+        "dimensions": [
+          3.506986618041992,
+          3.185269355773926,
+          1.4329019784927368
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Frog_Attack",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Frog_Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Frog_Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Frog_Jump",
+        "frames": [
+          0.0,
+          21.0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wasp",
+    "path": "/Users/tal/models/quaternius/Easy Animated Enemy Pack - Jan 2019/Blends/Wasp.blend",
+    "fps": 24.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          2.817687511444092,
+          2.2475900650024414,
+          3.0257060527801514
+        ]
+      },
+      {
+        "name": "Wasp",
+        "type": "MESH",
+        "dimensions": [
+          3.8558924198150635,
+          2.4917540550231934,
+          2.6685240268707275
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Wasp_Attack",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Wasp_Death",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Wasp_Flying",
+        "frames": [
+          0.0,
+          36.0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "apatosaurus",
+    "path": "/Users/tal/models/quaternius/Dinosaur Animated Pack - Dec 2018/Blends/Apatosaurus.blend",
+    "fps": 24.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          5.315598011016846,
+          47.78422927856445,
+          16.122230529785156
+        ]
+      },
+      {
+        "name": "Cylinder",
+        "type": "MESH",
+        "dimensions": [
+          5.704130172729492,
+          49.55804443359375,
+          11.011096000671387
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Apatosaurus_Attack",
+        "frames": [
+          0.0,
+          45.0
+        ]
+      },
+      {
+        "name": "Apatosaurus_Idle",
+        "frames": [
+          -2.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Apatosaurus_Jump",
+        "frames": [
+          0.0,
+          44.0
+        ]
+      },
+      {
+        "name": "Apatosaurus_Run",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Apatosaurus_Walk",
+        "frames": [
+          0.0,
+          125.0
+        ]
+      },
+      {
+        "name": "Stegosaurus_Death",
+        "frames": [
+          0.0,
+          38.0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parasaurolophus",
+    "path": "/Users/tal/models/quaternius/Dinosaur Animated Pack - Dec 2018/Blends/Parasaurolophus.blend",
+    "fps": 24.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          1.722556471824646,
+          11.768277168273926,
+          5.830018997192383
+        ]
+      },
+      {
+        "name": "Parasaurolophus",
+        "type": "MESH",
+        "dimensions": [
+          1.958376169204712,
+          11.786076545715332,
+          5.756584167480469
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Parasaurolophus_Attack",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Parasaurolophus_Death",
+        "frames": [
+          0.0,
+          31.0
+        ]
+      },
+      {
+        "name": "Parasaurolophus_Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Parasaurolophus_Jump",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      },
+      {
+        "name": "Parasaurolophus_Run",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Parasaurolophus_Walk",
+        "frames": [
+          0.0,
+          28.0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stegosaurus",
+    "path": "/Users/tal/models/quaternius/Dinosaur Animated Pack - Dec 2018/Blends/Stegosaurus.blend",
+    "fps": 24.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          4.4489030838012695,
+          21.311288833618164,
+          10.927582740783691
+        ]
+      },
+      {
+        "name": "Stegosaurus",
+        "type": "MESH",
+        "dimensions": [
+          5.0687360763549805,
+          22.94707679748535,
+          10.483455657958984
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Stegosaurus_Attack",
+        "frames": [
+          0.0,
+          45.0
+        ]
+      },
+      {
+        "name": "Stegosaurus_Death",
+        "frames": [
+          0.0,
+          38.0
+        ]
+      },
+      {
+        "name": "Stegosaurus_Idle",
+        "frames": [
+          -1.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Stegosaurus_Jump",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Stegosaurus_Run",
+        "frames": [
+          0.0,
+          19.0
+        ]
+      },
+      {
+        "name": "Stegosaurus_Walk",
+        "frames": [
+          0.0,
+          70.0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "trex",
+    "path": "/Users/tal/models/quaternius/Dinosaur Animated Pack - Dec 2018/Blends/Trex.blend",
+    "fps": 24.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          6.673354625701904,
+          29.74854278564453,
+          16.182546615600586
+        ]
+      },
+      {
+        "name": "Trex",
+        "type": "MESH",
+        "dimensions": [
+          7.956336975097656,
+          30.874507904052734,
+          14.677946090698242
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "TRex_Attack",
+        "frames": [
+          0.0,
+          28.0
+        ]
+      },
+      {
+        "name": "TRex_Death",
+        "frames": [
+          0.0,
+          38.0
+        ]
+      },
+      {
+        "name": "TRex_Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "TRex_Jump",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "TRex_Run",
+        "frames": [
+          0.0,
+          22.0
+        ]
+      },
+      {
+        "name": "TRex_Walk",
+        "frames": [
+          0.0,
+          33.0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "triceratops",
+    "path": "/Users/tal/models/quaternius/Dinosaur Animated Pack - Dec 2018/Blends/Triceratops.blend",
+    "fps": 24.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          4.760532379150391,
+          19.34395408630371,
+          10.710406303405762
+        ]
+      },
+      {
+        "name": "Triceratops",
+        "type": "MESH",
+        "dimensions": [
+          10.342207908630371,
+          5.8482232093811035,
+          20.06617546081543
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Triceratops_Attack",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Triceratops_Death",
+        "frames": [
+          0.0,
+          43.0
+        ]
+      },
+      {
+        "name": "Triceratops_Idle",
+        "frames": [
+          -1.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Triceratops_Jump",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      },
+      {
+        "name": "Triceratops_Run",
+        "frames": [
+          0.0,
+          19.0
+        ]
+      },
+      {
+        "name": "Triceratops_Walk",
+        "frames": [
+          0.0,
+          70.0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "velociraptor",
+    "path": "/Users/tal/models/quaternius/Dinosaur Animated Pack - Dec 2018/Blends/Velociraptor.blend",
+    "fps": 24.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          2.2244515419006348,
+          12.533373832702637,
+          5.933433532714844
+        ]
+      },
+      {
+        "name": "Velociraptor",
+        "type": "MESH",
+        "dimensions": [
+          2.6360042095184326,
+          12.740588188171387,
+          6.074963092803955
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Velociraptor_Attack",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Velociraptor_Death",
+        "frames": [
+          0.0,
+          31.0
+        ]
+      },
+      {
+        "name": "Velociraptor_Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Velociraptor_Jump",
+        "frames": [
+          0.0,
+          27.0
+        ]
+      },
+      {
+        "name": "Velociraptor_Run",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Velociraptor_Walk",
+        "frames": [
+          0.0,
+          58.0
+        ]
+      }
+    ]
+  }
+]

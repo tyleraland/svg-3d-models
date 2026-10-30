@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: planned WildMesh phases and five-creature review follow-up complete.
-- Next milestone: Phase 3 — deferred creature/reference selection.
-- Prerequisite completed: horse rear-and-stomp committed separately as
-  `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N15 Tortoise / `2dcccca`.
-- Latest follow-up: five-creature joins/footwork fixes and Goose flight / `5e8ed96`.
-- Active creature / stage: none; five-creature feedback committed.
-- Open decisions or blockers: none.
-- Next action: when resumed, select references and scope for the deferred Phase 3 work.
+- Status: Quaternius expansion started after the WildMesh milestones.
+- Active creature / stage: Q1 Frog — native Blender study and SVG implementation;
+  focused anatomy/contact/directional checks pass; final review/checkpoint pending.
+- Next milestone: Q2 Wasp, followed by six dinosaurs in the requested order.
+- References: `quaternius-inventory.json` and `frog.md` in this directory.
+- Last correction: Kangaroo elbow/forward forearm guard / `b8096eb`.
+- Open decisions or blockers: optional user preference for per-creature review
+  stops versus continuing the whole batch; default follows the previous review cadence.
+- Next action: finish Frog workbench/full validation and commit before any Wasp implementation.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -76,8 +76,8 @@ Do not begin these until Phase 2 is complete or the user changes priorities.
   WildMesh crocodilians may supplement a broader reference search.
 - [ ] Dragon: pause to choose dragon archetypes and obtain suitable references
   before defining model scope. Do not force every dragon into one silhouette.
-- [ ] Dinosaurs: choose species/archetypes and suitable references before defining
-  individual model milestones.
+- [ ] Dinosaurs: six Quaternius references selected; implement the individual
+  Q3–Q8 milestones below, with a fresh mesh/action study for each.
 - [ ] Gorilla: find suitable anatomy and animation references.
 - [ ] Walrus: find suitable anatomy and animation references.
 
@@ -966,3 +966,29 @@ Next action:
   pass. The side/oblique workbench pose and punch were reviewed directly.
 - Browser/package parity passed 161/161 outputs, authoring UI checks passed and
   zero console errors. No other creature sources were changed in this correction.
+
+
+## Quaternius expansion — requested 2026-10-30
+
+Use native `.blend` files under `~/models/quaternius/`. Work one creature at a
+time: inspect mesh proportions and actual action content in Blender, author
+shape then idle/movement/attack (plus useful supplied states), review cameras,
+validate and commit before proceeding. The existing deferred WildMesh/outside-
+WildMesh items remain on the list; this is the currently requested sequence.
+
+| ID | Status | Creature | Native Blender reference | Available actions |
+|---|---|---|---|---|
+| Q1 | active | Frog | Easy Animated Enemy Pack / Frog.blend | Idle, Jump, Attack, Death; no Walk. Authored crawl is explicitly separate. |
+| Q2 | queued | Wasp | Easy Animated Enemy Pack / Wasp.blend | Flying, Attack, Death; inspect the actual attack before choosing paper articulation. |
+| Q3 | queued | Apatosaurus | Dinosaur Animated Pack / Apatosaurus.blend | Idle, Walk, Run, Jump, Attack; death is unusually named Stegosaurus_Death in this file. Inspect its contents. |
+| Q4 | queued | Parasaurolophus | Dinosaur Animated Pack / Parasaurolophus.blend | Idle, Walk, Run, Jump, Attack, Death. |
+| Q5 | queued | Stegosaurus | Dinosaur Animated Pack / Stegosaurus.blend | Idle, Walk, Run, Jump, Attack, Death. |
+| Q6 | queued | T. rex | Dinosaur Animated Pack / Trex.blend | Idle, Walk, Run, Jump, Attack, Death. |
+| Q7 | queued | Triceratops | Dinosaur Animated Pack / Triceratops.blend | Idle, Walk, Run, Jump, Attack, Death. |
+| Q8 | queued | Velociraptor | Dinosaur Animated Pack / Velociraptor.blend | Idle, Walk, Run, Jump, Attack, Death. |
+
+Exact pack directory names, 24 fps action ranges and object inventories are in
+`quaternius-inventory.json`. Each dinosaur will receive its own shape/action
+study before implementation; the inventory is not a substitute for that study.
+The shipped Dinosaur pack license text states CC0 1.0. External native files
+remain reference assets and are not copied into the workbench.
