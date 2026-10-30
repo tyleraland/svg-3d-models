@@ -933,3 +933,25 @@ Next action:
   all ordinary/motion/paint audits and release metadata passed. Advisories stay
   40/38/40. Chromium matched 645/645 outputs, authoring UI checks passed, zero
   console errors. Implementation commit: `5e8ed96`. No next-creature work started.
+
+### Pose/layering review follow-up — 2026-10-30
+
+- Goose: rigid wing-surface centroid frames prevent folded primary/covert order
+  flips during waddling. Bill tip is a true projected face rather than a
+  screen-facing oval.
+- Rat: workbench labels are walk/creep and run/scurry; rear upper legs remain
+  behind an opaque rump throughout motion.
+- Tortoise: slow/faster crawl cycles shortened to 3200/1650 ms (about 21% faster).
+- Kangaroo: forward/outside arm guard and shoulder caps; explicit validated
+  over-core paper layering keeps upright/punch arms readable across cameras.
+  New once-only single upright hop has a crouch, ballistic rise, paired landing
+  and quiet settle, separate from the fast traveling hop.
+- Details: `reference-studies/creature-pose-followup-2026-10-30.md`. Independent
+  temporal/geometric and deliberate-mutation tests supplement golden parity;
+  inherited foreground seams are checked too. The other 44 fixture sets remain
+  byte-identical.
+- Validation: 402/402 tests, 48/48 sources/models, ordinary/motion/paint audits
+  and release metadata passed; advisory counts unchanged at 40/38/40. Chromium
+  matched 544/544 outputs, authoring UI checks passed, zero console errors.
+  Implementation commit: `2e1b3fe`. Phase 2 remains complete; deferred Phase 3
+  work has not started. Unrelated `.DS_Store` remains excluded.
