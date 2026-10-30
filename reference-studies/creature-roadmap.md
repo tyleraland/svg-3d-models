@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N14 Goose complete.
+- Status: N15 Tortoise in progress.
 - Next milestone: N15 Tortoise.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: N14 Goose / `4f856a3`.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
-- Active creature / stage: none; Goose committed.
+- Active creature / stage: Tortoise / verified, awaiting implementation commit.
 - Open decisions or blockers: none.
-- Next action: when resumed, study Tortoise_Stylized in Blender and begin N15.
+- Next action: commit the verified Tortoise milestone, then record Phase 2 completion.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -65,7 +65,7 @@ selectable. Commit every row before proceeding to the next.
 | N12 | complete | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
 | N13 | complete | Ostrich | Ostrich_Stylized | Separate from Chicken; long neck, long articulated legs and reduced wings; walk/run and reference-led kick or peck. |
 | N14 | complete | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
-| N15 | queued | Tortoise | Tortoise_Stylized | Rigid shell enclosing limb roots, low splayed stance; idle, slow/fast travel equivalents and bite. Avoid forcing an implausible mammalian run. |
+| N15 | in progress | Tortoise | Tortoise_Stylized | Rigid shell enclosing limb roots, low splayed stance; idle, slow/fast travel equivalents and bite. Avoid forcing an implausible mammalian run. |
 
 ### Phase 3 — deferred, additional references needed
 
@@ -866,3 +866,44 @@ Next action:
   adds none. Chromium: 121/121 outputs identical, authoring UI checks passed,
   zero console errors. Implementation commit: `4f856a3`. N15 Tortoise remains
   queued and has not been started. Unrelated `.DS_Store` excluded.
+
+### N15 Tortoise — accepted implementation, 2026-10-30
+
+- Opened `Stylized Animals/Tortoise_Stylized/SK_Tortoise_Stylized.blend` in a
+  separate Blender scene, preserving earlier studies. Native has 52 bones,
+  60 FPS and ten actions. Sampled all actions at 41 phases, side key poses and
+  front/top views of both idle variants. Low Idle_2 guides the stance; the
+  native upright idle, airborne Run and spinning attacks are documented as
+  exaggerated adaptations rather than copied literally. Study and diagnostics:
+  `reference-studies/tortoise.md`, `scripts/study-wildmesh-tortoise.py`.
+- Separate Tortoise family/model, reproduced by `scripts/refine-tortoise.mjs`:
+  202 joints / 96 plates, .41 m nominal height. Most joints are rigid geometry
+  helpers. Closed oval domed shell has fifty scute/rim/plastron faces and shared
+  vertices; each face owns its actual centroid depth frame. The shell remains
+  rigid through all clips. Low belly, blunt beaked head, articulated neck,
+  small pointed tail, short splayed legs and three claws per foot.
+- Final stance was narrowed against the native top/front proportions, with
+  fore-elbows bending forward and feet near the shell perimeter. Spatial
+  author-time IK preserves limb lengths and keeps the entire sole level. No
+  renderer changes or native runtime mesh/action data. Idle and bite have four
+  fixed feet. Walk and faster travel use a supported four-beat crawl, .80 duty,
+  at least three supports and low foot recovery; no gallop or aerial run.
+- Bite has visible neck recoil by .35, a fast forward/down angular strike .46,
+  jaw closure .51, release .52 and full return to idle. Fixed shadow and actual
+  Z=0 contact surfaces. Increasing fast-bake density corrected intermediate
+  pad tilt without moving the ground or weakening the test tolerance.
+- Fourteen focused tests pass. Dense matrix: 4,608 poses/cameras for occlusion
+  and full SVG bounds, 960 views for actual beak/jaw-root coverage and 512 top
+  views for shell-over-limb ordering. A separate physical surface-depth oracle
+  checks fifty shell facets at 96 cameras; painting the bottom plastron over
+  the dome fails independently of metadata/goldens. Other mutations cover
+  shell holes/detachment, seam halos, promoted connectors/feet and sole owners.
+- Actual workbench review covers side/front/top/oblique shape, moving slow/fast
+  travel, neck recoil and bite, contact overlays and the narrowed final stance.
+  Final preview: idle, 45° / 225°, overlays off. All 47 earlier model goldens
+  unchanged; Tortoise has separate accepted rig/package fixtures.
+- Final gates: 386/386 tests, 48/48 sources/models, all ordinary/motion/paint
+  audits and release metadata passed. Advisories unchanged at 40/38/40; Tortoise
+  adds none. Chromium matched 121/121 outputs, authoring UI checks passed and
+  zero console errors. Implementation ready to commit.
+  Unrelated `.DS_Store` remains excluded. Deferred Phase 3 work has not started.
