@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N11 Rat complete; stopped between creatures.
-- Next milestone: N12 Badger.
+- Status: N12 Badger complete; stopped between creatures.
+- Next milestone: N13 Ostrich.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N11 Rat / `5f7979d`.
+- Last completed milestone / commit: N12 Badger / pending commit.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
-- Next action: inspect WildMesh HoneyBadger in Blender when N12 is requested; document species adaptations.
+- Next action: inspect WildMesh Ostrich_Stylized in Blender when N13 is requested.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -62,7 +62,7 @@ selectable. Commit every row before proceeding to the next.
 | N9 | complete | Kangaroo | Kangaroo | Upright balance, large hind feet and substantial tail; hop locomotion; separate punch and tail-supported kick attacks. Explicit tail support during kick. |
 | N10 | complete | Monkey | Monkey_Stylized | Primate limb/tail proportions and grounded movement; choose attack from inspected reference and document adaptations. |
 | N11 | complete | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
-| N12 | queued | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
+| N12 | complete | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
 | N13 | queued | Ostrich | Ostrich_Stylized | Separate from Chicken; long neck, long articulated legs and reduced wings; walk/run and reference-led kick or peck. |
 | N14 | queued | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
 | N15 | queued | Tortoise | Tortoise_Stylized | Rigid shell enclosing limb roots, low splayed stance; idle, slow/fast travel equivalents and bite. Avoid forcing an implausible mammalian run. |
@@ -749,3 +749,43 @@ Next action:
   45° / 225°, overlays off.
 - Implementation commit: `5f7979d`. N12 Badger is next; no next-creature work
   started. Unrelated `.DS_Store` excluded.
+
+### N12 — Badger / honey badger — 2026-10-30
+
+- WildMesh HoneyBadger opened in a separate Blender study scene, preserving
+  earlier scenes. 87 bones, 63 actions, 24 FPS. Eight native actions sampled at
+  41 phases, including Idle, walk/trot/run, foraging and threat transitions.
+  Study: `reference-studies/badger.md`; script:
+  `scripts/study-wildmesh-badger.py`. Source has no dedicated bite or claw strike.
+- Independent Badger family/model retains the honey-badger reference identity:
+  broad long barrel, powerful forequarters, thick neck, small ears, short bent
+  limbs, short down-curved tail and six paw-local foreclaws. 43 joints / 40 plates,
+  .46 m nominal height. Selector explicitly says honey badger; no European badger
+  markings or species claim. Reproduced by `scripts/refine-badger.mjs`.
+- Idle carries an alert raised head over four planted paws. Walk is a strong
+  four-beat cycle with lower travel head; Run a short .5 s bound with spine flex,
+  tucked recovery and .64–1 suspension. Attack is an authored braced bite,
+  informed by native anatomy/threat posture: neck preload, jaw opening, short
+  forward thrust, fast closure, release and complete recovery. Four paws remain
+  fixed; ground and shadow stay stationary.
+- Walk's .6875 duty factor aligns support boundaries with the existing bake grid.
+  Rigid body spans meet at the spine hinge. Authored seam sizes fit the anatomy;
+  muzzle/jaw bases and tail socket are buried. Leveled paw frames retain ground
+  clearance of rigid digging claws throughout all motions.
+- Twelve focused tests pass: proportions, bounded seams/fallback mutations,
+  contact surfaces, whole-limb movement, support, flight/spine motion, bite/jaw/
+  fixed-paw recovery, lengths/limits/loop seams/interpolation, shadow, lower
+  travel head, side exchange and claw-frame clearance. Dense matrix: 4,608 views
+  with independent occlusion and full SVG bounds; another 960 views verify actual
+  head coverage of muzzle/jaw base corners and buried tail socket. Promotion
+  mutations fail independently of regenerated goldens.
+- Actual workbench review: oblique idle at 45° / 225°; moving side-on walk/run;
+  open bite from side, closed bite/contact overlays at 45° / 135°; overhead burial
+  and head-on ear/shoulder/paw/claw silhouette. No shared compiler/family changes;
+  all earlier 44 model goldens are unchanged.
+- Browser gate: 121/121 outputs identical, authoring UI states passed, zero
+  console errors. Catalog gate: 344/344 tests, 45/45 source/model validations, all ordinary/
+  motion/paint audits and release metadata passed. Advisory totals stay 40/38/40;
+  Badger adds none. Workbench left at Badger idle, 45° / 225°, overlays off.
+  Implementation commit pending.
+- N13 Ostrich remains next. No next-creature work started; `.DS_Store` excluded.

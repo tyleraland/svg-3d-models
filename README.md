@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 44 animals and monsters. They are factored into reusable family
+catalog contains 45 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
