@@ -1484,8 +1484,8 @@
       "id": "nearFrontPad0",
       "parent": "nearFrontPaw",
       "bind": [
-        0.052,
-        0,
+        -0.04,
+        -0.035,
         0.012
       ],
       "role": "limb",
@@ -1495,8 +1495,8 @@
       "id": "nearFrontPad1",
       "parent": "nearFrontPaw",
       "bind": [
-        0.026,
-        0.034641016,
+        0.035,
+        -0.035,
         0.012
       ],
       "role": "limb",
@@ -1506,8 +1506,8 @@
       "id": "nearFrontPad2",
       "parent": "nearFrontPaw",
       "bind": [
-        -0.026,
-        0.034641016,
+        0.065,
+        -0.03,
         0.012
       ],
       "role": "limb",
@@ -1517,8 +1517,8 @@
       "id": "nearFrontPad3",
       "parent": "nearFrontPaw",
       "bind": [
-        -0.052,
-        0,
+        0.045,
+        -0.015,
         0.012
       ],
       "role": "limb",
@@ -1528,8 +1528,8 @@
       "id": "nearFrontPad4",
       "parent": "nearFrontPaw",
       "bind": [
-        -0.026,
-        -0.034641016,
+        0.075,
+        0,
         0.012
       ],
       "role": "limb",
@@ -1539,121 +1539,55 @@
       "id": "nearFrontPad5",
       "parent": "nearFrontPaw",
       "bind": [
-        0.026,
-        -0.034641016,
+        0.045,
+        0.015,
         0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "nearFrontHeel",
+      "id": "nearFrontPad6",
       "parent": "nearFrontPaw",
       "bind": [
-        -0.035,
-        0,
-        0.02
+        0.065,
+        0.03,
+        0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "nearFrontToe",
+      "id": "nearFrontPad7",
       "parent": "nearFrontPaw",
       "bind": [
-        0.05,
-        0,
-        0.02
-      ],
-      "role": "limb",
-      "helper": true
-    },
-    {
-      "id": "nearFrontPadLeft",
-      "parent": "nearFrontPaw",
-      "bind": [
-        0.01,
-        -0.035,
-        0.02
-      ],
-      "role": "limb",
-      "helper": true
-    },
-    {
-      "id": "nearFrontPadRight",
-      "parent": "nearFrontPaw",
-      "bind": [
-        0.01,
         0.035,
-        0.02
+        0.035,
+        0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "nearFrontClaw0Base",
+      "id": "nearFrontPad8",
       "parent": "nearFrontPaw",
       "bind": [
-        0.033,
-        -0.025,
-        0.02
+        -0.04,
+        0.035,
+        0.012
       ],
-      "role": "claw",
+      "role": "limb",
       "helper": true
     },
     {
-      "id": "nearFrontClaw0Tip",
-      "parent": "nearFrontClaw0Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "nearFrontClaw1Base",
+      "id": "nearFrontPad9",
       "parent": "nearFrontPaw",
       "bind": [
-        0.033,
+        -0.052,
         0,
-        0.02
+        0.012
       ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "nearFrontClaw1Tip",
-      "parent": "nearFrontClaw1Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "nearFrontClaw2Base",
-      "parent": "nearFrontPaw",
-      "bind": [
-        0.033,
-        0.025,
-        0.02
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "nearFrontClaw2Tip",
-      "parent": "nearFrontClaw2Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
+      "role": "limb",
       "helper": true
     },
     {
@@ -1725,8 +1659,8 @@
       "id": "nearRearPad0",
       "parent": "nearRearPaw",
       "bind": [
-        0.052,
-        0,
+        -0.04,
+        -0.035,
         0.012
       ],
       "role": "limb",
@@ -1736,8 +1670,8 @@
       "id": "nearRearPad1",
       "parent": "nearRearPaw",
       "bind": [
-        0.026,
-        0.034641016,
+        0.035,
+        -0.035,
         0.012
       ],
       "role": "limb",
@@ -1747,8 +1681,8 @@
       "id": "nearRearPad2",
       "parent": "nearRearPaw",
       "bind": [
-        -0.026,
-        0.034641016,
+        0.065,
+        -0.03,
         0.012
       ],
       "role": "limb",
@@ -1758,8 +1692,8 @@
       "id": "nearRearPad3",
       "parent": "nearRearPaw",
       "bind": [
-        -0.052,
-        0,
+        0.045,
+        -0.015,
         0.012
       ],
       "role": "limb",
@@ -1769,8 +1703,8 @@
       "id": "nearRearPad4",
       "parent": "nearRearPaw",
       "bind": [
-        -0.026,
-        -0.034641016,
+        0.075,
+        0,
         0.012
       ],
       "role": "limb",
@@ -1780,121 +1714,55 @@
       "id": "nearRearPad5",
       "parent": "nearRearPaw",
       "bind": [
-        0.026,
-        -0.034641016,
+        0.045,
+        0.015,
         0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "nearRearHeel",
+      "id": "nearRearPad6",
       "parent": "nearRearPaw",
       "bind": [
-        -0.035,
-        0,
-        0.02
+        0.065,
+        0.03,
+        0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "nearRearToe",
+      "id": "nearRearPad7",
       "parent": "nearRearPaw",
       "bind": [
-        0.05,
-        0,
-        0.02
-      ],
-      "role": "limb",
-      "helper": true
-    },
-    {
-      "id": "nearRearPadLeft",
-      "parent": "nearRearPaw",
-      "bind": [
-        0.01,
-        -0.035,
-        0.02
-      ],
-      "role": "limb",
-      "helper": true
-    },
-    {
-      "id": "nearRearPadRight",
-      "parent": "nearRearPaw",
-      "bind": [
-        0.01,
         0.035,
-        0.02
+        0.035,
+        0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "nearRearClaw0Base",
+      "id": "nearRearPad8",
       "parent": "nearRearPaw",
       "bind": [
-        0.033,
-        -0.025,
-        0.02
+        -0.04,
+        0.035,
+        0.012
       ],
-      "role": "claw",
+      "role": "limb",
       "helper": true
     },
     {
-      "id": "nearRearClaw0Tip",
-      "parent": "nearRearClaw0Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "nearRearClaw1Base",
+      "id": "nearRearPad9",
       "parent": "nearRearPaw",
       "bind": [
-        0.033,
+        -0.052,
         0,
-        0.02
+        0.012
       ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "nearRearClaw1Tip",
-      "parent": "nearRearClaw1Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "nearRearClaw2Base",
-      "parent": "nearRearPaw",
-      "bind": [
-        0.033,
-        0.025,
-        0.02
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "nearRearClaw2Tip",
-      "parent": "nearRearClaw2Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
+      "role": "limb",
       "helper": true
     },
     {
@@ -1966,8 +1834,8 @@
       "id": "farFrontPad0",
       "parent": "farFrontPaw",
       "bind": [
-        0.052,
-        0,
+        -0.04,
+        -0.035,
         0.012
       ],
       "role": "limb",
@@ -1977,8 +1845,8 @@
       "id": "farFrontPad1",
       "parent": "farFrontPaw",
       "bind": [
-        0.026,
-        0.034641016,
+        0.035,
+        -0.035,
         0.012
       ],
       "role": "limb",
@@ -1988,8 +1856,8 @@
       "id": "farFrontPad2",
       "parent": "farFrontPaw",
       "bind": [
-        -0.026,
-        0.034641016,
+        0.065,
+        -0.03,
         0.012
       ],
       "role": "limb",
@@ -1999,8 +1867,8 @@
       "id": "farFrontPad3",
       "parent": "farFrontPaw",
       "bind": [
-        -0.052,
-        0,
+        0.045,
+        -0.015,
         0.012
       ],
       "role": "limb",
@@ -2010,8 +1878,8 @@
       "id": "farFrontPad4",
       "parent": "farFrontPaw",
       "bind": [
-        -0.026,
-        -0.034641016,
+        0.075,
+        0,
         0.012
       ],
       "role": "limb",
@@ -2021,121 +1889,55 @@
       "id": "farFrontPad5",
       "parent": "farFrontPaw",
       "bind": [
-        0.026,
-        -0.034641016,
+        0.045,
+        0.015,
         0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "farFrontHeel",
+      "id": "farFrontPad6",
       "parent": "farFrontPaw",
       "bind": [
-        -0.035,
-        0,
-        0.02
+        0.065,
+        0.03,
+        0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "farFrontToe",
+      "id": "farFrontPad7",
       "parent": "farFrontPaw",
       "bind": [
-        0.05,
-        0,
-        0.02
-      ],
-      "role": "limb",
-      "helper": true
-    },
-    {
-      "id": "farFrontPadLeft",
-      "parent": "farFrontPaw",
-      "bind": [
-        0.01,
-        -0.035,
-        0.02
-      ],
-      "role": "limb",
-      "helper": true
-    },
-    {
-      "id": "farFrontPadRight",
-      "parent": "farFrontPaw",
-      "bind": [
-        0.01,
         0.035,
-        0.02
+        0.035,
+        0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "farFrontClaw0Base",
+      "id": "farFrontPad8",
       "parent": "farFrontPaw",
       "bind": [
-        0.033,
-        -0.025,
-        0.02
+        -0.04,
+        0.035,
+        0.012
       ],
-      "role": "claw",
+      "role": "limb",
       "helper": true
     },
     {
-      "id": "farFrontClaw0Tip",
-      "parent": "farFrontClaw0Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "farFrontClaw1Base",
+      "id": "farFrontPad9",
       "parent": "farFrontPaw",
       "bind": [
-        0.033,
+        -0.052,
         0,
-        0.02
+        0.012
       ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "farFrontClaw1Tip",
-      "parent": "farFrontClaw1Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "farFrontClaw2Base",
-      "parent": "farFrontPaw",
-      "bind": [
-        0.033,
-        0.025,
-        0.02
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "farFrontClaw2Tip",
-      "parent": "farFrontClaw2Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
+      "role": "limb",
       "helper": true
     },
     {
@@ -2207,8 +2009,8 @@
       "id": "farRearPad0",
       "parent": "farRearPaw",
       "bind": [
-        0.052,
-        0,
+        -0.04,
+        -0.035,
         0.012
       ],
       "role": "limb",
@@ -2218,8 +2020,8 @@
       "id": "farRearPad1",
       "parent": "farRearPaw",
       "bind": [
-        0.026,
-        0.034641016,
+        0.035,
+        -0.035,
         0.012
       ],
       "role": "limb",
@@ -2229,8 +2031,8 @@
       "id": "farRearPad2",
       "parent": "farRearPaw",
       "bind": [
-        -0.026,
-        0.034641016,
+        0.065,
+        -0.03,
         0.012
       ],
       "role": "limb",
@@ -2240,8 +2042,8 @@
       "id": "farRearPad3",
       "parent": "farRearPaw",
       "bind": [
-        -0.052,
-        0,
+        0.045,
+        -0.015,
         0.012
       ],
       "role": "limb",
@@ -2251,8 +2053,8 @@
       "id": "farRearPad4",
       "parent": "farRearPaw",
       "bind": [
-        -0.026,
-        -0.034641016,
+        0.075,
+        0,
         0.012
       ],
       "role": "limb",
@@ -2262,121 +2064,55 @@
       "id": "farRearPad5",
       "parent": "farRearPaw",
       "bind": [
-        0.026,
-        -0.034641016,
+        0.045,
+        0.015,
         0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "farRearHeel",
+      "id": "farRearPad6",
       "parent": "farRearPaw",
       "bind": [
-        -0.035,
-        0,
-        0.02
+        0.065,
+        0.03,
+        0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "farRearToe",
+      "id": "farRearPad7",
       "parent": "farRearPaw",
       "bind": [
-        0.05,
-        0,
-        0.02
-      ],
-      "role": "limb",
-      "helper": true
-    },
-    {
-      "id": "farRearPadLeft",
-      "parent": "farRearPaw",
-      "bind": [
-        0.01,
-        -0.035,
-        0.02
-      ],
-      "role": "limb",
-      "helper": true
-    },
-    {
-      "id": "farRearPadRight",
-      "parent": "farRearPaw",
-      "bind": [
-        0.01,
         0.035,
-        0.02
+        0.035,
+        0.012
       ],
       "role": "limb",
       "helper": true
     },
     {
-      "id": "farRearClaw0Base",
+      "id": "farRearPad8",
       "parent": "farRearPaw",
       "bind": [
-        0.033,
-        -0.025,
-        0.02
+        -0.04,
+        0.035,
+        0.012
       ],
-      "role": "claw",
+      "role": "limb",
       "helper": true
     },
     {
-      "id": "farRearClaw0Tip",
-      "parent": "farRearClaw0Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "farRearClaw1Base",
+      "id": "farRearPad9",
       "parent": "farRearPaw",
       "bind": [
-        0.033,
+        -0.052,
         0,
-        0.02
+        0.012
       ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "farRearClaw1Tip",
-      "parent": "farRearClaw1Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "farRearClaw2Base",
-      "parent": "farRearPaw",
-      "bind": [
-        0.033,
-        0.025,
-        0.02
-      ],
-      "role": "claw",
-      "helper": true
-    },
-    {
-      "id": "farRearClaw2Tip",
-      "parent": "farRearClaw2Base",
-      "bind": [
-        0.04,
-        0,
-        -0.002
-      ],
-      "role": "claw",
+      "role": "limb",
       "helper": true
     }
   ],
@@ -3400,7 +3136,8 @@
         "neckBase",
         "neckMid"
       ],
-      "jointOverlap": 1.6
+      "jointOverlap": 1.6,
+      "occlusionMode": "under-core"
     },
     {
       "id": "headConnectorPlate",
@@ -3595,96 +3332,12 @@
         "nearFrontPad2",
         "nearFrontPad3",
         "nearFrontPad4",
-        "nearFrontPad5"
+        "nearFrontPad5",
+        "nearFrontPad6",
+        "nearFrontPad7",
+        "nearFrontPad8",
+        "nearFrontPad9"
       ]
-    },
-    {
-      "id": "nearFrontSoleEdgePlate",
-      "bone": "nearFrontPaw",
-      "shape": "capsule",
-      "size": [
-        0.025
-      ],
-      "role": "hoof",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearFrontHeel",
-        "nearFrontToe"
-      ]
-    },
-    {
-      "id": "nearFrontSoleCrossEdgePlate",
-      "bone": "nearFrontPaw",
-      "shape": "capsule",
-      "size": [
-        0.025
-      ],
-      "role": "hoof",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearFrontPadLeft",
-        "nearFrontPadRight"
-      ]
-    },
-    {
-      "id": "nearFrontClaw0Plate",
-      "bone": "nearFrontPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearFrontClaw0Base",
-        "nearFrontClaw0Tip"
-      ],
-      "semanticDetailTier": "identity"
-    },
-    {
-      "id": "nearFrontClaw1Plate",
-      "bone": "nearFrontPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearFrontClaw1Base",
-        "nearFrontClaw1Tip"
-      ],
-      "semanticDetailTier": "identity"
-    },
-    {
-      "id": "nearFrontClaw2Plate",
-      "bone": "nearFrontPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearFrontClaw2Base",
-        "nearFrontClaw2Tip"
-      ],
-      "semanticDetailTier": "identity"
     },
     {
       "id": "nearRearUpperPlate",
@@ -3756,96 +3409,12 @@
         "nearRearPad2",
         "nearRearPad3",
         "nearRearPad4",
-        "nearRearPad5"
+        "nearRearPad5",
+        "nearRearPad6",
+        "nearRearPad7",
+        "nearRearPad8",
+        "nearRearPad9"
       ]
-    },
-    {
-      "id": "nearRearSoleEdgePlate",
-      "bone": "nearRearPaw",
-      "shape": "capsule",
-      "size": [
-        0.025
-      ],
-      "role": "hoof",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearRearHeel",
-        "nearRearToe"
-      ]
-    },
-    {
-      "id": "nearRearSoleCrossEdgePlate",
-      "bone": "nearRearPaw",
-      "shape": "capsule",
-      "size": [
-        0.025
-      ],
-      "role": "hoof",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearRearPadLeft",
-        "nearRearPadRight"
-      ]
-    },
-    {
-      "id": "nearRearClaw0Plate",
-      "bone": "nearRearPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearRearClaw0Base",
-        "nearRearClaw0Tip"
-      ],
-      "semanticDetailTier": "identity"
-    },
-    {
-      "id": "nearRearClaw1Plate",
-      "bone": "nearRearPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearRearClaw1Base",
-        "nearRearClaw1Tip"
-      ],
-      "semanticDetailTier": "identity"
-    },
-    {
-      "id": "nearRearClaw2Plate",
-      "bone": "nearRearPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearRearClaw2Base",
-        "nearRearClaw2Tip"
-      ],
-      "semanticDetailTier": "identity"
     },
     {
       "id": "farFrontUpperPlate",
@@ -3917,96 +3486,12 @@
         "farFrontPad2",
         "farFrontPad3",
         "farFrontPad4",
-        "farFrontPad5"
+        "farFrontPad5",
+        "farFrontPad6",
+        "farFrontPad7",
+        "farFrontPad8",
+        "farFrontPad9"
       ]
-    },
-    {
-      "id": "farFrontSoleEdgePlate",
-      "bone": "farFrontPaw",
-      "shape": "capsule",
-      "size": [
-        0.025
-      ],
-      "role": "hoof",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farFrontHeel",
-        "farFrontToe"
-      ]
-    },
-    {
-      "id": "farFrontSoleCrossEdgePlate",
-      "bone": "farFrontPaw",
-      "shape": "capsule",
-      "size": [
-        0.025
-      ],
-      "role": "hoof",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farFrontPadLeft",
-        "farFrontPadRight"
-      ]
-    },
-    {
-      "id": "farFrontClaw0Plate",
-      "bone": "farFrontPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farFrontClaw0Base",
-        "farFrontClaw0Tip"
-      ],
-      "semanticDetailTier": "identity"
-    },
-    {
-      "id": "farFrontClaw1Plate",
-      "bone": "farFrontPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farFrontClaw1Base",
-        "farFrontClaw1Tip"
-      ],
-      "semanticDetailTier": "identity"
-    },
-    {
-      "id": "farFrontClaw2Plate",
-      "bone": "farFrontPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farFrontClaw2Base",
-        "farFrontClaw2Tip"
-      ],
-      "semanticDetailTier": "identity"
     },
     {
       "id": "farRearUpperPlate",
@@ -4078,96 +3563,12 @@
         "farRearPad2",
         "farRearPad3",
         "farRearPad4",
-        "farRearPad5"
+        "farRearPad5",
+        "farRearPad6",
+        "farRearPad7",
+        "farRearPad8",
+        "farRearPad9"
       ]
-    },
-    {
-      "id": "farRearSoleEdgePlate",
-      "bone": "farRearPaw",
-      "shape": "capsule",
-      "size": [
-        0.025
-      ],
-      "role": "hoof",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farRearHeel",
-        "farRearToe"
-      ]
-    },
-    {
-      "id": "farRearSoleCrossEdgePlate",
-      "bone": "farRearPaw",
-      "shape": "capsule",
-      "size": [
-        0.025
-      ],
-      "role": "hoof",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farRearPadLeft",
-        "farRearPadRight"
-      ]
-    },
-    {
-      "id": "farRearClaw0Plate",
-      "bone": "farRearPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farRearClaw0Base",
-        "farRearClaw0Tip"
-      ],
-      "semanticDetailTier": "identity"
-    },
-    {
-      "id": "farRearClaw1Plate",
-      "bone": "farRearPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farRearClaw1Base",
-        "farRearClaw1Tip"
-      ],
-      "semanticDetailTier": "identity"
-    },
-    {
-      "id": "farRearClaw2Plate",
-      "bone": "farRearPaw",
-      "shape": "taperedBone",
-      "size": [
-        0.012
-      ],
-      "role": "claw",
-      "bodyRegion": "limb",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farRearClaw2Base",
-        "farRearClaw2Tip"
-      ],
-      "semanticDetailTier": "identity"
     }
   ],
   "anchors": [],

@@ -207,9 +207,9 @@
       "id": "tailBase",
       "parent": "pelvis",
       "bind": [
-        -0.32,
+        -0.22,
         0,
-        0.06
+        0.025
       ],
       "role": "tail",
       "gasket": {
@@ -220,9 +220,9 @@
       "id": "tailTip",
       "parent": "tailBase",
       "bind": [
-        -0.23,
+        -0.33,
         0,
-        -0.12
+        -0.085
       ],
       "role": "tail",
       "gasket": {
@@ -332,7 +332,7 @@
       "role": "limb",
       "mirror": "farToe",
       "gasket": {
-        "diameterMeters": 0.0287
+        "diameterMeters": 0.0205
       }
     },
     {
@@ -363,6 +363,94 @@
       "bind": [
         0.025,
         0.055,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "nearSoleOutline0",
+      "parent": "nearToe",
+      "bind": [
+        -0.075,
+        -0.022,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "nearSoleOutline1",
+      "parent": "nearToe",
+      "bind": [
+        0.065,
+        -0.022,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "nearSoleOutline2",
+      "parent": "nearToe",
+      "bind": [
+        0.078,
+        0,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "nearSoleOutline3",
+      "parent": "nearToe",
+      "bind": [
+        0.065,
+        0.018,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "nearSoleOutline4",
+      "parent": "nearToe",
+      "bind": [
+        0.005,
+        0.018,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "nearSoleOutline5",
+      "parent": "nearToe",
+      "bind": [
+        0.035,
+        0.067,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "nearSoleOutline6",
+      "parent": "nearToe",
+      "bind": [
+        0.012,
+        0.078,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "nearSoleOutline7",
+      "parent": "nearToe",
+      "bind": [
+        -0.075,
+        0.022,
         0
       ],
       "role": "limb",
@@ -497,7 +585,7 @@
       "role": "limb",
       "mirror": "nearToe",
       "gasket": {
-        "diameterMeters": 0.0287
+        "diameterMeters": 0.0205
       }
     },
     {
@@ -528,6 +616,94 @@
       "bind": [
         0.025,
         -0.055,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "farSoleOutline0",
+      "parent": "farToe",
+      "bind": [
+        -0.075,
+        0.022,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "farSoleOutline1",
+      "parent": "farToe",
+      "bind": [
+        0.065,
+        0.022,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "farSoleOutline2",
+      "parent": "farToe",
+      "bind": [
+        0.078,
+        0,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "farSoleOutline3",
+      "parent": "farToe",
+      "bind": [
+        0.065,
+        -0.018,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "farSoleOutline4",
+      "parent": "farToe",
+      "bind": [
+        0.005,
+        -0.018,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "farSoleOutline5",
+      "parent": "farToe",
+      "bind": [
+        0.035,
+        -0.067,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "farSoleOutline6",
+      "parent": "farToe",
+      "bind": [
+        0.012,
+        -0.078,
+        0
+      ],
+      "role": "limb",
+      "helper": true
+    },
+    {
+      "id": "farSoleOutline7",
+      "parent": "farToe",
+      "bind": [
+        -0.075,
+        -0.022,
         0
       ],
       "role": "limb",
@@ -606,8 +782,7 @@
       "role": "core",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 2,
-      "occlusionMode": "under-core"
+      "zBias": 1.8
     },
     {
       "id": "chestPlate",
@@ -804,8 +979,7 @@
         "tailBase",
         "tailTip"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis"
+      "occlusionMode": "under-core"
     },
     {
       "id": "nearThighPlate",
@@ -822,8 +996,7 @@
         "nearHip",
         "nearKnee"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis"
+      "occlusionMode": "under-core"
     },
     {
       "id": "nearCalfPlate",
@@ -839,7 +1012,8 @@
       "span": [
         "nearKnee",
         "nearHock"
-      ]
+      ],
+      "occlusionMode": "under-core"
     },
     {
       "id": "nearMetatarsalPlate",
@@ -876,35 +1050,24 @@
     {
       "id": "nearMainToePlate",
       "bone": "nearToe",
-      "shape": "capsule",
+      "shape": "polygon",
       "size": [
-        0.05
+        0.025
       ],
       "role": "hoof",
       "attachment": "rigid",
       "material": "paperShade",
       "zBias": 0,
-      "span": [
-        "nearToeBase",
-        "nearMainToeTip"
+      "points": [
+        "nearSoleOutline0",
+        "nearSoleOutline1",
+        "nearSoleOutline2",
+        "nearSoleOutline3",
+        "nearSoleOutline4",
+        "nearSoleOutline5",
+        "nearSoleOutline6",
+        "nearSoleOutline7"
       ]
-    },
-    {
-      "id": "nearSmallToePlate",
-      "bone": "nearToe",
-      "shape": "capsule",
-      "size": [
-        0.035
-      ],
-      "role": "hoof",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "nearToeBase",
-        "nearSmallToeTip"
-      ],
-      "semanticDetailTier": "identity"
     },
     {
       "id": "nearWingCovertPlate",
@@ -958,8 +1121,7 @@
         "farHip",
         "farKnee"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis"
+      "occlusionMode": "under-core"
     },
     {
       "id": "farCalfPlate",
@@ -975,7 +1137,8 @@
       "span": [
         "farKnee",
         "farHock"
-      ]
+      ],
+      "occlusionMode": "under-core"
     },
     {
       "id": "farMetatarsalPlate",
@@ -1012,35 +1175,24 @@
     {
       "id": "farMainToePlate",
       "bone": "farToe",
-      "shape": "capsule",
+      "shape": "polygon",
       "size": [
-        0.05
+        0.025
       ],
       "role": "hoof",
       "attachment": "rigid",
       "material": "paperShade",
       "zBias": 0,
-      "span": [
-        "farToeBase",
-        "farMainToeTip"
+      "points": [
+        "farSoleOutline0",
+        "farSoleOutline1",
+        "farSoleOutline2",
+        "farSoleOutline3",
+        "farSoleOutline4",
+        "farSoleOutline5",
+        "farSoleOutline6",
+        "farSoleOutline7"
       ]
-    },
-    {
-      "id": "farSmallToePlate",
-      "bone": "farToe",
-      "shape": "capsule",
-      "size": [
-        0.035
-      ],
-      "role": "hoof",
-      "attachment": "rigid",
-      "material": "paperShade",
-      "zBias": 0,
-      "span": [
-        "farToeBase",
-        "farSmallToeTip"
-      ],
-      "semanticDetailTier": "identity"
     },
     {
       "id": "farWingCovertPlate",

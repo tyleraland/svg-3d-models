@@ -14,7 +14,7 @@ inventory={'source':path,'fps':s.render.fps/s.render.fps_base,'actions':[(n,list
 open('/tmp/goose-inventory.json','w').write(json.dumps(inventory,indent=2))
 s.render.engine='BLENDER_WORKBENCH';s.render.resolution_x=850;s.render.resolution_y=550;s.render.resolution_percentage=100;s.display.shading.light='STUDIO';s.display.shading.color_type='SINGLE';s.display.shading.single_color=(.55,.43,.29);s.display.shading.show_cavity=True
 cd=bpy.data.cameras.new('GooseStudyCamera');cam=bpy.data.objects.new('GooseStudyCamera',cd);s.collection.objects.link(cam);s.camera=cam;cd.type='ORTHO';out={}
-for name in ['Idle','Idle_Breathing','WalkMedium','RunSlow','RunFast','StandGrazingA','StandGrazingB','Idle2StandGrazingA']:
+for name in ['Idle','Idle_Breathing','WalkMedium','RunSlow','RunFast','StandGrazingA','StandGrazingB','Idle2StandGrazingA','TakeOff_RunUp','FlyFlapping']:
  a=actions[name];arm.animation_data.action=a
  if hasattr(a,'slots')and len(a.slots):arm.animation_data.action_slot=a.slots[0]
  out[name]=[]

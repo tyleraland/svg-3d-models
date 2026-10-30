@@ -10,20 +10,20 @@ const J=(id,parent,bind,role='limb',extra={})=>{const q={id,parent,bind,role,...
 const P=(id,bone,shape,size,role='limb',extra={})=>r.plates.push({id,bone,shape,size,role,attachment:'rigid',material:'paperMain',zBias:role==='core'?2:0,...extra});
 const span=(id,a,b,width,role='limb',extra={})=>P(id,b,'capsule',[width],role,{span:[a,b],...extra});
 J('root',null,[0,0,0],'root');J('pelvis','root',[0,0,.67],'body');J('chest','pelvis',[.32,0,.48],'body');J('neck','chest',[.07,0,.14],'neck');J('head','neck',[.06,0,.11],'head');J('muzzle','head',[.20,0,-.065],'head');
-P('castShadow','root','ellipse',[2.6,.80],'shadow',{surfaceNormal:[0,0,1],material:'shadow',zBias:-100});span('torsoPlate','pelvis','chest',.42,'core');P('pelvisPlate','pelvis','ellipse',[.50,.60],'core');P('chestPlate','chest','ellipse',[.31,.37],'core');span('neckPlate','chest','neck',.23,'neck');span('headConnectorPlate','neck','head',.19,'head');P('headPlate','head','ellipse',[.22,.27],'head');span('muzzleConnectorPlate','head','muzzle',.16,'head',{shape:'taperedBone'});P('muzzlePlate','muzzle','ellipse',[.15,.11],'head',{material:'paperShade'});
-for(const [id,diameter]of [['chest',.23],['neck',.16],['head',.14],['muzzle',.10]])r.joints.find(j=>j.id===id).gasket={diameterMeters:diameter,underIncidentPlates:true};
+P('castShadow','root','ellipse',[2.6,.80],'shadow',{surfaceNormal:[0,0,1],material:'shadow',zBias:-100});span('torsoPlate','pelvis','chest',.42,'core');P('pelvisPlate','pelvis','ellipse',[.50,.60],'core');P('chestPlate','chest','ellipse',[.31,.37],'core');span('neckPlate','chest','neck',.23,'neck');span('headConnectorPlate','neck','head',.19,'head');P('headPlate','head','ellipse',[.22,.27],'head');span('muzzleConnectorPlate','head','muzzle',.16,'head',{shape:'taperedBone',occlusionMode:'under-core',zBias:.1});P('muzzlePlate','muzzle','ellipse',[.15,.11],'head',{material:'paperShade'});
+for(const [id,diameter]of [['chest',.23],['neck',.16],['head',.14],['muzzle',.10]])r.joints.find(j=>j.id===id).gasket={diameterMeters:diameter,underIncidentPlates:!['head','muzzle'].includes(id)};
 r.joints.find(j=>j.id==='pelvis').gasket={diameterMeters:.32};
 J('tailBase','pelvis',[-.12,0,-.05],'tail');J('tailMid','tailBase',[-.20,0,-.38],'tail');J('tailContact','tailMid',[-.46,0,-.24],'tail',{gasket:{diameterMeters:.08}});J('tailTip','tailContact',[-.38,0,.025],'tail');
-span('tailRootPlate','pelvis','tailBase',.29,'tail');span('tailUpperPlate','tailBase','tailMid',.22,'tail');span('tailLowerPlate','tailMid','tailContact',.14,'tail');span('tailTipPlate','tailContact','tailTip',.10,'tail',{shape:'taperedBone'});
+span('tailRootPlate','pelvis','tailBase',.29,'tail',{occlusionMode:'under-core'});span('tailUpperPlate','tailBase','tailMid',.22,'tail');span('tailLowerPlate','tailMid','tailContact',.14,'tail');span('tailTipPlate','tailContact','tailTip',.10,'tail',{shape:'taperedBone'});
 for(const side of ['near','far']){
  const sign=side==='near'?1:-1,other=side==='near'?'far':'near';
  J(side+'Hip','pelvis',[0,sign*.175,-.05],'limb',{mirror:other+'Hip'});J(side+'Knee',side+'Hip',[.27,0,.12],'limb',{mirror:other+'Knee',bendAxis:[0,1,0],limits:[-100,155],gasket:{diameterMeters:.07}});J(side+'Hock',side+'Knee',[-.12,0,-.63],'limb',{mirror:other+'Hock',bendAxis:[0,1,0],limits:[-155,155]});J(side+'Foot',side+'Hock',[.22,0,-.11],'limb',{mirror:other+'Foot',gasket:{diameterMeters:.075}});
  span(side+'ThighPlate',side+'Hip',side+'Knee',.28,'limb',{occlusionMode:'surface-relative',occlusionReference:'pelvis'});P(side+'HaunchPlate',side+'Hip','ellipse',[.43,.52],'limb',{occlusionMode:'surface-relative',occlusionReference:'pelvis'});span(side+'ShinPlate',side+'Knee',side+'Hock',.085);span(side+'FootPlate',side+'Hock',side+'Foot',.085,'hoof');P(side+'ToePlate',side+'Foot','ellipse',[.11,.075],'hoof',{material:'paperShade'});
  J(side+'Shoulder','chest',[.025,sign*.145,-.02],'limb',{mirror:other+'Shoulder'});J(side+'Elbow',side+'Shoulder',[-.045,0,-.21],'limb',{mirror:other+'Elbow',bendAxis:[0,1,0],limits:[-160,120]});J(side+'Hand',side+'Elbow',[.14,0,-.25],'limb',{mirror:other+'Hand',gasket:{diameterMeters:.06}});
  span(side+'UpperArmPlate',side+'Shoulder',side+'Elbow',.095,'limb',{occlusionMode:'surface-relative',occlusionReference:'chest'});span(side+'ForearmPlate',side+'Elbow',side+'Hand',.07,'limb',{occlusionMode:'surface-relative',occlusionReference:'chest'});P(side+'HandPlate',side+'Hand','ellipse',[.09,.12],'limb',{material:'paperShade',occlusionMode:'surface-relative',occlusionReference:'chest'});
- J(side+'EarBase','head',[-.045,sign*.065,.09],'ear',{mirror:other+'EarBase'});J(side+'EarTip',side+'EarBase',[-.06,sign*.04,.18],'ear',{mirror:other+'EarTip'});
+ J(side+'EarBase','head',[-.045,sign*.065,.09],'ear',{mirror:other+'EarBase'});J(side+'EarTip',side+'EarBase',[-.06,sign*.04,.18],'ear',{mirror:other+'EarTip',helper:true});
  const points=[[0,0,0],[-.06,sign*.02,.04],[-.09,sign*.04,.16],[-.06,sign*.06,.22],[.005,sign*.05,.17],[.03,0,.05]].map((v,i)=>{const id=side+'EarLeaf'+i;J(id,side+'EarBase',v,'accessoryAnchor',{helper:true});return id;});
- P(side+'EarPlate',side+'EarBase','polygon',[.1],'ear',{points,bodyRegion:'accessory',occlusionMode:'surface-relative',occlusionReference:'head',zBias:5.3,semanticDetailTier:'identity'});span(side+'EarSpinePlate',side+'EarBase',side+'EarTip',.03,'ear',{bodyRegion:'accessory',occlusionMode:'surface-relative',occlusionReference:'head',zBias:5.2});
+ P(side+'EarPlate',side+'EarBase','polygon',[.1],'ear',{points,bodyRegion:'accessory',occlusionMode:'surface-relative',occlusionReference:'head',zBias:5.3,semanticDetailTier:'identity'});span(side+'EarSpinePlate',side+'EarBase',side+'EarTip',.03,'ear',{bone:side+'EarBase',bodyRegion:'accessory',occlusionMode:'under-core',zBias:5.2});
 }
 const map=new Map(r.joints.map(j=>[j.id,j])),leg=side=>({hip:map.get(side+'Hip'),knee:map.get(side+'Knee'),hock:map.get(side+'Hock'),foot:map.get(side+'Foot'),rear:true}),arm=side=>({hip:map.get(side+'Shoulder'),knee:map.get(side+'Elbow'),foot:map.get(side+'Hand'),rear:false}),tail={hip:map.get('tailBase'),knee:map.get('tailMid'),foot:map.get('tailContact'),rear:true},bind=bindPositions(r),feet=['nearFoot','farFoot'],hands=['nearHand','farHand'];
 // Upward-pointing macropod thighs cross atan2's branch cut. Normalize each
@@ -58,8 +58,8 @@ function frame(mode,time){
   solve(arm(side),hand);
   rotations[side+'EarBase']=[0,2*Math.sin(w+(side==='near'?0:.4)),0];
  }
- const support=walk?[-.22,0,curve([[0,0],[.52,0],[.66,.045],[.80,0],[1,0]],t)]:run?[-.64,0,.31+root[2]+.05*Math.sin(w)]:bind.tailContact;
- solve(tail,support);
+ const support=walk?[-.22,0,curve([[0,0],[.52,0],[.66,.045],[.80,0],[1,0]],t)]:run?[-.64,0,.64+root[2]+.025*Math.sin(w)]:bind.tailContact;
+ if(run){const angle=v=>Math.atan2(-v[0],-v[2])*180/Math.PI,baseWorld=90+2*Math.sin(w)-angle(tail.knee.bind),midWorld=90+3*Math.sin(w-.5)-angle(tail.foot.bind);rotations.tailBase=[0,baseWorld-body.angles.tailBase,0];rotations.tailMid=[0,midWorld-baseWorld,0];}else solve(tail,support);
  // Distal tail lies along the ground support patch instead of rotating through it.
  const posed=sagittalBodyPose(r,rotations,root);rotations.tailContact=[0,-posed.angles.tailContact,0];
  return{t:time,poses:{root:root.map(round)},rotations:Object.fromEntries(Object.entries(rotations).map(([id,v])=>[id,v.map(round)]))};

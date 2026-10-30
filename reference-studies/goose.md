@@ -123,3 +123,11 @@ remain 40/38/40; Goose adds none. Focused Chromium gate passed 121/121 outputs,
 patch/onion/turntable/independent overlay UI checks, and zero console errors.
 The actual workbench is left at Goose idle, 45° elevation / 225° heading,
 overlays off. Screenshot proof: `/tmp/goose-workbench.png`.
+
+## Review follow-up, 2026-10-30
+
+Flight and wing-assisted run are now delivered. The articulated wing chain,
+simplified bill, thin contained sole profile and embedded tail replace the
+initial implementation described above. See
+[the five-creature follow-up](creature-feedback-2026-10-30.md) for native flight
+observations, current geometry, motion contracts and regression evidence.

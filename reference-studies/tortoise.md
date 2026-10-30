@@ -134,3 +134,10 @@ validations, all ordinary/motion/paint audits and release metadata. Advisory
 totals remain 40/38/40; Tortoise adds none. Chromium matched 121/121 outputs,
 including patch/onion/turntable/independent overlay UI checks, with zero console
 errors. No other creature sources or goldens changed.
+
+## Review follow-up, 2026-10-30
+
+The current connector/foot/shape or motion corrections supersede the affected
+initial milestone descriptions above. See
+[the five-creature follow-up](creature-feedback-2026-10-30.md) for the requested
+views, final authoring changes and independent regression checks.

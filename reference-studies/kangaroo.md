@@ -127,3 +127,10 @@ zero issues/warnings; catalog advisories remain 40/38/40. Browser parity passed
 141/141 outputs including `kick`, authoring UI checks and zero console errors.
 Workbench left at upright idle, 45° elevation / 225° heading. See the roadmap for
 the implementation commit and N10 Monkey resume checkpoint.
+
+## Review follow-up, 2026-10-30
+
+The current connector/foot/shape or motion corrections supersede the affected
+initial milestone descriptions above. See
+[the five-creature follow-up](creature-feedback-2026-10-30.md) for the requested
+views, final authoring changes and independent regression checks.

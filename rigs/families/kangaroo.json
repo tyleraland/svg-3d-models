@@ -118,7 +118,7 @@
       "role": "head",
       "gasket": {
         "diameterMeters": 0.14,
-        "underIncidentPlates": true
+        "underIncidentPlates": false
       }
     },
     {
@@ -132,7 +132,7 @@
       "role": "head",
       "gasket": {
         "diameterMeters": 0.1,
-        "underIncidentPlates": true
+        "underIncidentPlates": false
       }
     },
     {
@@ -311,7 +311,8 @@
         0.189395791
       ],
       "role": "ear",
-      "mirror": "farEarTip"
+      "mirror": "farEarTip",
+      "helper": true
     },
     {
       "id": "nearEarLeaf0",
@@ -512,7 +513,8 @@
         0.189532819
       ],
       "role": "ear",
-      "mirror": "nearEarTip"
+      "mirror": "nearEarTip",
+      "helper": true
     },
     {
       "id": "farEarLeaf0",
@@ -697,11 +699,12 @@
       "role": "head",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 0,
+      "zBias": 0.1,
       "span": [
         "head",
         "muzzle"
-      ]
+      ],
+      "occlusionMode": "under-core"
     },
     {
       "id": "muzzlePlate",
@@ -730,7 +733,8 @@
       "span": [
         "pelvis",
         "tailBase"
-      ]
+      ],
+      "occlusionMode": "under-core"
     },
     {
       "id": "tailUpperPlate",
@@ -935,7 +939,7 @@
     },
     {
       "id": "nearEarSpinePlate",
-      "bone": "nearEarTip",
+      "bone": "nearEarBase",
       "shape": "capsule",
       "size": [
         0.03
@@ -949,8 +953,7 @@
         "nearEarTip"
       ],
       "bodyRegion": "accessory",
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "head"
+      "occlusionMode": "under-core"
     },
     {
       "id": "farThighPlate",
@@ -1107,7 +1110,7 @@
     },
     {
       "id": "farEarSpinePlate",
-      "bone": "farEarTip",
+      "bone": "farEarBase",
       "shape": "capsule",
       "size": [
         0.03
@@ -1121,8 +1124,7 @@
         "farEarTip"
       ],
       "bodyRegion": "accessory",
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "head"
+      "occlusionMode": "under-core"
     }
   ],
   "anchors": [],

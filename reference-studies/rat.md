@@ -128,3 +128,10 @@ authoring UI checks and zero console errors. All 43 earlier model goldens are
 unchanged. Actual workbench review covered moving side scurry/run, open bite,
 closed bite with contact overlays, overhead burial, head-on silhouette and
 45° / 225° corrected jaw. Workbench left at that oblique idle view.
+
+## Review follow-up, 2026-10-30
+
+The current connector/foot/shape or motion corrections supersede the affected
+initial milestone descriptions above. See
+[the five-creature follow-up](creature-feedback-2026-10-30.md) for the requested
+views, final authoring changes and independent regression checks.

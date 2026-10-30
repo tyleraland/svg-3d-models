@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N15 Tortoise complete; planned WildMesh phases complete.
+- Status: planned WildMesh phases complete; five-creature review follow-up verified, awaiting commit.
 - Next milestone: Phase 3 — deferred creature/reference selection.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: N15 Tortoise / `2dcccca`.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
-- Active creature / stage: none; Tortoise committed.
+- Active creature / stage: Kangaroo, Rat, Goose, Tortoise and Ostrich review / verified, awaiting commit.
 - Open decisions or blockers: none.
-- Next action: when resumed, select references and scope for the deferred Phase 3 work.
+- Next action: commit the verified feedback batch and record its checkpoint; leave Phase 3 deferred.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -907,3 +907,29 @@ Next action:
   adds none. Chromium matched 121/121 outputs, authoring UI checks passed and
   zero console errors. Implementation commit: `2dcccca`. Phase 2 is complete.
   Unrelated `.DS_Store` remains excluded. Deferred Phase 3 work has not started.
+
+### Five-creature review follow-up — 2026-10-30
+
+- Kangaroo: buried muzzle/tail roots, consistent ear leaf/spine order and a
+  straight, nearly level airborne tail counterbalance. Ground-support tail
+  behavior for walk/kick is retained.
+- Rat: 440 ms scurry and 230 ms alternating supported run, replacing the
+  exaggerated body bound; lower spine/back envelope and clearer clip label.
+- Goose: simpler rounded bill, contained 6 mm sole profile, buried fan/socket
+  under a genuinely opaque rump, outstretched running wings and separate
+  articulated powered flight. Extended native Goose study with TakeOff_RunUp
+  and FlyFlapping. Folded ground/KO wings remain compact.
+- Tortoise: neck under every shell facet; individual claw/sole strips combined
+  into one toe outline per foot. Reduced from 202/96 to 178/76 joints/plates.
+- Ostrich: single rigid two-toed sole per foot, buried fan/socket and opaque
+  rump, thigh/calf roots behind the body at the reported high/oblique views.
+- Details and native flight evidence: `reference-studies/creature-feedback-2026-10-30.md`.
+  New `test/creature-feedback.test.mjs` supplements the existing camera matrices
+  with actual root coverage/order, ear/foot consistency, cadence/support and
+  flight articulation/clearance checks. Deliberate promotions fail independent
+  of accepted goldens. All 43 unrelated model goldens remain unchanged.
+- Actual workbench review covers the reported views plus moving Rat scurry/run,
+  Kangaroo hop and Goose run/fly. Final checks: 393/393 tests, 48/48 sources/models,
+  all ordinary/motion/paint audits and release metadata passed. Advisories stay
+  40/38/40. Chromium matched 645/645 outputs, authoring UI checks passed, zero
+  console errors. The implementation commit remains to be recorded.

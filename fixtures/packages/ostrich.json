@@ -444,16 +444,16 @@
       "stableId": "tailBase",
       "parentId": "pelvis",
       "localBindPositionMeters": [
-        -0.32,
+        -0.22,
         0,
-        0.06
+        0.025
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.3256,
+      "boneLengthMeters": 0.2214,
       "semanticRole": "tail",
       "helper": false,
       "absoluteSide": "center",
@@ -473,16 +473,16 @@
       "stableId": "tailTip",
       "parentId": "tailBase",
       "localBindPositionMeters": [
-        -0.23,
+        -0.33,
         0,
-        -0.12
+        -0.085
       ],
       "localBindRotationDegrees": [
         0,
         0,
         0
       ],
-      "boneLengthMeters": 0.2594,
+      "boneLengthMeters": 0.3408,
       "semanticRole": "tail",
       "helper": false,
       "absoluteSide": "center",
@@ -743,6 +743,238 @@
         0
       ],
       "boneLengthMeters": 0.0604,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "nearSoleOutline0",
+      "stableId": "nearSoleOutline0",
+      "parentId": "nearToe",
+      "localBindPositionMeters": [
+        -0.075,
+        -0.022,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0782,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "nearSoleOutline1",
+      "stableId": "nearSoleOutline1",
+      "parentId": "nearToe",
+      "localBindPositionMeters": [
+        0.065,
+        -0.022,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0686,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "nearSoleOutline2",
+      "stableId": "nearSoleOutline2",
+      "parentId": "nearToe",
+      "localBindPositionMeters": [
+        0.078,
+        0,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.078,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "nearSoleOutline3",
+      "stableId": "nearSoleOutline3",
+      "parentId": "nearToe",
+      "localBindPositionMeters": [
+        0.065,
+        0.018,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0674,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "nearSoleOutline4",
+      "stableId": "nearSoleOutline4",
+      "parentId": "nearToe",
+      "localBindPositionMeters": [
+        0.005,
+        0.018,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0187,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "nearSoleOutline5",
+      "stableId": "nearSoleOutline5",
+      "parentId": "nearToe",
+      "localBindPositionMeters": [
+        0.035,
+        0.067,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0756,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "nearSoleOutline6",
+      "stableId": "nearSoleOutline6",
+      "parentId": "nearToe",
+      "localBindPositionMeters": [
+        0.012,
+        0.078,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0789,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "left",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "nearSoleOutline7",
+      "stableId": "nearSoleOutline7",
+      "parentId": "nearToe",
+      "localBindPositionMeters": [
+        -0.075,
+        0.022,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0782,
       "semanticRole": "limb",
       "helper": true,
       "absoluteSide": "left",
@@ -1076,6 +1308,238 @@
       "coverageGasketId": "not-required-nonvisible-helper"
     },
     {
+      "id": "farSoleOutline0",
+      "stableId": "farSoleOutline0",
+      "parentId": "farToe",
+      "localBindPositionMeters": [
+        -0.075,
+        0.022,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0782,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "farSoleOutline1",
+      "stableId": "farSoleOutline1",
+      "parentId": "farToe",
+      "localBindPositionMeters": [
+        0.065,
+        0.022,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0686,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "farSoleOutline2",
+      "stableId": "farSoleOutline2",
+      "parentId": "farToe",
+      "localBindPositionMeters": [
+        0.078,
+        0,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.078,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "farSoleOutline3",
+      "stableId": "farSoleOutline3",
+      "parentId": "farToe",
+      "localBindPositionMeters": [
+        0.065,
+        -0.018,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0674,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "farSoleOutline4",
+      "stableId": "farSoleOutline4",
+      "parentId": "farToe",
+      "localBindPositionMeters": [
+        0.005,
+        -0.018,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0187,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "farSoleOutline5",
+      "stableId": "farSoleOutline5",
+      "parentId": "farToe",
+      "localBindPositionMeters": [
+        0.035,
+        -0.067,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0756,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "farSoleOutline6",
+      "stableId": "farSoleOutline6",
+      "parentId": "farToe",
+      "localBindPositionMeters": [
+        0.012,
+        -0.078,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0789,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
+      "id": "farSoleOutline7",
+      "stableId": "farSoleOutline7",
+      "parentId": "farToe",
+      "localBindPositionMeters": [
+        -0.075,
+        -0.022,
+        0
+      ],
+      "localBindRotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "boneLengthMeters": 0.0782,
+      "semanticRole": "limb",
+      "helper": true,
+      "absoluteSide": "right",
+      "sideFieldIsAuthoritative": true,
+      "legacyPresentationName": true,
+      "mirroredCounterpartId": null,
+      "diagonalCounterpartId": null,
+      "bendAxis": null,
+      "rotationLimitsDegrees": null,
+      "ikChain": null,
+      "groundContact": false,
+      "contactSurfaceOffsetMeters": null,
+      "coverageGasketId": "not-required-nonvisible-helper"
+    },
+    {
       "id": "farWingRoot",
       "stableId": "farWingRoot",
       "parentId": "chest",
@@ -1235,16 +1699,14 @@
           0.7
         ]
       },
-      "depthBias": 2,
+      "depthBias": 1.8,
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "under-core",
+      "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages"
-      ],
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
@@ -1683,7 +2145,7 @@
       "id": "tailFanPlate",
       "stableId": "tailFanPlate",
       "semanticRole": "tail",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "tail",
       "side": "center",
       "attachment": {
         "type": "jointSpan",
@@ -1705,17 +2167,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
-      "silhouetteCritical": false,
-      "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "headingSwapsNearFar": false,
+      "silhouetteCritical": true,
+      "lodTier": "silhouette",
+      "lodMergeGroup": "tail.center",
       "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
@@ -1726,7 +2187,7 @@
       "id": "nearThighPlate",
       "stableId": "nearThighPlate",
       "semanticRole": "limb",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "attachment": {
         "type": "jointSpan",
@@ -1748,17 +2209,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
-      "compositingGroup": "camera-near appendages",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "lodMergeGroup": "limb.left",
       "mirrorPlateId": "farThighPlate",
       "coverage": {
         "method": "declared-overlap",
@@ -1791,10 +2251,12 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "core surface plates",
-      "eligibleCompositingGroups": null,
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages"
+      ],
       "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
@@ -1898,20 +2360,22 @@
       "bodyRegion": "hoof",
       "side": "left",
       "attachment": {
-        "type": "jointSpan",
-        "jointIds": [
-          "nearToeBase",
-          "nearMainToeTip"
-        ]
+        "type": "rigidBone",
+        "boneId": "nearToe"
       },
       "localGeometry": {
-        "type": "capsuleSpan",
+        "type": "jointPolygon",
         "jointIds": [
-          "nearToeBase",
-          "nearMainToeTip"
+          "nearSoleOutline0",
+          "nearSoleOutline1",
+          "nearSoleOutline2",
+          "nearSoleOutline3",
+          "nearSoleOutline4",
+          "nearSoleOutline5",
+          "nearSoleOutline6",
+          "nearSoleOutline7"
         ],
-        "widthMeters": 0.05,
-        "overlapRatio": 1
+        "closed": true
       },
       "depthBias": 0,
       "paletteRole": "hoof",
@@ -1929,53 +2393,7 @@
       "lodTier": "silhouette",
       "lodMergeGroup": "hoof.left",
       "mirrorPlateId": "farMainToePlate",
-      "coverage": {
-        "method": "declared-overlap",
-        "overlapRatio": 1
-      }
-    },
-    {
-      "id": "nearSmallToePlate",
-      "stableId": "nearSmallToePlate",
-      "semanticRole": "hoof",
-      "bodyRegion": "hoof",
-      "side": "left",
-      "attachment": {
-        "type": "jointSpan",
-        "jointIds": [
-          "nearToeBase",
-          "nearSmallToeTip"
-        ]
-      },
-      "localGeometry": {
-        "type": "capsuleSpan",
-        "jointIds": [
-          "nearToeBase",
-          "nearSmallToeTip"
-        ],
-        "widthMeters": 0.035,
-        "overlapRatio": 1
-      },
-      "depthBias": 0,
-      "paletteRole": "hoof",
-      "opacity": 1,
-      "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
-      "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
-      "headingSwapsNearFar": true,
-      "silhouetteCritical": true,
-      "lodTier": "silhouette",
-      "lodMergeGroup": "hoof.left",
-      "mirrorPlateId": "farSmallToePlate",
-      "coverage": {
-        "method": "declared-overlap",
-        "overlapRatio": 1
-      }
+      "coverage": null
     },
     {
       "id": "nearWingCovertPlate",
@@ -2060,7 +2478,7 @@
       "id": "farThighPlate",
       "stableId": "farThighPlate",
       "semanticRole": "limb",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "attachment": {
         "type": "jointSpan",
@@ -2082,17 +2500,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "lodMergeGroup": "limb.right",
       "mirrorPlateId": "nearThighPlate",
       "coverage": {
         "method": "declared-overlap",
@@ -2125,10 +2542,12 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "core surface plates",
-      "eligibleCompositingGroups": null,
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages"
+      ],
       "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
@@ -2232,20 +2651,22 @@
       "bodyRegion": "hoof",
       "side": "right",
       "attachment": {
-        "type": "jointSpan",
-        "jointIds": [
-          "farToeBase",
-          "farMainToeTip"
-        ]
+        "type": "rigidBone",
+        "boneId": "farToe"
       },
       "localGeometry": {
-        "type": "capsuleSpan",
+        "type": "jointPolygon",
         "jointIds": [
-          "farToeBase",
-          "farMainToeTip"
+          "farSoleOutline0",
+          "farSoleOutline1",
+          "farSoleOutline2",
+          "farSoleOutline3",
+          "farSoleOutline4",
+          "farSoleOutline5",
+          "farSoleOutline6",
+          "farSoleOutline7"
         ],
-        "widthMeters": 0.05,
-        "overlapRatio": 1
+        "closed": true
       },
       "depthBias": 0,
       "paletteRole": "hoof",
@@ -2263,53 +2684,7 @@
       "lodTier": "silhouette",
       "lodMergeGroup": "hoof.right",
       "mirrorPlateId": "nearMainToePlate",
-      "coverage": {
-        "method": "declared-overlap",
-        "overlapRatio": 1
-      }
-    },
-    {
-      "id": "farSmallToePlate",
-      "stableId": "farSmallToePlate",
-      "semanticRole": "hoof",
-      "bodyRegion": "hoof",
-      "side": "right",
-      "attachment": {
-        "type": "jointSpan",
-        "jointIds": [
-          "farToeBase",
-          "farSmallToeTip"
-        ]
-      },
-      "localGeometry": {
-        "type": "capsuleSpan",
-        "jointIds": [
-          "farToeBase",
-          "farSmallToeTip"
-        ],
-        "widthMeters": 0.035,
-        "overlapRatio": 1
-      },
-      "depthBias": 0,
-      "paletteRole": "hoof",
-      "opacity": 1,
-      "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
-      "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
-      ],
-      "headingSwapsNearFar": true,
-      "silhouetteCritical": true,
-      "lodTier": "silhouette",
-      "lodMergeGroup": "hoof.right",
-      "mirrorPlateId": "nearSmallToePlate",
-      "coverage": {
-        "method": "declared-overlap",
-        "overlapRatio": 1
-      }
+      "coverage": null
     },
     {
       "id": "farWingCovertPlate",
@@ -2738,18 +3113,18 @@
       "id": "nearHipGasket",
       "jointId": "nearHip",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "diameterMeters": 0.1476,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.left",
+      "lodMergeGroup": "limb.left",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "nearHip",
@@ -2764,29 +3139,28 @@
         "type": "circle",
         "diameterMeters": 0.1476
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearKneeGasket",
       "jointId": "nearKnee",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "diameterMeters": 0.0697,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.left",
+      "lodMergeGroup": "limb.left",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "nearKnee",
@@ -2801,12 +3175,11 @@
         "type": "circle",
         "diameterMeters": 0.0697
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearHockGasket",
@@ -2817,7 +3190,7 @@
       "diameterMeters": 0.0451,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -2838,7 +3211,10 @@
         "type": "circle",
         "diameterMeters": 0.0451
       },
-      "compositingGroup": "core surface plates",
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages"
+      ],
       "headingSwapsNearFar": false
     },
     {
@@ -2884,7 +3260,7 @@
       "semanticRole": "jointGasket",
       "bodyRegion": "hoof",
       "side": "left",
-      "diameterMeters": 0.0287,
+      "diameterMeters": 0.0205,
       "paletteRole": "base",
       "depthBias": -0.05,
       "occlusionMode": "semantic-group",
@@ -2906,7 +3282,7 @@
       },
       "localGeometry": {
         "type": "circle",
-        "diameterMeters": 0.0287
+        "diameterMeters": 0.0205
       },
       "compositingGroup": "camera-near appendages",
       "eligibleCompositingGroups": [
@@ -2956,18 +3332,18 @@
       "id": "farHipGasket",
       "jointId": "farHip",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "diameterMeters": 0.1476,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.right",
+      "lodMergeGroup": "limb.right",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "farHip",
@@ -2984,27 +3360,26 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farKneeGasket",
       "jointId": "farKnee",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "diameterMeters": 0.0697,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.right",
+      "lodMergeGroup": "limb.right",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "farKnee",
@@ -3021,10 +3396,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farHockGasket",
@@ -3035,7 +3409,7 @@
       "diameterMeters": 0.0451,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -3056,7 +3430,10 @@
         "type": "circle",
         "diameterMeters": 0.0451
       },
-      "compositingGroup": "core surface plates",
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages"
+      ],
       "headingSwapsNearFar": false
     },
     {
@@ -3102,7 +3479,7 @@
       "semanticRole": "jointGasket",
       "bodyRegion": "hoof",
       "side": "right",
-      "diameterMeters": 0.0287,
+      "diameterMeters": 0.0205,
       "paletteRole": "base",
       "depthBias": -0.05,
       "occlusionMode": "semantic-group",
@@ -3124,7 +3501,7 @@
       },
       "localGeometry": {
         "type": "circle",
-        "diameterMeters": 0.0287
+        "diameterMeters": 0.0205
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
@@ -3178,15 +3555,14 @@
       "type": "opaqueUnion",
       "memberPlateIds": [
         "torsoPlate",
+        "pelvisPlate",
         "chestPlate",
         "neckRootPlate",
         "neckLowerPlate",
         "neckMidPlate",
         "neckUpperPlate",
         "headPlate",
-        "beakTipPlate",
-        "nearCalfPlate",
-        "farCalfPlate"
+        "beakTipPlate"
       ],
       "connectorGasketIds": [
         "pelvisGasket",
@@ -3194,23 +3570,20 @@
         "neckBaseGasket",
         "neckLowerGasket",
         "neckMidGasket",
-        "neckUpperGasket",
-        "nearHockGasket",
-        "farHockGasket"
+        "neckUpperGasket"
       ],
       "closure": "every member and connector is a closed opaque shape; connector gaskets bridge continuous core masses"
     },
     "memberPlateIds": [
       "torsoPlate",
+      "pelvisPlate",
       "chestPlate",
       "neckRootPlate",
       "neckLowerPlate",
       "neckMidPlate",
       "neckUpperPlate",
       "headPlate",
-      "beakTipPlate",
-      "nearCalfPlate",
-      "farCalfPlate"
+      "beakTipPlate"
     ],
     "closed": true,
     "paletteRole": "base",
@@ -3226,9 +3599,7 @@
       "neckBaseGasket",
       "neckLowerGasket",
       "neckMidGasket",
-      "neckUpperGasket",
-      "nearHockGasket",
-      "farHockGasket"
+      "neckUpperGasket"
     ]
   },
   "compositingPolicy": {
@@ -3294,7 +3665,7 @@
     },
     {
       "id": "sockMarkingRegion",
-      "owningPlateId": "nearMetatarsalPlate",
+      "owningPlateId": "nearThighPlate",
       "closedPath": "M -0.50 0 L 0.50 0 L 0.50 0.50 L -0.50 0.50 Z",
       "coordinateSpace": "plate-local-normalized",
       "paletteRole": "marking",
@@ -584495,52 +584866,50 @@
       ],
       "tail.center": [
         "tailSocketPlate",
+        "tailFanPlate",
         "tailBaseGasket"
       ],
-      "surfaceAccessory.center": [
-        "tailFanPlate",
-        "nearThighPlate",
-        "nearWingCovertPlate",
-        "nearWingFeatherPlate",
-        "farThighPlate",
-        "farWingCovertPlate",
-        "farWingFeatherPlate"
-      ],
       "limb.left": [
+        "nearThighPlate",
         "nearMetatarsalPlate",
+        "nearHipGasket",
+        "nearKneeGasket",
         "nearAnkleGasket"
       ],
       "hoof.left": [
         "nearInstepPlate",
         "nearMainToePlate",
-        "nearSmallToePlate",
         "nearToeGasket"
       ],
+      "surfaceAccessory.center": [
+        "nearWingCovertPlate",
+        "nearWingFeatherPlate",
+        "farWingCovertPlate",
+        "farWingFeatherPlate"
+      ],
       "limb.right": [
+        "farThighPlate",
         "farMetatarsalPlate",
+        "farHipGasket",
+        "farKneeGasket",
         "farAnkleGasket"
       ],
       "hoof.right": [
         "farInstepPlate",
         "farMainToePlate",
-        "farSmallToePlate",
         "farToeGasket"
-      ],
-      "surfaceAccessory.left": [
-        "nearHipGasket",
-        "nearKneeGasket",
-        "nearWingRootGasket"
       ],
       "core.left": [
         "nearHockGasket"
       ],
-      "surfaceAccessory.right": [
-        "farHipGasket",
-        "farKneeGasket",
-        "farWingRootGasket"
+      "surfaceAccessory.left": [
+        "nearWingRootGasket"
       ],
       "core.right": [
         "farHockGasket"
+      ],
+      "surfaceAccessory.right": [
+        "farWingRootGasket"
       ]
     },
     "far": {
@@ -584567,14 +584936,13 @@
         "beakPlate",
         "lowerBillPlate",
         "tailSocketPlate",
+        "tailFanPlate",
         "nearCalfPlate",
         "nearInstepPlate",
         "nearMainToePlate",
-        "nearSmallToePlate",
         "farCalfPlate",
         "farInstepPlate",
-        "farMainToePlate",
-        "farSmallToePlate"
+        "farMainToePlate"
       ],
       "preserveFacing": true,
       "preserveContacts": true
@@ -584710,7 +585078,7 @@
       {
         "id": "under-core-compositor-contract",
         "pass": true,
-        "detail": "9 under-core plate/gasket records are fixed behind the opaque core"
+        "detail": "19 under-core plate/gasket records are fixed behind the opaque core"
       },
       {
         "id": "rigid-plate-span-lengths",

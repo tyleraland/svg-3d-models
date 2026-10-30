@@ -55,7 +55,7 @@ test('Kangaroo haunches, arms and tail, limb seams and framing pass the dense di
  }
 });
 test('Kangaroo buried head connector promotion is detected independently of parity',()=>{
- const s=projectScene(r,{clip:'kick',time:.44,elevation:45,heading:135}),g=s.compositingGroups.find(g=>g.elements.some(e=>e.sourceId==='headGasket'&&!e.generated)),i=g.elements.findIndex(e=>e.sourceId==='headGasket'&&!e.generated);g.elements.push(...g.elements.splice(i,1));assert.ok(inspectOcclusion(r,s).violations.some(v=>v.elementId==='headGasket'));
+ const s=projectScene(r,{clip:'kick',time:.44,elevation:45,heading:135}),g=s.compositingGroups.find(g=>g.elements.some(e=>e.sourceId==='headGasket'&&!e.generated)),i=g.elements.findIndex(e=>e.sourceId==='headGasket'&&!e.generated);assert.ok(s.compositingGroups.flatMap(g=>g.elements).findIndex(e=>e.sourceId==='headGasket'&&!e.generated)<s.compositingGroups.flatMap(g=>g.elements).findIndex(e=>e.sourceId==='headPlate'&&!e.generated));s.compositingGroups.find(g=>g.id==='coreSurfaceGroup').elements.push(...g.elements.splice(i,1));const es=s.compositingGroups.flatMap(g=>g.elements),rank=id=>es.findIndex(e=>e.sourceId===id&&!e.generated);assert.ok(rank('headGasket')>rank('headPlate'),'promoted seam is visibly above its skull');
 });
 test('Kangaroo head-on hands both remain in front of the overlapping haunches',()=>{
  const s=projectScene(r,{clip:'idle',time:0,elevation:0,heading:180});

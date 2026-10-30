@@ -140,3 +140,10 @@ grouped beside Chicken and the other birds. All earlier 45 model goldens are
 unchanged. Actual workbench review covered side walk/run, side and oblique
 jumping kick, paired landing with contact overlays, overhead burial and head-on
 wing/toe visibility. Workbench left at idle, 45° / 135°, overlays off.
+
+## Review follow-up, 2026-10-30
+
+The current connector/foot/shape or motion corrections supersede the affected
+initial milestone descriptions above. See
+[the five-creature follow-up](creature-feedback-2026-10-30.md) for the requested
+views, final authoring changes and independent regression checks.
