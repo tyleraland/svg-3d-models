@@ -19,7 +19,7 @@ for(const side of ['near','far']){
  const sign=side==='near'?1:-1,other=side==='near'?'far':'near';
  J(side+'Hip','pelvis',[0,sign*.175,-.05],'limb',{mirror:other+'Hip'});J(side+'Knee',side+'Hip',[.27,0,.12],'limb',{mirror:other+'Knee',bendAxis:[0,1,0],limits:[-100,155],gasket:{diameterMeters:.07}});J(side+'Hock',side+'Knee',[-.12,0,-.63],'limb',{mirror:other+'Hock',bendAxis:[0,1,0],limits:[-155,155]});J(side+'Foot',side+'Hock',[.22,0,-.11],'limb',{mirror:other+'Foot',gasket:{diameterMeters:.075}});
  span(side+'ThighPlate',side+'Hip',side+'Knee',.28,'limb',{occlusionMode:'surface-relative',occlusionReference:'pelvis'});P(side+'HaunchPlate',side+'Hip','ellipse',[.43,.52],'limb',{occlusionMode:'surface-relative',occlusionReference:'pelvis'});span(side+'ShinPlate',side+'Knee',side+'Hock',.085);span(side+'FootPlate',side+'Hock',side+'Foot',.085,'hoof');P(side+'ToePlate',side+'Foot','ellipse',[.11,.075],'hoof',{material:'paperShade'});
- J(side+'Shoulder','chest',[.10,sign*.21,-.02],'limb',{mirror:other+'Shoulder'});J(side+'Elbow',side+'Shoulder',[.18,0,-Math.sqrt(.045**2+.21**2-.18**2)],'limb',{mirror:other+'Elbow',bendAxis:[0,1,0],limits:[-160,120]});J(side+'Hand',side+'Elbow',[-.07,0,-Math.sqrt(.14**2+.25**2-.07**2)],'limb',{mirror:other+'Hand',gasket:{diameterMeters:.06}});
+ J(side+'Shoulder','chest',[.10,sign*.21,-.02],'limb',{mirror:other+'Shoulder'});J(side+'Elbow',side+'Shoulder',[.045,0,-.21],'limb',{mirror:other+'Elbow',bendAxis:[0,1,0],limits:[-160,120]});J(side+'Hand',side+'Elbow',[.14,0,-.25],'limb',{mirror:other+'Hand',gasket:{diameterMeters:.06}});
  P(side+'ShoulderCapPlate',side+'Shoulder','ellipse',[.14,.14],'limb',{occlusionMode:'over-core'});
  span(side+'UpperArmPlate',side+'Shoulder',side+'Elbow',.095,'limb',{occlusionMode:'over-core'});span(side+'ForearmPlate',side+'Elbow',side+'Hand',.07,'limb',{occlusionMode:'over-core'});P(side+'HandPlate',side+'Hand','ellipse',[.09,.12],'limb',{material:'paperShade',occlusionMode:'over-core'});
  J(side+'EarBase','head',[-.045,sign*.065,.09],'ear',{mirror:other+'EarBase'});J(side+'EarTip',side+'EarBase',[-.06,sign*.04,.18],'ear',{mirror:other+'EarTip',helper:true});
@@ -61,7 +61,7 @@ function frame(mode,time){
   if(hop){hand[2]+=(t>.36&&t<.56?root[2]:0);}
   if(punch||kick){const active=side==='near'&&punch;hand[0]=curve([[0,hand[0]],[.20,active ? .43 : .54],[.42,active ? .80 : .54],[.50,active ? .79 : .54],[.66,.53],[.88,.62],[1,.62]],t);hand[2]=curve([[0,hand[2]],[.20,.99],[.42,active?1.12:1.04],[.50,active?1.11:1.04],[.66,.99],[.88,.92],[1,.92]],t);}
   if(kick){const g=curve([[0,0],[.20,1],[.66,1],[.88,0],[1,0]],t),origin=body.positions[side+'Shoulder'];hand=[origin[0]+.20,hand[1],origin[2]-.21+.08*g];}
-  solve({...arm(side),rear:true},hand);
+  solve(arm(side),hand);
   rotations[side+'EarBase']=[0,2*Math.sin(w+(side==='near'?0:.4)),0];
  }
  const support=walk?[-.22,0,curve([[0,0],[.52,0],[.66,.045],[.80,0],[1,0]],t)]:run?[-.64,0,.64+root[2]+.025*Math.sin(w)]:[...bind.tailContact];

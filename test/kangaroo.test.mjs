@@ -62,3 +62,9 @@ test('Kangaroo hands keep the declared foreground layer, even where the rear vie
  const foreground=scene=>['near','far'].every(side=>scene.compositingGroups.find(g=>g.id==='cameraNearAppendagesGroup').elements.some(e=>e.sourceId===side+'HandPlate'&&!e.generated));
  assert.ok(foreground(s));const g=s.compositingGroups.find(g=>g.elements.some(e=>e.sourceId==='farHandPlate'&&!e.generated)),i=g.elements.findIndex(e=>e.sourceId==='farHandPlate'&&!e.generated),[hand]=g.elements.splice(i,1);s.compositingGroups.find(g=>g.id==='cameraFarAppendagesGroup').elements.push(hand);assert.equal(foreground(s),false,'a single buried hand is detected');
 });
+test('Kangaroo upright guard bends at low elbows with forearms reaching forward instead of dangling down',()=>{
+ for(const clip of ['idle','hop','run'])for(let i=0;i<=100;i++){const p=solve(r,{clip,time:i/100});for(const side of ['near','far']){const a=p[side+'Shoulder'],b=p[side+'Elbow'],c=p[side+'Hand'];assert.ok(b[2]<a[2]-.10,`${clip}: elbow below shoulder`);assert.ok(c[0]>b[0]+.20,`${clip}: forearm reaches forward`);assert.ok(Math.abs(c[2]-b[2])<(c[0]-b[0])*.6,`${clip}: forearm is predominantly forward`);}}
+ // The previous opposite IK branch put the elbow ahead of the hand, making
+ // its lower segment a near-vertical hanging stick despite passing visibility.
+ const p=solve(r,{clip:'idle',time:0});assert.ok(p.nearElbow[0]<p.nearShoulder[0]);
+});

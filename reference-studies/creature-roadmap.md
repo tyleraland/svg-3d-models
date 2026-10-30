@@ -955,3 +955,14 @@ Next action:
   matched 544/544 outputs, authoring UI checks passed, zero console errors.
   Implementation commit: `2e1b3fe`. Phase 2 remains complete; deferred Phase 3
   work has not started. Unrelated `.DS_Store` remains excluded.
+
+### Kangaroo elbow-direction correction — 2026-10-30
+
+- Corrected the arm bend after user review: elbows sit lower/back, forearms
+  reach forward, and punching extends from that guard. Original arm bind
+  directions and lengths are restored; foreground visibility is retained.
+- A new dense forearm-direction test supplements visibility checks. Kangaroo
+  length/limit/contact/framing/occlusion checks and all 48 source validations
+  pass. The side/oblique workbench pose and punch were reviewed directly.
+- Browser/package parity passed 161/161 outputs, authoring UI checks passed and
+  zero console errors. No other creature sources were changed in this correction.

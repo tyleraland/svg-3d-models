@@ -31,10 +31,11 @@ are unchanged.
 
 ## Kangaroo
 
-Shoulders are farther out from the chest; elbows bend forward into an exposed
-small-arm guard, and upright resting hands sit ahead of the torso. Upper/lower
+Shoulders are farther out from the chest; upper arms angle down/back into an
+exposed guard, with forearms reaching forward and hands ahead of the torso. Upper/lower
 arm lengths are preserved. Two small shoulder-cap plates bridge the joint.
-The forward IK branch is used consistently, without widening joint limits.
+The arm-specific IK branch is used consistently, without widening the declared
+joint limits.
 Punch and tail-supported kick return to the same upright guard.
 
 Physical placement alone still hid the far arm at rear-oblique cameras. The
@@ -82,3 +83,23 @@ and Kangaroo upright/punch rear views plus the new hop and settled return.
 Chromium matched 544/544 package/browser outputs for the four changed models;
 patch states, onion skins, turntable and independent overlay controls passed,
 with zero console errors. The generated workbench includes all source changes.
+
+## Kangaroo elbow correction after user review
+
+The first visibility fix selected the opposite arm IK branch: elbows projected
+forward/high, leaving the lower arms hanging nearly vertically. Visibility
+coverage alone did not catch this anatomical pose error. Restored the original
+arm bind directions (same upper/lower lengths) and the forward-reaching arm
+solver branch consistently across clips. Shoulders, hand targets and foreground
+layering remain intact. In upright idle the elbows now sit below/behind the
+shoulders, with almost horizontal forward forearms; punching raises/extends
+from that bend. Ground-supported walk keeps its hand contacts.
+
+The new guard test measures elbow height and forward forearm direction through
+idle, upright hop and run, supplementing the existing camera visibility checks.
+Focused pose/occlusion tests and the Kangaroo length/limit/contact/framing audit
+passed; actual workbench review includes side/oblique resting and strike poses.
+Kangaroo export parity passed 161/161 browser/package comparisons, authoring UI
+checks passed, and there were zero browser console errors. This correction has
+12 passing Kangaroo tests plus the passing pose-follow-up and over-core tests;
+it does not claim a rerun of the unrelated full suite.
