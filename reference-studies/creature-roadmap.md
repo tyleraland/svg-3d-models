@@ -10,7 +10,7 @@ order below. Planning does not start implementation automatically.
 - Next milestone: N9 Kangaroo.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N8 Camel / pending commit.
+- Last completed milestone / commit: N8 Camel / `2773e43`.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none.
@@ -592,6 +592,6 @@ Next action:
   symmetry, pacing support, lowered-neck gallop suspension and bite opening/
   closure. Workbench left at idle, 45° elevation / 225° heading. Study/authoring
   scripts, sources, tests, fixtures and generated workbench are included.
-  Implementation commit: pending.
+  Implementation commit: `2773e43`.
 - Next is N9 Kangaroo, with separate punch and tail-supported kick attacks;
   no Kangaroo work started. Unrelated `.DS_Store` remains excluded.
