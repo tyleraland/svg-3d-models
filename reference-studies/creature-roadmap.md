@@ -11,7 +11,7 @@ order below. Planning does not start implementation automatically.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: N9 Kangaroo / `f3291f6`.
-- Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / pending commit.
+- Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
 - Next action: inspect Monkey_Stylized in Blender when N10 is requested.
@@ -674,5 +674,5 @@ Next action:
 - Full catalog gate passed: 312 tests, 42/42 source/model validations, ordinary/
   motion/paint audits and release metadata. Existing advisories stay 40/38/40.
   Browser comparison: 484/484 outputs identical, authoring UI checks passed, zero
-  console errors. Implementation commit: pending.
+  console errors. Implementation commit: `8a86987`.
 - N10 Monkey remains next; no new creature work started. `.DS_Store` excluded.
