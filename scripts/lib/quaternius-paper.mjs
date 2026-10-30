@@ -23,3 +23,18 @@ export function nativePaper(id,{scale=.05,names={},exclude=[],height=1,profile={
  function save(){const model={$schema:'paper-rig/model-1',family:id,base:true,semanticDetailPolicy:{defaultTier:'silhouette',byRole:{shadow:'texture'}},clips:{run:r.clips.run}};delete r.clips.run;r.clips.idleA=r.clips.idle;delete r.clips.idle;r.clips.walkA=r.clips.walk;delete r.clips.walk;for(const[path,obj]of[[`rigs/families/${id}.json`,r],[`rigs/models/${id}.json`,model]])fs.writeFileSync(path,JSON.stringify(obj,null,2)+'\n');}
  return{r,source,bind,ids,point,J,P,span,clip,save};
 }
+
+// Paper support adaptation shared by the dinosaur authoring scripts, never by consumers.
+export function finishDinosaur(n,{prefix,feet,sole=.025,idleFixed=true,attack='native strike'}={}){
+ const {r,clip}=n;
+ for(const[suffix,mode]of [['Idle','idle'],['Walk','walk'],['Run','run'],['Attack','attack'],['Death','ko']])clip(prefix+'_'+suffix,mode);
+ const initial=core.solveWorld(r,0,'bind'),floor=Math.min(...feet.map(f=>initial[f][2]))-sole;r.joints.find(j=>j.id==='body').bind[2]-=floor;
+ for(const id of feet){const j=r.joints.find(j=>j.id===id);j.bind[2]=round(j.bind[2]-(initial[id][2]-floor-sole));}
+ if(idleFixed){for(const f of r.clips.idle.frames){f.poses.root=[0,0,0];for(const id of Object.keys(f.rotations))if(!/neck|head|tail/i.test(id))f.rotations[id]=[0,0,0];}r.clips.idle.contacts=feet;r.clips.idle.contactIntervals=undefined;}
+ for(const mode of ['walk','run','attack','ko'])for(const f of r.clips[mode].frames){const p=core.solveWorld(r,f.t,mode),low=Math.min(...feet.map(id=>p[id][2]-sole));if(low<0)f.poses.root[2]=round(f.poses.root[2]-low);if(mode==='ko'){const min=Math.min(...r.plates.filter(p=>p.role!=='shadow').flatMap(plate=>(plate.span||[plate.bone]).map(id=>p[id][2]-plate.size[0]/2)));if(min<0)f.poses.root[2]=round(f.poses.root[2]-min);}}
+ r.clips.attack.motionSemantics+=`; ${attack}`;r.clips.attack.events=[{t:.25,name:'windup'},{t:.5,name:'impact'},{t:.75,name:'release'},{t:1,name:'settled'}];r.clips.ko.events=[{t:.25,name:'fall'},{t:.8,name:'down'}];
+ const down=structuredClone(r.clips.ko.frames[32]);for(const f of r.clips.ko.frames)if(f.t>=.8){f.poses=structuredClone(down.poses);f.rotations=structuredClone(down.rotations);}
+ // Conservative spherical camera envelope includes every key, plate radius and the fixed shadow.
+ let radius=0;for(const mode of ['bind',...Object.keys(r.clips)])for(const t of mode==='bind'?[0]:r.clips[mode].frames.map(f=>f.t)){const p=core.solveWorld(r,t,mode);for(const plate of r.plates)for(const id of plate.span||[plate.bone])radius=Math.max(radius,Math.hypot(...p[id])+Math.max(...plate.size)/2);}
+ r.tokenGroundY=50;r.tokenScale=Math.floor(44/radius*100)/100;
+}

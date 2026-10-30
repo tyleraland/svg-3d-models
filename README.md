@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 51 animals and monsters. They are factored into reusable family
+catalog contains 52 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -673,3 +673,6 @@ See [the Wasp study](reference-studies/wasp.md) for native evidence and adaptati
 The Quaternius `apatosaurus` adds a long low neck, continuous barrel and five-part
 tail, with heavy walk/run, a turning tail sweep and side-rest KO. See
 [the Apatosaurus study](reference-studies/apatosaurus.md).
+
+The separate crested `parasaurolophus` has bipedal walk/run and a forward lunge;
+see [its native study](reference-studies/parasaurolophus.md).
