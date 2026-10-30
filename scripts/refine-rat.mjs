@@ -1,0 +1,46 @@
+// WildMesh Rat reference -> independent low rodent geometry and ordinary clips.
+import fs from'node:fs';
+import{loadFamily}from'@paper-rig/rigs';
+import{applyGroundedQuadruped,bindPositions,quadrupedLegs,solveLeg,sagittalBodyPose}from'../rigs/quadruped-locomotion.js';
+import{curve,round}from'./lib/spatial-leg-ik.mjs';
+const r=loadFamily('deer');Object.assign(r,{id:'ratBase',family:'rodent',archetypes:['rat','rodent'],heightMeters:.132,tokenScale:145,tokenGroundY:48,profile:{silhouette:'small low rat: arched rounded rump, tapering chest, pointed wedge muzzle, round ears, short folded limbs, broad tiny paws and a long thin tapering tail',locomotion:'four-beat scurrying walk; short fast quadrupedal bound with a flexing back and elevated counterbalance tail',attack:'authored braced bite: crouch and jaw opening, short neck/body thrust, sudden jaw closure and recovery; native source has no attack action'},joints:[],plates:[],anchors:[],clips:{}});r.camera.framing='fixed scale with ground origin at token [50,48]';
+const J=(id,parent,bind,role='limb',extra={})=>{const q={id,parent,bind,role,...extra};r.joints.push(q);return q;};
+const P=(id,bone,shape,size,role='limb',extra={})=>r.plates.push({id,bone,shape,size,role,attachment:'rigid',material:'paperMain',zBias:role==='core'?2:0,...extra});
+const span=(id,a,b,width,role='limb',extra={})=>P(id,b,'capsule',[width],role,{span:[a,b],...extra});
+J('root',null,[0,0,0],'root');J('pelvis','root',[-.055,0,.074],'body');J('spineMid','pelvis',[.04,0,.012],'body');J('chest','spineMid',[.05,0,-.012],'body');J('neckBase','chest',[.025,0,.005],'neck');J('head','neckBase',[.025,0,.009],'head');J('muzzle','head',[.052,0,-.014],'head');
+P('castShadow','root','ellipse',[.31,.115],'shadow',{surfaceNormal:[0,0,1],material:'shadow',zBias:-100});span('torsoPlate','pelvis','spineMid',.072,'core');span('frontBarrelPlate','spineMid','chest',.065,'core');P('pelvisPlate','pelvis','ellipse',[.075,.085],'core',{occlusionMode:'under-core'});P('backPlate','spineMid','ellipse',[.075,.09],'core');P('chestPlate','chest','ellipse',[.057,.067],'core');span('neckPlate','chest','neckBase',.040,'neck');span('headConnectorPlate','neckBase','head',.035,'head',{occlusionMode:'under-core'});P('headPlate','head','ellipse',[.045,.045],'head');span('muzzleConnectorPlate','head','muzzle',.039,'head',{shape:'taperedBone',occlusionMode:'under-core'});P('nosePlate','muzzle','ellipse',[.018,.012],'head',{material:'paperShade'});
+for(const[id,d]of[['chest',.038],['neckBase',.025],['head',.025],['muzzle',.008]])r.joints.find(j=>j.id===id).gasket={diameterMeters:d};
+J('jaw','head',[.008,0,-.014],'head',{bendAxis:[0,1,0],limits:[0,32],gasket:{diameterMeters:.01}});J('jawTip','jaw',[.040,0,-.007],'head',{helper:true});span('jawPlate','jaw','jawTip',.014,'head',{shape:'taperedBone',material:'paperShade',occlusionMode:'under-core'});
+J('tailBase','pelvis',[-.035,0,-.025],'tail',{gasket:{diameterMeters:.009}});span('tailSocketPlate','pelvis','tailBase',.012,'tail',{occlusionMode:'under-core'});
+const tailBinds=[[-.035,0,-.008],[-.035,0,-.008],[-.035,0,-.006],[-.035,0,-.003],[-.035,0,.002],[-.030,0,.003]];
+for(let i=0;i<tailBinds.length;i++){const a=i?'tail'+i:'tailBase',id='tail'+(i+1),width=.012-i*.0019;J(id,a,tailBinds[i],'tail',{gasket:{diameterMeters:width*.82}});span('tailSegment'+(i+1)+'Plate',a,id,width,'tail',{occlusionMode:'surface-relative',occlusionReference:'pelvis'});}
+for(const side of ['near','far']){
+ const sign=side==='near'?1:-1,other=side==='near'?'far':'near';
+ for(const part of ['Front','Rear']){
+  const rear=part==='Rear',hip=side+part+'Hip',knee=side+part+'Knee',distal=side+part+(rear?'Hock':'Carpus'),foot=side+part+'Paw';
+  J(hip,rear?'pelvis':'chest',rear?[-.004,sign*.026,-.015]:[.012,sign*.021,-.025],'limb',{mirror:other+part+'Hip'});J(knee,hip,rear?[.016,0,-.018]:[-.016,0,-.018],'limb',{mirror:other+part+'Knee',bendAxis:[0,1,0],limits:[-120,120],gasket:{diameterMeters:.008}});J(distal,knee,rear?[-.030,0,-.026]:[.009,0,-.022],'limb',{mirror:other+part+(rear?'Hock':'Carpus'),bendAxis:[0,1,0],limits:[-150,150]});J(foot,distal,rear?[.015,0,-.015]:[.009,0,-.009],'limb',{mirror:other+part+'Paw',gasket:{diameterMeters:.006}});
+  span(side+part+'UpperPlate',hip,knee,rear?.030:.024,'limb',{occlusionMode:'surface-relative',occlusionReference:rear?'pelvis':'chest'});span(side+part+'LowerPlate',knee,distal,.009);span(side+part+'PasternPlate',distal,foot,.007,'hoof');P(side+part+'PawPlate',foot,'ellipse',[rear?.024:.020,.009],'hoof',{material:'paperShade'});
+ }
+ J(side+'EarBase','head',[-.012,sign*.019,.019],'ear',{mirror:other+'EarBase'});P(side+'EarPlate',side+'EarBase','ellipse',[.029,.030],'ear',{material:'paperMain',bodyRegion:'accessory',occlusionMode:'surface-relative',occlusionReference:'head',semanticDetailTier:'identity'});
+}
+// Explicit small-animal seam diameters avoid the legacy 6 cm default floor.
+for(const q of r.joints.filter(j=>j.parent&&!j.helper&&!j.gasket)){const incident=r.plates.filter(p=>p.role!=='shadow'&&(p.bone===q.id||p.span?.includes(q.id)));if(incident.length)q.gasket={diameterMeters:round(Math.max(...incident.map(p=>p.size[0]))*.85)};}
+const feet=['nearFrontPaw','farFrontPaw','nearRearPaw','farRearPaw'],blank={base:'bind',duration:3200,easing:'linear',loop:true,contacts:feet,frames:[{t:0,poses:{},rotations:{}},{t:1,poses:{},rotations:{}}]};r.clips={idleA:structuredClone(blank),walkA:structuredClone(blank)};
+applyGroundedQuadruped(r,{});const legs=quadrupedLegs(r),bind=bindPositions(r);
+applyGroundedQuadruped(r,{walk:{durationMs:1000,pattern:'lateral-sequence',stride:.40,lift:.22,dutyFactor:.68,bodyBounce:.015,headNodDegrees:1.2,tailSwingDegrees:1.5,earSwingDegrees:1.5},run:{durationMs:380,stride:.44,lift:.52,dutyFactor:.19,bodyRise:.15,bodyDip:.025,pitchDegrees:.6,neckPitchDegrees:2,headPitchDegrees:-2,tailPitchDegrees:12,spineFlexDegrees:4}});
+r.clips.walkA.events=[{t:0,name:'near-hind-contact'},{t:.25,name:'near-fore-contact'},{t:.5,name:'far-hind-contact'},{t:.75,name:'far-fore-contact'}];
+// Propagated lateral tail sway adds motion without changing the ground plane.
+for(const[name,c]of Object.entries(r.clips))for(const f of c.frames)for(let i=1;i<6;i++)f.rotations['tail'+i]=[0,0,round((name==='run'?3.5:2)*Math.sin(2*Math.PI*f.t-i*.55))];
+function frame(attack,t){const w=2*Math.PI*t,move=attack?[curve([[0,0],[.22,-.004],[.46,.010],[.56,.010],[.76,.003],[1,0]],t),0,curve([[0,0],[.22,-.003],[.46,-.001],[.76,-.001],[1,0]],t)]:[0,0,-.0008*(1-Math.cos(w))/2];
+ const rotations=attack?{neckBase:[0,curve([[0,0],[.22,-5],[.42,8],[.50,7],[.76,1],[1,0]],t),0],head:[0,curve([[0,0],[.22,4],[.38,-5],[.46,-6],[.56,-2],[1,0]],t),0],jaw:[0,curve([[0,0],[.22,8],[.36,30],[.42,30],[.48,1],[.56,0],[1,0]],t),0]}:{neckBase:[0,.7*Math.sin(w),0],head:[0,-.4*Math.sin(w),0],jaw:[0,0,0]};
+ for(let i=0;i<6;i++)rotations[i?'tail'+i:'tailBase']=[0,0,round((attack?1+.5*Math.sin(Math.PI*t)**2:1)*Math.sin(w-i*.55))];
+ for(const side of ['near','far'])rotations[side+'EarBase']=[0,1.5*Math.sin(w+(side==='near'?0:.4)),0];
+ const body=sagittalBodyPose(r,rotations,move);for(const leg of legs){const a=solveLeg(leg,body.positions[leg.hip.id],bind[leg.foot.id]);a[leg.hip.id][1]-=body.angles[leg.hip.id];Object.assign(rotations,a);}
+ return{t,poses:{root:move.map(round)},rotations:Object.fromEntries(Object.entries(rotations).map(([id,v])=>[id,v.map(round)]))};
+}
+r.clips.idleA={...blank,frames:Array.from({length:161},(_,i)=>frame(false,i/160)),events:[],boneLengthPolicy:'preserve',motionSemantics:'four fixed paws, quiet low breathing/sniffing, round ear movement and a long low tail sway; adapted from NeutralStand rather than the native rearing Idle'};
+const critical=[.22,.28,.36,.42,.46,.48,.56,.64,.76,.94],times=[...new Set([...Array.from({length:481},(_,i)=>i/480),...critical])].sort((a,b)=>a-b);
+r.clips.attack={base:'bind',duration:850,easing:'linear',loop:false,frames:times.map(t=>frame(true,t)),contacts:feet,events:[{t:.22,name:'windup',phase:'anticipation'},{t:.36,name:'jaw-open',phase:'action'},{t:.48,name:'impact',phase:'contact'},{t:.56,name:'release',phase:'contact'},{t:.94,name:'settled',phase:'settle'}],phases:[{id:'anticipation',from:0,peak:.22,to:.28},{id:'action',from:.28,peak:.36,to:.46},{id:'contact',from:.46,peak:.48,to:.56},{id:'recovery',from:.56,peak:.76,to:.94},{id:'settle',from:.94,peak:1,to:1}],boneLengthPolicy:'preserve',motionSemantics:'authored braced bite: jaw opening, short forward snout/body thrust, fast closure, release and complete recovery over four fixed paws; no attack exists in the native Rat action library'};
+for(const c of Object.values(r.clips))c.frames[c.frames.length-1]={...structuredClone(c.frames[0]),t:1};
+const model={$schema:'paper-rig/model-1',family:'rat',base:true,semanticDetailPolicy:{defaultTier:'silhouette',byRole:{shadow:'texture'}},clips:{run:r.clips.run}};delete r.clips.run;
+for(const[path,obj]of[['rigs/families/rat.json',r],['rigs/models/rat.json',model]]){let text=JSON.stringify(obj,null,2);for(const c of Object.values(obj.clips||{}))for(const f of c.frames||[]){const block=JSON.stringify(f,null,2).split('\n').map(line=>'        '+line).join('\n');text=text.replace(block,'        '+JSON.stringify(f));}fs.writeFileSync(path,text+'\n');}

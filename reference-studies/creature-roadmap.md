@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N10 Monkey complete; stopped between creatures.
-- Next milestone: N11 Rat.
+- Status: N11 Rat complete; stopped between creatures.
+- Next milestone: N12 Badger.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N10 Monkey / `f896ed8`.
+- Last completed milestone / commit: N11 Rat / pending commit.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
-- Next action: inspect the WildMesh Rat reference in Blender when N11 is requested.
+- Next action: inspect WildMesh HoneyBadger in Blender when N12 is requested; document species adaptations.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -61,7 +61,7 @@ selectable. Commit every row before proceeding to the next.
 | N8 | complete | Camel | Camel, Camel_Stylized | Reference-led hump count, long neck and leg proportions; distinct pacing; select attack after action inspection. |
 | N9 | complete | Kangaroo | Kangaroo | Upright balance, large hind feet and substantial tail; hop locomotion; separate punch and tail-supported kick attacks. Explicit tail support during kick. |
 | N10 | complete | Monkey | Monkey_Stylized | Primate limb/tail proportions and grounded movement; choose attack from inspected reference and document adaptations. |
-| N11 | queued | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
+| N11 | complete | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
 | N12 | queued | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
 | N13 | queued | Ostrich | Ostrich_Stylized | Separate from Chicken; long neck, long articulated legs and reduced wings; walk/run and reference-led kick or peck. |
 | N14 | queued | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
@@ -711,3 +711,41 @@ Next action:
   paint audits and release metadata passed. Existing advisory totals remain
   40/38/40; Monkey adds none. Implementation commit: `f896ed8`.
 - N11 Rat is next. No next-creature work started; unrelated `.DS_Store` excluded.
+
+### N11 — Rat — 2026-10-29
+
+- WildMesh `Realistic Animals/Rat/SK_Rat.blend` opened in a separate appended
+  Blender scene, preserving prior scenes. 53 bones, 24 actions, 24 FPS. Native
+  Idle/NeutralStand/WalkSlow/Walk/Trot/Run/Sprint sampled at 41 phases with
+  orthographic renders. Distinct action tags prevent selecting Monkey actions
+  with the same names. Native library has no attack; bite is explicitly authored.
+  Study: `reference-studies/rat.md`; script: `scripts/study-wildmesh-rat.py`.
+- New independent Rat family/model: low arched body, rounded rump, tapering chest,
+  pointed muzzle and jaw, round ears, short folded legs and broad tiny paws,
+  long thin six-section tail. 34 joints / 37 plates, .132 m nominal height.
+  Reproduced by `scripts/refine-rat.mjs`, no native assets in runtime outputs.
+- Idle uses a four-paw quiet sniff/breath stance. Walk is a four-beat scurry;
+  Run a .38 s quadrupedal bound with back flexion and .63–1 suspension, raised
+  tail and whole-limb articulation. Authored .85 s bite opens the jaw, makes a
+  short forward thrust and snaps shut, then returns exactly to idle over four
+  fixed paws. Ground and shadow stay fixed.
+- Independent checks caught a rigid torso span crossing the bending spine and
+  oversized default seam circles. Body spans now meet at the hinge; small
+  authored gasket sizes fit the rat. Oblique workbench review also caught the
+  jaw triangle base over the skull; the internal bridge is now buried.
+- Ten focused tests: proportions, seam scale and fallback mutations, real contact
+  surfaces, support continuity, upper/lower articulation, flight/spine motion,
+  bite timing/fixed paws/idle matching, lengths/limits/clearance/seams and shadow.
+  Dense matrix covers 4,608 views plus emitted SVG bounds; another 960 views
+  verify muzzle AND jaw base-corner coverage, painter order and buried tail
+  socket. Promoting the muzzle is caught independently of regenerated goldens.
+- Actual workbench review: oblique idle and corrected jaw at 45° / 225°;
+  moving side-on scurry/run; open bite, closed bite with four-paw contact overlays
+  at 45° / 135°; overhead idle burial and head-on silhouette.
+- Browser gate passed: 121/121 outputs identical; authoring UI states passed;
+  zero console errors. Catalog: 332/332 tests, 44/44 source/model validations, ordinary/motion/paint
+  audits and release metadata passed. Advisory totals stay 40/38/40; Rat adds
+  none. Existing 43 model goldens unchanged. Workbench left at Rat idle,
+  45° / 225°, overlays off.
+- Implementation commit pending. N12 Badger is next; no next-creature work
+  started. Unrelated `.DS_Store` excluded.
