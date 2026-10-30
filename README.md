@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 50 animals and monsters. They are factored into reusable family
+catalog contains 51 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -669,3 +669,7 @@ articulated legs, cambered membrane wings and a faceted stinger. Its idle and
 walk/run equivalents are hovering and slow/fast airborne travel; the attack
 recoils the abdomen and drives the sting forward while wingbeats continue.
 See [the Wasp study](reference-studies/wasp.md) for native evidence and adaptations.
+
+The Quaternius `apatosaurus` adds a long low neck, continuous barrel and five-part
+tail, with heavy walk/run, a turning tail sweep and side-rest KO. See
+[the Apatosaurus study](reference-studies/apatosaurus.md).

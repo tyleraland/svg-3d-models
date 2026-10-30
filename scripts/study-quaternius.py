@@ -12,7 +12,7 @@ for id,pack,name in entries:
 open('reference-studies/quaternius-inventory.json','w').write(json.dumps(inventory,indent=2)+'\n')
 selected=sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else 'frog'
 reference=next(x for x in inventory if x['id']==selected)
-if selected not in ['frog','wasp']: raise ValueError('Calibrate camera directions for this reference before sampling its actions')
+if selected not in ['frog','wasp','apatosaurus','parasaurolophus','stegosaurus','trex','triceratops','velociraptor']: raise ValueError('Unknown reference')
 path=reference['path'];bpy.ops.wm.open_mainfile(filepath=path,load_ui=False,use_scripts=False);s=bpy.context.scene;arm=next(o for o in s.objects if o.type=='ARMATURE');meshes=[o for o in s.objects if o.type=='MESH']
 arm.animation_data_create()
 for t in arm.animation_data.nla_tracks:t.mute=True

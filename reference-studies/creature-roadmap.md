@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: Q1 Frog and Q2 Wasp complete at their review checkpoints.
-- Active creature / stage: none; Q2 Wasp delivered in `b894529`.
-- Last completed milestone: Wasp, using the native Quaternius Blender reference.
-- Next milestone: Q3 Apatosaurus, followed by the other five dinosaurs in order.
+- Status: Q1 Frog and Q2 Wasp complete; continuing the full Quaternius batch.
+- Active creature / stage: Q4 Parasaurolophus — native reference study.
+- Last completed milestone: Apatosaurus; five focused tests and 121 Chromium outputs pass.
+- Next milestone: Q4 Parasaurolophus, then Q5–Q8 in order.
 - References: `quaternius-inventory.json`, `frog.md` and `wasp.md` in this directory.
 - Last correction: Kangaroo elbow/forward forearm guard / `b8096eb`.
-- Open technical blockers: none. Review cadence defaults to the previous
-  per-creature checkpoints; the user can choose to continue the whole batch.
-- Next action: review Wasp feedback; Q3 Apatosaurus is next when expansion resumes.
+- Open technical blockers: none. User explicitly chose to continue through all
+  eight Quaternius creatures, committing each before moving on; no review stop required.
+- Next action: implement Parasaurolophus; continue through Q8 without review stops.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -980,7 +980,7 @@ WildMesh items remain on the list; this is the currently requested sequence.
 |---|---|---|---|---|
 | Q1 | complete | Frog | Easy Animated Enemy Pack / Frog.blend | Idle, Jump, Attack, Death; no Walk. Authored crawl is explicitly separate. |
 | Q2 | complete | Wasp | Easy Animated Enemy Pack / Wasp.blend | Flying, Attack, Death; authored hover/cruise/dart, abdominal sting and side-rest KO. |
-| Q3 | queued | Apatosaurus | Dinosaur Animated Pack / Apatosaurus.blend | Idle, Walk, Run, Jump, Attack; death is unusually named Stegosaurus_Death in this file. Inspect its contents. |
+| Q3 | complete | Apatosaurus | Dinosaur Animated Pack / Apatosaurus.blend | Idle, Walk, Run, Jump, Attack; death is unusually named Stegosaurus_Death in this file. Inspect its contents. |
 | Q4 | queued | Parasaurolophus | Dinosaur Animated Pack / Parasaurolophus.blend | Idle, Walk, Run, Jump, Attack, Death. |
 | Q5 | queued | Stegosaurus | Dinosaur Animated Pack / Stegosaurus.blend | Idle, Walk, Run, Jump, Attack, Death. |
 | Q6 | queued | T. rex | Dinosaur Animated Pack / Trex.blend | Idle, Walk, Run, Jump, Attack, Death. |
