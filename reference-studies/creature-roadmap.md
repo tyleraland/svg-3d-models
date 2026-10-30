@@ -10,7 +10,7 @@ order below. Planning does not start implementation automatically.
 - Next milestone: N14 Goose.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N13 Ostrich / pending commit.
+- Last completed milestone / commit: N13 Ostrich / `7b56391`.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
@@ -828,5 +828,5 @@ Next action:
   paint audits and release metadata passed. Advisory totals stay 40/38/40;
   Ostrich adds none. Final rebuilt-selector browser check passed (121/121, zero console errors).
   All earlier 45 model goldens unchanged.
-- Implementation commit pending. N14 Goose remains next; no next-creature work
+- Implementation commit: `7b56391`. N14 Goose remains next; no next-creature work
   started. Unrelated `.DS_Store` excluded.
