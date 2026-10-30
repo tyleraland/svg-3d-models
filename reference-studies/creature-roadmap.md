@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N8 Camel complete; stopped between creatures.
-- Next milestone: N9 Kangaroo.
+- Status: N9 Kangaroo complete; stopped between creatures.
+- Next milestone: N10 Monkey.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N8 Camel / `2773e43`.
+- Last completed milestone / commit: N9 Kangaroo / pending commit.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none.
-- Next action: inspect Kangaroo in Blender when N9 is requested; plan separate punch and tail-supported kick attacks.
+- Next action: inspect Monkey_Stylized in Blender when N10 is requested.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -59,7 +59,7 @@ selectable. Commit every row before proceeding to the next.
 | N6 | complete | Mountain Goat | MountainGoat, Goat | Compact mountain stance, appropriate horns and hooves; head-driven attack. |
 | N7 | complete | Boar | WildBoar, Boar, Warthog | Low heavy forequarters, short legs, tusks; charge/tusk attack. |
 | N8 | complete | Camel | Camel, Camel_Stylized | Reference-led hump count, long neck and leg proportions; distinct pacing; select attack after action inspection. |
-| N9 | queued | Kangaroo | Kangaroo | Upright balance, large hind feet and substantial tail; hop locomotion; separate punch and tail-supported kick attacks. Explicit tail support during kick. |
+| N9 | complete | Kangaroo | Kangaroo | Upright balance, large hind feet and substantial tail; hop locomotion; separate punch and tail-supported kick attacks. Explicit tail support during kick. |
 | N10 | queued | Monkey | Monkey_Stylized | Primate limb/tail proportions and grounded movement; choose attack from inspected reference and document adaptations. |
 | N11 | queued | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
 | N12 | queued | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
@@ -595,3 +595,48 @@ Next action:
   Implementation commit: `2773e43`.
 - Next is N9 Kangaroo, with separate punch and tail-supported kick attacks;
   no Kangaroo work started. Unrelated `.DS_Store` remains excluded.
+
+
+### N9 — Kangaroo — completed 2026-10-29
+
+- Inspected WildMesh native Kangaroo in Blender 5.1.2: 114 bones, 54 actions,
+  30 FPS. Reproducible study inventories all actions, samples 41 phases and
+  renders side/front/top plus motion key poses with full combat-pose framing.
+  Slow walk is hands-and-tail assisted; trot/sprint are paired hops. The clear
+  double-foot kick is `aggressive_attack_stomping_01`; `aggressive kick fwd`
+  alone does not establish that motion. No named punch exists; boxing is an
+  authored adaptation of the aggressive guard and native arm proportions.
+- Added an independent 40-joint/33-plate Kangaroo: heavy haunches, upward-folded
+  thighs, long shins and feet, narrow rising chest, small forearms/head, upright
+  leaf ears and a substantial tapering tail. Existing 41 model goldens unchanged.
+- Added upright breathing idle, 1.55 s pentapedal walk, .57 s paired airborne hop,
+  separate 1.15 s punch and 1.45 s tail-supported double-foot kick. Punch lifts
+  guard, extends one arm and recoils while the opposite hand guards. Kick shifts
+  backward, leans/rises, lifts feet at .20, extends at .44 with soles presented,
+  retracts, lands at .76 and recovers. Tail stays anchored before lift through
+  landing; both attacks return exactly to idle. This is authored dynamic support,
+  not a center-of-mass physics simulation.
+- A supported low bind puts hand, hind-foot and tail contact offsets on Z=0;
+  sagittal rebasing preserves world animation/bone lengths and shifts local
+  rotation limits consistently. Upward-thigh atan2 wrapping is handled at
+  authoring time and tested against 360° interpolation jumps. No compiler or
+  runtime IK changes, reference mesh or reference animation payloads are needed.
+- Eleven focused tests pass: anatomy/contact bind, idle support/shadow, slow
+  support exchange, paired hop/suspension, guard/punch, anchored-tail kick and
+  soles-up feet, lengths/limits/loops/angle continuity, 1,201 interpolated support
+  samples per clip and 5,760 independent occlusion/full-SVG-framing views.
+  Maximum contact error is approximately .0088 mm; kick tail drift .985 micrometers.
+- Visual head-on review found inconsistent hand burial against the haunches.
+  Forearms/hands now sort against actual chest surface depth. A direct overlapping
+  hand/haunch/pelvis painter-order test catches a single-hand burial mutation;
+  a promoted head-seam mutation is independently caught as well. Knee connectors
+  fit the slender shins. Side/front/top/oblique anatomy, support exchange, hopping
+  feet/suspension, punch and the tail-braced soles-up kick were reviewed in UI.
+- Final `npm run check`: 306 tests, 42/42 source/model validations, ordinary/
+  motion/paint audits and release checks passed. Kangaroo adds no issues/warnings;
+  catalog advisories remain 40 ordinary / 38 motion / 40 paint. Browser parity
+  explicitly includes `kick`: 141/141 outputs, authoring UI passed and zero errors.
+- Workbench left at upright idle, 45° elevation / 225° heading. Study/authoring
+  scripts, source model, tests, fixtures and generated workbench are included.
+  Implementation commit: pending.
+- Next is N10 Monkey; no Monkey work started. Unrelated `.DS_Store` stays excluded.

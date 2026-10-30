@@ -24,7 +24,7 @@ const SYSTEM_CHROMIUM = [
   '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
 ].find((candidate) => candidate && existsSync(candidate));
 
-const CLIPS = ['idle', 'idleLow', 'idleHind', 'walk', 'walkHind', 'attackHind', 'standUp', 'standDown', 'hop', 'rise', 'idleRaised', 'lower', 'trot', 'sprint', 'fly', 'glide', 'run', 'gallop', 'attack', 'stomp', 'sidewalk', 'siderun', 'pounce', 'talonStrike', 'hit', 'ko'];
+const CLIPS = ['idle', 'idleLow', 'idleHind', 'walk', 'walkHind', 'attackHind', 'standUp', 'standDown', 'hop', 'rise', 'idleRaised', 'lower', 'trot', 'sprint', 'fly', 'glide', 'run', 'gallop', 'attack', 'kick', 'stomp', 'sidewalk', 'siderun', 'pounce', 'talonStrike', 'hit', 'ko'];
 const TIMES = [0, 0.25, 0.5, 0.62, 1];
 const CAMERAS = [null, [60, 0], [45, 90], [90, 180]];
 
