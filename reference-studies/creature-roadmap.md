@@ -10,7 +10,7 @@ order below. Planning does not start implementation automatically.
 - Next milestone: N11 Rat.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N10 Monkey / pending commit.
+- Last completed milestone / commit: N10 Monkey / `f896ed8`.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
@@ -709,5 +709,5 @@ Next action:
 - Browser gate: 121/121 outputs identical, authoring UI states passed, zero
   console errors. Catalog gate: 322/322 tests, 43/43 source/model validations, ordinary/motion/
   paint audits and release metadata passed. Existing advisory totals remain
-  40/38/40; Monkey adds none. Implementation commit pending.
+  40/38/40; Monkey adds none. Implementation commit: `f896ed8`.
 - N11 Rat is next. No next-creature work started; unrelated `.DS_Store` excluded.
