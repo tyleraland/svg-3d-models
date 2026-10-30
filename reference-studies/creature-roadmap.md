@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N14 Goose in progress.
-- Next milestone: N14 Goose.
+- Status: N14 Goose complete.
+- Next milestone: N15 Tortoise.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N13 Ostrich / `7b56391`.
+- Last completed milestone / commit: N14 Goose / `4f856a3`.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
-- Active creature / stage: Goose / verified, awaiting implementation commit.
+- Active creature / stage: none; Goose committed.
 - Open decisions or blockers: none.
-- Next action: commit the verified Goose implementation, then record its resume checkpoint.
+- Next action: when resumed, study Tortoise_Stylized in Blender and begin N15.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -64,7 +64,7 @@ selectable. Commit every row before proceeding to the next.
 | N11 | complete | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
 | N12 | complete | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
 | N13 | complete | Ostrich | Ostrich_Stylized | Separate from Chicken; long neck, long articulated legs and reduced wings; walk/run and reference-led kick or peck. |
-| N14 | in progress | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
+| N14 | complete | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
 | N15 | queued | Tortoise | Tortoise_Stylized | Rigid shell enclosing limb roots, low splayed stance; idle, slow/fast travel equivalents and bite. Avoid forcing an implausible mammalian run. |
 
 ### Phase 3 — deferred, additional references needed
@@ -864,5 +864,5 @@ Next action:
 - `npm run check`: 372/372 tests, 47/47 sources/models, all ordinary/motion/paint
   audits and release metadata passed. Advisories unchanged at 40/38/40; Goose
   adds none. Chromium: 121/121 outputs identical, authoring UI checks passed,
-  zero console errors. Implementation ready to commit; N15 Tortoise remains
+  zero console errors. Implementation commit: `4f856a3`. N15 Tortoise remains
   queued and has not been started. Unrelated `.DS_Store` excluded.
