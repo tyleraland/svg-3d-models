@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: Q1 Frog complete at its first review checkpoint; Quaternius expansion queued.
-- Active creature / stage: none; Q1 Frog delivered in `1e057eb`.
-- Last completed milestone: Frog, using the native Quaternius Blender reference.
-- Next milestone: Q2 Wasp, followed by six dinosaurs in the requested order.
-- References: `quaternius-inventory.json` and `frog.md` in this directory.
+- Status: Q1 Frog and Q2 Wasp complete at their review checkpoints.
+- Active creature / stage: none; Q2 Wasp delivered in `b894529`.
+- Last completed milestone: Wasp, using the native Quaternius Blender reference.
+- Next milestone: Q3 Apatosaurus, followed by the other five dinosaurs in order.
+- References: `quaternius-inventory.json`, `frog.md` and `wasp.md` in this directory.
 - Last correction: Kangaroo elbow/forward forearm guard / `b8096eb`.
 - Open technical blockers: none. Review cadence defaults to the previous
   per-creature checkpoints; the user can choose to continue the whole batch.
-- Next action: review Frog feedback; Q2 Wasp is next when expansion resumes.
+- Next action: review Wasp feedback; Q3 Apatosaurus is next when expansion resumes.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -979,7 +979,7 @@ WildMesh items remain on the list; this is the currently requested sequence.
 | ID | Status | Creature | Native Blender reference | Available actions |
 |---|---|---|---|---|
 | Q1 | complete | Frog | Easy Animated Enemy Pack / Frog.blend | Idle, Jump, Attack, Death; no Walk. Authored crawl is explicitly separate. |
-| Q2 | queued | Wasp | Easy Animated Enemy Pack / Wasp.blend | Flying, Attack, Death; inspect the actual attack before choosing paper articulation. |
+| Q2 | complete | Wasp | Easy Animated Enemy Pack / Wasp.blend | Flying, Attack, Death; authored hover/cruise/dart, abdominal sting and side-rest KO. |
 | Q3 | queued | Apatosaurus | Dinosaur Animated Pack / Apatosaurus.blend | Idle, Walk, Run, Jump, Attack; death is unusually named Stegosaurus_Death in this file. Inspect its contents. |
 | Q4 | queued | Parasaurolophus | Dinosaur Animated Pack / Parasaurolophus.blend | Idle, Walk, Run, Jump, Attack, Death. |
 | Q5 | queued | Stegosaurus | Dinosaur Animated Pack / Stegosaurus.blend | Idle, Walk, Run, Jump, Attack, Death. |
@@ -1008,3 +1008,20 @@ remain reference assets and are not copied into the workbench.
 - Final Chromium comparison: 121/121 outputs, authoring UI passed and zero
   console errors. Existing 48 rig/package fixture sets unchanged. Implementation
   commit: `1e057eb`. Q2 Wasp and Q3–Q8 dinosaurs remain queued, unimplemented.
+
+
+### Quaternius Wasp review checkpoint — 2026-10-30
+
+- Opened Wasp.blend in Blender and sampled Flying, Attack and Death. Separate
+  93-joint / 55-plate model with six articulated legs, cambered wings and hooked
+  banded abdomen; native meshes remain external.
+- Hover, slow cruising flight, fast dart, articulated abdominal sting with
+  continuous wingbeat, and side-rest KO. No fabricated grounded walk/run.
+- Nine focused tests include projected wing/needle area, internal stem burial,
+  independent ordering/mutation checks, limb lengths, clearance and KO settling.
+- Full suite 422/422; all 50 sources/models, catalog audit modes and release
+  metadata pass. Advisories unchanged at 40/38/40; Wasp contributes none.
+  Final composed Wasp audit: 480 views, zero issues/warnings.
+- Chromium 121/121 outputs and authoring UI pass; zero console errors. Existing
+  49 rig/package fixture sets unchanged. Implementation commit: `b894529`.
+- Q3 Apatosaurus is next; Q3–Q8 dinosaurs remain unimplemented.
