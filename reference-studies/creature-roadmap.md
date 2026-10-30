@@ -6,11 +6,11 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N5 hornless Cow complete; recording completion commit, stopped between creatures.
+- Status: N5 hornless Cow complete and committed; stopped between creatures.
 - Next milestone: N6 Mountain Goat.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N5 Cow / completion commit being recorded.
+- Last completed milestone / commit: N5 Cow / `323289b`.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none blocking N6. Inspect MountainGoat/Goat anatomy
@@ -498,6 +498,6 @@ Next action:
 - Direct workbench review included side/front/top/oblique anatomy, buried udder,
   walk support, gallop suspension and shove contact. Workbench left at idle,
   45° elevation / 225° heading. Sources, authoring script, study, tests, fixtures
-  and regenerated workbench are included. Implementation commit recorded below.
+  and regenerated workbench are included. Implementation commit: `323289b`.
 - Next is N6 Mountain Goat; no Goat work has started. Unrelated `.DS_Store`
   remains excluded.
