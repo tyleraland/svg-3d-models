@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 49 animals and monsters. They are factored into reusable family
+catalog contains 50 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -662,3 +662,10 @@ crawl, paired hopping travel, rear-braced forelimb attack and a roll-over KO.
 Its native Blender study and the remaining Wasp/dinosaur queue are recorded in
 [the Frog study](reference-studies/frog.md) and
 [the creature roadmap](reference-studies/creature-roadmap.md).
+
+
+The separate Quaternius `wasp` model adds a hooked banded abdomen, six
+articulated legs, cambered membrane wings and a faceted stinger. Its idle and
+walk/run equivalents are hovering and slow/fast airborne travel; the attack
+recoils the abdomen and drives the sting forward while wingbeats continue.
+See [the Wasp study](reference-studies/wasp.md) for native evidence and adaptations.
