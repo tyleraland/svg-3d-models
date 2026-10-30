@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: planned WildMesh phases complete; five-creature review follow-up verified, awaiting commit.
+- Status: planned WildMesh phases and five-creature review follow-up complete.
 - Next milestone: Phase 3 — deferred creature/reference selection.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: N15 Tortoise / `2dcccca`.
-- Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
-- Active creature / stage: Kangaroo, Rat, Goose, Tortoise and Ostrich review / verified, awaiting commit.
+- Latest follow-up: five-creature joins/footwork fixes and Goose flight / `5e8ed96`.
+- Active creature / stage: none; five-creature feedback committed.
 - Open decisions or blockers: none.
-- Next action: commit the verified feedback batch and record its checkpoint; leave Phase 3 deferred.
+- Next action: when resumed, select references and scope for the deferred Phase 3 work.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -932,4 +932,4 @@ Next action:
   Kangaroo hop and Goose run/fly. Final checks: 393/393 tests, 48/48 sources/models,
   all ordinary/motion/paint audits and release metadata passed. Advisories stay
   40/38/40. Chromium matched 645/645 outputs, authoring UI checks passed, zero
-  console errors. The implementation commit remains to be recorded.
+  console errors. Implementation commit: `5e8ed96`. No next-creature work started.
