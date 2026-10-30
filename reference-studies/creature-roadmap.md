@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N7 Boar complete; stopped between creatures.
-- Next milestone: N8 Camel.
+- Status: N8 Camel complete; stopped between creatures.
+- Next milestone: N9 Kangaroo.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N7 Boar / `b105403`.
+- Last completed milestone / commit: N8 Camel / pending commit.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none.
-- Next action: inspect Camel candidates in Blender when N8 is requested.
+- Next action: inspect Kangaroo in Blender when N9 is requested; plan separate punch and tail-supported kick attacks.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -58,7 +58,7 @@ selectable. Commit every row before proceeding to the next.
 | N5 | complete | Cow, without horns | Cow | Distinct bovine body; hornless silhouette and shove attack. |
 | N6 | complete | Mountain Goat | MountainGoat, Goat | Compact mountain stance, appropriate horns and hooves; head-driven attack. |
 | N7 | complete | Boar | WildBoar, Boar, Warthog | Low heavy forequarters, short legs, tusks; charge/tusk attack. |
-| N8 | queued | Camel | Camel, Camel_Stylized | Reference-led hump count, long neck and leg proportions; distinct pacing; select attack after action inspection. |
+| N8 | complete | Camel | Camel, Camel_Stylized | Reference-led hump count, long neck and leg proportions; distinct pacing; select attack after action inspection. |
 | N9 | queued | Kangaroo | Kangaroo | Upright balance, large hind feet and substantial tail; hop locomotion; separate punch and tail-supported kick attacks. Explicit tail support during kick. |
 | N10 | queued | Monkey | Monkey_Stylized | Primate limb/tail proportions and grounded movement; choose attack from inspected reference and document adaptations. |
 | N11 | queued | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
@@ -560,3 +560,38 @@ Next action:
   Implementation commit: `b105403`. Study, authoring scripts, tests, fixtures and
   generated workbench are included.
 - Next is N8 Camel; no Camel work started. Unrelated `.DS_Store` stays excluded.
+
+
+### N8 — Camel — completed 2026-10-29
+
+- Inspected native realistic Camel and Camel_Stylized in Blender 5.1.2:
+  110/53 bones, 32/18 actions, 24/60 FPS. Reproducible study inventories actions,
+  samples 41 phases and renders side/front/top and motion key poses. The realistic
+  mesh is two-humped despite its `1hump` skeleton names; the stylized mesh has
+  one hump. The SVG follows realistic anatomy and references stylized Bite.
+- Added independent Camel family/model: two torso-owned humps, deep barrel,
+  long rising S-neck, small head/ears, long muzzle, tall articulated legs, broad
+  padded feet and hanging tail. Existing ungulate goldens remain unchanged.
+- Added breathing/chewing idle with four fixed pads, a 1.5 s ipsilateral pace
+  (hind precedes same-side fore by .12 cycle), .585 s suspended gallop with lower
+  neck carriage, and a 1.4 s neck snap/bite. Attack head advances about .45 m and
+  drops .44 m from preload; jaw closes 28° to 2° in 56 ms. Four pads brace and
+  the ending pose exactly matches the start. Uses ordinary baked local clips.
+- Nine focused tests cover anatomy/hump rigidity, chewing, pad/gasket containment,
+  actual swing-peak phase coordination, whole-leg motion, lower run neck,
+  lengths/limits/loops, 1,201 interpolated support samples per clip, bite behavior
+  and 4,608 independent occlusion/full-SVG-framing views. Detached-hump and
+  frontmost-jaw-seam mutations are caught. Dense framing caught extended-neck
+  clipping; direct head-on review caught oversized circular foot connectors.
+  Source fixes and regression checks cover both before final fixtures were saved.
+- Final `npm run check`: 295 tests, 41/41 source/model validations, ordinary/
+  motion/paint audits and release checks passed. Camel adds no issues/warnings;
+  catalog advisories remain 40 ordinary / 38 motion / 40 paint. Browser parity:
+  121/121 outputs, authoring UI passed and zero console errors.
+- Actual workbench review covered side/front/top/oblique anatomy, foot connector
+  symmetry, pacing support, lowered-neck gallop suspension and bite opening/
+  closure. Workbench left at idle, 45° elevation / 225° heading. Study/authoring
+  scripts, sources, tests, fixtures and generated workbench are included.
+  Implementation commit: pending.
+- Next is N9 Kangaroo, with separate punch and tail-supported kick attacks;
+  no Kangaroo work started. Unrelated `.DS_Store` remains excluded.
