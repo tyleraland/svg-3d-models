@@ -10,7 +10,7 @@ order below. Planning does not start implementation automatically.
 - Next milestone: N13 Ostrich.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N12 Badger / pending commit.
+- Last completed milestone / commit: N12 Badger / `76738a6`.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
@@ -787,5 +787,5 @@ Next action:
   console errors. Catalog gate: 344/344 tests, 45/45 source/model validations, all ordinary/
   motion/paint audits and release metadata passed. Advisory totals stay 40/38/40;
   Badger adds none. Workbench left at Badger idle, 45° / 225°, overlays off.
-  Implementation commit pending.
+  Implementation commit: `76738a6`.
 - N13 Ostrich remains next. No next-creature work started; `.DS_Store` excluded.
