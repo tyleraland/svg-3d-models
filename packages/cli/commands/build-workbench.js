@@ -23,7 +23,7 @@ const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const PREFERRED_RIG_ORDER = [
   'horse', 'humanoid', 'tinyBiped', 'stoutBiped', 'tailedBiped', 'rhino', 'elephant',
   'rabbit', 'bear', 'leopard', 'wolf', 'greyhound', 'deer', 'moose', 'bull', 'cow', 'mountainGoat', 'boar', 'camel', 'kangaroo', 'monkey', 'rat', 'badger', 'blob', 'quadruped', 'lizard', 'dragon',
-  'walkingBird', 'flyingBird', 'crow', 'bug', 'ant', 'radial', 'serpentine', 'kingCobra', 'mimic', 'tentacle',
+  'walkingBird', 'ostrich', 'flyingBird', 'crow', 'bug', 'ant', 'radial', 'serpentine', 'kingCobra', 'mimic', 'tentacle',
   'scorpion', 'bat', 'crab', 'lobster', 'centaur', 'harpy', 'angel', 'spider',
 ];
 

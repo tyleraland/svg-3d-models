@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N12 Badger complete; stopped between creatures.
-- Next milestone: N13 Ostrich.
+- Status: N13 Ostrich complete; stopped between creatures.
+- Next milestone: N14 Goose.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N12 Badger / `76738a6`.
+- Last completed milestone / commit: N13 Ostrich / pending commit.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
-- Next action: inspect WildMesh Ostrich_Stylized in Blender when N13 is requested.
+- Next action: inspect WildMesh Goose in Blender when N14 is requested.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -63,7 +63,7 @@ selectable. Commit every row before proceeding to the next.
 | N10 | complete | Monkey | Monkey_Stylized | Primate limb/tail proportions and grounded movement; choose attack from inspected reference and document adaptations. |
 | N11 | complete | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
 | N12 | complete | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
-| N13 | queued | Ostrich | Ostrich_Stylized | Separate from Chicken; long neck, long articulated legs and reduced wings; walk/run and reference-led kick or peck. |
+| N13 | complete | Ostrich | Ostrich_Stylized | Separate from Chicken; long neck, long articulated legs and reduced wings; walk/run and reference-led kick or peck. |
 | N14 | queued | Goose | Goose | Long neck, heavy body, webbed feet, folded wings; grounded walk/run and bite/peck. Flight/swim are optional follow-ups, not prerequisites. |
 | N15 | queued | Tortoise | Tortoise_Stylized | Rigid shell enclosing limb roots, low splayed stance; idle, slow/fast travel equivalents and bite. Avoid forcing an implausible mammalian run. |
 
@@ -789,3 +789,44 @@ Next action:
   Badger adds none. Workbench left at Badger idle, 45° / 225°, overlays off.
   Implementation commit: `76738a6`.
 - N13 Ostrich remains next. No next-creature work started; `.DS_Store` excluded.
+
+### N13 — Ostrich — 2026-10-30
+
+- WildMesh `Stylized Animals/Ostrich_Stylized/SK_Ostrich_Stylized.blend` opened
+  in a separate Blender scene, preserving earlier studies. 56 bones, 10 actions,
+  60 FPS; Idle/Walk/Run and all four attacks sampled at 41 phases with key-pose
+  renders. Attack4 is the jumping double-foot kick reference. Study and script:
+  `reference-studies/ostrich.md`, `scripts/study-wildmesh-ostrich.py`.
+- Independent Ostrich family/model: broad feather barrel, thin long S-neck,
+  small head/bill, four-link legs (true thigh/knee/backward hock/ankle), two
+  forward toes, reduced folded wings and short feather tail. 33 joints / 31
+  plates, 2.3 m nominal height. Chicken/Eagle/Crow remain distinct and unchanged.
+  Reproduced by `scripts/refine-ostrich.mjs`, no native runtime assets.
+- Idle has two planted feet. Walk is alternating with .625 duty/double support;
+  Run is faster with .40 duty, long recovery and brief suspension. Attack
+  crouches, takes off .28, kicks both upturned feet forward above the pelvis at
+  .46, retracts, lands .72 and returns exactly to idle. Reduced wings assist
+  outward; ground/shadow remain stationary. The .4 m parabolic jump over .572 s
+  has near-9.8 m/s² implied acceleration and matched launch/landing velocity.
+- Fourteen focused tests pass: proportions, four-link anatomy/two toes, seam
+  bounds and mutations, contacts, gait support/articulation/flight, kick/landing,
+  jump arc/velocity joins, lengths/limits/loop seams/clearance, fixed shadow,
+  bill-base coverage, head-on wing visibility/outward assist and endpoint/sole
+  attachment invariants. Dense matrix is 4,608 views with full SVG bounds and
+  independent occlusion; another 960 views verify buried bill/jaw/socket joins.
+- Review caught an unnecessary wing-tip seam cap; the non-articulating tip is
+  now a helper anchor, with a mutation check for exposed caps. Browser parity
+  caught three coplanar foot-order differences: helper-owned toe plates now
+  share the real sole joint, and the raised instep belongs to the ankle. A
+  mutation guards sole ownership. No shared compositor or sort-tolerance change.
+- Actual workbench review covers moving side walk/run, high double kick from
+  side and 45° / 135°, separation above the fixed shadow, paired landing with
+  contact overlays, top-down burial and head-on wing/toe visibility. Workbench
+  left at idle, 45° / 135°, overlays off.
+- Browser gate: 121/121 outputs identical, authoring UI states passed, zero
+  console errors. Catalog: 358/358 tests, 46/46 source/model validations, all ordinary/motion/
+  paint audits and release metadata passed. Advisory totals stay 40/38/40;
+  Ostrich adds none. Final rebuilt-selector browser check passed (121/121, zero console errors).
+  All earlier 45 model goldens unchanged.
+- Implementation commit pending. N14 Goose remains next; no next-creature work
+  started. Unrelated `.DS_Store` excluded.
