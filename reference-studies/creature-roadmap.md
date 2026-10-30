@@ -6,16 +6,16 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N4 Bull complete and committed; stopped between creatures.
-- Next milestone: N5 hornless Cow.
+- Status: N5 hornless Cow complete; recording completion commit, stopped between creatures.
+- Next milestone: N6 Mountain Goat.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N4 Bull / `c890346`.
+- Last completed milestone / commit: N5 Cow / completion commit being recorded.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking N5. Cow has been inspected as a female
-  cattle reference; adapt its proportions, retain a hornless silhouette and shove.
-- Next action: resume N5 Cow when requested, using the existing bovine study.
+- Open decisions or blockers: none blocking N6. Inspect MountainGoat/Goat anatomy
+  and action inventories before selecting its reference-led attack.
+- Next action: inspect Mountain Goat candidates in Blender when N6 is requested.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -56,7 +56,7 @@ selectable. Commit every row before proceeding to the next.
 | N2 | complete | Deer, without antlers | FemaleDeer primary; Doe and Deer inventories | Antlerless light barrel, long slender legs, leaf ears and short tail; grounded idle, four-beat walk, light gallop and authored bite. |
 | N3 | complete | Moose | Moose | Tall shoulders, long muzzle/legs and broad antlers; goring attack. |
 | N4 | complete | Bull | Cow, Buffalo as secondary anatomy reference | Heavy forequarters and neck, horns; goring attack. Inspect reference sex/anatomy rather than assuming a folder supplies a bull. |
-| N5 | queued | Cow, without horns | Cow | Distinct bovine body; hornless silhouette and shove attack. |
+| N5 | complete | Cow, without horns | Cow | Distinct bovine body; hornless silhouette and shove attack. |
 | N6 | queued | Mountain Goat | MountainGoat, Goat | Compact mountain stance, appropriate horns and hooves; head-driven attack. |
 | N7 | queued | Boar | WildBoar, Boar, Warthog | Low heavy forequarters, short legs, tusks; charge/tusk attack. |
 | N8 | queued | Camel | Camel, Camel_Stylized | Reference-led hump count, long neck and leg proportions; distinct pacing; select attack after action inspection. |
@@ -471,3 +471,33 @@ Next action:
   generated workbench are included. Implementation commit: `c890346`.
 - Next is N5 hornless Cow; no Cow implementation has started. Unrelated
   `.DS_Store` remains excluded.
+
+
+### N5 — hornless Cow — completed 2026-10-29
+
+- Reopened native Cow in Blender 5.1.2 using the reusable bovine study tool:
+  76 bones, 24 actions, 24 FPS. Refreshed neutral side/front/top and idle/walk/run/
+  alert samples. The visible native small horns are deliberately omitted for
+  the requested hornless variant. No native shove action exists.
+- Added independent `cow` family/model with near-level long barrel, lighter
+  shoulder/neck than Bull, longer face, sideways leaf ears, shallow dewlap,
+  low rear udder/teats and long tufted tail. No horn/antler geometry or mounts.
+  Existing Bull, Moose, Deer and Horse output remains unchanged.
+- Added four-hoof breathing/chewing idle, native-duration four-beat walk, quick
+  gallop and authored shove: slight head lowering, whole-body lean and about
+  20 cm chest/head advance, 180 ms level contact hold, recovery. Four braced
+  hooves stay fixed; ordinary local curves use author-time baked sagittal IK.
+- Eight focused tests pass, including 1,201 interpolated support samples per
+  clip and 4,608 camera/pose checks. Framing covers emitted SVG primitives and
+  transforms as well as joints. Independent overhead underside coverage/order
+  checks catch a foreground-udder mutation; a jaw-seam mutation is also caught.
+- Full `npm run check`: all 269 tests and 38/38 source/model validations,
+  ordinary/motion/paint audits and release checks passed. Cow adds no issues or
+  warnings; catalog advisories stay 40 ordinary / 38 motion / 40 paint.
+  Browser: 121/121 outputs, authoring UI passed and zero console errors.
+- Direct workbench review included side/front/top/oblique anatomy, buried udder,
+  walk support, gallop suspension and shove contact. Workbench left at idle,
+  45° elevation / 225° heading. Sources, authoring script, study, tests, fixtures
+  and regenerated workbench are included. Implementation commit recorded below.
+- Next is N6 Mountain Goat; no Goat work has started. Unrelated `.DS_Store`
+  remains excluded.
