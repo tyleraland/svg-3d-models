@@ -145,3 +145,13 @@ native/SVG side and frontal proportions, final horn flare, overhead burial,
 lower walking head carriage, gallop suspension and head-butt impact. Final view
 is idle at 45° elevation / 225° heading. See the roadmap for the implementation
 commit and N7 Boar resume checkpoint.
+
+## Follow-up — concealed muzzle bridge (2026-10-29)
+
+`muzzleConnectorPlate` is now an internal join (`under-core`), so its broad base
+is covered by the head rather than appearing on top of the forehead. Exposed
+snout geometry remains visible between the head and muzzle. Proportions and all
+clip frames/timings remain unchanged. `test/ungulate-joins.test.mjs` checks the
+actual triangle-base corners against the covering head ellipse and painter
+order across poses/cameras, with negative controls for the old exposed sorting
+and a deliberately promoted connector. Final gates/commit are in the roadmap.

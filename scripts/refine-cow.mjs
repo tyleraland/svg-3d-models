@@ -5,13 +5,14 @@ import {loadFamily} from '@paper-rig/rigs';
 import {applyGroundedQuadruped,bindPositions,quadrupedLegs,solveLeg,sagittalBodyPose} from '../rigs/quadruped-locomotion.js';
 import {curve,round} from './lib/spatial-leg-ik.mjs';
 const r=loadFamily('deer'),j=id=>r.joints.find(j=>j.id===id),p=id=>r.plates.find(p=>p.id===id);
-Object.assign(r,{id:'cowBase',archetypes:['cow','cattle'],heightMeters:1.55,tokenScale:22,tokenGroundY:57,profile:{silhouette:'hornless cow: long level barrel, lighter shoulders and neck, long muzzle, sideways ears, low udder and long tufted tail',locomotion:'four-beat cattle walk and quick gallop with articulated carpi, stifles and hocks',attack:'authored shove: gather weight, lower forehead slightly, press forward with shoulder/head, hold and recover'}});
+Object.assign(r,{id:'cowBase',archetypes:['cow','cattle'],heightMeters:1.55,tokenScale:22,tokenGroundY:57,profile:{silhouette:'hornless cow: deep stout barrel, rounded hindquarters and lighter neck, long muzzle, sideways ears, low udder and long tufted tail',locomotion:'four-beat cattle walk and quick gallop with articulated carpi, stifles and hocks',attack:'authored shove: gather weight, lower forehead slightly, press forward with shoulder/head, hold and recover'}});
 r.camera.framing='fixed scale with ground origin at token [50,57]';
-j('pelvis').bind=[-.62,0,1.24];j('chest').bind=[1.22,0,-.02];
+j('pelvis').bind=[-.58,0,1.16];j('chest').bind=[1.16,0,-.02];
 j('neckBase').bind=[.12,0,-.06];j('neckTip').bind=[.29,0,.035];j('head').bind=[.17,0,.015];j('muzzle').bind=[.32,0,-.15];
-j('tailBase').bind=[-.16,0,.04];j('tailTip').bind=[-.08,0,-.67];
-j('barrelRear').bind=[.08,0,-.17];j('barrelFront').bind=[-.06,0,-.17];
-p('torsoPlate').size=[.76];p('pelvisPlate').size=[.55,.65];p('shoulderPlate').size=[.49,.66];p('withersPlate').size=[.38];p('neckPlate').size=[.30];p('headConnectorPlate').size=[.25];p('headPlate').size=[.28,.36];p('muzzleConnectorPlate').size=[.23];p('muzzlePlate').size=[.28,.21];p('tailConnectorPlate').size=[.075];p('tailPlate').size=[.055];p('castShadow').size=[2.75,.97];
+j('tailBase').bind=[-.305,0,.075];j('tailBase').gasket={diameterMeters:.055};j('tailTip').bind=[-.15,0,-.67];
+j('barrelRear').bind=[.08,0,-.12];j('barrelFront').bind=[-.06,0,-.12];
+p('muzzleConnectorPlate').occlusionMode='under-core';
+p('torsoPlate').size=[.88];p('pelvisPlate').size=[.61,.66];p('pelvisPlate').occlusionMode='under-core';p('shoulderPlate').size=[.54,.72];p('withersPlate').size=[.38];p('neckPlate').size=[.32];p('headConnectorPlate').size=[.25];p('headPlate').size=[.28,.36];p('muzzleConnectorPlate').size=[.23];p('muzzlePlate').size=[.28,.21];p('tailConnectorPlate').size=[.075];p('tailPlate').size=[.055];p('castShadow').size=[2.65,1.08];
 // Shallow dewlap, long tufted tail and low rear udder distinguish the female cattle silhouette.
 r.joints.push({id:'dewlapRear',parent:'neckBase',bind:[-.07,0,-.19],role:'neck',helper:true},{id:'dewlapFront',parent:'neckBase',bind:[.24,0,-.20],role:'neck',helper:true},{id:'tailTuft',parent:'tailTip',bind:[-.01,0,-.10],role:'tail',helper:true});
 r.plates.push({id:'dewlapPlate',bone:'dewlapFront',span:['dewlapRear','dewlapFront'],shape:'bone',size:[.16],role:'body',bodyRegion:'neck',attachment:'rigid',material:'paperMain',zBias:3.9},{id:'tailTuftPlate',bone:'tailTuft',span:['tailTip','tailTuft'],shape:'taperedBone',size:[.13],role:'tail',bodyRegion:'tail',attachment:'rigid',material:'paperShade',zBias:2});
@@ -34,6 +35,9 @@ for(const side of ['near','far'])for(const end of ['Front','Rear']){
  r.plates.push({id:id+'Plate',bone:id,span:[id+'Root',id],shape:'taperedBone',size:[.04],role:'body',bodyRegion:'core',attachment:'rigid',material:'paperMain',zBias:2.7,semanticDetailTier:'identity'});
 }
 
+r.joints.push({id:'tailSocket',parent:'pelvis',bind:[j('tailBase').bind[0]+.045,0,j('tailBase').bind[2]],role:'tail',helper:true});
+Object.assign(p('tailConnectorPlate'),{span:['tailSocket','tailBase'],occlusionMode:'under-core'});
+for(const id of ['tailPlate','tailTuftPlate'])Object.assign(p(id),{occlusionMode:'surface-relative',occlusionReference:'pelvis'});
 applyGroundedQuadruped(r,{});
 const legs=quadrupedLegs(r),bind=bindPositions(r),feet=legs.map(l=>l.foot.id);
 const blank={base:'bind',duration:4000,easing:'linear',loop:true,contacts:feet,frames:[{t:0,poses:{},rotations:{}},{t:1,poses:{},rotations:{}}]};r.clips={idleA:structuredClone(blank),walkA:structuredClone(blank)};

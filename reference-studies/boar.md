@@ -74,3 +74,14 @@ Final gates: 286/286 tests, 40/40 model validations, ordinary/motion/paint audit
 and release checks passed. Boar adds no issues or warnings; existing advisory
 totals remain 40/38/40. Browser parity passed 121/121 outputs, authoring UI checks
 and zero console errors. Workbench left at idle, 45° elevation / 225° heading.
+
+## Follow-up — concealed muzzle bridge (2026-10-29)
+
+The broad base of `muzzleConnectorPlate` is now an internal join (`under-core`),
+covered by the head rather than an exposed triangle on its surface. The closed
+head/muzzle envelopes hide the embedded base; any exposed bridge between them
+still contributes to the silhouette. Jaw articulation and jaw-owned tusks remain
+unchanged, including all clip frames and timings. The independent muzzle-base
+coverage/order checks in `test/ungulate-joins.test.mjs` include restoration of the
+old exposed ordering and a promoted-connector mutation. See the roadmap for the
+corrective commit and final gates.

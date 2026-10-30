@@ -10,6 +10,7 @@ j('pelvis').bind=[-.40,0,.74];j('chest').bind=[.76,0,.08];
 j('neckBase').bind=[.10,0,-.075];j('neckTip').bind=[.16,0,-.025];j('head').bind=[.15,0,-.015];j('muzzle').bind=[.32,0,-.08];
 j('tailBase').bind=[-.12,0,.03];j('tailTip').bind=[-.055,0,-.22];
 j('barrelRear').bind=[.06,0,-.08];j('barrelFront').bind=[-.04,0,-.13];
+p('muzzleConnectorPlate').occlusionMode='under-core';
 p('torsoPlate').size=[.60];p('pelvisPlate').size=[.43,.44];p('shoulderPlate').size=[.47,.58];p('withersPlate').size=[.40];p('neckPlate').size=[.34];p('headConnectorPlate').size=[.27];p('headPlate').size=[.30,.33];p('muzzleConnectorPlate').size=[.24];p('muzzlePlate').size=[.21,.15];p('tailConnectorPlate').size=[.06];p('tailPlate').size=[.045];p('castShadow').size=[2.0,.82];
 j('jaw').bind=[.04,0,-.08];j('jawTip').bind=[.27,0,-.045];p('jawPlate').size=[.12];
 function tooth(side,kind,parent,bind,centers,radii){

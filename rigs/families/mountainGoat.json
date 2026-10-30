@@ -1487,7 +1487,8 @@
         "head",
         "muzzle"
       ],
-      "jointOverlap": 1.18
+      "jointOverlap": 1.18,
+      "occlusionMode": "under-core"
     },
     {
       "id": "muzzlePlate",

@@ -3646,10 +3646,12 @@
       "paletteRole": "secondary",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "core surface plates",
-      "eligibleCompositingGroups": null,
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages"
+      ],
       "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
@@ -4948,7 +4950,7 @@
       "diameterMeters": 0.1886,
       "paletteRole": "secondary",
       "depthBias": 5,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -4969,7 +4971,10 @@
         "type": "circle",
         "diameterMeters": 0.1886
       },
-      "compositingGroup": "core surface plates",
+      "compositingGroup": "camera-far appendages",
+      "eligibleCompositingGroups": [
+        "camera-far appendages"
+      ],
       "headingSwapsNearFar": false
     },
     {
@@ -5750,7 +5755,6 @@
         "neckPlate",
         "headConnectorPlate",
         "headPlate",
-        "muzzleConnectorPlate",
         "muzzlePlate",
         "jawPlate"
       ],
@@ -5759,7 +5763,6 @@
         "chestGasket",
         "neckBaseGasket",
         "neckTipGasket",
-        "headGasket",
         "muzzleGasket",
         "jawGasket"
       ],
@@ -5773,7 +5776,6 @@
       "neckPlate",
       "headConnectorPlate",
       "headPlate",
-      "muzzleConnectorPlate",
       "muzzlePlate",
       "jawPlate"
     ],
@@ -5790,7 +5792,6 @@
       "chestGasket",
       "neckBaseGasket",
       "neckTipGasket",
-      "headGasket",
       "muzzleGasket",
       "jawGasket"
     ]
@@ -471431,7 +471432,7 @@
       {
         "id": "under-core-compositor-contract",
         "pass": true,
-        "detail": "0 under-core plate/gasket records are fixed behind the opaque core"
+        "detail": "2 under-core plate/gasket records are fixed behind the opaque core"
       },
       {
         "id": "rigid-plate-span-lengths",

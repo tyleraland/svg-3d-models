@@ -6,13 +6,13 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N9 Kangaroo complete; stopped between creatures.
+- Status: N9 Kangaroo complete; earlier-model corrections complete; stopped between creatures.
 - Next milestone: N10 Monkey.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
 - Last completed milestone / commit: N9 Kangaroo / `f3291f6`.
-- Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
-- Active creature / stage: none.
+- Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / pending commit.
+- Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
 - Next action: inspect Monkey_Stylized in Blender when N10 is requested.
 
@@ -640,3 +640,39 @@ Next action:
   scripts, source model, tests, fixtures and generated workbench are included.
   Implementation commit: `f3291f6`.
 - Next is N10 Monkey; no Monkey work started. Unrelated `.DS_Store` stays excluded.
+
+
+### Follow-up — ungulate joins and Cow proportions — 2026-10-29
+
+- User-reported broad muzzle triangle bases are now buried internal joins on
+  Bull, Boar, Mountain Goat and Cow. The head covers the actual base corners;
+  exposed snout geometry remains outside the opaque head/muzzle envelopes.
+  Uses source `under-core` declarations rather than camera-specific draw hacks.
+- Bull's paired horn ribbons bend slightly farther forward together: final
+  center X .205 m instead of .150 m, retaining height/lateral span and skull
+  rigidity. Token ground Y 60→59 preserves full SVG margin during the low gore.
+- Bull tail root moves from inside the pelvis to its perimeter. A short 4.5 cm
+  inset socket replaces the long pelvis-to-root strip; the free shaft/tuft use
+  pelvis-relative depth and remain outside the side silhouette through every
+  authored gait. Cow receives the corresponding perimeter/socket correction.
+- Cow becomes moderately stouter: barrel .76→.88 m, pelvis height 1.24→1.16 m,
+  span 1.22→1.16 m, fuller .54 × .72 m shoulders and .32 m neck. The pelvis
+  ellipse is an underlying rump cap, covered by the continuous barrel where
+  they overlap. Grounded legs and clips are rebaked with unchanged timings;
+  udder remains embedded beneath the deeper belly. Other three models' clip
+  frames/timings are unchanged; the other 38 model goldens remain byte-identical.
+- Forty focused tests pass, including six new join/proportion regression tests.
+  Direct corner coverage/painter-order tests cover 2,560 muzzle views; tail-root
+  and external-shaft checks cover 976 side poses. Negative controls restore the
+  exposed triangle, promote it or the rump, and move the tail root internally.
+  Four dense directional matrices remain green; Bull now checks full emitted
+  SVG bounds as well as joints. Provenance API comparisons confirm stable-ID
+  effects confined to the intended families and Cow's derived clips.
+- Actual workbench review covers the reported 45° / 180° muzzle views, Bull's
+  left / 90° tail through opposite run phases, horn bend and Cow side/oblique
+  body proportions. Workbench left at Cow idle, 45° / 225°.
+- Full catalog gate passed: 312 tests, 42/42 source/model validations, ordinary/
+  motion/paint audits and release metadata. Existing advisories stay 40/38/40.
+  Browser comparison: 484/484 outputs identical, authoring UI checks passed, zero
+  console errors. Implementation commit: pending.
+- N10 Monkey remains next; no new creature work started. `.DS_Store` excluded.

@@ -11,6 +11,7 @@ j('pelvis').bind=[-.40,0,.94];j('chest').bind=[.77,0,.04];
 j('neckBase').bind=[.13,0,.03];j('neckTip').bind=[.23,0,.14];j('head').bind=[.14,0,.04];j('muzzle').bind=[.21,0,-.08];
 j('tailBase').bind=[-.12,0,.05];j('tailTip').bind=[-.04,0,-.15];
 j('barrelRear').bind=[.05,0,-.09];j('barrelFront').bind=[-.04,0,-.09];
+p('muzzleConnectorPlate').occlusionMode='under-core';
 p('torsoPlate').size=[.55];p('pelvisPlate').size=[.43,.48];p('shoulderPlate').size=[.43,.60];p('withersPlate').size=[.32];p('neckPlate').size=[.26];p('headConnectorPlate').size=[.20];p('headPlate').size=[.205,.26];p('muzzleConnectorPlate').size=[.145];p('muzzlePlate').size=[.155,.13];p('tailConnectorPlate').size=[.07];p('tailPlate').size=[.075];p('castShadow').size=[1.95,.76];
 j('jaw').bind=[.035,0,-.06];j('jawTip').bind=[.18,0,-.05];p('jawPlate').size=[.075];
 r.joints.push({id:'foreheadContact',parent:'head',bind:[.04,0,.10],role:'head',helper:true});

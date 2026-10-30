@@ -43,10 +43,21 @@ test('Bull gore lowers the horns then quickly drives, lifts and sweeps them over
  assert.ok((.54-.40)*c.duration<250);assert.equal(c.events.find(e=>e.name==='impact').t,.54);assert.ok(c.events.every(e=>e.phase));assert.deepEqual(a,solve(r,{clip:'attack',time:1}));assert.ok(c.frames.find(f=>f.t===.40).rotations.head[2]<-5&&c.frames.find(f=>f.t===.64).rotations.head[2]>11,'sweep reverses across the drive/toss');
  for(let i=0;i<=1200;i++){const time=i/1200,p=solve(r,{clip:'attack',time});assert.deepEqual(core.contactIds(r,'attack',time),feet);for(const id of feet)assert.ok(distance(p[id],a[id])<2e-6);}
 });
+function vectorPoints(v){const a=v.attributes;let ps=[];
+ if(v.tag==='ellipse'||v.tag==='circle'){const x=+a.cx,y=+a.cy,rx=+(a.rx??a.r),ry=+(a.ry??a.r);ps=[[x-rx,y-ry],[x+rx,y-ry],[x+rx,y+ry],[x-rx,y+ry]];}
+ else if(v.tag==='rect'){const x=+a.x,y=+a.y,w=+a.width,h=+a.height;ps=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]];}
+ else if(v.tag==='path'){const n=(a.d.match(/[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?/gi)||[]).map(Number);for(let i=0;i<n.length;i+=2)ps.push([n[i],n[i+1]]);}
+ else throw Error('Unverified vector '+v.tag);
+ if(a.transform?.startsWith('rotate(')){const [deg,cx=0,cy=0]=a.transform.slice(7,-1).split(/[ ,]+/).map(Number),w=deg*Math.PI/180;ps=ps.map(([x,y])=>[cx+(x-cx)*Math.cos(w)-(y-cy)*Math.sin(w),cy+(x-cx)*Math.sin(w)+(y-cy)*Math.cos(w)]);}
+ else if(a.transform?.startsWith('matrix(')){const [m,n,o,p,x,y]=a.transform.slice(7,-1).split(/[ ,]+/).map(Number);ps=ps.map(([u,v])=>[m*u+o*v+x,n*u+p*v+y]);}
+ else assert.ok(!a.transform,'unverified transform '+a.transform);
+ return ps;
+}
 test('Bull horns, dewlap, head, limb seams and framing pass the dense directional matrix',()=>{
  for(const clip of ['idle','walk','run','attack'])for(const time of [0,.18,.25,.30,.40,.44,.54,.64,.75,.83,.94,1])for(const elevation of [0,30,45,60,75,90])for(let heading=0;heading<360;heading+=22.5){
   const s=projectScene(r,{clip,time,elevation,heading});assert.deepEqual(inspectOcclusion(r,s).violations,[],`${clip}/${time}/${elevation}/${heading}`);
   for(const j of s.joints)assert.ok(j.screenPosition.every(v=>v>=1&&v<=99),`${clip}/${time}/${elevation}/${heading}/${j.id}`);
+  for(const e of s.compositingGroups.flatMap(g=>g.elements).filter(e=>!e.generated))for(const point of vectorPoints(e.vector))assert.ok(point.every(v=>v>=.6&&v<=99.4),`${clip}/${time}/${elevation}/${heading}/${e.sourceId} vector framing`);
  }
 });
 test('Bull buried jaw seam mutation is detected independently of golden/browser parity',()=>{

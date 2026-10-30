@@ -127,3 +127,22 @@ checks and zero console errors. Actual workbench review included native and SVG
 side/front proportions, overhead underside burial, oblique shape, walk support,
 gallop suspension and the braced shove. Final view is idle, 45° elevation / 225°
 heading. See the roadmap for the commit and N6 Mountain Goat resume checkpoint.
+
+## Follow-up — stout barrel and buried rump cap (2026-10-29)
+
+The current Cow is fuller than the initial milestone: pelvis height 1.16 m
+(previously 1.24), body span 1.16 m (1.22), barrel width/depth .88 m (.76),
+shoulder .54 × .72 m and neck .32 m. Barrel centers sit .12 m below pelvis/chest.
+The barrel-to-hip-height ratio increases about 24%, while the back stays level.
+The udder remains embedded beneath the belly at .56 m; grounded leg chains and
+clips are rebaked through the existing author-time solver at the same timings.
+
+The rump ellipse is an underlying silhouette cap, covered by the continuous
+barrel wherever they overlap (`under-core`). It no longer draws a complete oval
+on top of the torso. The muzzle bridge is likewise buried beneath the face.
+The tail root follows the fuller rump perimeter, with a short inset socket and
+pelvis-relative free shaft/tuft, matching the Bull attachment correction.
+
+`test/ungulate-joins.test.mjs` checks stout proportions, rump burial, concealed
+muzzle bases, external tail geometry and deliberately broken painter orders.
+The roadmap records the corrective commit and final catalog/browser gates.

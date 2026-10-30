@@ -5,12 +5,13 @@ import {loadFamily} from '@paper-rig/rigs';
 import {applyGroundedQuadruped,bindPositions,quadrupedLegs,solveLeg,sagittalBodyPose} from '../rigs/quadruped-locomotion.js';
 import {curve,round} from './lib/spatial-leg-ik.mjs';
 const r=loadFamily('deer'),j=id=>r.joints.find(j=>j.id===id),p=id=>r.plates.find(p=>p.id===id);
-Object.assign(r,{id:'bullBase',archetypes:['bull','cattle'],heightMeters:1.85,tokenScale:22,tokenGroundY:60,profile:{silhouette:'cattle bull: deep barrel, powerful forequarters and short thick neck, broad forehead/muzzle, paired curved horns and a long tufted tail',locomotion:'deliberate four-beat walk and powerful gallop with whole-leg articulation',attack:'reference-informed horn gore: crouched recoil, lowered horns, quick forward drive and upward sweeping toss'}});
-r.camera.framing='fixed scale with ground origin at token [50,60]';
+Object.assign(r,{id:'bullBase',archetypes:['bull','cattle'],heightMeters:1.85,tokenScale:22,tokenGroundY:59,profile:{silhouette:'cattle bull: deep barrel, powerful forequarters and short thick neck, broad forehead/muzzle, paired curved horns and a long tufted tail',locomotion:'deliberate four-beat walk and powerful gallop with whole-leg articulation',attack:'reference-informed horn gore: crouched recoil, lowered horns, quick forward drive and upward sweeping toss'}});
+r.camera.framing='fixed scale with ground origin at token [50,59]';
 j('pelvis').bind=[-.60,0,1.23];j('chest').bind=[1.15,0,.045];
 j('neckBase').bind=[.12,0,.02];j('neckTip').bind=[.24,0,.015];j('head').bind=[.18,0,-.015];j('muzzle').bind=[.26,0,-.17];
-j('tailBase').bind=[-.16,0,.04];j('tailTip').bind=[-.09,0,-.68];
+j('tailBase').bind=[-.33,0,.075];j('tailBase').gasket={diameterMeters:.055};j('tailTip').bind=[-.17,0,-.68];
 j('barrelRear').bind=[.08,0,-.17];j('barrelFront').bind=[-.06,0,-.17];
+p('muzzleConnectorPlate').occlusionMode='under-core';
 p('torsoPlate').size=[.84];p('pelvisPlate').size=[.66,.70];p('shoulderPlate').size=[.69,.82];p('withersPlate').size=[.55];p('neckPlate').size=[.48];p('headConnectorPlate').size=[.34];p('headPlate').size=[.42,.47];p('muzzleConnectorPlate').size=[.31];p('muzzlePlate').size=[.34,.245];p('tailConnectorPlate').size=[.075];p('tailPlate').size=[.055];p('castShadow').size=[2.65,1.12];
 // Shallow dewlap is cattle neck/chest mass, not a hanging moose bell or buffalo beard.
 r.joints.push({id:'dewlapRear',parent:'neckBase',bind:[-.07,0,-.19],role:'neck',helper:true},{id:'dewlapFront',parent:'neckBase',bind:[.24,0,-.20],role:'neck',helper:true},{id:'tailTuft',parent:'tailTip',bind:[-.01,0,-.10],role:'tail',helper:true});
@@ -27,13 +28,16 @@ for(const side of ['near','far']){
  // Two perpendicular curved ribbons share true 3-D head-local points.
  // Rigid skull ownership, not permanent front ordering, controls near/far overlap.
  const root=side+'HornRoot';r.joints.push({id:root,parent:'head',bind:[-.045,sign*.16,.17],role:'horn',helper:true});
- const centers=[[0,0,0],[-.025,.12,-.01],[-.025,.25,.02],[-.005,.35,.10],[.035,.40,.23],[.09,.415,.34],[.15,.385,.43]],radii=[.065,.063,.055,.043,.030,.016,0];
+ const centers=[[0,0,0],[-.025,.12,-.01],[-.025,.25,.02],[.005,.35,.10],[.06,.40,.23],[.13,.415,.34],[.205,.385,.43]],radii=[.065,.063,.055,.043,.030,.016,0];
  centers.map((v,i)=>{const id=side+'HornCenter'+i;r.joints.push({id,parent:root,bind:[v[0],sign*v[1],v[2]],role:'horn',helper:true});return id;});
  const rims=[[],[]];centers.forEach((v,i)=>{const a=centers[Math.max(0,i-1)],b=centers[Math.min(centers.length-1,i+1)],dy=b[1]-a[1],dz=b[2]-a[2],len=Math.hypot(dy,dz);for(let k=0;k<2;k++){const direction=k===0?1:-1,id=side+'HornRim'+k+'_'+i;r.joints.push({id,parent:root,bind:[v[0],sign*(v[1]-direction*dz/len*radii[i]),v[2]+direction*dy/len*radii[i]],role:'horn',helper:true});rims[k].push(id);}});
  r.plates.push({id:side+'HornPlate',bone:root,points:[...rims[0],...rims[1].reverse()],shape:'polygon',size:[.1],role:'horn',bodyRegion:'accessory',attachment:'rigid',material:'paperShade',zBias:5.2,semanticDetailTier:'identity'});
  const crossRims=[[],[]];centers.forEach((v,i)=>{for(let k=0;k<2;k++){const id=side+'HornCross'+k+'_'+i;r.joints.push({id,parent:root,bind:[v[0]+(k===0?1:-1)*radii[i],sign*v[1],v[2]],role:'horn',helper:true});crossRims[k].push(id);}});
  r.plates.push({id:side+'HornCrossPlate',bone:root,points:[...crossRims[0],...crossRims[1].reverse()],shape:'polygon',size:[.1],role:'horn',bodyRegion:'accessory',attachment:'rigid',material:'paperShade',zBias:5.15,semanticDetailTier:'identity'});
 }
+r.joints.push({id:'tailSocket',parent:'pelvis',bind:[j('tailBase').bind[0]+.045,0,j('tailBase').bind[2]],role:'tail',helper:true});
+Object.assign(p('tailConnectorPlate'),{span:['tailSocket','tailBase'],occlusionMode:'under-core'});
+for(const id of ['tailPlate','tailTuftPlate'])Object.assign(p(id),{occlusionMode:'surface-relative',occlusionReference:'pelvis'});
 applyGroundedQuadruped(r,{});
 const legs=quadrupedLegs(r),bind=bindPositions(r),feet=legs.map(l=>l.foot.id);
 const blank={base:'bind',duration:4000,easing:'linear',loop:true,contacts:feet,frames:[{t:0,poses:{},rotations:{}},{t:1,poses:{},rotations:{}}]};r.clips={idleA:structuredClone(blank),walkA:structuredClone(blank)};

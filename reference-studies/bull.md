@@ -148,3 +148,22 @@ checks and zero console errors. Actual workbench review included front/top/
 oblique/side anatomy, walk support transition, gallop suspension, forward horn
 impact and upward toss. Final view is idle, 45° elevation / 225° heading. The
 roadmap records the completion commit and N5 hornless Cow resume checkpoint.
+
+## Follow-up — face joins, horn curve and tail mount (2026-10-29)
+
+The muzzle connector is an internal bridge (`under-core`), so its broad triangle
+base stays covered by the head while the exposed snout remains visible. Both horn
+ribbons share a slightly stronger forward curve: tip center X .205 m from its
+root, previously .150 m, with the same height and lateral spread.
+
+The tail now starts at the rump perimeter: root offset [-.33,0,.075], with a
+small .055 m root gasket and a shaft directed farther rearward. A 4.5 cm inset
+`tailSocket` replaces the long pelvis-to-root strip; this join is buried, while
+the free tail and tuft use pelvis-relative depth. Side-view shaft samples stay
+outside the rump ellipse through idle, walk, run and attack. Framing ground Y
+moves 60→59 to retain margin around the extended horns during the low gore.
+Bull's dense matrix now checks complete emitted SVG bounds as well as joints.
+Existing motion timings and clip frames are unchanged.
+
+See `test/ungulate-joins.test.mjs` and the roadmap follow-up for direct coverage,
+negative controls, final catalog/browser checks and the corrective commit.

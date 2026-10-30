@@ -9,7 +9,7 @@ test('Cow has hornless female cattle proportions, a lighter neck, long face, low
  const j=id=>r.joints.find(j=>j.id===id),p=id=>r.plates.find(p=>p.id===id),b=solve(r,{clip:'bind'}),bull=loadModel('bull'),bp=id=>bull.plates.find(p=>p.id===id);
  assert.deepEqual(r.archetypes,['cow','cattle']);assert.ok(!r.joints.some(j=>/horn|antler|bell|mane/i.test(j.id)));assert.ok(!r.plates.some(p=>/horn|antler/i.test(p.id)));
  assert.ok(p('neckPlate').size[0]<bp('neckPlate').size[0]*.7&&p('shoulderPlate').size[0]<bp('shoulderPlate').size[0]*.8);assert.ok(j('muzzle').bind[0]>.3);assert.ok(Math.abs(b.chest[2]-b.pelvis[2])<.03);
- assert.ok(b.udder[2]>.6&&b.udder[2]<.7);assert.equal(r.plates.filter(p=>/TeatPlate$/.test(p.id)).length,4);assert.ok(b.tailTuft[2]<.55&&b.tailTuft[2]>.35);
+ assert.ok(b.udder[2]>.5&&b.udder[2]<.6);assert.equal(r.plates.filter(p=>/TeatPlate$/.test(p.id)).length,4);assert.ok(b.tailTuft[2]<.55&&b.tailTuft[2]>.35);
  for(const side of ['near','far'])assert.ok(Math.abs(j(side+'EarTip').bind[1])>.2&&j(side+'EarTip').bind[2]<.06);
  assert.ok(core.rigidPlateSpanLengthsPass(r));assert.equal(compilePackage(r).validation.status,'passed');
 });

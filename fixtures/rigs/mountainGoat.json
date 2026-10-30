@@ -1496,6 +1496,7 @@
         "muzzle"
       ],
       "jointOverlap": 1.18,
+      "occlusionMode": "under-core",
       "semanticDetailTier": "silhouette"
     },
     {
