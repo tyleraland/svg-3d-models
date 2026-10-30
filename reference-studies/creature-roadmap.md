@@ -10,7 +10,7 @@ order below. Planning does not start implementation automatically.
 - Next milestone: N8 Camel.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N7 Boar / pending commit.
+- Last completed milestone / commit: N7 Boar / `b105403`.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none.
@@ -557,6 +557,6 @@ Next action:
   Browser comparison passed 121/121 outputs, authoring UI and zero console errors.
 - Actual workbench review covered side/front/top/oblique shape, gait poses,
   tusk-lunge impact and playback. Workbench left at idle, 45° / 225°.
-  Implementation commit: pending. Study, authoring scripts, tests, fixtures and
+  Implementation commit: `b105403`. Study, authoring scripts, tests, fixtures and
   generated workbench are included.
 - Next is N8 Camel; no Camel work started. Unrelated `.DS_Store` stays excluded.
