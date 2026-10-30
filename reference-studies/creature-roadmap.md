@@ -6,15 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N9 Kangaroo complete; earlier-model corrections complete; stopped between creatures.
-- Next milestone: N10 Monkey.
+- Status: N10 Monkey complete; stopped between creatures.
+- Next milestone: N11 Rat.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N9 Kangaroo / `f3291f6`.
+- Last completed milestone / commit: N10 Monkey / pending commit.
 - Latest follow-up: ungulate muzzle joins, bovine tail mounts and stout Cow / `8a86987`.
 - Active creature / stage: none; stopped between creatures.
 - Open decisions or blockers: none.
-- Next action: inspect Monkey_Stylized in Blender when N10 is requested.
+- Next action: inspect the WildMesh Rat reference in Blender when N11 is requested.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -60,7 +60,7 @@ selectable. Commit every row before proceeding to the next.
 | N7 | complete | Boar | WildBoar, Boar, Warthog | Low heavy forequarters, short legs, tusks; charge/tusk attack. |
 | N8 | complete | Camel | Camel, Camel_Stylized | Reference-led hump count, long neck and leg proportions; distinct pacing; select attack after action inspection. |
 | N9 | complete | Kangaroo | Kangaroo | Upright balance, large hind feet and substantial tail; hop locomotion; separate punch and tail-supported kick attacks. Explicit tail support during kick. |
-| N10 | queued | Monkey | Monkey_Stylized | Primate limb/tail proportions and grounded movement; choose attack from inspected reference and document adaptations. |
+| N10 | complete | Monkey | Monkey_Stylized | Primate limb/tail proportions and grounded movement; choose attack from inspected reference and document adaptations. |
 | N11 | queued | Small rodent: rat | Rat | Low body, small paws and long tail; scurry/walk, run and bite. |
 | N12 | queued | Badger | HoneyBadger | Broad low body, short sturdy limbs; walk/run and bite or claw attack selected from reference. Record species differences if adapting honey-badger anatomy. |
 | N13 | queued | Ostrich | Ostrich_Stylized | Separate from Chicken; long neck, long articulated legs and reduced wings; walk/run and reference-led kick or peck. |
@@ -676,3 +676,38 @@ Next action:
   Browser comparison: 484/484 outputs identical, authoring UI checks passed, zero
   console errors. Implementation commit: `8a86987`.
 - N10 Monkey remains next; no new creature work started. `.DS_Store` excluded.
+
+### N10 — Monkey — 2026-10-29
+
+- Native `Monkey_Stylized/SK_Monkey_Stylized.blend` studied in Blender in a
+  separate appended scene. Loaded all 13 actions, 94 bones, 60 FPS; sampled
+  Idle/Idle1/Walk/Run and five attacks at 41 phases with key-pose renders.
+  Native ready stance and Attack2 inform the model. Reference study and
+  reproducible script: `reference-studies/monkey.md`,
+  `scripts/study-wildmesh-monkey.py`.
+- Independent Monkey family/model: lean barrel, small round-eared head and
+  projecting face, long forearms and broad hands, folded hind limbs and eight
+  tapered tail sections with an elevated hook. 33 joints / 36 plates. Reproduced
+  with `scripts/refine-monkey.mjs`; no native assets enter the runtime.
+- Idle has four fixed ground contacts. Walk is a four-beat palm/foot cycle;
+  run is a faster staggered quadrupedal bound with explicit suspension. Attack
+  rears onto planted feet, lifts both hands overhead, slams both palms down,
+  braces at .62–.74, then releases and returns to the four-point ready stance.
+  Tail counterbalance corrects at its root rather than accumulating one body
+  correction through all tail joints. All support IK is baked into local clips.
+- Ten focused tests pass: anatomy, contacts, upper/lower limb articulation,
+  uniform in-place stance speed, flight, slam/recovery, loop seams, bone lengths,
+  bend limits, interpolation clearance and stationary ground/shadow. A recovery
+  hand dip was caught and corrected before accepting goldens. Dense review is
+  4,608 views with full emitted SVG bounds and independent occlusion checks;
+  another 960 views cover buried muzzle/socket order and promotion mutations.
+- Actual workbench review: moving side-on walk/run, raised slam at side and
+  45° / 135°, palm landing with contact overlays, top-down idle burial, and
+  45° / 225° silhouette. Workbench left paused at Monkey idle, 45° / 225°.
+- All 42 earlier model goldens remain byte-identical. New rig/package fixtures,
+  generated workbench, selector and readable clip labels added; catalog is 43.
+- Browser gate: 121/121 outputs identical, authoring UI states passed, zero
+  console errors. Catalog gate: 322/322 tests, 43/43 source/model validations, ordinary/motion/
+  paint audits and release metadata passed. Existing advisory totals remain
+  40/38/40; Monkey adds none. Implementation commit pending.
+- N11 Rat is next. No next-creature work started; unrelated `.DS_Store` excluded.
