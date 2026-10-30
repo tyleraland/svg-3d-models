@@ -10,7 +10,7 @@ order below. Planning does not start implementation automatically.
 - Next milestone: N10 Monkey.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N9 Kangaroo / pending commit.
+- Last completed milestone / commit: N9 Kangaroo / `f3291f6`.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
 - Open decisions or blockers: none.
@@ -638,5 +638,5 @@ Next action:
   explicitly includes `kick`: 141/141 outputs, authoring UI passed and zero errors.
 - Workbench left at upright idle, 45° elevation / 225° heading. Study/authoring
   scripts, source model, tests, fixtures and generated workbench are included.
-  Implementation commit: pending.
+  Implementation commit: `f3291f6`.
 - Next is N10 Monkey; no Monkey work started. Unrelated `.DS_Store` stays excluded.
