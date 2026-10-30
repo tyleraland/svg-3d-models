@@ -6,16 +6,16 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N5 hornless Cow complete and committed; stopped between creatures.
-- Next milestone: N6 Mountain Goat.
+- Status: N6 Mountain Goat complete; recording completion commit, stopped between creatures.
+- Next milestone: N7 Boar.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N5 Cow / `323289b`.
+- Last completed milestone / commit: N6 Mountain Goat / completion commit being recorded.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking N6. Inspect MountainGoat/Goat anatomy
-  and action inventories before selecting its reference-led attack.
-- Next action: inspect Mountain Goat candidates in Blender when N6 is requested.
+- Open decisions or blockers: none blocking N7. Inspect WildBoar/Boar/Warthog
+  anatomy and actual actions before selecting the Boar reference and tusk attack.
+- Next action: inspect Boar candidates in Blender when N7 is requested.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -57,7 +57,7 @@ selectable. Commit every row before proceeding to the next.
 | N3 | complete | Moose | Moose | Tall shoulders, long muzzle/legs and broad antlers; goring attack. |
 | N4 | complete | Bull | Cow, Buffalo as secondary anatomy reference | Heavy forequarters and neck, horns; goring attack. Inspect reference sex/anatomy rather than assuming a folder supplies a bull. |
 | N5 | complete | Cow, without horns | Cow | Distinct bovine body; hornless silhouette and shove attack. |
-| N6 | queued | Mountain Goat | MountainGoat, Goat | Compact mountain stance, appropriate horns and hooves; head-driven attack. |
+| N6 | complete | Mountain Goat | MountainGoat, Goat | Compact mountain stance, appropriate horns and hooves; head-driven attack. |
 | N7 | queued | Boar | WildBoar, Boar, Warthog | Low heavy forequarters, short legs, tusks; charge/tusk attack. |
 | N8 | queued | Camel | Camel, Camel_Stylized | Reference-led hump count, long neck and leg proportions; distinct pacing; select attack after action inspection. |
 | N9 | queued | Kangaroo | Kangaroo | Upright balance, large hind feet and substantial tail; hop locomotion; separate punch and tail-supported kick attacks. Explicit tail support during kick. |
@@ -501,3 +501,35 @@ Next action:
   and regenerated workbench are included. Implementation commit: `323289b`.
 - Next is N6 Mountain Goat; no Goat work has started. Unrelated `.DS_Store`
   remains excluded.
+
+
+### N6 — Mountain Goat — completed 2026-10-29
+
+- Opened native MountainGoat and Goat in Blender 5.1.2: 119/41 bones, 116/11
+  actions, 24/60 FPS. Added reproducible inventories, 21-phase motion sampling
+  and side/front/top/key-pose renders. Also inspected all 21 opaque MountainGoat
+  A_* clips; no clear head-attack was selected from them. Domestic Goat's named
+  ram-run supplied a tucked charging posture, not a literal impact clip.
+- Added independent `mountainGoat` family/model: compact deep chest, sturdy
+  articulated legs, narrow head/muzzle, upright/outward leaf ears, small hooves,
+  short tail and narrow swept-back/outward-flaring horns. Rigid orthogonal horn
+  ribbons preserve thickness and pointed tips. Other ungulates remain unchanged.
+- Added alert breathing idle, four-beat walk, short supported gallop and a sharp
+  braced head-butt with recoil/recovery. Walk/run carry the head lower, matching
+  the native moving posture. Run stride/body rise respect compact leg reach and
+  unchanged joint limits. The forehead advances about 28 cm over 182 ms, with
+  a 78 ms contact interval; all four hooves brace through the authored attack.
+- Nine focused tests pass: anatomy, projected horn volume/skull rigidity, lower
+  moving head carriage, gait participation/footfalls, lengths/limits/loop seams,
+  1,201 interpolated support samples per clip, head-butt behavior and a 4,608-view
+  independent occlusion/full-SVG-framing matrix. Coplanar-horn, frontmost-jaw and
+  far-horn-over-nearer-skull mutations are detected.
+- Full `npm run check`: all 278 tests, 39/39 source/model validations, ordinary/
+  motion/paint audits and release checks passed. No new Mountain Goat issues or
+  warnings; catalog advisories remain 40 ordinary / 38 motion / 40 paint.
+  Browser comparison: 121/121 outputs, authoring UI passed, zero console errors.
+- Direct review covered native/SVG side/front proportions, horn flare, top
+  burial, lower walk neck, gallop suspension and head-butt impact. Workbench left
+  at idle, 45° elevation / 225° heading. Sources, study/authoring scripts, tests,
+  fixtures and generated workbench are included. Implementation commit recorded below.
+- Next is N7 Boar; no Boar work has started. Unrelated `.DS_Store` stays excluded.
