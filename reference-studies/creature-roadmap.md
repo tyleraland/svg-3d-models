@@ -6,16 +6,16 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: N3 Moose complete and committed; stopped between creatures.
-- Next milestone: N4 Bull.
+- Status: N4 Bull complete; recording completion commit, stopped between creatures.
+- Next milestone: N5 hornless Cow.
 - Prerequisite completed: horse rear-and-stomp committed separately as
   `83cf5be`. Unrelated `.DS_Store` remains excluded.
-- Last completed milestone / commit: N3 Moose / `7722cbe`.
+- Last completed milestone / commit: N4 Bull / completion commit being recorded.
 - Latest follow-up: Crow/Eagle folded-wing visibility and Crow hop fan / `e2c0407`.
 - Active creature / stage: none.
-- Open decisions or blockers: none blocking N4. Inspect Cow/Buffalo sex, horn
-  anatomy and actual action inventory before choosing the Bull reference.
-- Next action: inspect Bull candidates in Blender when the user resumes N4.
+- Open decisions or blockers: none blocking N5. Cow has been inspected as a female
+  cattle reference; adapt its proportions, retain a hornless silhouette and shove.
+- Next action: resume N5 Cow when requested, using the existing bovine study.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -55,7 +55,7 @@ selectable. Commit every row before proceeding to the next.
 | N1 | complete | Flying bird: crow | Crow | Separate slim body, straight bill and long narrow tail; grounded idle/walk/run, wing-assisted hop, flight/glide and angular airborne peck. Shared author-time avian baker; Eagle output unchanged. |
 | N2 | complete | Deer, without antlers | FemaleDeer primary; Doe and Deer inventories | Antlerless light barrel, long slender legs, leaf ears and short tail; grounded idle, four-beat walk, light gallop and authored bite. |
 | N3 | complete | Moose | Moose | Tall shoulders, long muzzle/legs and broad antlers; goring attack. |
-| N4 | queued | Bull | Cow, Buffalo as secondary anatomy reference | Heavy forequarters and neck, horns; goring attack. Inspect reference sex/anatomy rather than assuming a folder supplies a bull. |
+| N4 | complete | Bull | Cow, Buffalo as secondary anatomy reference | Heavy forequarters and neck, horns; goring attack. Inspect reference sex/anatomy rather than assuming a folder supplies a bull. |
 | N5 | queued | Cow, without horns | Cow | Distinct bovine body; hornless silhouette and shove attack. |
 | N6 | queued | Mountain Goat | MountainGoat, Goat | Compact mountain stance, appropriate horns and hooves; head-driven attack. |
 | N7 | queued | Boar | WildBoar, Boar, Warthog | Low heavy forequarters, short legs, tusks; charge/tusk attack. |
@@ -437,3 +437,37 @@ Next action:
   Study and authoring scripts, declarative sources, regression tests, goldens and
   regenerated workbench are included. Implementation commit: `7722cbe`.
 - Next is N4 Bull; no Bull work has started. Unrelated `.DS_Store` stays excluded.
+
+
+### N4 — Bull — completed 2026-10-29
+
+- Opened Cow, realistic Buffalo and stylized Buffalo in Blender 5.1.2: respectively
+  76/127/45 bones, 24/106/18 actions and 24/24/60 FPS. Recorded 21 samples and
+  rendered standing/gait/action key poses with a reproducible bovine study tool.
+  Cow is visibly female with an udder; no named Bull asset exists. The SVG is an
+  authored cattle bull using Cow body proportions, Buffalo mass and actual
+  stylized Buffalo horn-attack references, without boss/beard/udder anatomy.
+- Added independent `bull` family/model: deep barrel, powerful forequarters,
+  short thick neck and shallow dewlap, broad head/muzzle, sideways leaf ears,
+  long tufted tail, stocky articulated legs and paired pointed curved horns.
+  Perpendicular rigid horn ribbons retain edge-on thickness without capsule
+  caps. Existing Horse, Deer and Moose output is unchanged.
+- Added four-hoof breathing idle, deliberate four-beat walk, fast gallop with
+  suspension, and horn gore/toss: crouch/recoil, lower, 196 ms forward drive,
+  140 ms upward toss with yaw sweep, recover. Native traveling attack footsteps
+  are explicitly adapted to an in-place four-hoof brace using baked local IK.
+- Nine focused tests pass: anatomy, horn area/rigidity, support/clearance and
+  shadow stability through 1,201 interpolated samples per clip, lengths/limits/
+  loop seams, whole-leg gaits and attack behavior. Dense independent occlusion/
+  framing coverage: 4,608 views. Flattened-horn, frontmost-jaw and far-horn-over-
+  nearer-ear mutations are detected independently of golden/browser equality.
+- Full `npm run check`: all 261 tests, 37/37 source/model validations, ordinary/
+  motion/paint audits and release checks passed. Bull adds zero audit issues or
+  warnings; existing catalog advisory totals stay 40 ordinary / 38 motion /
+  40 paint. Browser comparison: 121/121 outputs, authoring UI passed, zero errors.
+- Direct workbench review included front/top/side/oblique anatomy, walk support,
+  gallop suspension, goring impact and upward toss. Workbench left at idle,
+  45° elevation / 225° heading. Sources, scripts, study, tests, fixtures and
+  generated workbench are included. Implementation commit recorded below.
+- Next is N5 hornless Cow; no Cow implementation has started. Unrelated
+  `.DS_Store` remains excluded.
