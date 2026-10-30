@@ -655,8 +655,7 @@
       "role": "core",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 2,
-      "occlusionMode": "under-core"
+      "zBias": 1.8
     },
     {
       "id": "backPlate",
@@ -980,8 +979,7 @@
         "nearRearHip",
         "nearRearKnee"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis"
+      "occlusionMode": "under-core"
     },
     {
       "id": "nearRearLowerPlate",
@@ -1123,8 +1121,7 @@
         "farRearHip",
         "farRearKnee"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis"
+      "occlusionMode": "under-core"
     },
     {
       "id": "farRearLowerPlate",

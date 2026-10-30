@@ -130,16 +130,26 @@ The ordered groups are:
 5. camera-near appendages
 6. paint, details, and accessories
 
-Supported legacy source policies are:
+Supported source policies are:
 
 - `semantic-group`: choose the semantic group and then sort by camera depth.
 - `under-core`: remain behind the opaque core at every heading.
+- `over-core`: explicitly keep an exposed appendage in the camera-near
+  appendages group at every heading. Its generated seams inherit the policy;
+  the compiled plate/gasket declares that single eligible group and disables
+  heading swaps. This is a deliberate paper-layer presentation choice, not a
+  claim that the appendage is physically nearer. It preserves anatomical roles
+  and does not add a consumer-side rendering rule.
 - `surface-relative`: compare against an explicitly named reference surface or
   bone and change visibility/layering with the camera.
 
 `zBias` MAY break a tie inside a valid semantic policy. It MUST NOT be the only
-description of a surface relationship. A feature that is always overlaid MUST be
-declared as such by a future explicit policy rather than relying on a large bias.
+description of a surface relationship. An appendage that must always stay in front of the body MUST use
+`over-core` rather than a large bias. This policy does not put it ahead of
+other appendages or the final paint/details group; their depth order still
+applies. Use physical placement first, and reserve this override for an
+intentional exposed paper layer. The independent occlusion oracle checks both
+explicit plates and their inherited seams against the declared group.
 
 ## Animation
 

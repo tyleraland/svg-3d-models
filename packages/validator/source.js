@@ -98,7 +98,7 @@ function familySemanticChecks(family) {
     while(owner&&!visited.has(owner.id)){visited.add(owner.id);if(owner.role==='head'){headOwned=true;break;}owner=family.joints.find(j=>j.id===owner.parent);}
     const visible=!!joint.parent&&!joint.helper&&joint.role!=='accessoryAnchor'&&incident.length>0;
     const width=Math.max(0,...incident.map(p=>p.size?.[0]||0));
-    const supported=!joint.gasket.underIncidentPlates||incident.every(p=>p.occlusionMode!=='under-core'&&(headOwned||['core','head','neck'].includes(core.bodyRegionFor(p))));
+    const supported=!joint.gasket.underIncidentPlates||incident.every(p=>!['under-core','over-core'].includes(p.occlusionMode)&&(headOwned||['core','head','neck'].includes(core.bodyRegionFor(p))));
     checks.push(referenceCheck('family-authored-gasket',visible&&supported&&(!joint.gasket.diameterMeters||joint.gasket.diameterMeters<=width),`authored gasket ${joint.id} requires incident geometry, a bounded diameter and a supported core/head seam`));
   }
   checks.push(referenceCheck('family-parent-order', hierarchyPass, 'every parent exists and precedes its children'));

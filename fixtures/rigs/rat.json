@@ -658,8 +658,7 @@
       "role": "core",
       "attachment": "rigid",
       "material": "paperMain",
-      "zBias": 2,
-      "occlusionMode": "under-core",
+      "zBias": 1.8,
       "semanticDetailTier": "silhouette"
     },
     {
@@ -1003,8 +1002,7 @@
         "nearRearHip",
         "nearRearKnee"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis",
+      "occlusionMode": "under-core",
       "semanticDetailTier": "silhouette"
     },
     {
@@ -1154,8 +1152,7 @@
         "farRearHip",
         "farRearKnee"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis",
+      "occlusionMode": "under-core",
       "semanticDetailTier": "silhouette"
     },
     {

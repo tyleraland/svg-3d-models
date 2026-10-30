@@ -4174,7 +4174,7 @@
     },
     "walkA": {
       "base": "bind",
-      "duration": 3900,
+      "duration": 3200,
       "easing": "linear",
       "loop": true,
       "frames": [

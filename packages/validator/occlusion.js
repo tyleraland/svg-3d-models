@@ -78,7 +78,7 @@ export function inspectHeadOcclusion(rig,scene){
     const incident=rig.plates.filter(p=>p.bone===bone||(p.span||[]).includes(bone)||(p.points||[]).includes(bone)).sort((a,b)=>(b.zBias||0)-(a.zBias||0));
     return{bone,occlusionMode:incident[0]?.occlusionMode};
   };
-  const parts=elements.filter(e=>!e.generated&&['plate','gasket'].includes(e.sourceKind)&&!['eye','nose','shadow'].includes(e.semanticRole)&&headOwner(sourceFor(e)?.bone)&&sourceFor(e)?.occlusionMode!=='under-core'&&!/hat|helmet|equipment|marking|eye|nose/i.test(e.sourceId+' '+e.semanticRole));
+  const parts=elements.filter(e=>!e.generated&&['plate','gasket'].includes(e.sourceKind)&&!['eye','nose','shadow'].includes(e.semanticRole)&&headOwner(sourceFor(e)?.bone)&&!['under-core','over-core'].includes(sourceFor(e)?.occlusionMode)&&!/hat|helmet|equipment|marking|eye|nose/i.test(e.sourceId+' '+e.semanticRole));
   const unsupportedElementIds=[],records=[];
   for(const e of parts){
     const p=sourceFor(e),ids=p.points||p.span||[p.bone],points=ids.map(id=>joints.get(id)).filter(Boolean);
@@ -118,7 +118,7 @@ export function inspectOcclusion(rig, scene) {
   const gasketJoints = new Map(rig.joints.map(j => [j.id + 'Gasket', j.id]));
   const elements = scene.compositingGroups.flatMap(g => g.elements);
   const order = new Map(elements.map((e, i) => [e.id, i]));
-  const core = elements.filter(e => !e.generated && e.sourceKind === 'plate' && CORE.has(e.bodyRegion) && plates.get(e.sourceId)?.occlusionMode !== 'under-core');
+  const core = elements.filter(e => !e.generated && e.sourceKind === 'plate' && CORE.has(e.bodyRegion) && !['under-core','over-core'].includes(plates.get(e.sourceId)?.occlusionMode));
   const supported = core.filter(e => contains(e.vector, [0, 0]) !== null);
   const violations = [];
   // Buried connectors are internal seams, not exposed surfaces. Their layer
@@ -134,6 +134,13 @@ export function inspectOcclusion(rig, scene) {
     if(plate?.occlusionMode!=='under-core'&&!(limbRoot&&!explicitOther))continue;
     checkedConnectorCount++;
     if(coreStart>=0&&order.get(e.id)>=coreStart)violations.push({kind:'buried-connector-order',elementId:e.id,occluderId:elements[coreStart].id});
+  }
+  const sourceFor=e=>{const jointId=gasketJoints.get(e.sourceId);return plates.get(e.sourceId)||(e.sourceKind==='gasket'?rig.plates.filter(p=>p.bone===jointId||p.span?.includes(jointId)||p.points?.includes(jointId)).sort((a,b)=>(b.zBias||0)-(a.zBias||0))[0]:null);};
+  const groupOf=new Map(scene.compositingGroups.flatMap(g=>g.elements.map(e=>[e.id,g.id])));
+  for(const e of elements){
+    if(e.generated)continue;
+    const source=sourceFor(e);
+    if(source?.occlusionMode==='over-core'&&groupOf.get(e.id)!=='cameraNearAppendagesGroup')violations.push({kind:'over-core-order',elementId:e.id});
   }
   const appendages = elements.filter(e => !e.generated && APPENDAGE.has(e.bodyRegion));
   const unsupportedAppendageElementIds = appendages.filter(e => contains(e.vector, [0, 0]) === null).map(e => e.id);
@@ -154,6 +161,7 @@ export function inspectOcclusion(rig, scene) {
   };
   for (const element of appendages) {
     const plate = plates.get(element.sourceId);
+    if(sourceFor(element)?.occlusionMode==='over-core')continue;
     const ids = plate ? plate.span || [plate.bone] : [gasketJoints.get(element.sourceId)];
     const ownerId = ownerOf(ids.at(-1)), owner = joints.get(ownerId);
     if (!owner) continue;

@@ -123664,7 +123664,7 @@
     "walkA": {
       "id": "walkA",
       "inherits": "bind",
-      "durationMs": 3900,
+      "durationMs": 3200,
       "loop": true,
       "easing": "linear",
       "boneLengthPolicy": "preserve",
@@ -162196,7 +162196,7 @@
     "run": {
       "id": "run",
       "inherits": "bind",
-      "durationMs": 2000,
+      "durationMs": 1650,
       "loop": true,
       "easing": "linear",
       "boneLengthPolicy": "preserve",
@@ -276479,7 +276479,7 @@
       "id": "walk",
       "inherits": "idle",
       "aliasOf": "walkA",
-      "durationMs": 3900,
+      "durationMs": 3200,
       "loop": true,
       "easing": "linear",
       "boneLengthPolicy": "preserve",

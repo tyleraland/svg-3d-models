@@ -198,7 +198,7 @@
           "maxItems": 2,
           "items": { "type": "string", "pattern": "^[+-][xyz]$" }
         },
-        "occlusionMode": { "enum": ["semantic-group", "under-core", "surface-relative"] },
+        "occlusionMode": { "enum": ["semantic-group", "under-core", "over-core", "surface-relative"] },
         "occlusionReference": { "$ref": "#/$defs/id" },
         "intentionalHoles": { "type": "array", "items": { "type": "string" } }
       }

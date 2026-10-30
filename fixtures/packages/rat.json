@@ -1306,16 +1306,14 @@
           0.085
         ]
       },
-      "depthBias": 2,
+      "depthBias": 1.8,
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "under-core",
+      "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-far appendages",
-      "eligibleCompositingGroups": [
-        "camera-far appendages"
-      ],
+      "compositingGroup": "core surface plates",
+      "eligibleCompositingGroups": null,
       "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
@@ -2090,7 +2088,7 @@
       "id": "nearRearUpperPlate",
       "stableId": "nearRearUpperPlate",
       "semanticRole": "limb",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "attachment": {
         "type": "jointSpan",
@@ -2112,17 +2110,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
-      "compositingGroup": "camera-near appendages",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "lodMergeGroup": "limb.left",
       "mirrorPlateId": "farRearUpperPlate",
       "coverage": {
         "method": "declared-overlap",
@@ -2453,7 +2450,7 @@
       "id": "farRearUpperPlate",
       "stableId": "farRearUpperPlate",
       "semanticRole": "limb",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "attachment": {
         "type": "jointSpan",
@@ -2475,17 +2472,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "lodMergeGroup": "limb.right",
       "mirrorPlateId": "nearRearUpperPlate",
       "coverage": {
         "method": "declared-overlap",
@@ -3299,18 +3295,18 @@
       "id": "nearRearHipGasket",
       "jointId": "nearRearHip",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "diameterMeters": 0.0255,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.left",
+      "lodMergeGroup": "limb.left",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "nearRearHip",
@@ -3325,29 +3321,28 @@
         "type": "circle",
         "diameterMeters": 0.0255
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearRearKneeGasket",
       "jointId": "nearRearKnee",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "diameterMeters": 0.008,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.left",
+      "lodMergeGroup": "limb.left",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "nearRearKnee",
@@ -3362,12 +3357,11 @@
         "type": "circle",
         "diameterMeters": 0.008
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "nearRearHockGasket",
@@ -3628,18 +3622,18 @@
       "id": "farRearHipGasket",
       "jointId": "farRearHip",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "diameterMeters": 0.0255,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.right",
+      "lodMergeGroup": "limb.right",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "farRearHip",
@@ -3656,27 +3650,26 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farRearKneeGasket",
       "jointId": "farRearKnee",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "diameterMeters": 0.008,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.right",
+      "lodMergeGroup": "limb.right",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "farRearKnee",
@@ -3693,10 +3686,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "farRearHockGasket",
@@ -3814,6 +3806,7 @@
       "memberPlateIds": [
         "torsoPlate",
         "frontBarrelPlate",
+        "pelvisPlate",
         "backPlate",
         "chestPlate",
         "neckPlate",
@@ -3831,6 +3824,7 @@
     "memberPlateIds": [
       "torsoPlate",
       "frontBarrelPlate",
+      "pelvisPlate",
       "backPlate",
       "chestPlate",
       "neckPlate",
@@ -375597,10 +375591,8 @@
         "tailSegment5Plate",
         "tailSegment6Plate",
         "nearFrontUpperPlate",
-        "nearRearUpperPlate",
         "nearEarPlate",
         "farFrontUpperPlate",
-        "farRearUpperPlate",
         "farEarPlate",
         "tail1Gasket",
         "tail2Gasket",
@@ -375611,8 +375603,11 @@
       ],
       "limb.left": [
         "nearFrontLowerPlate",
+        "nearRearUpperPlate",
         "nearRearLowerPlate",
         "nearFrontCarpusGasket",
+        "nearRearHipGasket",
+        "nearRearKneeGasket",
         "nearRearHockGasket"
       ],
       "hoof.left": [
@@ -375625,8 +375620,11 @@
       ],
       "limb.right": [
         "farFrontLowerPlate",
+        "farRearUpperPlate",
         "farRearLowerPlate",
         "farFrontCarpusGasket",
+        "farRearHipGasket",
+        "farRearKneeGasket",
         "farRearHockGasket"
       ],
       "hoof.right": [
@@ -375640,15 +375638,11 @@
       "surfaceAccessory.left": [
         "nearFrontHipGasket",
         "nearFrontKneeGasket",
-        "nearRearHipGasket",
-        "nearRearKneeGasket",
         "nearEarBaseGasket"
       ],
       "surfaceAccessory.right": [
         "farFrontHipGasket",
         "farFrontKneeGasket",
-        "farRearHipGasket",
-        "farRearKneeGasket",
         "farEarBaseGasket"
       ]
     },
@@ -375820,7 +375814,7 @@
       {
         "id": "under-core-compositor-contract",
         "pass": true,
-        "detail": "9 under-core plate/gasket records are fixed behind the opaque core"
+        "detail": "14 under-core plate/gasket records are fixed behind the opaque core"
       },
       {
         "id": "rigid-plate-span-lengths",

@@ -53739,7 +53739,7 @@
     },
     "walkA": {
       "base": "bind",
-      "duration": 3900,
+      "duration": 3200,
       "easing": "linear",
       "loop": true,
       "frames": [
@@ -70655,7 +70655,7 @@
     },
     "run": {
       "base": "bind",
-      "duration": 2000,
+      "duration": 1650,
       "easing": "linear",
       "loop": true,
       "frames": [
@@ -120746,7 +120746,7 @@
     },
     "walk": {
       "base": "idle",
-      "duration": 3900,
+      "duration": 3200,
       "easing": "linear",
       "loop": true,
       "frames": [

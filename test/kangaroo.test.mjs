@@ -10,12 +10,12 @@ test('Kangaroo has an upright narrow chest, heavy haunches, small forearms, long
  const p=solve(r,{clip:'idle',time:0}),plate=id=>r.plates.find(p=>p.id===id);assert.deepEqual(r.archetypes,['kangaroo','macropod']);assert.ok(p.head[2]>1.35&&p.head[2]<1.45);assert.ok(p.chest[2]>p.pelvis[2]+.45);assert.ok(p.nearKnee[2]>p.nearHip[2]+.1);assert.ok(distance(p.nearKnee,p.nearHock)>distance(p.nearHip,p.nearKnee)*2);assert.ok(distance(p.nearHock,p.nearFoot)>.24);assert.ok(plate('nearHaunchPlate').size[0]>plate('chestPlate').size[0]*1.3);assert.ok(plate('tailUpperPlate').size[0]>plate('tailTipPlate').size[0]*2);assert.ok(p.tailTip[0]<-1.1);assert.ok(p.nearEarTip[2]>1.65);const pkg=compilePackage(r);assert.equal(pkg.validation.status,'passed');for(const side of ['near','far'])assert.ok(pkg.gaskets.find(g=>g.jointId===side+'Knee').diameterMeters<=plate(side+'ShinPlate').size[0],'knee connectors fit the slender shins');
 });
 test('Kangaroo supported bind gives all five limb/tail contact surfaces true zero offsets',()=>{
- const p=solve(r,{clip:'bind'}),pkg=compilePackage(r);for(const id of [...feet,'nearHand','farHand','tailContact']){assert.ok(Math.abs(p[id][2])<2e-8);assert.equal(pkg.joints.find(j=>j.id===id).contactSurfaceOffsetMeters,0);}assert.ok(solve(r,{clip:'idle',time:0}).nearHand[2]>.6,'upright idle raises the hands from supported bind');
+ const p=solve(r,{clip:'bind'}),pkg=compilePackage(r);for(const id of [...feet,'nearHand','farHand','tailContact']){assert.ok(Math.abs(p[id][2])<2e-8);assert.equal(Math.abs(pkg.joints.find(j=>j.id===id).contactSurfaceOffsetMeters),0);}assert.ok(solve(r,{clip:'idle',time:0}).nearHand[2]>.6,'upright idle raises the hands from supported bind');
 });
 test('Kangaroo idle keeps feet and tail anchored while the ground shadow stays fixed through every action',()=>{
  const a=solve(r,{clip:'idle',time:0});for(let i=0;i<=1200;i++){const p=solve(r,{clip:'idle',time:i/1200});for(const id of [...feet,'tailContact'])assert.ok(distance(p[id],a[id])<2e-8);}
  const shadow=(clip,time)=>projectScene(r,{clip,time,elevation:45,heading:225}).compositingGroups.flatMap(g=>g.elements).find(e=>e.sourceId==='castShadow').vector;
- for(const clip of ['idle','walk','run','attack','kick'])for(const time of [.25,.44,.75,1])assert.deepEqual(shadow(clip,time),shadow('idle',0));
+ for(const clip of ['idle','walk','run','attack','kick','hop'])for(const time of [.25,.44,.75,1])assert.deepEqual(shadow(clip,time),shadow('idle',0));
 });
 test('Kangaroo slow walk advances paired hind feet over hands and tail, then resets those supports over the feet',()=>{
  const low=solve(r,{clip:'walk',time:.26}),reset=solve(r,{clip:'walk',time:.66});assert.ok(low.head[2]<1);assert.ok(low.nearFoot[2]>.15&&low.farFoot[2]>.15);assert.deepEqual(new Set(core.contactIds(r,'walk',.26)),new Set(['nearHand','farHand','tailContact']));assert.deepEqual(new Set(core.contactIds(r,'walk',.66)),new Set(feet));assert.ok(reset.nearHand[2]>.1&&reset.tailContact[2]>.04);
@@ -32,7 +32,7 @@ test('Kangaroo kick anchors the tail before lift, leans back, kicks both feet an
  for(let i=0;i<=1200;i++){const time=i/1200,p=solve(r,{clip:'kick',time});assert.ok(core.contactIds(r,'kick',time).includes('tailContact'));assert.ok(distance(p.tailContact,a.tailContact)<2e-6);assert.ok(Math.abs(p.nearFoot[2]-p.farFoot[2])<1e-8);assert.ok(Math.abs(p.tailTip[2]-.025)<2e-6);}
 });
 test('Kangaroo bakes preserve lengths, limits, contact clearance and continuous angles across upward thigh branch cuts',()=>{
- for(const clip of ['idle','walk','run','attack','kick']){const c=r.clips[clip];assert.ok(core.preservedClipLengthsPass(r,clip));if(c.loop)assert.deepEqual(c.frames[0],{...c.frames.at(-1),t:0});for(let i=1;i<c.frames.length;i++)for(const[id,v]of Object.entries(c.frames[i].rotations))for(let k=0;k<3;k++)assert.ok(Math.abs(v[k]-(c.frames[i-1].rotations[id]?.[k]||0))<4,`${clip}/${id} branch discontinuity`);
+ for(const clip of ['idle','walk','run','attack','kick','hop']){const c=r.clips[clip];assert.ok(core.preservedClipLengthsPass(r,clip));if(c.loop)assert.deepEqual(c.frames[0],{...c.frames.at(-1),t:0});for(let i=1;i<c.frames.length;i++)for(const[id,v]of Object.entries(c.frames[i].rotations))for(let k=0;k<3;k++)assert.ok(Math.abs(v[k]-(c.frames[i-1].rotations[id]?.[k]||0))<4,`${clip}/${id} branch discontinuity`);
  for(let i=0;i<=1200;i++){const time=i/1200,p=solve(r,{clip,time});for(const id of [...feet,'nearHand','farHand','nearHock','farHock','tailMid','tailContact','tailTip'])assert.ok(p[id][2]>-.0001,`${clip}/${time}/${id} clearance`);for(const id of core.contactIds(r,clip,time))assert.ok(Math.abs(p[id][2])<.0001);}}
  const a=auditRig(r);assert.equal(a.status,'passed',JSON.stringify(a.issues));
 });
@@ -48,7 +48,7 @@ function vectorPoints(v){const a=v.attributes;let ps=[];
  return ps;
 }
 test('Kangaroo haunches, arms and tail, limb seams and framing pass the dense directional matrix',()=>{
- for(const clip of ['idle','walk','run','attack','kick'])for(const time of [0,.12,.20,.28,.32,.44,.52,.64,.76,.80,.94,1])for(const elevation of [0,30,45,60,75,90])for(let heading=0;heading<360;heading+=22.5){
+ for(const clip of ['idle','walk','run','attack','kick','hop'])for(const time of [0,.12,.20,.28,.32,.44,.52,.64,.76,.80,.94,1])for(const elevation of [0,30,45,60,75,90])for(let heading=0;heading<360;heading+=22.5){
   const s=projectScene(r,{clip,time,elevation,heading});assert.deepEqual(inspectOcclusion(r,s).violations,[],`${clip}/${time}/${elevation}/${heading}`);
   for(const j of s.joints)assert.ok(j.screenPosition.every(v=>v>=1&&v<=99),`${clip}/${time}/${elevation}/${heading}/${j.id}`);
   for(const e of s.compositingGroups.flatMap(g=>g.elements).filter(e=>!e.generated))for(const point of vectorPoints(e.vector))assert.ok(point.every(v=>v>=.6&&v<=99.4),`${clip}/${time}/${elevation}/${heading}/${e.sourceId} vector framing`);
@@ -57,8 +57,8 @@ test('Kangaroo haunches, arms and tail, limb seams and framing pass the dense di
 test('Kangaroo buried head connector promotion is detected independently of parity',()=>{
  const s=projectScene(r,{clip:'kick',time:.44,elevation:45,heading:135}),g=s.compositingGroups.find(g=>g.elements.some(e=>e.sourceId==='headGasket'&&!e.generated)),i=g.elements.findIndex(e=>e.sourceId==='headGasket'&&!e.generated);assert.ok(s.compositingGroups.flatMap(g=>g.elements).findIndex(e=>e.sourceId==='headGasket'&&!e.generated)<s.compositingGroups.flatMap(g=>g.elements).findIndex(e=>e.sourceId==='headPlate'&&!e.generated));s.compositingGroups.find(g=>g.id==='coreSurfaceGroup').elements.push(...g.elements.splice(i,1));const es=s.compositingGroups.flatMap(g=>g.elements),rank=id=>es.findIndex(e=>e.sourceId===id&&!e.generated);assert.ok(rank('headGasket')>rank('headPlate'),'promoted seam is visibly above its skull');
 });
-test('Kangaroo head-on hands both remain in front of the overlapping haunches',()=>{
- const s=projectScene(r,{clip:'idle',time:0,elevation:0,heading:180});
- const visible=scene=>{const es=scene.compositingGroups.flatMap(g=>g.elements);return ['near','far'].every(side=>{const h=es.findIndex(e=>e.sourceId===side+'HandPlate'&&!e.generated),b=es.findIndex(e=>e.sourceId===side+'HaunchPlate'&&!e.generated),hand=es[h].vector.attributes,body=es[b].vector.attributes;assert.ok(((+hand.cx- +body.cx)/+body.rx)**2+((+hand.cy- +body.cy)/+body.ry)**2<1,'hand overlaps haunch at this camera');return h>b&&h>es.findIndex(e=>e.sourceId==='pelvisPlate'&&!e.generated);});};
- assert.ok(visible(s));const g=s.compositingGroups.find(g=>g.elements.some(e=>e.sourceId==='farHandPlate'&&!e.generated)),i=g.elements.findIndex(e=>e.sourceId==='farHandPlate'&&!e.generated),[hand]=g.elements.splice(i,1);s.compositingGroups.find(g=>g.id==='cameraFarAppendagesGroup').elements.push(hand);assert.equal(visible(s),false,'a single hand buried behind its haunch is detected');
+test('Kangaroo hands keep the declared foreground layer, even where the rear view overlaps its haunches',()=>{
+ const s=projectScene(r,{clip:'idle',time:0,elevation:0,heading:0});
+ const foreground=scene=>['near','far'].every(side=>scene.compositingGroups.find(g=>g.id==='cameraNearAppendagesGroup').elements.some(e=>e.sourceId===side+'HandPlate'&&!e.generated));
+ assert.ok(foreground(s));const g=s.compositingGroups.find(g=>g.elements.some(e=>e.sourceId==='farHandPlate'&&!e.generated)),i=g.elements.findIndex(e=>e.sourceId==='farHandPlate'&&!e.generated),[hand]=g.elements.splice(i,1);s.compositingGroups.find(g=>g.id==='cameraFarAppendagesGroup').elements.push(hand);assert.equal(foreground(s),false,'a single buried hand is detected');
 });

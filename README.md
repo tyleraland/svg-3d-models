@@ -582,6 +582,11 @@ geometry. Mutation tests require it to reject deliberately misplaced buried
 parts. See [the regression study](reference-studies/occlusion-regressions.md)
 for the original failure, coverage, and limits. Golden parity is evidence of
 consistency, not evidence that an occlusion decision is visually correct.
+Authored `over-core` appendages deliberately stay in the existing foreground
+appendage group; schema, compiled metadata and the independent oracle cover
+plates and inherited seams. Kangaroo upright/punch/hop checks sample actual
+upper-arm, forearm and hand visibility across cameras; Goose checks coherent
+wing-surface ordering through the whole waddling cycle.
 
 Leopard declares a lateral-sequence `groundedQuadruped.walk` and a separate
 `groundedQuadruped.run` with `spineFlexDegrees`. Its `felineAttacks.swipe` and
