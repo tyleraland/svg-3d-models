@@ -7,10 +7,10 @@ order below. Planning does not start implementation automatically.
 ## Resume checkpoint
 
 - Status: WildMesh expansion batch authorized 2026-10-31; one creature per commit.
-- Active creature / stage: Mammoth — next reference study.
+- Active creature / stage: Domestic Cat — next reference study.
 - Ordered queue: Mink, Crocodile, Beaver, Bighorn Ram, Maned Lion, Mammoth,
   Domestic Cat, Hyena, Duck.
-- Completed this batch: Mink (`f82fcbf`), Crocodile (`02ae00e`), Beaver (`f840c2a`), Bighorn Ram (`8401634`), Maned Lion (mane, feline gaits, claw swipe, clean audits).
+- Completed this batch: Mink (`f82fcbf`), Crocodile (`02ae00e`), Beaver (`f840c2a`), Bighorn Ram (`8401634`), Maned Lion (`372f9fa`), Mammoth (shape, heavy supported gaits, tusk jab, clean audits).
 - Batch-end gate: full tests/catalog audits and browser parity for all nine new models.
 - Previous checkpoint: all eight Quaternius creatures and review corrections complete.
 - Each new creature: inspect native reference, author proportions, idle/walk/run/attack,
