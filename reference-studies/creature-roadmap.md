@@ -6,18 +6,19 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: All eight Quaternius creatures implemented; final catalog audits running.
-- Active creature / stage: final catalog audits and release checkpoint.
-- Last completed milestone: Velociraptor; full suite 448/448 and all-six browser
-  comparisons 726/726 pass.
-- Next milestone: complete catalog audit modes and release metadata.
+- Status: All eight Quaternius creatures complete and committed.
+- Active creature / stage: none.
+- Last completed milestone: Velociraptor (`9da7d4e`) and shared support correction
+  (`e8ef390`); full suite 450/450 and all-six browser comparisons 726/726 pass.
+- Next milestone: review/next planning checkpoint; deferred creatures remain queued.
 - References: `quaternius-inventory.json` and each creature study in this directory;
   `quaternius-dinosaur-review.html` compares six dinosaur silhouettes.
-- Last correction: Kangaroo elbow/forward forearm guard / `b8096eb`.
+- Last correction: all-vertex KO clearance and between-key walking/attack support;
+  grounded support correction committed as `e8ef390`.
 - Open technical blockers: none. User explicitly chose to continue through all
   eight Quaternius creatures, committing each before moving on; no review stop required.
-- Next action: finish final audit/release gates; no further creature implementation
-  is authorized beyond this completed eight-creature Quaternius batch.
+- Next action: review feedback or select the next deferred creature. This
+  eight-creature Quaternius batch is complete.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -1045,3 +1046,46 @@ remain reference assets and are not copied into the workbench.
 - Q7 Triceratops committed as `28a9c80`; Q8 Velociraptor complete: 21 cumulative
   dinosaur tests and 480-view composed audit pass. Full suite 448/448 and all-six
   Chromium outputs 726/726 pass, with authoring UI checks and zero console errors.
+
+
+### Quaternius batch complete — 2026-10-30
+
+All eight requested creatures are implemented. Each native model was opened in
+Blender and studied, with per-creature evidence retained in this directory.
+Every new dinosaur includes idle, walk, run, attack and KO. Native Jump actions
+were studied but are not separately exposed in this first batch.
+
+| Creature | Implementation commit |
+|---|---|
+| Frog | `1e057eb` |
+| Wasp | `b894529` |
+| Apatosaurus | `c96f8c4` |
+| Parasaurolophus | `bebc996` |
+| Stegosaurus | `8aea0ab` |
+| T. rex | `0ce878d` |
+| Triceratops | `28a9c80` |
+| Velociraptor | `9da7d4e` |
+
+Shared support correction: `e8ef390`. The root-height bake preserves native
+rotation curves and run airtime, while walk and grounded attacks retain a
+supporting sole between reference keys. Actual supported phases declare contact
+intervals. Independent mutations cover hovering walks and polygon-only KO floor
+penetration; solid identity checks cover thick dorsal plates, frill and horns.
+
+Final verification after this correction:
+
+- `npm run check`: 450/450 tests; all 56 sources/models pass validation; standard,
+  motion and paint catalog audits pass with 0 issues. Existing advisory totals
+  remain 40/38/40, with no dinosaur advisories. Release metadata passes.
+- All-six Chromium comparison: 726/726 package/browser outputs match; patch UI,
+  onion skins, turntable and independent overlay toggles pass; zero console errors.
+- Existing 50 rig/package fixture sets from before the dinosaur expansion remain
+  byte-identical. Only the six new dinosaur fixture pairs were introduced.
+- All six were visually reviewed in oblique, profile and overhead comparison
+  views. Individual native Blender actions, bite/stride poses and supported-walk
+  contact overlays informed the additional checks.
+- `quaternius-dinosaur-review.html` is a generated three-view silhouette review;
+  regenerate with `node scripts/build-quaternius-review.mjs`. The workbench is
+  regenerated from source and remains the animation/authoring interface.
+
+Work is committed locally on main. No push was requested for this batch.

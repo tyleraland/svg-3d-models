@@ -38,3 +38,8 @@ intervals are declared only where a sole is actually on the support plane at bot
 ends of the interval; run airtime is unchanged. A 641-phase support test and a
 raised-root mutation supplement golden/browser parity. All 28 focused dinosaur
 tests pass; final full-catalog results are recorded in the batch checkpoint.
+
+Final corrected batch: `npm run check` passes 450/450 tests, all 56 models,
+all three catalog audit modes and release metadata. All-six Chromium passes
+726/726 outputs and authoring UI checks with zero console errors. Support
+correction commit: `e8ef390`; see `creature-roadmap.md` for the complete checkpoint.
