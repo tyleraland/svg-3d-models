@@ -32,9 +32,10 @@ export function finishDinosaur(n,{prefix,feet,sole=.025,idleFixed=true,attack='n
  const initial=core.solveWorld(r,0,'bind'),floor=Math.min(...feet.map(f=>initial[f][2]))-sole;r.joints.find(j=>j.id==='body').bind[2]-=floor;
  for(const id of feet){const j=r.joints.find(j=>j.id===id);j.bind[2]=round(j.bind[2]-(initial[id][2]-floor-sole));}
  if(idleFixed){for(const f of r.clips.idle.frames){f.poses.root=[0,0,0];for(const id of Object.keys(f.rotations))if(!/neck|head|tail/i.test(id))f.rotations[id]=[0,0,0];}r.clips.idle.contacts=feet;r.clips.idle.contactIntervals=undefined;}
- for(const mode of ['walk','run','attack','ko'])for(const f of r.clips[mode].frames){const p=core.solveWorld(r,f.t,mode),low=Math.min(...feet.map(id=>p[id][2]-sole));if(low<0)f.poses.root[2]=round(f.poses.root[2]-low);if(mode==='ko'){const posed=core.solveWorld(r,f.t,mode),min=Math.min(...r.plates.filter(p=>p.role!=='shadow').flatMap(plate=>(plate.points||plate.span||[plate.bone]).map(id=>posed[id][2]-(plate.shape==='ellipse'?plate.size[1]:(plate.points ? .01 : plate.size[0]))/2)));if(min<0)f.poses.root[2]=round(f.poses.root[2]-min);}}
+ for(const mode of ['walk','run','attack','ko'])for(const f of r.clips[mode].frames){const p=core.solveWorld(r,f.t,mode),low=Math.min(...feet.map(id=>p[id][2]-sole));if(low<0||mode==='walk'||mode==='attack')f.poses.root[2]=round(f.poses.root[2]-low);if(mode==='ko'){const posed=core.solveWorld(r,f.t,mode),min=Math.min(...r.plates.filter(p=>p.role!=='shadow').flatMap(plate=>(plate.points||plate.span||[plate.bone]).map(id=>posed[id][2]-(plate.shape==='ellipse'?plate.size[1]:(plate.points ? .01 : plate.size[0]))/2)));if(min<0)f.poses.root[2]=round(f.poses.root[2]-min);}}
  r.clips.attack.motionSemantics+=`; ${attack}`;r.clips.attack.events=[{t:.25,name:'windup'},{t:.5,name:'impact'},{t:.75,name:'release'},{t:1,name:'settled'}];r.clips.ko.events=[{t:.25,name:'fall'},{t:.8,name:'down'}];
  const down=structuredClone(r.clips.ko.frames[32]);for(const f of r.clips.ko.frames)if(f.t>=.8){f.poses=structuredClone(down.poses);f.rotations=structuredClone(down.rotations);}
+ for(const mode of ['walk','attack'])bakeGroundSupport(r,mode,feet,sole);
  // Conservative spherical camera envelope includes every key, plate radius and the fixed shadow.
  let radius=0;for(const mode of ['bind',...Object.keys(r.clips)])for(const t of mode==='bind'?[0]:r.clips[mode].frames.map(f=>f.t)){const p=core.solveWorld(r,t,mode);for(const plate of r.plates)for(const id of plate.points||plate.span||[plate.bone])radius=Math.max(radius,Math.hypot(...p[id])+Math.max(...plate.size)/2);}
  r.tokenGroundY=50;r.tokenScale=Math.floor(44/radius*100)/100;
@@ -46,3 +47,16 @@ export function paperSolid(n,id,parent,vertices,faces,{reference=parent,tier='id
  return points;
 }
 export function paperNeedle(n,id,parent,base,tip,radius,options={}){let axis=sub(tip,base),len=Math.hypot(...axis);axis=mul(axis,1/len);let seed=Math.abs(axis[2])<.8?[0,0,1]:[0,1,0],u=[axis[1]*seed[2]-axis[2]*seed[1],axis[2]*seed[0]-axis[0]*seed[2],axis[0]*seed[1]-axis[1]*seed[0]];u=mul(u,radius/Math.hypot(...u));let v=[axis[1]*u[2]-axis[2]*u[1],axis[2]*u[0]-axis[0]*u[2],axis[0]*u[1]-axis[1]*u[0]];return paperSolid(n,id,parent,[add(base,u),add(base,v),sub(base,u),sub(base,v),tip],[[0,1,4],[1,2,4],[2,3,4],[3,0,4]],options);}
+
+// Bake support height from posed soles, including between the native reference keys.
+// Rotational curves stay unchanged; only root height is corrected. Contacts are
+// declared only over intervals whose endpoint soles actually lie on the plane.
+export function bakeGroundSupport(r,mode,feet,sole){
+ const c=r.clips[mode],source=structuredClone(c.frames),frames=[];
+ for(let i=0;i<source.length-1;i++)for(let step=0;step<4;step++){const a=source[i],b=source[i+1],u=step/4;frames.push({t:a.t+(b.t-a.t)*u,poses:{root:a.poses.root.map((v,k)=>v+(b.poses.root[k]-v)*u)},rotations:Object.fromEntries(Object.entries(a.rotations).map(([id,v])=>[id,v.map((v,k)=>v+((b.rotations[id]||[0,0,0])[k]-v)*u)]))});}frames.push(structuredClone(source.at(-1)));c.frames=frames;
+ for(const f of frames){const p=core.solveWorld(r,f.t,mode),low=Math.min(...feet.map(id=>p[id][2]-sole));f.poses.root[2]=round(f.poses.root[2]-low);}
+ if(c.loop)c.frames[c.frames.length-1]={...structuredClone(c.frames[0]),t:1};
+ const poses=frames.map(f=>core.solveWorld(r,f.t,mode)),intervals=[];
+ for(const id of feet){let active=null;for(let i=0;i<frames.length-1;i++){const supported=poses[i][id][2]<=sole+.002&&poses[i+1][id][2]<=sole+.002;if(supported){if(active)active.to=frames[i+1].t;else active={ids:[id],from:frames[i].t,to:frames[i+1].t};}else if(active){intervals.push(active);active=null;}}if(active)intervals.push(active);}
+ c.contactIntervals=intervals.sort((a,b)=>a.from-b.from||a.to-b.to);c.motionSemantics+='; paper root support baked between reference keys; contact intervals require on-plane soles';
+}

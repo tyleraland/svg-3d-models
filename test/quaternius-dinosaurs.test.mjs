@@ -25,3 +25,8 @@ test('Dinosaur KO checks every polygon vertex, including horn tips, frill rims a
 });
 
 test('Velociraptor keeps a slim skull, articulated grasping hands and raised sickle claws while running toes stay level',()=>{const r=loadModel('velociraptor');assert.ok(r.plates.find(p=>p.id==='headPlate').size[0]<loadModel('trex').plates.find(p=>p.id==='headPlate').size[0]*.6);assert.equal(r.plates.filter(p=>/Claw\dPlate$/.test(p.id)).length,6);for(const side of ['Left','Right'])assert.equal(r.joints.find(j=>j.id==='frontFoot'+side).parent,'frontLowLeg'+side);for(const clip of ['walk','run','attack'])for(let i=0;i<=40;i++){const p=solve(r,{clip,time:i/40});for(const side of ['Left','Right']){const foot='backLowLeg'+side+'Tip';assert.ok(Math.abs(p[foot+'Toe1'][2]-p[foot][2]+.005)<1e-7);assert.ok(p[foot+'SickleBend'][2]>p[foot][2]+.07);}}});
+
+test('Every dinosaur walk and grounded attack retain a supporting sole between reference keys',()=>{
+ for(const id of ['apatosaurus',...specs.map(([id])=>id)]){const r=loadModel(id),feet=r.clips.idle.contacts,sole=id==='apatosaurus'?.0225:.025;for(const clip of ['walk','attack']){assert.ok(r.clips[clip].contactIntervals.length>0);for(let i=0;i<=640;i++){const p=solve(r,{clip,time:i/640}),low=Math.min(...feet.map(f=>p[f][2]));assert.ok(low>=sole-.0015&&low<=sole+.005,`${id}/${clip}/${i}: unsupported sole ${low}`);}}}
+});
+test('A hovering-walk regression is detected independently of golden and browser agreement',()=>{const q=structuredClone(loadModel('velociraptor'));for(const f of q.clips.walk.frames)f.poses.root[2]+=.06;const p=solve(q,{clip:'walk',time:.4});assert.ok(Math.min(...q.clips.idle.contacts.map(id=>p[id][2]))>.075);});

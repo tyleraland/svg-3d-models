@@ -33,3 +33,11 @@ Full catalog and all-six browser gates are recorded in the batch checkpoint.
 Final batch headless suite: 448/448 tests. All-six Chromium: 726/726 outputs
 match; authoring UI passes and zero console errors. Gallery side/top/oblique
 views and the running workbench profile were visually reviewed.
+
+Final support correction: native rotation curves are retained, while walk and
+grounded-attack root height is baked at four subdivisions per reference interval.
+This removes brief all-feet hover introduced by retargeting/interpolation. Contact
+intervals are declared only where a sole is actually on the support plane at both
+ends of the interval; run airtime is unchanged. A 641-phase support test and a
+raised-root mutation supplement golden/browser parity. All 28 focused dinosaur
+tests pass; final full-catalog results are recorded in the batch checkpoint.

@@ -32,3 +32,11 @@ validation and the 480-view audit pass with no issues or warnings. Existing
 Final Chromium: 121/121 outputs match; authoring UI passes, zero console errors.
 All 51 model validations pass. Composed motion/paint audit: 480 views, no issues
 or warnings. Full catalog test/audit gates will also run after the six-dinosaur batch.
+
+Final support correction: native rotation curves are retained, while walk and
+grounded-attack root height is baked at four subdivisions per reference interval.
+This removes brief all-feet hover introduced by retargeting/interpolation. Contact
+intervals are declared only where a sole is actually on the support plane at both
+ends of the interval; run airtime is unchanged. A 641-phase support test and a
+raised-root mutation supplement golden/browser parity. All 28 focused dinosaur
+tests pass; final full-catalog results are recorded in the batch checkpoint.

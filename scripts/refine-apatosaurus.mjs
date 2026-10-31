@@ -1,4 +1,4 @@
-import {nativePaper,sub,mul} from './lib/quaternius-paper.mjs';
+import {nativePaper,bakeGroundSupport,sub,mul} from './lib/quaternius-paper.mjs';
 import {core} from '@paper-rig/compiler';
 import {round} from './lib/spatial-leg-ik.mjs';
 const n=nativePaper('apatosaurus',{scale:.05,height:.58,names:{Body:'body',Hips:'pelvis',Torso:'chest',Shoulders:'shoulders',Neck:'neck',Head:'head'},profile:{silhouette:'low long neck and small blunt head; deep barrel, column legs, long five-segment tapering tail',locomotion:'native-informed four-beat walk and faster heavy run',attack:'body turn and sweeping tail strike from Quaternius Apatosaurus_Attack'}}),{r,ids,bind,point,J,P,span,clip,save}=n;
@@ -16,7 +16,8 @@ for(const id of feet){const j=r.joints.find(j=>j.id===id);j.bind[2]=round(j.bind
 // Idle is a supported paper breathing pose; preserve the native head and tail motion, keep all four soles planted.
 for(const f of r.clips.idle.frames){f.poses.root=[0,0,0];for(const id of Object.keys(f.rotations))if(!/neck|head|tail/i.test(id))f.rotations[id]=[0,0,0];}r.clips.idle.contacts=feet;r.clips.idle.contactIntervals=undefined;
 // Body fall stops at the paper silhouette's ground envelope, rather than allowing native floor penetration.
-for(const mode of ['walk','run','attack','ko'])for(const f of r.clips[mode].frames){const p=core.solveWorld(r,f.t,mode),min=Math.min(...feet.map(id=>p[id][2]-.0225));if(min<0)f.poses.root[2]=round(f.poses.root[2]-min);if(mode==='ko'){const low=Math.min(...r.plates.filter(p=>p.role!=='shadow').flatMap(plate=>(plate.span||[plate.bone]).map(id=>p[id][2]-plate.size[0]/2)));if(low<0)f.poses.root[2]=round(f.poses.root[2]-low);}}
+for(const mode of ['walk','run','attack','ko'])for(const f of r.clips[mode].frames){const p=core.solveWorld(r,f.t,mode),min=Math.min(...feet.map(id=>p[id][2]-.0225));if(min<0||mode==='walk'||mode==='attack')f.poses.root[2]=round(f.poses.root[2]-min);if(mode==='ko'){const low=Math.min(...r.plates.filter(p=>p.role!=='shadow').flatMap(plate=>(plate.span||[plate.bone]).map(id=>p[id][2]-plate.size[0]/2)));if(low<0)f.poses.root[2]=round(f.poses.root[2]-low);}}
 r.clips.attack.events=[{t:.25,name:'windup'},{t:.5,name:'impact'},{t:.75,name:'release'},{t:1,name:'settled'}];r.clips.ko.events=[{t:.25,name:'fall'},{t:.75,name:'down'}];
 for(const f of r.clips.ko.frames)if(f.t>=.8){f.poses=structuredClone(r.clips.ko.frames[32].poses);f.rotations=structuredClone(r.clips.ko.frames[32].rotations);}
+for(const mode of ['walk','attack'])bakeGroundSupport(r,mode,feet,.0225);
 save();

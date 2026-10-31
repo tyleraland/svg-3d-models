@@ -30,3 +30,11 @@ Chromium: 121/121 outputs match; authoring UI passes, zero console errors.
 Batch correction during Triceratops review: KO floor correction now includes
 all polygon vertices, not only centers/spans; related fixtures were recaptured.
 The shared 321-phase polygon clearance test passes, including a mutation check.
+
+Final support correction: native rotation curves are retained, while walk and
+grounded-attack root height is baked at four subdivisions per reference interval.
+This removes brief all-feet hover introduced by retargeting/interpolation. Contact
+intervals are declared only where a sole is actually on the support plane at both
+ends of the interval; run airtime is unchanged. A 641-phase support test and a
+raised-root mutation supplement golden/browser parity. All 28 focused dinosaur
+tests pass; final full-catalog results are recorded in the batch checkpoint.
