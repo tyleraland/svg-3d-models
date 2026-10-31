@@ -71,7 +71,7 @@
       "parent": "root",
       "bind": [
         0.237187368,
-        0.006933644,
+        0,
         1.027314955
       ],
       "role": "body"
@@ -201,7 +201,7 @@
       "parent": "body",
       "bind": [
         -0.208835489,
-        0.106692964,
+        0,
         -0.327743626
       ],
       "role": "tail"
@@ -251,7 +251,7 @@
       "parent": "tail4",
       "bind": [
         -0.183914137,
-        9e-9,
+        0,
         0.124624228
       ],
       "role": "tail"
@@ -261,7 +261,7 @@
       "parent": "body",
       "bind": [
         -0.136117664,
-        -0.00726361,
+        0,
         -0.280396557
       ],
       "role": "body"
@@ -281,7 +281,7 @@
       "parent": "chest",
       "bind": [
         0.191030949,
-        -0.020525426,
+        0,
         0.123081136
       ],
       "role": "body"
@@ -291,7 +291,7 @@
       "parent": "shoulders",
       "bind": [
         0.135055232,
-        0.001997271,
+        0,
         0.059818769
       ],
       "role": "neck"
@@ -301,7 +301,7 @@
       "parent": "neck",
       "bind": [
         0.125970125,
-        -0.006944912,
+        0,
         0.061000013
       ],
       "role": "head"
@@ -311,7 +311,7 @@
       "parent": "pelvis",
       "bind": [
         0.481411037,
-        -0.018528154,
+        0,
         0.192142153
       ],
       "role": "body",
@@ -322,7 +322,7 @@
       "parent": "pelvis",
       "bind": [
         0.240705518,
-        -0.009264077,
+        0,
         0.096071076
       ],
       "role": "body",
@@ -355,7 +355,7 @@
       "parent": "neck",
       "bind": [
         0.125970125,
-        -0.006944912,
+        0,
         0.061000013
       ],
       "role": "neck",
@@ -366,7 +366,7 @@
       "parent": "neck",
       "bind": [
         0.062985063,
-        -0.003472456,
+        0,
         0.030500007
       ],
       "role": "neck",
@@ -377,7 +377,7 @@
       "parent": "head",
       "bind": [
         0.303862453,
-        -0.013769028,
+        0,
         -0.016154909
       ],
       "role": "head",
@@ -388,8 +388,305 @@
       "parent": "head",
       "bind": [
         0.151931226,
-        -0.006884514,
+        0,
         -0.008077455
+      ],
+      "role": "head",
+      "helper": true
+    },
+    {
+      "id": "skullVertex0",
+      "parent": "head",
+      "bind": [
+        -0.05,
+        -0.11,
+        -0.06
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex1",
+      "parent": "head",
+      "bind": [
+        0.28,
+        -0.089375,
+        -0.06
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex2",
+      "parent": "head",
+      "bind": [
+        0.35,
+        -0.085,
+        -0.02
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex3",
+      "parent": "head",
+      "bind": [
+        0.35,
+        -0.085,
+        0.04
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex4",
+      "parent": "head",
+      "bind": [
+        0.27,
+        -0.09,
+        0.085
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex5",
+      "parent": "head",
+      "bind": [
+        -0.015,
+        -0.1078125,
+        0.14
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex6",
+      "parent": "head",
+      "bind": [
+        -0.05,
+        -0.11,
+        0.1
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex7",
+      "parent": "head",
+      "bind": [
+        -0.05,
+        0.11,
+        -0.06
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex8",
+      "parent": "head",
+      "bind": [
+        0.28,
+        0.089375,
+        -0.06
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex9",
+      "parent": "head",
+      "bind": [
+        0.35,
+        0.085,
+        -0.02
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex10",
+      "parent": "head",
+      "bind": [
+        0.35,
+        0.085,
+        0.04
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex11",
+      "parent": "head",
+      "bind": [
+        0.27,
+        0.09,
+        0.085
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex12",
+      "parent": "head",
+      "bind": [
+        -0.015,
+        0.1078125,
+        0.14
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullVertex13",
+      "parent": "head",
+      "bind": [
+        -0.05,
+        0.11,
+        0.1
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace0Center",
+      "parent": "head",
+      "bind": [
+        0.162142857,
+        -0.096741071,
+        0.032142857
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace1Center",
+      "parent": "head",
+      "bind": [
+        0.162142857,
+        0.096741071,
+        0.032142857
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace2Center",
+      "parent": "head",
+      "bind": [
+        0.115,
+        0,
+        -0.06
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace3Center",
+      "parent": "head",
+      "bind": [
+        0.315,
+        0,
+        -0.04
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace4Center",
+      "parent": "head",
+      "bind": [
+        0.35,
+        0,
+        0.01
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace5Center",
+      "parent": "head",
+      "bind": [
+        0.31,
+        0,
+        0.0625
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace6Center",
+      "parent": "head",
+      "bind": [
+        0.1275,
+        0,
+        0.1125
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace7Center",
+      "parent": "head",
+      "bind": [
+        -0.0325,
+        0,
+        0.12
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullFace8Center",
+      "parent": "head",
+      "bind": [
+        -0.05,
+        0,
+        0.02
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "skullEyeRight",
+      "parent": "head",
+      "bind": [
+        0.015,
+        -0.112,
+        0.058
+      ],
+      "role": "head",
+      "helper": true
+    },
+    {
+      "id": "nostrilRight",
+      "parent": "head",
+      "bind": [
+        0.285,
+        -0.085,
+        0.025
+      ],
+      "role": "head",
+      "helper": true
+    },
+    {
+      "id": "skullEyeLeft",
+      "parent": "head",
+      "bind": [
+        0.015,
+        0.112,
+        0.058
+      ],
+      "role": "head",
+      "helper": true
+    },
+    {
+      "id": "nostrilLeft",
+      "parent": "head",
+      "bind": [
+        0.285,
+        0.085,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -465,7 +762,7 @@
       "parent": "tail4",
       "bind": [
         -0.183914137,
-        9e-9,
+        0,
         0.124624228
       ],
       "role": "tail",
@@ -476,7 +773,7 @@
       "parent": "tail4",
       "bind": [
         -0.091957068,
-        4e-9,
+        0,
         0.062312114
       ],
       "role": "tail",
@@ -487,7 +784,7 @@
       "parent": "tail5",
       "bind": [
         -0.109464025,
-        1.8e-8,
+        0,
         0.105214262
       ],
       "role": "tail",
@@ -498,7 +795,7 @@
       "parent": "tail5",
       "bind": [
         -0.054732013,
-        9e-9,
+        0,
         0.052607131
       ],
       "role": "tail",
@@ -546,12 +843,199 @@
       "helper": true
     },
     {
+      "id": "lowerJawVertex0",
+      "parent": "jawHinge",
+      "bind": [
+        0,
+        -0.095,
+        -0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex1",
+      "parent": "jawHinge",
+      "bind": [
+        0.27,
+        -0.079117647,
+        -0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex2",
+      "parent": "jawHinge",
+      "bind": [
+        0.34,
+        -0.075,
+        0
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex3",
+      "parent": "jawHinge",
+      "bind": [
+        0.31,
+        -0.076764706,
+        0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex4",
+      "parent": "jawHinge",
+      "bind": [
+        0,
+        -0.095,
+        0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex5",
+      "parent": "jawHinge",
+      "bind": [
+        0,
+        0.095,
+        -0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex6",
+      "parent": "jawHinge",
+      "bind": [
+        0.27,
+        0.079117647,
+        -0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex7",
+      "parent": "jawHinge",
+      "bind": [
+        0.34,
+        0.075,
+        0
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex8",
+      "parent": "jawHinge",
+      "bind": [
+        0.31,
+        0.076764706,
+        0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawVertex9",
+      "parent": "jawHinge",
+      "bind": [
+        0,
+        0.095,
+        0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawFace0Center",
+      "parent": "jawHinge",
+      "bind": [
+        0.184,
+        -0.084176471,
+        0
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawFace1Center",
+      "parent": "jawHinge",
+      "bind": [
+        0.184,
+        0.084176471,
+        0
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawFace2Center",
+      "parent": "jawHinge",
+      "bind": [
+        0.135,
+        0,
+        -0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawFace3Center",
+      "parent": "jawHinge",
+      "bind": [
+        0.305,
+        0,
+        -0.0125
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawFace4Center",
+      "parent": "jawHinge",
+      "bind": [
+        0.325,
+        0,
+        0.0125
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawFace5Center",
+      "parent": "jawHinge",
+      "bind": [
+        0.155,
+        0,
+        0.025
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
+      "id": "lowerJawFace6Center",
+      "parent": "jawHinge",
+      "bind": [
+        0,
+        0,
+        0
+      ],
+      "role": "accent",
+      "helper": true
+    },
+    {
       "id": "headTeethRight0",
       "parent": "head",
       "bind": [
         0.08,
-        -0.055,
-        -0.1
+        -0.077,
+        -0.065
       ],
       "role": "head",
       "helper": true
@@ -561,8 +1045,8 @@
       "parent": "head",
       "bind": [
         0.11,
-        -0.055,
-        -0.128
+        -0.077,
+        -0.09
       ],
       "role": "head",
       "helper": true
@@ -572,8 +1056,8 @@
       "parent": "head",
       "bind": [
         0.14,
-        -0.055,
-        -0.1
+        -0.077,
+        -0.065
       ],
       "role": "head",
       "helper": true
@@ -583,8 +1067,8 @@
       "parent": "head",
       "bind": [
         0.18,
-        -0.055,
-        -0.128
+        -0.077,
+        -0.09
       ],
       "role": "head",
       "helper": true
@@ -594,8 +1078,8 @@
       "parent": "head",
       "bind": [
         0.22,
-        -0.055,
-        -0.1
+        -0.077,
+        -0.065
       ],
       "role": "head",
       "helper": true
@@ -605,8 +1089,8 @@
       "parent": "head",
       "bind": [
         0.26,
-        -0.055,
-        -0.128
+        -0.077,
+        -0.09
       ],
       "role": "head",
       "helper": true
@@ -616,8 +1100,8 @@
       "parent": "head",
       "bind": [
         0.29,
-        -0.055,
-        -0.1
+        -0.077,
+        -0.065
       ],
       "role": "head",
       "helper": true
@@ -627,8 +1111,8 @@
       "parent": "head",
       "bind": [
         0.08,
-        0.055,
-        -0.1
+        0.077,
+        -0.065
       ],
       "role": "head",
       "helper": true
@@ -638,8 +1122,8 @@
       "parent": "head",
       "bind": [
         0.11,
-        0.055,
-        -0.128
+        0.077,
+        -0.09
       ],
       "role": "head",
       "helper": true
@@ -649,8 +1133,8 @@
       "parent": "head",
       "bind": [
         0.14,
-        0.055,
-        -0.1
+        0.077,
+        -0.065
       ],
       "role": "head",
       "helper": true
@@ -660,8 +1144,8 @@
       "parent": "head",
       "bind": [
         0.18,
-        0.055,
-        -0.128
+        0.077,
+        -0.09
       ],
       "role": "head",
       "helper": true
@@ -671,8 +1155,8 @@
       "parent": "head",
       "bind": [
         0.22,
-        0.055,
-        -0.1
+        0.077,
+        -0.065
       ],
       "role": "head",
       "helper": true
@@ -682,8 +1166,8 @@
       "parent": "head",
       "bind": [
         0.26,
-        0.055,
-        -0.128
+        0.077,
+        -0.09
       ],
       "role": "head",
       "helper": true
@@ -693,8 +1177,8 @@
       "parent": "head",
       "bind": [
         0.29,
-        0.055,
-        -0.1
+        0.077,
+        -0.065
       ],
       "role": "head",
       "helper": true
@@ -704,8 +1188,8 @@
       "parent": "jawHinge",
       "bind": [
         0.08,
-        -0.055,
-        0.04
+        -0.077,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -715,8 +1199,8 @@
       "parent": "jawHinge",
       "bind": [
         0.11,
-        -0.055,
-        0.068
+        -0.077,
+        0.043
       ],
       "role": "head",
       "helper": true
@@ -726,8 +1210,8 @@
       "parent": "jawHinge",
       "bind": [
         0.14,
-        -0.055,
-        0.04
+        -0.077,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -737,8 +1221,8 @@
       "parent": "jawHinge",
       "bind": [
         0.18,
-        -0.055,
-        0.068
+        -0.077,
+        0.043
       ],
       "role": "head",
       "helper": true
@@ -748,8 +1232,8 @@
       "parent": "jawHinge",
       "bind": [
         0.22,
-        -0.055,
-        0.04
+        -0.077,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -759,8 +1243,8 @@
       "parent": "jawHinge",
       "bind": [
         0.26,
-        -0.055,
-        0.068
+        -0.077,
+        0.043
       ],
       "role": "head",
       "helper": true
@@ -770,8 +1254,8 @@
       "parent": "jawHinge",
       "bind": [
         0.29,
-        -0.055,
-        0.04
+        -0.077,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -781,8 +1265,8 @@
       "parent": "jawHinge",
       "bind": [
         0.08,
-        0.055,
-        0.04
+        0.077,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -792,8 +1276,8 @@
       "parent": "jawHinge",
       "bind": [
         0.11,
-        0.055,
-        0.068
+        0.077,
+        0.043
       ],
       "role": "head",
       "helper": true
@@ -803,8 +1287,8 @@
       "parent": "jawHinge",
       "bind": [
         0.14,
-        0.055,
-        0.04
+        0.077,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -814,8 +1298,8 @@
       "parent": "jawHinge",
       "bind": [
         0.18,
-        0.055,
-        0.068
+        0.077,
+        0.043
       ],
       "role": "head",
       "helper": true
@@ -825,8 +1309,8 @@
       "parent": "jawHinge",
       "bind": [
         0.22,
-        0.055,
-        0.04
+        0.077,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -836,8 +1320,8 @@
       "parent": "jawHinge",
       "bind": [
         0.26,
-        0.055,
-        0.068
+        0.077,
+        0.043
       ],
       "role": "head",
       "helper": true
@@ -847,8 +1331,8 @@
       "parent": "jawHinge",
       "bind": [
         0.29,
-        0.055,
-        0.04
+        0.077,
+        0.025
       ],
       "role": "head",
       "helper": true
@@ -1151,7 +1635,7 @@
       "bone": "headCenter",
       "shape": "capsule",
       "size": [
-        0.23
+        0.24
       ],
       "role": "head",
       "bodyRegion": "head",
@@ -1161,7 +1645,272 @@
       "span": [
         "head",
         "headTip"
-      ]
+      ],
+      "occlusionMode": "under-core"
+    },
+    {
+      "id": "skullFace0Plate",
+      "bone": "skullFace0Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex0",
+        "skullVertex1",
+        "skullVertex2",
+        "skullVertex3",
+        "skullVertex4",
+        "skullVertex5",
+        "skullVertex6"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullFace1Plate",
+      "bone": "skullFace1Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex13",
+        "skullVertex12",
+        "skullVertex11",
+        "skullVertex10",
+        "skullVertex9",
+        "skullVertex8",
+        "skullVertex7"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullFace2Plate",
+      "bone": "skullFace2Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex0",
+        "skullVertex1",
+        "skullVertex8",
+        "skullVertex7"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullFace3Plate",
+      "bone": "skullFace3Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex1",
+        "skullVertex2",
+        "skullVertex9",
+        "skullVertex8"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullFace4Plate",
+      "bone": "skullFace4Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex2",
+        "skullVertex3",
+        "skullVertex10",
+        "skullVertex9"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullFace5Plate",
+      "bone": "skullFace5Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex3",
+        "skullVertex4",
+        "skullVertex11",
+        "skullVertex10"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullFace6Plate",
+      "bone": "skullFace6Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex4",
+        "skullVertex5",
+        "skullVertex12",
+        "skullVertex11"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullFace7Plate",
+      "bone": "skullFace7Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex5",
+        "skullVertex6",
+        "skullVertex13",
+        "skullVertex12"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullFace8Plate",
+      "bone": "skullFace8Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperMain",
+      "zBias": 0,
+      "points": [
+        "skullVertex6",
+        "skullVertex0",
+        "skullVertex7",
+        "skullVertex13"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "skullEyeRightPlate",
+      "bone": "skullEyeRight",
+      "shape": "ellipse",
+      "size": [
+        0.032,
+        0.028
+      ],
+      "role": "accent",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "semanticDetailTier": "expression"
+    },
+    {
+      "id": "nostrilRightPlate",
+      "bone": "nostrilRight",
+      "shape": "ellipse",
+      "size": [
+        0.023,
+        0.017
+      ],
+      "role": "accent",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "semanticDetailTier": "expression"
+    },
+    {
+      "id": "skullEyeLeftPlate",
+      "bone": "skullEyeLeft",
+      "shape": "ellipse",
+      "size": [
+        0.032,
+        0.028
+      ],
+      "role": "accent",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "semanticDetailTier": "expression"
+    },
+    {
+      "id": "nostrilLeftPlate",
+      "bone": "nostrilLeft",
+      "shape": "ellipse",
+      "size": [
+        0.023,
+        0.017
+      ],
+      "role": "accent",
+      "bodyRegion": "head",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "semanticDetailTier": "expression"
     },
     {
       "id": "tail1Plate",
@@ -1264,6 +2013,161 @@
         "jawHinge",
         "jawTip"
       ],
+      "occlusionMode": "under-core"
+    },
+    {
+      "id": "lowerJawFace0Plate",
+      "bone": "lowerJawFace0Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "points": [
+        "lowerJawVertex0",
+        "lowerJawVertex1",
+        "lowerJawVertex2",
+        "lowerJawVertex3",
+        "lowerJawVertex4"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "lowerJawFace1Plate",
+      "bone": "lowerJawFace1Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "points": [
+        "lowerJawVertex9",
+        "lowerJawVertex8",
+        "lowerJawVertex7",
+        "lowerJawVertex6",
+        "lowerJawVertex5"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "lowerJawFace2Plate",
+      "bone": "lowerJawFace2Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "points": [
+        "lowerJawVertex0",
+        "lowerJawVertex1",
+        "lowerJawVertex6",
+        "lowerJawVertex5"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "lowerJawFace3Plate",
+      "bone": "lowerJawFace3Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "points": [
+        "lowerJawVertex1",
+        "lowerJawVertex2",
+        "lowerJawVertex7",
+        "lowerJawVertex6"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "lowerJawFace4Plate",
+      "bone": "lowerJawFace4Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "points": [
+        "lowerJawVertex2",
+        "lowerJawVertex3",
+        "lowerJawVertex8",
+        "lowerJawVertex7"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "lowerJawFace5Plate",
+      "bone": "lowerJawFace5Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "points": [
+        "lowerJawVertex3",
+        "lowerJawVertex4",
+        "lowerJawVertex9",
+        "lowerJawVertex8"
+      ],
+      "semanticDetailTier": "identity",
+      "occlusionMode": "surface-relative",
+      "occlusionReference": "head"
+    },
+    {
+      "id": "lowerJawFace6Plate",
+      "bone": "lowerJawFace6Center",
+      "shape": "polygon",
+      "size": [
+        0.01
+      ],
+      "role": "accent",
+      "bodyRegion": "accessory",
+      "attachment": "rigid",
+      "material": "paperShade",
+      "zBias": 0,
+      "points": [
+        "lowerJawVertex4",
+        "lowerJawVertex0",
+        "lowerJawVertex5",
+        "lowerJawVertex9"
+      ],
+      "semanticDetailTier": "identity",
       "occlusionMode": "surface-relative",
       "occlusionReference": "head"
     },
@@ -1383,8 +2287,7 @@
         "frontUpLegLeft",
         "frontUpLegLeftTip"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "chest"
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontLowLegLeftPlate",
@@ -1401,7 +2304,8 @@
       "span": [
         "frontLowLegLeft",
         "frontLowLegLeftTip"
-      ]
+      ],
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontLowLegLeftTipFootPlate",
@@ -1415,7 +2319,8 @@
       "bodyRegion": "limb",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontLowLegLeftTipFinger1Plate",
@@ -1433,7 +2338,8 @@
         "frontLowLegLeftTip",
         "frontLowLegLeftTipFinger1"
       ],
-      "semanticDetailTier": "identity"
+      "semanticDetailTier": "identity",
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontLowLegLeftTipFinger2Plate",
@@ -1451,7 +2357,8 @@
         "frontLowLegLeftTip",
         "frontLowLegLeftTipFinger2"
       ],
-      "semanticDetailTier": "identity"
+      "semanticDetailTier": "identity",
+      "occlusionMode": "under-core"
     },
     {
       "id": "backUpLegLeftPlate",
@@ -1469,8 +2376,7 @@
         "backUpLegLeft",
         "backUpLegLeftTip"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis"
+      "occlusionMode": "under-core"
     },
     {
       "id": "backLowLegLeftPlate",
@@ -1487,7 +2393,8 @@
       "span": [
         "backLowLegLeft",
         "backLowLegLeftTip"
-      ]
+      ],
+      "occlusionMode": "under-core"
     },
     {
       "id": "backLowLegLeftTipFootPlate",
@@ -1501,7 +2408,8 @@
       "bodyRegion": "limb",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontUpLegRightPlate",
@@ -1519,8 +2427,7 @@
         "frontUpLegRight",
         "frontUpLegRightTip"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "chest"
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontLowLegRightPlate",
@@ -1537,7 +2444,8 @@
       "span": [
         "frontLowLegRight",
         "frontLowLegRightTip"
-      ]
+      ],
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontLowLegRightTipFootPlate",
@@ -1551,7 +2459,8 @@
       "bodyRegion": "limb",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontLowLegRightTipFinger1Plate",
@@ -1569,7 +2478,8 @@
         "frontLowLegRightTip",
         "frontLowLegRightTipFinger1"
       ],
-      "semanticDetailTier": "identity"
+      "semanticDetailTier": "identity",
+      "occlusionMode": "under-core"
     },
     {
       "id": "frontLowLegRightTipFinger2Plate",
@@ -1587,7 +2497,8 @@
         "frontLowLegRightTip",
         "frontLowLegRightTipFinger2"
       ],
-      "semanticDetailTier": "identity"
+      "semanticDetailTier": "identity",
+      "occlusionMode": "under-core"
     },
     {
       "id": "backUpLegRightPlate",
@@ -1605,8 +2516,7 @@
         "backUpLegRight",
         "backUpLegRightTip"
       ],
-      "occlusionMode": "surface-relative",
-      "occlusionReference": "pelvis"
+      "occlusionMode": "under-core"
     },
     {
       "id": "backLowLegRightPlate",
@@ -1623,7 +2533,8 @@
       "span": [
         "backLowLegRight",
         "backLowLegRightTip"
-      ]
+      ],
+      "occlusionMode": "under-core"
     },
     {
       "id": "backLowLegRightTipFootPlate",
@@ -1637,7 +2548,8 @@
       "bodyRegion": "limb",
       "attachment": "rigid",
       "material": "paperShade",
-      "zBias": 0
+      "zBias": 0,
+      "occlusionMode": "under-core"
     }
   ],
   "anchors": [],
@@ -26510,7 +27422,7 @@
             "root": [
               -0.239944008,
               0.245744392,
-              -0.199497544
+              -0.207694495
             ]
           },
           "rotations": {
@@ -26647,7 +27559,7 @@
             "root": [
               -0.239605111,
               0.296454808,
-              -0.192870905
+              -0.216044645
             ]
           },
           "rotations": {
@@ -26784,7 +27696,7 @@
             "root": [
               -0.239248136,
               0.349869105,
-              -0.204017161
+              -0.244869286
             ]
           },
           "rotations": {
@@ -26921,7 +27833,7 @@
             "root": [
               -0.238876328,
               0.405506846,
-              -0.243017291
+              -0.302644799
             ]
           },
           "rotations": {
@@ -27058,7 +27970,7 @@
             "root": [
               -0.238493228,
               0.462831232,
-              -0.315791071
+              -0.393106949
             ]
           },
           "rotations": {
@@ -27195,7 +28107,7 @@
             "root": [
               -0.238103262,
               0.521187302,
-              -0.420070428
+              -0.478084999
             ]
           },
           "rotations": {
@@ -29524,14 +30436,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -29628,7 +30540,7 @@
             "tail2": [
               0,
               -0.258347828,
-              6.2e-8
+              0
             ],
             "tail3": [
               0,
@@ -29636,14 +30548,14 @@
               0
             ],
             "tail4": [
-              1.4e-8,
+              0,
               -0.196095329,
-              4.5e-8
+              0
             ],
             "tail5": [
-              1.6e-8,
+              0,
               -0.283098728,
-              6.8e-8
+              0
             ],
             "pelvis": [
               0,
@@ -29661,14 +30573,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -29763,9 +30675,9 @@
               0
             ],
             "tail2": [
-              -2e-9,
+              0,
               -1.032592023,
-              2.46e-7
+              0
             ],
             "tail3": [
               0,
@@ -29773,14 +30685,14 @@
               0
             ],
             "tail4": [
-              5.5e-8,
+              0,
               -0.789243914,
-              1.79e-7
+              0
             ],
             "tail5": [
-              6.4e-8,
+              0,
               -1.140611868,
-              2.74e-7
+              0
             ],
             "pelvis": [
               0,
@@ -29798,14 +30710,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -29900,9 +30812,9 @@
               0
             ],
             "tail2": [
-              -1.1e-8,
+              0,
               -2.269467775,
-              5.41e-7
+              0
             ],
             "tail3": [
               0,
@@ -29910,14 +30822,14 @@
               0
             ],
             "tail4": [
-              1.2e-7,
+              0,
               -1.776816499,
-              4.02e-7
+              0
             ],
             "tail5": [
-              1.37e-7,
+              0,
               -2.577189475,
-              6.17e-7
+              0
             ],
             "pelvis": [
               0,
@@ -29935,14 +30847,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -30037,9 +30949,9 @@
               0
             ],
             "tail2": [
-              -3.1e-8,
+              0,
               -3.824402438,
-              9.13e-7
+              0
             ],
             "tail3": [
               0,
@@ -30047,14 +30959,14 @@
               0
             ],
             "tail4": [
-              2.04e-7,
+              0,
               -3.138111862,
-              7.09e-7
+              0
             ],
             "tail5": [
-              2.25e-7,
+              0,
               -4.582459034,
-              0.000001093
+              0
             ],
             "pelvis": [
               0,
@@ -30072,14 +30984,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -30174,24 +31086,24 @@
               0
             ],
             "tail2": [
-              -6.3e-8,
+              0,
               -5.46651092,
-              0.000001307
+              0
             ],
             "tail3": [
-              -1e-9,
+              0,
               -6.663453664,
               0
             ],
             "tail4": [
-              2.98e-7,
+              0,
               -4.828581964,
-              0.000001087
+              0
             ],
             "tail5": [
-              3.12e-7,
+              0,
               -7.124388502,
-              0.000001696
+              0
             ],
             "pelvis": [
               0,
@@ -30209,14 +31121,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -30311,24 +31223,24 @@
               0
             ],
             "tail2": [
-              -1.01e-7,
+              0,
               -6.937522218,
-              0.000001662
+              0
             ],
             "tail3": [
-              -1e-9,
+              0,
               -9.130789094,
               0
             ],
             "tail4": [
-              3.93e-7,
+              0,
               -6.776232172,
-              0.00000152
+              0
             ],
             "tail5": [
-              3.81e-7,
+              0,
               -10.142884676,
-              0.000002411
+              0
             ],
             "pelvis": [
               0,
@@ -30346,14 +31258,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -30448,24 +31360,24 @@
               0
             ],
             "tail2": [
-              -1.36e-7,
+              0,
               -8.031366024,
-              0.000001928
+              0
             ],
             "tail3": [
-              -1e-9,
+              0,
               -11.5989662,
               0
             ],
             "tail4": [
-              4.79e-7,
+              0,
               -8.88279593,
-              0.000001988
+              0
             ],
             "tail5": [
-              4.14e-7,
+              0,
               -13.545633846,
-              0.000003223
+              0
             ],
             "pelvis": [
               0,
@@ -30483,14 +31395,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -30585,24 +31497,24 @@
               0
             ],
             "tail2": [
-              -1.57e-7,
+              0,
               -8.635753071,
-              0.000002075
+              0
             ],
             "tail3": [
-              -1e-9,
+              0,
               -13.862317861,
               0
             ],
             "tail4": [
-              5.49e-7,
+              0,
               -11.031425353,
-              0.000002465
+              0
             ],
             "tail5": [
-              3.93e-7,
+              0,
               -17.208735033,
-              0.00000411
+              0
             ],
             "pelvis": [
               0,
@@ -30620,14 +31532,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -30727,19 +31639,19 @@
               0
             ],
             "tail3": [
-              -2e-9,
+              0,
               -15.750176986,
               0
             ],
             "tail4": [
-              6e-7,
+              0,
               -13.099958023,
-              0.000002925
+              0
             ],
             "tail5": [
-              3.08e-7,
+              0,
               -20.983657949,
-              0.000005046
+              0
             ],
             "pelvis": [
               0,
@@ -30757,14 +31669,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -30864,19 +31776,19 @@
               0
             ],
             "tail3": [
-              -2e-9,
+              0,
               -17.14696425,
               0
             ],
             "tail4": [
-              6.32e-7,
+              0,
               -14.975901007,
-              0.000003344
+              0
             ],
             "tail5": [
-              1.55e-7,
+              0,
               -24.710274092,
-              0.000006001
+              0
             ],
             "pelvis": [
               0,
@@ -30894,14 +31806,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -31001,19 +31913,19 @@
               0
             ],
             "tail3": [
-              -2e-9,
+              0,
               -17.993055918,
-              1e-9
+              0
             ],
             "tail4": [
-              6.48e-7,
+              0,
               -16.568342342,
-              0.000003702
+              0
             ],
             "tail5": [
-              -5.9e-8,
+              0,
               -28.232990975,
-              0.000006944
+              0
             ],
             "pelvis": [
               0,
@@ -31031,14 +31943,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -31138,19 +32050,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              6.53e-7,
+              0,
               -17.813603143,
-              0.000003984
+              0
             ],
             "tail5": [
-              -3.17e-7,
+              0,
               -31.415689465,
-              0.000007838
+              0
             ],
             "pelvis": [
               0,
@@ -31168,14 +32080,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -31275,19 +32187,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              6.53e-7,
+              0,
               -18.674814172,
-              0.00000418
+              0
             ],
             "tail5": [
-              -5.95e-7,
+              0,
               -34.151481764,
-              0.000008647
+              0
             ],
             "pelvis": [
               0,
@@ -31305,14 +32217,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -31412,19 +32324,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              6.52e-7,
+              0,
               -19.137403791,
-              0.000004285
+              0
             ],
             "tail5": [
-              -8.62e-7,
+              0,
               -36.366140573,
-              0.000009333
+              0
             ],
             "pelvis": [
               0,
@@ -31442,14 +32354,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -31549,19 +32461,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.11e-7,
+              0,
               -19.224726052,
-              0.000004263
+              0
             ],
             "tail5": [
-              -0.000001087,
+              0,
               -38.015772722,
-              0.000009866
+              0
             ],
             "pelvis": [
               0,
@@ -31579,14 +32491,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -31686,19 +32598,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.11e-7,
+              0,
               -19.224726052,
-              0.000004263
+              0
             ],
             "tail5": [
-              -0.000001246,
+              0,
               -39.081254019,
-              0.000010222
+              0
             ],
             "pelvis": [
               0,
@@ -31716,14 +32628,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -31823,19 +32735,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.11e-7,
+              0,
               -19.224726052,
-              0.000004263
+              0
             ],
             "tail5": [
-              -0.000001322,
+              0,
               -39.56158117,
-              0.000010385
+              0
             ],
             "pelvis": [
               0,
@@ -31853,14 +32765,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -31960,19 +32872,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.11e-7,
+              0,
               -19.224726052,
-              0.000004263
+              0
             ],
             "tail5": [
-              -0.000003384,
+              0,
               -39.519065301,
-              0.000005635
+              0
             ],
             "pelvis": [
               0,
@@ -31990,14 +32902,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -32097,19 +33009,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.11e-7,
+              0,
               -19.224726052,
-              0.000004263
+              0
             ],
             "tail5": [
-              -0.000003339,
+              0,
               -39.126258819,
-              0.000005503
+              0
             ],
             "pelvis": [
               0,
@@ -32127,14 +33039,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -32234,19 +33146,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.11e-7,
+              0,
               -19.224726052,
-              0.000004263
+              0
             ],
             "tail5": [
-              -0.000003258,
+              0,
               -38.391608034,
-              0.00000526
+              0
             ],
             "pelvis": [
               0,
@@ -32264,14 +33176,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -32371,19 +33283,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.11e-7,
+              0,
               -19.212219405,
-              0.00000426
+              0
             ],
             "tail5": [
-              -0.000003147,
+              0,
               -37.314103716,
-              0.000004909
+              0
             ],
             "pelvis": [
               0,
@@ -32401,14 +33313,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -32508,19 +33420,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.11e-7,
+              0,
               -19.023129613,
-              0.000004217
+              0
             ],
             "tail5": [
-              -0.000003017,
+              0,
               -35.898170984,
-              0.00000446
+              0
             ],
             "pelvis": [
               0,
@@ -32538,14 +33450,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -32645,19 +33557,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.12e-7,
+              0,
               -18.604255287,
-              0.000004121
+              0
             ],
             "tail5": [
-              -0.000002878,
+              0,
               -34.155426225,
-              0.000003923
+              0
             ],
             "pelvis": [
               0,
@@ -32675,14 +33587,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -32782,19 +33694,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.27313514,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.12e-7,
+              0,
               -17.955993107,
-              0.000003974
+              0
             ],
             "tail5": [
-              -0.000002743,
+              0,
               -32.106477717,
-              0.000003312
+              0
             ],
             "pelvis": [
               0,
@@ -32812,14 +33724,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -32919,19 +33831,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -18.115998612,
-              -1e-8
+              0
             ],
             "tail4": [
-              7.09e-7,
+              0,
               -17.084221094,
-              0.000003777
+              0
             ],
             "tail5": [
-              -0.000002624,
+              0,
               -29.782445101,
-              0.00000264
+              0
             ],
             "pelvis": [
               0,
@@ -32949,14 +33861,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -33056,19 +33968,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -17.640788888,
-              -9e-9
+              0
             ],
             "tail4": [
-              7.01e-7,
+              0,
               -16.001858567,
-              0.000003534
+              0
             ],
             "tail5": [
-              -0.000002531,
+              0,
               -27.22581469,
-              0.000001925
+              0
             ],
             "pelvis": [
               0,
@@ -33086,14 +33998,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -33193,19 +34105,19 @@
               0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -16.848271011,
-              -9e-9
+              0
             ],
             "tail4": [
-              6.85e-7,
+              0,
               -14.730353219,
-              0.000003249
+              0
             ],
             "tail5": [
-              -0.000002472,
+              0,
               -24.49024959,
-              0.000001182
+              0
             ],
             "pelvis": [
               0,
@@ -33223,14 +34135,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -33325,24 +34237,24 @@
               0
             ],
             "tail2": [
-              2e-9,
+              0,
               -8.657920262,
-              -2.2e-8
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -15.750690054,
-              -9e-9
+              0
             ],
             "tail4": [
-              6.6e-7,
+              0,
               -13.300693547,
-              0.000002931
+              0
             ],
             "tail5": [
-              -0.000002453,
+              0,
               -21.639072246,
-              4.26e-7
+              0
             ],
             "pelvis": [
               0,
@@ -33360,14 +34272,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -33462,24 +34374,24 @@
               0
             ],
             "tail2": [
-              1.1e-8,
+              0,
               -8.113615816,
-              -1.53e-7
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -14.375377625,
-              -9e-9
+              0
             ],
             "tail4": [
-              6.24e-7,
+              0,
               -11.753268745,
-              0.000002587
+              0
             ],
             "tail5": [
-              -0.000002475,
+              0,
               -18.742363726,
-              -3.27e-7
+              0
             ],
             "pelvis": [
               0,
@@ -33497,14 +34409,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -33599,24 +34511,24 @@
               0
             ],
             "tail2": [
-              2.5e-8,
+              0,
               -7.030011947,
-              -4.12e-7
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -12.767669974,
-              -9e-9
+              0
             ],
             "tail4": [
-              5.77e-7,
+              0,
               -10.13626456,
-              0.000002229
+              0
             ],
             "tail5": [
-              -0.000002535,
+              0,
               -15.87296002,
-              -0.000001062
+              0
             ],
             "pelvis": [
               0,
@@ -33634,14 +34546,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -33736,24 +34648,24 @@
               0
             ],
             "tail2": [
-              3.7e-8,
+              0,
               -5.58028601,
-              -7.58e-7
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -10.991700383,
-              -8e-9
+              0
             ],
             "tail4": [
-              5.19e-7,
+              0,
               -8.502692917,
-              0.000001867
+              0
             ],
             "tail5": [
-              -0.000002628,
+              0,
               -13.10201489,
-              -0.000001766
+              0
             ],
             "pelvis": [
               0,
@@ -33771,14 +34683,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -33873,24 +34785,24 @@
               0
             ],
             "tail2": [
-              4e-8,
+              0,
               -4.127050546,
-              -0.000001104
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -9.127508891,
-              -8e-9
+              0
             ],
             "tail4": [
-              4.52e-7,
+              0,
               -6.906595819,
-              0.000001514
+              0
             ],
             "tail5": [
-              -0.000002747,
+              0,
               -10.494777599,
-              -0.000002426
+              0
             ],
             "pelvis": [
               0,
@@ -33908,14 +34820,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -34010,24 +34922,24 @@
               0
             ],
             "tail2": [
-              3.6e-8,
+              0,
               -2.902450199,
-              -0.000001395
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -7.264161883,
-              -8e-9
+              0
             ],
             "tail4": [
-              3.8e-7,
+              0,
               -5.399080937,
-              0.000001179
+              0
             ],
             "tail5": [
-              -0.000002881,
+              0,
               -8.10738595,
-              -0.000003031
+              0
             ],
             "pelvis": [
               0,
@@ -34045,14 +34957,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -34147,24 +35059,24 @@
               0
             ],
             "tail2": [
-              2.8e-8,
+              0,
               -1.95003647,
-              -0.000001621
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -5.490457765,
-              -8e-9
+              0
             ],
             "tail4": [
-              3.07e-7,
+              0,
               -4.024994887,
-              8.73e-7
+              0
             ],
             "tail5": [
-              -0.000003021,
+              0,
               -5.984967365,
-              -0.000003571
+              0
             ],
             "pelvis": [
               0,
@@ -34182,14 +35094,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -34284,24 +35196,24 @@
               0
             ],
             "tail2": [
-              2e-8,
+              0,
               -1.237979631,
-              -0.00000179
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -3.885851181,
-              -7e-9
+              0
             ],
             "tail4": [
-              2.37e-7,
+              0,
               -2.820689593,
-              6.04e-7
+              0
             ],
             "tail5": [
-              -0.000003157,
+              0,
               -4.161110709,
-              -0.000004038
+              0
             ],
             "pelvis": [
               0,
@@ -34319,14 +35231,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -34421,24 +35333,24 @@
               0
             ],
             "tail2": [
-              1.3e-8,
+              0,
               -0.722934642,
-              -0.000001912
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -2.513912209,
-              -7e-9
+              0
             ],
             "tail4": [
-              1.74e-7,
+              0,
               -1.813182878,
-              3.78e-7
+              0
             ],
             "tail5": [
-              -0.00000328,
+              0,
               -2.658513624,
-              -0.000004425
+              0
             ],
             "pelvis": [
               0,
@@ -34456,14 +35368,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -34558,24 +35470,24 @@
               0
             ],
             "tail2": [
-              7e-9,
+              0,
               -0.36755899,
-              -0.000001997
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -1.419588155,
-              -7e-9
+              0
             ],
             "tail4": [
-              1.22e-7,
+              0,
               -1.020433522,
-              1.99e-7
+              0
             ],
             "tail5": [
-              -0.000003382,
+              0,
               -1.490441623,
-              -0.000004728
+              0
             ],
             "pelvis": [
               0,
@@ -34593,14 +35505,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -34695,24 +35607,24 @@
               0
             ],
             "tail2": [
-              3e-9,
+              0,
               -0.142659661,
-              -0.00000205
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -0.629840447,
-              -7e-9
+              0
             ],
             "tail4": [
-              8.3e-8,
+              0,
               -0.452437391,
-              7.1e-8
+              0
             ],
             "tail5": [
-              -0.000003458,
+              0,
               -0.661401517,
-              -0.000004944
+              0
             ],
             "pelvis": [
               0,
@@ -34730,14 +35642,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -34832,24 +35744,24 @@
               0
             ],
             "tail2": [
-              1e-9,
+              0,
               -0.025878591,
-              -0.000002078
+              0
             ],
             "tail3": [
-              1.9e-8,
+              0,
               -0.156502175,
-              -7e-9
+              0
             ],
             "tail4": [
-              5.9e-8,
+              0,
               -0.112737751,
-              -6e-9
+              0
             ],
             "tail5": [
-              -0.000003505,
+              0,
               -0.16754431,
-              -0.000005074
+              0
             ],
             "pelvis": [
               0,
@@ -34867,14 +35779,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,
@@ -35004,14 +35916,14 @@
               0
             ],
             "neck": [
-              0.00000112,
+              0,
               0.000010293,
-              6.9e-8
+              0
             ],
             "head": [
-              -4.51e-7,
+              0,
               0.000011721,
-              -0.000001046
+              0
             ],
             "jawHinge": [
               0,

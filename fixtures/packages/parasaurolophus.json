@@ -60,12 +60,12 @@
     "units": "meters",
     "min": [
       -1.4762,
-      -0.335,
+      -0.3406,
       0
     ],
     "max": [
       1.0021,
-      0.335,
+      0.3295,
       1.2389
     ],
     "size": [
@@ -148,7 +148,7 @@
       "parentId": "root",
       "localBindPositionMeters": [
         0.189749894,
-        0.005546916,
+        0,
         0.774673107
       ],
       "localBindRotationDegrees": [
@@ -159,7 +159,7 @@
       "boneLengthMeters": 0.7976,
       "semanticRole": "body",
       "helper": false,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -525,7 +525,7 @@
       "parentId": "body",
       "localBindPositionMeters": [
         -0.179127673,
-        0.085354371,
+        0,
         -0.31598937
       ],
       "localBindRotationDegrees": [
@@ -533,10 +533,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.3731,
+      "boneLengthMeters": 0.3632,
       "semanticRole": "tail",
       "helper": false,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -565,7 +565,7 @@
       "boneLengthMeters": 0.1592,
       "semanticRole": "tail",
       "helper": false,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -594,7 +594,7 @@
       "boneLengthMeters": 0.2403,
       "semanticRole": "tail",
       "helper": false,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -623,7 +623,7 @@
       "boneLengthMeters": 0.3409,
       "semanticRole": "tail",
       "helper": false,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -652,7 +652,7 @@
       "boneLengthMeters": 0.2901,
       "semanticRole": "tail",
       "helper": false,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -681,7 +681,7 @@
       "boneLengthMeters": 0.2558,
       "semanticRole": "tail",
       "helper": false,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -699,7 +699,7 @@
       "parentId": "body",
       "localBindPositionMeters": [
         -0.108894129,
-        -0.005810888,
+        0,
         -0.224317217
       ],
       "localBindRotationDegrees": [
@@ -757,7 +757,7 @@
       "parentId": "chest",
       "localBindPositionMeters": [
         0.260675054,
-        -0.021224563,
+        0,
         0.10001863
       ],
       "localBindRotationDegrees": [
@@ -765,10 +765,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.28,
+      "boneLengthMeters": 0.2792,
       "semanticRole": "body",
       "helper": false,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -786,7 +786,7 @@
       "parentId": "shoulders",
       "localBindPositionMeters": [
         0.063284726,
-        0.002760179,
+        0,
         0.132622061
       ],
       "localBindRotationDegrees": [
@@ -794,10 +794,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.147,
+      "boneLengthMeters": 0.1469,
       "semanticRole": "neck",
       "helper": false,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -815,7 +815,7 @@
       "parentId": "neck",
       "localBindPositionMeters": [
         0.042442803,
-        -0.003449908,
+        0,
         0.113002367
       ],
       "localBindRotationDegrees": [
@@ -823,10 +823,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.1208,
+      "boneLengthMeters": 0.1207,
       "semanticRole": "head",
       "helper": false,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -844,7 +844,7 @@
       "parentId": "pelvis",
       "localBindPositionMeters": [
         0.384934936,
-        -0.021224563,
+        0,
         0.107412386
       ],
       "localBindRotationDegrees": [
@@ -852,10 +852,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.4002,
+      "boneLengthMeters": 0.3996,
       "semanticRole": "body",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -873,7 +873,7 @@
       "parentId": "pelvis",
       "localBindPositionMeters": [
         0.192467468,
-        -0.010612281,
+        0,
         0.053706193
       ],
       "localBindRotationDegrees": [
@@ -881,10 +881,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.2001,
+      "boneLengthMeters": 0.1998,
       "semanticRole": "body",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -913,7 +913,7 @@
       "boneLengthMeters": 0.1592,
       "semanticRole": "core",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -942,7 +942,7 @@
       "boneLengthMeters": 0.0796,
       "semanticRole": "core",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -960,7 +960,7 @@
       "parentId": "shoulders",
       "localBindPositionMeters": [
         0.063284726,
-        0.002760179,
+        0,
         0.132622061
       ],
       "localBindRotationDegrees": [
@@ -968,10 +968,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.147,
+      "boneLengthMeters": 0.1469,
       "semanticRole": "neck",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -989,7 +989,7 @@
       "parentId": "shoulders",
       "localBindPositionMeters": [
         0.031642363,
-        0.00138009,
+        0,
         0.06631103
       ],
       "localBindRotationDegrees": [
@@ -1000,7 +1000,7 @@
       "boneLengthMeters": 0.0735,
       "semanticRole": "neck",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1018,7 +1018,7 @@
       "parentId": "neck",
       "localBindPositionMeters": [
         0.042442803,
-        -0.003449908,
+        0,
         0.113002367
       ],
       "localBindRotationDegrees": [
@@ -1026,10 +1026,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.1208,
+      "boneLengthMeters": 0.1207,
       "semanticRole": "neck",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1047,7 +1047,7 @@
       "parentId": "neck",
       "localBindPositionMeters": [
         0.021221402,
-        -0.001724954,
+        0,
         0.056501184
       ],
       "localBindRotationDegrees": [
@@ -1058,7 +1058,7 @@
       "boneLengthMeters": 0.0604,
       "semanticRole": "neck",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1076,7 +1076,7 @@
       "parentId": "head",
       "localBindPositionMeters": [
         0.250592909,
-        -0.012589833,
+        0,
         0.005136366
       ],
       "localBindRotationDegrees": [
@@ -1084,10 +1084,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.251,
+      "boneLengthMeters": 0.2506,
       "semanticRole": "head",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1105,7 +1105,7 @@
       "parentId": "head",
       "localBindPositionMeters": [
         0.125296454,
-        -0.006294917,
+        0,
         0.002568183
       ],
       "localBindRotationDegrees": [
@@ -1113,10 +1113,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.1255,
+      "boneLengthMeters": 0.1253,
       "semanticRole": "head",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1145,7 +1145,7 @@
       "boneLengthMeters": 0.2403,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1174,7 +1174,7 @@
       "boneLengthMeters": 0.1201,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1203,7 +1203,7 @@
       "boneLengthMeters": 0.3409,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1232,7 +1232,7 @@
       "boneLengthMeters": 0.1704,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1261,7 +1261,7 @@
       "boneLengthMeters": 0.2901,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1290,7 +1290,7 @@
       "boneLengthMeters": 0.145,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1319,7 +1319,7 @@
       "boneLengthMeters": 0.2558,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1348,7 +1348,7 @@
       "boneLengthMeters": 0.1279,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1377,7 +1377,7 @@
       "boneLengthMeters": 0.2053,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1406,7 +1406,7 @@
       "boneLengthMeters": 0.1027,
       "semanticRole": "tail",
       "helper": true,
-      "absoluteSide": "left",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1424,7 +1424,7 @@
       "parentId": "head",
       "localBindPositionMeters": [
         0.250592909,
-        -0.012589833,
+        0,
         0.005136366
       ],
       "localBindRotationDegrees": [
@@ -1432,10 +1432,10 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.251,
+      "boneLengthMeters": 0.2506,
       "semanticRole": "head",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1464,7 +1464,7 @@
       "boneLengthMeters": 0.0738,
       "semanticRole": "head",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1493,7 +1493,7 @@
       "boneLengthMeters": 0.2623,
       "semanticRole": "head",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -1522,7 +1522,7 @@
       "boneLengthMeters": 0.1312,
       "semanticRole": "head",
       "helper": true,
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "sideFieldIsAuthoritative": true,
       "legacyPresentationName": false,
       "mirroredCounterpartId": null,
@@ -2047,7 +2047,7 @@
       "stableId": "barrelPlate",
       "semanticRole": "core",
       "bodyRegion": "core",
-      "side": "right",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2076,7 +2076,7 @@
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "core.center",
-      "mirrorPlateId": "barrelPlate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2087,7 +2087,7 @@
       "stableId": "backPlate",
       "semanticRole": "core",
       "bodyRegion": "core",
-      "side": "left",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2118,7 +2118,7 @@
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "core.center",
-      "mirrorPlateId": "backPlate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2129,7 +2129,7 @@
       "stableId": "shouldersPlate",
       "semanticRole": "neck",
       "bodyRegion": "neck",
-      "side": "right",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2158,7 +2158,7 @@
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "neck.center",
-      "mirrorPlateId": "shouldersPlate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2169,7 +2169,7 @@
       "stableId": "neckPlate",
       "semanticRole": "neck",
       "bodyRegion": "neck",
-      "side": "right",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2198,7 +2198,7 @@
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "neck.center",
-      "mirrorPlateId": "neckPlate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2209,7 +2209,7 @@
       "stableId": "headPlate",
       "semanticRole": "head",
       "bodyRegion": "head",
-      "side": "right",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2238,7 +2238,7 @@
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "head.center",
-      "mirrorPlateId": "headPlate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2249,7 +2249,7 @@
       "stableId": "tail1Plate",
       "semanticRole": "tail",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2272,16 +2272,16 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "tail.center",
-      "mirrorPlateId": "tail1Plate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2292,7 +2292,7 @@
       "stableId": "tail2Plate",
       "semanticRole": "tail",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2315,16 +2315,16 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "tail.center",
-      "mirrorPlateId": "tail2Plate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2335,7 +2335,7 @@
       "stableId": "tail3Plate",
       "semanticRole": "tail",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2358,16 +2358,16 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "tail.center",
-      "mirrorPlateId": "tail3Plate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2378,7 +2378,7 @@
       "stableId": "tail4Plate",
       "semanticRole": "tail",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2401,16 +2401,16 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "tail.center",
-      "mirrorPlateId": "tail4Plate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2421,7 +2421,7 @@
       "stableId": "tail5Plate",
       "semanticRole": "tail",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2444,16 +2444,16 @@
       "intentionalHoles": [],
       "occlusionMode": "semantic-group",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "tail.center",
-      "mirrorPlateId": "tail5Plate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2464,7 +2464,7 @@
       "stableId": "billPlate",
       "semanticRole": "head",
       "bodyRegion": "head",
-      "side": "right",
+      "side": "center",
       "attachment": {
         "type": "rigidBone",
         "boneId": "billTip"
@@ -2489,7 +2489,7 @@
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "head.center",
-      "mirrorPlateId": "billPlate",
+      "mirrorPlateId": null,
       "coverage": null
     },
     {
@@ -2497,7 +2497,7 @@
       "stableId": "crestPlate",
       "semanticRole": "head",
       "bodyRegion": "head",
-      "side": "right",
+      "side": "center",
       "attachment": {
         "type": "jointSpan",
         "jointIds": [
@@ -2526,7 +2526,7 @@
       "silhouetteCritical": true,
       "lodTier": "silhouette",
       "lodMergeGroup": "head.center",
-      "mirrorPlateId": "crestPlate",
+      "mirrorPlateId": null,
       "coverage": {
         "method": "declared-overlap",
         "overlapRatio": 1
@@ -2536,7 +2536,7 @@
       "id": "frontUpLegLeftPlate",
       "stableId": "frontUpLegLeftPlate",
       "semanticRole": "limb",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "attachment": {
         "type": "jointSpan",
@@ -2558,17 +2558,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "chest",
-      "compositingGroup": "camera-near appendages",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "lodMergeGroup": "limb.left",
       "mirrorPlateId": "frontUpLegLeftPlate",
       "coverage": {
         "method": "declared-overlap",
@@ -2601,14 +2600,13 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.left",
@@ -2640,14 +2638,13 @@
       "paletteRole": "hoof",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.left",
@@ -2658,7 +2655,7 @@
       "id": "backUpLegLeftPlate",
       "stableId": "backUpLegLeftPlate",
       "semanticRole": "limb",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "attachment": {
         "type": "jointSpan",
@@ -2680,17 +2677,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
-      "compositingGroup": "camera-near appendages",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "lodMergeGroup": "limb.left",
       "mirrorPlateId": "backUpLegLeftPlate",
       "coverage": {
         "method": "declared-overlap",
@@ -2723,14 +2719,13 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.left",
@@ -2762,14 +2757,13 @@
       "paletteRole": "hoof",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.left",
@@ -2780,7 +2774,7 @@
       "id": "frontUpLegRightPlate",
       "stableId": "frontUpLegRightPlate",
       "semanticRole": "limb",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "attachment": {
         "type": "jointSpan",
@@ -2802,17 +2796,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "chest",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "lodMergeGroup": "limb.right",
       "mirrorPlateId": "frontUpLegRightPlate",
       "coverage": {
         "method": "declared-overlap",
@@ -2845,14 +2838,13 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.right",
@@ -2884,14 +2876,13 @@
       "paletteRole": "hoof",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.right",
@@ -2902,7 +2893,7 @@
       "id": "backUpLegRightPlate",
       "stableId": "backUpLegRightPlate",
       "semanticRole": "limb",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "attachment": {
         "type": "jointSpan",
@@ -2924,17 +2915,16 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
-      "lodMergeGroup": "surfaceAccessory.center",
+      "lodMergeGroup": "limb.right",
       "mirrorPlateId": "backUpLegRightPlate",
       "coverage": {
         "method": "declared-overlap",
@@ -2967,14 +2957,13 @@
       "paletteRole": "base",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.right",
@@ -3006,14 +2995,13 @@
       "paletteRole": "hoof",
       "opacity": 1,
       "intentionalHoles": [],
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true,
+      "headingSwapsNearFar": false,
       "silhouetteCritical": false,
       "lodTier": "major",
       "lodMergeGroup": "limb.right",
@@ -3026,18 +3014,18 @@
       "id": "frontUpLegRightGasket",
       "jointId": "frontUpLegRight",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "diameterMeters": 0.06,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "chest",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.right",
+      "lodMergeGroup": "limb.right",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "frontUpLegRight",
@@ -3054,10 +3042,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "frontLowLegRightGasket",
@@ -3068,7 +3055,7 @@
       "diameterMeters": 0.06,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -3091,27 +3078,26 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "backUpLegRightGasket",
       "jointId": "backUpLegRight",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "right",
       "diameterMeters": 0.1656,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.right",
+      "lodMergeGroup": "limb.right",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "backUpLegRight",
@@ -3128,10 +3114,9 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "backLowLegRightGasket",
@@ -3142,7 +3127,7 @@
       "diameterMeters": 0.09200000000000001,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -3165,27 +3150,26 @@
       },
       "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "frontUpLegLeftGasket",
       "jointId": "frontUpLegLeft",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "diameterMeters": 0.06,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "chest",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.left",
+      "lodMergeGroup": "limb.left",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "frontUpLegLeft",
@@ -3200,12 +3184,11 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "frontLowLegLeftGasket",
@@ -3216,7 +3199,7 @@
       "diameterMeters": 0.06,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -3237,29 +3220,28 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "backUpLegLeftGasket",
       "jointId": "backUpLegLeft",
       "semanticRole": "jointGasket",
-      "bodyRegion": "surfaceAccessory",
+      "bodyRegion": "limb",
       "side": "left",
       "diameterMeters": 0.1656,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "surface-relative",
-      "occlusionReferenceBoneId": "pelvis",
+      "occlusionMode": "under-core",
+      "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "surfaceAccessory.left",
+      "lodMergeGroup": "limb.left",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "backUpLegLeft",
@@ -3274,12 +3256,11 @@
         "type": "circle",
         "diameterMeters": 0.1656
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "backLowLegLeftGasket",
@@ -3290,7 +3271,7 @@
       "diameterMeters": 0.09200000000000001,
       "paletteRole": "base",
       "depthBias": -0.05,
-      "occlusionMode": "semantic-group",
+      "occlusionMode": "under-core",
       "occlusionReferenceBoneId": null,
       "opacity": 1,
       "intentionalHoles": [],
@@ -3311,19 +3292,18 @@
         "type": "circle",
         "diameterMeters": 0.09200000000000001
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
-        "camera-far appendages",
-        "camera-near appendages"
+        "camera-far appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "backGasket",
       "jointId": "back",
       "semanticRole": "jointGasket",
       "bodyRegion": "core",
-      "side": "left",
+      "side": "center",
       "diameterMeters": 0.25760000000000005,
       "paletteRole": "base",
       "depthBias": 1.95,
@@ -3333,7 +3313,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": false,
       "lodTier": "detail",
-      "lodMergeGroup": "core.left",
+      "lodMergeGroup": "core.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "back",
@@ -3359,7 +3339,7 @@
       "jointId": "tail1",
       "semanticRole": "jointGasket",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "diameterMeters": 0.2208,
       "paletteRole": "base",
       "depthBias": -0.05,
@@ -3369,7 +3349,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "tail.left",
+      "lodMergeGroup": "tail.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "tail1",
@@ -3384,19 +3364,19 @@
         "type": "circle",
         "diameterMeters": 0.2208
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "tail2Gasket",
       "jointId": "tail2",
       "semanticRole": "jointGasket",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "diameterMeters": 0.1564,
       "paletteRole": "base",
       "depthBias": -0.05,
@@ -3406,7 +3386,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "tail.left",
+      "lodMergeGroup": "tail.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "tail2",
@@ -3421,19 +3401,19 @@
         "type": "circle",
         "diameterMeters": 0.1564
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "tail3Gasket",
       "jointId": "tail3",
       "semanticRole": "jointGasket",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "diameterMeters": 0.1012,
       "paletteRole": "base",
       "depthBias": -0.05,
@@ -3443,7 +3423,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "tail.left",
+      "lodMergeGroup": "tail.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "tail3",
@@ -3458,19 +3438,19 @@
         "type": "circle",
         "diameterMeters": 0.1012
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "tail4Gasket",
       "jointId": "tail4",
       "semanticRole": "jointGasket",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "diameterMeters": 0.06,
       "paletteRole": "base",
       "depthBias": -0.05,
@@ -3480,7 +3460,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "tail.left",
+      "lodMergeGroup": "tail.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "tail4",
@@ -3495,19 +3475,19 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "tail5Gasket",
       "jointId": "tail5",
       "semanticRole": "jointGasket",
       "bodyRegion": "tail",
-      "side": "left",
+      "side": "center",
       "diameterMeters": 0.06,
       "paletteRole": "base",
       "depthBias": -0.05,
@@ -3517,7 +3497,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "tail.left",
+      "lodMergeGroup": "tail.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "tail5",
@@ -3532,12 +3512,12 @@
         "type": "circle",
         "diameterMeters": 0.06
       },
-      "compositingGroup": "camera-near appendages",
+      "compositingGroup": "camera-far appendages",
       "eligibleCompositingGroups": [
         "camera-far appendages",
         "camera-near appendages"
       ],
-      "headingSwapsNearFar": true
+      "headingSwapsNearFar": false
     },
     {
       "id": "pelvisGasket",
@@ -3577,7 +3557,7 @@
       "jointId": "shoulders",
       "semanticRole": "jointGasket",
       "bodyRegion": "neck",
-      "side": "right",
+      "side": "center",
       "diameterMeters": 0.138,
       "paletteRole": "base",
       "depthBias": -0.05,
@@ -3587,7 +3567,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "neck.right",
+      "lodMergeGroup": "neck.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "shoulders",
@@ -3610,7 +3590,7 @@
       "jointId": "neck",
       "semanticRole": "jointGasket",
       "bodyRegion": "neck",
-      "side": "right",
+      "side": "center",
       "diameterMeters": 0.1104,
       "paletteRole": "base",
       "depthBias": -0.05,
@@ -3620,7 +3600,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "neck.right",
+      "lodMergeGroup": "neck.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "neck",
@@ -3643,7 +3623,7 @@
       "jointId": "head",
       "semanticRole": "jointGasket",
       "bodyRegion": "head",
-      "side": "right",
+      "side": "center",
       "diameterMeters": 0.1104,
       "paletteRole": "base",
       "depthBias": -0.05,
@@ -3653,7 +3633,7 @@
       "intentionalHoles": [],
       "silhouetteCritical": true,
       "lodTier": "detail",
-      "lodMergeGroup": "head.right",
+      "lodMergeGroup": "head.center",
       "coverage": {
         "method": "opaque-gasket",
         "jointId": "head",
@@ -3779,7 +3759,7 @@
     },
     {
       "id": "sockMarkingRegion",
-      "owningPlateId": "frontLowLegLeftPlate",
+      "owningPlateId": "frontUpLegLeftPlate",
       "closedPath": "M -0.50 0 L 0.50 0 L 0.50 0.50 L -0.50 0.50 Z",
       "coordinateSpace": "plate-local-normalized",
       "paletteRole": "marking",
@@ -3867,7 +3847,7 @@
       "scaleBehavior": "preserve-local-aspect",
       "mirroredCounterpartId": null,
       "moduleType": "hat",
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "paletteRole": "accessory",
       "opacity": 1,
       "lodTier": "detail"
@@ -3899,7 +3879,7 @@
       "scaleBehavior": "preserve-local-aspect",
       "mirroredCounterpartId": null,
       "moduleType": "helmet",
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "paletteRole": "accessory",
       "opacity": 1,
       "lodTier": "detail"
@@ -3931,7 +3911,7 @@
       "scaleBehavior": "preserve-local-aspect",
       "mirroredCounterpartId": null,
       "moduleType": "collar",
-      "absoluteSide": "right",
+      "absoluteSide": "center",
       "paletteRole": "accessory",
       "opacity": 1,
       "lodTier": "detail"
@@ -58970,7 +58950,7 @@
               "translationDeltaMeters": [
                 -0.191875105,
                 0.208579774,
-                -0.15274465
+                -0.173465014
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -59275,7 +59255,7 @@
               "translationDeltaMeters": [
                 -0.191596498,
                 0.25026967,
-                -0.160193633
+                -0.193898593
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -59580,7 +59560,7 @@
               "translationDeltaMeters": [
                 -0.191304438,
                 0.293973842,
-                -0.184063271
+                -0.23137895
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -59885,7 +59865,7 @@
               "translationDeltaMeters": [
                 -0.191001992,
                 0.339229767,
-                -0.227135744
+                -0.28736388
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -60190,7 +60170,7 @@
               "translationDeltaMeters": [
                 -0.190692766,
                 0.385501478,
-                -0.289329772
+                -0.360434682
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -60495,7 +60475,7 @@
               "translationDeltaMeters": [
                 -0.190381265,
                 0.432114751,
-                -0.364229309
+                -0.420667927
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -60800,7 +60780,7 @@
               "translationDeltaMeters": [
                 -0.190073712,
                 0.47813545,
-                -0.444421827
+                -0.458466916
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -65981,9 +65961,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -65993,9 +65973,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -66202,9 +66182,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.1e-8,
+                0,
                 -0.258346145,
-                6.1e-8
+                0
               ]
             },
             "tail3": {
@@ -66238,9 +66218,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.2e-8,
+                0,
                 -0.28309204,
-                5.4e-8
+                0
               ]
             },
             "pelvis": {
@@ -66286,9 +66266,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -66298,9 +66278,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -66507,9 +66487,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.1e-8,
+                0,
                 -1.032589601,
-                2.42e-7
+                0
               ]
             },
             "tail3": {
@@ -66543,9 +66523,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.69e-7,
+                0,
                 -1.140607206,
-                2.16e-7
+                0
               ]
             },
             "pelvis": {
@@ -66591,9 +66571,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -66603,9 +66583,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -66812,9 +66792,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                8.4e-8,
+                0,
                 -2.269466998,
-                5.31e-7
+                0
               ]
             },
             "tail3": {
@@ -66848,9 +66828,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                3.77e-7,
+                0,
                 -2.577182259,
-                4.82e-7
+                0
               ]
             },
             "pelvis": {
@@ -66896,9 +66876,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -66908,9 +66888,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -67117,9 +67097,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.3e-7,
+                0,
                 -3.824401093,
-                8.94e-7
+                0
               ]
             },
             "tail3": {
@@ -67153,9 +67133,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                6.56e-7,
+                0,
                 -4.582454673,
-                8.47e-7
+                0
               ]
             },
             "pelvis": {
@@ -67201,9 +67181,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -67213,9 +67193,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -67422,9 +67402,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.67e-7,
+                0,
                 -5.466509774,
-                0.000001276
+                0
               ]
             },
             "tail3": {
@@ -67458,9 +67438,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                9.92e-7,
+                0,
                 -7.124383935,
-                0.000001297
+                0
               ]
             },
             "pelvis": {
@@ -67506,9 +67486,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -67518,9 +67498,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -67727,9 +67707,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.92e-7,
+                0,
                 -6.937522229,
-                0.000001619
+                0
               ]
             },
             "tail3": {
@@ -67763,9 +67743,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000001368,
+                0,
                 -10.142877921,
-                0.000001815
+                0
               ]
             },
             "pelvis": {
@@ -67811,9 +67791,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -67823,9 +67803,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -68032,9 +68012,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.04e-7,
+                0,
                 -8.031366591,
-                0.000001874
+                0
               ]
             },
             "tail3": {
@@ -68068,9 +68048,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000001764,
+                0,
                 -13.545628384,
-                0.000002382
+                0
               ]
             },
             "pelvis": {
@@ -68116,9 +68096,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -68128,9 +68108,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -68337,9 +68317,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.09e-7,
+                0,
                 -8.635752696,
-                0.000002015
+                0
               ]
             },
             "tail3": {
@@ -68373,9 +68353,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000002158,
+                0,
                 -17.208729075,
-                0.000002976
+                0
               ]
             },
             "pelvis": {
@@ -68421,9 +68401,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -68433,9 +68413,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -68678,9 +68658,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.00000253,
+                0,
                 -20.983651704,
-                0.000003573
+                0
               ]
             },
             "pelvis": {
@@ -68726,9 +68706,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -68738,9 +68718,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -68971,7 +68951,7 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -14.97590478,
                 0
               ]
@@ -68983,9 +68963,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000002866,
+                0,
                 -24.710266407,
-                0.000004153
+                0
               ]
             },
             "pelvis": {
@@ -69031,9 +69011,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -69043,9 +69023,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -69276,7 +69256,7 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -16.568343826,
                 0
               ]
@@ -69288,9 +69268,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003154,
+                0,
                 -28.232989419,
-                0.000004695
+                0
               ]
             },
             "pelvis": {
@@ -69336,9 +69316,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -69348,9 +69328,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -69569,9 +69549,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -69581,7 +69561,7 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -17.813607574,
                 0
               ]
@@ -69593,9 +69573,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003389,
+                0,
                 -31.415682197,
-                0.000005184
+                0
               ]
             },
             "pelvis": {
@@ -69641,9 +69621,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -69653,9 +69633,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -69874,9 +69854,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -69886,7 +69866,7 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -18.674818383,
                 0
               ]
@@ -69898,9 +69878,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003572,
+                0,
                 -34.151477607,
-                0.000005606
+                0
               ]
             },
             "pelvis": {
@@ -69946,9 +69926,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -69958,9 +69938,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -70179,9 +70159,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -70191,9 +70171,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -19.137407838,
-                1e-9
+                0
               ]
             },
             "tail5": {
@@ -70203,9 +70183,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003706,
+                0,
                 -36.366134403,
-                0.000005951
+                0
               ]
             },
             "pelvis": {
@@ -70251,9 +70231,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -70263,9 +70243,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -70484,9 +70464,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -70496,9 +70476,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -70508,9 +70488,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003798,
+                0,
                 -38.015765698,
-                0.000006209
+                0
               ]
             },
             "pelvis": {
@@ -70556,9 +70536,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -70568,9 +70548,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -70789,9 +70769,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -70801,9 +70781,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -70813,9 +70793,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003853,
+                0,
                 -39.081250034,
-                0.000006378
+                0
               ]
             },
             "pelvis": {
@@ -70861,9 +70841,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -70873,9 +70853,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -71094,9 +71074,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -71106,9 +71086,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -71118,9 +71098,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003877,
+                0,
                 -39.561577777,
-                0.000006454
+                0
               ]
             },
             "pelvis": {
@@ -71166,9 +71146,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -71178,9 +71158,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -71399,9 +71379,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -71411,9 +71391,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -71423,9 +71403,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                6.88e-7,
+                0,
                 -39.519059706,
-                0.00000272
+                0
               ]
             },
             "pelvis": {
@@ -71471,9 +71451,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -71483,9 +71463,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -71704,9 +71684,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -71716,9 +71696,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -71728,9 +71708,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                6.59e-7,
+                0,
                 -39.126260221,
-                0.000002652
+                0
               ]
             },
             "pelvis": {
@@ -71776,9 +71756,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -71788,9 +71768,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -72009,9 +71989,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -72021,9 +72001,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -72033,9 +72013,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                6.04e-7,
+                0,
                 -38.391608765,
-                0.000002525
+                0
               ]
             },
             "pelvis": {
@@ -72081,9 +72061,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -72093,9 +72073,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -72314,9 +72294,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -72326,9 +72306,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.21222422,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -72338,9 +72318,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.21e-7,
+                0,
                 -37.314099191,
-                0.00000234
+                0
               ]
             },
             "pelvis": {
@@ -72386,9 +72366,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -72398,9 +72378,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -72619,9 +72599,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -72631,9 +72611,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.023134603,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -72643,9 +72623,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.07e-7,
+                0,
                 -35.898165561,
-                0.000002097
+                0
               ]
             },
             "pelvis": {
@@ -72691,9 +72671,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -72703,9 +72683,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -72924,9 +72904,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -72936,9 +72916,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -18.604259725,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -72948,9 +72928,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.59e-7,
+                0,
                 -34.155416535,
-                0.000001799
+                0
               ]
             },
             "pelvis": {
@@ -72996,9 +72976,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -73008,9 +72988,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -73229,9 +73209,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -73241,9 +73221,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.3e-8,
+                0,
                 -17.955998,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -73253,9 +73233,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                7.5e-8,
+                0,
                 -32.106474495,
-                0.00000145
+                0
               ]
             },
             "pelvis": {
@@ -73301,9 +73281,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -73313,9 +73293,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -73534,9 +73514,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.115996473,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -73546,9 +73526,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.3e-8,
+                0,
                 -17.084225642,
-                -4.7e-8
+                0
               ]
             },
             "tail5": {
@@ -73558,9 +73538,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1.46e-7,
+                0,
                 -29.782438867,
-                0.000001054
+                0
               ]
             },
             "pelvis": {
@@ -73606,9 +73586,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -73618,9 +73598,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -73839,9 +73819,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -17.640786171,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -73851,9 +73831,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.2e-8,
+                0,
                 -16.001860409,
-                -4.7e-8
+                0
               ]
             },
             "tail5": {
@@ -73863,9 +73843,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -4.05e-7,
+                0,
                 -27.22581022,
-                6.16e-7
+                0
               ]
             },
             "pelvis": {
@@ -73911,9 +73891,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -73923,9 +73903,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -74144,9 +74124,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -16.848269546,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -74156,9 +74136,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.2e-8,
+                0,
                 -14.730355578,
-                -4.6e-8
+                0
               ]
             },
             "tail5": {
@@ -74168,9 +74148,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -6.99e-7,
+                0,
                 -24.490242805,
-                1.44e-7
+                0
               ]
             },
             "pelvis": {
@@ -74216,9 +74196,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -74228,9 +74208,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -74437,9 +74417,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -2e-9,
+                0,
                 -8.65791957,
-                -2.2e-8
+                0
               ]
             },
             "tail3": {
@@ -74449,9 +74429,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -15.750685874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -74461,9 +74441,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.1e-8,
+                0,
                 -13.300695012,
-                -4.5e-8
+                0
               ]
             },
             "tail5": {
@@ -74473,9 +74453,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001025,
+                0,
                 -21.639067533,
-                -3.55e-7
+                0
               ]
             },
             "pelvis": {
@@ -74521,9 +74501,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -74533,9 +74513,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -74742,9 +74722,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1.6e-8,
+                0,
                 -8.113616465,
-                -1.49e-7
+                0
               ]
             },
             "tail3": {
@@ -74754,9 +74734,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -14.375371995,
-                -8e-9
+                0
               ]
             },
             "tail4": {
@@ -74766,9 +74746,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5e-8,
+                0,
                 -11.75327135,
-                -4.4e-8
+                0
               ]
             },
             "tail5": {
@@ -74778,9 +74758,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001378,
+                0,
                 -18.742358014,
-                -8.69e-7
+                0
               ]
             },
             "pelvis": {
@@ -74826,9 +74806,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -74838,9 +74818,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -75047,9 +75027,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -4.7e-8,
+                0,
                 -7.030012876,
-                -4.02e-7
+                0
               ]
             },
             "tail3": {
@@ -75059,9 +75039,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -12.767666946,
-                -8e-9
+                0
               ]
             },
             "tail4": {
@@ -75071,9 +75051,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5e-8,
+                0,
                 -10.13626654,
-                -4.4e-8
+                0
               ]
             },
             "tail5": {
@@ -75083,9 +75063,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001748,
+                0,
                 -15.872955164,
-                -0.000001389
+                0
               ]
             },
             "pelvis": {
@@ -75131,9 +75111,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -75143,9 +75123,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -75352,9 +75332,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -9.6e-8,
+                0,
                 -5.580281747,
-                -7.4e-7
+                0
               ]
             },
             "tail3": {
@@ -75364,9 +75344,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -10.991696217,
-                -8e-9
+                0
               ]
             },
             "tail4": {
@@ -75376,9 +75356,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.9e-8,
+                0,
                 -8.502694612,
-                -4.3e-8
+                0
               ]
             },
             "tail5": {
@@ -75388,9 +75368,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000002126,
+                0,
                 -13.102009145,
-                -0.000001903
+                0
               ]
             },
             "pelvis": {
@@ -75436,9 +75416,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -75448,9 +75428,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -75657,9 +75637,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1.54e-7,
+                0,
                 -4.127050597,
-                -0.00000108
+                0
               ]
             },
             "tail3": {
@@ -75669,9 +75649,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -9.127506181,
-                -7e-9
+                0
               ]
             },
             "tail4": {
@@ -75681,9 +75661,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.8e-8,
+                0,
                 -6.906597625,
-                -4.2e-8
+                0
               ]
             },
             "tail5": {
@@ -75693,9 +75673,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000002501,
+                0,
                 -10.494772658,
-                -0.000002398
+                0
               ]
             },
             "pelvis": {
@@ -75741,9 +75721,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -75753,9 +75733,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -75962,9 +75942,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -2.09e-7,
+                0,
                 -2.902448289,
-                -0.000001367
+                0
               ]
             },
             "tail3": {
@@ -75974,9 +75954,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -7.264157554,
-                -7e-9
+                0
               ]
             },
             "tail4": {
@@ -75986,9 +75966,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.8e-8,
+                0,
                 -5.399082605,
-                -4.1e-8
+                0
               ]
             },
             "tail5": {
@@ -75998,9 +75978,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000002863,
+                0,
                 -8.107382039,
-                -0.000002864
+                0
               ]
             },
             "pelvis": {
@@ -76046,9 +76026,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -76058,9 +76038,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -76267,9 +76247,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -2.57e-7,
+                0,
                 -1.950037476,
-                -0.000001591
+                0
               ]
             },
             "tail3": {
@@ -76279,9 +76259,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -5.490454697,
-                -7e-9
+                0
               ]
             },
             "tail4": {
@@ -76291,9 +76271,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.7e-8,
+                0,
                 -4.024992878,
-                -4.1e-8
+                0
               ]
             },
             "tail5": {
@@ -76303,9 +76283,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003199,
+                0,
                 -5.98496281,
-                -0.000003289
+                0
               ]
             },
             "pelvis": {
@@ -76351,9 +76331,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -76363,9 +76343,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -76572,9 +76552,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -2.94e-7,
+                0,
                 -1.237978107,
-                -0.000001759
+                0
               ]
             },
             "tail3": {
@@ -76584,9 +76564,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -3.88584572,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -76596,9 +76576,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.7e-8,
+                0,
                 -2.820691082,
-                -4e-8
+                0
               ]
             },
             "tail5": {
@@ -76608,9 +76588,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003499,
+                0,
                 -4.161105819,
-                -0.000003663
+                0
               ]
             },
             "pelvis": {
@@ -76656,9 +76636,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -76668,9 +76648,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -76877,9 +76857,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -3.23e-7,
+                0,
                 -0.722933215,
-                -0.000001881
+                0
               ]
             },
             "tail3": {
@@ -76889,9 +76869,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -2.513907933,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -76901,9 +76881,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.6e-8,
+                0,
                 -1.813188073,
-                -4e-8
+                0
               ]
             },
             "tail5": {
@@ -76913,9 +76893,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003755,
+                0,
                 -2.658507143,
-                -0.000003978
+                0
               ]
             },
             "pelvis": {
@@ -76961,9 +76941,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -76973,9 +76953,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -77182,9 +77162,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -3.43e-7,
+                0,
                 -0.367559314,
-                -0.000001965
+                0
               ]
             },
             "tail3": {
@@ -77194,9 +77174,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -1.419584262,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -77206,9 +77186,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.6e-8,
+                0,
                 -1.020435469,
-                -3.9e-8
+                0
               ]
             },
             "tail5": {
@@ -77218,9 +77198,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.00000396,
+                0,
                 -1.490437449,
-                -0.000004227
+                0
               ]
             },
             "pelvis": {
@@ -77266,9 +77246,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -77278,9 +77258,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -77487,9 +77467,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -3.56e-7,
+                0,
                 -0.142658665,
-                -0.000002018
+                0
               ]
             },
             "tail3": {
@@ -77499,9 +77479,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.9e-8,
+                0,
                 -0.629839431,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -77511,9 +77491,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.6e-8,
+                0,
                 -0.452437569,
-                -3.9e-8
+                0
               ]
             },
             "tail5": {
@@ -77523,9 +77503,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000004108,
+                0,
                 -0.661396547,
-                -0.000004407
+                0
               ]
             },
             "pelvis": {
@@ -77571,9 +77551,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -77583,9 +77563,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -77792,9 +77772,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -3.63e-7,
+                0,
                 -0.025878046,
-                -0.000002046
+                0
               ]
             },
             "tail3": {
@@ -77804,9 +77784,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.9e-8,
+                0,
                 -0.156504767,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -77816,9 +77796,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.6e-8,
+                0,
                 -0.112742495,
-                -3.9e-8
+                0
               ]
             },
             "tail5": {
@@ -77828,9 +77808,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000004197,
+                0,
                 -0.167540163,
-                -0.000004515
+                0
               ]
             },
             "pelvis": {
@@ -77876,9 +77856,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -77888,9 +77868,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -78181,9 +78161,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -78193,9 +78173,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -140167,9 +140147,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -140179,9 +140159,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -140388,9 +140368,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.1e-8,
+                0,
                 -0.258346145,
-                6.1e-8
+                0
               ]
             },
             "tail3": {
@@ -140424,9 +140404,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.2e-8,
+                0,
                 -0.28309204,
-                5.4e-8
+                0
               ]
             },
             "pelvis": {
@@ -140472,9 +140452,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -140484,9 +140464,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -140693,9 +140673,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.1e-8,
+                0,
                 -1.032589601,
-                2.42e-7
+                0
               ]
             },
             "tail3": {
@@ -140729,9 +140709,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.69e-7,
+                0,
                 -1.140607206,
-                2.16e-7
+                0
               ]
             },
             "pelvis": {
@@ -140777,9 +140757,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -140789,9 +140769,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -140998,9 +140978,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                8.4e-8,
+                0,
                 -2.269466998,
-                5.31e-7
+                0
               ]
             },
             "tail3": {
@@ -141034,9 +141014,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                3.77e-7,
+                0,
                 -2.577182259,
-                4.82e-7
+                0
               ]
             },
             "pelvis": {
@@ -141082,9 +141062,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -141094,9 +141074,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -141303,9 +141283,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.3e-7,
+                0,
                 -3.824401093,
-                8.94e-7
+                0
               ]
             },
             "tail3": {
@@ -141339,9 +141319,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                6.56e-7,
+                0,
                 -4.582454673,
-                8.47e-7
+                0
               ]
             },
             "pelvis": {
@@ -141387,9 +141367,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -141399,9 +141379,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -141608,9 +141588,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.67e-7,
+                0,
                 -5.466509774,
-                0.000001276
+                0
               ]
             },
             "tail3": {
@@ -141644,9 +141624,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                9.92e-7,
+                0,
                 -7.124383935,
-                0.000001297
+                0
               ]
             },
             "pelvis": {
@@ -141692,9 +141672,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -141704,9 +141684,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -141913,9 +141893,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.92e-7,
+                0,
                 -6.937522229,
-                0.000001619
+                0
               ]
             },
             "tail3": {
@@ -141949,9 +141929,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000001368,
+                0,
                 -10.142877921,
-                0.000001815
+                0
               ]
             },
             "pelvis": {
@@ -141997,9 +141977,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -142009,9 +141989,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -142218,9 +142198,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.04e-7,
+                0,
                 -8.031366591,
-                0.000001874
+                0
               ]
             },
             "tail3": {
@@ -142254,9 +142234,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000001764,
+                0,
                 -13.545628384,
-                0.000002382
+                0
               ]
             },
             "pelvis": {
@@ -142302,9 +142282,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -142314,9 +142294,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -142523,9 +142503,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.09e-7,
+                0,
                 -8.635752696,
-                0.000002015
+                0
               ]
             },
             "tail3": {
@@ -142559,9 +142539,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000002158,
+                0,
                 -17.208729075,
-                0.000002976
+                0
               ]
             },
             "pelvis": {
@@ -142607,9 +142587,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -142619,9 +142599,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -142864,9 +142844,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.00000253,
+                0,
                 -20.983651704,
-                0.000003573
+                0
               ]
             },
             "pelvis": {
@@ -142912,9 +142892,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -142924,9 +142904,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -143157,7 +143137,7 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -14.97590478,
                 0
               ]
@@ -143169,9 +143149,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000002866,
+                0,
                 -24.710266407,
-                0.000004153
+                0
               ]
             },
             "pelvis": {
@@ -143217,9 +143197,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -143229,9 +143209,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -143462,7 +143442,7 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -16.568343826,
                 0
               ]
@@ -143474,9 +143454,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003154,
+                0,
                 -28.232989419,
-                0.000004695
+                0
               ]
             },
             "pelvis": {
@@ -143522,9 +143502,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -143534,9 +143514,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -143755,9 +143735,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -143767,7 +143747,7 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -17.813607574,
                 0
               ]
@@ -143779,9 +143759,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003389,
+                0,
                 -31.415682197,
-                0.000005184
+                0
               ]
             },
             "pelvis": {
@@ -143827,9 +143807,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -143839,9 +143819,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -144060,9 +144040,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -144072,7 +144052,7 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -18.674818383,
                 0
               ]
@@ -144084,9 +144064,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003572,
+                0,
                 -34.151477607,
-                0.000005606
+                0
               ]
             },
             "pelvis": {
@@ -144132,9 +144112,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -144144,9 +144124,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -144365,9 +144345,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -144377,9 +144357,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1e-9,
+                0,
                 -19.137407838,
-                1e-9
+                0
               ]
             },
             "tail5": {
@@ -144389,9 +144369,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003706,
+                0,
                 -36.366134403,
-                0.000005951
+                0
               ]
             },
             "pelvis": {
@@ -144437,9 +144417,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -144449,9 +144429,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -144670,9 +144650,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -144682,9 +144662,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -144694,9 +144674,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003798,
+                0,
                 -38.015765698,
-                0.000006209
+                0
               ]
             },
             "pelvis": {
@@ -144742,9 +144722,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -144754,9 +144734,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -144975,9 +144955,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -144987,9 +144967,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -144999,9 +144979,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003853,
+                0,
                 -39.081250034,
-                0.000006378
+                0
               ]
             },
             "pelvis": {
@@ -145047,9 +145027,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -145059,9 +145039,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -145280,9 +145260,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -145292,9 +145272,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -145304,9 +145284,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                0.000003877,
+                0,
                 -39.561577777,
-                0.000006454
+                0
               ]
             },
             "pelvis": {
@@ -145352,9 +145332,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -145364,9 +145344,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -145585,9 +145565,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -145597,9 +145577,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -145609,9 +145589,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                6.88e-7,
+                0,
                 -39.519059706,
-                0.00000272
+                0
               ]
             },
             "pelvis": {
@@ -145657,9 +145637,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -145669,9 +145649,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -145890,9 +145870,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -145902,9 +145882,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -145914,9 +145894,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                6.59e-7,
+                0,
                 -39.126260221,
-                0.000002652
+                0
               ]
             },
             "pelvis": {
@@ -145962,9 +145942,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -145974,9 +145954,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -146195,9 +146175,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -146207,9 +146187,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.224729923,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -146219,9 +146199,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                6.04e-7,
+                0,
                 -38.391608765,
-                0.000002525
+                0
               ]
             },
             "pelvis": {
@@ -146267,9 +146247,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -146279,9 +146259,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -146500,9 +146480,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -146512,9 +146492,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.21222422,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -146524,9 +146504,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.21e-7,
+                0,
                 -37.314099191,
-                0.00000234
+                0
               ]
             },
             "pelvis": {
@@ -146572,9 +146552,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -146584,9 +146564,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -146805,9 +146785,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -146817,9 +146797,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -19.023134603,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -146829,9 +146809,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.07e-7,
+                0,
                 -35.898165561,
-                0.000002097
+                0
               ]
             },
             "pelvis": {
@@ -146877,9 +146857,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -146889,9 +146869,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -147110,9 +147090,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -147122,9 +147102,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.4e-8,
+                0,
                 -18.604259725,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -147134,9 +147114,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.59e-7,
+                0,
                 -34.155416535,
-                0.000001799
+                0
               ]
             },
             "pelvis": {
@@ -147182,9 +147162,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -147194,9 +147174,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -147415,9 +147395,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.273132874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -147427,9 +147407,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.3e-8,
+                0,
                 -17.955998,
-                -4.8e-8
+                0
               ]
             },
             "tail5": {
@@ -147439,9 +147419,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                7.5e-8,
+                0,
                 -32.106474495,
-                0.00000145
+                0
               ]
             },
             "pelvis": {
@@ -147487,9 +147467,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -147499,9 +147479,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -147720,9 +147700,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -18.115996473,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -147732,9 +147712,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.3e-8,
+                0,
                 -17.084225642,
-                -4.7e-8
+                0
               ]
             },
             "tail5": {
@@ -147744,9 +147724,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1.46e-7,
+                0,
                 -29.782438867,
-                0.000001054
+                0
               ]
             },
             "pelvis": {
@@ -147792,9 +147772,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -147804,9 +147784,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -148025,9 +148005,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -17.640786171,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -148037,9 +148017,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.2e-8,
+                0,
                 -16.001860409,
-                -4.7e-8
+                0
               ]
             },
             "tail5": {
@@ -148049,9 +148029,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -4.05e-7,
+                0,
                 -27.22581022,
-                6.16e-7
+                0
               ]
             },
             "pelvis": {
@@ -148097,9 +148077,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -148109,9 +148089,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -148330,9 +148310,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -16.848269546,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -148342,9 +148322,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.2e-8,
+                0,
                 -14.730355578,
-                -4.6e-8
+                0
               ]
             },
             "tail5": {
@@ -148354,9 +148334,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -6.99e-7,
+                0,
                 -24.490242805,
-                1.44e-7
+                0
               ]
             },
             "pelvis": {
@@ -148402,9 +148382,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -148414,9 +148394,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -148623,9 +148603,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -2e-9,
+                0,
                 -8.65791957,
-                -2.2e-8
+                0
               ]
             },
             "tail3": {
@@ -148635,9 +148615,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -15.750685874,
-                -9e-9
+                0
               ]
             },
             "tail4": {
@@ -148647,9 +148627,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5.1e-8,
+                0,
                 -13.300695012,
-                -4.5e-8
+                0
               ]
             },
             "tail5": {
@@ -148659,9 +148639,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001025,
+                0,
                 -21.639067533,
-                -3.55e-7
+                0
               ]
             },
             "pelvis": {
@@ -148707,9 +148687,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -148719,9 +148699,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -148928,9 +148908,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1.6e-8,
+                0,
                 -8.113616465,
-                -1.49e-7
+                0
               ]
             },
             "tail3": {
@@ -148940,9 +148920,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -14.375371995,
-                -8e-9
+                0
               ]
             },
             "tail4": {
@@ -148952,9 +148932,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5e-8,
+                0,
                 -11.75327135,
-                -4.4e-8
+                0
               ]
             },
             "tail5": {
@@ -148964,9 +148944,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001378,
+                0,
                 -18.742358014,
-                -8.69e-7
+                0
               ]
             },
             "pelvis": {
@@ -149012,9 +148992,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -149024,9 +149004,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -149233,9 +149213,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -4.7e-8,
+                0,
                 -7.030012876,
-                -4.02e-7
+                0
               ]
             },
             "tail3": {
@@ -149245,9 +149225,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -12.767666946,
-                -8e-9
+                0
               ]
             },
             "tail4": {
@@ -149257,9 +149237,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                5e-8,
+                0,
                 -10.13626654,
-                -4.4e-8
+                0
               ]
             },
             "tail5": {
@@ -149269,9 +149249,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001748,
+                0,
                 -15.872955164,
-                -0.000001389
+                0
               ]
             },
             "pelvis": {
@@ -149317,9 +149297,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -149329,9 +149309,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -149538,9 +149518,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -9.6e-8,
+                0,
                 -5.580281747,
-                -7.4e-7
+                0
               ]
             },
             "tail3": {
@@ -149550,9 +149530,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2.1e-8,
+                0,
                 -10.991696217,
-                -8e-9
+                0
               ]
             },
             "tail4": {
@@ -149562,9 +149542,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.9e-8,
+                0,
                 -8.502694612,
-                -4.3e-8
+                0
               ]
             },
             "tail5": {
@@ -149574,9 +149554,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000002126,
+                0,
                 -13.102009145,
-                -0.000001903
+                0
               ]
             },
             "pelvis": {
@@ -149622,9 +149602,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -149634,9 +149614,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -149843,9 +149823,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -1.54e-7,
+                0,
                 -4.127050597,
-                -0.00000108
+                0
               ]
             },
             "tail3": {
@@ -149855,9 +149835,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -9.127506181,
-                -7e-9
+                0
               ]
             },
             "tail4": {
@@ -149867,9 +149847,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.8e-8,
+                0,
                 -6.906597625,
-                -4.2e-8
+                0
               ]
             },
             "tail5": {
@@ -149879,9 +149859,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000002501,
+                0,
                 -10.494772658,
-                -0.000002398
+                0
               ]
             },
             "pelvis": {
@@ -149927,9 +149907,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -149939,9 +149919,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -150148,9 +150128,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -2.09e-7,
+                0,
                 -2.902448289,
-                -0.000001367
+                0
               ]
             },
             "tail3": {
@@ -150160,9 +150140,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -7.264157554,
-                -7e-9
+                0
               ]
             },
             "tail4": {
@@ -150172,9 +150152,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.8e-8,
+                0,
                 -5.399082605,
-                -4.1e-8
+                0
               ]
             },
             "tail5": {
@@ -150184,9 +150164,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000002863,
+                0,
                 -8.107382039,
-                -0.000002864
+                0
               ]
             },
             "pelvis": {
@@ -150232,9 +150212,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -150244,9 +150224,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -150453,9 +150433,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -2.57e-7,
+                0,
                 -1.950037476,
-                -0.000001591
+                0
               ]
             },
             "tail3": {
@@ -150465,9 +150445,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -5.490454697,
-                -7e-9
+                0
               ]
             },
             "tail4": {
@@ -150477,9 +150457,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.7e-8,
+                0,
                 -4.024992878,
-                -4.1e-8
+                0
               ]
             },
             "tail5": {
@@ -150489,9 +150469,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003199,
+                0,
                 -5.98496281,
-                -0.000003289
+                0
               ]
             },
             "pelvis": {
@@ -150537,9 +150517,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -150549,9 +150529,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -150758,9 +150738,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -2.94e-7,
+                0,
                 -1.237978107,
-                -0.000001759
+                0
               ]
             },
             "tail3": {
@@ -150770,9 +150750,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -3.88584572,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -150782,9 +150762,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.7e-8,
+                0,
                 -2.820691082,
-                -4e-8
+                0
               ]
             },
             "tail5": {
@@ -150794,9 +150774,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003499,
+                0,
                 -4.161105819,
-                -0.000003663
+                0
               ]
             },
             "pelvis": {
@@ -150842,9 +150822,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -150854,9 +150834,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -151063,9 +151043,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -3.23e-7,
+                0,
                 -0.722933215,
-                -0.000001881
+                0
               ]
             },
             "tail3": {
@@ -151075,9 +151055,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -2.513907933,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -151087,9 +151067,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.6e-8,
+                0,
                 -1.813188073,
-                -4e-8
+                0
               ]
             },
             "tail5": {
@@ -151099,9 +151079,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003755,
+                0,
                 -2.658507143,
-                -0.000003978
+                0
               ]
             },
             "pelvis": {
@@ -151147,9 +151127,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -151159,9 +151139,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -151368,9 +151348,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -3.43e-7,
+                0,
                 -0.367559314,
-                -0.000001965
+                0
               ]
             },
             "tail3": {
@@ -151380,9 +151360,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                2e-8,
+                0,
                 -1.419584262,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -151392,9 +151372,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.6e-8,
+                0,
                 -1.020435469,
-                -3.9e-8
+                0
               ]
             },
             "tail5": {
@@ -151404,9 +151384,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.00000396,
+                0,
                 -1.490437449,
-                -0.000004227
+                0
               ]
             },
             "pelvis": {
@@ -151452,9 +151432,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -151464,9 +151444,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -151673,9 +151653,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -3.56e-7,
+                0,
                 -0.142658665,
-                -0.000002018
+                0
               ]
             },
             "tail3": {
@@ -151685,9 +151665,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.9e-8,
+                0,
                 -0.629839431,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -151697,9 +151677,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.6e-8,
+                0,
                 -0.452437569,
-                -3.9e-8
+                0
               ]
             },
             "tail5": {
@@ -151709,9 +151689,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000004108,
+                0,
                 -0.661396547,
-                -0.000004407
+                0
               ]
             },
             "pelvis": {
@@ -151757,9 +151737,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -151769,9 +151749,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -151978,9 +151958,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -3.63e-7,
+                0,
                 -0.025878046,
-                -0.000002046
+                0
               ]
             },
             "tail3": {
@@ -151990,9 +151970,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                1.9e-8,
+                0,
                 -0.156504767,
-                -6e-9
+                0
               ]
             },
             "tail4": {
@@ -152002,9 +151982,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                4.6e-8,
+                0,
                 -0.112742495,
-                -3.9e-8
+                0
               ]
             },
             "tail5": {
@@ -152014,9 +151994,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000004197,
+                0,
                 -0.167540163,
-                -0.000004515
+                0
               ]
             },
             "pelvis": {
@@ -152062,9 +152042,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -152074,9 +152054,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -152367,9 +152347,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000001199,
+                0,
                 0.000002854,
-                0.000002923
+                0
               ]
             },
             "head": {
@@ -152379,9 +152359,9 @@
                 0
               ],
               "rotationDeltaDegrees": [
-                -0.000003135,
+                0,
                 0.00000382,
-                0.000003381
+                0
               ]
             }
           }
@@ -201711,70 +201691,56 @@
       "core.center": [
         "barrelPlate",
         "backPlate",
+        "backGasket",
         "pelvisGasket"
       ],
       "neck.center": [
         "shouldersPlate",
-        "neckPlate"
+        "neckPlate",
+        "shouldersGasket",
+        "neckGasket"
       ],
       "head.center": [
         "headPlate",
         "billPlate",
-        "crestPlate"
+        "crestPlate",
+        "headGasket"
       ],
       "tail.center": [
         "tail1Plate",
         "tail2Plate",
         "tail3Plate",
         "tail4Plate",
-        "tail5Plate"
-      ],
-      "surfaceAccessory.center": [
-        "frontUpLegLeftPlate",
-        "backUpLegLeftPlate",
-        "frontUpLegRightPlate",
-        "backUpLegRightPlate"
-      ],
-      "limb.left": [
-        "frontLowLegLeftPlate",
-        "frontLowLegLeftTipFootPlate",
-        "backLowLegLeftPlate",
-        "backLowLegLeftTipFootPlate",
-        "frontLowLegLeftGasket",
-        "backLowLegLeftGasket"
-      ],
-      "limb.right": [
-        "frontLowLegRightPlate",
-        "frontLowLegRightTipFootPlate",
-        "backLowLegRightPlate",
-        "backLowLegRightTipFootPlate",
-        "frontLowLegRightGasket",
-        "backLowLegRightGasket"
-      ],
-      "surfaceAccessory.right": [
-        "frontUpLegRightGasket",
-        "backUpLegRightGasket"
-      ],
-      "surfaceAccessory.left": [
-        "frontUpLegLeftGasket",
-        "backUpLegLeftGasket"
-      ],
-      "core.left": [
-        "backGasket"
-      ],
-      "tail.left": [
+        "tail5Plate",
         "tail1Gasket",
         "tail2Gasket",
         "tail3Gasket",
         "tail4Gasket",
         "tail5Gasket"
       ],
-      "neck.right": [
-        "shouldersGasket",
-        "neckGasket"
+      "limb.left": [
+        "frontUpLegLeftPlate",
+        "frontLowLegLeftPlate",
+        "frontLowLegLeftTipFootPlate",
+        "backUpLegLeftPlate",
+        "backLowLegLeftPlate",
+        "backLowLegLeftTipFootPlate",
+        "frontUpLegLeftGasket",
+        "frontLowLegLeftGasket",
+        "backUpLegLeftGasket",
+        "backLowLegLeftGasket"
       ],
-      "head.right": [
-        "headGasket"
+      "limb.right": [
+        "frontUpLegRightPlate",
+        "frontLowLegRightPlate",
+        "frontLowLegRightTipFootPlate",
+        "backUpLegRightPlate",
+        "backLowLegRightPlate",
+        "backLowLegRightTipFootPlate",
+        "frontUpLegRightGasket",
+        "frontLowLegRightGasket",
+        "backUpLegRightGasket",
+        "backLowLegRightGasket"
       ]
     },
     "far": {
@@ -201807,20 +201773,7 @@
     }
   },
   "asymmetry": {
-    "features": [
-      {
-        "id": "standardHatAnchor",
-        "side": "right"
-      },
-      {
-        "id": "standardHelmetAnchor",
-        "side": "right"
-      },
-      {
-        "id": "standardCollarAnchor",
-        "side": "right"
-      }
-    ],
+    "features": [],
     "sideConvention": "absolute model left/right"
   },
   "authoringOverrides": {
@@ -201949,7 +201902,7 @@
       {
         "id": "under-core-compositor-contract",
         "pass": true,
-        "detail": "2 under-core plate/gasket records are fixed behind the opaque core"
+        "detail": "22 under-core plate/gasket records are fixed behind the opaque core"
       },
       {
         "id": "rigid-plate-span-lengths",

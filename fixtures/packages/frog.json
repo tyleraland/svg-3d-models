@@ -670,7 +670,7 @@
       "parentId": "chest",
       "localBindPositionMeters": [
         0.024,
-        0.13,
+        0.085,
         -0.006
       ],
       "localBindRotationDegrees": [
@@ -678,7 +678,7 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.1323,
+      "boneLengthMeters": 0.0885,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "left",
@@ -1453,7 +1453,7 @@
       "parentId": "chest",
       "localBindPositionMeters": [
         0.024,
-        -0.13,
+        -0.085,
         -0.006
       ],
       "localBindRotationDegrees": [
@@ -1461,7 +1461,7 @@
         0,
         0
       ],
-      "boneLengthMeters": 0.1323,
+      "boneLengthMeters": 0.0885,
       "semanticRole": "limb",
       "helper": false,
       "absoluteSide": "right",

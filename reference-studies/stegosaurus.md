@@ -46,3 +46,12 @@ Final corrected batch: `npm run check` passes 450/450 tests, all 56 models,
 all three catalog audit modes and release metadata. All-six Chromium passes
 726/726 outputs and authoring UI checks with zero console errors. Support
 correction commit: `e8ef390`; see `creature-roadmap.md` for the complete checkpoint.
+
+## Directional user-review corrections
+
+Narrow tetrahedral spikes were replaced with eight thick pentagonal plates: four broad body plates and smaller neck/tail plates. Their bases are embedded along their actual sloping supporting spans. The four needle-spike roots fit inside the tail cylinder. Centered tail mounts and below-body limb ordering also apply.
+
+Regression coverage now checks centered idle tails, exact socket coincidence,
+whole-limb burial across the reported camera sweep, continuous Velociraptor
+walking, embedded Stegosaurus plate/spike roots, solid T. rex face geometry and
+Triceratops thigh volume. Full validation results are in the roadmap checkpoint.

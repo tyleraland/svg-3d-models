@@ -96,9 +96,9 @@ user's request; all four feet brace. Fixed lengths are preserved and the folded
 tongue rests inside the head in bind/idle as well as at attack endpoints.
 The crawl stride increases from .05 to .12 m and its cycle shortens from 1800
 to 1250 ms. Foot recovery is .032 m; contact endpoints are sampled explicitly.
-Front hip roots are embedded at lateral .13 m and receive under-body sockets.
+Front hip roots are embedded at lateral .085 m and receive under-body sockets.
 Lower legs, insteps and feet remain below the opaque body/thigh stack, including
 the reported elevation 60/heading 270 and overhead heading 270 views.
-Eleven focused tests pass, including tongue reach/retraction, planted contacts
+Twelve focused tests pass, including tongue reach/retraction, planted contacts
 and explicit leg/socket layering. Native evidence remains the same; the tongue
 and faster crawl are authored adaptations.

@@ -46,3 +46,12 @@ Final corrected batch: `npm run check` passes 450/450 tests, all 56 models,
 all three catalog audit modes and release metadata. All-six Chromium passes
 726/726 outputs and authoring UI checks with zero console errors. Support
 correction commit: `e8ef390`; see `creature-roadmap.md` for the complete checkpoint.
+
+## Directional user-review corrections
+
+The native Walk range 0–58 contains a held leg pose in its second half. The active 0–29 portion now loops in 1208 ms; a ten-window travel test rejects the old pause. Tail mounts are centered and connected, toes/legs stay below the opaque body, and foot frames are leveled again after resampling.
+
+Regression coverage now checks centered idle tails, exact socket coincidence,
+whole-limb burial across the reported camera sweep, continuous Velociraptor
+walking, embedded Stegosaurus plate/spike roots, solid T. rex face geometry and
+Triceratops thigh volume. Full validation results are in the roadmap checkpoint.

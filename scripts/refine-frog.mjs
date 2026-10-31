@@ -23,7 +23,7 @@ for(const side of ['near','far']){
  J(side+'Eye','head',[.035,s*.132,.055],'head',{helper:true});P(side+'EyePlate',side+'Eye','ellipse',[.036,.052],'head',{material:'paperShade',semanticDetailTier:'expression'});
  for(const rear of [false,true]){
   const prefix=side+(rear?'Rear':'Front'),parent=rear?'pelvis':'chest',hip=prefix+'Hip',knee=prefix+'Knee',ankle=prefix+'Ankle',paw=prefix+'Paw';
-  J(hip,parent,rear?[-.075,s*.127,-.050]:[.024,s*.130,-.006],'limb',{mirror:other+(rear?'Rear':'Front')+'Hip'});
+  J(hip,parent,rear?[-.075,s*.127,-.050]:[.024,s*.085,-.006],'limb',{mirror:other+(rear?'Rear':'Front')+'Hip'});
   if(!rear)span(prefix+'SocketPlate',parent,hip,.065,'limb',{occlusionMode:'under-core'});
   J(knee,hip,rear?[.178,s*.135,-.044]:[-.120,s*.102,-.163],'limb',{mirror:other+(rear?'Rear':'Front')+'Knee'});
   if(rear)J(ankle,knee,[-.273,-s*.037,-.065],'limb',{mirror:other+'RearAnkle'});

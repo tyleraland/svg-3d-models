@@ -41,3 +41,12 @@ Final corrected batch: `npm run check` passes 450/450 tests, all 56 models,
 all three catalog audit modes and release metadata. All-six Chromium passes
 726/726 outputs and authoring UI checks with zero console errors. Support
 correction commit: `e8ef390`; see `creature-roadmap.md` for the complete checkpoint.
+
+## Directional user-review corrections
+
+The sampled static sideways offsets were removed from the body/tail centerline. Tail segments meet their actual sockets. Limbs, feet and generated seams remain below the opaque torso/head, preventing overhead leg-through-body artifacts.
+
+Regression coverage now checks centered idle tails, exact socket coincidence,
+whole-limb burial across the reported camera sweep, continuous Velociraptor
+walking, embedded Stegosaurus plate/spike roots, solid T. rex face geometry and
+Triceratops thigh volume. Full validation results are in the roadmap checkpoint.

@@ -658,7 +658,8 @@ are in [the Centaur study](reference-studies/centaur.md).
 
 The Quaternius expansion begins with a separate `frog` model: low crouched body,
 three-part folded hind legs, simple webbed feet, breathing idle, authored slow
-crawl, paired hopping travel, rear-braced forelimb attack and a roll-over KO.
+crawl with larger coordinated steps, paired hopping travel, a braced tongue lash
+and a roll-over KO.
 Its native Blender study and the remaining Wasp/dinosaur queue are recorded in
 [the Frog study](reference-studies/frog.md) and
 [the creature roadmap](reference-studies/creature-roadmap.md).
@@ -691,3 +692,7 @@ The lean `velociraptor` adds grasping hands and raised sickle claws; see
 [Quaternius dinosaur silhouette review](reference-studies/quaternius-dinosaur-review.html)
 compares all six in oblique, side and top views. Regenerate it with
 `node scripts/build-quaternius-review.mjs`.
+
+The [creature feedback review](reference-studies/creature-feedback-review.html)
+compares the corrected Frog and five dinosaurs in side, top and oblique views.
+Regenerate with `node scripts/build-quaternius-review.mjs --feedback`.

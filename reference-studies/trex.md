@@ -43,3 +43,16 @@ Final corrected batch: `npm run check` passes 450/450 tests, all 56 models,
 all three catalog audit modes and release metadata. All-six Chromium passes
 726/726 outputs and authoring UI checks with zero console errors. Support
 correction commit: `e8ef390`; see `creature-roadmap.md` for the complete checkpoint.
+
+## Directional user-review corrections
+
+The face was rebuilt as a closed beveled wedge skull with a flat muzzle, cheek/brow volume, eyes/nostrils and a solid beveled articulated lower jaw. Simplified tooth ribbons follow the jaw. The previous capsule is retained only as an internal overlap/fallback. Centered tail mounts and below-body limbs prevent overhead feet/thighs from painting over hips.
+
+Regression coverage now checks centered idle tails, exact socket coincidence,
+whole-limb burial across the reported camera sweep, continuous Velociraptor
+walking, embedded Stegosaurus plate/spike roots, solid T. rex face geometry and
+Triceratops thigh volume. Full validation results are in the roadmap checkpoint.
+
+The final face uses a seven-point beveled profile (nine skull faces) and a
+five-point lower-jaw profile (seven jaw faces), avoiding the initial box-like
+three-quarter silhouette while retaining a blunt muzzle and real thickness.
