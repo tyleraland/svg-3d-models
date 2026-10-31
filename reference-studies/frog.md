@@ -87,3 +87,18 @@ package/browser outputs; patch, onion, turntable and overlay UI checks passed,
 with zero console errors. All 48 existing rig/package fixture sets stayed
 byte-identical. Actual workbench review covered top, front, profile and oblique
 idle, ground crawl, airborne extension, forelimb attack and the terminal KO.
+
+## User review corrections
+
+Attack now uses an authored ten-link folding tongue, with a rapid extension at
+phase .43 and retraction by .64. It replaces the native forelimb lunge at the
+user's request; all four feet brace. Fixed lengths are preserved and the folded
+tongue rests inside the head in bind/idle as well as at attack endpoints.
+The crawl stride increases from .05 to .12 m and its cycle shortens from 1800
+to 1250 ms. Foot recovery is .032 m; contact endpoints are sampled explicitly.
+Front hip roots are embedded at lateral .13 m and receive under-body sockets.
+Lower legs, insteps and feet remain below the opaque body/thigh stack, including
+the reported elevation 60/heading 270 and overhead heading 270 views.
+Eleven focused tests pass, including tongue reach/retraction, planted contacts
+and explicit leg/socket layering. Native evidence remains the same; the tongue
+and faster crawl are authored adaptations.
