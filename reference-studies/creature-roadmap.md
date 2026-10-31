@@ -6,15 +6,16 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: All eight Quaternius creatures complete and committed.
+- Status: All eight Quaternius creatures complete; user-review corrections committed.
 - Active creature / stage: none.
-- Last completed milestone: Velociraptor (`9da7d4e`) and shared support correction
-  (`e8ef390`); full suite 450/450 and all-six browser comparisons 726/726 pass.
+- Last completed milestone: Frog/dinosaur review corrections (`3630ebb`), with
+  458 full-suite tests and 847 final browser comparisons passing.
 - Next milestone: review/next planning checkpoint; deferred creatures remain queued.
 - References: `quaternius-inventory.json` and each creature study in this directory;
   `quaternius-dinosaur-review.html` compares six dinosaur silhouettes.
-- Last correction: all-vertex KO clearance and between-key walking/attack support;
-  grounded support correction committed as `e8ef390`.
+- Last correction: Frog tongue/crawl/socket fixes; centered dinosaur tails,
+  buried limbs, active Velociraptor walk loop, revised T. rex face, embedded
+  Stegosaurus plates and Triceratops thigh volume (`3630ebb`).
 - Open technical blockers: none. User explicitly chose to continue through all
   eight Quaternius creatures, committing each before moving on; no review stop required.
 - Next action: review feedback or select the next deferred creature. This
@@ -1089,3 +1090,50 @@ Final verification after this correction:
   regenerated from source and remains the animation/authoring interface.
 
 Work is committed locally on main. No push was requested for this batch.
+
+
+### Frog/dinosaur user-review checkpoint — 2026-10-30
+
+Frog's first correction was committed as `fdc0a74`; final shared and shape
+corrections are in `3630ebb`. All reported review items are addressed:
+
+- Frog: fixed-length folding tongue lash with four braced feet, .12 m crawl
+  stride at 1250 ms, actual chest-oval containment for front hip roots at every
+  overhead heading, and lower legs/feet below the body/thigh stack.
+- Dinosaur centerlines: canonical bind/idle tails are centered; every tail
+  segment meets its actual supporting socket. The same correction applies to
+  Apatosaurus, which shared the authoring pattern.
+- Dinosaur limb depth: legs, feet, toes and their gaskets remain below the
+  opaque torso/head, including front/45-degree walking and overhead views.
+- Velociraptor: native Walk's held latter half removed. Its active first half
+  loops in 1208 ms; supported foot frames are leveled after resampling.
+- T. rex: beveled volumetric skull and lower jaw replace the visible capsule
+  face, with physical eyes/nostrils and simplified teeth. Existing overlap IDs
+  remain as internal fallback geometry.
+- Triceratops: head stays in front of forelegs; rounded thigh masses retain
+  apparent volume during foreshortening.
+- Stegosaurus: broad pentagonal plates distributed across body/neck/tail;
+  lower vertices embed in their actual supporting spans. Tail-spike roots fit
+  inside the tail cylinder, preventing the reported floating bases.
+
+Validation evidence:
+
+- Full `npm run check`: 458/458 tests; all 56 model/source validations, catalog
+  audit modes and release metadata pass. Advisories remain 40/38/40.
+- Final T. rex bevel follow-up: all 29 dinosaur tests pass, fresh resolver/
+  pipeline parity passes, and composed audit passes 480 views with 0 issues or
+  warnings. This was performed after the final small face-shape adjustment.
+- Final generated workbench: 847/847 package/browser outputs match for all
+  seven affected models; patch/review UI and independent overlays pass, zero
+  console errors. A browser run that had loaded the previous face geometry was
+  discarded and restarted against the final build.
+- The 49 unrelated model fixture pairs remain unchanged from feedback baseline
+  `f4bb0cc`. Consumer/compiler contracts are unchanged.
+- Actual reported Frog and Triceratops camera views, Stegosaurus side profile,
+  and side/top/oblique six-creature comparisons were visually checked.
+
+`creature-feedback-review.html` provides the comparison, including Frog at
+mid-tongue-strike. Regenerate with
+`node scripts/build-quaternius-review.mjs --feedback`. The workbench remains the
+animation interface. Changes are committed locally on main; ready for feedback
+or the next deferred-creature planning checkpoint.
