@@ -21,4 +21,4 @@ a larger gallop arc; the final bounded stride respects actual limb lengths.
 Checks: source schema/pair, compiled structure, contacts, rigid spans/loop seams,
 1,120 directional samples and 480-view audit pass with zero audit issues/warnings.
 Browser review confirms visible horn thickness from top and both oblique directions.
-Full new-batch browser parity remains the batch-end gate.
+Full nine-model browser parity passed (1,109 comparisons).

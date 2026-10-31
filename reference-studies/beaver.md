@@ -19,4 +19,4 @@ preload and full recovery. IK is baked at author time; all clips retain lengths.
 
 Validation: source pair and 22 compiled checks pass; 480-view audit has zero
 issues/warnings; dense support/length tests and 1,120 directional samples pass.
-Browser parity for the full new batch will be checked after all nine are built.
+Browser parity passed in the complete nine-model batch (1,109 comparisons).

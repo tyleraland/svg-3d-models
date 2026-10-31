@@ -24,3 +24,6 @@ Source/compiled checks, dense contact/length/seam tests, 1,400 directional
 samples including flight, and 600-view audit pass with zero issues/warnings.
 Folded primary/covert order is tested throughout idle/walk at three elevations
 and three cardinal headings. Browser sheet reviewed all five actions.
+
+Final batch gate: 485 tests, all 65 catalog validations, three catalog audits
+and all 1,109 package/browser comparisons passed; zero browser console errors.

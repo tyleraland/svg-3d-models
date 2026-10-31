@@ -21,4 +21,4 @@ This is an informed adaptation, not a literal full-body action retarget.
 
 Source/compiled checks, dense contacts/lengths, 1,120 directional samples and
 480-view audit pass with zero audit issues/warnings. Browser review covers all
-four actions in profile/top/opposing oblique cameras. Batch-end parity pending.
+four actions in profile/top/opposing oblique cameras. Full nine-model browser parity passed (1,109 comparisons).

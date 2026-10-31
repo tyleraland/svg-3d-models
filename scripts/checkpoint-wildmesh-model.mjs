@@ -9,4 +9,4 @@ const source=loadModelSource(id),report=validateSourcePair(source,loadFamily(sou
 const r=loadModel(id),pkg=compilePackage(r);
 if(pkg.validation.status!=='passed')throw Error(JSON.stringify(pkg.validation));
 for(const [dir,value]of [['rigs',r],['packages',pkg]])fs.writeFileSync(`fixtures/${dir}/${id}.json`,JSON.stringify(value,null,2)+'\n');
-const path='apps/workbench/template.html';let t=fs.readFileSync(path,'utf8');if(!t.includes(`value="${id}"`))t=t.replace('<option value="badger">',`<option value="${id}">${label}</option><option value="badger">`);fs.writeFileSync(path,t);
+const path='apps/workbench/template.html';let t=fs.readFileSync(path,'utf8');const before=id==='crocodile'?'lizard':id==='duck'?'goose':'badger';if(!t.includes(`value="${id}"`))t=t.replace(`<option value="${before}">`,`<option value="${id}">${label}</option><option value="${before}">`);fs.writeFileSync(path,t);

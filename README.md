@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 56 animals and monsters. They are factored into reusable family
+catalog contains 65 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -696,3 +696,21 @@ compares all six in oblique, side and top views. Regenerate it with
 The [creature feedback review](reference-studies/creature-feedback-review.html)
 compares the corrected Frog and five dinosaurs in side, top and oblique views.
 Regenerate with `node scripts/build-quaternius-review.mjs --feedback`.
+
+
+### WildMesh archetype expansion
+
+Nine separate models extend the catalog: `mink`, `crocodile`, `beaver`,
+`bighornRam`, `lion`, `mammoth`, `cat`, `hyena`, and `duck`. Each has a native
+Blender reference study, independent declarative sources, grounded idle,
+walk/run and attack. Duck also has powered flight. Reference gaps are explicit:
+Mink, Cat, Hyena and Duck attacks are authored adaptations, not claims of native
+combat clips.
+
+The [nine-creature gallery](reference-studies/wildmesh-expansion-review.html)
+links each model's native evidence and action/camera sheet. Rebuild a model's
+sheet with `node scripts/review-wildmesh-model.mjs <id>`; rebuild the gallery
+with `node scripts/build-wildmesh-expansion-review.mjs`. The reference-only
+Blender scanner is `scripts/study-wildmesh-expansion.py -- <id>`.
+Grounded gait/support baking is shared in `scripts/lib/grounded-species.mjs`;
+it emits ordinary local clips and introduces no runtime mesh/IK dependency.

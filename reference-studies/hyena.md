@@ -22,3 +22,6 @@ Source/compiled validation, dense support/length/seam tests, 1,120 directional
 samples and the 480-view audit pass with zero issues/warnings. Browser review
 covers all four actions. Dedicated checks guard shoulder/rump slope, tail
 length, thick neck, abrupt jaw closure and exact attack recovery.
+
+Final batch gate: 485 tests, all 65 catalog validations, three catalog audits
+and all 1,109 package/browser comparisons passed; zero browser console errors.

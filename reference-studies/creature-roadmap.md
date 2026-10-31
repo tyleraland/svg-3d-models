@@ -6,20 +6,58 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: WildMesh expansion batch authorized 2026-10-31; one creature per commit.
-- Active creature / stage: Batch verification — nine models built and individually reviewed.
-- Ordered queue: Mink, Crocodile, Beaver, Bighorn Ram, Maned Lion, Mammoth,
-  Domestic Cat, Hyena, Duck.
-- Completed this batch: Mink (`f82fcbf`), Crocodile (`02ae00e`), Beaver (`f840c2a`), Bighorn Ram (`8401634`), Maned Lion (`372f9fa`), Mammoth (`d05c96f`), Domestic Cat (`130f4cd`), Hyena (`e7de7d9`), Duck (compact waterfowl, waddling gaits, bill snap, flight, clean audits).
-- Batch-end gate: full tests/catalog audits and browser parity for all nine new models.
-- Previous checkpoint: all eight Quaternius creatures and review corrections complete.
-- Each new creature: inspect native reference, author proportions, idle/walk/run/attack,
-  directional review and regression checks, then commit before proceeding.
-- Open technical blockers: none.
+- Status: WildMesh nine-creature expansion complete (2026-10-31).
+- Active creature / stage: none; awaiting review or the next requested milestone.
+- Completed in requested order, one creature per commit: Mink, Crocodile,
+  Beaver, Bighorn Ram, Maned Lion, Mammoth, Domestic Cat, Hyena, Duck.
+- Last creature commit: `be60c09` (Duck, including powered flight).
+- Full gate: `npm run check` PASSED — 485 tests; 65/65 sources and catalog
+  validations; base/motion/paint audits have zero issues and unchanged
+  40/38/40 advisory warnings; release metadata passed.
+- Browser gate: 1,109/1,109 package/exported-SVG comparisons PASSED across all
+  nine new models (three independent shards: 363 + 363 + 383). Each shard also
+  passed patch/onion/turntable and independent labels/skeleton UI checks with
+  zero console errors. The final selector categories were checked in-browser.
+- Existing 56 models' golden fixture pairs are unchanged. The full suite
+  includes independent contact, rigid-length, seam and directional regressions.
+- References: each `<id>.md` / `<id>-reference.json`; gallery
+  `wildmesh-expansion-review.html` links all nine action/camera sheets.
+- Verification logs: `/tmp/wildmesh-expansion-check.log` and
+  `/tmp/wildmesh-expansion-browser-{a,b,c}.log`.
+- Open technical blockers: none. Next action: review feedback or explicitly
+  select a deferred creature; no further creature work started automatically.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
 creature complete until its review, checks, documentation and commit are done.
+
+## WildMesh expansion batch — 2026-10-31
+
+User-requested order; each creature was studied in native Blender, authored,
+validated and visually reviewed, then committed before the next implementation.
+
+| Order | Model ID | Reference | Core actions / distinguishing work | Commit |
+|---|---|---|---|---|
+| 1 | `mink` | AmericanMink | Slim long mustelid, tapered tail; idle, walk, elastic run, authored bite | `f82fcbf` |
+| 2 | `crocodile` | Crocodile_Stylized | Flattened broad muzzle, armored low trunk, long tail; crawl, high walk, native-informed jaw snap | `02ae00e` |
+| 3 | `beaver` | Beaver | Deep rounded rump, flat local-frame paddle and large hind webs; walk, low gallop, bite | `f840c2a` |
+| 4 | `bighornRam` | Bighorn_Stylized | Strong neck/chest, true 3D paired curled horns; walk, gallop, braced forehead butt | `8401634` |
+| 5 | `lion` | Lion_Stylized | Full three-plane mane, muscular forequarters and tail tuft; stalking walk, gallop, claw swipe | `372f9fa` |
+| 6 | `mammoth` | Mammoth | Raised shoulders, sloping shaggy outline, small ears, curled tusks; supported charge and tusk jab | `d05c96f` |
+| 7 | `cat` | Cat | Slim domestic feline, pointed two-plane ears, short muzzle; measured walk, quick run, authored swat | `130f4cd` |
+| 8 | `hyena` | Hyena | High shoulders/lower rump, thick neck, short brush tail; lowered-head run and authored bite | `e7de7d9` |
+| 9 | `duck` | Duck | Shorter neck, broad local-frame bill, webbed soles; waddle, quick run, bill snap and extra flight | `be60c09` |
+
+Every model includes an idle with fixed ground contacts, ordinary baked rigid
+clips and its own declarative family/model sources and regression fixture pair.
+The shared grounded baker/IK is author-time only. Native studies and action
+inventories are `<id>-reference.json` with accompanying `<id>.md` notes.
+`wildmesh-expansion-review.html` links all nine action/camera review sheets.
+The existing 56 models' fixture pairs were left unchanged.
+
+Per-creature source/compiled tests and directional audits pass. The batch-end
+full catalog tests/audits and all 1,109 browser comparisons also pass; see the
+resume checkpoint above. All nine creature commits are recorded in the table.
 
 ## Scope and sequence
 

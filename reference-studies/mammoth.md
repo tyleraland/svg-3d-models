@@ -23,4 +23,4 @@ Checks: source/compiled validation, dense fixed support/rigidity tests, 1,120
 directional samples and 480-view audit pass with zero issues/warnings. Dedicated
 regressions check raised shoulders, reduced ears, upward tusk curl, trunk
 clearance, both buried hip seams and the trunk connector across seven headings.
-Browser sheet reviewed all four actions; full batch parity follows at the end.
+Browser sheet reviewed all four actions; full nine-model browser parity passed (1,109 comparisons).
