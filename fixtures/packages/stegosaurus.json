@@ -45,7 +45,7 @@
   "heightMeters": 0.95,
   "scale": {
     "metersPerModelUnit": 1,
-    "tokenUnitsPerMeter": 21.13,
+    "tokenUnitsPerMeter": 21.45,
     "tokenBox": [
       100,
       100
@@ -21010,7 +21010,7 @@
               "translationDeltaMeters": [
                 0.002889934,
                 0,
-                0.057460511
+                0.014387838
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -21315,7 +21315,7 @@
               "translationDeltaMeters": [
                 -0.000301708,
                 0,
-                0.057218678
+                0.014281341
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -21620,7 +21620,7 @@
               "translationDeltaMeters": [
                 -0.00993263,
                 0,
-                0.056533654
+                0.013982259
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -21925,7 +21925,7 @@
               "translationDeltaMeters": [
                 -0.025779098,
                 0,
-                0.05548303
+                0.013528444
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -22230,7 +22230,7 @@
               "translationDeltaMeters": [
                 -0.047063124,
                 0,
-                0.054171876
+                0.012968869
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -22535,7 +22535,7 @@
               "translationDeltaMeters": [
                 -0.072331652,
                 0,
-                0.052737716
+                0.012365772
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -22840,7 +22840,7 @@
               "translationDeltaMeters": [
                 -0.099505198,
                 0,
-                0.05132178
+                0.011780413
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -23145,7 +23145,7 @@
               "translationDeltaMeters": [
                 -0.126161205,
                 0,
-                0.050017484
+                0.011248514
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -23450,7 +23450,7 @@
               "translationDeltaMeters": [
                 -0.149973138,
                 0,
-                0.048835402
+                0.01076489
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -23755,7 +23755,7 @@
               "translationDeltaMeters": [
                 -0.169104509,
                 0,
-                0.047707805
+                0.010287394
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -24060,7 +24060,7 @@
               "translationDeltaMeters": [
                 -0.182392838,
                 0,
-                0.046530695
+                0.009758792
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -24365,7 +24365,7 @@
               "translationDeltaMeters": [
                 -0.189313967,
                 0,
-                0.045212152
+                0.00913072
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -24670,7 +24670,7 @@
               "translationDeltaMeters": [
                 -0.190374255,
                 0.000757078,
-                0.042650273
+                0.007425047
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -24975,7 +24975,7 @@
               "translationDeltaMeters": [
                 -0.190323808,
                 0.008689321,
-                0.029910328
+                -0.003445543
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -25280,7 +25280,7 @@
               "translationDeltaMeters": [
                 -0.190217936,
                 0.025331691,
-                0.004931837
+                -0.025377323
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -25585,7 +25585,7 @@
               "translationDeltaMeters": [
                 -0.190057196,
                 0.050600055,
-                -0.031677725
+                -0.058018919
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -25890,7 +25890,7 @@
               "translationDeltaMeters": [
                 -0.189843821,
                 0.084139588,
-                -0.078528323
+                -0.10047389
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -26195,7 +26195,7 @@
               "translationDeltaMeters": [
                 -0.189582231,
                 0.125258914,
-                -0.132409264
+                -0.135069908
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -27415,7 +27415,7 @@
               "translationDeltaMeters": [
                 -0.188226299,
                 0.338401566,
-                -0.308523131
+                -0.308719742
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -27720,7 +27720,7 @@
               "translationDeltaMeters": [
                 -0.187870209,
                 0.39437783,
-                -0.34111462
+                -0.34363909
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -28025,7 +28025,7 @@
               "translationDeltaMeters": [
                 -0.187533838,
                 0.447250049,
-                -0.373799835
+                -0.373800446
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -28330,7 +28330,7 @@
               "translationDeltaMeters": [
                 -0.187228968,
                 0.495177991,
-                -0.432613458
+                -0.420686471
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -28635,7 +28635,7 @@
               "translationDeltaMeters": [
                 -0.186964995,
                 0.536670005,
-                -0.503851396
+                -0.445520575
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -28940,7 +28940,7 @@
               "translationDeltaMeters": [
                 -0.18674896,
                 0.570629003,
-                -0.562320518
+                -0.460471869
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -29245,7 +29245,7 @@
               "translationDeltaMeters": [
                 -0.186585366,
                 0.596344049,
-                -0.578074358
+                -0.481284709
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -29550,7 +29550,7 @@
               "translationDeltaMeters": [
                 -0.186476597,
                 0.613444612,
-                -0.598883404
+                -0.508184748
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -29855,7 +29855,7 @@
               "translationDeltaMeters": [
                 -0.186423211,
                 0.621833789,
-                -0.622115919
+                -0.538083499
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -30160,7 +30160,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.64905831
+                -0.572319131
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -30465,7 +30465,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172352
+                -0.608991161
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -30770,7 +30770,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -31075,7 +31075,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -31380,7 +31380,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -31685,7 +31685,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -31990,7 +31990,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -32295,7 +32295,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -32600,7 +32600,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -32905,7 +32905,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,
@@ -33210,7 +33210,7 @@
               "translationDeltaMeters": [
                 -0.186417117,
                 0.622792518,
-                -0.668172308
+                -0.623337266
               ],
               "rotationDeltaDegrees": [
                 0,

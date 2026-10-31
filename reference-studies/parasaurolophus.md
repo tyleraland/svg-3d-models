@@ -24,3 +24,7 @@ All 22 structural checks pass. Final composed audit: 480 views, zero issues or
 warnings. Chromium: 121/121 outputs match; authoring UI passes, zero console
 errors. Profile silhouette reviewed in the workbench against the Blender renders.
 Full catalog gates will run after this six-dinosaur batch.
+
+Batch correction during Triceratops review: KO floor correction now includes
+all polygon vertices, not only centers/spans; related fixtures were recaptured.
+The shared 321-phase polygon clearance test passes, including a mutation check.

@@ -29,3 +29,7 @@ faceted tail spikes. Eight dinosaur tests pass at this checkpoint. The composed
 
 Chromium: 121/121 outputs match; authoring UI passes, zero console errors.
 Oblique paper silhouette inspected against the native side/top Blender renders.
+
+Batch correction during Triceratops review: KO floor correction now includes
+all polygon vertices, not only centers/spans; related fixtures were recaptured.
+The shared 321-phase polygon clearance test passes, including a mutation check.

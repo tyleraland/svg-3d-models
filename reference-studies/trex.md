@@ -26,3 +26,7 @@ or warnings. Closed and open bite profiles were inspected in the workbench
 against the native Blender phase renders. Full catalog gates run at batch end.
 
 Chromium: 121/121 outputs match; authoring UI passes, zero console errors.
+
+Batch correction during Triceratops review: KO floor correction now includes
+all polygon vertices, not only centers/spans; related fixtures were recaptured.
+The shared 321-phase polygon clearance test passes, including a mutation check.
