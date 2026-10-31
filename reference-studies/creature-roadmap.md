@@ -6,20 +6,15 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: All eight Quaternius creatures complete; user-review corrections committed.
-- Active creature / stage: none.
-- Last completed milestone: Frog/dinosaur review corrections (`3630ebb`), with
-  458 full-suite tests and 847 final browser comparisons passing.
-- Next milestone: review/next planning checkpoint; deferred creatures remain queued.
-- References: `quaternius-inventory.json` and each creature study in this directory;
-  `quaternius-dinosaur-review.html` compares six dinosaur silhouettes.
-- Last correction: Frog tongue/crawl/socket fixes; centered dinosaur tails,
-  buried limbs, active Velociraptor walk loop, revised T. rex face, embedded
-  Stegosaurus plates and Triceratops thigh volume (`3630ebb`).
-- Open technical blockers: none. User explicitly chose to continue through all
-  eight Quaternius creatures, committing each before moving on; no review stop required.
-- Next action: review feedback or select the next deferred creature. This
-  eight-creature Quaternius batch is complete.
+- Status: WildMesh expansion batch authorized 2026-10-31; one creature per commit.
+- Active creature / stage: Crocodile — reference inspected; next implementation.
+- Ordered queue: Mink, Crocodile, Beaver, Bighorn Ram, Maned Lion, Mammoth,
+  Domestic Cat, Hyena, Duck.
+- Completed this batch: Mink (reference, proportions, four clips, audit and browser parity).
+- Previous checkpoint: all eight Quaternius creatures and review corrections complete.
+- Each new creature: inspect native reference, author proportions, idle/walk/run/attack,
+  directional review and regression checks, then commit before proceeding.
+- Open technical blockers: none.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
