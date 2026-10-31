@@ -6,9 +6,9 @@ import {angles,round} from './spatial-leg-ik.mjs';
 export const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(v,s)=>v.map(n=>n*s),tr=M=>M[0].map((_,i)=>M.map(r=>r[i])),mm=(A,B)=>A.map(r=>B[0].map((_,i)=>r.reduce((n,v,k)=>n+v*B[k][i],0))),mv=(M,v)=>M.map(r=>r.reduce((n,a,i)=>n+a*v[i],0));
 const C=[[0,-1,0],[1,0,0],[0,0,1]],I=core.euler([0,0,0]);
 const unit=M=>M.map(r=>r.map((v,i)=>v/Math.hypot(...M.map(r=>r[i]))));
-export function nativePaper(id,{scale=.05,names={},exclude=[],height=1,profile={}}={}){
+export function nativePaper(id,{scale=.05,names={},exclude=[],include=[],height=1,profile={}}={}){
  const source=JSON.parse(fs.readFileSync(`reference-studies/${id}-reference.json`)),idle=Object.values(source.actions).find(a=>a===source.actions[Object.keys(source.actions).find(n=>n.endsWith('_Idle'))]),bind=idle.samples[0].bones;
- const bones=source.bones.filter(b=>!exclude.includes(b.name)&&b.name!=='root'&&!/Foot|IK|Target|Pole/i.test(b.name));
+ const bones=source.bones.filter(b=>!exclude.includes(b.name)&&b.name!=='root'&&(!/Foot|IK|Target|Pole/i.test(b.name)||include.includes(b.name)));
  const ids=Object.fromEntries(bones.map(b=>[b.name,names[b.name]||b.name.replace(/\.L$/,'Left').replace(/\.R$/,'Right').replace(/^./,s=>s.toLowerCase())]));
  const point=v=>mul(mv(C,v),scale),r=loadFamily('deer');Object.assign(r,{id:id+'Base',family:'dinosaur',archetypes:[id,'dinosaur'],heightMeters:height,tokenScale:28,tokenGroundY:65,profile,joints:[],plates:[],anchors:[],clips:{}});
  const J=(id,parent,v,role='limb',extra={})=>{r.joints.push({id,parent,bind:v.map(round),role,...extra});return id;};
@@ -25,9 +25,10 @@ export function nativePaper(id,{scale=.05,names={},exclude=[],height=1,profile={
 }
 
 // Paper support adaptation shared by the dinosaur authoring scripts, never by consumers.
-export function finishDinosaur(n,{prefix,feet,sole=.025,idleFixed=true,attack='native strike'}={}){
+export function finishDinosaur(n,{prefix,feet,sole=.025,idleFixed=true,attack='native strike',configureFrames}={}){
  const {r,clip}=n;
  for(const[suffix,mode]of [['Idle','idle'],['Walk','walk'],['Run','run'],['Attack','attack'],['Death','ko']])clip(prefix+'_'+suffix,mode);
+ configureFrames?.(r);
  const initial=core.solveWorld(r,0,'bind'),floor=Math.min(...feet.map(f=>initial[f][2]))-sole;r.joints.find(j=>j.id==='body').bind[2]-=floor;
  for(const id of feet){const j=r.joints.find(j=>j.id===id);j.bind[2]=round(j.bind[2]-(initial[id][2]-floor-sole));}
  if(idleFixed){for(const f of r.clips.idle.frames){f.poses.root=[0,0,0];for(const id of Object.keys(f.rotations))if(!/neck|head|tail/i.test(id))f.rotations[id]=[0,0,0];}r.clips.idle.contacts=feet;r.clips.idle.contactIntervals=undefined;}

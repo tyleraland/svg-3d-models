@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 55 animals and monsters. They are factored into reusable family
+catalog contains 56 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -685,3 +685,9 @@ bipedal motion. See [the T. rex study](reference-studies/trex.md).
 
 The `triceratops` has a solid frill and three faceted horns for its low goring
 attack. See [its study](reference-studies/triceratops.md).
+
+The lean `velociraptor` adds grasping hands and raised sickle claws; see
+[its study](reference-studies/velociraptor.md). A generated
+[Quaternius dinosaur silhouette review](reference-studies/quaternius-dinosaur-review.html)
+compares all six in oblique, side and top views. Regenerate it with
+`node scripts/build-quaternius-review.mjs`.

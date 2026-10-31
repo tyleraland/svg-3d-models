@@ -1,5 +1,5 @@
 # Blender --background --disable-autoexec --python scripts/study-quaternius.py
-# Pass -- frog (default) or -- wasp to choose a detailed study.
+# Pass -- frog (default), -- wasp, or a known dinosaur ID for a detailed study.
 # Read-only source studies; native files are never saved. Renders go to /tmp.
 import bpy,json,os,sys
 from mathutils import Vector

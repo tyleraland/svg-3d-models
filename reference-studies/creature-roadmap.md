@@ -6,15 +6,18 @@ order below. Planning does not start implementation automatically.
 
 ## Resume checkpoint
 
-- Status: Q1 Frog and Q2 Wasp complete; continuing the full Quaternius batch.
-- Active creature / stage: Q8 Velociraptor — native reference study.
-- Last completed milestone: Apatosaurus; five focused tests and 121 Chromium outputs pass.
-- Next milestone: Q4 Parasaurolophus, then Q5–Q8 in order.
-- References: `quaternius-inventory.json`, `frog.md` and `wasp.md` in this directory.
+- Status: All eight Quaternius creatures implemented; final catalog audits running.
+- Active creature / stage: final catalog audits and release checkpoint.
+- Last completed milestone: Velociraptor; full suite 448/448 and all-six browser
+  comparisons 726/726 pass.
+- Next milestone: complete catalog audit modes and release metadata.
+- References: `quaternius-inventory.json` and each creature study in this directory;
+  `quaternius-dinosaur-review.html` compares six dinosaur silhouettes.
 - Last correction: Kangaroo elbow/forward forearm guard / `b8096eb`.
 - Open technical blockers: none. User explicitly chose to continue through all
   eight Quaternius creatures, committing each before moving on; no review stop required.
-- Next action: implement Velociraptor, then run full catalog/batch gates.
+- Next action: finish final audit/release gates; no further creature implementation
+  is authorized beyond this completed eight-creature Quaternius batch.
 
 To resume, read this checkpoint, the active creature's study, and `git status`;
 continue from recorded evidence instead of restarting the study. Do not mark a
@@ -985,7 +988,7 @@ WildMesh items remain on the list; this is the currently requested sequence.
 | Q5 | complete | Stegosaurus | Dinosaur Animated Pack / Stegosaurus.blend | Idle, Walk, Run, Jump, Attack, Death. |
 | Q6 | complete | T. rex | Dinosaur Animated Pack / Trex.blend | Idle, Walk, Run, Jump, Attack, Death. |
 | Q7 | complete | Triceratops | Dinosaur Animated Pack / Triceratops.blend | Idle, Walk, Run, Jump, Attack, Death. |
-| Q8 | queued | Velociraptor | Dinosaur Animated Pack / Velociraptor.blend | Idle, Walk, Run, Jump, Attack, Death. |
+| Q8 | complete | Velociraptor | Dinosaur Animated Pack / Velociraptor.blend | Idle, Walk, Run, Jump, Attack, Death. |
 
 Exact pack directory names, 24 fps action ranges and object inventories are in
 `quaternius-inventory.json`. Each dinosaur will receive its own shape/action
@@ -1038,3 +1041,7 @@ remain reference assets and are not copied into the workbench.
 - Q6 T. rex committed as `0ce878d`; Q7 Triceratops complete: 17 cumulative
   dinosaur tests, 480-view composed audit and 121 browser outputs pass. Shared
   all-vertex KO regression/correction also updates Q4–Q6, with no shape changes.
+
+- Q7 Triceratops committed as `28a9c80`; Q8 Velociraptor complete: 21 cumulative
+  dinosaur tests and 480-view composed audit pass. Full suite 448/448 and all-six
+  Chromium outputs 726/726 pass, with authoring UI checks and zero console errors.
