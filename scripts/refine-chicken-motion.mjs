@@ -1,4 +1,4 @@
-// Author-time WildMesh chicken study: emit ordinary rigid joint-local clips.
+// Author-time animal chicken study: emit ordinary rigid joint-local clips.
 import fs from 'node:fs';
 import {solveLeg,sagittalBodyPose} from '../rigs/quadruped-locomotion.js';
 const fp='rigs/families/walkingBird.json',mp='rigs/models/walkingBird.json';
@@ -45,7 +45,7 @@ function clip(kind,duration){
  const frames=Array.from({length:481},(_,i)=>frame(i/480,kind));const loop=kind!=='attack';if(loop)frames[480]={...structuredClone(frames[0]),t:1};
  const duty=kind==='run'?.46:.64;
  const contactIntervals=kind==='walk'||kind==='run'?[{ids:['nearToe'],from:0,to:duty},...(duty>.5?[{ids:['farToe'],from:0,to:duty-.5}]:[]),{ids:['farToe'],from:.5,to:Math.min(1,.5+duty)}]:[{ids:['nearToe','farToe'],from:0,to:1}];
- return{base:'bind',duration,easing:'linear',loop,frames,contactIntervals,events:kind==='attack'?[{t:.38,name:'peck-start'},{t:.60,name:'impact'},{t:.66,name:'release'}]:[],boneLengthPolicy:'preserve',motionSemantics:kind==='attack'?'planted-foot angular neck peck, referenced from WildMesh Chicken Idle2':'grounded alternating chicken gait with folded wings, head bob, articulated hip/knee/ankle'};
+ return{base:'bind',duration,easing:'linear',loop,frames,contactIntervals,events:kind==='attack'?[{t:.38,name:'peck-start'},{t:.60,name:'impact'},{t:.66,name:'release'}]:[],boneLengthPolicy:'preserve',motionSemantics:kind==='attack'?'planted-foot angular neck peck, referenced from animal Chicken Idle2':'grounded alternating chicken gait with folded wings, head bob, articulated hip/knee/ankle'};
 }
 m.clips={...m.clips,idleA:clip('idle',2400),walkA:clip('walk',1250),run:clip('run',500),attack:clip('attack',1100)};
 for(const id of ['idleA','walkA','attack'])r.clips[id]=structuredClone(m.clips[id]);

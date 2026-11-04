@@ -20,6 +20,7 @@ test('crab forward and sideways gaits coordinate alternating tetrapods and disti
 test('crab attack arcs its major claw, snaps its pincer suddenly, braces eight feet and returns to neutral',()=>{
  const start=solve(r,{clip:'attack',time:0}),windup=solve(r,{clip:'attack',time:.28}),impact=solve(r,{clip:'attack',time:.43});assert.ok(windup.rightClaw[2]>start.rightClaw[2]+.13);assert.ok(impact.rightClaw[0]>windup.rightClaw[0]+.1);
  const f=t=>r.clips.attack.frames.find(f=>f.t===t);assert.ok(Math.abs(f(.46).rotations.rightClawMovingBase[2]-f(.39).rotations.rightClawMovingBase[2])>50);
+ for(const f of r.clips.attack.frames)for(const part of ['Shoulder','Elbow','MovingBase'])assert.deepEqual(f.rotations['leftClaw'+part],[0,0,0],'small claw stays neutral');
  assert.deepEqual(core.contactIds(r,'attack',.43),feet);const end=solve(r,{clip:'attack',time:1});for(const id of Object.keys(start))for(let k=0;k<3;k++)assert.ok(Math.abs(start[id][k]-end[id][k])<1e-8);
 });
 test('crab clips preserve bones, limits, grounded stance and fixed shadows between keyframes',()=>{

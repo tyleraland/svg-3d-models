@@ -1,0 +1,59 @@
+{
+  "skin_joint_count": 24,
+  "skin_joint_names": [
+    "GlobalSRT",
+    "UpperBody",
+    "doutai_4",
+    "doutai_3",
+    "doutai_2",
+    "doutai_1",
+    "ago_ue",
+    "ago_sita",
+    "bero_1",
+    "bero_2",
+    "tosaka",
+    "ha",
+    "doutai_5",
+    "doutai_6",
+    "doutai_7",
+    "doutai_8",
+    "doutai_9",
+    "doutai_10",
+    "doutai_11",
+    "doutai_12",
+    "doutai_13",
+    "doutai_14",
+    "doutai_15",
+    "ha_sita"
+  ],
+  "source_animation_count": 0,
+  "position_accessor_bounds": [
+    {
+      "min": [
+        -3.4921875,
+        -6.132004737854004,
+        -92.9296875
+      ],
+      "max": [
+        3.4921875,
+        11.888751029968262,
+        41.57252502441406
+      ]
+    }
+  ],
+  "observations": [
+    "Visually inspected the exact source model preview: long slender fish body and dorsal/anal ribbon outline.",
+    "No legs or insect segments. The previous centipede classification is incorrect.",
+    "Fantasy crest, teeth and coloration are not copied into the generic eel archetype.",
+    "There are no source animation clips to retarget. All paper eel motion is authored.",
+    "dinosaur Fish Pack Swim and the existing paper serpent provide motion/construction comparisons, not eel-specific source animation."
+  ],
+  "paper_motion": {
+    "kind": "authored lateral head-to-tail traveling tangent wave",
+    "articulated_spine_segments": 20,
+    "spatial_wavelengths_along_body": 1.05,
+    "swim_duration_ms": 1650,
+    "fast_swim_duration_ms": 1050,
+    "foot_contacts": []
+  }
+}

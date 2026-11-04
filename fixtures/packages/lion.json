@@ -10,7 +10,7 @@
     "manedBigCat"
   ],
   "profile": {
-    "silhouette": "WildMesh maned lion: powerful forequarters, deep chest, muscular neck, broad short muzzle, rounded ears, full faceted 3D mane and thin long tufted tail",
+    "silhouette": "animal maned lion: powerful forequarters, deep chest, muscular neck, broad short muzzle, rounded ears, full faceted 3D mane and thin long tufted tail",
     "locomotion": "supported stalking four-beat walk and articulated gallop with spinal flexion",
     "attack": "Swatting-informed supported claw swipe: shoulder windup, elbow extension, sudden descending rake and recovery"
   },

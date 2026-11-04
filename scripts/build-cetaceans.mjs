@@ -1,0 +1,3 @@
+import fs from'node:fs';import{makeCetaceanFamily}from'./lib/cetacean-family.mjs';
+const reference=JSON.parse(fs.readFileSync('authoring-data/cetacean-motion.json'));
+for(const kind of ['dolphin','whale']){const family=makeCetaceanFamily(kind,reference);let text=JSON.stringify(family,null,2);for(const clip of Object.values(family.clips))for(const frame of clip.frames){const block=JSON.stringify(frame,null,2).split('\n').map(line=>'        '+line).join('\n');text=text.replace(block,'        '+JSON.stringify(frame));}fs.writeFileSync(`rigs/families/${kind}.json`,text+'\n');fs.writeFileSync(`rigs/models/${kind}.json`,JSON.stringify({$schema:'paper-rig/model-1',family:kind,base:true,semanticDetailPolicy:{defaultTier:'silhouette',byRole:{shadow:'texture'}}},null,2)+'\n');}

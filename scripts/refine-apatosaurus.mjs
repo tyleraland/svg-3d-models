@@ -1,7 +1,7 @@
-import {nativePaper,bakeGroundSupport,centerDinosaurAndBuryLimbs,sub,mul} from './lib/quaternius-paper.mjs';
+import {nativePaper,bakeGroundSupport,centerDinosaurAndBuryLimbs,sub,mul} from './lib/dinosaur-paper.mjs';
 import {core} from '@paper-rig/compiler';
 import {round} from './lib/spatial-leg-ik.mjs';
-const n=nativePaper('apatosaurus',{scale:.05,height:.58,names:{Body:'body',Hips:'pelvis',Torso:'chest',Shoulders:'shoulders',Neck:'neck',Head:'head'},profile:{silhouette:'low long neck and small blunt head; deep barrel, column legs, long five-segment tapering tail',locomotion:'native-informed four-beat walk and faster heavy run',attack:'body turn and sweeping tail strike from Quaternius Apatosaurus_Attack'}}),{r,ids,bind,point,J,P,span,clip,save}=n;
+const n=nativePaper('apatosaurus',{scale:.05,height:.58,names:{Body:'body',Hips:'pelvis',Torso:'chest',Shoulders:'shoulders',Neck:'neck',Head:'head'},profile:{silhouette:'low long neck and small blunt head; deep barrel, column legs, long five-segment tapering tail',locomotion:'native-informed four-beat walk and faster heavy run',attack:'body turn and sweeping tail strike from dinosaur Apatosaurus_Attack'}}),{r,ids,bind,point,J,P,span,clip,save}=n;
 r.tokenScale=27;r.tokenGroundY=53;
 P('castShadow','root','ellipse',[2.65,.70],'shadow',{surfaceNormal:[0,0,1],material:'shadow',zBias:-100});
 J('barrelFront','pelvis',point(sub(bind.Shoulders.tail,bind.Hips.head)),'body',{helper:true});J('barrelCenter','pelvis',point(mul(sub(bind.Shoulders.tail,bind.Hips.head),.5)),'body',{helper:true});P('barrelPlate','barrelCenter','capsule',[.30],'core',{span:['pelvis','barrelFront']});

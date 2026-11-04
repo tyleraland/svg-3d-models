@@ -60,7 +60,7 @@
     "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
   },
   "profile": {
-    "silhouette": "WildMesh domestic cat: slim long barrel, upright pointed ears, short feline muzzle, light paws, long articulated limbs and a low tapering tail",
+    "silhouette": "animal domestic cat: slim long barrel, upright pointed ears, short feline muzzle, light paws, long articulated limbs and a low tapering tail",
     "locomotion": "measured supported four-beat walk; fast flexing run with raised traveling tail and tucked hind recovery",
     "attack": "authored three-foot-supported claw swat; native Cat has no dedicated combat action"
   },

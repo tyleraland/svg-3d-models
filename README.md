@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 65 animals and monsters. They are factored into reusable family
+catalog contains 75 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -14,8 +14,6 @@ Release changes and consumer upgrade guidance live in
 [CHANGELOG.md](CHANGELOG.md), [MIGRATION.md](MIGRATION.md), and
 [RELEASE.md](RELEASE.md).
 
-The stepwise creature refinement and expansion backlog, completion gates, and
-resume checkpoint live in [the creature roadmap](reference-studies/creature-roadmap.md).
 
 ## Start here
 
@@ -579,7 +577,7 @@ The independent `audit.buried-appendage-order` check compares emitted painter
 order against posed depths and overlapping supported core primitives. It covers
 plates and gaskets across all models; per-view reports list unsupported custom
 geometry. Mutation tests require it to reject deliberately misplaced buried
-parts. See [the regression study](reference-studies/occlusion-regressions.md)
+parts. See [the regression study](authoring-data/occlusion-regressions.md)
 for the original failure, coverage, and limits. Golden parity is evidence of
 consistency, not evidence that an occlusion decision is visually correct.
 Authored `over-core` appendages deliberately stay in the existing foreground
@@ -592,10 +590,8 @@ Leopard declares a lateral-sequence `groundedQuadruped.walk` and a separate
 `groundedQuadruped.run` with `spineFlexDegrees`. Its `felineAttacks.swipe` and
 `felineAttacks.pounce` plans bake supported claw strikes and airborne pounces
 into ordinary `attack` and `pounce` clips. Claw controls fold outside attacks;
-contact and phase declarations remain part of the exported clips. See
-`reference-studies/leopard.md` for reference observations and validation scope.
+contact and phase declarations remain part of the exported clips.
 
-The elephant refinement is documented in `reference-studies/elephant.md`.
 A grounded-quadruped `run` may use `pattern: "lateral-sequence"` with the
 walk declaration fields for a faster four-beat gait with continuous support;
 omitting that pattern retains the existing staggered gallop/run trajectory.
@@ -606,7 +602,7 @@ are covered; ambiguous intersections and unsupported paths remain explicit revie
 evidence. `node scripts/head-occlusion-sheet.mjs elephant /tmp/elephant-heads.html`
 generates a focused six-elevation, sixteen-heading visual matrix for any model.
 
-The wolf refinement is documented in `reference-studies/wolf.md`. Its optional
+The optional
 `groundedQuadruped.trot` declaration uses a diagonal walk-style bake. The bounded
 `canineAttack` authoring plan emits a supported jaw-driven bite with planted-paw
 IK; it requires jaw/head/neck/spine controls. Both produce ordinary consumer clips.
@@ -614,103 +610,21 @@ IK; it requires jaw/head/neck/spine controls. Both produce ordinary consumer cli
 Wolf also offers a suspended `sprint` clip through `groundedQuadruped.sprint`;
 shorter stance windows extend the aerial phase. Flying bird now offers explicit
 `fly` and `glide` clips, airborne pecking, grounded waddling (`walk`) and hopping (`hop`), with synchronous articulated wings and closed feather
-panels. See `reference-studies/flying-bird.md` for the reference study and checks.
+panels.
 
 The brown bear (`bear`) is an authored ursine family with raised shoulders,
 rounded ears, broad plantigrade paws and a short tail. It includes idle, walk,
 run and a supported paw-swipe attack. `groundedQuadruped` walk/run declarations
 can opt into `keepPawsLevel` to bake level soles and preserve claw clearance.
-See `reference-studies/bear.md` for the WildMesh reference study and checks.
 
-### Crab reference pass
+## Creature model authoring
 
-Crab has a broad shell, eye stalks, fanned walking legs and an intentionally
-larger right pincer. The workbench offers forward `walk`/`run`, lateral
-`sidewalk`/`siderun`, and an articulated claw strike/snap. Motion is baked by
-`scripts/refine-crab-motion.mjs`; no runtime IK is required. Reference evidence
-and the directional/contact regression coverage are in
-[the Crab study](reference-studies/crab.md).
+The catalog contains 75 declarative creatures. Aquatic entries include fish,
+shark (with an articulated bite), eel, manta ray, octopus, dolphin, whale and
+jellyfish. Segmented arthropods include centipede, a broad many-legged crawler,
+crab and lobster. Locomotion and attacks are ordinary baked joint-local clips.
 
-### Anaconda reference pass
-
-The `serpentine` entry is now labeled **Anaconda · serpentine**. It has a long,
-tapered articulated body, slow/fast traveling waves, `rise`, `idleRaised`,
-`lower`, and a rising strike with a hinged jaw. Its original model ID is retained
-for CLI compatibility. The separate King Cobra variant is planned next.
-See [the Anaconda study](reference-studies/anaconda.md) for Blender evidence,
-authoring decisions and regression coverage.
-
-### King Cobra
-
-`kingCobra` is a separate hooded snake alongside Anaconda (`serpentine`). Its
-raised threat idle, low idle, slow/fast travel, rise/lower transitions and rapid
-bite use rigid hinged hood panels and a head-aligned jaw. Blender reference
-findings and regression evidence are in [the King Cobra study](reference-studies/king-cobra.md).
-
-### Centaur reference pass
-
-Centaur reuses the refined Horse body and articulated legs, with an integrated
-humanoid waist, independent arm balance, a four-beat `walk`, a separate galloping
-`run`, and a braced hand strike. Motion is baked by
-`scripts/refine-centaur-motion.mjs`; reference findings and regression evidence
-are in [the Centaur study](reference-studies/centaur.md).
-
-
-The Quaternius expansion begins with a separate `frog` model: low crouched body,
-three-part folded hind legs, simple webbed feet, breathing idle, authored slow
-crawl with larger coordinated steps, paired hopping travel, a braced tongue lash
-and a roll-over KO.
-Its native Blender study and the remaining Wasp/dinosaur queue are recorded in
-[the Frog study](reference-studies/frog.md) and
-[the creature roadmap](reference-studies/creature-roadmap.md).
-
-
-The separate Quaternius `wasp` model adds a hooked banded abdomen, six
-articulated legs, cambered membrane wings and a faceted stinger. Its idle and
-walk/run equivalents are hovering and slow/fast airborne travel; the attack
-recoils the abdomen and drives the sting forward while wingbeats continue.
-See [the Wasp study](reference-studies/wasp.md) for native evidence and adaptations.
-
-The Quaternius `apatosaurus` adds a long low neck, continuous barrel and five-part
-tail, with heavy walk/run, a turning tail sweep and side-rest KO. See
-[the Apatosaurus study](reference-studies/apatosaurus.md).
-
-The separate crested `parasaurolophus` has bipedal walk/run and a forward lunge;
-see [its native study](reference-studies/parasaurolophus.md).
-
-The `stegosaurus` adds thick staggered dorsal plates and four tail spikes, with
-a turning tail strike. See [its study](reference-studies/stegosaurus.md).
-
-The `trex` adds a heavy skull and explicit snapping jaw over native-informed
-bipedal motion. See [the T. rex study](reference-studies/trex.md).
-
-The `triceratops` has a solid frill and three faceted horns for its low goring
-attack. See [its study](reference-studies/triceratops.md).
-
-The lean `velociraptor` adds grasping hands and raised sickle claws; see
-[its study](reference-studies/velociraptor.md). A generated
-[Quaternius dinosaur silhouette review](reference-studies/quaternius-dinosaur-review.html)
-compares all six in oblique, side and top views. Regenerate it with
-`node scripts/build-quaternius-review.mjs`.
-
-The [creature feedback review](reference-studies/creature-feedback-review.html)
-compares the corrected Frog and five dinosaurs in side, top and oblique views.
-Regenerate with `node scripts/build-quaternius-review.mjs --feedback`.
-
-
-### WildMesh archetype expansion
-
-Nine separate models extend the catalog: `mink`, `crocodile`, `beaver`,
-`bighornRam`, `lion`, `mammoth`, `cat`, `hyena`, and `duck`. Each has a native
-Blender reference study, independent declarative sources, grounded idle,
-walk/run and attack. Duck also has powered flight. Reference gaps are explicit:
-Mink, Cat, Hyena and Duck attacks are authored adaptations, not claims of native
-combat clips.
-
-The [nine-creature gallery](reference-studies/wildmesh-expansion-review.html)
-links each model's native evidence and action/camera sheet. Rebuild a model's
-sheet with `node scripts/review-wildmesh-model.mjs <id>`; rebuild the gallery
-with `node scripts/build-wildmesh-expansion-review.mjs`. The reference-only
-Blender scanner is `scripts/study-wildmesh-expansion.py -- <id>`.
-Grounded gait/support baking is shared in `scripts/lib/grounded-species.mjs`;
-it emits ordinary local clips and introduces no runtime mesh/IK dependency.
+Reusable authoring inputs live in `authoring-data/`; `scripts/build-*.mjs` bake
+geometry and clips into `rigs/families/` and thin `rigs/models/` declarations.
+Edit these authoring inputs or builders, validate, then regenerate the workbench.
+No model-loading or authoring-time solvers are required by consumers.

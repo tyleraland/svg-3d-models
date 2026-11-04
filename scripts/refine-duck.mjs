@@ -1,4 +1,4 @@
-// WildMesh Duck reference -> separate paper waterfowl. IK runs only at author time.
+// animal Duck reference -> separate paper waterfowl. IK runs only at author time.
 import fs from'node:fs';
 import{loadFamily}from'@paper-rig/rigs';
 import{core}from'@paper-rig/compiler';

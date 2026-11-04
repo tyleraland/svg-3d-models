@@ -372,7 +372,7 @@
         }
       ],
       "boneLengthPolicy": "preserve",
-      "motionSemantics": "Quaternius Jump-informed paired crouch, hind-leg launch, rearward leg extension, airborne recovery and landing",
+      "motionSemantics": "dinosaur Jump-informed paired crouch, hind-leg launch, rearward leg extension, airborne recovery and landing",
       "events": [
         {
           "t": 0.2,

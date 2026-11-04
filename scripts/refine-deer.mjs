@@ -1,4 +1,4 @@
-// Author-time antlerless Deer from the WildMesh FemaleDeer study.
+// Author-time antlerless Deer from the animal FemaleDeer study.
 import fs from'node:fs';
 import{loadFamily}from'@paper-rig/rigs';
 import{applyGroundedQuadruped,bindPositions,quadrupedLegs,solveLeg,sagittalBodyPose}from'../rigs/quadruped-locomotion.js';

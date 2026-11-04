@@ -1,4 +1,4 @@
-// Author-time Mountain Goat: proportions and motion informed by the native WildMesh study.
+// Author-time Mountain Goat: proportions and motion informed by the native animal study.
 // Reuses ungulate geometry/grounding tools; emits independent declarative sources.
 import fs from 'node:fs';
 import {loadFamily} from '@paper-rig/rigs';

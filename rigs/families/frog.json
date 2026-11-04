@@ -2673,7 +2673,7 @@
         }
       ],
       "boneLengthPolicy": "preserve",
-      "motionSemantics": "Quaternius Death-informed rise and roll onto the back with splayed raised feet; terminal pose stays down",
+      "motionSemantics": "dinosaur Death-informed rise and roll onto the back with splayed raised feet; terminal pose stays down",
       "events": [
         {
           "t": 0.12,
@@ -2802,7 +2802,7 @@
         }
       ],
       "boneLengthPolicy": "preserve",
-      "motionSemantics": "Quaternius Idle-informed low breathing with four fixed webbed contacts",
+      "motionSemantics": "dinosaur Idle-informed low breathing with four fixed webbed contacts",
       "events": []
     },
     "walkA": {
@@ -3217,7 +3217,7 @@
   ],
   "profile": {
     "silhouette": "broad low frog: rising back, wide blunt head, paired raised eye bulges, short forearms, large folded three-link hind legs and simple splayed webbed toes",
-    "locomotion": "authored slow supported crawl; Quaternius Jump-informed paired hind-leg launch, trailing feet, foreleg-first recovery and landing",
+    "locomotion": "authored slow supported crawl; dinosaur Jump-informed paired hind-leg launch, trailing feet, foreleg-first recovery and landing",
     "attack": "authored rapid tongue lash with four braced feet; replaces the native forelimb lunge at user request"
   }
 }

@@ -1,0 +1,11 @@
+{
+  "$schema": "paper-rig/model-1",
+  "family": "dolphin",
+  "base": true,
+  "semanticDetailPolicy": {
+    "defaultTier": "silhouette",
+    "byRole": {
+      "shadow": "texture"
+    }
+  }
+}

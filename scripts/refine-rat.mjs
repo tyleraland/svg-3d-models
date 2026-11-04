@@ -1,4 +1,4 @@
-// WildMesh Rat reference -> independent low rodent geometry and ordinary clips.
+// animal Rat reference -> independent low rodent geometry and ordinary clips.
 import fs from'node:fs';
 import{loadFamily}from'@paper-rig/rigs';
 import{applyGroundedQuadruped,bindPositions,quadrupedLegs,solveLeg,sagittalBodyPose}from'../rigs/quadruped-locomotion.js';

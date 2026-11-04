@@ -60,7 +60,7 @@
     "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
   },
   "profile": {
-    "silhouette": "WildMesh Mammoth: high shoulders and domed crown, sloping shaggy barrel, small ears, stout column legs, long trunk and sweeping curled tusks",
+    "silhouette": "animal Mammoth: high shoulders and domed crown, sloping shaggy barrel, small ears, stout column legs, long trunk and sweeping curled tusks",
     "locomotion": "heavy supported four-beat walk and faster charging high walk without airborne gallop",
     "attack": "Tusk-Jab reference-informed braced forward/down head thrust, trunk curl, recoil and settle"
   },

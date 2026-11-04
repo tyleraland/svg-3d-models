@@ -1,4 +1,4 @@
-// WildMesh-informed Kangaroo. All support IK is baked at authoring time.
+// authored Kangaroo. All support IK is baked at authoring time.
 import fs from 'node:fs';
 import{loadFamily}from'@paper-rig/rigs';
 import{bindPositions,solveLeg,sagittalBodyPose}from'../rigs/quadruped-locomotion.js';

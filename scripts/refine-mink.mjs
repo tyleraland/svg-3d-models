@@ -1,4 +1,4 @@
-// WildMesh AmericanMink reference -> independent broad mustelid geometry and ordinary clips.
+// animal AmericanMink reference -> independent broad mustelid geometry and ordinary clips.
 import fs from'node:fs';
 import{loadFamily}from'@paper-rig/rigs';
 import{applyGroundedQuadruped,bindPositions,quadrupedLegs,solveLeg,sagittalBodyPose}from'../rigs/quadruped-locomotion.js';

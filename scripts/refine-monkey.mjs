@@ -1,4 +1,4 @@
-// WildMesh Monkey_Stylized study -> independent paper geometry and local clips.
+// animal Monkey_Stylized study -> independent paper geometry and local clips.
 // All support IK is author-time only; no native mesh/action payload is copied.
 import fs from 'node:fs';
 import{loadFamily}from'@paper-rig/rigs';

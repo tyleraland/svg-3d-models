@@ -1,8 +1,0 @@
-// Diagnostic gallery only; individual action/camera sheets use review-wildmesh-model.
-import fs from'node:fs';
-import{loadModel}from'@paper-rig/rigs';
-import{markup}from'@paper-rig/compiler';
-const entries=[['mink','Mink'],['crocodile','Crocodile'],['beaver','Beaver'],['bighornRam','Bighorn Ram'],['lion','Maned Lion'],['mammoth','Mammoth'],['cat','Domestic Cat'],['hyena','Hyena'],['duck','Duck']];
-let html='<!doctype html><meta charset="utf-8"><title>WildMesh expansion · nine new paper creatures</title><style>body{background:#e8e3d7;font:16px system-ui;margin:20px;color:#39362e}main{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}article{background:#fcf8ec;padding:10px}h1{font-size:24px;margin:4px 0 8px}h2{font-size:17px;margin:0}p{margin:0 0 16px}svg{width:100%;height:230px}.paperPlate{fill:#d7c39c;stroke:#39362e;stroke-width:1.2;vector-effect:non-scaling-stroke}.plateShade{fill:#b99d73}.paperPlate[data-palette-role="shadow"]{fill:#9d927d}.coreOccluderCell,.jointGasket{fill:#d7c39c;stroke:#d7c39c;stroke-width:1.5;vector-effect:non-scaling-stroke}a{color:#785430;font-size:12px}</style><h1>WildMesh reference studies → nine new paper creatures</h1><p>Idle, walk, run and attack for each. Duck also includes powered flight.</p><main>';
-for(const[id,name]of entries)html+=`<article><h2>${name}</h2><svg viewBox="0 0 100 100">${markup(loadModel(id),{clip:'idle',time:0,elevation:45,heading:270,clean:true})}</svg><a href="${id}-review.html">Action / camera review</a> · <a href="${id}.md">Reference study</a></article>`;
-fs.writeFileSync('reference-studies/wildmesh-expansion-review.html',html+'</main>');

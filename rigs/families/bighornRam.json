@@ -3257,7 +3257,7 @@
     "sheep"
   ],
   "profile": {
-    "silhouette": "WildMesh Bighorn ram: deep strong barrel, thick forequarters, muscular neck, short tail, cloven hooves and heavy curled horns wrapping behind the ears",
+    "silhouette": "animal Bighorn ram: deep strong barrel, thick forequarters, muscular neck, short tail, cloven hooves and heavy curled horns wrapping behind the ears",
     "locomotion": "four-beat sure-footed walk and quick gallop with full articulated limbs",
     "attack": "HeadButt reference-informed forehead tuck, neck preload, sudden braced head-butt and recoil"
   }

@@ -1,4 +1,4 @@
-import {nativePaper,finishDinosaur,sub,mul,tr} from './lib/quaternius-paper.mjs';
+import {nativePaper,finishDinosaur,sub,mul,tr} from './lib/dinosaur-paper.mjs';
 import {core} from '@paper-rig/compiler';
 import {angles,curve} from './lib/spatial-leg-ik.mjs';
 const n=nativePaper('velociraptor',{scale:.17,height:1.05,include:['FrontFoot.L','FrontFoot.R'],names:{Body:'body',Hips:'pelvis',Torso:'chest',Shoulders:'shoulders',Neck:'neck',Head:'head'},profile:{silhouette:'lean theropod, small slim skull, curved neck, longer three-finger grasping hands, long balancing tail, bent hind legs and raised sickle toe claws',locomotion:'native biped walk and faster running strides',attack:'native forward head/body lunge with grasping hands and a small authored bite'}}),{r,bind,point,J,P,span,save}=n;

@@ -146578,7 +146578,7 @@
       "loop": false,
       "easing": "linear",
       "boneLengthPolicy": "preserve",
-      "motionSemantics": "planted-foot angular neck peck, referenced from WildMesh Chicken Idle2",
+      "motionSemantics": "planted-foot angular neck peck, referenced from animal Chicken Idle2",
       "keyframes": [
         {
           "timeNormalized": 0,

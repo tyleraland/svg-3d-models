@@ -23,6 +23,7 @@ function frame(mode,t){const c=settings[mode],w=2*Math.PI*t,poses={root:[0,0,0]}
   rotations[n+'Shoulder']=[0,strike?curve([[0,0],[.28,-32],[.43,9],[.58,5],[.86,0],[1,0]],t):Math.sin(w)*(c.duty?2:4),s*(strike?curve([[0,0],[.28,24],[.43,-22],[.58,-18],[.86,0],[1,0]],t):Math.sin(w)*2)*(major?1:.5)];
   rotations[n+'Elbow']=[0,strike?curve([[0,0],[.28,-18],[.43,10],[.58,5],[.86,0],[1,0]],t):0,s*(strike?curve([[0,0],[.28,-15],[.43,24],[.58,16],[.86,0],[1,0]],t):0)];
   rotations[n+'MovingBase']=[0,0,s*(strike?curve([[0,0],[.23,-32],[.39,-38],[.46,16],[.58,16],[.78,-8],[1,0]],t):(-5+5*Math.cos(w)))];
+  if(strike&&!major)for(const part of ['Shoulder','Elbow','MovingBase'])rotations[n+part]=[0,0,0];
   rotations[side+'EyeBase']=[2*Math.sin(w),0,s*2*Math.sin(w)];
  }
  return{t:round(t),poses:Object.fromEntries(Object.entries(poses).map(([k,v])=>[k,v.map(round)])),rotations};

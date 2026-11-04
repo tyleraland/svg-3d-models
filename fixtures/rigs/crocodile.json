@@ -161941,7 +161941,7 @@
     "crocodilian"
   ],
   "profile": {
-    "silhouette": "WildMesh crocodile: long low broad armored trunk, splayed short limbs, flattened long muzzle, dorsal scutes and long muscular tapering tail",
+    "silhouette": "animal crocodile: long low broad armored trunk, splayed short limbs, flattened long muzzle, dorsal scutes and long muscular tapering tail",
     "locomotion": "supported four-beat crawl and faster supported high walk with articulated upper/lower limbs and traveling tail sway",
     "attack": "native Bite-informed wide lower-jaw opening, short head lift, sudden jaw snap and recovery"
   }

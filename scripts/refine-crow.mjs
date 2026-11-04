@@ -1,5 +1,5 @@
 // Author-time Crow geometry + clips, using the shared avian hierarchy/baker.
-// The native Crow study is in reference-studies/crow.md; no mesh data ships.
+// The native Crow study is in authoring-data/crow.md; no mesh data ships.
 import fs from 'node:fs';
 import {bakeAvianMotion} from './lib/avian-motion.mjs';
 const r=JSON.parse(fs.readFileSync('rigs/families/flyingBird.json'));

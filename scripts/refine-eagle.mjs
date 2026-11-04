@@ -1,4 +1,4 @@
-// Author-time Eagle refinement from the WildMesh studies. Emits ordinary clips.
+// Author-time Eagle refinement from the animal studies. Emits ordinary clips.
 // Run from the repository root; reference mesh data never enters the renderer.
 import fs from 'node:fs';
 import {bakeAvianMotion} from './lib/avian-motion.mjs';

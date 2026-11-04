@@ -1,4 +1,4 @@
-// WildMesh Tortoise_Stylized -> independent rigid-shell paper tortoise.
+// animal Tortoise_Stylized -> independent rigid-shell paper tortoise.
 // All spatial support IK and shell construction run at author time only.
 import fs from'node:fs';
 import{loadFamily}from'@paper-rig/rigs';

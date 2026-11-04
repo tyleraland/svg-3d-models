@@ -1,4 +1,4 @@
-import {nativePaper,finishDinosaur,sub,mul} from './lib/quaternius-paper.mjs';
+import {nativePaper,finishDinosaur,sub,mul} from './lib/dinosaur-paper.mjs';
 const n=nativePaper('parasaurolophus',{scale:.18,height:1.05,names:{Body:'body',Hips:'pelvis',Torso:'chest',Shoulders:'shoulders',Neck:'neck',Head:'head'},profile:{silhouette:'swept-back cranial crest, duck-billed head, tall curved neck, deep barrel, small forearms, strong two-link hind legs and long balancing tail',locomotion:'bipedal native walk and run',attack:'native crouch, forward head-and-body lunge and recovery'}}),{r,bind,ids,point,J,P,span,save}=n;r.tokenScale=31;r.tokenGroundY=63;
 P('castShadow','root','ellipse',[2.25,.72],'shadow',{surfaceNormal:[0,0,1],material:'shadow',zBias:-100});
 J('barrelFront','pelvis',point(sub(bind.Shoulders.head,bind.Hips.head)),'body',{helper:true});J('barrelCenter','pelvis',point(mul(sub(bind.Shoulders.head,bind.Hips.head),.5)),'body',{helper:true});P('barrelPlate','barrelCenter','capsule',[.36],'core',{span:['pelvis','barrelFront']});span('Back',.28,'core',{occlusionMode:'under-core'});span('Shoulders',.15,'neck');span('Neck',.12,'neck');span('Head',.12,'head');

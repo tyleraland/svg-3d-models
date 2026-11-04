@@ -1,4 +1,4 @@
-// WildMesh Ostrich_Stylized -> separate paper ratite; all support IK is author-time.
+// animal Ostrich_Stylized -> separate paper ratite; all support IK is author-time.
 import fs from'node:fs';
 import{loadFamily}from'@paper-rig/rigs';
 import{bindPositions,sagittalBodyPose}from'../rigs/quadruped-locomotion.js';

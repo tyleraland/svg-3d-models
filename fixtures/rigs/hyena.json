@@ -60,7 +60,7 @@
     "depthOrder": "far-to-near camera depth; stable semantic-id tie break"
   },
   "profile": {
-    "silhouette": "WildMesh Hyena: high deep shoulders, sloping back and lower rump, strong thick neck, blunt muzzle, tall rounded-point ears and a short hanging brush tail",
+    "silhouette": "animal Hyena: high deep shoulders, sloping back and lower rump, strong thick neck, blunt muzzle, tall rounded-point ears and a short hanging brush tail",
     "locomotion": "supported four-beat walk and forward-reaching fast gallop with articulated upper/lower limbs and lowered traveling head",
     "attack": "authored braced crushing bite informed by native head/jaw and laughing/threat postures; native library has no dedicated attack"
   },
