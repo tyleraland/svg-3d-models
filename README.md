@@ -2,7 +2,7 @@
 
 Paper Rig is a deterministic, DOM-free toolchain for authoring semantic 3D
 creature rigs and projecting them into SVG-compatible 2D scenes. The current
-catalog contains 75 animals and monsters. They are factored into reusable family
+catalog contains 78 animals and monsters. They are factored into reusable family
 bases and one thin declarative model file per creature; they no longer live as
 model definitions inside the workbench HTML.
 
@@ -619,7 +619,7 @@ can opt into `keepPawsLevel` to bake level soles and preserve claw clearance.
 
 ## Creature model authoring
 
-The catalog contains 75 declarative creatures. Aquatic entries include fish,
+The catalog contains 78 declarative creatures. Aquatic entries include fish,
 shark (with an articulated bite), eel, manta ray, octopus, dolphin, whale and
 jellyfish. Segmented arthropods include centipede, a broad many-legged crawler,
 crab and lobster. Locomotion and attacks are ordinary baked joint-local clips.
@@ -628,3 +628,20 @@ Reusable authoring inputs live in `authoring-data/`; `scripts/build-*.mjs` bake
 geometry and clips into `rigs/families/` and thin `rigs/models/` declarations.
 Edit these authoring inputs or builders, validate, then regenerate the workbench.
 No model-loading or authoring-time solvers are required by consumers.
+
+### Merfolk, slug and snail
+
+`merfolk` combines an upright humanoid upper body, two articulated webbed hands
+and a tapering fish tail. It has suspended swimming, faster swimming, an arm
+strike, a separate tail sweep and an aquatic recoil.
+
+`slug` and `snail` have independent elongated gastropod families, a broad muscular
+sole, traveling sole-margin ripples, paired eye stalks and shorter oral feelers.
+The snail adds a rigid coiled shell; the slug has a low mantle and tapered rear.
+They do not reuse the blob. `feelersFold` rotates fixed-length stalks; full soft
+retraction and shell withdrawal remain planned in [animation-gaps.md](animation-gaps.md).
+
+Rebuild these declarations with `node scripts/build-merfolk-gastropods.mjs`.
+Refresh the factual clip table with `node scripts/animation-coverage.mjs --write`;
+the curated priorities in `animation-gaps.md` remain editable. Brontosaurus and
+hydra are planning entries only.
